@@ -1,4 +1,3 @@
-#pragma once
 /*
 ***********************************************
 PKMDS Code Library - Gen V
@@ -20,8 +19,14 @@ and "sqlite3.h" came from these people.
 Thanks to those of Project Pokemon (http://projectpokemon.org/)
 who have helped research and document the underlying structure
 of Pokemon game save files.
+
+Special thanks to SCV, Sabresite, loadingNOW, Poryhack,
+GatorShark, Jiggy-Ninja, Codr, Bond697, mingot, Guested,
+coolbho3000 and of course, COM.
+
+Some documentation available at: http://www.projectpokemon.org/wiki/
 */
-//http://www.projectpokemon.org/wiki/Pokemon_Black/White_NDS_Structure
+#pragma once
 #include "pokeprng.h"
 // Enums
 namespace Species
