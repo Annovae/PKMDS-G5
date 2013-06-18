@@ -125,10 +125,11 @@ void frmBoxes::on_actionLoad_SAV_triggered()
         ui->sbBoxIncrem->setValue(sav->cur.curbox);
         ui->cbBoxes->setEnabled(true);
 
-        pokemon_obj * apkm = new pokemon_obj;
-        apkm = &(sav->cur.party.pokemon[0].pkm_data);
+//        pokemon_obj * apkm = new pokemon_obj;
+//        apkm = &(sav->cur.party.pokemon[0].pkm_data);
         pkmviewer * pview = new pkmviewer(this);
         pview->setPKM(sav->cur.party.pokemon[0]);
+        pview->displayPKM();
         pview->show();
 
     }

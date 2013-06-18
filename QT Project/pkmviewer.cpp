@@ -57,6 +57,11 @@ void pkmviewer::setPKM(party_pkm & ppkm_)
 
 void pkmviewer::displayPKM()
 {
+    QPixmap * pixmap = new QPixmap();
+    QGraphicsScene * scene = new QGraphicsScene();
+    *pixmap = getpkmsprite(pkm);
+    scene->addPixmap(*pixmap);
+    ui->pbSprite->setScene(scene);
 
 }
 
