@@ -20,7 +20,7 @@
    <string>PKMDS Qt Edition</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QFrame" name="frame">
+   <widget class="QFrame" name="pc_frame">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -67,7 +67,7 @@
       <enum>QFrame::NoFrame</enum>
      </property>
     </widget>
-    <widget class="QGraphicsView" name="pbBoxSlot7">
+    <widget class="QGraphicsView" name="pbBoxSlot07">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -195,7 +195,7 @@
       <enum>QFrame::NoFrame</enum>
      </property>
     </widget>
-    <widget class="QGraphicsView" name="pbBoxSlot4">
+    <widget class="QGraphicsView" name="pbBoxSlot04">
      <property name="geometry">
       <rect>
        <x>90</x>
@@ -227,7 +227,7 @@
       <enum>QFrame::NoFrame</enum>
      </property>
     </widget>
-    <widget class="QGraphicsView" name="pbBoxSlot5">
+    <widget class="QGraphicsView" name="pbBoxSlot05">
      <property name="geometry">
       <rect>
        <x>120</x>
@@ -243,7 +243,7 @@
       <enum>QFrame::NoFrame</enum>
      </property>
     </widget>
-    <widget class="QGraphicsView" name="pbBoxSlot1">
+    <widget class="QGraphicsView" name="pbBoxSlot01">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -275,7 +275,7 @@
       <enum>QFrame::NoFrame</enum>
      </property>
     </widget>
-    <widget class="QGraphicsView" name="pbBoxSlot9">
+    <widget class="QGraphicsView" name="pbBoxSlot09">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -307,7 +307,7 @@
       <enum>QFrame::NoFrame</enum>
      </property>
     </widget>
-    <widget class="QGraphicsView" name="pbBoxSlot2">
+    <widget class="QGraphicsView" name="pbBoxSlot02">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -387,7 +387,7 @@
       <enum>QFrame::NoFrame</enum>
      </property>
     </widget>
-    <widget class="QGraphicsView" name="pbBoxSlot3">
+    <widget class="QGraphicsView" name="pbBoxSlot03">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -403,7 +403,7 @@
       <enum>QFrame::NoFrame</enum>
      </property>
     </widget>
-    <widget class="QGraphicsView" name="pbBoxSlot8">
+    <widget class="QGraphicsView" name="pbBoxSlot08">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -435,7 +435,7 @@
       <enum>QFrame::NoFrame</enum>
      </property>
     </widget>
-    <widget class="QGraphicsView" name="pbBoxSlot6">
+    <widget class="QGraphicsView" name="pbBoxSlot06">
      <property name="geometry">
       <rect>
        <x>150</x>
@@ -516,7 +516,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QFrame" name="frame_2">
+   <widget class="QFrame" name="party_frame">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -531,7 +531,7 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QGraphicsView" name="pbPartySlot6">
+    <widget class="QGraphicsView" name="pbPartySlot06">
      <property name="geometry">
       <rect>
        <x>150</x>
@@ -547,7 +547,7 @@
       <enum>QFrame::NoFrame</enum>
      </property>
     </widget>
-    <widget class="QGraphicsView" name="pbPartySlot4">
+    <widget class="QGraphicsView" name="pbPartySlot04">
      <property name="geometry">
       <rect>
        <x>90</x>
@@ -563,7 +563,7 @@
       <enum>QFrame::NoFrame</enum>
      </property>
     </widget>
-    <widget class="QGraphicsView" name="pbPartySlot1">
+    <widget class="QGraphicsView" name="pbPartySlot01">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -579,7 +579,7 @@
       <enum>QFrame::NoFrame</enum>
      </property>
     </widget>
-    <widget class="QGraphicsView" name="pbPartySlot3">
+    <widget class="QGraphicsView" name="pbPartySlot03">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -595,7 +595,7 @@
       <enum>QFrame::NoFrame</enum>
      </property>
     </widget>
-    <widget class="QGraphicsView" name="pbPartySlot2">
+    <widget class="QGraphicsView" name="pbPartySlot02">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -611,7 +611,7 @@
       <enum>QFrame::NoFrame</enum>
      </property>
     </widget>
-    <widget class="QGraphicsView" name="pbPartySlot5">
+    <widget class="QGraphicsView" name="pbPartySlot05">
      <property name="geometry">
       <rect>
        <x>120</x>
@@ -627,6 +627,12 @@
       <enum>QFrame::NoFrame</enum>
      </property>
     </widget>
+    <zorder>pbPartySlot01</zorder>
+    <zorder>pbPartySlot02</zorder>
+    <zorder>pbPartySlot04</zorder>
+    <zorder>pbPartySlot05</zorder>
+    <zorder>pbPartySlot06</zorder>
+    <zorder>pbPartySlot03</zorder>
    </widget>
    <widget class="QComboBox" name="cbBoxes">
     <property name="enabled">

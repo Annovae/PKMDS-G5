@@ -30,6 +30,7 @@ Some documentation available at: http://www.projectpokemon.org/wiki/
 #define FRMBOXES_H
 #include <QMainWindow>
 #include "qt_sqlite.h"
+#include "mouseeventeater.h"
 namespace Ui {
 class frmBoxes;
 }
@@ -38,7 +39,20 @@ class frmBoxes : public QMainWindow
     Q_OBJECT
 public:
     explicit frmBoxes(QWidget *parent = 0);
+    MouseEventEater *mouseEventEater; // = new MouseEventEater(this);
+    QGraphicsView * partygraphics[6];
+    QPixmap partypix[6];
+    QGraphicsScene* partyscenes[6];
+    QGraphicsView* boxgraphics[30];
+    QPixmap boxpix[30];
+    QGraphicsScene* boxscenes[30];
+    //    bw2sav_obj * sav;// = new bw2sav_obj;
+    //    QString SaveFileName;// = "";
+    //    bool SavDecrypted;// = false;
+    //    const QString wTitle;// = "PKMDS Qt Edition";
+    //bw2savblock_obj * curBlock = new bw2savblock_obj;
     ~frmBoxes();
+    //void QGraphicsView::mousePressEvent(QMouseEvent *event);
 private slots:
     void on_actionLoad_SAV_triggered();
     void on_cbBoxes_currentIndexChanged(int index);

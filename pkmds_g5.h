@@ -2389,6 +2389,10 @@ namespace Wallpapers
 struct pokerus {
 	byte strain : 2;
 	byte days : 2;
+    pokerus()
+    {
+        memset(this,0,sizeof(pokerus));
+    }
 };
 /*
 fetchPKMDataIfValid fields
@@ -2652,6 +2656,10 @@ struct evsfield {
 	byte speed; // Speed EVs
 	byte spatk; // Special Attack EVs
 	byte spdef; // Special Defnse EVs
+    evsfield()
+    {
+        memset(this,0,sizeof(evsfield));
+    }
 };
 //Contest
 struct contestfield {
@@ -2661,12 +2669,20 @@ struct contestfield {
 	byte smart; // Smart
 	byte tough; // Tough
 	byte sheen; // Sheen
+    contestfield()
+    {
+        memset(this,0,sizeof(contestfield));
+    }
 };
 //Date
 struct datefield {
 	byte year;
 	byte month;
 	byte day;
+    datefield()
+    {
+        memset(this,0,sizeof(datefield));
+    }
 };
 //Markings
 struct markingsfield { // Bitfield for the "Markings" of a Pokemon.
@@ -2677,8 +2693,12 @@ public:
 	bool heart : 1; // Heart
 	bool star : 1; // Star
 	bool diamond : 1; // Diamond
-private:
+// private:
 byte : 2; // Unused bits
+    markingsfield()
+    {
+        memset(this,0,sizeof(markingsfield));
+    }
 };
 //Individual Values
 struct ivsfield { // Bitfield for the Pokemon's Individual Values (IVs).
@@ -2691,6 +2711,10 @@ public:
 	uint32 spdef : 5; // Special Defense
 	uint32 isegg : 1; // Flag to indicate whether or not this Pokemon is an egg.
 	uint32 isnicknamed : 1; // Flag to indicate whether or not this Pokemon is nicknamed.
+    ivsfield()
+    {
+        memset(this,0,sizeof(ivsfield));
+    }
 };
 //Forms
 struct formsfield { // Bitfield for determining the Pokemon's form, fateful encounter, and gender.
@@ -2699,19 +2723,31 @@ public:
 	bool female : 1; // Flag to determine if this Pokemon is female.
 	bool genderless : 1; // Flag to determine if this Pokemon is genderless.
 	byte form : 5; // Index number of this Pokemon's form.
+    formsfield()
+    {
+        memset(this,0,sizeof(formsfield));
+    }
 };
 //Met Level
 struct metlevelfield { // Bitfield for the Pokemon's met level and original trainer gender.
 public:
 	byte metlevel : 7; // The level at which this Pokemon was first encountered.
 	Genders::genders otgender : 1; // Flag to determine if the original trainer was female.
+    metlevelfield()
+    {
+        memset(this,0,sizeof(metlevelfield));
+    }
 };
 struct dw_ability { //Bitfield for Dream World Ability flag, N's Pokemon Flag
 public:
 	bool hasdwability : 1; // Dream World Ability flag
 	bool n_pkm : 1; // N's Pokemon Flag
-private:
+// private:
 byte : 6; //
+    dw_ability()
+    {
+        memset(this,0,sizeof(dw_ability));
+    }
 };
 //Ribbons
 struct sinnohrib1 { // 16 bits
@@ -2732,6 +2768,10 @@ public:
 	bool smile_ribbon : 1; //
 	bool gorgeous_ribbon : 1; //
 	bool royal_ribbon : 1; //
+    sinnohrib1()
+    {
+        memset(this,0,sizeof(sinnohrib1));
+    }
 };
 struct sinnohrib2 { // 16 bits
 public:
@@ -2747,8 +2787,12 @@ public:
 	bool carnival_ribbon : 1; //
 	bool classic_ribbon : 1; //
 	bool premier_ribbon : 1; //
-private:
+// private:
 byte : 4; // Padding to 16 bits
+    sinnohrib2()
+    {
+        memset(this,0,sizeof(sinnohrib2));
+    }
 };
 struct hoennrib1{ // 16 bits
 public:
@@ -2768,6 +2812,10 @@ public:
 	bool smart_ribbon_super : 1; //
 	bool smart_ribbon_hyper : 1; //
 	bool smart_ribbon_master : 1; //
+    hoennrib1()
+    {
+        memset(this,0,sizeof(hoennrib1));
+    }
 };
 struct hoennrib2{ // 16 bits
 public:
@@ -2787,6 +2835,10 @@ public:
 	bool national_ribbon : 1; //
 	bool earth_ribbon : 1; //
 	bool world_ribbon : 1; //
+    hoennrib2()
+    {
+        memset(this,0,sizeof(hoennrib2));
+    }
 };
 struct sinnohrib3 { // 16 bits
 public:
@@ -2806,6 +2858,10 @@ public:
 	bool smart_ribbon_great : 1; //
 	bool smart_ribbon_ultra : 1; //
 	bool smart_ribbon_master : 1; //
+    sinnohrib3()
+    {
+        memset(this,0,sizeof(sinnohrib3));
+    }
 };
 struct sinnohrib4 { // 8 bits
 public:
@@ -2813,8 +2869,12 @@ public:
 	bool tough_ribbon_great : 1; //
 	bool tough_ribbon_ultra : 1; //
 	bool tough_ribbon_master : 1; //
-private:
+// private:
 byte : 4; // Padding to 16 bits
+    sinnohrib4()
+    {
+        memset(this,0,sizeof(sinnohrib4));
+    }
 };
 //Unencrypted Data
 struct pkmunencryptblock { // The unencrypted block of the Pokemon data, featuring such important things as the PID and checksum.
@@ -2823,10 +2883,14 @@ public:
 	uint16 ispartydatadecrypted : 1;
 	uint16 isboxdatadecrypted : 1;
 	uint16 isspeciesegg : 1;
-private:
+// private:
 uint16 : 13;
-public:
+//public:
 	uint16 checksum; // The checksum for the Pokemon data; used to validate data and for encryption / decryption.
+    pkmunencryptblock()
+    {
+        memset(this,0,sizeof(pkmunencryptblock));
+    }
 };
 //Block A
 struct pkmblocka { // 
@@ -2844,6 +2908,10 @@ public:
 	contestfield contest;
 	sinnohrib1 sribbon1; // Sinnoh Ribbons 1
 	sinnohrib2 sribbon2; // Sinnoh Ribbons 2
+    pkmblocka()
+    {
+        memset(this,0,sizeof(pkmblocka));
+    }
 };
 //Block B
 struct pkmblockb { // 
@@ -2857,24 +2925,32 @@ public:
 	formsfield forms; // Forms, fateful encounter, gender
 	Natures::natures nature; // Nature index
 	dw_ability dwability; // Dream World Ability flag, N's Pokemon flag
-private:
+// private:
 byte : 8; //
 uint16 : 16; //
 uint16 : 16; //
+    pkmblockb()
+    {
+        memset(this,0,sizeof(pkmblockb));
+    }
 };
 //Block C
 struct pkmblockc { // 
 public:
 	wchar_t nickname[11]; // Nickname
-private:
+// private:
 byte : 8;
-public:
+//public:
 	Hometowns::hometowns hometown; // Original game
 	sinnohrib3 sribbon3; // Sinnoh Ribbons 3
 	sinnohrib4 sribbon4; // Sinnoh Ribbons 4
-private:
+// private:
 byte : 8;
 uint32 : 32; //
+    pkmblockc()
+    {
+        memset(this,0,sizeof(pkmblockc));
+    }
 };
 //Block D
 struct pkmblockd { // 
@@ -2888,11 +2964,19 @@ public:
 	Balls::balls ball; // Ball captured with and kept in
 	metlevelfield metlevel_otgender; // Met level, original trainer gender flag
 	Encounters::encounters encounter; // Encounter type (depricated since Gen IV?)
-private:
+// private:
 byte : 8; //
 byte : 8; //
+    pkmblockd()
+    {
+        memset(this,0,sizeof(pkmblockd));
+    }
 };
 struct pokemon_obj : pkmunencryptblock,pkmblocka,pkmblockb,pkmblockc,pkmblockd { // The Pokemon object, containing 136 bytes of data (as stored in the PC storage system)
+    pokemon_obj()
+    {
+        memset(this,0,sizeof(pokemon_obj));
+    }
 };
 struct status_field {
 	byte sleep : 3;
@@ -2901,18 +2985,22 @@ struct status_field {
 	bool frozen : 1;
 	bool paralyzed : 1;
 	bool toxic : 1;
+    status_field()
+    {
+        memset(this,0,sizeof(status_field));
+    }
 };
 struct party_field { // Size: 0x54
 public:
 	status_field status;
-private:
+// private:
 byte : 8;
 uint16 : 16;
-public:
+//public:
 	byte level;
-private:
+// private:
 byte : 8;
-public:
+//public:
 	uint16 hp;
 	uint16 maxhp;
 	uint16 attack;
@@ -2920,12 +3008,20 @@ public:
 	uint16 speed;
 	uint16 spatk;
 	uint16 spdef;
-private:
+// private:
 	byte unknown[0x40];
+    party_field()
+    {
+        memset(this,0,sizeof(party_field));
+    }
 };
 struct party_pkm { // Size: 0xDC
 	pokemon_obj pkm_data;
 	party_field party_data;
+    party_pkm()
+    {
+        memset(this,0,sizeof(party_pkm));
+    }
 };
 byte getpkmshuffleindex(const uint32 pid);
 byte getpkmshuffleindex(const pokemon_obj &pkm);
@@ -2949,17 +3045,25 @@ void decryptpkm(pokemon_obj* pkm);
 struct box_obj { // size: 0x1000
 public:
 	pokemon_obj pokemon[30]; //
-private:
+// private:
 uint16 : 16;
-public:
+//public:
 	uint16 checksum;
-private:
+// private:
 	byte buf[0x0c];
+    box_obj()
+    {
+        memset(this,0,sizeof(box_obj));
+    }
 };
 struct item_obj
 {
 	Items::items id;
 	uint16 quantity;
+    item_obj()
+    {
+        memset(this,0,sizeof(item_obj));
+    }
 };
 const static int ITEMS_POCKET_SIZE = 310;
 const static int KEYITEMS_POCKET_SIZE = 83;
@@ -2972,8 +3076,12 @@ public:
 	byte year;
 	byte month;
 	byte day;
-private:
+// private:
 byte : 8;
+    badge_obj()
+    {
+        memset(this,0,sizeof(badge_obj));
+    }
 };
 struct bag_obj { // size: 0x9c0
 public:
@@ -2982,21 +3090,29 @@ public:
 	item_obj tms_pocket[TMS_POCKET_SIZE];
 	item_obj medicine_pocket[MEDICINE_POCKET_SIZE];
 	item_obj berries_pocket[BERRIES_POCKET_SIZE];
-private:
+// private:
 	byte data[0x66];
-public:
+//public:
 	uint16 checksum;
+    bag_obj()
+    {
+        memset(this,0,sizeof(bag_obj));
+    }
 };
 struct party_obj { // size: 0x534
-private:
+// private:
 uint32 : 32;
 public:
 	uint32 size;
 	party_pkm pokemon[6];
-public:
+//public:
 	uint16 checksum;
-private:
+// private:
 uint16 : 16;
+    party_obj()
+    {
+        memset(this,0,sizeof(party_obj));
+    }
 };
 struct wcrib1
 {
@@ -3009,6 +3125,10 @@ public:
 	bool Premiere_Ribbon : 1;
 	bool Event_Ribbon : 1;
 	bool Birthday_Ribbon : 1;
+    wcrib1()
+    {
+        memset(this,0,sizeof(wcrib1));
+    }
 };
 struct wcrib2
 {
@@ -3020,8 +3140,12 @@ public:
 	bool Regional_Champ_Ribbon : 1;
 	bool National_Champ_Ribbon : 1;
 	bool World_Champ_Ribbon : 1;
-private:
+// private:
 byte : 1;
+    wcrib2()
+    {
+        memset(this,0,sizeof(wcrib2));
+    }
 };
 /*
 Ribbon Sets
@@ -3042,22 +3166,22 @@ public:
 	uint16 trainer_id;
 	uint16 secret_id;
 	byte hometown;
-private:
+// private:
 	byte unused[3];
-public:
+//public:
 	uint32 pid;
 	wcrib1 rib1;
 	wcrib2 rib2;
 	Balls::balls ball;
-private:
+// private:
 byte : 8;
-public:
+//public:
 	Items::items item;
 	Moves::moves moves[4];
 	Species::pkmspecies species;
-private:
+// private:
 byte : 8;
-public:
+//public:
 	byte language_flag;
 	wchar_t nickname[11];
 	byte nature_flag;
@@ -3066,19 +3190,19 @@ public:
 	byte shiny_flag;
 	Locations::locations eggmetloc;
 	Locations::locations metloc;
-private:
+// private:
 	byte level_;
-public:
+//public:
 	byte conteststats[6];
 	byte ivs_flags[6];
-private:
+// private:
 byte : 8;
-public:
+//public:
 	wchar_t trainer_name[8];
 	byte trainer_gender_flag;
 	byte level_flag;
 	byte egg_flag;
-private:
+// private:
 	byte unused2[3];
 	/*
 	0x00-0x01	 Trainer ID Number, Item Number, Power Type
@@ -3157,20 +3281,24 @@ private:
 
 	0x5D-0x5F	Unused
 	*/
+    gift_data()
+    {
+        memset(this,0,sizeof(gift_data));
+    }
 };
 struct card_data
 {
 public:
 	wchar_t card_title[37];
-private:
+// private:
 uint16 : 16;
-public:
+//public:
 	byte card_received_date[4];
 	uint16 card_id;
 	byte card_from_loc;
 	byte card_type;
 	byte gift_status;
-private:
+// private:
 	byte unused[23];
 	/*
 	0x60-0xA9	 Card Title
@@ -3188,56 +3316,74 @@ private:
 	03 - Used
 	0xB5-0xCB	Unused
 	*/
+    card_data()
+    {
+        memset(this,0,sizeof(card_data));
+    }
 };
-struct wondercard_obj : gift_data, card_data{};
-struct bw2savblock_obj { // 
+struct wondercard_obj : gift_data, card_data
+{
+    wondercard_obj()
+    {
+        memset(this,0,sizeof(wondercard_obj));
+    }
+};
+struct bw2savblock_obj { //
 public:
 	byte curbox;
-private:
+// private:
 	byte unknown0[0x03]; //
-public:
+//public:
 	wchar_t boxnames[24][20]; // size: 0x3C0
 	Wallpapers::wallpapers boxwallpapers[0x18];
-private:
+// private:
 	byte unknown1[6];
-public:
+//public:
 	uint16 block1checksum;
-private:
+// private:
 	byte unknown2[0x1c]; //
-public:
+//public:
 	box_obj boxes[24]; // size: 0x18000
 	bag_obj bag; // size: 0xA00
 	party_obj party; // size: 0x534
-private:
+// private:
 	byte unknown3[0xD0]; //
-public:
+//public:
 	wchar_t trainername[0x08]; // size: 0x10
 	uint16 tid;
 	uint16 sid;
-private:
+// private:
 	byte unknown4[0x32EC];
-public:
+//public:
 	badge_obj badges[8]; // size: 0x20
-private:
+// private:
 	byte unknown5[0x1210];
 
-public:
+//public:
 	uint32 adventurestarted;
-private:
+// private:
 	byte unknown6[0x226C8];
 	// Gym badge dates are stored starting 1C704 - 4 bytes - year, month, day, 0
+    bw2savblock_obj()
+    {
+        memset(this,0,sizeof(bw2savblock_obj));
+    }
 };
-struct bw2sav_obj { // 
+struct bw2sav_obj { //
 public:
 	bw2savblock_obj cur; // size:
 	bw2savblock_obj bak; // size:
+    bw2sav_obj()
+    {
+        memset(this,0,sizeof(bw2sav_obj));
+    }
 };
 static const std::string ballnames[26] = {
-	"Pok� Ball",
+    "Poké Ball",
 	"Master Ball",
 	"Ultra Ball",
 	"Great Ball",
-	"Pok� Ball",
+    "Poké Ball",
 	"Safari Ball",
 	"Net Ball",
 	"Dive Ball",

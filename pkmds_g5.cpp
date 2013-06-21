@@ -511,6 +511,10 @@ void calcchecksum(pokemon_obj* pkm) // Calculates and assigns the checksum for t
 	chk = chk & 0xffff;
 	pkm->checksum = chk;
 };
+//void bw2sav_obj()
+//{
+//    memset(&this,0,sizeof(bw2sav_obj));
+//}
 bool savisbw2(bw2sav_obj &sav)
 {
 	return (getchecksum(sav.cur,bw2chkcalcloc,bw2chkcalclen)) == (getchkfromsav(sav.cur,true));
