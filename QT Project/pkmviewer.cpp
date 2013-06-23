@@ -93,7 +93,7 @@ void pkmviewer::on_btnExportPKMFile_clicked()
 {
     pokemon_obj thispkm;
     thispkm = *pkm;
-//    pkmviewer::fixuppkm(&thispkm);
+    pkmviewer::fixuppkm(&thispkm);
     std::string PKMFileName = "";
     PKMFileName = (QFileDialog::getSaveFileName(this,tr("Save a PKM file"),tr(""),tr("PKM Files (*.pkm)"))).toStdString();
     if(PKMFileName != "")
