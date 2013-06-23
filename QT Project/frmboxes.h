@@ -46,13 +46,7 @@ public:
     QGraphicsView* boxgraphics[30];
     QPixmap boxpix[30];
     QGraphicsScene* boxscenes[30];
-    //    bw2sav_obj * sav;// = new bw2sav_obj;
-    //    QString SaveFileName;// = "";
-    //    bool SavDecrypted;// = false;
-    //    const QString wTitle;// = "PKMDS Qt Edition";
-    //bw2savblock_obj * curBlock = new bw2savblock_obj;
     ~frmBoxes();
-    //void QGraphicsView::mousePressEvent(QMouseEvent *event);
 private slots:
     void on_actionLoad_SAV_triggered();
     void on_cbBoxes_currentIndexChanged(int index);

@@ -18,15 +18,18 @@ bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
     int slot = 0;
     pokemon_obj * apkm = new pokemon_obj;
     //std::string stop;
+    theObjName = obj->objectName();
+    slot = (atoi(theObjName.right(2).toStdString().c_str()))-1;
     switch(event->type())
     {
     case QEvent::MouseButtonPress:
+
+        //break;
+        //case QEvent::MouseButtonDblClick:
         mouseEvent = static_cast<QMouseEvent *>(event);
         switch(mouseEvent->button())
         {
         case Qt::MouseButton::LeftButton:
-            theObjName = obj->objectName();
-            slot = (atoi(theObjName.right(2).toStdString().c_str()))-1;
             switch(theObjName.toStdString()[2])
             {
             case 'B':
@@ -46,6 +49,7 @@ bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
         default:
             break;
         }
+
     default:
         return QObject::eventFilter(obj, event);
         break;

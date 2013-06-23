@@ -28,6 +28,38 @@ Some documentation available at: http://www.projectpokemon.org/wiki/
 */
 #pragma once
 #include "pkmds_g5.h"
+/*
+
+	const uint8_t t_shuffle[24][4] = {
+		{0,1,2,3}, {0,1,3,2}, {0,2,1,3}, {0,2,3,1},
+		{0,3,1,2}, {0,3,2,1}, {1,0,2,3}, {1,0,3,2},
+		{1,2,0,3}, {1,2,3,0}, {1,3,0,2}, {1,3,2,0},
+		{2,0,1,3}, {2,0,3,1}, {2,1,0,3}, {2,1,3,0},
+		{2,3,0,1}, {2,3,1,0}, {3,0,1,2}, {3,0,2,1},
+		{3,1,0,2}, {3,1,2,0}, {3,2,0,1}, {3,2,1,0}
+	};
+
+	uint8_t* Toolkit::_shuffle(uint8_t* raw, bool un) {
+		uint8_t temp[128];
+		uint8_t mode = (((((uint32_t*) raw)[0] >> 0xD) & 0x1F) % 24);
+
+		if (un) {
+			memcpy(&(temp[t_shuffle[mode][0] * 32]), &raw[8 + 0 * 32], 32);
+			memcpy(&(temp[t_shuffle[mode][1] * 32]), &raw[8 + 1 * 32], 32);
+			memcpy(&(temp[t_shuffle[mode][2] * 32]), &raw[8 + 2 * 32], 32);
+			memcpy(&(temp[t_shuffle[mode][3] * 32]), &raw[8 + 3 * 32], 32);
+		} else {
+			memcpy(&(temp[0 * 32]), &raw[8 + t_shuffle[mode][0] * 32], 32);
+			memcpy(&(temp[1 * 32]), &raw[8 + t_shuffle[mode][1] * 32], 32);
+			memcpy(&(temp[2 * 32]), &raw[8 + t_shuffle[mode][2] * 32], 32);
+			memcpy(&(temp[3 * 32]), &raw[8 + t_shuffle[mode][3] * 32], 32);
+		}
+
+		memcpy(&raw[8], &temp, 128);
+
+		return raw;
+	}
+*/
 byte getpkmshuffleindex(const uint32 pid){
 	return ((pid & 0x3e000) >> 0xd) % 24;
 };
@@ -246,6 +278,28 @@ void decryptpkm(party_pkm* pkm){
 	pkmcrypt(&(pkm->party_data),pkm->pkm_data.pid);
 	unshufflepkm(pkm->pkm_data);
 };
+/*
+	uint8_t* Toolkit::_shuffle(uint8_t* raw, bool un) {
+		uint8_t temp[128];
+		uint8_t mode = (((((uint32_t*) raw)[0] >> 0xD) & 0x1F) % 24);
+
+		if (un) {
+			memcpy(&(temp[t_shuffle[mode][0] * 32]), &raw[8 + 0 * 32], 32);
+			memcpy(&(temp[t_shuffle[mode][1] * 32]), &raw[8 + 1 * 32], 32);
+			memcpy(&(temp[t_shuffle[mode][2] * 32]), &raw[8 + 2 * 32], 32);
+			memcpy(&(temp[t_shuffle[mode][3] * 32]), &raw[8 + 3 * 32], 32);
+		} else {
+			memcpy(&(temp[0 * 32]), &raw[8 + t_shuffle[mode][0] * 32], 32);
+			memcpy(&(temp[1 * 32]), &raw[8 + t_shuffle[mode][1] * 32], 32);
+			memcpy(&(temp[2 * 32]), &raw[8 + t_shuffle[mode][2] * 32], 32);
+			memcpy(&(temp[3 * 32]), &raw[8 + t_shuffle[mode][3] * 32], 32);
+		}
+
+		memcpy(&raw[8], &temp, 128);
+
+		return raw;
+	}
+*/
 void unshufflepkm(pokemon_obj *pkm)
 {
 	char *shufforders[25] = 
@@ -511,10 +565,6 @@ void calcchecksum(pokemon_obj* pkm) // Calculates and assigns the checksum for t
 	chk = chk & 0xffff;
 	pkm->checksum = chk;
 };
-//void bw2sav_obj()
-//{
-//    memset(&this,0,sizeof(bw2sav_obj));
-//}
 bool savisbw2(bw2sav_obj &sav)
 {
 	return (getchecksum(sav.cur,bw2chkcalcloc,bw2chkcalclen)) == (getchkfromsav(sav.cur,true));

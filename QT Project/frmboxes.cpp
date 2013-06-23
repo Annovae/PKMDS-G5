@@ -29,35 +29,25 @@ Some documentation available at: http://www.projectpokemon.org/wiki/
 #include "frmboxes.h"
 #include "ui_frmboxes.h"
 #include "pkmviewer.h"
-//#include "mouseeventeater.h"
 #include <QFileDialog>
 frmBoxes::frmBoxes(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::frmBoxes)
 {
+    opendb();
+    openimgdb();
     ui->setupUi(this);
     ui->sbBoxIncrem->setVisible(false);
     mouseEventEater = new MouseEventEater(this);
     extern pkmviewer * pview;
     pview = new pkmviewer(this);
-    //    ui->pbPartySlot1->installEventFilter(mouseEventEater);
-    //    ui->pbPartySlot2->installEventFilter(mouseEventEater);
-    //    ui->pbPartySlot3->installEventFilter(mouseEventEater);
-    //    ui->pbPartySlot4->installEventFilter(mouseEventEater);
-    //    ui->pbPartySlot5->installEventFilter(mouseEventEater);
-    //    ui->pbPartySlot6->installEventFilter(mouseEventEater);
-    //    this->installEventFilter(mouseEventEater);
-    //    ui->pc_frame->installEventFilter(mouseEventEater);
-    //    ui->party_frame->installEventFilter(mouseEventEater);
 }
 bw2sav_obj * sav = new bw2sav_obj;
 box_obj * frmCurBox = new box_obj;
 party_obj * frmParty = new party_obj;
 QString SaveFileName = "";
 bool SavDecrypted = false;
-//pkmviewer * pview;
 const QString wTitle = "PKMDS Qt Edition";
-//MouseEventEater *mouseEventEater = new MouseEventEater(this);
 frmBoxes::~frmBoxes()
 {
     try
@@ -88,7 +78,6 @@ frmBoxes::~frmBoxes()
             }
             fixsavchecksum(sav);
             write(SaveFileName.toStdString().c_str(),sav);
-            //        delete ui;
         }
     }
     catch(...){}
@@ -100,20 +89,14 @@ void frmBoxes::on_actionLoad_SAV_triggered()
     SaveFileName = QFileDialog::getOpenFileName(this,tr("Load a SAV file"),tr(""),tr("SAV Files (*.sav)"));
     if(SaveFileName != "")
     {
-        opendb();
-        openimgdb();
         read(SaveFileName.toStdString().c_str(),sav);
         this->setWindowTitle(wTitle + QString::fromStdString(" - ") + QString::fromStdWString(getwstring(sav->cur.trainername)));
-        //        /*QGraphicsView * */partygraphics = {
         partygraphics[0] = ui->pbPartySlot01;
         partygraphics[1] = ui->pbPartySlot02;
         partygraphics[2] = ui->pbPartySlot03;
         partygraphics[3] = ui->pbPartySlot04;
         partygraphics[4] = ui->pbPartySlot05;
         partygraphics[5] = ui->pbPartySlot06;
-        //        };
-        //        QPixmap partypix[6];
-        //        QGraphicsScene* partyscenes[6];
         for(int i = 0; i < 6; i++)
         {
             partypix[i] = QPixmap();
@@ -151,13 +134,6 @@ void frmBoxes::on_actionLoad_SAV_triggered()
         ui->sbBoxIncrem->setEnabled(true);
         ui->sbBoxIncrem->setValue(sav->cur.curbox);
         ui->cbBoxes->setEnabled(true);
-
-//        pkmviewer * pview = new pkmviewer(this);
-//        pokemon_obj * apkm = new pokemon_obj;
-//        apkm = &(sav->cur.party.pokemon[0].pkm_data);
-//        pview->setPKM(apkm);
-//        pview->displayPKM();
-//        pview->show();
         frmParty = &(sav->cur.party);
     }
 }
@@ -165,7 +141,6 @@ void frmBoxes::changebox(int index)
 {
     int box = index;
     frmCurBox = &(sav->cur.boxes[box]);
-    //    /*QGraphicsView* */boxgraphics[30] = {
     boxgraphics[0] = ui->pbBoxSlot01;
     boxgraphics[1] = ui->pbBoxSlot02;
     boxgraphics[2] = ui->pbBoxSlot03;
@@ -196,17 +171,10 @@ void frmBoxes::changebox(int index)
     boxgraphics[27] = ui->pbBoxSlot28;
     boxgraphics[28] = ui->pbBoxSlot29;
     boxgraphics[29] = ui->pbBoxSlot30;
-    //    };
-    //    QPixmap boxpix[30];
-    //    QGraphicsScene* boxscenes[30];
     for(int bslot = 0; bslot < 30; bslot++)
     {
         if(sav->cur.boxes[box].pokemon[bslot].species != 0)
         {
-            //            if(sav->cur.boxes[box].pokemon[bslot].species == Species::keldeo)
-            //            {
-            //                std::string stop = "stop";
-            //            }
             boxpix[bslot] = getpkmicon(sav->cur.boxes[box].pokemon[bslot]);
         }
         else
@@ -243,12 +211,3 @@ void frmBoxes::on_sbBoxIncrem_valueChanged(int value)
         changebox(value);
     }
 }
-
-//void QGraphicsView::mousePressEvent(QMouseEvent *event)
-//{
-//    if(event->button() == Qt::LeftButton)
-//    {
-////        QPointF mousePoint = ui->graphicsView->mapToScene(event->pos());
-////        qDebug() << mousePoint;
-//    }
-//}

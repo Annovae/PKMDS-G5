@@ -44,6 +44,11 @@ public:
     void pkmviewer::displayPKM();
     explicit pkmviewer(QWidget *parent = 0);
     ~pkmviewer();
+private slots:
+    void on_cbPKMItem_currentIndexChanged(int index);
+
+    void on_sbLevel_valueChanged(int arg1);
+
 private:
     Ui::pkmviewer *ui;
 };

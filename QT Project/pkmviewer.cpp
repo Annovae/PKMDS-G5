@@ -33,7 +33,15 @@ pkmviewer::pkmviewer(QWidget *parent) :
     ui(new Ui::pkmviewer)
 {
     ui->setupUi(this);
+    QString itemname = "";
+    for(int itemindex = 0; itemindex < (int)Items::revealglass; itemindex++)
+    {
+        itemname = QString::fromStdString(lookupitemname(itemindex));
+        ui->cbPKMItem->addItem(itemname);
+    }
 }
+int pkmLevel = 0;
+Items::items pkmItem = (Items::items)0;
 pokemon_obj * pkm = new pokemon_obj;
 party_pkm * ppkm = new party_pkm;
 void pkmviewer::setPKM(pokemon_obj * pkm_)
@@ -62,10 +70,24 @@ void pkmviewer::displayPKM()
     *pixmap = getpkmsprite(pkm);
     scene->addPixmap(*pixmap);
     ui->pbSprite->setScene(scene);
-
+    ui->cbPKMItem->setCurrentIndex((int)pkm->item);
+    ui->sbLevel->setValue(getpkmlevel(pkm));
 }
 
 pkmviewer::~pkmviewer()
 {
+    setlevel(pkm,ui->sbLevel->value());
+    pkm->item = (Items::items)(ui->cbPKMItem->currentIndex());
+    calcchecksum(pkm);
     delete ui;
+}
+
+void pkmviewer::on_cbPKMItem_currentIndexChanged(int index)
+{
+    pkmItem = (Items::items)index;
+}
+
+void pkmviewer::on_sbLevel_valueChanged(int arg1)
+{
+    pkmLevel = arg1;
 }
