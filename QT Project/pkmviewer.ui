@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>194</width>
-    <height>218</height>
+    <width>264</width>
+    <height>287</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -56,6 +56,32 @@
    </property>
    <property name="maximum">
     <number>100</number>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnSaveChanges">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>250</y>
+     <width>81</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Save Changes</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnExportPKMFile">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>250</y>
+     <width>91</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Export PKM File</string>
    </property>
   </widget>
  </widget>

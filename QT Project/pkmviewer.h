@@ -38,16 +38,19 @@ class pkmviewer : public QDialog
     Q_OBJECT
 public:
     void pkmviewer::setPKM(pokemon_obj * pkm_);
-    void pkmviewer::setPKM(pokemon_obj & pkm_);
     void pkmviewer::setPKM(party_pkm * ppkm_);
-    void pkmviewer::setPKM(party_pkm & ppkm_);
     void pkmviewer::displayPKM();
     explicit pkmviewer(QWidget *parent = 0);
+    void pkmviewer::fixuppkm(pokemon_obj * pkm);
     ~pkmviewer();
 private slots:
     void on_cbPKMItem_currentIndexChanged(int index);
 
     void on_sbLevel_valueChanged(int arg1);
+
+    void on_btnSaveChanges_clicked();
+
+    void on_btnExportPKMFile_clicked();
 
 private:
     Ui::pkmviewer *ui;

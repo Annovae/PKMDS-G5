@@ -28,6 +28,7 @@ Some documentation available at: http://www.projectpokemon.org/wiki/
 */
 #include "pkmviewer.h"
 #include "ui_pkmviewer.h"
+#include <QFileDialog>
 pkmviewer::pkmviewer(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::pkmviewer)
@@ -48,21 +49,11 @@ void pkmviewer::setPKM(pokemon_obj * pkm_)
 {
     pkm = pkm_;
 }
-void pkmviewer::setPKM(pokemon_obj & pkm_)
-{
-    pkm = &pkm_;
-}
 void pkmviewer::setPKM(party_pkm * ppkm_)
 {
     ppkm = ppkm_;
-    setPKM(ppkm->pkm_data);
+    setPKM(&(ppkm->pkm_data));
 }
-void pkmviewer::setPKM(party_pkm & ppkm_)
-{
-    ppkm = &ppkm_;
-    setPKM(ppkm->pkm_data);
-}
-
 void pkmviewer::displayPKM()
 {
     QPixmap * pixmap = new QPixmap();
@@ -73,21 +64,40 @@ void pkmviewer::displayPKM()
     ui->cbPKMItem->setCurrentIndex((int)pkm->item);
     ui->sbLevel->setValue(getpkmlevel(pkm));
 }
-
 pkmviewer::~pkmviewer()
 {
-    setlevel(pkm,ui->sbLevel->value());
-    pkm->item = (Items::items)(ui->cbPKMItem->currentIndex());
-    calcchecksum(pkm);
     delete ui;
 }
-
 void pkmviewer::on_cbPKMItem_currentIndexChanged(int index)
 {
     pkmItem = (Items::items)index;
 }
-
 void pkmviewer::on_sbLevel_valueChanged(int arg1)
 {
     pkmLevel = arg1;
+}
+void pkmviewer::fixuppkm(pokemon_obj * pkm)
+{
+    if((getpkmlevel(pkm)) != pkmLevel)
+    {
+        setlevel(pkm,pkmLevel);
+    }
+    pkm->item = (Items::items)(ui->cbPKMItem->currentIndex());
+    calcchecksum(pkm);
+}
+void pkmviewer::on_btnSaveChanges_clicked()
+{
+    pkmviewer::fixuppkm(pkm);
+}
+void pkmviewer::on_btnExportPKMFile_clicked()
+{
+    pokemon_obj thispkm;
+    thispkm = *pkm;
+//    pkmviewer::fixuppkm(&thispkm);
+    std::string PKMFileName = "";
+    PKMFileName = (QFileDialog::getSaveFileName(this,tr("Save a PKM file"),tr(""),tr("PKM Files (*.pkm)"))).toStdString();
+    if(PKMFileName != "")
+    {
+        write(PKMFileName.c_str(),thispkm);
+    }
 }

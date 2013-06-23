@@ -41,6 +41,36 @@ frmBoxes::frmBoxes(QWidget *parent) :
     mouseEventEater = new MouseEventEater(this);
     extern pkmviewer * pview;
     pview = new pkmviewer(this);
+    boxgraphics[0] = ui->pbBoxSlot01;
+    boxgraphics[1] = ui->pbBoxSlot02;
+    boxgraphics[2] = ui->pbBoxSlot03;
+    boxgraphics[3] = ui->pbBoxSlot04;
+    boxgraphics[4] = ui->pbBoxSlot05;
+    boxgraphics[5] = ui->pbBoxSlot06;
+    boxgraphics[6] = ui->pbBoxSlot07;
+    boxgraphics[7] = ui->pbBoxSlot08;
+    boxgraphics[8] = ui->pbBoxSlot09;
+    boxgraphics[9] = ui->pbBoxSlot10;
+    boxgraphics[10] = ui->pbBoxSlot11;
+    boxgraphics[11] = ui->pbBoxSlot12;
+    boxgraphics[12] = ui->pbBoxSlot13;
+    boxgraphics[13] = ui->pbBoxSlot14;
+    boxgraphics[14] = ui->pbBoxSlot15;
+    boxgraphics[15] = ui->pbBoxSlot16;
+    boxgraphics[16] = ui->pbBoxSlot17;
+    boxgraphics[17] = ui->pbBoxSlot18;
+    boxgraphics[18] = ui->pbBoxSlot19;
+    boxgraphics[19] = ui->pbBoxSlot20;
+    boxgraphics[20] = ui->pbBoxSlot21;
+    boxgraphics[21] = ui->pbBoxSlot22;
+    boxgraphics[22] = ui->pbBoxSlot23;
+    boxgraphics[23] = ui->pbBoxSlot24;
+    boxgraphics[24] = ui->pbBoxSlot25;
+    boxgraphics[25] = ui->pbBoxSlot26;
+    boxgraphics[26] = ui->pbBoxSlot27;
+    boxgraphics[27] = ui->pbBoxSlot28;
+    boxgraphics[28] = ui->pbBoxSlot29;
+    boxgraphics[29] = ui->pbBoxSlot30;
 }
 bw2sav_obj * sav = new bw2sav_obj;
 box_obj * frmCurBox = new box_obj;
@@ -132,45 +162,16 @@ void frmBoxes::on_actionLoad_SAV_triggered()
         SavDecrypted = true;
         ui->sbBoxIncrem->setVisible(true);
         ui->sbBoxIncrem->setEnabled(true);
-        ui->sbBoxIncrem->setValue(sav->cur.curbox);
         ui->cbBoxes->setEnabled(true);
+        ui->sbBoxIncrem->setValue(sav->cur.curbox);
         frmParty = &(sav->cur.party);
+        changebox(sav->cur.curbox);
     }
 }
 void frmBoxes::changebox(int index)
 {
     int box = index;
     frmCurBox = &(sav->cur.boxes[box]);
-    boxgraphics[0] = ui->pbBoxSlot01;
-    boxgraphics[1] = ui->pbBoxSlot02;
-    boxgraphics[2] = ui->pbBoxSlot03;
-    boxgraphics[3] = ui->pbBoxSlot04;
-    boxgraphics[4] = ui->pbBoxSlot05;
-    boxgraphics[5] = ui->pbBoxSlot06;
-    boxgraphics[6] = ui->pbBoxSlot07;
-    boxgraphics[7] = ui->pbBoxSlot08;
-    boxgraphics[8] = ui->pbBoxSlot09;
-    boxgraphics[9] = ui->pbBoxSlot10;
-    boxgraphics[10] = ui->pbBoxSlot11;
-    boxgraphics[11] = ui->pbBoxSlot12;
-    boxgraphics[12] = ui->pbBoxSlot13;
-    boxgraphics[13] = ui->pbBoxSlot14;
-    boxgraphics[14] = ui->pbBoxSlot15;
-    boxgraphics[15] = ui->pbBoxSlot16;
-    boxgraphics[16] = ui->pbBoxSlot17;
-    boxgraphics[17] = ui->pbBoxSlot18;
-    boxgraphics[18] = ui->pbBoxSlot19;
-    boxgraphics[19] = ui->pbBoxSlot20;
-    boxgraphics[20] = ui->pbBoxSlot21;
-    boxgraphics[21] = ui->pbBoxSlot22;
-    boxgraphics[22] = ui->pbBoxSlot23;
-    boxgraphics[23] = ui->pbBoxSlot24;
-    boxgraphics[24] = ui->pbBoxSlot25;
-    boxgraphics[25] = ui->pbBoxSlot26;
-    boxgraphics[26] = ui->pbBoxSlot27;
-    boxgraphics[27] = ui->pbBoxSlot28;
-    boxgraphics[28] = ui->pbBoxSlot29;
-    boxgraphics[29] = ui->pbBoxSlot30;
     for(int bslot = 0; bslot < 30; bslot++)
     {
         if(sav->cur.boxes[box].pokemon[bslot].species != 0)
@@ -187,7 +188,6 @@ void frmBoxes::changebox(int index)
         boxgraphics[bslot]->setScene(boxscenes[bslot]);
         boxgraphics[bslot]->installEventFilter(mouseEventEater);
     }
-
     if(ui->cbBoxes->currentIndex() != index)
     {
         ui->cbBoxes->setCurrentIndex(index);

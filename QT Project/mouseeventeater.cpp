@@ -10,13 +10,13 @@ MouseEventEater::MouseEventEater(QObject *parent) :
 extern box_obj * frmCurBox;
 extern party_obj * frmParty;
 pkmviewer * pview;
+pokemon_obj * apkm = new pokemon_obj;
 
 bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
 {
     QMouseEvent *mouseEvent;// = new QMouseEvent();
     QString theObjName;
     int slot = 0;
-    pokemon_obj * apkm = new pokemon_obj;
     //std::string stop;
     theObjName = obj->objectName();
     slot = (atoi(theObjName.right(2).toStdString().c_str()))-1;
@@ -41,6 +41,7 @@ bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
             }
             if(apkm->species != 0)
             {
+                pview->setWindowTitle(QString::fromStdWString(getpkmnickname(apkm)));
                 pview->setPKM(apkm);
                 pview->displayPKM();
                 pview->show();
