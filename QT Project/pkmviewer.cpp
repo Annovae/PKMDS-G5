@@ -40,9 +40,15 @@ pkmviewer::pkmviewer(QWidget *parent) :
         itemname = QString::fromStdString(lookupitemname(itemindex));
         ui->cbPKMItem->addItem(itemname);
     }
+    for(int speciesindex = 1; speciesindex < 650; speciesindex++)
+    {
+        itemname = QString::fromStdString(lookuppkmname(speciesindex));
+        ui->cbPKMSpecies->addItem(itemname);
+    }
 }
 int pkmLevel = 0;
 Items::items pkmItem = (Items::items)0;
+Species::pkmspecies pkmSpecies = (Species::pkmspecies)0;
 pokemon_obj * pkm = new pokemon_obj;
 party_pkm * ppkm = new party_pkm;
 void pkmviewer::setPKM(pokemon_obj * pkm_)
@@ -54,15 +60,21 @@ void pkmviewer::setPKM(party_pkm * ppkm_)
     ppkm = ppkm_;
     setPKM(&(ppkm->pkm_data));
 }
-void pkmviewer::displayPKM()
+
+void pkmviewer::swapsprite(pokemon_obj apkm)
 {
     QPixmap * pixmap = new QPixmap();
     QGraphicsScene * scene = new QGraphicsScene();
-    *pixmap = getpkmsprite(pkm);
+    *pixmap = getpkmsprite(apkm);
     scene->addPixmap(*pixmap);
     ui->pbSprite->setScene(scene);
+}
+
+void pkmviewer::displayPKM()
+{
     ui->cbPKMItem->setCurrentIndex((int)pkm->item);
     ui->sbLevel->setValue(getpkmlevel(pkm));
+    ui->cbPKMSpecies->setCurrentIndex((int)(pkm->species)-1);
 }
 pkmviewer::~pkmviewer()
 {
@@ -83,6 +95,8 @@ void pkmviewer::fixuppkm(pokemon_obj * pkm)
         setlevel(pkm,pkmLevel);
     }
     pkm->item = (Items::items)(ui->cbPKMItem->currentIndex());
+    pkm->species = pkmSpecies;
+    // Fix the checksum last!
     calcchecksum(pkm);
 }
 void pkmviewer::on_btnSaveChanges_clicked()
@@ -100,4 +114,12 @@ void pkmviewer::on_btnExportPKMFile_clicked()
     {
         write(PKMFileName.c_str(),thispkm);
     }
+}
+
+void pkmviewer::on_cbPKMSpecies_currentIndexChanged(int index)
+{
+    pkmSpecies = (Species::pkmspecies)(index+1);
+    pokemon_obj apkm = *pkm;
+    apkm.species = pkmSpecies;
+    pkmviewer::swapsprite(apkm);
 }

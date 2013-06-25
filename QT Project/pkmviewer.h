@@ -42,6 +42,7 @@ public:
     void pkmviewer::displayPKM();
     explicit pkmviewer(QWidget *parent = 0);
     void pkmviewer::fixuppkm(pokemon_obj * pkm);
+    void pkmviewer::swapsprite(pokemon_obj apkm);
     ~pkmviewer();
 private slots:
     void on_cbPKMItem_currentIndexChanged(int index);
@@ -51,6 +52,8 @@ private slots:
     void on_btnSaveChanges_clicked();
 
     void on_btnExportPKMFile_clicked();
+
+    void on_cbPKMSpecies_currentIndexChanged(int index);
 
 private:
     Ui::pkmviewer *ui;

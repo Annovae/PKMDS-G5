@@ -7,6 +7,17 @@ MouseEventEater::MouseEventEater(QObject *parent) :
 {
 }
 
+//extern QGraphicsView * partygraphics[6];
+//extern QPixmap partypix[6];
+//extern QGraphicsScene* partyscenes[6];
+//extern QGraphicsView* boxgraphics[30];
+//extern QPixmap boxpix[30];
+//extern QGraphicsScene* boxscenes[30];
+
+//QGraphicsView * gvPtr = new QGraphicsView;
+//QPixmap * pmPtr = new QPixmap;
+//QGraphicsScene * gsPtr = new QGraphicsScene;
+
 extern box_obj * frmCurBox;
 extern party_obj * frmParty;
 pkmviewer * pview;
@@ -15,7 +26,7 @@ pokemon_obj * apkm = new pokemon_obj;
 bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
 {
     QMouseEvent *mouseEvent;// = new QMouseEvent();
-    QString theObjName;
+    QString theObjName/*, theParentName*/;
     int slot = 0;
     //std::string stop;
     theObjName = obj->objectName();
@@ -23,7 +34,6 @@ bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
     switch(event->type())
     {
     case QEvent::MouseButtonPress:
-
         //break;
         //case QEvent::MouseButtonDblClick:
         mouseEvent = static_cast<QMouseEvent *>(event);
@@ -34,9 +44,16 @@ bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
             {
             case 'B':
                 apkm = &(frmCurBox->pokemon[slot]);
+//                theParentName = obj->parent()->objectName();
+//                gvPtr = frmBoxes.boxgraphics[slot];
+//                pmPtr = &(/*frmBoxes::*/boxpix[slot]);
+//                gsPtr = (/*frmBoxes::*/boxscenes[slot]);
                 break;
             case 'P':
                 apkm = &(frmParty->pokemon[slot].pkm_data);
+//                gvPtr = (/*frmBoxes::*/partygraphics[slot]);
+//                pmPtr = &(/*frmBoxes::*/partypix[slot]);
+//                gsPtr = (/*frmBoxes::*/partyscenes[slot]);
                 break;
             }
             if(apkm->species != 0)
