@@ -47,6 +47,7 @@ pkmviewer::pkmviewer(QWidget *parent) :
     }
 }
 int pkmLevel = 0;
+int tnl = 0;
 Items::items pkmItem = (Items::items)0;
 Species::pkmspecies pkmSpecies = (Species::pkmspecies)0;
 pokemon_obj * pkm = new pokemon_obj;
@@ -60,7 +61,6 @@ void pkmviewer::setPKM(party_pkm * ppkm_)
     ppkm = ppkm_;
     setPKM(&(ppkm->pkm_data));
 }
-
 void pkmviewer::swapsprite(pokemon_obj apkm)
 {
     QPixmap * pixmap = new QPixmap();
@@ -69,12 +69,16 @@ void pkmviewer::swapsprite(pokemon_obj apkm)
     scene->addPixmap(*pixmap);
     ui->pbSprite->setScene(scene);
 }
-
 void pkmviewer::displayPKM()
 {
+    tnl = getpkmexptonext(pkm);
     ui->cbPKMItem->setCurrentIndex((int)pkm->item);
     ui->sbLevel->setValue(getpkmlevel(pkm));
     ui->cbPKMSpecies->setCurrentIndex((int)(pkm->species)-1);
+    ui->pbTNL->setMinimum(getpkmexpatcur(pkm));
+    ui->pbTNL->setMaximum(tnl + pkm->exp);
+    ui->pbTNL->setValue(pkm->exp);
+    ui->lblTNL->setText(QString::number(tnl));
 }
 pkmviewer::~pkmviewer()
 {
@@ -94,6 +98,11 @@ void pkmviewer::fixuppkm(pokemon_obj * pkm)
     {
         setlevel(pkm,pkmLevel);
     }
+    tnl = getpkmexptonext(pkm);
+    ui->lblTNL->setText(QString::number(tnl));
+    ui->pbTNL->setMinimum(getpkmexpatcur(pkm));
+    ui->pbTNL->setMaximum(tnl + pkm->exp);
+    ui->pbTNL->setValue(pkm->exp);
     pkm->item = (Items::items)(ui->cbPKMItem->currentIndex());
     pkm->species = pkmSpecies;
     // Fix the checksum last!
@@ -115,7 +124,6 @@ void pkmviewer::on_btnExportPKMFile_clicked()
         write(PKMFileName.c_str(),thispkm);
     }
 }
-
 void pkmviewer::on_cbPKMSpecies_currentIndexChanged(int index)
 {
     pkmSpecies = (Species::pkmspecies)(index+1);

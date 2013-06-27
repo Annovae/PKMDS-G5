@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>504</width>
-    <height>304</height>
+    <width>451</width>
+    <height>311</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -28,9 +28,9 @@
   <widget class="QFrame" name="frame">
    <property name="geometry">
     <rect>
-     <x>310</x>
+     <x>330</x>
      <y>0</y>
-     <width>191</width>
+     <width>131</width>
      <height>301</height>
     </rect>
    </property>
@@ -43,9 +43,9 @@
    <widget class="QComboBox" name="cbPKMSpecies">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>170</y>
-      <width>140</width>
+      <x>0</x>
+      <y>120</y>
+      <width>110</width>
       <height>22</height>
      </rect>
     </property>
@@ -53,22 +53,23 @@
    <widget class="QPushButton" name="btnExportPKMFile">
     <property name="geometry">
      <rect>
-      <x>90</x>
+      <x>60</x>
       <y>260</y>
-      <width>91</width>
-      <height>23</height>
+      <width>50</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Export PKM File</string>
+     <string>Export
+PKM File</string>
     </property>
    </widget>
    <widget class="QComboBox" name="cbPKMItem">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>0</x>
       <y>230</y>
-      <width>140</width>
+      <width>110</width>
       <height>22</height>
      </rect>
     </property>
@@ -76,9 +77,9 @@
    <widget class="QGraphicsView" name="pbSprite">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>60</y>
-      <width>100</width>
+      <x>0</x>
+      <y>10</y>
+      <width>110</width>
       <height>100</height>
      </rect>
     </property>
@@ -96,7 +97,7 @@
     <property name="geometry">
      <rect>
       <x>60</x>
-      <y>30</y>
+      <y>180</y>
       <width>42</width>
       <height>22</height>
      </rect>
@@ -111,61 +112,142 @@
    <widget class="QPushButton" name="btnSaveChanges">
     <property name="geometry">
      <rect>
-      <x>4</x>
+      <x>0</x>
       <y>260</y>
-      <width>81</width>
-      <height>23</height>
+      <width>50</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Save Changes</string>
+     <string>Save
+Changes</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblLevel">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>180</y>
+      <width>31</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Level</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblItem">
+    <property name="geometry">
+     <rect>
+      <x>-1</x>
+      <y>210</y>
+      <width>111</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Held Item</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
   </widget>
-  <widget class="QTabWidget" name="tabWidget">
+  <widget class="QTabWidget" name="twPages">
    <property name="geometry">
     <rect>
-     <x>0</x>
+     <x>10</x>
      <y>0</y>
-     <width>301</width>
+     <width>310</width>
      <height>301</height>
     </rect>
    </property>
    <property name="currentIndex">
     <number>0</number>
    </property>
-   <widget class="QWidget" name="tab">
+   <widget class="QWidget" name="tpBasic">
     <attribute name="title">
-     <string>Tab 1</string>
+     <string>Basic</string>
+    </attribute>
+    <widget class="QProgressBar" name="pbTNL">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>250</y>
+       <width>300</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="value">
+      <number>24</number>
+     </property>
+     <property name="format">
+      <string>%p%</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblToNextLevel">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>220</y>
+       <width>80</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>To Next Level:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblTNL">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>220</y>
+       <width>70</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tpStats">
+    <attribute name="title">
+     <string>Stats</string>
     </attribute>
    </widget>
-   <widget class="QWidget" name="tab_2">
+   <widget class="QWidget" name="tpMoves">
     <attribute name="title">
-     <string>Tab 2</string>
+     <string>Moves</string>
     </attribute>
    </widget>
-   <widget class="QWidget" name="tab_3">
+   <widget class="QWidget" name="tpMemo">
     <attribute name="title">
-     <string>Page</string>
+     <string>Memo</string>
     </attribute>
    </widget>
-   <widget class="QWidget" name="tab_4">
+   <widget class="QWidget" name="tpRibbons">
     <attribute name="title">
-     <string>Page</string>
+     <string>Ribbons</string>
     </attribute>
    </widget>
-   <widget class="QWidget" name="tab_5">
+   <widget class="QWidget" name="tpMisc">
     <attribute name="title">
-     <string>Page</string>
-    </attribute>
-   </widget>
-   <widget class="QWidget" name="tab_6">
-    <attribute name="title">
-     <string>Page</string>
+     <string>Misc</string>
     </attribute>
    </widget>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>twPages</tabstop>
+  <tabstop>pbSprite</tabstop>
+  <tabstop>cbPKMSpecies</tabstop>
+  <tabstop>sbLevel</tabstop>
+  <tabstop>cbPKMItem</tabstop>
+  <tabstop>btnSaveChanges</tabstop>
+  <tabstop>btnExportPKMFile</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
