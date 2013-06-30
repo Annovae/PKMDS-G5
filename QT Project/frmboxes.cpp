@@ -41,6 +41,12 @@ frmBoxes::frmBoxes(QWidget *parent) :
     mouseEventEater = new MouseEventEater(this);
     extern pkmviewer * pview;
     pview = new pkmviewer(this);
+    partygraphics[0] = ui->pbPartySlot01;
+    partygraphics[1] = ui->pbPartySlot02;
+    partygraphics[2] = ui->pbPartySlot03;
+    partygraphics[3] = ui->pbPartySlot04;
+    partygraphics[4] = ui->pbPartySlot05;
+    partygraphics[5] = ui->pbPartySlot06;
     boxgraphics[0] = ui->pbBoxSlot01;
     boxgraphics[1] = ui->pbBoxSlot02;
     boxgraphics[2] = ui->pbBoxSlot03;
@@ -121,12 +127,6 @@ void frmBoxes::on_actionLoad_SAV_triggered()
     {
         read(SaveFileName.toStdString().c_str(),sav);
         this->setWindowTitle(wTitle + QString::fromStdString(" - ") + QString::fromStdWString(getwstring(sav->cur.trainername)));
-        partygraphics[0] = ui->pbPartySlot01;
-        partygraphics[1] = ui->pbPartySlot02;
-        partygraphics[2] = ui->pbPartySlot03;
-        partygraphics[3] = ui->pbPartySlot04;
-        partygraphics[4] = ui->pbPartySlot05;
-        partygraphics[5] = ui->pbPartySlot06;
         for(int i = 0; i < 6; i++)
         {
             partypix[i] = QPixmap();

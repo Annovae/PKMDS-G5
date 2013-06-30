@@ -1208,15 +1208,26 @@ ostringstream getspritesql(const pokemon_obj & pkm, int langid)
 		<< "       AND ( pokemon_form_names.local_language_id = " << langid << " ) "
 		<< "       AND ( pokemon_forms.form_order = " << (int)(pkm.forms.form) << " + 1 ) ";
 	std::string formid = getastring(o);
-	o.str("");
-	o.clear();
+    if(pkm.species == Species::meloetta)
+    {
+        std::string stop = "stop";
+    }
+    o.str("");
+    o.clear();
 	o << (int)(pkm.species);
 	if(formid != "")
 	{
 		o << "-" << formid;
 	}
 	formid = o.str().c_str();
-	o.str("");
+    if(pkm.species == Species::keldeo)
+    {
+        if(pkm.forms.form == 1)
+        {
+            formid = "647-resolution";
+        }
+    }
+    o.str("");
 	o.clear();
 	std::string tgender = "";
 	if(pkmhasgenddiff(pkm) && (getpkmgender(pkm) == Genders::female))
@@ -1236,7 +1247,7 @@ ostringstream getspritesql(const pokemon_obj & pkm, int langid)
 	{
 		tshiny = "normal";
 	}
-	o << "SELECT image FROM front_" << tgender << "_" << tshiny << "_sprites WHERE (identifier = " << formid << ")";
+    o << "SELECT image FROM front_" << tgender << "_" << tshiny << "_sprites WHERE (identifier = '" << formid << "')";
 	return o;
 }
 ostringstream getspritesql(const pokemon_obj * pkm, int langid)
@@ -1253,6 +1264,10 @@ ostringstream getspritesql(const pokemon_obj * pkm, int langid)
 		<< "       AND ( pokemon_form_names.local_language_id = " << langid << " ) "
 		<< "       AND ( pokemon_forms.form_order = " << (int)(pkm->forms.form) << " + 1 ) ";
 	std::string formid = getastring(o);
+    if(pkm->species == Species::meloetta)
+    {
+        std::string stop = "stop";
+    }
 	o.str("");
 	o.clear();
 	o << (int)(pkm->species);
@@ -1261,6 +1276,13 @@ ostringstream getspritesql(const pokemon_obj * pkm, int langid)
 		o << "-" << formid;
 	}
 	formid = o.str().c_str();
+    if(pkm->species == Species::keldeo)
+    {
+        if(pkm->forms.form == 1)
+        {
+            formid = "647-resolution";
+        }
+    }
 	o.str("");
 	o.clear();
 	std::string tgender = "";
@@ -1281,7 +1303,7 @@ ostringstream getspritesql(const pokemon_obj * pkm, int langid)
 	{
 		tshiny = "normal";
 	}
-	o << "SELECT image FROM front_" << tgender << "_" << tshiny << "_sprites WHERE (identifier = " << formid << ")";
+    o << "SELECT image FROM front_" << tgender << "_" << tshiny << "_sprites WHERE (identifier = '" << formid << "')";
 	return o;
 }
 ostringstream geticonsql(const pokemon_obj & pkm, int langid)
@@ -1341,7 +1363,7 @@ ostringstream geticonsql(const pokemon_obj & pkm, int langid)
 				formid = "647-regular";
 				break;
 			case 1:
-				formid = "647-resolution";
+                formid = "647-resolution";
 				break;
 			}
 		}
@@ -1417,8 +1439,8 @@ ostringstream geticonsql(const pokemon_obj * pkm, int langid)
 				formid = "647-regular";
 				break;
 			case 1:
-				formid = "647-resolution";
-				break;
+                formid = "647-resolution";
+                break;
 			}
 		}
 		if(pkm->species == Species::kyurem && pkm->forms.form != 0)

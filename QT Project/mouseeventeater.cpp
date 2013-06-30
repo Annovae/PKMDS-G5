@@ -39,7 +39,7 @@ bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
         mouseEvent = static_cast<QMouseEvent *>(event);
         switch(mouseEvent->button())
         {
-        case Qt::MouseButton::LeftButton:
+        case Qt::LeftButton:
             switch(theObjName.toStdString()[2])
             {
             case 'B':
@@ -61,6 +61,7 @@ bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
                 pview->setWindowTitle(QString::fromStdWString(getpkmnickname(apkm)));
                 pview->setPKM(apkm);
                 pview->displayPKM();
+                pview->swapsprite(*apkm);
                 pview->show();
             }
             break;

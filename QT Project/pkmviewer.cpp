@@ -79,6 +79,9 @@ void pkmviewer::displayPKM()
     ui->pbTNL->setMaximum(tnl + pkm->exp);
     ui->pbTNL->setValue(pkm->exp);
     ui->lblTNL->setText(QString::number(tnl));
+    ui->txtNickname->setText(QString::fromStdWString(getpkmnickname(pkm)));
+    ui->txtOTName->setText(QString::fromStdWString(getpkmotname(pkm)));
+    ui->cbNicknamed->setChecked(pkm->ivs.isnicknamed);
 }
 pkmviewer::~pkmviewer()
 {
@@ -105,6 +108,11 @@ void pkmviewer::fixuppkm(pokemon_obj * pkm)
     ui->pbTNL->setValue(pkm->exp);
     pkm->item = (Items::items)(ui->cbPKMItem->currentIndex());
     pkm->species = pkmSpecies;
+    memset(&(pkm->nickname),0x00,22);
+    memset(&(pkm->otname),0x00,16);
+    ui->txtNickname->text().toWCharArray(pkm->nickname);
+    ui->txtOTName->text().toWCharArray(pkm->otname);
+    pkm->ivs.isnicknamed = ui->cbNicknamed->isChecked();
     // Fix the checksum last!
     calcchecksum(pkm);
 }
@@ -130,4 +138,20 @@ void pkmviewer::on_cbPKMSpecies_currentIndexChanged(int index)
     pokemon_obj apkm = *pkm;
     apkm.species = pkmSpecies;
     pkmviewer::swapsprite(apkm);
+    if((index+1) != ui->sbSpecies->value())
+    {
+        ui->sbSpecies->setValue(index+1);
+    }
+}
+void pkmviewer::on_sbSpecies_valueChanged(int arg1)
+{
+    if((arg1-1) != ui->cbPKMSpecies->currentIndex())
+    {
+        ui->cbPKMSpecies->setCurrentIndex(arg1-1);
+    }
+}
+
+void pkmviewer::on_txtNickname_textChanged(const QString &arg1)
+{
+    ui->cbNicknamed->setChecked(true);
 }

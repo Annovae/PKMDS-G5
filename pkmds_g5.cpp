@@ -972,7 +972,9 @@ std::string advstrttimestring(const bw2savblock_obj &block)
 	ptm->tm_year += 1900;
 	std::ostringstream o;
 	o << ptm->tm_year << "/" << ptm->tm_mon << "/" << ptm->tm_mday << " " << ptm->tm_hour << ":" << ptm->tm_min << ":" << ptm->tm_sec;
-	return o.str().c_str();
+    std::string retval;
+    retval = o.str().c_str();
+    return retval;
 }
 std::string advstrttimestring(const bw2savblock_obj *block)
 {
@@ -983,7 +985,9 @@ std::string advstrttimestring(const bw2savblock_obj *block)
 	ptm->tm_year += 1900;
 	std::ostringstream o;
 	o << ptm->tm_year << "/" << ptm->tm_mon << "/" << ptm->tm_mday << " " << ptm->tm_hour << ":" << ptm->tm_min << ":" << ptm->tm_sec;
-	return o.str().c_str();
+    std::string retval;
+    retval = o.str().c_str();
+    return retval;
 }
 std::wstring getsavtrainername(const bw2savblock_obj & block)
 {

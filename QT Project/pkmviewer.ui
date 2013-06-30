@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>451</width>
-    <height>311</height>
+    <width>479</width>
+    <height>325</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -30,8 +30,8 @@
     <rect>
      <x>330</x>
      <y>0</y>
-     <width>131</width>
-     <height>301</height>
+     <width>141</width>
+     <height>321</height>
     </rect>
    </property>
    <property name="frameShape">
@@ -45,7 +45,7 @@
      <rect>
       <x>0</x>
       <y>120</y>
-      <width>110</width>
+      <width>100</width>
       <height>22</height>
      </rect>
     </property>
@@ -53,10 +53,10 @@
    <widget class="QPushButton" name="btnExportPKMFile">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>70</x>
       <y>260</y>
-      <width>50</width>
-      <height>41</height>
+      <width>60</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
@@ -69,7 +69,7 @@ PKM File</string>
      <rect>
       <x>0</x>
       <y>230</y>
-      <width>110</width>
+      <width>130</width>
       <height>22</height>
      </rect>
     </property>
@@ -79,7 +79,7 @@ PKM File</string>
      <rect>
       <x>0</x>
       <y>10</y>
-      <width>110</width>
+      <width>100</width>
       <height>100</height>
      </rect>
     </property>
@@ -96,7 +96,7 @@ PKM File</string>
    <widget class="QSpinBox" name="sbLevel">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>70</x>
       <y>180</y>
       <width>42</width>
       <height>22</height>
@@ -114,8 +114,8 @@ PKM File</string>
      <rect>
       <x>0</x>
       <y>260</y>
-      <width>50</width>
-      <height>41</height>
+      <width>60</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
@@ -126,7 +126,7 @@ Changes</string>
    <widget class="QLabel" name="lblLevel">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>30</x>
       <y>180</y>
       <width>31</width>
       <height>20</height>
@@ -141,7 +141,7 @@ Changes</string>
      <rect>
       <x>-1</x>
       <y>210</y>
-      <width>111</width>
+      <width>130</width>
       <height>20</height>
      </rect>
     </property>
@@ -152,6 +152,22 @@ Changes</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QSpinBox" name="sbSpecies">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>120</y>
+      <width>40</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>649</number>
+    </property>
+   </widget>
   </widget>
   <widget class="QTabWidget" name="twPages">
    <property name="geometry">
@@ -159,7 +175,7 @@ Changes</string>
      <x>10</x>
      <y>0</y>
      <width>310</width>
-     <height>301</height>
+     <height>311</height>
     </rect>
    </property>
    <property name="currentIndex">
@@ -201,15 +217,65 @@ Changes</string>
     <widget class="QLabel" name="lblTNL">
      <property name="geometry">
       <rect>
-       <x>90</x>
+       <x>120</x>
        <y>220</y>
-       <width>70</width>
+       <width>100</width>
        <height>20</height>
       </rect>
      </property>
      <property name="text">
       <string/>
      </property>
+    </widget>
+    <widget class="QWidget" name="formLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>301</width>
+       <height>201</height>
+      </rect>
+     </property>
+     <layout class="QFormLayout" name="formLayout">
+      <property name="fieldGrowthPolicy">
+       <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="lblNickname">
+        <property name="text">
+         <string>Nickname</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="txtNickname">
+        <property name="maxLength">
+         <number>10</number>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="lblOTName">
+        <property name="text">
+         <string>OT Name</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="txtOTName">
+        <property name="maxLength">
+         <number>8</number>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QCheckBox" name="cbNicknamed">
+        <property name="text">
+         <string>Nicknamed</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </widget>
    <widget class="QWidget" name="tpStats">

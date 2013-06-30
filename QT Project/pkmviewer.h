@@ -55,6 +55,10 @@ private slots:
 
     void on_cbPKMSpecies_currentIndexChanged(int index);
 
+    void on_sbSpecies_valueChanged(int arg1);
+
+    void on_txtNickname_textChanged(const QString &arg1);
+
 private:
     Ui::pkmviewer *ui;
 };
