@@ -557,7 +557,7 @@ uint16 getchkfromsav(bw2savblock_obj *block, bool bw2){
 void calcchecksum(pokemon_obj* pkm) // Calculates and assigns the checksum for the given Pokemon object.
 {
 	uint32 chk = 0;
-	uint16* p = (uint16*)&pkm;
+    uint16* p = (uint16*)pkm;
 	for (uint16* i = p + 0x04; i < p + 0x43; i++)
 	{
 		chk += *i;

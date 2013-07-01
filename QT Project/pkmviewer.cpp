@@ -95,36 +95,48 @@ void pkmviewer::on_sbLevel_valueChanged(int arg1)
 {
     pkmLevel = arg1;
 }
-void pkmviewer::fixuppkm(pokemon_obj * pkm)
+void pkmviewer::fixuppkm(pokemon_obj * apkm)
 {
-    if((getpkmlevel(pkm)) != pkmLevel)
+    if((getpkmlevel(apkm)) != pkmLevel)
     {
-        setlevel(pkm,pkmLevel);
+        setlevel(apkm,pkmLevel);
     }
-    tnl = getpkmexptonext(pkm);
-    ui->lblTNL->setText(QString::number(tnl));
-    ui->pbTNL->setMinimum(getpkmexpatcur(pkm));
-    ui->pbTNL->setMaximum(tnl + pkm->exp);
-    ui->pbTNL->setValue(pkm->exp);
-    pkm->item = (Items::items)(ui->cbPKMItem->currentIndex());
-    pkm->species = pkmSpecies;
-    memset(&(pkm->nickname),0x00,22);
-    memset(&(pkm->otname),0x00,16);
-    ui->txtNickname->text().toWCharArray(pkm->nickname);
-    ui->txtOTName->text().toWCharArray(pkm->otname);
-    pkm->ivs.isnicknamed = ui->cbNicknamed->isChecked();
+    tnl = getpkmexptonext(apkm);
+//    ui->lblTNL->setText(QString::number(tnl));
+//    ui->pbTNL->setMinimum(getpkmexpatcur(apkm));
+//    ui->pbTNL->setMaximum(tnl + apkm->exp);
+//    ui->pbTNL->setValue(apkm->exp);
+    apkm->item = (Items::items)(ui->cbPKMItem->currentIndex());
+    apkm->species = pkmSpecies;
+//    memset(&(apkm->nickname),0x00,22);
+//    memset(&(apkm->otname),0x00,16);
+    ui->txtNickname->text().toWCharArray(apkm->nickname);
+    ui->txtOTName->text().toWCharArray(apkm->otname);
+    apkm->ivs.isnicknamed = ui->cbNicknamed->isChecked();
+    byte * btpnt = new byte;
+    btpnt = reinterpret_cast<byte*>(&(apkm->nickname));
+    memset(btpnt+(ui->txtNickname->text().length()*2),0xff,2);
+    btpnt += 20;
+    memset(btpnt,0xff,2);
+    btpnt = reinterpret_cast<byte*>(&(apkm->otname));
+    memset(btpnt+(ui->txtOTName->text().length()*2),0xff,2);
+    btpnt += 14;
+    memset(btpnt,0xff,2);
+//    int nicklength = ui->txtNickname->text().length();
+//    int otnamelength = ui->txtOTName->text().length();
     // Fix the checksum last!
-    calcchecksum(pkm);
+    calcchecksum(apkm);
 }
 void pkmviewer::on_btnSaveChanges_clicked()
 {
     pkmviewer::fixuppkm(pkm);
+    pkmviewer::displayPKM();
 }
 void pkmviewer::on_btnExportPKMFile_clicked()
 {
-    pokemon_obj thispkm;
-    thispkm = *pkm;
-    pkmviewer::fixuppkm(&thispkm);
+    pokemon_obj * thispkm = new pokemon_obj;
+    *thispkm = *pkm;
+    pkmviewer::fixuppkm(thispkm);
     std::string PKMFileName = "";
     PKMFileName = (QFileDialog::getSaveFileName(this,tr("Save a PKM file"),tr(""),tr("PKM Files (*.pkm)"))).toStdString();
     if(PKMFileName != "")
