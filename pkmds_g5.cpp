@@ -266,29 +266,29 @@ void encryptpkm(party_pkm& pkm){
 	shufflepkm(pkm.pkm_data);
 	pkmcrypt(pkm.pkm_data);
 	pkmcrypt(pkm.party_data,pkm.pkm_data.pid);
-	pkm.ispartydatadecrypted = 0;
-	pkm.isboxdatadecrypted = 0;
+    pkm.pkm_data.ispartydatadecrypted = 0;
+    pkm.pkm_data.isboxdatadecrypted = 0;
 };
 void decryptpkm(party_pkm& pkm){
 	pkmcrypt(pkm.pkm_data);
 	pkmcrypt(pkm.party_data,pkm.pkm_data.pid);
 	unshufflepkm(pkm.pkm_data);
-	pkm.ispartydatadecrypted = 1;
-	pkm.isboxdatadecrypted = 1;
+    pkm.pkm_data.ispartydatadecrypted = 1;
+    pkm.pkm_data.isboxdatadecrypted = 1;
 };
 void encryptpkm(party_pkm* pkm){
 	shufflepkm(pkm->pkm_data);
 	pkmcrypt(&(pkm->pkm_data));
 	pkmcrypt(&(pkm->party_data),pkm->pkm_data.pid);
-	pkm->ispartydatadecrypted = 0;
-	pkm->isboxdatadecrypted = 0;
+    pkm->pkm_data.ispartydatadecrypted = 0;
+    pkm->pkm_data.isboxdatadecrypted = 0;
 };
 void decryptpkm(party_pkm* pkm){
 	pkmcrypt(&(pkm->pkm_data));
 	pkmcrypt(&(pkm->party_data),pkm->pkm_data.pid);
 	unshufflepkm(pkm->pkm_data);
-	pkm->ispartydatadecrypted = 1;
-	pkm->isboxdatadecrypted = 1;
+    pkm->pkm_data.ispartydatadecrypted = 1;
+    pkm->pkm_data.isboxdatadecrypted = 1;
 };
 /*
 	uint8_t* Toolkit::_shuffle(uint8_t* raw, bool un) {
@@ -613,29 +613,29 @@ void fixsavchecksum(bw2sav_obj *sav)
 }
 void write(const char* file_name, pokemon_obj& data) // Writes the given Pokemon data to the given file name.
 {
-	int encryptstatus[2] = {pkm.ispartydatadecrypted,pkm.isboxdatadecrypted};
-	pkm.ispartydatadecrypted = 0;
-	pkm.isboxdatadecrypted = 0;
+    int encryptstatus[2] = {data.ispartydatadecrypted,data.isboxdatadecrypted};
+    data.ispartydatadecrypted = 0;
+    data.isboxdatadecrypted = 0;
 	std::ofstream *out = new std::ofstream(file_name,std::ios::binary);
 	out->write(reinterpret_cast<char*>(&data), sizeof(pokemon_obj));
 	out->close();
 	delete out;
 	out = 0;
-	pkm.ispartydatadecrypted = encryptstatus[0];
-	pkm.isboxdatadecrypted = encryptstatus[1];
+    data.ispartydatadecrypted = encryptstatus[0];
+    data.isboxdatadecrypted = encryptstatus[1];
 };
 void write(const char* file_name, pokemon_obj* data) // Writes the given Pokemon data to the given file name.
 {
-	int encryptstatus[2] = {pkm.ispartydatadecrypted,pkm.isboxdatadecrypted};
-	pkm->ispartydatadecrypted = 0;
-	pkm->isboxdatadecrypted = 0;
+    int encryptstatus[2] = {data->ispartydatadecrypted,data->isboxdatadecrypted};
+    data->ispartydatadecrypted = 0;
+    data->isboxdatadecrypted = 0;
 	std::ofstream *out = new std::ofstream(file_name,std::ios::binary);
 	out->write(reinterpret_cast<char*>(data), sizeof(pokemon_obj));
 	out->close();
 	delete out;
 	out = 0;
-	pkm->ispartydatadecrypted = encryptstatus[0];
-	pkm->isboxdatadecrypted = encryptstatus[1];
+    data->ispartydatadecrypted = encryptstatus[0];
+    data->isboxdatadecrypted = encryptstatus[1];
 };
 void write(const char* file_name, bw2sav_obj& data) //
 {
