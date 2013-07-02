@@ -39,7 +39,7 @@ of Pokemon game save files.
 Thanks to the folks at Smogon for the stat formula and other things.
 
 Special thanks to SCV, Sabresite, loadingNOW, Poryhack,
-GatorShark, Jiggy-Ninja, Codr, Bond697, mingot, Guested,
+GatorShark, Chase, Jiggy-Ninja, Codr, Bond697, mingot, Guested,
 coolbho3000 and of course, COM.
 
 Some documentation available at: http://www.projectpokemon.org/wiki/
