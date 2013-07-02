@@ -1,4 +1,20 @@
 /*
+Copyright (C) 2013  codemonkey85
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
 ***********************************************
 PKMDS Code Library - Gen V
 
@@ -21,195 +37,76 @@ who have helped research and document the underlying structure
 of Pokemon game save files.
 
 Special thanks to SCV, Sabresite, loadingNOW, Poryhack,
-GatorShark, Jiggy-Ninja, Codr, Bond697, mingot, Guested,
+GatorShark, Chase, Jiggy-Ninja, Codr, Bond697, mingot, Guested,
 coolbho3000 and of course, COM.
 
 Some documentation available at: http://www.projectpokemon.org/wiki/
 */
 #pragma once
 #include "pkmds_g5.h"
-/*
 
-	const uint8_t t_shuffle[24][4] = {
-		{0,1,2,3}, {0,1,3,2}, {0,2,1,3}, {0,2,3,1},
-		{0,3,1,2}, {0,3,2,1}, {1,0,2,3}, {1,0,3,2},
-		{1,2,0,3}, {1,2,3,0}, {1,3,0,2}, {1,3,2,0},
-		{2,0,1,3}, {2,0,3,1}, {2,1,0,3}, {2,1,3,0},
-		{2,3,0,1}, {2,3,1,0}, {3,0,1,2}, {3,0,2,1},
-		{3,1,0,2}, {3,1,2,0}, {3,2,0,1}, {3,2,1,0}
-	};
-
-	uint8_t* Toolkit::_shuffle(uint8_t* raw, bool un) {
-		uint8_t temp[128];
-		uint8_t mode = (((((uint32_t*) raw)[0] >> 0xD) & 0x1F) % 24);
-
-		if (un) {
-			memcpy(&(temp[t_shuffle[mode][0] * 32]), &raw[8 + 0 * 32], 32);
-			memcpy(&(temp[t_shuffle[mode][1] * 32]), &raw[8 + 1 * 32], 32);
-			memcpy(&(temp[t_shuffle[mode][2] * 32]), &raw[8 + 2 * 32], 32);
-			memcpy(&(temp[t_shuffle[mode][3] * 32]), &raw[8 + 3 * 32], 32);
-		} else {
-			memcpy(&(temp[0 * 32]), &raw[8 + t_shuffle[mode][0] * 32], 32);
-			memcpy(&(temp[1 * 32]), &raw[8 + t_shuffle[mode][1] * 32], 32);
-			memcpy(&(temp[2 * 32]), &raw[8 + t_shuffle[mode][2] * 32], 32);
-			memcpy(&(temp[3 * 32]), &raw[8 + t_shuffle[mode][3] * 32], 32);
-		}
-
-		memcpy(&raw[8], &temp, 128);
-
-		return raw;
-	}
-*/
-byte getpkmshuffleindex(const uint32 pid){
-	return ((pid & 0x3e000) >> 0xd) % 24;
+const byte t_shuffle[24][4] = {
+    {0,1,2,3}, {0,1,3,2}, {0,2,1,3}, {0,2,3,1},
+    {0,3,1,2}, {0,3,2,1}, {1,0,2,3}, {1,0,3,2},
+    {1,2,0,3}, {1,2,3,0}, {1,3,0,2}, {1,3,2,0},
+    {2,0,1,3}, {2,0,3,1}, {2,1,0,3}, {2,1,3,0},
+    {2,3,0,1}, {2,3,1,0}, {3,0,1,2}, {3,0,2,1},
+    {3,1,0,2}, {3,1,2,0}, {3,2,0,1}, {3,2,1,0}
 };
-byte getpkmshuffleindex(const pokemon_obj &pkm){
-	return getpkmshuffleindex(pkm.pid);
-};
-byte getpkmshuffleindex(const pokemon_obj *pkm){
-	return getpkmshuffleindex(pkm->pid);
-};
+void shuffle(pokemon_obj * pkm, bool un) {
+byte * raw = reinterpret_cast<byte*>(pkm);
+    byte temp[128];
+    byte mode = (((((uint32*) raw)[0] >> 0xD) & 0x1F) % 24);
+
+    if (un) {
+        memcpy(&(temp[t_shuffle[mode][0] * 32]), &raw[8 + 0 * 32], 32);
+        memcpy(&(temp[t_shuffle[mode][1] * 32]), &raw[8 + 1 * 32], 32);
+        memcpy(&(temp[t_shuffle[mode][2] * 32]), &raw[8 + 2 * 32], 32);
+        memcpy(&(temp[t_shuffle[mode][3] * 32]), &raw[8 + 3 * 32], 32);
+    } else {
+        memcpy(&(temp[0 * 32]), &raw[8 + t_shuffle[mode][0] * 32], 32);
+        memcpy(&(temp[1 * 32]), &raw[8 + t_shuffle[mode][1] * 32], 32);
+        memcpy(&(temp[2 * 32]), &raw[8 + t_shuffle[mode][2] * 32], 32);
+        memcpy(&(temp[3 * 32]), &raw[8 + t_shuffle[mode][3] * 32], 32);
+    }
+
+    memcpy(&raw[8], &temp, 128);
+}
+void shuffle(pokemon_obj & pkm, bool un) {
+byte * raw = reinterpret_cast<byte*>(&pkm);
+    byte temp[128];
+    byte mode = (((((uint32*) raw)[0] >> 0xD) & 0x1F) % 24);
+
+    if (un) {
+        memcpy(&(temp[t_shuffle[mode][0] * 32]), &raw[8 + 0 * 32], 32);
+        memcpy(&(temp[t_shuffle[mode][1] * 32]), &raw[8 + 1 * 32], 32);
+        memcpy(&(temp[t_shuffle[mode][2] * 32]), &raw[8 + 2 * 32], 32);
+        memcpy(&(temp[t_shuffle[mode][3] * 32]), &raw[8 + 3 * 32], 32);
+    } else {
+        memcpy(&(temp[0 * 32]), &raw[8 + t_shuffle[mode][0] * 32], 32);
+        memcpy(&(temp[1 * 32]), &raw[8 + t_shuffle[mode][1] * 32], 32);
+        memcpy(&(temp[2 * 32]), &raw[8 + t_shuffle[mode][2] * 32], 32);
+        memcpy(&(temp[3 * 32]), &raw[8 + t_shuffle[mode][3] * 32], 32);
+    }
+
+    memcpy(&raw[8], &temp, 128);
+}
+
+void unshufflepkm(pokemon_obj *pkm)
+{
+    shuffle(pkm,true);
+}
+void shufflepkm(pokemon_obj *pkm)
+{
+    shuffle(pkm,false);
+}
 void unshufflepkm(pokemon_obj &pkm)
 {
-	char *shufforders[25] = 
-	{
-		"ABCD",
-		"ABDC",
-		"ACBD",
-		"ADBC",
-		"ACDB",
-		"ADCB",
-		"BACD",
-		"BADC",
-		"CABD",
-		"DABC",
-		"CADB",
-		"DACB",
-		"BCAD",
-		"BDAC",
-		"CBAD",
-		"DBAC",
-		"CDAB",
-		"DCAB",
-		"BCDA",
-		"BDCA",
-		"CBDA",
-		"DBCA",
-		"CDBA",
-		"DCBA"
-	};
-	std::string shuffleorder = shufforders[getpkmshuffleindex(pkm)];
-	byte* pkmpnt = reinterpret_cast<byte*>(&pkm);
-
-	pkmblocka mblocka;
-	pkmblockb mblockb;
-	pkmblockc mblockc;
-	pkmblockd mblockd;
-	byte * blockp = reinterpret_cast<byte*>(&pkm);
-	blockp += 8;
-	memcpy(&mblocka,blockp,32);
-	blockp += 32;
-	memcpy(&mblockb,blockp,32);
-	blockp += 32;
-	memcpy(&mblockc,blockp,32);
-	blockp += 32;
-	memcpy(&mblockd,blockp,32);
-
-	byte* oblocka = reinterpret_cast<byte*>(&mblocka);
-	byte* oblockb = reinterpret_cast<byte*>(&mblockb);
-	byte* oblockc = reinterpret_cast<byte*>(&mblockc);
-	byte* oblockd = reinterpret_cast<byte*>(&mblockd);
-	pkmpnt += 8;
-	for(int i=0; i < 4; i++)
-	{
-		switch(shuffleorder[i])
-		{
-		case 'A':
-			memcpy(pkmpnt,oblocka,32);
-			break;
-		case 'B':
-			memcpy(pkmpnt,oblockb,32);
-			break;
-		case 'C':
-			memcpy(pkmpnt,oblockc,32);
-			break;
-		case 'D':
-			memcpy(pkmpnt,oblockd,32);
-			break;
-		}
-		pkmpnt += 32;
-	}
+    shuffle(pkm,true);
 }
 void shufflepkm(pokemon_obj &pkm)
 {
-	char *shufforders[25] = 
-	{
-		"ABCD",
-		"ABDC",
-		"ACBD",
-		"ACDB",
-		"ADBC",
-		"ADCB",
-		"BACD",
-		"BADC",
-		"BCAD",
-		"BCDA",
-		"BDAC",
-		"BDCA",
-		"CABD",
-		"CADB",
-		"CBAD",
-		"CBDA",
-		"CDAB",
-		"CDBA",
-		"DABC",
-		"DACB",
-		"DBAC",
-		"DBCA",
-		"DCAB",
-		"DCBA"
-	};
-	std::string shuffleorder = shufforders[getpkmshuffleindex(pkm)];
-	byte* pkmpnt = reinterpret_cast<byte*>(&pkm);
-
-	pkmblocka mblocka;
-	pkmblockb mblockb;
-	pkmblockc mblockc;
-	pkmblockd mblockd;
-	byte * blockp = reinterpret_cast<byte*>(&pkm);
-	blockp += 8;
-	memcpy(&mblocka,blockp,32);
-	blockp += 32;
-	memcpy(&mblockb,blockp,32);
-	blockp += 32;
-	memcpy(&mblockc,blockp,32);
-	blockp += 32;
-	memcpy(&mblockd,blockp,32);
-
-	byte* oblocka = reinterpret_cast<byte*>(&mblocka);
-	byte* oblockb = reinterpret_cast<byte*>(&mblockb);
-	byte* oblockc = reinterpret_cast<byte*>(&mblockc);
-	byte* oblockd = reinterpret_cast<byte*>(&mblockd);
-	pkmpnt += 8;
-	for(int i=0; i < 4; i++)
-	{
-		switch(shuffleorder[i])
-		{
-		case 'A':
-			memcpy(pkmpnt,oblocka,32);
-			break;
-		case 'B':
-			memcpy(pkmpnt,oblockb,32);
-			break;
-		case 'C':
-			memcpy(pkmpnt,oblockc,32);
-			break;
-		case 'D':
-			memcpy(pkmpnt,oblockd,32);
-			break;
-		}
-		pkmpnt += 32;
-	}
+    shuffle(pkm,false);
 }
 void pkmcrypt(pokemon_obj& pkm){
 
@@ -290,170 +187,7 @@ void decryptpkm(party_pkm* pkm){
     pkm->pkm_data.ispartydatadecrypted = 1;
     pkm->pkm_data.isboxdatadecrypted = 1;
 };
-/*
-	uint8_t* Toolkit::_shuffle(uint8_t* raw, bool un) {
-		uint8_t temp[128];
-		uint8_t mode = (((((uint32_t*) raw)[0] >> 0xD) & 0x1F) % 24);
 
-		if (un) {
-			memcpy(&(temp[t_shuffle[mode][0] * 32]), &raw[8 + 0 * 32], 32);
-			memcpy(&(temp[t_shuffle[mode][1] * 32]), &raw[8 + 1 * 32], 32);
-			memcpy(&(temp[t_shuffle[mode][2] * 32]), &raw[8 + 2 * 32], 32);
-			memcpy(&(temp[t_shuffle[mode][3] * 32]), &raw[8 + 3 * 32], 32);
-		} else {
-			memcpy(&(temp[0 * 32]), &raw[8 + t_shuffle[mode][0] * 32], 32);
-			memcpy(&(temp[1 * 32]), &raw[8 + t_shuffle[mode][1] * 32], 32);
-			memcpy(&(temp[2 * 32]), &raw[8 + t_shuffle[mode][2] * 32], 32);
-			memcpy(&(temp[3 * 32]), &raw[8 + t_shuffle[mode][3] * 32], 32);
-		}
-
-		memcpy(&raw[8], &temp, 128);
-
-		return raw;
-	}
-*/
-void unshufflepkm(pokemon_obj *pkm)
-{
-	char *shufforders[25] = 
-	{
-		"ABCD",
-		"ABDC",
-		"ACBD",
-		"ADBC",
-		"ACDB",
-		"ADCB",
-		"BACD",
-		"BADC",
-		"CABD",
-		"DABC",
-		"CADB",
-		"DACB",
-		"BCAD",
-		"BDAC",
-		"CBAD",
-		"DBAC",
-		"CDAB",
-		"DCAB",
-		"BCDA",
-		"BDCA",
-		"CBDA",
-		"DBCA",
-		"CDBA",
-		"DCBA"
-	};
-	std::string shuffleorder = shufforders[getpkmshuffleindex(pkm)];
-	byte* pkmpnt = reinterpret_cast<byte*>(pkm);
-
-	pkmblocka mblocka;
-	pkmblockb mblockb;
-	pkmblockc mblockc;
-	pkmblockd mblockd;
-	byte * blockp = reinterpret_cast<byte*>(pkm);
-	blockp += 8;
-	memcpy(&mblocka,blockp,32);
-	blockp += 32;
-	memcpy(&mblockb,blockp,32);
-	blockp += 32;
-	memcpy(&mblockc,blockp,32);
-	blockp += 32;
-	memcpy(&mblockd,blockp,32);
-
-	byte* oblocka = reinterpret_cast<byte*>(&mblocka);
-	byte* oblockb = reinterpret_cast<byte*>(&mblockb);
-	byte* oblockc = reinterpret_cast<byte*>(&mblockc);
-	byte* oblockd = reinterpret_cast<byte*>(&mblockd);
-	pkmpnt += 8;
-	for(int i=0; i < 4; i++)
-	{
-		switch(shuffleorder[i])
-		{
-		case 'A':
-			memcpy(pkmpnt,oblocka,32);
-			break;
-		case 'B':
-			memcpy(pkmpnt,oblockb,32);
-			break;
-		case 'C':
-			memcpy(pkmpnt,oblockc,32);
-			break;
-		case 'D':
-			memcpy(pkmpnt,oblockd,32);
-			break;
-		}
-		pkmpnt += 32;
-	}
-}
-void shufflepkm(pokemon_obj *pkm)
-{
-	char *shufforders[25] = 
-	{
-		"ABCD",
-		"ABDC",
-		"ACBD",
-		"ACDB",
-		"ADBC",
-		"ADCB",
-		"BACD",
-		"BADC",
-		"BCAD",
-		"BCDA",
-		"BDAC",
-		"BDCA",
-		"CABD",
-		"CADB",
-		"CBAD",
-		"CBDA",
-		"CDAB",
-		"CDBA",
-		"DABC",
-		"DACB",
-		"DBAC",
-		"DBCA",
-		"DCAB",
-		"DCBA"
-	};
-	std::string shuffleorder = shufforders[getpkmshuffleindex(pkm)];
-	byte* pkmpnt = reinterpret_cast<byte*>(pkm);
-
-	pkmblocka mblocka;
-	pkmblockb mblockb;
-	pkmblockc mblockc;
-	pkmblockd mblockd;
-	byte * blockp = reinterpret_cast<byte*>(pkm);
-	blockp += 8;
-	memcpy(&mblocka,blockp,32);
-	blockp += 32;
-	memcpy(&mblockb,blockp,32);
-	blockp += 32;
-	memcpy(&mblockc,blockp,32);
-	blockp += 32;
-	memcpy(&mblockd,blockp,32);
-
-	byte* oblocka = reinterpret_cast<byte*>(&mblocka);
-	byte* oblockb = reinterpret_cast<byte*>(&mblockb);
-	byte* oblockc = reinterpret_cast<byte*>(&mblockc);
-	byte* oblockd = reinterpret_cast<byte*>(&mblockd);
-	pkmpnt += 8;
-	for(int i=0; i < 4; i++)
-	{
-		switch(shuffleorder[i])
-		{
-		case 'A':
-			memcpy(pkmpnt,oblocka,32);
-			break;
-		case 'B':
-			memcpy(pkmpnt,oblockb,32);
-			break;
-		case 'C':
-			memcpy(pkmpnt,oblockc,32);
-			break;
-		case 'D':
-			memcpy(pkmpnt,oblockd,32);
-			break;
-		}
-		pkmpnt += 32;
-	}
-}
 void pkmcrypt(pokemon_obj* pkm){
 
 	pkmprng prng;
