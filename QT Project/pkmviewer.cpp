@@ -68,6 +68,7 @@ Items::items pkmItem = (Items::items)0;
 Species::pkmspecies pkmSpecies = (Species::pkmspecies)0;
 pokemon_obj * pkm = new pokemon_obj;
 party_pkm * ppkm = new party_pkm;
+extern void * theSlot;
 void pkmviewer::setPKM(pokemon_obj * pkm_)
 {
     pkm = pkm_;
@@ -153,6 +154,13 @@ void pkmviewer::on_btnSaveChanges_clicked()
 {
     pkmviewer::fixuppkm(pkm);
     pkmviewer::displayPKM();
+    QPixmap * iconpixmap = new QPixmap();
+    QGraphicsScene * iconscene = new QGraphicsScene();
+    *iconpixmap = getpkmicon(pkm);
+    iconscene->addPixmap(*iconpixmap);
+    QGraphicsView * theView = new QGraphicsView;
+    theView = (QGraphicsView*)theSlot;
+    theView->setScene(iconscene);
 }
 void pkmviewer::on_btnExportPKMFile_clicked()
 {
@@ -190,7 +198,6 @@ void pkmviewer::on_sbSpecies_valueChanged(int arg1)
         }
     }
 }
-
 void pkmviewer::on_txtNickname_textChanged(const QString &arg1)
 {
     if((pkm->species > 0) && ((pkm->pid > 0) || (pkm->checksum > 0)))

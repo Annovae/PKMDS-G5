@@ -1224,10 +1224,6 @@ ostringstream getspritesql(const pokemon_obj & pkm, int langid)
             << "       AND ( pokemon_form_names.local_language_id = " << langid << " ) "
             << "       AND ( pokemon_forms.form_order = " << (int)(pkm.forms.form) << " + 1 ) ";
     std::string formid = getastring(o);
-    if(pkm.species == Species::meloetta)
-    {
-        std::string stop = "stop";
-    }
     o.str("");
     o.clear();
     o << (int)(pkm.species);
@@ -1246,7 +1242,7 @@ ostringstream getspritesql(const pokemon_obj & pkm, int langid)
     o.str("");
     o.clear();
     std::string tgender = "";
-    if(pkmhasgenddiff(pkm) && (getpkmgender(pkm) == Genders::female))
+    if((pkmhasgenddiff(pkm) && (getpkmgender(pkm) == Genders::female)) & (pkm.species != Species::torchic) & (pkm.species != Species::buizel) & (pkm.species != Species::floatzel))
     {
         tgender = "female";
     }
@@ -1280,10 +1276,6 @@ ostringstream getspritesql(const pokemon_obj * pkm, int langid)
             << "       AND ( pokemon_form_names.local_language_id = " << langid << " ) "
             << "       AND ( pokemon_forms.form_order = " << (int)(pkm->forms.form) << " + 1 ) ";
     std::string formid = getastring(o);
-    if(pkm->species == Species::meloetta)
-    {
-        std::string stop = "stop";
-    }
     o.str("");
     o.clear();
     o << (int)(pkm->species);
@@ -1302,7 +1294,7 @@ ostringstream getspritesql(const pokemon_obj * pkm, int langid)
     o.str("");
     o.clear();
     std::string tgender = "";
-    if(pkmhasgenddiff(pkm) && (getpkmgender(pkm) == Genders::female))
+    if((pkmhasgenddiff(pkm) && (getpkmgender(pkm) == Genders::female)) & (pkm->species != Species::torchic) & (pkm->species != Species::buizel) & (pkm->species != Species::floatzel))
     {
         tgender = "female";
     }

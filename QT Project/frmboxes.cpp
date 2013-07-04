@@ -97,6 +97,7 @@ frmBoxes::frmBoxes(QWidget *parent) :
 bw2sav_obj * sav = new bw2sav_obj;
 box_obj * frmCurBox = new box_obj;
 party_obj * frmParty = new party_obj;
+void * theSlot;
 QString SaveFileName = "";
 bool SavDecrypted = false;
 const QString wTitle = "PKMDS Qt Edition";

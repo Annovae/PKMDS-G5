@@ -67,6 +67,8 @@ extern party_obj * frmParty;
 pkmviewer * pview;
 pokemon_obj * apkm = new pokemon_obj;
 
+extern void * theSlot;
+
 bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
 {
     QMouseEvent *mouseEvent;// = new QMouseEvent();
@@ -84,6 +86,7 @@ bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
         switch(mouseEvent->button())
         {
         case Qt::LeftButton:
+            theSlot = obj;
             switch(theObjName.toStdString()[2])
             {
             case 'B':
