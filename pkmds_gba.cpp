@@ -87,7 +87,7 @@ void decryptgbapkm(gbapokemon * pkm)
 	{
 		pkmpnt[i] = (pkmpnt[i] ^ key);
 	}
-};
+}
 const byte t_shuffle[24][4] = {
 	{0,1,2,3}, {0,1,3,2}, {0,2,1,3}, {0,2,3,1},
 	{0,3,1,2}, {0,3,2,1}, {1,0,2,3}, {1,0,3,2},
@@ -114,4 +114,4 @@ void shufflegbapkm(gbapokemon * pkm, bool un)
 		memcpy(&(temp[3 * 12]), &pkmpnt[t_shuffle[mode][3] * 12], 12);
 	}
 	memcpy(&pkmpnt, &temp, 48);
-};
+}

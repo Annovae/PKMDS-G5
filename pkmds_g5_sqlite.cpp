@@ -112,7 +112,6 @@ int getanint(const std::ostringstream &o)
     }
     return i;
 }
-
 void dostatement(const std::string &cmd)
 {
     sqlite3_prepare_v2(database,cmd.c_str(),-1,&statement,0);
@@ -860,7 +859,7 @@ string lookupitemname(const pokemon_obj *pkm, const int generation, const int la
 string getpkmgendername(const pokemon_obj *pkm)
 {
     return getgendername(getpkmgender(pkm));
-};
+}
 bool pkmhasgenddiff(const pokemon_obj *pkm)
 {
     return pkmhasgenddiff(pkm->species);

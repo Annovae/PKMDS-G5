@@ -68,6 +68,8 @@ private slots:
     void on_cbBoxes_currentIndexChanged(int index);
     void changebox(int index);
     void on_sbBoxIncrem_valueChanged(int value);
+    void on_actionSave_changes_triggered();
+
 private:
     Ui::frmBoxes *ui;
 };

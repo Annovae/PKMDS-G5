@@ -46,6 +46,7 @@ Some documentation available at: http://www.projectpokemon.org/wiki/
 #include "ui_frmboxes.h"
 #include "pkmviewer.h"
 #include <QFileDialog>
+#include <QMessageBox>
 frmBoxes::frmBoxes(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::frmBoxes)
@@ -105,43 +106,18 @@ frmBoxes::~frmBoxes()
 {
     try
     {
-        try
-        {
-            closeimgdb();
-            closedb();
-        }
-        catch(...){}
-        if((sav > 0) && (sav->cur.adventurestarted != 0))
-        {
-            bool isbw2 = savisbw2(sav);
-            sav->cur.curbox = ui->cbBoxes->currentIndex();
-            sav->cur.block1checksum = getchecksum(&(sav->cur),0x0,0x3e0);
-            for(uint32 pslot = 0; pslot < sav->cur.party.size; pslot++)
-            {
-                encryptpkm(&(sav->cur.party.pokemon[pslot]));
-            }
-            calcpartychecksum(&(sav->cur));
-            for(int boxnum = 0; boxnum < 24; boxnum++)
-            {
-                for(int boxslot = 0; boxslot < 30; boxslot++)
-                {
-                    encryptpkm(&(sav->cur.boxes[boxnum].pokemon[boxslot]));
-                }
-                calcboxchecksum(&(sav->cur),boxnum,isbw2);
-            }
-            fixsavchecksum(sav);
-            write(SaveFileName.toStdString().c_str(),sav);
-        }
+        closeimgdb();
+        closedb();
     }
     catch(...){}
     delete ui;
 }
 void frmBoxes::on_actionLoad_SAV_triggered()
 {
-    SavDecrypted = false;
     SaveFileName = QFileDialog::getOpenFileName(this,tr("Load a SAV file"),tr(""),tr("SAV Files (*.sav)"));
     if(SaveFileName != "")
     {
+        SavDecrypted = false;
         read(SaveFileName.toStdString().c_str(),sav);
         this->setWindowTitle(wTitle + QString::fromStdString(" - ") + QString::fromStdWString(getwstring(sav->cur.trainername)));
         for(int i = 0; i < 6; i++)
@@ -227,4 +203,50 @@ void frmBoxes::on_sbBoxIncrem_valueChanged(int value)
     {
         changebox(value);
     }
+}
+void frmBoxes::on_actionSave_changes_triggered()
+{
+    QMessageBox msgBox;
+    msgBox.setWindowTitle("Save Data");
+    msgBox.setText("Changes have been made to this save.");
+    msgBox.setInformativeText("Do you want to overwrite the file and save your changes?");
+    msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Cancel);
+    msgBox.setDefaultButton(QMessageBox::Save);
+    int ret = msgBox.exec();
+    if(ret == 0x800) // 2048 (or 0x800) = Save, 4194304 (or 0x400000) = Cancel
+    {
+        if((sav > 0) && (sav->cur.adventurestarted != 0))
+        {
+            bool isbw2 = savisbw2(sav);
+            sav->cur.curbox = ui->cbBoxes->currentIndex();
+            sav->cur.block1checksum = getchecksum(&(sav->cur),0x0,0x3e0);
+            for(uint32 pslot = 0; pslot < sav->cur.party.size; pslot++)
+            {
+                encryptpkm(&(sav->cur.party.pokemon[pslot]));
+            }
+            calcpartychecksum(&(sav->cur));
+            for(int boxnum = 0; boxnum < 24; boxnum++)
+            {
+                for(int boxslot = 0; boxslot < 30; boxslot++)
+                {
+                    encryptpkm(&(sav->cur.boxes[boxnum].pokemon[boxslot]));
+                }
+                calcboxchecksum(&(sav->cur),boxnum,isbw2);
+            }
+            fixsavchecksum(sav);
+            write(SaveFileName.toStdString().c_str(),sav);
+            msgBox.setText("The file has been saved.");
+            msgBox.setInformativeText("");
+            msgBox.setStandardButtons(QMessageBox::Ok);
+            msgBox.setDefaultButton(QMessageBox::Ok);
+        }
+    }
+    else
+    {
+        msgBox.setText("The file will not be saved.");
+        msgBox.setInformativeText("");
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setDefaultButton(QMessageBox::Ok);
+    }
+    ret = msgBox.exec();
 }
