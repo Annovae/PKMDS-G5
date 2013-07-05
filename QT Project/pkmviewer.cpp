@@ -99,6 +99,38 @@ void pkmviewer::displayPKM()
     ui->txtNickname->setText(QString::fromStdWString(getpkmnickname(pkm)));
     ui->txtOTName->setText(QString::fromStdWString(getpkmotname(pkm)));
     ui->cbNicknamed->setChecked(pkm->ivs.isnicknamed);
+    QPixmap * type1pix = new QPixmap();
+    QGraphicsScene * type1scene = new QGraphicsScene();
+    *type1pix = gettypepic(lookuppkmtype(pkm,1));
+    type1scene->addPixmap(*type1pix);
+    ui->pbType1->setScene(type1scene);
+    int pkmtype2 = 0;
+    pkmtype2 = lookuppkmtype(pkm,2);
+    QPixmap * type2pix = new QPixmap();
+    QGraphicsScene * type2scene = new QGraphicsScene();
+    if(pkmtype2 != -1)
+    {
+        *type2pix = gettypepic(lookuppkmtype(pkm,2));
+    }
+    type2scene->addPixmap(*type2pix);
+    ui->pbType2->setScene(type2scene);
+    QPixmap * shinypix = new QPixmap();
+    QGraphicsScene * shinyscene = new QGraphicsScene();
+    if(getpkmshiny(pkm))
+    {
+        *shinypix = getshinystar();
+    }
+    shinyscene->addPixmap(*shinypix);
+    ui->pbShiny->setScene(shinyscene);
+    QPixmap * genderpix = new QPixmap();
+    QGraphicsScene * genderscene = new QGraphicsScene();
+    Genders::genders thegender = getpkmgender(pkm);
+    if((thegender == Genders::male) || (thegender == Genders::female))
+    {
+        *genderpix = getgenderpic(thegender);
+    }
+    genderscene->addPixmap(*genderpix);
+    ui->pbGender->setScene(genderscene);
 }
 pkmviewer::~pkmviewer()
 {
@@ -153,6 +185,7 @@ void pkmviewer::fixuppkm(pokemon_obj * apkm)
 void pkmviewer::on_btnSaveChanges_clicked()
 {
     pkmviewer::fixuppkm(pkm);
+    this->setWindowTitle(QString::fromStdWString(getpkmnickname(pkm)));
     pkmviewer::displayPKM();
     QPixmap * iconpixmap = new QPixmap();
     QGraphicsScene * iconscene = new QGraphicsScene();

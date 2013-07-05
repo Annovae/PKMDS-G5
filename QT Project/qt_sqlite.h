@@ -50,3 +50,7 @@ QPixmap getpkmsprite(const pokemon_obj &pkm);
 QPixmap getpkmsprite(const pokemon_obj *pkm);
 QPixmap getpkmicon(const pokemon_obj &pkm);
 QPixmap getpkmicon(const pokemon_obj *pkm);
+QPixmap gettypepic(const Types::types type);
+QPixmap gettypepic(const int type);
+QPixmap getshinystar();
+QPixmap getgenderpic(const Genders::genders gender);

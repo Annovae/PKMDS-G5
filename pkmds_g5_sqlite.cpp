@@ -1465,3 +1465,19 @@ ostringstream geticonsql(const pokemon_obj * pkm, int langid)
     }
     return o;
 }
+ostringstream gettypesql(const Types::types type)
+{
+    ostringstream o;
+    std::string type_name = lookuptypename((int)type,9);
+    type_name[0] = tolower(type_name[0]);
+    o << "Select image from types where identifier = \"" + type_name + "\"";
+    return o;
+}
+ostringstream gettypesql(const int type)
+{
+    ostringstream o;
+    std::string type_name = lookuptypename(type,9);
+    type_name[0] = tolower(type_name[0]);
+    o << "Select image from types where identifier = \"" + type_name + "\"";
+    return o;
+}

@@ -168,6 +168,44 @@ Changes</string>
      <number>649</number>
     </property>
    </widget>
+   <widget class="QGraphicsView" name="pbShiny">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>30</y>
+      <width>20</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: transparent</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+   </widget>
+   <widget class="QGraphicsView" name="pbGender">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>10</y>
+      <width>20</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: transparent</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+   </widget>
   </widget>
   <widget class="QTabWidget" name="twPages">
    <property name="geometry">
@@ -223,6 +261,9 @@ Changes</string>
        <height>20</height>
       </rect>
      </property>
+     <property name="frameShape">
+      <enum>QFrame::Box</enum>
+     </property>
      <property name="text">
       <string/>
      </property>
@@ -233,7 +274,7 @@ Changes</string>
        <x>0</x>
        <y>0</y>
        <width>301</width>
-       <height>201</height>
+       <height>81</height>
       </rect>
      </property>
      <layout class="QFormLayout" name="formLayout">
@@ -254,6 +295,13 @@ Changes</string>
         </property>
        </widget>
       </item>
+      <item row="1" column="1">
+       <widget class="QCheckBox" name="cbNicknamed">
+        <property name="text">
+         <string>Nicknamed</string>
+        </property>
+       </widget>
+      </item>
       <item row="2" column="0">
        <widget class="QLabel" name="lblOTName">
         <property name="text">
@@ -268,14 +316,58 @@ Changes</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
-       <widget class="QCheckBox" name="cbNicknamed">
-        <property name="text">
-         <string>Nicknamed</string>
-        </property>
-       </widget>
-      </item>
      </layout>
+    </widget>
+    <widget class="QLabel" name="lblTypes">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>90</y>
+       <width>30</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Type</string>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbType1">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>90</y>
+       <width>40</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background: transparent</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Box</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbType2">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>90</y>
+       <width>40</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background: transparent</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Box</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
     </widget>
    </widget>
    <widget class="QWidget" name="tpStats">

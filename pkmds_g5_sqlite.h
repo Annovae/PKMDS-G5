@@ -153,3 +153,5 @@ std::ostringstream getspritesql(const pokemon_obj & pkm, int langid = LANG_ID);
 std::ostringstream getspritesql(const pokemon_obj * pkm, int langid = LANG_ID);
 std::ostringstream geticonsql(const pokemon_obj & pkm, int langid = LANG_ID);
 std::ostringstream geticonsql(const pokemon_obj * pkm, int langid = LANG_ID);
+std::ostringstream gettypesql(const Types::types type);
+std::ostringstream gettypesql(const int type);
