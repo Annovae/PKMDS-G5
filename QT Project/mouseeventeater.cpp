@@ -83,7 +83,6 @@ bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
                 pview->setWindowTitle(QString::fromStdWString(getpkmnickname(apkm)));
                 pview->setPKM(apkm);
                 pview->displayPKM();
-                pview->swapsprite(*apkm);
                 pview->show();
             }
             break;

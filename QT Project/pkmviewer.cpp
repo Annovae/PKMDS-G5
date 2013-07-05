@@ -62,61 +62,67 @@ pkmviewer::pkmviewer(QWidget *parent) :
         ui->cbPKMSpecies->addItem(itemname);
     }
 }
-int pkmLevel = 0;
-int tnl = 0;
-Items::items pkmItem = (Items::items)0;
-Species::pkmspecies pkmSpecies = (Species::pkmspecies)0;
+bool levelchangeok = true;
+bool redisplayok = false;
+pokemon_obj * temppkm = new pokemon_obj;
 pokemon_obj * pkm = new pokemon_obj;
 party_pkm * ppkm = new party_pkm;
 extern void * theSlot;
 void pkmviewer::setPKM(pokemon_obj * pkm_)
 {
     pkm = pkm_;
+    *temppkm = *pkm;
+    redisplayok = false;
 }
 void pkmviewer::setPKM(party_pkm * ppkm_)
 {
     ppkm = ppkm_;
     setPKM(&(ppkm->pkm_data));
 }
-void pkmviewer::swapsprite(pokemon_obj apkm)
-{
-    QPixmap * pixmap = new QPixmap();
-    QGraphicsScene * scene = new QGraphicsScene();
-    *pixmap = getpkmsprite(apkm);
-    scene->addPixmap(*pixmap);
-    ui->pbSprite->setScene(scene);
-}
 void pkmviewer::displayPKM()
 {
-    tnl = getpkmexptonext(pkm);
+    switch(temppkm->metlevel_otgender.otgender)
+    {
+    case Genders::male:
+        ui->rbOTMale->setChecked(true);
+        break;
+    case Genders::female:
+        ui->rbOTFemale->setChecked(true);
+        break;
+    default:
+        ui->rbOTMale->setChecked(true);
+        break;
+    }
+    ui->cbPKMSpecies->setCurrentIndex((int)(temppkm->species)-1);
     ui->cbPKMItem->setCurrentIndex((int)pkm->item);
-    ui->sbLevel->setValue(getpkmlevel(pkm));
-    ui->cbPKMSpecies->setCurrentIndex((int)(pkm->species)-1);
-    ui->pbTNL->setMinimum(getpkmexpatcur(pkm));
-    ui->pbTNL->setMaximum(tnl + pkm->exp);
-    ui->pbTNL->setValue(pkm->exp);
-    ui->lblTNL->setText(QString::number(tnl));
-    ui->txtNickname->setText(QString::fromStdWString(getpkmnickname(pkm)));
-    ui->txtOTName->setText(QString::fromStdWString(getpkmotname(pkm)));
-    ui->cbNicknamed->setChecked(pkm->ivs.isnicknamed);
+    ui->sbLevel->setValue(getpkmlevel(temppkm));
+    ui->sbEXP->setMaximum(getpkmexpatlevel(temppkm->species,100));
+    ui->sbEXP->setValue(temppkm->exp);
+    ui->pbTNL->setMinimum(getpkmexpatcur(temppkm));
+    ui->pbTNL->setMaximum(getpkmexptonext(temppkm) + pkm->exp);
+    ui->pbTNL->setValue(temppkm->exp);
+    ui->lblTNL->setText(QString::number(getpkmexptonext(temppkm)));
+    ui->txtNickname->setText(QString::fromStdWString(getpkmnickname(temppkm)));
+    ui->txtOTName->setText(QString::fromStdWString(getpkmotname(temppkm)));
+    ui->cbNicknamed->setChecked(temppkm->ivs.isnicknamed);
     QPixmap * type1pix = new QPixmap();
     QGraphicsScene * type1scene = new QGraphicsScene();
-    *type1pix = gettypepic(lookuppkmtype(pkm,1));
+    *type1pix = gettypepic(lookuppkmtype(temppkm,1));
     type1scene->addPixmap(*type1pix);
     ui->pbType1->setScene(type1scene);
     int pkmtype2 = 0;
-    pkmtype2 = lookuppkmtype(pkm,2);
+    pkmtype2 = lookuppkmtype(temppkm,2);
     QPixmap * type2pix = new QPixmap();
     QGraphicsScene * type2scene = new QGraphicsScene();
     if(pkmtype2 != -1)
     {
-        *type2pix = gettypepic(lookuppkmtype(pkm,2));
+        *type2pix = gettypepic(lookuppkmtype(temppkm,2));
     }
     type2scene->addPixmap(*type2pix);
     ui->pbType2->setScene(type2scene);
     QPixmap * shinypix = new QPixmap();
     QGraphicsScene * shinyscene = new QGraphicsScene();
-    if(getpkmshiny(pkm))
+    if(getpkmshiny(temppkm))
     {
         *shinypix = getshinystar();
     }
@@ -124,13 +130,19 @@ void pkmviewer::displayPKM()
     ui->pbShiny->setScene(shinyscene);
     QPixmap * genderpix = new QPixmap();
     QGraphicsScene * genderscene = new QGraphicsScene();
-    Genders::genders thegender = getpkmgender(pkm);
+    Genders::genders thegender = getpkmgender(temppkm);
     if((thegender == Genders::male) || (thegender == Genders::female))
     {
         *genderpix = getgenderpic(thegender);
     }
     genderscene->addPixmap(*genderpix);
     ui->pbGender->setScene(genderscene);
+    QPixmap * spritepixmap = new QPixmap();
+    QGraphicsScene * spritescene = new QGraphicsScene();
+    *spritepixmap = getpkmsprite(temppkm);
+    spritescene->addPixmap(*spritepixmap);
+    ui->pbSprite->setScene(spritescene);
+    redisplayok = true;
 }
 pkmviewer::~pkmviewer()
 {
@@ -138,92 +150,93 @@ pkmviewer::~pkmviewer()
 }
 void pkmviewer::on_cbPKMItem_currentIndexChanged(int index)
 {
-    if((pkm->species > 0) && ((pkm->pid > 0) || (pkm->checksum > 0)))
+    if((temppkm->species > 0) && ((temppkm->pid > 0) || (temppkm->checksum > 0)))
     {
-        pkmItem = (Items::items)index;
+        temppkm->item = (Items::items)index;
+        if(redisplayok)
+        {
+            pkmviewer::displayPKM();
+        }
     }
 }
 void pkmviewer::on_sbLevel_valueChanged(int arg1)
 {
-    if((pkm->species > 0) && ((pkm->pid > 0) || (pkm->checksum > 0)))
+    if((temppkm->species > 0) && ((temppkm->pid > 0) || (temppkm->checksum > 0)))
     {
-        pkmLevel = arg1;
+        if(levelchangeok)
+        {
+            ui->sbEXP->setValue(getpkmexpatlevel(temppkm->species,arg1));
+        }
     }
-}
-void pkmviewer::fixuppkm(pokemon_obj * apkm)
-{
-    if((getpkmlevel(apkm)) != pkmLevel)
-    {
-        setlevel(apkm,pkmLevel);
-    }
-    tnl = getpkmexptonext(apkm);
-    //    ui->lblTNL->setText(QString::number(tnl));
-    //    ui->pbTNL->setMinimum(getpkmexpatcur(apkm));
-    //    ui->pbTNL->setMaximum(tnl + apkm->exp);
-    //    ui->pbTNL->setValue(apkm->exp);
-    apkm->item = (Items::items)(ui->cbPKMItem->currentIndex());
-    apkm->species = pkmSpecies;
-    //    memset(&(apkm->nickname),0x00,22);
-    //    memset(&(apkm->otname),0x00,16);
-    ui->txtNickname->text().toWCharArray(apkm->nickname);
-    ui->txtOTName->text().toWCharArray(apkm->otname);
-    apkm->ivs.isnicknamed = ui->cbNicknamed->isChecked();
-    byte * btpnt = new byte;
-    btpnt = reinterpret_cast<byte*>(&(apkm->nickname));
-    memset(btpnt+(ui->txtNickname->text().length()*2),0xff,2);
-    btpnt += 20;
-    memset(btpnt,0xff,2);
-    btpnt = reinterpret_cast<byte*>(&(apkm->otname));
-    memset(btpnt+(ui->txtOTName->text().length()*2),0xff,2);
-    btpnt += 14;
-    memset(btpnt,0xff,2);
-    //    int nicklength = ui->txtNickname->text().length();
-    //    int otnamelength = ui->txtOTName->text().length();
-    // Fix the checksum last!
-    calcchecksum(apkm);
 }
 void pkmviewer::on_btnSaveChanges_clicked()
 {
-    pkmviewer::fixuppkm(pkm);
-    this->setWindowTitle(QString::fromStdWString(getpkmnickname(pkm)));
-    pkmviewer::displayPKM();
+    byte * btpnt = new byte;
+    btpnt = reinterpret_cast<byte*>(&(temppkm->nickname));
+    memset(btpnt+(ui->txtNickname->text().length()*2),0xff,2);
+    btpnt += 20;
+    memset(btpnt,0xff,2);
+    btpnt = reinterpret_cast<byte*>(&(temppkm->otname));
+    memset(btpnt+(ui->txtOTName->text().length()*2),0xff,2);
+    btpnt += 14;
+    memset(btpnt,0xff,2);
+    pkm->ivs.isnicknamed = ui->cbNicknamed->isChecked();
+    // Fix the checksum last!
+    calcchecksum(temppkm);
+    *pkm = *temppkm;
+    this->setWindowTitle(QString::fromStdWString(getpkmnickname(temppkm)));
     QPixmap * iconpixmap = new QPixmap();
     QGraphicsScene * iconscene = new QGraphicsScene();
-    *iconpixmap = getpkmicon(pkm);
+    *iconpixmap = getpkmicon(temppkm);
     iconscene->addPixmap(*iconpixmap);
     QGraphicsView * theView = new QGraphicsView;
     theView = (QGraphicsView*)theSlot;
     theView->setScene(iconscene);
+    if(redisplayok)
+    {
+        pkmviewer::displayPKM();
+    }
 }
 void pkmviewer::on_btnExportPKMFile_clicked()
 {
-    pokemon_obj * thispkm = new pokemon_obj;
-    *thispkm = *pkm;
-    pkmviewer::fixuppkm(thispkm);
     std::string PKMFileName = "";
     PKMFileName = (QFileDialog::getSaveFileName(this,tr("Save a PKM file"),tr(""),tr("PKM Files (*.pkm)"))).toStdString();
     if(PKMFileName != "")
     {
-        write(PKMFileName.c_str(),thispkm);
+        pkm->ivs.isnicknamed = ui->cbNicknamed->isChecked();
+        byte * btpnt = new byte;
+        btpnt = reinterpret_cast<byte*>(&(temppkm->nickname));
+        memset(btpnt+(ui->txtNickname->text().length()*2),0xff,2);
+        btpnt += 20;
+        memset(btpnt,0xff,2);
+        btpnt = reinterpret_cast<byte*>(&(temppkm->otname));
+        memset(btpnt+(ui->txtOTName->text().length()*2),0xff,2);
+        btpnt += 14;
+        memset(btpnt,0xff,2);
+        // Fix the checksum last!
+        calcchecksum(temppkm);
+        write(PKMFileName.c_str(),temppkm);
     }
 }
 void pkmviewer::on_cbPKMSpecies_currentIndexChanged(int index)
 {
-    if((pkm->species > 0) && ((pkm->pid > 0) || (pkm->checksum > 0)))
+    if((temppkm->species > 0) && ((temppkm->pid > 0) || (temppkm->checksum > 0)))
     {
-        pkmSpecies = (Species::pkmspecies)(index+1);
-        pokemon_obj apkm = *pkm;
-        apkm.species = pkmSpecies;
-        pkmviewer::swapsprite(apkm);
-        if((index+1) != ui->sbSpecies->value())
+        if(redisplayok)
         {
-            ui->sbSpecies->setValue(index+1);
+            temppkm->species = (Species::pkmspecies)(index+1);
+
+            if((index+1) != ui->sbSpecies->value())
+            {
+                ui->sbSpecies->setValue(index+1);
+            }
+            pkmviewer::displayPKM();
         }
     }
 }
 void pkmviewer::on_sbSpecies_valueChanged(int arg1)
 {
-    if((pkm->species > 0) && ((pkm->pid > 0) || (pkm->checksum > 0)))
+    if((temppkm->species > 0) && ((temppkm->pid > 0) || (temppkm->checksum > 0)))
     {
         if((arg1-1) != ui->cbPKMSpecies->currentIndex())
         {
@@ -233,8 +246,50 @@ void pkmviewer::on_sbSpecies_valueChanged(int arg1)
 }
 void pkmviewer::on_txtNickname_textChanged(const QString &arg1)
 {
-    if((pkm->species > 0) && ((pkm->pid > 0) || (pkm->checksum > 0)))
+    if((temppkm->species > 0) && ((temppkm->pid > 0) || (temppkm->checksum > 0)))
     {
         ui->cbNicknamed->setChecked(true);
+    }
+}
+void pkmviewer::on_sbEXP_valueChanged(int arg1)
+{
+    if((temppkm->species > 0) && ((temppkm->pid > 0) || (temppkm->checksum > 0)))
+    {
+        if(redisplayok)
+        {
+            temppkm->exp = arg1;
+            //        levelchangeok = false;
+            //        ui->sbLevel->setValue(getpkmlevel((int)(temppkm->species),arg1));
+            //        levelchangeok = true;
+            ui->pbTNL->setMinimum(getpkmexpatlevel(temppkm->species,ui->sbLevel->value()));
+            ui->pbTNL->setMaximum(getpkmexptonext((int)pkm->species,arg1) + arg1);
+            ui->pbTNL->setValue(arg1);
+            ui->lblTNL->setText(QString::number(getpkmexptonext((int)pkm->species,arg1)));
+            levelchangeok = false;
+            pkmviewer::displayPKM();
+        }
+        levelchangeok = true;
+    }
+}
+void pkmviewer::on_rbOTMale_toggled(bool checked)
+{
+    if(checked)
+    {
+        if(redisplayok)
+        {
+            temppkm->metlevel_otgender.otgender = Genders::male;
+            pkmviewer::displayPKM();
+        }
+    }
+}
+void pkmviewer::on_rbOTFemale_toggled(bool checked)
+{
+    if(checked)
+    {
+        if(redisplayok)
+        {
+            temppkm->metlevel_otgender.otgender = Genders::female;
+            pkmviewer::displayPKM();
+        }
     }
 }

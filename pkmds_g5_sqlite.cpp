@@ -266,6 +266,32 @@ int getpkmexpatcur(const int id, const int exp)
       << "ORDER  BY experience.experience ";
     return getanint(o);
 }
+int getpkmexpatlevel(const int id, const int level)
+{
+    std::ostringstream o;
+    o << ""
+      << "SELECT experience.experience "
+      << "FROM   pokemon_species "
+      << "       INNER JOIN experience "
+      << "               ON pokemon_species.growth_rate_id = experience.growth_rate_id "
+      << "WHERE  ( pokemon_species.id = " << id << " ) "
+      << "       AND ( experience.level = " << level << " ) "
+      << "ORDER  BY experience.experience ";
+    return getanint(o);
+}
+int getpkmexpatlevel(const Species::pkmspecies id, const int level)
+{
+    std::ostringstream o;
+    o << ""
+      << "SELECT experience.experience "
+      << "FROM   pokemon_species "
+      << "       INNER JOIN experience "
+      << "               ON pokemon_species.growth_rate_id = experience.growth_rate_id "
+      << "WHERE  ( pokemon_species.id = " << (int)id << " ) "
+      << "       AND ( experience.level = " << level << " ) "
+      << "ORDER  BY experience.experience ";
+    return getanint(o);
+}
 int getpkmexpatcur(const pokemon_obj &pkm)
 {
     return getpkmexpatcur(pkm.species,pkm.exp);

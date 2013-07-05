@@ -155,3 +155,5 @@ std::ostringstream geticonsql(const pokemon_obj & pkm, int langid = LANG_ID);
 std::ostringstream geticonsql(const pokemon_obj * pkm, int langid = LANG_ID);
 std::ostringstream gettypesql(const Types::types type);
 std::ostringstream gettypesql(const int type);
+int getpkmexpatlevel(const int id, const int level);
+int getpkmexpatlevel(const Species::pkmspecies id, const int level);

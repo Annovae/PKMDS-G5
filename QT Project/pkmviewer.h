@@ -57,8 +57,6 @@ public:
     void pkmviewer::setPKM(party_pkm * ppkm_);
     void pkmviewer::displayPKM();
     explicit pkmviewer(QWidget *parent = 0);
-    void pkmviewer::fixuppkm(pokemon_obj * pkm);
-    void pkmviewer::swapsprite(pokemon_obj apkm);
     ~pkmviewer();
 private slots:
     void on_cbPKMItem_currentIndexChanged(int index);
@@ -74,6 +72,12 @@ private slots:
     void on_sbSpecies_valueChanged(int arg1);
 
     void on_txtNickname_textChanged(const QString &arg1);
+
+    void on_sbEXP_valueChanged(int arg1);
+
+    void on_rbOTMale_toggled(bool checked);
+
+    void on_rbOTFemale_toggled(bool checked);
 
 private:
     Ui::pkmviewer *ui;
