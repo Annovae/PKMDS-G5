@@ -97,6 +97,7 @@ frmBoxes::frmBoxes(QWidget *parent) :
 }
 bw2sav_obj * sav = new bw2sav_obj;
 box_obj * frmCurBox = new box_obj;
+int frmCurBoxNum = 0;
 party_obj * frmParty = new party_obj;
 void * theSlot;
 QString SaveFileName = "";
@@ -164,6 +165,7 @@ void frmBoxes::on_actionLoad_SAV_triggered()
 void frmBoxes::changebox(int index)
 {
     int box = index;
+    frmCurBoxNum = index;
     frmCurBox = &(sav->cur.boxes[box]);
     for(int bslot = 0; bslot < 30; bslot++)
     {
@@ -189,6 +191,13 @@ void frmBoxes::changebox(int index)
     {
         ui->sbBoxIncrem->setValue(index);
     }
+    QPixmap * wallpaperpixmap = new QPixmap;
+    *wallpaperpixmap = getwallpaperimage(sav->cur.boxwallpapers[box]);
+    QGraphicsScene * wallpaperscene = new QGraphicsScene;
+    wallpaperscene->addPixmap(*wallpaperpixmap);
+    ui->pbPCBox->setScene(wallpaperscene);
+    ui->pbPCBox->setSceneRect(0,0,192,160);
+    ui->pbPCBox->fitInView(0,0,153,111);
 }
 void frmBoxes::on_cbBoxes_currentIndexChanged(int index)
 {

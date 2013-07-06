@@ -53,8 +53,8 @@ class pkmviewer : public QDialog
 {
     Q_OBJECT
 public:
-    void pkmviewer::setPKM(pokemon_obj * pkm_);
-    void pkmviewer::setPKM(party_pkm * ppkm_);
+    void pkmviewer::setPKM(pokemon_obj * pkm_, int box, bool isPartyPKM);
+    void pkmviewer::setPKM(party_pkm * ppkm_, int box, bool isPartyPKM = true);
     void pkmviewer::displayPKM();
     explicit pkmviewer(QWidget *parent = 0);
     ~pkmviewer();

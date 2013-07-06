@@ -157,3 +157,5 @@ std::ostringstream gettypesql(const Types::types type);
 std::ostringstream gettypesql(const int type);
 int getpkmexpatlevel(const int id, const int level);
 int getpkmexpatlevel(const Species::pkmspecies id, const int level);
+std::ostringstream getwallpapersql(const int wallpaper);
+std::ostringstream getwallpapersql(const Wallpapers::wallpapers wallpaper);

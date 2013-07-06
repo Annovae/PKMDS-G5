@@ -67,17 +67,23 @@ bool redisplayok = false;
 pokemon_obj * temppkm = new pokemon_obj;
 pokemon_obj * pkm = new pokemon_obj;
 party_pkm * ppkm = new party_pkm;
+bool ispartypkm = false;
 extern void * theSlot;
-void pkmviewer::setPKM(pokemon_obj * pkm_)
+extern int frmCurBoxNum;
+int startbox = 0;
+void pkmviewer::setPKM(pokemon_obj * pkm_, int box, bool isPartyPKM)
 {
+    startbox = box;
     pkm = pkm_;
     *temppkm = *pkm;
     redisplayok = false;
+    ispartypkm = isPartyPKM;
 }
-void pkmviewer::setPKM(party_pkm * ppkm_)
+void pkmviewer::setPKM(party_pkm * ppkm_, int box, bool isPartyPKM)
 {
     ppkm = ppkm_;
-    setPKM(&(ppkm->pkm_data));
+    setPKM(&(ppkm->pkm_data),box, isPartyPKM);
+    //    ispartypkm = true;
 }
 void pkmviewer::displayPKM()
 {
@@ -94,6 +100,7 @@ void pkmviewer::displayPKM()
         break;
     }
     ui->cbPKMSpecies->setCurrentIndex((int)(temppkm->species)-1);
+    ui->sbSpecies->setValue(temppkm->species);
     ui->cbPKMItem->setCurrentIndex((int)pkm->item);
     ui->sbLevel->setValue(getpkmlevel(temppkm));
     ui->sbEXP->setMaximum(getpkmexpatlevel(temppkm->species,100));
@@ -185,13 +192,16 @@ void pkmviewer::on_btnSaveChanges_clicked()
     calcchecksum(temppkm);
     *pkm = *temppkm;
     this->setWindowTitle(QString::fromStdWString(getpkmnickname(temppkm)));
-    QPixmap * iconpixmap = new QPixmap();
-    QGraphicsScene * iconscene = new QGraphicsScene();
-    *iconpixmap = getpkmicon(temppkm);
-    iconscene->addPixmap(*iconpixmap);
-    QGraphicsView * theView = new QGraphicsView;
-    theView = (QGraphicsView*)theSlot;
-    theView->setScene(iconscene);
+    if((frmCurBoxNum == startbox) || ispartypkm)
+    {
+        QPixmap * iconpixmap = new QPixmap();
+        QGraphicsScene * iconscene = new QGraphicsScene();
+        *iconpixmap = getpkmicon(temppkm);
+        iconscene->addPixmap(*iconpixmap);
+        QGraphicsView * theView = new QGraphicsView;
+        theView = (QGraphicsView*)theSlot;
+        theView->setScene(iconscene);
+    }
     if(redisplayok)
     {
         pkmviewer::displayPKM();

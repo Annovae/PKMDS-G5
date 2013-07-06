@@ -50,10 +50,12 @@ MouseEventEater::MouseEventEater(QObject *parent) :
 {
 }
 extern box_obj * frmCurBox;
+extern int frmCurBoxNum;
 extern party_obj * frmParty;
 pkmviewer * pview;
 pokemon_obj * apkm = new pokemon_obj;
 extern void * theSlot;
+bool ispartypkm_ = false;
 bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
 {
     QMouseEvent *mouseEvent;
@@ -73,15 +75,17 @@ bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
             {
             case 'B':
                 apkm = &(frmCurBox->pokemon[slot]);
+                ispartypkm_ = false;
                 break;
             case 'P':
                 apkm = &(frmParty->pokemon[slot].pkm_data);
+                ispartypkm_ = true;
                 break;
             }
             if(apkm->species != 0)
             {
                 pview->setWindowTitle(QString::fromStdWString(getpkmnickname(apkm)));
-                pview->setPKM(apkm);
+                pview->setPKM(apkm,frmCurBoxNum, ispartypkm_);
                 pview->displayPKM();
                 pview->show();
             }
