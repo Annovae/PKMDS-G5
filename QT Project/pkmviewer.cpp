@@ -83,7 +83,6 @@ void pkmviewer::setPKM(party_pkm * ppkm_, int box, bool isPartyPKM)
 {
     ppkm = ppkm_;
     setPKM(&(ppkm->pkm_data),box, isPartyPKM);
-    //    ispartypkm = true;
 }
 void pkmviewer::displayPKM()
 {
@@ -101,12 +100,12 @@ void pkmviewer::displayPKM()
     }
     ui->cbPKMSpecies->setCurrentIndex((int)(temppkm->species)-1);
     ui->sbSpecies->setValue(temppkm->species);
-    ui->cbPKMItem->setCurrentIndex((int)pkm->item);
+    ui->cbPKMItem->setCurrentIndex((int)temppkm->item);
     ui->sbLevel->setValue(getpkmlevel(temppkm));
     ui->sbEXP->setMaximum(getpkmexpatlevel(temppkm->species,100));
     ui->sbEXP->setValue(temppkm->exp);
     ui->pbTNL->setMinimum(getpkmexpatcur(temppkm));
-    ui->pbTNL->setMaximum(getpkmexptonext(temppkm) + pkm->exp);
+    ui->pbTNL->setMaximum(getpkmexptonext(temppkm) + temppkm->exp);
     ui->pbTNL->setValue(temppkm->exp);
     ui->lblTNL->setText(QString::number(getpkmexptonext(temppkm)));
     ui->txtNickname->setText(QString::fromStdWString(getpkmnickname(temppkm)));
@@ -178,16 +177,6 @@ void pkmviewer::on_sbLevel_valueChanged(int arg1)
 }
 void pkmviewer::on_btnSaveChanges_clicked()
 {
-    byte * btpnt = new byte;
-    btpnt = reinterpret_cast<byte*>(&(temppkm->nickname));
-    memset(btpnt+(ui->txtNickname->text().length()*2),0xff,2);
-    btpnt += 20;
-    memset(btpnt,0xff,2);
-    btpnt = reinterpret_cast<byte*>(&(temppkm->otname));
-    memset(btpnt+(ui->txtOTName->text().length()*2),0xff,2);
-    btpnt += 14;
-    memset(btpnt,0xff,2);
-    pkm->ivs.isnicknamed = ui->cbNicknamed->isChecked();
     // Fix the checksum last!
     calcchecksum(temppkm);
     *pkm = *temppkm;
@@ -213,16 +202,6 @@ void pkmviewer::on_btnExportPKMFile_clicked()
     PKMFileName = (QFileDialog::getSaveFileName(this,tr("Save a PKM file"),tr(""),tr("PKM Files (*.pkm)"))).toStdString();
     if(PKMFileName != "")
     {
-        pkm->ivs.isnicknamed = ui->cbNicknamed->isChecked();
-        byte * btpnt = new byte;
-        btpnt = reinterpret_cast<byte*>(&(temppkm->nickname));
-        memset(btpnt+(ui->txtNickname->text().length()*2),0xff,2);
-        btpnt += 20;
-        memset(btpnt,0xff,2);
-        btpnt = reinterpret_cast<byte*>(&(temppkm->otname));
-        memset(btpnt+(ui->txtOTName->text().length()*2),0xff,2);
-        btpnt += 14;
-        memset(btpnt,0xff,2);
         // Fix the checksum last!
         calcchecksum(temppkm);
         write(PKMFileName.c_str(),temppkm);
@@ -259,6 +238,12 @@ void pkmviewer::on_txtNickname_textChanged(const QString &arg1)
     if((temppkm->species > 0) && ((temppkm->pid > 0) || (temppkm->checksum > 0)))
     {
         ui->cbNicknamed->setChecked(true);
+        arg1.toWCharArray(temppkm->nickname);
+        byte * btpnt = new byte;
+        btpnt = reinterpret_cast<byte*>(&(temppkm->nickname));
+        memset(btpnt+(ui->txtNickname->text().length()*2),0xff,2);
+        btpnt += 20;
+        memset(btpnt,0xff,2);
     }
 }
 void pkmviewer::on_sbEXP_valueChanged(int arg1)
@@ -268,13 +253,10 @@ void pkmviewer::on_sbEXP_valueChanged(int arg1)
         if(redisplayok)
         {
             temppkm->exp = arg1;
-            //        levelchangeok = false;
-            //        ui->sbLevel->setValue(getpkmlevel((int)(temppkm->species),arg1));
-            //        levelchangeok = true;
             ui->pbTNL->setMinimum(getpkmexpatlevel(temppkm->species,ui->sbLevel->value()));
-            ui->pbTNL->setMaximum(getpkmexptonext((int)pkm->species,arg1) + arg1);
+            ui->pbTNL->setMaximum(getpkmexptonext((int)temppkm->species,arg1) + arg1);
             ui->pbTNL->setValue(arg1);
-            ui->lblTNL->setText(QString::number(getpkmexptonext((int)pkm->species,arg1)));
+            ui->lblTNL->setText(QString::number(getpkmexptonext((int)temppkm->species,arg1)));
             levelchangeok = false;
             pkmviewer::displayPKM();
         }
@@ -283,23 +265,45 @@ void pkmviewer::on_sbEXP_valueChanged(int arg1)
 }
 void pkmviewer::on_rbOTMale_toggled(bool checked)
 {
-    if(checked)
+    if((temppkm->species > 0) && ((temppkm->pid > 0) || (temppkm->checksum > 0)))
     {
-        if(redisplayok)
+        if(checked)
         {
             temppkm->metlevel_otgender.otgender = Genders::male;
-            pkmviewer::displayPKM();
+            if(redisplayok)
+            {
+                pkmviewer::displayPKM();
+            }
         }
     }
 }
 void pkmviewer::on_rbOTFemale_toggled(bool checked)
 {
-    if(checked)
+    if((temppkm->species > 0) && ((temppkm->pid > 0) || (temppkm->checksum > 0)))
     {
-        if(redisplayok)
+        if(checked)
         {
             temppkm->metlevel_otgender.otgender = Genders::female;
-            pkmviewer::displayPKM();
+            if(redisplayok)
+            {
+                pkmviewer::displayPKM();
+            }
         }
     }
+}
+void pkmviewer::on_cbNicknamed_toggled(bool checked)
+{
+    if((temppkm->species > 0) && ((temppkm->pid > 0) || (temppkm->checksum > 0)))
+    {
+        temppkm->ivs.isnicknamed = checked;
+    }
+}
+void pkmviewer::on_txtOTName_textChanged(const QString &arg1)
+{
+    arg1.toWCharArray(temppkm->otname);
+    byte * btpnt = new byte;
+    btpnt = reinterpret_cast<byte*>(&(temppkm->otname));
+    memset(btpnt+(ui->txtOTName->text().length()*2),0xff,2);
+    btpnt += 14;
+    memset(btpnt,0xff,2);
 }

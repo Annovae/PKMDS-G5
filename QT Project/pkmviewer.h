@@ -79,6 +79,10 @@ private slots:
 
     void on_rbOTFemale_toggled(bool checked);
 
+    void on_cbNicknamed_toggled(bool checked);
+
+    void on_txtOTName_textChanged(const QString &arg1);
+
 private:
     Ui::pkmviewer *ui;
 };

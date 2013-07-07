@@ -226,24 +226,27 @@ void frmBoxes::on_actionSave_changes_triggered()
     {
         if((sav > 0) && (sav->cur.adventurestarted != 0))
         {
-            bool isbw2 = savisbw2(sav);
-            sav->cur.curbox = ui->cbBoxes->currentIndex();
-            sav->cur.block1checksum = getchecksum(&(sav->cur),0x0,0x3e0);
-            for(uint32 pslot = 0; pslot < sav->cur.party.size; pslot++)
+
+            bw2sav_obj * savout = new bw2sav_obj;
+            *savout = *sav;
+            bool isbw2 = savisbw2(savout);
+            savout->cur.curbox = ui->cbBoxes->currentIndex();
+            savout->cur.block1checksum = getchecksum(&(savout->cur),0x0,0x3e0);
+            for(uint32 pslot = 0; pslot < savout->cur.party.size; pslot++)
             {
-                encryptpkm(&(sav->cur.party.pokemon[pslot]));
+                encryptpkm(&(savout->cur.party.pokemon[pslot]));
             }
-            calcpartychecksum(&(sav->cur));
+            calcpartychecksum(&(savout->cur));
             for(int boxnum = 0; boxnum < 24; boxnum++)
             {
                 for(int boxslot = 0; boxslot < 30; boxslot++)
                 {
-                    encryptpkm(&(sav->cur.boxes[boxnum].pokemon[boxslot]));
+                    encryptpkm(&(savout->cur.boxes[boxnum].pokemon[boxslot]));
                 }
-                calcboxchecksum(&(sav->cur),boxnum,isbw2);
+                calcboxchecksum(&(savout->cur),boxnum,isbw2);
             }
-            fixsavchecksum(sav);
-            write(SaveFileName.toStdString().c_str(),sav);
+            fixsavchecksum(savout);
+            write(SaveFileName.toStdString().c_str(),savout);
             msgBox.setText("The file has been saved.");
             msgBox.setInformativeText("");
             msgBox.setStandardButtons(QMessageBox::Ok);
