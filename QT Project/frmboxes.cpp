@@ -94,6 +94,7 @@ frmBoxes::frmBoxes(QWidget *parent) :
     boxgraphics[27] = ui->pbBoxSlot28;
     boxgraphics[28] = ui->pbBoxSlot29;
     boxgraphics[29] = ui->pbBoxSlot30;
+    this->setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
 }
 bw2sav_obj * sav = new bw2sav_obj;
 box_obj * frmCurBox = new box_obj;

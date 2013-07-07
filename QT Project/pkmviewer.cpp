@@ -61,6 +61,10 @@ pkmviewer::pkmviewer(QWidget *parent) :
         itemname = QString::fromStdString(lookuppkmname(speciesindex));
         ui->cbPKMSpecies->addItem(itemname);
     }
+    this->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
+    this->setMinimumSize(this->size());
+    this->setMaximumSize(this->size());
+    this->setSizeGripEnabled(false);
 }
 bool levelchangeok = true;
 bool redisplayok = false;
