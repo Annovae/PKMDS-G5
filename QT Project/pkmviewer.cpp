@@ -115,6 +115,14 @@ void pkmviewer::displayPKM()
     ui->pbTNL->setValue(temppkm->exp);
     ui->lblTNL->setText(QString::number(getpkmexptonext(temppkm)));
     ui->txtNickname->setText(QString::fromStdWString(getpkmnickname(temppkm)));
+    QColor otcolor = Qt::blue;
+    if(temppkm->metlevel_otgender.otgender == Genders::female)
+    {
+        otcolor = Qt::red;
+    }
+    QPalette palette = ui->txtOTName->palette();
+    palette.setColor(ui->txtOTName->foregroundRole(), otcolor);
+    ui->txtOTName->setPalette(palette);
     ui->txtOTName->setText(QString::fromStdWString(getpkmotname(temppkm)));
     ui->cbNicknamed->setChecked(temppkm->ivs.isnicknamed);
     QPixmap * type1pix = new QPixmap();
