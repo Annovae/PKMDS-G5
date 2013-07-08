@@ -67,9 +67,9 @@ PKM File</string>
    <widget class="QComboBox" name="cbPKMItem">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>30</x>
       <y>230</y>
-      <width>130</width>
+      <width>100</width>
       <height>22</height>
      </rect>
     </property>
@@ -194,6 +194,25 @@ Changes</string>
       <y>10</y>
       <width>20</width>
       <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: transparent</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+   </widget>
+   <widget class="QGraphicsView" name="pbHeldItem">
+    <property name="geometry">
+     <rect>
+      <x>-10</x>
+      <y>220</y>
+      <width>30</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="styleSheet">

@@ -125,6 +125,11 @@ void pkmviewer::displayPKM()
     ui->txtOTName->setPalette(palette);
     ui->txtOTName->setText(QString::fromStdWString(getpkmotname(temppkm)));
     ui->cbNicknamed->setChecked(temppkm->ivs.isnicknamed);
+    QPixmap * itempix = new QPixmap();
+    QGraphicsScene * itemscene = new QGraphicsScene();
+
+    itemscene->addPixmap(itempix);
+    ui->pbHeldItem->setScene(itemscene);
     QPixmap * type1pix = new QPixmap();
     QGraphicsScene * type1scene = new QGraphicsScene();
     *type1pix = gettypepic(lookuppkmtype(temppkm,1));

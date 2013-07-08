@@ -159,3 +159,4 @@ int getpkmexpatlevel(const int id, const int level);
 int getpkmexpatlevel(const Species::pkmspecies id, const int level);
 std::ostringstream getwallpapersql(const int wallpaper);
 std::ostringstream getwallpapersql(const Wallpapers::wallpapers wallpaper);
+string getitemsql(const int itemid, const int generation, const int langid = LANG_ID);
