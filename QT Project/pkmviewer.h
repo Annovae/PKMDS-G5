@@ -83,6 +83,10 @@ private slots:
 
     void on_txtOTName_textChanged(const QString &arg1);
 
+    void on_sbTID_valueChanged(int arg1);
+
+    void on_sbSID_valueChanged(int arg1);
+
 private:
     Ui::pkmviewer *ui;
 };

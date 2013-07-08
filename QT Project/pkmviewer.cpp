@@ -102,6 +102,8 @@ void pkmviewer::displayPKM()
         ui->rbOTMale->setChecked(true);
         break;
     }
+    ui->sbTID->setValue(temppkm->tid);
+    ui->sbSID->setValue(temppkm->sid);
     ui->cbPKMSpecies->setCurrentIndex((int)(temppkm->species)-1);
     ui->sbSpecies->setValue(temppkm->species);
     ui->cbPKMItem->setCurrentIndex((int)temppkm->item);
@@ -310,4 +312,20 @@ void pkmviewer::on_txtOTName_textChanged(const QString &arg1)
     memset(btpnt+(ui->txtOTName->text().length()*2),0xff,2);
     btpnt += 14;
     memset(btpnt,0xff,2);
+}
+
+void pkmviewer::on_sbTID_valueChanged(int arg1)
+{
+    if((temppkm->species > 0) && ((temppkm->pid > 0) || (temppkm->checksum > 0)))
+    {
+        temppkm->tid = arg1;
+    }
+}
+
+void pkmviewer::on_sbSID_valueChanged(int arg1)
+{
+    if((temppkm->species > 0) && ((temppkm->pid > 0) || (temppkm->checksum > 0)))
+    {
+        temppkm->sid = arg1;
+    }
 }

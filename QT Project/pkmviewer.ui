@@ -272,7 +272,7 @@ Changes</string>
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>90</y>
+       <y>160</y>
        <width>30</width>
        <height>20</height>
       </rect>
@@ -285,7 +285,7 @@ Changes</string>
      <property name="geometry">
       <rect>
        <x>60</x>
-       <y>90</y>
+       <y>160</y>
        <width>40</width>
        <height>20</height>
       </rect>
@@ -304,7 +304,7 @@ Changes</string>
      <property name="geometry">
       <rect>
        <x>100</x>
-       <y>90</y>
+       <y>160</y>
        <width>40</width>
        <height>20</height>
       </rect>
@@ -451,6 +451,61 @@ Changes</string>
        <string>Female</string>
       </property>
      </widget>
+    </widget>
+    <widget class="QSpinBox" name="sbTID">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>90</y>
+       <width>60</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="maximum">
+      <number>65535</number>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="sbSID">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>90</y>
+       <width>60</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="maximum">
+      <number>65535</number>
+     </property>
+     <property name="value">
+      <number>0</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblTID">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>90</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Trainer ID</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblSID">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>90</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Trainer SID</string>
+     </property>
     </widget>
    </widget>
    <widget class="QWidget" name="tpStats">
