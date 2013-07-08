@@ -1521,14 +1521,16 @@ ostringstream getwallpapersql(const Wallpapers::wallpapers wallpaper)
 }
 string getitemsql(const int itemid, const int generation, const int langid)
 {
+    std::string itemsql = "";
     std::ostringstream o;
-    o << ""
-      << "SELECT item_names.name "
-      << "FROM   item_game_indices "
-      << "       INNER JOIN item_names "
-      << "               ON item_game_indices.item_id = item_names.item_id "
-      << "WHERE  ( item_game_indices.generation_id = " << generation << " ) "
-      << "       AND ( item_game_indices.game_index = " << itemid << " ) "
-      << "       AND ( item_names.local_language_id = " << langid << " ) ";
-    return getastring(o);
+//    o << ""
+//      << "SELECT items.identifier "
+//      << "FROM   item_game_indices "
+//      << "       INNER JOIN item_names "
+//      << "               ON item_game_indices.item_id = item_names.item_id "
+//      << "WHERE  ( item_game_indices.generation_id = " << generation << " ) "
+//      << "       AND ( item_game_indices.game_index = " << itemid << " ) "
+//      << "       AND ( item_names.local_language_id = " << langid << " ) ";
+//    return getastring(o);
+    return itemsql;
 }
