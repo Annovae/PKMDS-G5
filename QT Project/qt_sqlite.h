@@ -55,3 +55,4 @@ QPixmap gettypepic(const int type);
 QPixmap getshinystar();
 QPixmap getgenderpic(const Genders::genders gender);
 QPixmap getwallpaperimage(const Wallpapers::wallpapers wallpaper);
+QPixmap getitemimage(const int itemid);
