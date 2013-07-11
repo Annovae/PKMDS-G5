@@ -306,7 +306,7 @@ QPixmap getwallpaperimage(const Wallpapers::wallpapers wallpaper)
 QPixmap getitemimage(const int itemid)
 {
     QPixmap pixmap;
-    std::ostringstream o = getitemsql(itemid);
+    std::ostringstream o = getitemsql(itemid,5,9);
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];

@@ -127,8 +127,8 @@ void pkmviewer::displayPKM()
     ui->cbNicknamed->setChecked(temppkm->ivs.isnicknamed);
     QPixmap * itempix = new QPixmap();
     QGraphicsScene * itemscene = new QGraphicsScene();
-    itempix = getitemimage(temppkm->item);
-    itemscene->addPixmap(itempix);
+    *itempix = getitemimage(temppkm->item);
+    itemscene->addPixmap(*itempix);
     ui->pbHeldItem->setScene(itemscene);
     QPixmap * type1pix = new QPixmap();
     QGraphicsScene * type1scene = new QGraphicsScene();
