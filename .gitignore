@@ -28,3 +28,4 @@ qrc_*.cpp
 Makefile
 *-build-*
 *build-*
+*build-PKMDS_QT-Desktop_with_debugger-Debug/*
