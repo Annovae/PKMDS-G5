@@ -9,6 +9,9 @@
 *.so
 *.dll
 *.dylib
+
+# Built files
+
 *.obj
 *.exe
 *.exe.*
@@ -24,3 +27,4 @@ moc_*.cpp
 qrc_*.cpp
 Makefile
 *-build-*
+*build-*
