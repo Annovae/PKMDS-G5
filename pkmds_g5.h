@@ -2295,6 +2295,7 @@ namespace Locations
 		routegate=115,
 		abyssalruins=116,
 		poketransfer=30001,
+        lovelyplace=40001,
 		daycarecouple=60002
 	};
 }

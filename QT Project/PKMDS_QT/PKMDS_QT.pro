@@ -22,7 +22,8 @@ SOURCES += \
     ../../pkmds_vector.cpp \
     ../../pkmds_gba.cpp \
     ../../pkmds_g5_sqlite.cpp \
-    ../../pkmds_g5.cpp
+    ../../pkmds_g5.cpp \
+    ../../stdafx.cpp
 
 HEADERS  += \
     ../qt_sqlite.h \

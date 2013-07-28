@@ -170,7 +170,7 @@ void frmBoxes::changebox(int index)
     frmCurBox = &(sav->cur.boxes[box]);
     for(int bslot = 0; bslot < 30; bslot++)
     {
-        if(sav->cur.boxes[box].pokemon[bslot].species != 0)
+        if(sav->cur.boxes[box].pokemon[bslot].species != Species::NOTHING)
         {
             boxpix[bslot] = getpkmicon(sav->cur.boxes[box].pokemon[bslot]);
         }

@@ -46,8 +46,8 @@ Some documentation available at: http://www.projectpokemon.org/wiki/
 #include "sqlite3.h"
 #include "pkmds_g5.h"
 // Set theDB to be the full path of the SQLITE database (provided by Veekun)
-static const char theDB[] = "SQLite Databases\\veekun-pokedex.sqlite";
-static const char theimgDB[] = "SQLite Databases\\images.sqlite";
+static const char theDB[] = "..\\..\\SQLite Databases\\veekun-pokedex.sqlite";
+static const char theimgDB[] = "..\\..\\SQLite Databases\\images.sqlite";
 static const int LANG_ID = 9;
 static const int VERSION_GROUP = 11;
 static const int GENERATION = 5;
