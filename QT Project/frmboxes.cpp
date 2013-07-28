@@ -151,6 +151,10 @@ void frmBoxes::on_actionLoad_SAV_triggered()
             ui->cbBoxes->setItemText(boxnum,QString::fromStdWString(getwstring(sav->cur.boxnames[boxnum])));
             for(int boxslot = 0; boxslot < 30; boxslot++)
             {
+                if(boxslot == 28)
+                {
+                    std::string stop = "stop";
+                }
                 decryptpkm(&(sav->cur.boxes[boxnum].pokemon[boxslot]));
             }
         }
