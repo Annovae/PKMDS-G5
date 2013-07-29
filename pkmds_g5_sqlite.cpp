@@ -1235,7 +1235,7 @@ void displaypkminconsole(pokemon_obj * pkm)
     }
     cout << endl;
 }
-ostringstream* getspritesql(const pokemon_obj & pkm, int langid)
+ostringstream getspritesql(const pokemon_obj & pkm, int langid)
 {
     ostringstream o;
     o
@@ -1278,9 +1278,9 @@ ostringstream* getspritesql(const pokemon_obj & pkm, int langid)
         tshiny = "normal";
     }
     o << "SELECT image FROM front_" << tgender << "_" << tshiny << "_sprites WHERE (identifier = '" << formid << "')";
-    return &o;
+    return o;
 }
-ostringstream* getspritesql(const pokemon_obj * pkm, int langid)
+ostringstream getspritesql(const pokemon_obj * pkm, int langid)
 {
     ostringstream o;
     o
@@ -1330,9 +1330,9 @@ ostringstream* getspritesql(const pokemon_obj * pkm, int langid)
         tshiny = "normal";
     }
     o << "SELECT image FROM front_" << tgender << "_" << tshiny << "_sprites WHERE (identifier = '" << formid << "')";
-    return &o;
+    return o;
 }
-ostringstream* geticonsql(const pokemon_obj & pkm, int langid)
+ostringstream geticonsql(const pokemon_obj & pkm, int langid)
 {
     ostringstream o;
     std::string formid;
@@ -1406,9 +1406,9 @@ ostringstream* geticonsql(const pokemon_obj & pkm, int langid)
         }
         o << "SELECT image FROM icons_" << tgender << " WHERE (identifier = \"" << formid << "\")";
     }
-    return &o;
+    return o;
 }
-ostringstream* geticonsql(const pokemon_obj * pkm, int langid)
+ostringstream geticonsql(const pokemon_obj * pkm, int langid)
 {
     ostringstream o;
     std::string formid;
@@ -1482,37 +1482,37 @@ ostringstream* geticonsql(const pokemon_obj * pkm, int langid)
         }
         o << "SELECT image FROM icons_" << tgender << " WHERE (identifier = \"" << formid << "\")";
     }
-    return &o;
+    return o;
 }
-ostringstream* gettypesql(const Types::types type)
+ostringstream gettypesql(const Types::types type)
 {
     ostringstream o;
     std::string type_name = lookuptypename((int)type,9);
     type_name[0] = tolower(type_name[0]);
     o << "Select image from types where (identifier = \"" << type_name << "\")";
-    return &o;
+    return o;
 }
-ostringstream* gettypesql(const int type)
+ostringstream gettypesql(const int type)
 {
     ostringstream o;
     std::string type_name = lookuptypename(type,9);
     type_name[0] = tolower(type_name[0]);
     o << "Select image from types where (identifier = \"" << type_name << "\")";
-    return &o;
+    return o;
 }
-ostringstream* getwallpapersql(const int wallpaper)
+ostringstream getwallpapersql(const int wallpaper)
 {
     ostringstream o;
     o << "Select image from wallpapers where (identifier = " << wallpaper << ")";
-    return &o;
+    return o;
 }
-ostringstream* getwallpapersql(const Wallpapers::wallpapers wallpaper)
+ostringstream getwallpapersql(const Wallpapers::wallpapers wallpaper)
 {
     ostringstream o;
     o << "Select image from wallpapers where (identifier = " << (int)wallpaper << ")";
-    return &o;
+    return o;
 }
-ostringstream* getitemsql(const int itemid, const int generation, const int langid)
+ostringstream getitemsql(const int itemid, const int generation, const int langid)
 {
     std::ostringstream itemsql;
     std::string identifier = "";
@@ -1526,5 +1526,5 @@ ostringstream* getitemsql(const int itemid, const int generation, const int lang
       << "       AND ( item_game_indices.generation_id = " << generation << ") ";
     identifier = getastring(o);
     itemsql << "select image from items where (identifier = \"" << identifier << "\")";
-    return &itemsql;
+    return itemsql;
 }

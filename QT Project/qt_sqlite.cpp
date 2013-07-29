@@ -47,11 +47,11 @@ Some documentation available at: http://www.projectpokemon.org/wiki/
 QPixmap getpkmsprite(const pokemon_obj &pkm)
 {
     QPixmap pixmap;
-    std::ostringstream * o = new std::ostringstream; o = getspritesql(pkm);
+    std::ostringstream/* * o = new std::ostringstream;*/ o = getspritesql(pkm);
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
-    strcpy_s(cmd,o->str().c_str());
+    strcpy_s(cmd,o/*->*/.str().c_str());
     if(sqlite3_prepare_v2(imgdatabase,cmd,-1,&imgstatement,0) == SQLITE_OK)
     {
         int cols = sqlite3_column_count(imgstatement);
@@ -75,11 +75,11 @@ QPixmap getpkmsprite(const pokemon_obj &pkm)
 QPixmap getpkmsprite(const pokemon_obj *pkm)
 {
     QPixmap pixmap;
-    std::ostringstream * o = new std::ostringstream; o = getspritesql(pkm);
+    std::ostringstream/* * o = new std::ostringstream;*/ o = getspritesql(pkm);
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
-    strcpy_s(cmd,o->str().c_str());
+    strcpy_s(cmd,o/*->*/.str().c_str());
     if(sqlite3_prepare_v2(imgdatabase,cmd,-1,&imgstatement,0) == SQLITE_OK)
     {
         int cols = sqlite3_column_count(imgstatement);
@@ -103,11 +103,11 @@ QPixmap getpkmsprite(const pokemon_obj *pkm)
 QPixmap getpkmicon(const pokemon_obj &pkm)
 {
     QPixmap pixmap;
-    std::ostringstream * o = new std::ostringstream; o = geticonsql(pkm);
+    std::ostringstream/* * o = new std::ostringstream;*/ o = geticonsql(pkm);
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
-    strcpy_s(cmd,o->str().c_str());
+    strcpy_s(cmd,o/*->*/.str().c_str());
     if(sqlite3_prepare_v2(imgdatabase,cmd,-1,&imgstatement,0) == SQLITE_OK)
     {
         int cols = sqlite3_column_count(imgstatement);
@@ -131,11 +131,11 @@ QPixmap getpkmicon(const pokemon_obj &pkm)
 QPixmap getpkmicon(const pokemon_obj *pkm)
 {
     QPixmap pixmap;
-    std::ostringstream * o = new std::ostringstream; o = geticonsql(pkm);
+    std::ostringstream/* * o = new std::ostringstream;*/ o = geticonsql(pkm);
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
-    strcpy_s(cmd,o->str().c_str());
+    strcpy_s(cmd,o/*->*/.str().c_str());
     if(sqlite3_prepare_v2(imgdatabase,cmd,-1,&imgstatement,0) == SQLITE_OK)
     {
         int cols = sqlite3_column_count(imgstatement);
@@ -159,11 +159,11 @@ QPixmap getpkmicon(const pokemon_obj *pkm)
 QPixmap gettypepic(const Types::types type)
 {
     QPixmap pixmap;
-    std::ostringstream * o = new std::ostringstream; o = gettypesql(type);
+    std::ostringstream/* * o = new std::ostringstream;*/ o = gettypesql(type);
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
-    strcpy_s(cmd,o->str().c_str());
+    strcpy_s(cmd,o/*->*/.str().c_str());
     if(sqlite3_prepare_v2(imgdatabase,cmd,-1,&imgstatement,0) == SQLITE_OK)
     {
         int cols = sqlite3_column_count(imgstatement);
@@ -187,11 +187,11 @@ QPixmap gettypepic(const Types::types type)
 QPixmap gettypepic(const int type)
 {
     QPixmap pixmap;
-    std::ostringstream * o = new std::ostringstream; o = gettypesql(type);
+    std::ostringstream/* * o = new std::ostringstream;*/ o = gettypesql(type);
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
-    strcpy_s(cmd,o->str().c_str());
+    strcpy_s(cmd,o/*->*/.str().c_str());
     if(sqlite3_prepare_v2(imgdatabase,cmd,-1,&imgstatement,0) == SQLITE_OK)
     {
         int cols = sqlite3_column_count(imgstatement);
@@ -278,11 +278,11 @@ QPixmap getgenderpic(const Genders::genders gender)
 QPixmap getwallpaperimage(const Wallpapers::wallpapers wallpaper)
 {
     QPixmap pixmap;
-    std::ostringstream * o = new std::ostringstream; o = getwallpapersql(wallpaper);
+    std::ostringstream/* * o = new std::ostringstream;*/ o = getwallpapersql(wallpaper);
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
-    strcpy_s(cmd,o->str().c_str());
+    strcpy_s(cmd,o/*->*/.str().c_str());
     if(sqlite3_prepare_v2(imgdatabase,cmd,-1,&imgstatement,0) == SQLITE_OK)
     {
         int cols = sqlite3_column_count(imgstatement);
@@ -306,11 +306,11 @@ QPixmap getwallpaperimage(const Wallpapers::wallpapers wallpaper)
 QPixmap getitemimage(const int itemid)
 {
     QPixmap pixmap;
-    std::ostringstream * o = new std::ostringstream; o = getitemsql(itemid,5,9);
+    std::ostringstream/* * o = new std::ostringstream;*/ o = getitemsql(itemid,5,9);
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
-    strcpy_s(cmd,o->str().c_str());
+    strcpy_s(cmd,o/*->*/.str().c_str());
     if(sqlite3_prepare_v2(imgdatabase,cmd,-1,&imgstatement,0) == SQLITE_OK)
     {
         int cols = sqlite3_column_count(imgstatement);
