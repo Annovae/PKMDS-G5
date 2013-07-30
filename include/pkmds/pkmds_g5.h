@@ -14,36 +14,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-
-***********************************************
-PKMDS Code Library - Gen V
-
-Created by Michael Bond (aka Codemonkey85)
-https://plus.google.com/116414067936940758871/
-
-Feel free to use and reuse this code as you see fit, but I
-implore you to always link back to me as the original creator.
-***********************************************
-
-Thanks to Alex "eevee" Munroe at http://veekun.com/
-for his SQLite Pokedex database, which powers this software.
-
-Thanks to the fine folks at SQLite.org for making it possible
-to use the Pokedex database... the source files "sqlite3.c"
-and "sqlite3.h" came from these people.
-
-Thanks to those of Project Pokemon (http://projectpokemon.org/)
-who have helped research and document the underlying structure
-of Pokemon game save files.
-
-Special thanks to SCV, Sabresite, loadingNOW, Poryhack,
-GatorShark, Chase, Jiggy-Ninja, Codr, Bond697, mingot, Guested,
-coolbho3000 and of course, COM.
-
-Some documentation available at: http://www.projectpokemon.org/wiki/
 */
 #pragma once
-#include "pokeprng.h"
+#include <../../include/pkmds/pokeprng.h>
 // Enums
 namespace Species
 {
@@ -2295,7 +2268,7 @@ namespace Locations
 		routegate=115,
 		abyssalruins=116,
 		poketransfer=30001,
-        lovelyplace=40001,
+		lovelyplace=40001,
 		daycarecouple=60002
 	};
 }
@@ -2954,7 +2927,16 @@ uint16 : 16; //
 //Block C
 struct pkmblockc { // 
 public:
-	wchar_t nickname[11]; // Nickname
+
+#if ! defined(MARKUP_SIZEOFWCHAR)
+#if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
+char nickname[22];
+#else
+wchar_t nickname[11];
+#endif
+#endif
+
+//	wchar_t nickname[11]; // Nickname
 // private:
 byte : 8;
 //public:
@@ -2972,7 +2954,15 @@ uint32 : 32; //
 //Block D
 struct pkmblockd { // 
 public:
-	wchar_t otname[8]; // Original trainer name
+
+#if ! defined(MARKUP_SIZEOFWCHAR)
+#if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
+char otname[16];
+#else
+wchar_t otname[8];
+#endif
+#endif
+
 	datefield eggdate; // Egg met date; year, month, day
 	datefield metdate; // Met date; year, month, day
 	Locations::locations eggmet; // Egg met location
@@ -3040,27 +3030,25 @@ struct party_pkm { // Size: 0xDC
         memset(this,0,sizeof(party_pkm));
     }
 };
-//byte getpkmshuffleindex(const uint32 pid);
-//byte getpkmshuffleindex(const pokemon_obj &pkm);
-void shuffle(pokemon_obj * pkm, bool un);
-void shuffle(pokemon_obj & pkm, bool un);
-void unshufflepkm(pokemon_obj &pkm);
-void shufflepkm(pokemon_obj &pkm);
-void pkmcrypt(pokemon_obj& pkm);
-void pkmcrypt(party_field& pkm, uint32 pid);
-void pkmcrypt(party_field* pkm, uint32 pid);
-void encryptpkm(pokemon_obj& pkm);
-void decryptpkm(pokemon_obj& pkm);
-void encryptpkm(party_pkm& pkm);
-void decryptpkm(party_pkm& pkm);
-void encryptpkm(party_pkm* pkm);
-void decryptpkm(party_pkm* pkm);
+byte getpkmshuffleindex(const uint32 pid);
+byte getpkmshuffleindex(const pokemon_obj &pkm);
+void DllExport unshufflepkm(pokemon_obj &pkm);
+void DllExport shufflepkm(pokemon_obj &pkm);
+void DllExport pkmcrypt(pokemon_obj& pkm);
+void DllExport pkmcrypt(party_field& pkm, uint32 pid);
+void DllExport pkmcrypt(party_field* pkm, uint32 pid);
+void DllExport encryptpkm(pokemon_obj& pkm);
+void DllExport decryptpkm(pokemon_obj& pkm);
+void DllExport encryptpkm(party_pkm& pkm);
+void DllExport decryptpkm(party_pkm& pkm);
+void DllExport encryptpkm(party_pkm* pkm);
+void DllExport decryptpkm(party_pkm* pkm);
 byte getpkmshuffleindex(const pokemon_obj *pkm);
-void unshufflepkm(pokemon_obj *pkm);
-void shufflepkm(pokemon_obj *pkm);
-void pkmcrypt(pokemon_obj* pkm);
-void encryptpkm(pokemon_obj* pkm);
-void decryptpkm(pokemon_obj* pkm);
+void DllExport unshufflepkm(pokemon_obj *pkm);
+void DllExport shufflepkm(pokemon_obj *pkm);
+void DllExport pkmcrypt(pokemon_obj* pkm);
+void DllExport encryptpkm(pokemon_obj* pkm);
+void DllExport decryptpkm(pokemon_obj* pkm);
 struct box_obj { // size: 0x1000
 public:
 	pokemon_obj pokemon[30]; //
@@ -3353,7 +3341,16 @@ public:
 // private:
 	byte unknown0[0x03]; //
 //public:
-	wchar_t boxnames[24][20]; // size: 0x3C0
+
+#if ! defined(MARKUP_SIZEOFWCHAR)
+#if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
+char boxnames[24][40]; // size: 0x3C0
+#else
+wchar_t boxnames[24][20]; // size: 0x3C0
+#endif
+#endif
+
+//	wchar_t boxnames[24][20]; // size: 0x3C0
 	Wallpapers::wallpapers boxwallpapers[0x18];
 // private:
 	byte unknown1[6];
@@ -3368,7 +3365,16 @@ public:
 // private:
 	byte unknown3[0xD0]; //
 //public:
-	wchar_t trainername[0x08]; // size: 0x10
+
+#if ! defined(MARKUP_SIZEOFWCHAR)
+#if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
+char trainername[0x10]; // size: 0x10
+#else
+wchar_t trainername[0x08]; // size: 0x10
+#endif
+#endif
+
+
 	uint16 tid;
 	uint16 sid;
 // private:
@@ -3485,15 +3491,15 @@ static const long bw2chkcalcloc = 0x25F00;
 static const long bwchkcalclen = 0x8C;
 static const long bw2chkcalclen = 0x94;
 static const long boxsize = 0xff0;
-uint16 getchecksum(bw2savblock_obj &block, const int start, const int length);
-void calcboxchecksum(bw2savblock_obj &block, int boxindex, bool bw2);
-void calcpartychecksum(bw2savblock_obj &block); // ,bool bw2);
-void calcchecksum(bw2savblock_obj &block, int start, int length, int loc);
-uint16 getchkfromsav(bw2savblock_obj &block, bool bw2);
-uint16 getchecksum(bw2savblock_obj *block, const int start, const int length);
-void calcboxchecksum(bw2savblock_obj *block, int boxindex, bool bw2);
-void calcpartychecksum(bw2savblock_obj *block); // ,bool bw2);
-void calcchecksum(bw2savblock_obj *block, int start, int length, int loc);
+uint16 DllExport getchecksum(bw2savblock_obj &block, const int start, const int length);
+void DllExport calcboxchecksum(bw2savblock_obj &block, int boxindex, bool bw2);
+void DllExport calcpartychecksum(bw2savblock_obj &block); // ,bool bw2);
+void DllExport calcchecksum(bw2savblock_obj &block, int start, int length, int loc);
+uint16 DllExport getchkfromsav(bw2savblock_obj &block, bool bw2);
+uint16 DllExport getchecksum(bw2savblock_obj *block, const int start, const int length);
+void DllExport calcboxchecksum(bw2savblock_obj *block, int boxindex, bool bw2);
+void DllExport calcpartychecksum(bw2savblock_obj *block); // ,bool bw2);
+void DllExport calcchecksum(bw2savblock_obj *block, int start, int length, int loc);
 uint16 getchkfromsav(bw2savblock_obj *block, bool bw2);
 const byte natureconvert[25][2] = 
 {{0,1},
@@ -3527,66 +3533,67 @@ const byte pokerusstrains[0x10] = {
 	1,2,3,4,
 	1,2,3,4
 };
-void calcchecksum(pokemon_obj& pkm); // Calculates and assigns the checksum for the given Pokemon object.
-void calcchecksum(pokemon_obj* pkm);
-bool savisbw2(bw2sav_obj &sav);
-bool savisbw2(bw2sav_obj *sav);
-void fixsavchecksum(bw2sav_obj &sav);
-void fixsavchecksum(bw2sav_obj *sav);
-void write(const char* file_name, pokemon_obj& data); // Writes the given Pokemon data to the given file name.
-void write(const char* file_name, pokemon_obj* data); // Writes the given Pokemon data to the given file name.
-void write(const char* file_name, bw2sav_obj& data); //, int start, int length, int loc) //
-void write(const char* file_name, bw2sav_obj *data); //, int start, int length, int loc) //
-void read(const char* file_name, pokemon_obj& data); // Reads the given file and assigns the data to the given Pokemon object.
-void read(const char* file_name, pokemon_obj *data); // Reads the given file and assigns the data to the given Pokemon object.
-void read(const char* file_name, bw2sav_obj& data); // Reads the given file and assigns the data to the given save file object.
-void read(const char* file_name, bw2sav_obj *data); // Reads the given file and assigns the data to the given save file object.
-std::wstring getpkmnickname(const pokemon_obj &pkm);
-std::wstring getpkmotname(const pokemon_obj &pkm);
-std::wstring getpkmnickname(const pokemon_obj *pkm);
-std::wstring getpkmotname(const pokemon_obj *pkm);
-void setpkmnickname(pokemon_obj &pkm, wchar_t input[], int length);
-void setpkmotname(pokemon_obj &pkm, wchar_t input[], int length);
-void setpkmnickname(pokemon_obj *pkm, wchar_t input[], int length);
-void setpkmotname(pokemon_obj *pkm, wchar_t input[], int length);
-Genders::genders getpkmgender(const pokemon_obj &pkm);
-Genders::genders getpkmgender(const pokemon_obj *pkm);
-void setpkmgender(pokemon_obj &pkm, int gender);
-void setpkmgender(pokemon_obj *pkm, int gender);
-bool getpkmshiny(const pokemon_obj &pkm);
-bool pkmmetasegg(const pokemon_obj &pkm);
-bool getpkmshiny(const pokemon_obj *pkm);
-bool pkmmetasegg(const pokemon_obj *pkm);
-void swap_pkm(box_obj &frombox, const int fromslot, box_obj &tobox, const int toslot);
-void swap_pkm(box_obj *frombox, const int fromslot, box_obj *tobox, const int toslot);
-void put_pkm(box_obj &box, const int slot, pokemon_obj &pkm, const bool isencrypted = true);
-void put_pkm(box_obj *box, const int slot, pokemon_obj *pkm, const bool isencrypted = true);
-void remove_pkm(box_obj &box, const int slot);
-void remove_pkm(box_obj *box, const int slot);
-void depositpkm(bw2savblock_obj * block, const int party_slot, box_obj * box, const int box_slot);
-double getpkmhappiness(const pokemon_obj &pkm);
-double getpkmhappiness(const pokemon_obj *pkm);
-int getpkmhatchsteps(const pokemon_obj &pkm);
-int getpkmhatchsteps(const pokemon_obj *pkm);
-std::string getgendername(const int gender);
-std::string getpkmotgendername(const pokemon_obj &pkm);
-int gethiddenpowerpower(const pokemon_obj &pkm);
-int gethiddenpowertype(const pokemon_obj &pkm);
-std::string getpkmotgendername(const pokemon_obj *pkm);
-int gethiddenpowerpower(const pokemon_obj *pkm);
-int gethiddenpowertype(const pokemon_obj *pkm);
-std::string getballname(const int ball);
-std::string getballname(const pokemon_obj &pkm);
-std::string getballname(const pokemon_obj *pkm);
-std::wstring getboxname(const bw2savblock_obj *block,int boxnum);
-std::wstring getboxname(const bw2savblock_obj &block,int boxnum);
-time_t * advstrttime(const bw2savblock_obj &block);
-time_t * advstrttime(const bw2savblock_obj *block);
-std::string advstrttimestring(const bw2savblock_obj &block);
-std::string advstrttimestring(const bw2savblock_obj *block);
-std::wstring getsavtrainername(const bw2savblock_obj & block);
-std::wstring getsavtrainername(const bw2savblock_obj * block);
-std::wstring getwstring(std::wstring in);
+void DllExport calcchecksum(pokemon_obj& pkm); // Calculates and assigns the checksum for the given Pokemon object.
+void DllExport calcchecksum(pokemon_obj* pkm);
+bool DllExport savisbw2(bw2sav_obj &sav);
+bool DllExport savisbw2(bw2sav_obj *sav);
+void DllExport fixsavchecksum(bw2sav_obj &sav);
+void DllExport fixsavchecksum(bw2sav_obj *sav);
+void DllExport write(const char* file_name, pokemon_obj& data); // Writes the given Pokemon data to the given file name.
+void DllExport write(const char* file_name, pokemon_obj* data); // Writes the given Pokemon data to the given file name.
+void DllExport write(const char* file_name, bw2sav_obj& data); //, int start, int length, int loc) //
+void DllExport write(const char* file_name, bw2sav_obj *data); //, int start, int length, int loc) //
+void DllExport read(const char* file_name, pokemon_obj& data); // Reads the given file and assigns the data to the given Pokemon object.
+void DllExport read(const char* file_name, pokemon_obj *data); // Reads the given file and assigns the data to the given Pokemon object.
+void DllExport read(const char* file_name, bw2sav_obj& data); // Reads the given file and assigns the data to the given save file object.
+void DllExport read(const char* file_name, bw2sav_obj *data); // Reads the given file and assigns the data to the given save file object.
+std::wstring DllExport getpkmnickname(const pokemon_obj &pkm);
+std::wstring DllExport getpkmotname(const pokemon_obj &pkm);
+std::wstring DllExport getpkmnickname(const pokemon_obj *pkm);
+std::wstring DllExport getpkmotname(const pokemon_obj *pkm);
+void DllExport setpkmnickname(pokemon_obj &pkm, wchar_t input[], int length);
+void DllExport setpkmotname(pokemon_obj &pkm, wchar_t input[], int length);
+void DllExport setpkmnickname(pokemon_obj *pkm, wchar_t input[], int length);
+void DllExport setpkmotname(pokemon_obj *pkm, wchar_t input[], int length);
+Genders::genders DllExport getpkmgender(const pokemon_obj &pkm);
+Genders::genders DllExport getpkmgender(const pokemon_obj *pkm);
+void DllExport setpkmgender(pokemon_obj &pkm, int gender);
+void DllExport setpkmgender(pokemon_obj *pkm, int gender);
+bool DllExport getpkmshiny(const pokemon_obj &pkm);
+bool DllExport pkmmetasegg(const pokemon_obj &pkm);
+bool DllExport getpkmshiny(const pokemon_obj *pkm);
+bool DllExport pkmmetasegg(const pokemon_obj *pkm);
+void DllExport swap_pkm(box_obj &frombox, const int fromslot, box_obj &tobox, const int toslot);
+void DllExport swap_pkm(box_obj *frombox, const int fromslot, box_obj *tobox, const int toslot);
+void DllExport put_pkm(box_obj &box, const int slot, pokemon_obj &pkm, const bool isencrypted = true);
+void DllExport put_pkm(box_obj *box, const int slot, pokemon_obj *pkm, const bool isencrypted = true);
+void DllExport remove_pkm(box_obj &box, const int slot);
+void DllExport remove_pkm(box_obj *box, const int slot);
+void DllExport depositpkm(bw2savblock_obj * block, const int party_slot, box_obj * box, const int box_slot);
+double DllExport getpkmhappiness(const pokemon_obj &pkm);
+double DllExport getpkmhappiness(const pokemon_obj *pkm);
+int DllExport getpkmhatchsteps(const pokemon_obj &pkm);
+int DllExport getpkmhatchsteps(const pokemon_obj *pkm);
+std::string DllExport getgendername(const int gender);
+std::string DllExport getpkmotgendername(const pokemon_obj &pkm);
+int DllExport gethiddenpowerpower(const pokemon_obj &pkm);
+int DllExport gethiddenpowertype(const pokemon_obj &pkm);
+std::string DllExport getpkmotgendername(const pokemon_obj *pkm);
+int DllExport gethiddenpowerpower(const pokemon_obj *pkm);
+int DllExport gethiddenpowertype(const pokemon_obj *pkm);
+std::string DllExport getballname(const int ball);
+std::string DllExport getballname(const pokemon_obj &pkm);
+std::string DllExport getballname(const pokemon_obj *pkm);
+std::wstring DllExport getboxname(const bw2savblock_obj *block,int boxnum);
+std::wstring DllExport getboxname(const bw2savblock_obj &block,int boxnum);
+DllExport time_t * advstrttime(const bw2savblock_obj &block);
+DllExport time_t * advstrttime(const bw2savblock_obj *block);
+//std::string &advstrttimestring(const bw2savblock_obj &block);
+//std::string &advstrttimestring(const bw2savblock_obj *block);
+std::wstring DllExport getsavtrainername(const bw2savblock_obj & block);
+std::wstring DllExport getsavtrainername(const bw2savblock_obj * block);
+std::wstring DllExport getwstring(std::wstring in);
+std::wstring DllExport getwstring(std::string in);
 
 /*
 Main Save File & Backup

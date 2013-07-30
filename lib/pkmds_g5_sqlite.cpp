@@ -14,36 +14,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-
-***********************************************
-PKMDS Code Library - Gen V
-
-Created by Michael Bond (aka Codemonkey85)
-https://plus.google.com/116414067936940758871/
-
-Feel free to use and reuse this code as you see fit, but I
-implore you to always link back to me as the original creator.
-***********************************************
-
-Thanks to Alex "eevee" Munroe at http://veekun.com/
-for his SQLite Pokedex database, which powers this software.
-
-Thanks to the fine folks at SQLite.org for making it possible
-to use the Pokedex database... the source files "sqlite3.c"
-and "sqlite3.h" came from these people.
-
-Thanks to those of Project Pokemon (http://projectpokemon.org/)
-who have helped research and document the underlying structure
-of Pokemon game save files.
-
-Special thanks to SCV, Sabresite, loadingNOW, Poryhack,
-GatorShark, Chase, Jiggy-Ninja, Codr, Bond697, mingot, Guested,
-coolbho3000 and of course, COM.
-
-Some documentation available at: http://www.projectpokemon.org/wiki/
 */
-#pragma once
-#include "pkmds_g5_sqlite.h"
+#include <../../include/pkmds/pkmds_g5_sqlite.h>
 using namespace std;
 sqlite3 *database;
 sqlite3_stmt *statement;
@@ -69,7 +41,11 @@ string getastring(const std::ostringstream &o)
 {
     string s = "";
     char cmd[BUFF_SIZE];
+	#if defined(__linux__)
+    strcpy(cmd,o.str().c_str());
+	#else
     strcpy_s(cmd,o.str().c_str());
+	#endif
     if(sqlite3_prepare_v2(database,cmd,-1,&statement,0) == SQLITE_OK)
     {
         int cols = sqlite3_column_count(statement);
@@ -95,7 +71,11 @@ int getanint(const std::ostringstream &o)
 {
     int i = 0;
     char cmd[BUFF_SIZE];
+	#if defined(__linux__)
+    strcpy(cmd,o.str().c_str());
+	#else
     strcpy_s(cmd,o.str().c_str());
+	#endif
     if(sqlite3_prepare_v2(database,cmd,-1,&statement,0) == SQLITE_OK)
     {
         int cols = sqlite3_column_count(statement);
@@ -1119,7 +1099,11 @@ void displaypkminconsole(pokemon_obj * pkm)
     }
     else
     {
+		#if defined(_WIN32) || defined(__WIN32__) || defined(WIN32)
         system("cls");
+		#else
+		system("clear");
+		#endif
         // Basic Information
         cout << "Basic Information" << linebreak;
         cout << "Pokemon species: " << lookuppkmname(pkm) << endl;
@@ -1235,9 +1219,8 @@ void displaypkminconsole(pokemon_obj * pkm)
     }
     cout << endl;
 }
-ostringstream getspritesql(const pokemon_obj & pkm, int langid)
+void getspritesql(ostringstream& o, const pokemon_obj & pkm, int langid)
 {
-    ostringstream o;
     o
             << "SELECT pokemon_forms.form_identifier "
             << "FROM   pokemon_form_names "
@@ -1257,10 +1240,17 @@ ostringstream getspritesql(const pokemon_obj & pkm, int langid)
         o << "-" << formid;
     }
     formid = o.str().c_str();
+    if(pkm.species == Species::keldeo)
+    {
+        if(pkm.forms.form == 1)
+        {
+            formid = "647-resolution";
+        }
+    }
     o.str("");
     o.clear();
     std::string tgender = "";
-    if(pkmhasgenddiff(pkm) && (getpkmgender(pkm) == Genders::female))
+    if((pkmhasgenddiff(pkm) && (getpkmgender(pkm) == Genders::female)) & (pkm.species != Species::torchic) & (pkm.species != Species::buizel) & (pkm.species != Species::floatzel))
     {
         tgender = "female";
     }
@@ -1278,11 +1268,9 @@ ostringstream getspritesql(const pokemon_obj & pkm, int langid)
         tshiny = "normal";
     }
     o << "SELECT image FROM front_" << tgender << "_" << tshiny << "_sprites WHERE (identifier = '" << formid << "')";
-    return o;
 }
-ostringstream getspritesql(const pokemon_obj * pkm, int langid)
+void getspritesql(ostringstream& o, const pokemon_obj * pkm, int langid)
 {
-    ostringstream o;
     o
             << "SELECT pokemon_forms.form_identifier "
             << "FROM   pokemon_form_names "
@@ -1330,11 +1318,9 @@ ostringstream getspritesql(const pokemon_obj * pkm, int langid)
         tshiny = "normal";
     }
     o << "SELECT image FROM front_" << tgender << "_" << tshiny << "_sprites WHERE (identifier = '" << formid << "')";
-    return o;
 }
-ostringstream geticonsql(const pokemon_obj & pkm, int langid)
+void geticonsql(ostringstream& o, const pokemon_obj & pkm, int langid)
 {
-    ostringstream o;
     std::string formid;
     if(pkm.ivs.isegg)
     {
@@ -1406,11 +1392,9 @@ ostringstream geticonsql(const pokemon_obj & pkm, int langid)
         }
         o << "SELECT image FROM icons_" << tgender << " WHERE (identifier = \"" << formid << "\")";
     }
-    return o;
 }
-ostringstream geticonsql(const pokemon_obj * pkm, int langid)
+void geticonsql(ostringstream& o, const pokemon_obj * pkm, int langid)
 {
-    ostringstream o;
     std::string formid;
     if(pkm->ivs.isegg)
     {
@@ -1482,49 +1466,38 @@ ostringstream geticonsql(const pokemon_obj * pkm, int langid)
         }
         o << "SELECT image FROM icons_" << tgender << " WHERE (identifier = \"" << formid << "\")";
     }
-    return o;
 }
-ostringstream gettypesql(const Types::types type)
+void gettypesql(ostringstream& o, const Types::types type)
 {
-    ostringstream o;
     std::string type_name = lookuptypename((int)type,9);
     type_name[0] = tolower(type_name[0]);
     o << "Select image from types where (identifier = \"" << type_name << "\")";
-    return o;
 }
-ostringstream gettypesql(const int type)
+void gettypesql(ostringstream& o, const int type)
 {
-    ostringstream o;
     std::string type_name = lookuptypename(type,9);
     type_name[0] = tolower(type_name[0]);
     o << "Select image from types where (identifier = \"" << type_name << "\")";
-    return o;
 }
-ostringstream getwallpapersql(const int wallpaper)
+void getwallpapersql(ostringstream& o, const int wallpaper)
 {
-    ostringstream o;
     o << "Select image from wallpapers where (identifier = " << wallpaper << ")";
-    return o;
 }
-ostringstream getwallpapersql(const Wallpapers::wallpapers wallpaper)
+void getwallpapersql(ostringstream& o, const Wallpapers::wallpapers wallpaper)
 {
-    ostringstream o;
     o << "Select image from wallpapers where (identifier = " << (int)wallpaper << ")";
-    return o;
 }
-ostringstream getitemsql(const int itemid, const int generation, const int langid)
+void getitemsql(ostringstream& itemsql, const int itemid, const int generation)
 {
-    std::ostringstream itemsql;
     std::string identifier = "";
     std::ostringstream o;
     o << ""
-      << "SELECT items.identifier "
-      << "FROM   items "
-      << "       INNER JOIN item_game_indices "
-      << "               ON items.id = item_game_indices.item_id "
-      << "WHERE  ( item_game_indices.game_index = " << itemid << " ) "
-      << "       AND ( item_game_indices.generation_id = " << generation << ") ";
+         << "SELECT items.identifier "
+         << "FROM   items "
+         << "       INNER JOIN item_game_indices "
+         << "               ON items.id = item_game_indices.item_id "
+         << "WHERE  ( item_game_indices.game_index = " << itemid << " ) "
+         << "       AND ( item_game_indices.generation_id = " << generation << ") ";
     identifier = getastring(o);
     itemsql << "select image from items where (identifier = \"" << identifier << "\")";
-    return itemsql;
 }

@@ -14,36 +14,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-
-***********************************************
-PKMDS Code Library - Gen V
-
-Created by Michael Bond (aka Codemonkey85)
-https://plus.google.com/116414067936940758871/
-
-Feel free to use and reuse this code as you see fit, but I
-implore you to always link back to me as the original creator.
-***********************************************
-
-Thanks to Alex "eevee" Munroe at http://veekun.com/
-for his SQLite Pokedex database, which powers this software.
-
-Thanks to the fine folks at SQLite.org for making it possible
-to use the Pokedex database... the source files "sqlite3.c"
-and "sqlite3.h" came from these people.
-
-Thanks to those of Project Pokemon (http://projectpokemon.org/)
-who have helped research and document the underlying structure
-of Pokemon game save files.
-
-Special thanks to SCV, Sabresite, loadingNOW, Poryhack,
-GatorShark, Chase, Jiggy-Ninja, Codr, Bond697, mingot, Guested,
-coolbho3000 and of course, COM.
-
-Some documentation available at: http://www.projectpokemon.org/wiki/
 */
-#pragma once
-#include "pkmds_g5.h"
+#include <../../include/pkmds/pkmds_g5.h>
 const byte t_shuffle[24][4] = {
     {0,1,2,3}, {0,1,3,2}, {0,2,1,3}, {0,2,3,1},
     {0,3,1,2}, {0,3,2,1}, {1,0,2,3}, {1,0,3,2},
@@ -668,7 +640,18 @@ std::string getballname(const pokemon_obj *pkm)
 }
 std::wstring getboxname(const bw2savblock_obj *block,int boxnum)
 {
-    std::wstring name = block->boxnames[boxnum];
+    std::wstring name;
+    #if ! defined(MARKUP_SIZEOFWCHAR)
+    #if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
+    std::string str_name = block->boxnames[boxnum];
+    wchar_t boxname_buffer[11];
+    memset(boxname_buffer,0,11);
+    mbstowcs(boxname_buffer, str_name.c_str(), 11);
+    #else
+    name = block->boxnames[boxnum];
+    #endif
+    #endif
+
     if(name.find((wchar_t)0xffff))
     {
         name = name.substr(0,name.find((wchar_t)0xffff));
@@ -677,7 +660,18 @@ std::wstring getboxname(const bw2savblock_obj *block,int boxnum)
 }
 std::wstring getboxname(const bw2savblock_obj &block,int boxnum)
 {
-    std::wstring name = block.boxnames[boxnum];
+    std::wstring name;
+    #if ! defined(MARKUP_SIZEOFWCHAR)
+    #if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
+    std::string str_name = block.boxnames[boxnum];
+    wchar_t boxname_buffer[11];
+    memset(boxname_buffer,0,11);
+    mbstowcs(boxname_buffer, str_name.c_str(), 11);
+    #else
+    name = block.boxnames[boxnum];
+    #endif
+    #endif
+
     if(name.find((wchar_t)0xffff))
     {
         name = name.substr(0,name.find((wchar_t)0xffff));
@@ -738,4 +732,14 @@ std::wstring getwstring(std::wstring in)
         out = out.substr(0,out.find((wchar_t)0xffff));
     }
     return out;
+}
+std::wstring getwstring(std::string in)
+{
+    std::string out = in;
+    if(out.find((char)0xffff))
+    {
+        out = out.substr(0,out.find((char)0xffff));
+    }
+    std::wstring retval(out.begin(), out.end());
+        return retval;
 }

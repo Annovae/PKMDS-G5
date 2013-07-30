@@ -36,6 +36,9 @@ Thanks to those of Project Pokemon (http://projectpokemon.org/)
 who have helped research and document the underlying structure
 of Pokemon game save files.
 
+Thanks to Nicholas Corgan (https://github.com/ncorgan) for contributing
+directly to this project's code, making it more portable.
+
 Thanks to the folks at Smogon for the stat formula and other things.
 
 Special thanks to SCV, Sabresite, loadingNOW, Poryhack,

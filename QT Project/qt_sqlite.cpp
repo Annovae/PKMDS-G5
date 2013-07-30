@@ -14,40 +14,14 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-
-***********************************************
-PKMDS Code Library - Gen V
-
-Created by Michael Bond (aka Codemonkey85)
-https://plus.google.com/116414067936940758871/
-
-Feel free to use and reuse this code as you see fit, but I
-implore you to always link back to me as the original creator.
-***********************************************
-
-Thanks to Alex "eevee" Munroe at http://veekun.com/
-for his SQLite Pokedex database, which powers this software.
-
-Thanks to the fine folks at SQLite.org for making it possible
-to use the Pokedex database... the source files "sqlite3.c"
-and "sqlite3.h" came from these people.
-
-Thanks to those of Project Pokemon (http://projectpokemon.org/)
-who have helped research and document the underlying structure
-of Pokemon game save files.
-
-Special thanks to SCV, Sabresite, loadingNOW, Poryhack,
-GatorShark, Chase, Jiggy-Ninja, Codr, Bond697, mingot, Guested,
-coolbho3000 and of course, COM.
-
-Some documentation available at: http://www.projectpokemon.org/wiki/
 */
 #pragma once
 #include "qt_sqlite.h"
 QPixmap getpkmsprite(const pokemon_obj &pkm)
 {
     QPixmap pixmap;
-    std::ostringstream/* * o = new std::ostringstream;*/ o = getspritesql(pkm);
+    std::ostringstream/* * o = new std::ostringstream;*/ o;
+    getspritesql(o,pkm);
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
@@ -75,7 +49,8 @@ QPixmap getpkmsprite(const pokemon_obj &pkm)
 QPixmap getpkmsprite(const pokemon_obj *pkm)
 {
     QPixmap pixmap;
-    std::ostringstream/* * o = new std::ostringstream;*/ o = getspritesql(pkm);
+    std::ostringstream/* * o = new std::ostringstream;*/ o;
+    getspritesql(o,pkm);
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
@@ -103,7 +78,8 @@ QPixmap getpkmsprite(const pokemon_obj *pkm)
 QPixmap getpkmicon(const pokemon_obj &pkm)
 {
     QPixmap pixmap;
-    std::ostringstream/* * o = new std::ostringstream;*/ o = geticonsql(pkm);
+    std::ostringstream/* * o = new std::ostringstream;*/ o;
+    geticonsql(o,pkm);
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
@@ -131,7 +107,8 @@ QPixmap getpkmicon(const pokemon_obj &pkm)
 QPixmap getpkmicon(const pokemon_obj *pkm)
 {
     QPixmap pixmap;
-    std::ostringstream/* * o = new std::ostringstream;*/ o = geticonsql(pkm);
+    std::ostringstream/* * o = new std::ostringstream;*/ o;
+    geticonsql(o,pkm);
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
@@ -159,7 +136,8 @@ QPixmap getpkmicon(const pokemon_obj *pkm)
 QPixmap gettypepic(const Types::types type)
 {
     QPixmap pixmap;
-    std::ostringstream/* * o = new std::ostringstream;*/ o = gettypesql(type);
+    std::ostringstream/* * o = new std::ostringstream;*/ o;
+    gettypesql(o,type);
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
@@ -187,7 +165,8 @@ QPixmap gettypepic(const Types::types type)
 QPixmap gettypepic(const int type)
 {
     QPixmap pixmap;
-    std::ostringstream/* * o = new std::ostringstream;*/ o = gettypesql(type);
+    std::ostringstream/* * o = new std::ostringstream;*/ o;
+    gettypesql(o,type);
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
@@ -278,7 +257,8 @@ QPixmap getgenderpic(const Genders::genders gender)
 QPixmap getwallpaperimage(const Wallpapers::wallpapers wallpaper)
 {
     QPixmap pixmap;
-    std::ostringstream/* * o = new std::ostringstream;*/ o = getwallpapersql(wallpaper);
+    std::ostringstream/* * o = new std::ostringstream;*/ o;
+    getwallpapersql(o,wallpaper);
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
@@ -306,7 +286,8 @@ QPixmap getwallpaperimage(const Wallpapers::wallpapers wallpaper)
 QPixmap getitemimage(const int itemid)
 {
     QPixmap pixmap;
-    std::ostringstream/* * o = new std::ostringstream;*/ o = getitemsql(itemid,5,9);
+    std::ostringstream/* * o = new std::ostringstream;*/ o;
+    getitemsql(o,itemid,5);
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];

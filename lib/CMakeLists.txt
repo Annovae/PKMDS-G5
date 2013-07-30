@@ -1,0 +1,18 @@
+INCLUDE_DIRECTORIES(${PKMDS_SOURCE_DIR}/include)
+
+FILE(GLOB pkmds_sources RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.c*")
+
+ADD_LIBRARY(pkmds SHARED ${pkmds_sources})
+IF(CMAKE_COMPILER_IS_GNUCXX)
+	#Needed for scoped enums
+    SET_TARGET_PROPERTIES(pkmds PROPERTIES COMPILE_FLAGS "-std=c++0x")
+	LIST(APPEND pkmds_libs pthread)
+ENDIF(CMAKE_COMPILER_IS_GNUCXX)
+LIST(APPEND pkmds_libs ${CMAKE_DL_LIBS}) #Necessary for sqlite3.c
+TARGET_LINK_LIBRARIES(pkmds ${pkmds_libs})
+
+INSTALL(TARGETS pkmds
+        LIBRARY DESTINATION ${LIBRARY_DIR} COMPONENT Libraries #.so
+        ARCHIVE DESTINATION ${LIBRARY_DIR} COMPONENT Libraries #.lib
+        RUNTIME DESTINATION ${RUNTIME_DIR} COMPONENT Runtime #.dll
+)

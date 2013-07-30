@@ -18,26 +18,26 @@ SOURCES += \
     ../mouseeventeater.cpp \
     ../main.cpp \
     ../frmboxes.cpp \
-    ../../sqlite3.c \
-    ../../pkmds_vector.cpp \
-    ../../pkmds_gba.cpp \
-    ../../pkmds_g5_sqlite.cpp \
-    ../../pkmds_g5.cpp \
-    ../../stdafx.cpp
+    ../../lib/stdafx.cpp \
+    ../../lib/sqlite3.c \
+    ../../lib/pkmds_vector.cpp \
+    ../../lib/pkmds_gba.cpp \
+    ../../lib/pkmds_g5_sqlite.cpp \
+    ../../lib/pkmds_g5.cpp
 
 HEADERS  += \
     ../qt_sqlite.h \
     ../pkmviewer.h \
     ../mouseeventeater.h \
     ../frmboxes.h \
-    ../../wondercard.h \
-    ../../stdafx.h \
-    ../../sqlite3.h \
-    ../../pokeprng.h \
-    ../../pkmds_vector.h \
-    ../../pkmds_gba.h \
-    ../../pkmds_g5_sqlite.h \
-    ../../pkmds_g5.h
+    ../../include/sqlite3.h \
+    ../../include/pkmds/wondercard.h \
+    ../../include/pkmds/stdafx.h \
+    ../../include/pkmds/pokeprng.h \
+    ../../include/pkmds/pkmds_vector.h \
+    ../../include/pkmds/pkmds_gba.h \
+    ../../include/pkmds/pkmds_g5_sqlite.h \
+    ../../include/pkmds/pkmds_g5.h
 
 FORMS    += \
     ../pkmviewer.ui \
