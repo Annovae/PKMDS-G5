@@ -1,4 +1,4 @@
-Copyright (C) 2013  codemonkey85
+Copyright (C) 2009 - 2013  codemonkey85
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
