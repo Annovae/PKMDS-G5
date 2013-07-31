@@ -26,9 +26,14 @@ class pkmviewer : public QDialog
 {
     Q_OBJECT
 public:
+    MouseEventEater *mouseEventEater;
+    QGraphicsView * markingsgraphics[6];
+    QPixmap markingspix[6];
+    QGraphicsScene* markingsscene[6];
     void pkmviewer::setPKM(pokemon_obj * pkm_, int box, bool isPartyPKM);
     void pkmviewer::setPKM(party_pkm * ppkm_, int box, bool isPartyPKM = true);
     void pkmviewer::displayPKM();
+    void pkmviewer::updatemarks();
     explicit pkmviewer(QWidget *parent = 0);
     ~pkmviewer();
 private slots:

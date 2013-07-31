@@ -23,6 +23,22 @@ pkmviewer::pkmviewer(QWidget *parent) :
     ui(new Ui::pkmviewer)
 {
     ui->setupUi(this);
+    mouseEventEater = new MouseEventEater(this);
+    markingsgraphics[(int)Markings::circle] = ui->pbCircle;
+    markingsgraphics[(int)Markings::diamond] = ui->pbDiamond;
+    markingsgraphics[(int)Markings::heart] = ui->pbHeart;
+    markingsgraphics[(int)Markings::square] = ui->pbSquare;
+    markingsgraphics[(int)Markings::star] = ui->pbStar;
+    markingsgraphics[(int)Markings::triangle] = ui->pbTriangle;
+    for(int i = 0; i < 6; i++)
+    {
+        markingspix[i] = getmarkingimage(Markings::markings(i), false);
+        markingsscene[i] = new QGraphicsScene();
+        markingsscene[i]->addPixmap(markingspix[i]);
+        markingsscene[i]->installEventFilter(mouseEventEater);
+        markingsgraphics[i]->setScene(markingsscene[i]);
+        markingsgraphics[i]->installEventFilter(mouseEventEater);
+    }
     QString itemname = "";
     for(int itemindex = 0; itemindex < (int)Items::revealglass; itemindex++)
     {
@@ -39,6 +55,9 @@ pkmviewer::pkmviewer(QWidget *parent) :
     this->setMaximumSize(this->size());
     this->setSizeGripEnabled(false);
 }
+//QGraphicsView * extmarkingsgraphics;
+//QPixmap extmarkingspix[6];
+//void* extmarkingsscene;
 bool levelchangeok = true;
 bool redisplayok = false;
 pokemon_obj * temppkm = new pokemon_obj;
@@ -140,7 +159,48 @@ void pkmviewer::displayPKM()
     *spritepixmap = getpkmsprite(temppkm);
     spritescene->addPixmap(*spritepixmap);
     ui->pbSprite->setScene(spritescene);
+    updatemarks();
     redisplayok = true;
+}
+void pkmviewer::updatemarks()
+{
+    for(int i = 0; i < 6; i++)
+    {
+        bool marked = false;
+        switch(Markings::markings(i))
+        {
+        case Markings::circle:
+            marked = temppkm->markings.circle;
+            break;
+        case Markings::diamond:
+            marked = temppkm->markings.diamond;
+            break;
+        case Markings::heart:
+            marked = temppkm->markings.heart;
+            break;
+        case Markings::square:
+            marked = temppkm->markings.square;
+            break;
+        case Markings::star:
+            marked = temppkm->markings.star;
+            break;
+        case Markings::triangle:
+            marked = temppkm->markings.triangle;
+            break;
+        default:
+            marked = false;
+            break;
+        }
+        markingspix[i] = getmarkingimage(Markings::markings(i), marked);
+        markingsscene[i] = new QGraphicsScene();
+        markingsscene[i]->addPixmap(markingspix[i]);
+        markingsscene[i]->installEventFilter(mouseEventEater);
+        markingsgraphics[i]->setScene(markingsscene[i]);
+        markingsgraphics[i]->installEventFilter(mouseEventEater);
+//        extmarkingsgraphics[i] = markingsgraphics[i];
+//        extmarkingspix[i] = markingspix[i];
+//        extmarkingsscene[i] = markingsscene[i];
+    }
 }
 pkmviewer::~pkmviewer()
 {

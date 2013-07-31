@@ -1503,6 +1503,5 @@ void getitemsql(ostringstream& itemsql, const int itemid, const int generation)
 }
 void getmarkingsql(ostringstream& o, const Markings::markings mark, const bool marked)
 {
-    o << int(mark);
-    o << (int)marked;
+    o << "select image from markings where (identifier = \"" << int(mark) << (int)marked << "\")";
 }
