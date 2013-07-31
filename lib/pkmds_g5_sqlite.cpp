@@ -41,11 +41,11 @@ string getastring(const std::ostringstream &o)
 {
     string s = "";
     char cmd[BUFF_SIZE];
-	#if defined(__linux__)
+#if defined(__linux__)
     strcpy(cmd,o.str().c_str());
-	#else
+#else
     strcpy_s(cmd,o.str().c_str());
-	#endif
+#endif
     if(sqlite3_prepare_v2(database,cmd,-1,&statement,0) == SQLITE_OK)
     {
         int cols = sqlite3_column_count(statement);
@@ -71,11 +71,11 @@ int getanint(const std::ostringstream &o)
 {
     int i = 0;
     char cmd[BUFF_SIZE];
-	#if defined(__linux__)
+#if defined(__linux__)
     strcpy(cmd,o.str().c_str());
-	#else
+#else
     strcpy_s(cmd,o.str().c_str());
-	#endif
+#endif
     if(sqlite3_prepare_v2(database,cmd,-1,&statement,0) == SQLITE_OK)
     {
         int cols = sqlite3_column_count(statement);
@@ -1099,11 +1099,11 @@ void displaypkminconsole(pokemon_obj * pkm)
     }
     else
     {
-		#if defined(_WIN32) || defined(__WIN32__) || defined(WIN32)
+#if defined(_WIN32) || defined(__WIN32__) || defined(WIN32)
         system("cls");
-		#else
-		system("clear");
-		#endif
+#else
+        system("clear");
+#endif
         // Basic Information
         cout << "Basic Information" << linebreak;
         cout << "Pokemon species: " << lookuppkmname(pkm) << endl;
@@ -1492,12 +1492,17 @@ void getitemsql(ostringstream& itemsql, const int itemid, const int generation)
     std::string identifier = "";
     std::ostringstream o;
     o << ""
-         << "SELECT items.identifier "
-         << "FROM   items "
-         << "       INNER JOIN item_game_indices "
-         << "               ON items.id = item_game_indices.item_id "
-         << "WHERE  ( item_game_indices.game_index = " << itemid << " ) "
-         << "       AND ( item_game_indices.generation_id = " << generation << ") ";
+      << "SELECT items.identifier "
+      << "FROM   items "
+      << "       INNER JOIN item_game_indices "
+      << "               ON items.id = item_game_indices.item_id "
+      << "WHERE  ( item_game_indices.game_index = " << itemid << " ) "
+      << "       AND ( item_game_indices.generation_id = " << generation << ") ";
     identifier = getastring(o);
     itemsql << "select image from items where (identifier = \"" << identifier << "\")";
+}
+void getmarkingsql(ostringstream& o, const Markings::markings mark, const bool marked)
+{
+    o << int(mark);
+    o << (int)marked;
 }

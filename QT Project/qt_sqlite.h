@@ -29,3 +29,4 @@ QPixmap getshinystar();
 QPixmap getgenderpic(const Genders::genders gender);
 QPixmap getwallpaperimage(const Wallpapers::wallpapers wallpaper);
 QPixmap getitemimage(const int itemid);
+QPixmap getmarkingimage(const Markings::markings mark, const bool marked);
