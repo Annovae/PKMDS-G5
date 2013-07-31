@@ -15,7 +15,8 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
-#include <../../include/pkmds/pkmds_g5.h>
+#include <pkmds/pkmds_g5.h>
+#include <pkmds/pokeprng.h>
 const byte t_shuffle[24][4] = {
     {0,1,2,3}, {0,1,3,2}, {0,2,1,3}, {0,2,3,1},
     {0,3,1,2}, {0,3,2,1}, {1,0,2,3}, {1,0,3,2},
@@ -372,11 +373,19 @@ void read(const char* file_name, bw2sav_obj *data) // Reads the given file and a
 }
 std::wstring getpkmnickname(const pokemon_obj &pkm)
 {
+    #ifdef __linux__
+    return getwstring((char*)pkm.nickname, 22);
+    #else
     return getwstring(pkm.nickname);
+    #endif
 }
 std::wstring getpkmotname(const pokemon_obj &pkm)
 {
+    #ifdef __linux__
+    return getwstring((char*)pkm.otname, 16);
+    #else
     return getwstring(pkm.otname);
+    #endif
 }
 void setpkmnickname(pokemon_obj &pkm, wchar_t input[], int length){
     if(length > 8){length = 8;}
@@ -393,11 +402,19 @@ void setpkmotname(pokemon_obj &pkm, wchar_t input[], int length){
 }
 std::wstring getpkmnickname(const pokemon_obj *pkm)
 {
+    #ifdef __linux__
+    return getwstring((char*)pkm->nickname, 22);
+    #else
     return getwstring(pkm->nickname);
+    #endif
 }
 std::wstring getpkmotname(const pokemon_obj *pkm)
 {
+    #ifdef __linux__
+    return getwstring((char*)pkm->otname, 16);
+    #else
     return getwstring(pkm->otname);
+    #endif
 }
 void setpkmnickname(pokemon_obj *pkm, wchar_t input[], int length){
     if(length > 8){length = 8;}
@@ -718,11 +735,19 @@ std::string advstrttimestring(const bw2savblock_obj *block)
 }
 std::wstring getsavtrainername(const bw2savblock_obj & block)
 {
+    #ifdef __linux__
+    return getwstring((char*)block.trainername, 0x10);
+    #else
     return getwstring(block.trainername);
+    #endif
 }
 std::wstring getsavtrainername(const bw2savblock_obj * block)
 {
+    #ifdef __linux__
+    return getwstring((char*)block->trainername, 0x10);
+    #else
     return getwstring(block->trainername);
+    #endif
 }
 std::wstring getwstring(std::wstring in)
 {
@@ -742,4 +767,18 @@ std::wstring getwstring(std::string in)
     }
     std::wstring retval(out.begin(), out.end());
         return retval;
+}
+std::wstring getwstring(char* in, int len)
+{
+    unsigned char arr[24]; //Large enough for longest text value stored in game
+    memset(arr,'\0',24);
+    memcpy(arr,&in,len);
+    for(int i = 0; i < len; i++)
+    {
+        if(arr[i] == 0xFF) break;
+        else arr[i] = in[2*i];
+    }
+    std::string out = (char*)arr;
+    std::wstring retval(out.begin(), out.end());
+    return retval;
 }

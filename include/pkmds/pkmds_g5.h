@@ -16,7 +16,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 #pragma once
-#include <../../include/pkmds/pokeprng.h>
+#include <cstdlib>
+#include <pkmds/stdafx.h>
 // Enums
 namespace Species
 {
@@ -2733,8 +2734,12 @@ public:
 //Met Level
 struct metlevelfield { // Bitfield for the Pokemon's met level and original trainer gender.
 public:
-    byte metlevel : 7; // The level at which this Pokemon was first encountered.
-    Genders::genders otgender : 1; // Flag to determine if the original trainer was female.
+	byte metlevel : 7; // The level at which this Pokemon was first encountered.
+    #ifdef __linux__
+    byte otgender: 1; //To stop GCC from throwing a warning
+    #else
+	Genders::genders otgender : 1; // Flag to determine if the original trainer was female.
+    #endif
     metlevelfield()
     {
         memset(this,0,sizeof(metlevelfield));
@@ -3606,6 +3611,7 @@ std::wstring DllExport getsavtrainername(const bw2savblock_obj & block);
 std::wstring DllExport getsavtrainername(const bw2savblock_obj * block);
 std::wstring DllExport getwstring(std::wstring in);
 std::wstring DllExport getwstring(std::string in);
+std::wstring DllExport getwstring(char* in, int len); //Linux needs this
 
 /*
 Main Save File & Backup

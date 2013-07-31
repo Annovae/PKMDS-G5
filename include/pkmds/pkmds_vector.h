@@ -16,7 +16,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 #pragma once
-#include <../../include/pkmds/pkmds_g5.h>
+#include <pkmds/pkmds_g5.h>
 bool DllExport comparebyspeciesasc(const pokemon_obj &a, const pokemon_obj &b);
 void DllExport sortbyspeciesasc(std::vector<pokemon_obj>& pkm);
 bool DllExport comparebygenderasc(const pokemon_obj &a, const pokemon_obj &b);
