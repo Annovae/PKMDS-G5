@@ -16,7 +16,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 #include <iostream>
-#include "pkmds_g5.h"
+#include <pkmds/pkmds_g5.h>
 using namespace std;
 int main()
 {
@@ -26,22 +26,22 @@ int main()
 	bw2sav_obj *tosav = new bw2sav_obj;
 	cout << "Enter the file name of the save file to import from:\n";
 	getline(cin,fromfile);
-	read(fromfile,fromsav);
+	read(fromfile.c_str(),fromsav);
 	cout << "Found data for trainer ";
-	wcout << fromsav->cur.otname;
+	wcout << fromsav->cur.party.pokemon[0].pkm_data.otname;
 	cout << "\n"; // " (ID " << (int)fromsav->cur.tid << ")\n";
 	cout << "Enter the file name of the save file to export to:\n";
 	getline(cin,tofile);
-	read(tofile,tosav);
+	read(tofile.c_str(),tosav);
 	cout << "Found data for trainer ";
-	wcout << tosav->cur.otname;
+	wcout << tosav->cur.party.pokemon[0].pkm_data.otname;
 	cout << "\n"; // " (ID " << (int)tosav->cur.tid << ")\n";
 	bool isbw2 = false;
 	isbw2 = (getchecksum(tosav->cur,bw2chkcalcloc,bw2chkcalclen)) == (getchkfromsav(tosav->cur,true));
 	cout << "Now beginning Pokemon transfer from ";
-	wcout << fromsav->cur.otname;
+	wcout << fromsav->cur.party.pokemon[0].pkm_data.otname;
 	cout << " to ";
-	wcout << tosav->cur.otname;
+	wcout << tosav->cur.party.pokemon[0].pkm_data.otname;
 	cout << ":\n";
 	for(int box = 0; box < 24; box++)
 	{
@@ -59,7 +59,7 @@ int main()
 	{
 		calcchecksum(tosav->cur, bwchkcalcloc, bwchkcalclen, bwchkloc);
 	}
-	write(tofile,tosav);
+	write(tofile.c_str(),tosav);
 	cout << "Transfer complete. Press the [Enter] key to exit.\n";
 	getline(cin,empty);
 	return 0;

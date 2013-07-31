@@ -16,11 +16,12 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 #pragma once
-#include <../../include/sqlite3.h>
-#include <../../include/pkmds/pkmds_g5.h>
 // Set theDB to be the full path of the SQLITE database (provided by Veekun)
 static const char theDB[] = "..\\..\\SQLite Databases\\veekun-pokedex.sqlite";
 static const char theimgDB[] = "..\\..\\SQLite Databases\\images.sqlite";
+#include <sqlite3.h>
+#include <pkmds/pkmds_g5.h>
+// Set theDB to be the full path of the SQLITE database (provided by Veekun)
 static const int LANG_ID = 9;
 static const int VERSION_GROUP = 11;
 static const int GENERATION = 5;

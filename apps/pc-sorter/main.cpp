@@ -15,12 +15,12 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
-#include "pkmds_g5_sqlite.h"
-#include "pkmds_vector.h"
+#include <pkmds/pkmds_g5_sqlite.h>
+#include <pkmds/pkmds_vector.h>
 using namespace std;
 int main(int argc, char* argv[])
 {
-	char * saveout = "OUT.sav";
+	string saveout = "OUT.sav";
 	bw2sav_obj* sav = new bw2sav_obj;
 	read(argv[1],sav);
 	std::vector<pokemon_obj> *vpkm = new std::vector<pokemon_obj>;
@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
 	std::vector<pokemon_obj>::const_iterator pkmit;
 	pkmit = vpkm->begin();
 	sortbyspeciesasc(*vpkm);
-	const pokemon_obj * blankpkm = new pokemon_obj;
+	pokemon_obj * blankpkm = new pokemon_obj;
 	memset(blankpkm,0x0,sizeof(pokemon_obj));
 	pkmit = vpkm->begin();
 	pokemon_obj * pkm = new pokemon_obj;
@@ -50,7 +50,7 @@ int main(int argc, char* argv[])
 		calcboxchecksum(&(sav->cur),box,savisbw2(sav));
 	}
 	fixsavchecksum(sav);
-	write(saveout,sav);
+	write(saveout.c_str(),sav);
 	delete pkm;
 	pkm = 0;
 	delete vpkm;
