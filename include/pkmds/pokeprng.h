@@ -43,7 +43,8 @@ coolbho3000 and of course, COM.
 Some documentation available at: http://www.projectpokemon.org/wiki/
 */
 #pragma once
-#include <pkmds/stdafx.h>
+//#include <pkmds/stdafx.h>
+#include "stdafx.h"
 struct pkmprng
 {
 	uint32 mseed;

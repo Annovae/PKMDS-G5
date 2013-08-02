@@ -990,6 +990,37 @@
       <enum>Qt::ScrollBarAlwaysOff</enum>
      </property>
     </widget>
+    <zorder>pbPCBox</zorder>
+    <zorder>pbBoxSlot30</zorder>
+    <zorder>pbBoxSlot25</zorder>
+    <zorder>pbBoxSlot08</zorder>
+    <zorder>pbBoxSlot23</zorder>
+    <zorder>pbBoxSlot15</zorder>
+    <zorder>pbBoxSlot19</zorder>
+    <zorder>pbBoxSlot18</zorder>
+    <zorder>pbBoxSlot20</zorder>
+    <zorder>pbBoxSlot22</zorder>
+    <zorder>pbBoxSlot04</zorder>
+    <zorder>pbBoxSlot07</zorder>
+    <zorder>pbBoxSlot21</zorder>
+    <zorder>pbBoxSlot01</zorder>
+    <zorder>pbBoxSlot28</zorder>
+    <zorder>pbBoxSlot29</zorder>
+    <zorder>pbBoxSlot12</zorder>
+    <zorder>pbBoxSlot24</zorder>
+    <zorder>pbBoxSlot09</zorder>
+    <zorder>pbBoxSlot26</zorder>
+    <zorder>pbBoxSlot27</zorder>
+    <zorder>pbBoxSlot06</zorder>
+    <zorder>pbBoxSlot03</zorder>
+    <zorder>pbBoxSlot13</zorder>
+    <zorder>pbBoxSlot11</zorder>
+    <zorder>pbBoxSlot17</zorder>
+    <zorder>pbBoxSlot16</zorder>
+    <zorder>pbBoxSlot14</zorder>
+    <zorder>pbBoxSlot02</zorder>
+    <zorder>pbBoxSlot05</zorder>
+    <zorder>pbBoxSlot10</zorder>
    </widget>
    <widget class="QFrame" name="party_frame">
     <property name="geometry">

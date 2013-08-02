@@ -97,17 +97,17 @@ void frmBoxes::on_actionLoad_SAV_triggered()
         this->setWindowTitle(wTitle + QString::fromStdString(" - ") + QString::fromStdWString(getwstring(sav->cur.trainername)));
         for(int i = 0; i < 6; i++)
         {
-            partypix[i] = QPixmap();
+            pix = QPixmap();
             partyscenes[i] = new QGraphicsScene();
-            partyscenes[i]->addPixmap(partypix[i]);
+            partyscenes[i]->addPixmap(pix);
             partygraphics[i]->setScene(partyscenes[i]);
         }
         for(uint32 pslot = 0; pslot < sav->cur.party.size; pslot++)
         {
             decryptpkm(&(sav->cur.party.pokemon[pslot]));
-            partypix[pslot] = getpkmicon(sav->cur.party.pokemon[pslot].pkm_data);
+            pix = getpkmicon(sav->cur.party.pokemon[pslot].pkm_data);
             partyscenes[pslot] = new QGraphicsScene();
-            partyscenes[pslot]->addPixmap(partypix[pslot]);
+            partyscenes[pslot]->addPixmap(pix);
             partyscenes[pslot]->installEventFilter(mouseEventEater);
             partygraphics[pslot]->setScene(partyscenes[pslot]);
             partygraphics[pslot]->installEventFilter(mouseEventEater);
@@ -124,10 +124,6 @@ void frmBoxes::on_actionLoad_SAV_triggered()
             ui->cbBoxes->setItemText(boxnum,QString::fromStdWString(getwstring(sav->cur.boxnames[boxnum])));
             for(int boxslot = 0; boxslot < 30; boxslot++)
             {
-                if(boxslot == 28)
-                {
-                    std::string stop = "stop";
-                }
                 decryptpkm(&(sav->cur.boxes[boxnum].pokemon[boxslot]));
             }
         }
@@ -147,19 +143,14 @@ void frmBoxes::changebox(int index)
     frmCurBox = &(sav->cur.boxes[box]);
     for(int bslot = 0; bslot < 30; bslot++)
     {
+        pix = QPixmap();
         if(sav->cur.boxes[box].pokemon[bslot].species != Species::NOTHING)
         {
-            boxpix[bslot] = getpkmicon(sav->cur.boxes[box].pokemon[bslot]);
-        }
-        else
-        {
-            boxpix[bslot] = QPixmap();
+            pix = getpkmicon(sav->cur.boxes[box].pokemon[bslot]);
         }
         boxscenes[bslot] = new QGraphicsScene();
-        boxscenes[bslot]->addPixmap(boxpix[bslot]);
-        boxscenes[bslot]->installEventFilter(mouseEventEater);
+        boxscenes[bslot]->addPixmap(pix);
         boxgraphics[bslot]->setScene(boxscenes[bslot]);
-        boxgraphics[bslot]->installEventFilter(mouseEventEater);
     }
     if(ui->cbBoxes->currentIndex() != index)
     {

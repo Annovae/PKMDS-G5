@@ -30,10 +30,9 @@ public:
     explicit frmBoxes(QWidget *parent = 0);
     MouseEventEater *mouseEventEater; // = new MouseEventEater(this);
     QGraphicsView * partygraphics[6];
-    QPixmap partypix[6];
+    QPixmap pix;
     QGraphicsScene* partyscenes[6];
     QGraphicsView* boxgraphics[30];
-    QPixmap boxpix[30];
     QGraphicsScene* boxscenes[30];
     ~frmBoxes();
 private slots:
