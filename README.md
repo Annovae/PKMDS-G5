@@ -19,8 +19,6 @@ PKMDS Code Library - Gen V
 
 Created by Michael Bond (aka Codemonkey85)
 https://plus.google.com/116414067936940758871/
-
-"images.sqlite" available upon request.
 *********************************************************************
 
 Thanks to Alex "eevee" Munroe at http://veekun.com/
