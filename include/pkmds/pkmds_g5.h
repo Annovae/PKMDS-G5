@@ -2390,6 +2390,7 @@ enum markings : byte
     diamond
 };
 }
+int balltoitem(int ball);
 struct pokerus {
     byte strain : 2;
     byte days : 2;
@@ -2399,259 +2400,259 @@ struct pokerus {
     }
 };
 /*
-fetchPKMDataIfValid fields
+    fetchPKMDataIfValid fields
 
-0- pid
-1- (sanity)party pkm part is decrypted (bit 0)
-2- (sanity)box pkm part is decrypted (bit 1)
-3- (sanity)is species egg (bit 2)
-4- checksum
-5- species
-6- item
-7- sidtid
-8- exp
-9- happiness
-a- abil
-b- markings
-c- region
----------------------------------
-d- hp ev
-e- atk ev
-f- def ev
-10- spe ev
-11- spa ev
-12- spd ev
----------------------------------
-13- cool contest
-14- beauty contest
-15- cute contest
-16- smart contest
-17- tough contest
-18- sheen contest
-------------------------------------sinnoh ribbons
------set 1
-19- Sinnoh Champ Ribbon
-1A- Ability Ribbon
-1B- Great Ability Ribbon
-1C- Double Ability Ribbon
-1D- Multi Ability Ribbon
-1E- Pair Ability Ribbon
-1F- World Ability Ribbon
-20- Alert Ribbon
-21- Shock Ribbon
-22- Downcast Ribbon
-23- Careless Ribbon
-24- Relax Ribbon
-25- Snooze Ribbon
-26- Smile Ribbon
-27- Gorgeous Ribbon
-28- Royal Ribbon
------set 2
-29- Gorgeous Royal Ribbon
-2a- Footprint Ribbon
-2b- Record Ribbon
-2c- History Ribbon
-2d- Legend Ribbon
-2e- Red Ribbon
-2f- Green Ribbon
-30- Blue Ribbon
-31- Festival Ribbon
-32- Carnival Ribbon
-33- Classic Ribbon
-34- Premier Ribbon
-35- Ribbon
-----------------------------------------
-36- move1
-37- move2
-38- move3
-39- move4
-3a- move1 current pp
-3b- move2 current pp
-3c- move3 current pp
-3d- move4 current pp
-3e- move1 pp up
-3f- move2 pp up
-40- move3 pp up
-41- move4 pp up
-42- move 1 pp
-43- move 2 pp
-44- move 3 pp
-45- move 4 pp
-46- hp iv
-47- atk iv
-48- def iv
-49- spe iv
-4a- spa iv
-4b- spd iv
-4c- is_egg
---------------------------------------hoenn ribbons 
-4d- Cool Ribbon
-4e- Cool Ribbon Super
-4f- Cool Ribbon Hyper
-50- Cool Ribbon Master
-51- Beauty Ribbon
-52- Beauty Ribbon Super
-53- Beauty Ribbon Hyper
-54- Beauty Ribbon Master
-55- Cute Ribbon
-56- Cute Ribbon Super
-57- Cute Ribbon Hyper
-58- Cute Ribbon Master
-59- Smart Ribbon
-5a- Smart Ribbon Super 
-5b- Smart Ribbon Hyper 
-5c- Smart Ribbon Master
-5d- Tough Ribbon
-5e- Tough Ribbon Super
-5f- Tough Ribbon Hyper
-60- Tough Ribbon Master
-61- Champion Ribbon
-62- Winning Ribbon
-63- Victory Ribbon
-64- Artist Ribbon
-65- Effort Ribbon
-66- Marine Ribbon
-67- Land Ribbon
-68- Sky Ribbon
-69- Country Ribbon
-6a- National Ribbon
-6b- Earth Ribbon
-6c- World Ribbon
------------------------------------------
-6d- fateful encounter
-6e- gender(0 male, 1 female)
-6f- form
-70- nature
-71- has dw abil
-72- 
-73- nickname
-74- species name
-75- is_nicknamed
-76-
-77- game of origin
+    0- pid
+    1- (sanity)party pkm part is decrypted (bit 0)
+    2- (sanity)box pkm part is decrypted (bit 1)
+    3- (sanity)is species egg (bit 2)
+    4- checksum
+    5- species
+    6- item
+    7- sidtid
+    8- exp
+    9- happiness
+    a- abil
+    b- markings
+    c- region
+    ---------------------------------
+    d- hp ev
+    e- atk ev
+    f- def ev
+    10- spe ev
+    11- spa ev
+    12- spd ev
+    ---------------------------------
+    13- cool contest
+    14- beauty contest
+    15- cute contest
+    16- smart contest
+    17- tough contest
+    18- sheen contest
+    ------------------------------------sinnoh ribbons
+    -----set 1
+    19- Sinnoh Champ Ribbon
+    1A- Ability Ribbon
+    1B- Great Ability Ribbon
+    1C- Double Ability Ribbon
+    1D- Multi Ability Ribbon
+    1E- Pair Ability Ribbon
+    1F- World Ability Ribbon
+    20- Alert Ribbon
+    21- Shock Ribbon
+    22- Downcast Ribbon
+    23- Careless Ribbon
+    24- Relax Ribbon
+    25- Snooze Ribbon
+    26- Smile Ribbon
+    27- Gorgeous Ribbon
+    28- Royal Ribbon
+    -----set 2
+    29- Gorgeous Royal Ribbon
+    2a- Footprint Ribbon
+    2b- Record Ribbon
+    2c- History Ribbon
+    2d- Legend Ribbon
+    2e- Red Ribbon
+    2f- Green Ribbon
+    30- Blue Ribbon
+    31- Festival Ribbon
+    32- Carnival Ribbon
+    33- Classic Ribbon
+    34- Premier Ribbon
+    35- Ribbon
+    ----------------------------------------
+    36- move1
+    37- move2
+    38- move3
+    39- move4
+    3a- move1 current pp
+    3b- move2 current pp
+    3c- move3 current pp
+    3d- move4 current pp
+    3e- move1 pp up
+    3f- move2 pp up
+    40- move3 pp up
+    41- move4 pp up
+    42- move 1 pp
+    43- move 2 pp
+    44- move 3 pp
+    45- move 4 pp
+    46- hp iv
+    47- atk iv
+    48- def iv
+    49- spe iv
+    4a- spa iv
+    4b- spd iv
+    4c- is_egg
+    --------------------------------------hoenn ribbons
+    4d- Cool Ribbon
+    4e- Cool Ribbon Super
+    4f- Cool Ribbon Hyper
+    50- Cool Ribbon Master
+    51- Beauty Ribbon
+    52- Beauty Ribbon Super
+    53- Beauty Ribbon Hyper
+    54- Beauty Ribbon Master
+    55- Cute Ribbon
+    56- Cute Ribbon Super
+    57- Cute Ribbon Hyper
+    58- Cute Ribbon Master
+    59- Smart Ribbon
+    5a- Smart Ribbon Super
+    5b- Smart Ribbon Hyper
+    5c- Smart Ribbon Master
+    5d- Tough Ribbon
+    5e- Tough Ribbon Super
+    5f- Tough Ribbon Hyper
+    60- Tough Ribbon Master
+    61- Champion Ribbon
+    62- Winning Ribbon
+    63- Victory Ribbon
+    64- Artist Ribbon
+    65- Effort Ribbon
+    66- Marine Ribbon
+    67- Land Ribbon
+    68- Sky Ribbon
+    69- Country Ribbon
+    6a- National Ribbon
+    6b- Earth Ribbon
+    6c- World Ribbon
+    -----------------------------------------
+    6d- fateful encounter
+    6e- gender(0 male, 1 female)
+    6f- form
+    70- nature
+    71- has dw abil
+    72-
+    73- nickname
+    74- species name
+    75- is_nicknamed
+    76-
+    77- game of origin
 
-8d- OT name in
-8e- OT name out
-8f- year egg recieved(0-99)		
-90- month egg recieved(1-12)
-91- day egg recieved(1-end of month)
-92- year met/egg hatched(0-99)  
-93- month met/egg hatched(1-12)
-94- day met/egg hatched(1-end of month)
-95- egg hatch location 
-96- location met/egg received
-97- pokerus
-98- poke ball
-99- met at level
-9a- set if OT gender is female
-9d- 
-9e- level
-9f- capsule seal index
------------------------------------------
-a0- current hp
-a1- max hp
-a2- attack
-a3- def
-a4- speed
-a5- spa
-a6- spd
-a7- mail
+    8d- OT name in
+    8e- OT name out
+    8f- year egg recieved(0-99)
+    90- month egg recieved(1-12)
+    91- day egg recieved(1-end of month)
+    92- year met/egg hatched(0-99)
+    93- month met/egg hatched(1-12)
+    94- day met/egg hatched(1-end of month)
+    95- egg hatch location
+    96- location met/egg received
+    97- pokerus
+    98- poke ball
+    99- met at level
+    9a- set if OT gender is female
+    9d-
+    9e- level
+    9f- capsule seal index
+    -----------------------------------------
+    a0- current hp
+    a1- max hp
+    a2- attack
+    a3- def
+    a4- speed
+    a5- spa
+    a6- spd
+    a7- mail
 
-a9- is slot filled
-aa- is_egg_both_sanity_bits
-ab- get_species_if_filled_slot_is_egg
-ad- is species NOT nido F/M
-ae- get pkm type
-af- get pkm type
-b2- n's pokemon(?)
+    a9- is slot filled
+    aa- is_egg_both_sanity_bits
+    ab- get_species_if_filled_slot_is_egg
+    ad- is species NOT nido F/M
+    ae- get pkm type
+    af- get pkm type
+    b2- n's pokemon(?)
 
----------------------------------------------------------------------------------
-personal.narc personal field arguments
---------------------------------------
+    ---------------------------------------------------------------------------------
+    personal.narc personal field arguments
+    --------------------------------------
 
-0 - base hp
-1 - base atk
-2 - base def
-3 - base speed
-4 - base special atk
-5 - base special def
-6 - type 1
-7 - type 2
-8 - catch rate
-9 - stage?
-a - hp  ev
-b - atk ev
-c - def ev
-d - spd ev
-e - spa ev
-f - spd ev
-10 - item 1
-11 - item 2
-12 - item 3(for dark grass)
-13 - 
-14 - gender rate
-15
-16
-17
-18
-19
-1a abil1
-1b abil2
-1c abil3
-1d
-1e
-1f
-20
-21
-22
+    0 - base hp
+    1 - base atk
+    2 - base def
+    3 - base speed
+    4 - base special atk
+    5 - base special def
+    6 - type 1
+    7 - type 2
+    8 - catch rate
+    9 - stage?
+    a - hp  ev
+    b - atk ev
+    c - def ev
+    d - spd ev
+    e - spa ev
+    f - spd ev
+    10 - item 1
+    11 - item 2
+    12 - item 3(for dark grass)
+    13 -
+    14 - gender rate
+    15
+    16
+    17
+    18
+    19
+    1a abil1
+    1b abil2
+    1c abil3
+    1d
+    1e
+    1f
+    20
+    21
+    22
 
 
--------------------------------------------------------------------------------
+    -------------------------------------------------------------------------------
 
-egg data:
+    egg data:
 
-2fe35c8 is the local array that holds all the egg data.  (u32 eggData[34])
+    2fe35c8 is the local array that holds all the egg data.  (u32 eggData[34])
 
-2fe35c8 - species
-2fe35cc - form
+    2fe35c8 - species
+    2fe35cc - form
 
-2fe35d0 -
-2fe35d4 -
-2fe35d8 - happiness
-2fe35dc - iv1
-2fe35e0 - iv2
-2fe35e4 - iv3
-2fe35e8 - iv4
-2fe35ec - iv5
-2fe35f0 - iv6
-2fe35f4 - id set
+    2fe35d0 -
+    2fe35d4 -
+    2fe35d8 - happiness
+    2fe35dc - iv1
+    2fe35e0 - iv2
+    2fe35e4 - iv3
+    2fe35e8 - iv4
+    2fe35ec - iv5
+    2fe35f0 - iv6
+    2fe35f4 - id set
 
-2fe35f8 - pid
-2fe3600 - move1
-2fe3604 - move2
-2fe3608 - move3
-2fe360c - move4
+    2fe35f8 - pid
+    2fe3600 - move1
+    2fe3604 - move2
+    2fe3608 - move3
+    2fe360c - move4
 
-2fe3610 - ability number
-2fe3614 - 
-2fe3618 - 
+    2fe3610 - ability number
+    2fe3614 -
+    2fe3618 -
 
-2fe361c - inherit_iv1_parent1
-2fe3620 - inherit_iv2_parent1
-2fe3624 - inherit_iv3_parent1
-2fe3628 - inherit_iv4_parent1
-2fe362c - inherit_iv5_parent1
-2fe3630 - inherit_iv6_parent1
+    2fe361c - inherit_iv1_parent1
+    2fe3620 - inherit_iv2_parent1
+    2fe3624 - inherit_iv3_parent1
+    2fe3628 - inherit_iv4_parent1
+    2fe362c - inherit_iv5_parent1
+    2fe3630 - inherit_iv6_parent1
 
-2fe3634 - inherit_iv1_parent2
-2fe3638 - inherit_iv2_parent2
-2fe363c - inherit_iv3_parent2
-2fe3640 - inherit_iv4_parent2
-2fe3644 - inherit_iv5_parent2
-2fe3648 - inherit_iv6_parent2
-2fe364c - 
-2fe3650
-*/
+    2fe3634 - inherit_iv1_parent2
+    2fe3638 - inherit_iv2_parent2
+    2fe363c - inherit_iv3_parent2
+    2fe3640 - inherit_iv4_parent2
+    2fe3644 - inherit_iv5_parent2
+    2fe3648 - inherit_iv6_parent2
+    2fe364c -
+    2fe3650
+    */
 //EVs
 struct evsfield {
     byte hp; // HP EVs
@@ -2734,12 +2735,12 @@ public:
 //Met Level
 struct metlevelfield { // Bitfield for the Pokemon's met level and original trainer gender.
 public:
-	byte metlevel : 7; // The level at which this Pokemon was first encountered.
-    #ifdef __linux__
+    byte metlevel : 7; // The level at which this Pokemon was first encountered.
+#ifdef __linux__
     byte otgender: 1; //To stop GCC from throwing a warning
-    #else
-	Genders::genders otgender : 1; // Flag to determine if the original trainer was female.
-    #endif
+#else
+    Genders::genders otgender : 1; // Flag to determine if the original trainer was female.
+#endif
     metlevelfield()
     {
         memset(this,0,sizeof(metlevelfield));
@@ -2895,7 +2896,7 @@ public:
     }
 };
 //Block A
-struct pkmblocka { // 
+struct pkmblocka { //
 public:
     Species::pkmspecies species; // National Pokedex ID
     Items::items item; // Held item index
@@ -2916,7 +2917,7 @@ public:
     }
 };
 //Block B
-struct pkmblockb { // 
+struct pkmblockb { //
 public:
     Moves::moves moves[4]; // Move index array
     byte pp[4]; // Current PP array
@@ -2936,7 +2937,7 @@ public:
     }
 };
 //Block C
-struct pkmblockc { // 
+struct pkmblockc { //
 public:
 
 #if ! defined(MARKUP_SIZEOFWCHAR)
@@ -2959,7 +2960,7 @@ public:
     }
 };
 //Block D
-struct pkmblockd { // 
+struct pkmblockd { //
 public:
 
 #if ! defined(MARKUP_SIZEOFWCHAR)
@@ -3146,18 +3147,18 @@ public:
     }
 };
 /*
-Ribbon Sets
-These are the values for each ribbon byte:
-Flag Value	wcrib1				wcrib2
-0x01		Country Ribbon		Special Ribbon
-0x02		National Ribbon		Memorial Ribbon
-0x04		Earth Ribbon		Wish Ribbon
-0x08		World Ribbon		Battle Champ Ribbon
-0x10		Classic Ribbon		Regional Champ Ribbon
-0x20		Premiere Ribbon		National Champ Ribbon
-0x40		Event Ribbon		World Champ Ribbon
-0x80		Birthday Ribbon		No Ribbon(Empty)
-*/
+    Ribbon Sets
+    These are the values for each ribbon byte:
+    Flag Value	wcrib1				wcrib2
+    0x01		Country Ribbon		Special Ribbon
+    0x02		National Ribbon		Memorial Ribbon
+    0x04		Earth Ribbon		Wish Ribbon
+    0x08		World Ribbon		Battle Champ Ribbon
+    0x10		Classic Ribbon		Regional Champ Ribbon
+    0x20		Premiere Ribbon		National Champ Ribbon
+    0x40		Event Ribbon		World Champ Ribbon
+    0x80		Birthday Ribbon		No Ribbon(Empty)
+    */
 struct gift_data
 {
 public:
@@ -3192,82 +3193,82 @@ public:
     byte egg_flag;
     byte unused2[3];
     /*
-    0x00-0x01	 Trainer ID Number, Item Number, Power Type
-    0x02-0x03	 Secret ID Number
-    0x04	 Hometown
-    00 - Game Received In
-    01 - Hoenn(Sapphire)
-    Values follow in standard order through 21
+            0x00-0x01	 Trainer ID Number, Item Number, Power Type
+            0x02-0x03	 Secret ID Number
+            0x04	 Hometown
+            00 - Game Received In
+            01 - Hoenn(Sapphire)
+            Values follow in standard order through 21
 
-    0x05-0x07	Unused
-    0x08-0x0B	 PID
-    Unset = 00000000
+            0x05-0x07	Unused
+            0x08-0x0B	 PID
+            Unset = 00000000
 
-    0x0C	 Primary Ribbons
-    Ribbon data available below.
+            0x0C	 Primary Ribbons
+            Ribbon data available below.
 
-    0x0D	 Secondary Ribbons
-    Ribbon data available below.
+            0x0D	 Secondary Ribbons
+            Ribbon data available below.
 
-    0x0E	 PokéBall
-    0x0F	Unused
-    0x10-0x11	 Held Item
-    0x12-0x13	 Move ID #1
-    0x14-0x15	 Move ID #2
-    0x16-0x17	 Move ID #3
-    0x18-0x19	 Move ID #4
-    0x1A-0x1B	 PokéDex Number
-    0x1C	Unused
-    0x1D	 Language
-    00 for Game Received In
+            0x0E	 PokéBall
+            0x0F	Unused
+            0x10-0x11	 Held Item
+            0x12-0x13	 Move ID #1
+            0x14-0x15	 Move ID #2
+            0x16-0x17	 Move ID #3
+            0x18-0x19	 Move ID #4
+            0x1A-0x1B	 PokéDex Number
+            0x1C	Unused
+            0x1D	 Language
+            00 for Game Received In
 
-    0x1E-0x33	 Pokémon Nickname
-    (0x32-0x33 FF FF terminated)
-    If no nickname, all FF.
+            0x1E-0x33	 Pokémon Nickname
+            (0x32-0x33 FF FF terminated)
+            If no nickname, all FF.
 
-    0x34	 Nature
-    FF - Unset
+            0x34	 Nature
+            FF - Unset
 
-    0x35	 Pokémon Gender
-    00 - Male
-    01 - Female
-    02 - Random
+            0x35	 Pokémon Gender
+            00 - Male
+            01 - Female
+            02 - Random
 
-    0x36	 Pokémon Ability
-    00 - Ability 1
-    01 - Ability 2
-    02 - Dream World Ability
-    03 - RND(Abil1, Abil2)
-    04 - RND(Abil1, Abil2, AbilDW)
-    0x37	 Shiny Toggle
-    00 - Not Shiny
-    01 - Allow Shiny
-    02 - Generate Shiny PID
-    Shows Shiny Pokemon on Card
+            0x36	 Pokémon Ability
+            00 - Ability 1
+            01 - Ability 2
+            02 - Dream World Ability
+            03 - RND(Abil1, Abil2)
+            04 - RND(Abil1, Abil2, AbilDW)
+            0x37	 Shiny Toggle
+            00 - Not Shiny
+            01 - Allow Shiny
+            02 - Generate Shiny PID
+            Shows Shiny Pokemon on Card
 
-    0x38-0x39	 Egg Met Location
-    0x3A-0x3B	 Met Location of Pokémon
-    0x3C	 Level - unused(?)
-    0x3D-0x42	 Contest Stats
-    Last byte is Sheen
+            0x38-0x39	 Egg Met Location
+            0x3A-0x3B	 Met Location of Pokémon
+            0x3C	 Level - unused(?)
+            0x3D-0x42	 Contest Stats
+            Last byte is Sheen
 
-    0x43-0x48	 IVs
-    FFs for unset IVs
+            0x43-0x48	 IVs
+            FFs for unset IVs
 
-    0x49	Unused
-    0x4A-0x59	 OT Name
-    0x5A	 OT Gender
-    00 - Male
-    01 - Female
-    03 - Recipient's Gender
+            0x49	Unused
+            0x4A-0x59	 OT Name
+            0x5A	 OT Gender
+            00 - Male
+            01 - Female
+            03 - Recipient's Gender
 
-    0x5B	 Level(random if set to 0)
-    0x5C	 Egg Flag
-    00 - Is Not Egg
-    01 - Is Egg
+            0x5B	 Level(random if set to 0)
+            0x5C	 Egg Flag
+            00 - Is Not Egg
+            01 - Is Egg
 
-    0x5D-0x5F	Unused
-    */
+            0x5D-0x5F	Unused
+            */
     gift_data()
     {
         memset(this,0,sizeof(gift_data));
@@ -3285,21 +3286,21 @@ public:
     byte gift_status;
     byte unused[23];
     /*
-    0x60-0xA9	 Card Title
-    0xAA-0xAB	Unknown
-    0xAC-0xAF	 Date Card Received
-    0xB0-0xB1	 Card ID
-    0xB2	 "Card From" Location
-    0xB3	 Card Type [Color]
-    01 - Pokémon [Blue]
-    02 - (Key) Item [Pink]
-    03 - Power [Yellow]
-    0xB4	 Gift Status: Used / Unused
-    00 - Repeatable gift
-    01 - Unused
-    03 - Used
-    0xB5-0xCB	Unused
-    */
+            0x60-0xA9	 Card Title
+            0xAA-0xAB	Unknown
+            0xAC-0xAF	 Date Card Received
+            0xB0-0xB1	 Card ID
+            0xB2	 "Card From" Location
+            0xB3	 Card Type [Color]
+            01 - Pokémon [Blue]
+            02 - (Key) Item [Pink]
+            03 - Power [Yellow]
+            0xB4	 Gift Status: Used / Unused
+            00 - Repeatable gift
+            01 - Unused
+            03 - Used
+            0xB5-0xCB	Unused
+            */
     card_data()
     {
         memset(this,0,sizeof(card_data));
@@ -3412,7 +3413,7 @@ static const int hiddenpowertypes[16] = {
     Types::dragon,
     Types::dark
 };
-static const int SeedTable[] = 
+static const int SeedTable[] =
 {
     0x0000, 0x1021, 0x2042, 0x3063, 0x4084, 0x50A5, 0x60C6, 0x70E7,
     0x8108, 0x9129, 0xA14A, 0xB16B, 0xC18C, 0xD1AD, 0xE1CE, 0xF1EF,
@@ -3464,7 +3465,7 @@ void DllExport calcboxchecksum(bw2savblock_obj *block, int boxindex, bool bw2);
 void DllExport calcpartychecksum(bw2savblock_obj *block); // ,bool bw2);
 void DllExport calcchecksum(bw2savblock_obj *block, int start, int length, int loc);
 uint16 getchkfromsav(bw2savblock_obj *block, bool bw2);
-const byte natureconvert[25][2] = 
+const byte natureconvert[25][2] =
 {{0,1},
  {1,6},
  {2,21},
@@ -3560,96 +3561,96 @@ std::wstring DllExport getwstring(std::string in);
 std::wstring DllExport getwstring(char* in, int len); //Linux needs this
 
 /*
-Main Save File & Backup
+    Main Save File & Backup
 
-Start	End	Checksum	Mirror	Description
-00000	003DF	003E2	25F00	Box Names
-00400	013EF	013F2	25F02	Box 1
-01400	023EF	023F2	25F04	Box 2
-02400	033EF	033F2	25F06	Box 3
-03400	043EF	043F2	25F08	Box 4
-04400	053EF	053F2	25F0A	Box 5
-05400	063EF	063F2	25F0C	Box 6
-06400	073EF	073F2	25F0E	Box 7
-07400	083EF	083F2	25F10	Box 8
-08400	093EF	093F2	25F12	Box 9
-09400	0A3EF	0A3F2	25F14	Box 10
-0A400	0B3EF	0B3F2	25F16	Box 11
-0B400	0C3EF	0C3F2	25F18	Box 12
-0C400	0D3EF	0D3F2	25F1A	Box 13
-0D400	0E3EF	0E3F2	25F1C	Box 14
-0E400	0F3EF	0F3F2	25F1E	Box 15
-0F400	103EF	103F2	25F20	Box 16
-10400	113EF	113F2	25F22	Box 17
-11400	123EF	123F2	25F24	Box 18
-12400	133EF	133F2	25F26	Box 19
-13400	143EF	143F2	25F28	Box 20
-14400	153EF	153F2	25F2A	Box 21
-15400	163EF	163F2	25F2C	Box 22
-16400	173EF	173F2	25F2E	Box 23
-17400	183EF	183F2	25F30	Box 24
-18400	18DEB	18DEE	25F32	Inventory
-18E00	19333	19336	25F34	Party Pokemon
-19400	194AF	194B2	25F36	Trainer Data
-19500	195A7	195AA	25F38	Trainer Position
-19600	1A937	1A93A	25F3A	Unity Tower and survey stuff
-1AA00	1B1C3	1B1C6	25F3C	 (30d)
-1B200	1BF53	1BF56	25F3E	
-1C000	1C093	1C096	25F40	C-Gear
-1C100	1C757	1C75A	25F42	Card Signature Block & ????
-1C800	1D293	1D296	25F44	Mystery Gift
-1D300	1D4AB	1D4AE	25F46	
-1D500	1D8EB	1D8EE	25F48	Chatter
-1D900	1D95B	1D95E	25F4A	
-1DA00	1DBDF	1DBE2	25F4C	Trainer Card Records
-1DC00	1DCA7	1DCAA	25F4E	
-1DD00	1E15F	1E162	25F50	 (40d)
-1E200	1F5FF	1F602	25F52	
-1F700	1F9A3	1F9A6	25F54	Contains flags and references for downloaded data (Musical)
-1FA00	1FADF	1FAE2	25F56	Fused Reshiram/Zekrom Storage
-1FB00	1FE4B	1FE4E	25F58	
-1FF00	203DF	203E2	25F5A	Const Data Block and Event Flag Block (0x35E is the split)
-20400	204F7	204FA	25F5C	
-20500	207FB	207FE	25F5E	Tournament Block
-20800	20893	20896	25F60	
-20900	20C5B	20C5E	25F62	Battle Box Block
-20D00	20ED3	20ED6	25F64	Daycare Block (50d)
-20F00	210DF	201E2	25F66	Strength Boulder Status Block
-21100	211EF	211F2	25F68	Badge Flags, Money, Trainer Sayings
-21200	213B3	213B6	25F6A	Entralink (Level & Powers etc)
-21400	218DB	218DE	25F6C	Pokedex
-21900	21933	21936	25F6E	Swarm and other overworld info - 2C - swarm, 2D - repel steps, 2E repel type
-21A00	21A3B	21A3E	25F70	
-21B00	21CAB	21CAE	25F72	
-21D00	2288F	22892	25F74	
-22900	229AB	229AE	25F76	Online Records
-22A00	2324F	23252	25F78	Area NPC data - encrypted (60d)
-23300	23583	23586	25F7A	
-23600	2360F	23612	25F7C	
-23700	237A7	237AA	25F7E	
-23800	2396B	2396E	25F80	
-23A00	23A7F	23A82	25F82	
-23B00	23BFB	23BFE	25F84	Hollow/Rival Block
-23C00	252A7	252AA	25F86	Join Avenue Block
-25300	25797	2579A	25F88	Medal data
-25800	2585F	25862	25F8A	Key-related data
-25900	259FB	259FE	25F8C	 (70d)
-25A00	25DE3	25DE6	25F8E	
-25E00	25EEF	25EF2	25F90	
-25F00	25F93	25FA2		Checksum Block (73d)
-Download / Extra Content
+    Start	End	Checksum	Mirror	Description
+    00000	003DF	003E2	25F00	Box Names
+    00400	013EF	013F2	25F02	Box 1
+    01400	023EF	023F2	25F04	Box 2
+    02400	033EF	033F2	25F06	Box 3
+    03400	043EF	043F2	25F08	Box 4
+    04400	053EF	053F2	25F0A	Box 5
+    05400	063EF	063F2	25F0C	Box 6
+    06400	073EF	073F2	25F0E	Box 7
+    07400	083EF	083F2	25F10	Box 8
+    08400	093EF	093F2	25F12	Box 9
+    09400	0A3EF	0A3F2	25F14	Box 10
+    0A400	0B3EF	0B3F2	25F16	Box 11
+    0B400	0C3EF	0C3F2	25F18	Box 12
+    0C400	0D3EF	0D3F2	25F1A	Box 13
+    0D400	0E3EF	0E3F2	25F1C	Box 14
+    0E400	0F3EF	0F3F2	25F1E	Box 15
+    0F400	103EF	103F2	25F20	Box 16
+    10400	113EF	113F2	25F22	Box 17
+    11400	123EF	123F2	25F24	Box 18
+    12400	133EF	133F2	25F26	Box 19
+    13400	143EF	143F2	25F28	Box 20
+    14400	153EF	153F2	25F2A	Box 21
+    15400	163EF	163F2	25F2C	Box 22
+    16400	173EF	173F2	25F2E	Box 23
+    17400	183EF	183F2	25F30	Box 24
+    18400	18DEB	18DEE	25F32	Inventory
+    18E00	19333	19336	25F34	Party Pokemon
+    19400	194AF	194B2	25F36	Trainer Data
+    19500	195A7	195AA	25F38	Trainer Position
+    19600	1A937	1A93A	25F3A	Unity Tower and survey stuff
+    1AA00	1B1C3	1B1C6	25F3C	 (30d)
+    1B200	1BF53	1BF56	25F3E
+    1C000	1C093	1C096	25F40	C-Gear
+    1C100	1C757	1C75A	25F42	Card Signature Block & ????
+    1C800	1D293	1D296	25F44	Mystery Gift
+    1D300	1D4AB	1D4AE	25F46
+    1D500	1D8EB	1D8EE	25F48	Chatter
+    1D900	1D95B	1D95E	25F4A
+    1DA00	1DBDF	1DBE2	25F4C	Trainer Card Records
+    1DC00	1DCA7	1DCAA	25F4E
+    1DD00	1E15F	1E162	25F50	 (40d)
+    1E200	1F5FF	1F602	25F52
+    1F700	1F9A3	1F9A6	25F54	Contains flags and references for downloaded data (Musical)
+    1FA00	1FADF	1FAE2	25F56	Fused Reshiram/Zekrom Storage
+    1FB00	1FE4B	1FE4E	25F58
+    1FF00	203DF	203E2	25F5A	Const Data Block and Event Flag Block (0x35E is the split)
+    20400	204F7	204FA	25F5C
+    20500	207FB	207FE	25F5E	Tournament Block
+    20800	20893	20896	25F60
+    20900	20C5B	20C5E	25F62	Battle Box Block
+    20D00	20ED3	20ED6	25F64	Daycare Block (50d)
+    20F00	210DF	201E2	25F66	Strength Boulder Status Block
+    21100	211EF	211F2	25F68	Badge Flags, Money, Trainer Sayings
+    21200	213B3	213B6	25F6A	Entralink (Level & Powers etc)
+    21400	218DB	218DE	25F6C	Pokedex
+    21900	21933	21936	25F6E	Swarm and other overworld info - 2C - swarm, 2D - repel steps, 2E repel type
+    21A00	21A3B	21A3E	25F70
+    21B00	21CAB	21CAE	25F72
+    21D00	2288F	22892	25F74
+    22900	229AB	229AE	25F76	Online Records
+    22A00	2324F	23252	25F78	Area NPC data - encrypted (60d)
+    23300	23583	23586	25F7A
+    23600	2360F	23612	25F7C
+    23700	237A7	237AA	25F7E
+    23800	2396B	2396E	25F80
+    23A00	23A7F	23A82	25F82
+    23B00	23BFB	23BFE	25F84	Hollow/Rival Block
+    23C00	252A7	252AA	25F86	Join Avenue Block
+    25300	25797	2579A	25F88	Medal data
+    25800	2585F	25862	25F8A	Key-related data
+    25900	259FB	259FE	25F8C	 (70d)
+    25A00	25DE3	25DE6	25F8E
+    25E00	25EEF	25EF2	25F90
+    25F00	25F93	25FA2		Checksum Block (73d)
+    Download / Extra Content
 
-Start	End	Checksum	Mirror	Description
-4C000	4D913	~	~	Battle Video (Native)
-4DA00	4F313	~	~	Battle Video (1st Download)
-4F400	50D13	~	~	Battle Video (2nd Download)
-50E00	52713	~	~	Battle Video (3rd Download)
-52800	54DFF	54E02	54F00	C-Gear Background
-55800	6D3FF	6D342	6D500	Musical Download (narc download)
-6D800	73A03	73A06	73B00	Pokedex Skin
-74000	7555B	7555E	75600	Hall of Fame (Main); Extra Checksum 0x75600-0x75603 @ 0x75612
-75800	76D5B	76D5E	76E00	Hall of Fame (Backup); Extra Checksum 0x76E00-0x76E03 @ 0x76E12
-7A000	7B213	7B216	7B300	PWT Download 1; Extra Checksum @ 0x7B312
-7B400	7C613	7C616	7C700	PWT Download 2; Extra Checksum @ 0x7C712
-7C800	7DA13	7DA16	7DB00	PWT Download 3; Extra Checksum @ 0x7DB12
-*/
+    Start	End	Checksum	Mirror	Description
+    4C000	4D913	~	~	Battle Video (Native)
+    4DA00	4F313	~	~	Battle Video (1st Download)
+    4F400	50D13	~	~	Battle Video (2nd Download)
+    50E00	52713	~	~	Battle Video (3rd Download)
+    52800	54DFF	54E02	54F00	C-Gear Background
+    55800	6D3FF	6D342	6D500	Musical Download (narc download)
+    6D800	73A03	73A06	73B00	Pokedex Skin
+    74000	7555B	7555E	75600	Hall of Fame (Main); Extra Checksum 0x75600-0x75603 @ 0x75612
+    75800	76D5B	76D5E	76E00	Hall of Fame (Backup); Extra Checksum 0x76E00-0x76E03 @ 0x76E12
+    7A000	7B213	7B216	7B300	PWT Download 1; Extra Checksum @ 0x7B312
+    7B400	7C613	7C616	7C700	PWT Download 2; Extra Checksum @ 0x7C712
+    7C800	7DA13	7DA16	7DB00	PWT Download 3; Extra Checksum @ 0x7DB12
+    */

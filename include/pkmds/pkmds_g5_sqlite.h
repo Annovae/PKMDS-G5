@@ -134,5 +134,6 @@ int DllExport getpkmexpatlevel(const int id, const int level);
 int DllExport getpkmexpatlevel(const Species::pkmspecies id, const int level);
 void DllExport getwallpapersql(std::ostringstream& o, const int wallpaper);
 void DllExport getwallpapersql(std::ostringstream& o, const Wallpapers::wallpapers wallpaper);
-void DllExport getitemsql(std::ostringstream& itemsql, const int itemid, const int generation);
-void getmarkingsql(std::ostringstream& o, const Markings::markings mark, const bool marked);
+void DllExport getitemsql(std::ostringstream& itemsql, const int itemid, const int generation = GENERATION);
+void DllExport getmarkingsql(std::ostringstream& o, const Markings::markings mark, const bool marked);
+void DllExport getballsql(std::ostringstream& o, const Balls::balls ball, const int generation = GENERATION);

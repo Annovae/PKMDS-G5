@@ -1506,3 +1506,7 @@ void getmarkingsql(ostringstream& o, const Markings::markings mark, const bool m
 {
     o << "select image from markings where (identifier = \"" << int(mark) << (int)marked << "\")";
 }
+void getballsql(ostringstream& o, const Balls::balls ball, const int generation)
+{
+    getitemsql(o,balltoitem((int)ball),generation);
+}

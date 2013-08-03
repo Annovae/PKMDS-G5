@@ -108,7 +108,6 @@ void frmBoxes::on_actionLoad_SAV_triggered()
             pix = getpkmicon(sav->cur.party.pokemon[pslot].pkm_data);
             partyscenes[pslot] = new QGraphicsScene();
             partyscenes[pslot]->addPixmap(pix);
-            partyscenes[pslot]->installEventFilter(mouseEventEater);
             partygraphics[pslot]->setScene(partyscenes[pslot]);
             partygraphics[pslot]->installEventFilter(mouseEventEater);
         }
@@ -151,6 +150,7 @@ void frmBoxes::changebox(int index)
         boxscenes[bslot] = new QGraphicsScene();
         boxscenes[bslot]->addPixmap(pix);
         boxgraphics[bslot]->setScene(boxscenes[bslot]);
+        boxgraphics[bslot]->installEventFilter(mouseEventEater);
     }
     if(ui->cbBoxes->currentIndex() != index)
     {

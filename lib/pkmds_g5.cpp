@@ -19,6 +19,95 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 //#include <pkmds/pokeprng.h>
 #include "../../PKMDS-G5/include/pkmds/pkmds_g5.h"
 #include "../../PKMDS-G5/include/pkmds/pokeprng.h"
+int balltoitem(int ball)
+{
+    int item = 0;
+    switch((Balls::balls)ball)
+    {
+    case Balls::pokeball:
+        item = (int)Items::pokeball;
+        break;
+    case Balls::pokeball_:
+        item = (int)Items::pokeball;
+        break;
+    case Balls::cherishball:
+        item = (int)Items::cherishball;
+        break;
+    case Balls::compball:
+        item = (int)Items::sportball;
+        break;
+    case Balls::diveball:
+        item = (int)Items::diveball;
+        break;
+    case Balls::dreamball:
+        item = (int)Items::dreamball;
+        break;
+    case Balls::duskball:
+        item = (int)Items::duskball;
+        break;
+    case Balls::fastball:
+        item = (int)Items::fastball;
+        break;
+    case Balls::friendball:
+        item = (int)Items::friendball;
+        break;
+    case Balls::greatball:
+        item = (int)Items::greatball;
+        break;
+    case Balls::healball:
+        item = (int)Items::healball;
+        break;
+    case Balls::heavyball:
+        item = (int)Items::heavyball;
+        break;
+    case Balls::levelball:
+        item = (int)Items::levelball;
+        break;
+    case Balls::loveball:
+        item = (int)Items::loveball;
+        break;
+    case Balls::lureball:
+        item = (int)Items::lureball;
+        break;
+    case Balls::luxuryball:
+        item = (int)Items::luxuryball;
+        break;
+    case Balls::masterball:
+        item = (int)Items::masterball;
+        break;
+    case Balls::moonball:
+        item = (int)Items::moonball;
+        break;
+    case Balls::nestball:
+        item = (int)Items::nestball;
+        break;
+    case Balls::netball:
+        item = (int)Items::netball;
+        break;
+    case Balls::premierball:
+        item = (int)Items::premierball;
+        break;
+    case Balls::quickball:
+        item = (int)Items::quickball;
+        break;
+    case Balls::repeatball:
+        item = (int)Items::repeatball;
+        break;
+    case Balls::safariball:
+        item = (int)Items::safariball;
+        break;
+    case Balls::timerball:
+        item = (int)Items::timerball;
+        break;
+    case Balls::ultraball:
+        item = (int)Items::ultraball;
+        break;
+    default:
+        item = (int)Items::pokeball;
+        break;
+    }
+    return item;
+}
 const byte t_shuffle[24][4] = {
     {0,1,2,3}, {0,1,3,2}, {0,2,1,3}, {0,2,3,1},
     {0,3,1,2}, {0,3,2,1}, {1,0,2,3}, {1,0,3,2},
@@ -375,19 +464,19 @@ void read(const char* file_name, bw2sav_obj *data) // Reads the given file and a
 }
 std::wstring getpkmnickname(const pokemon_obj &pkm)
 {
-    #ifdef __linux__
+#ifdef __linux__
     return getwstring((char*)pkm.nickname, 22);
-    #else
+#else
     return getwstring(pkm.nickname);
-    #endif
+#endif
 }
 std::wstring getpkmotname(const pokemon_obj &pkm)
 {
-    #ifdef __linux__
+#ifdef __linux__
     return getwstring((char*)pkm.otname, 16);
-    #else
+#else
     return getwstring(pkm.otname);
-    #endif
+#endif
 }
 void setpkmnickname(pokemon_obj &pkm, wchar_t input[], int length){
     if(length > 8){length = 8;}
@@ -404,19 +493,19 @@ void setpkmotname(pokemon_obj &pkm, wchar_t input[], int length){
 }
 std::wstring getpkmnickname(const pokemon_obj *pkm)
 {
-    #ifdef __linux__
+#ifdef __linux__
     return getwstring((char*)pkm->nickname, 22);
-    #else
+#else
     return getwstring(pkm->nickname);
-    #endif
+#endif
 }
 std::wstring getpkmotname(const pokemon_obj *pkm)
 {
-    #ifdef __linux__
+#ifdef __linux__
     return getwstring((char*)pkm->otname, 16);
-    #else
+#else
     return getwstring(pkm->otname);
-    #endif
+#endif
 }
 void setpkmnickname(pokemon_obj *pkm, wchar_t input[], int length){
     if(length > 8){length = 8;}
@@ -660,16 +749,16 @@ std::string getballname(const pokemon_obj *pkm)
 std::wstring getboxname(const bw2savblock_obj *block,int boxnum)
 {
     std::wstring name;
-    #if ! defined(MARKUP_SIZEOFWCHAR)
-    #if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
+#if ! defined(MARKUP_SIZEOFWCHAR)
+#if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
     std::string str_name = block->boxnames[boxnum];
     wchar_t boxname_buffer[11];
     memset(boxname_buffer,0,11);
     mbstowcs(boxname_buffer, str_name.c_str(), 11);
-    #else
+#else
     name = block->boxnames[boxnum];
-    #endif
-    #endif
+#endif
+#endif
 
     if(name.find((wchar_t)0xffff))
     {
@@ -680,16 +769,16 @@ std::wstring getboxname(const bw2savblock_obj *block,int boxnum)
 std::wstring getboxname(const bw2savblock_obj &block,int boxnum)
 {
     std::wstring name;
-    #if ! defined(MARKUP_SIZEOFWCHAR)
-    #if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
+#if ! defined(MARKUP_SIZEOFWCHAR)
+#if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
     std::string str_name = block.boxnames[boxnum];
     wchar_t boxname_buffer[11];
     memset(boxname_buffer,0,11);
     mbstowcs(boxname_buffer, str_name.c_str(), 11);
-    #else
+#else
     name = block.boxnames[boxnum];
-    #endif
-    #endif
+#endif
+#endif
 
     if(name.find((wchar_t)0xffff))
     {
@@ -737,19 +826,19 @@ std::string advstrttimestring(const bw2savblock_obj *block)
 }
 std::wstring getsavtrainername(const bw2savblock_obj & block)
 {
-    #ifdef __linux__
+#ifdef __linux__
     return getwstring((char*)block.trainername, 0x10);
-    #else
+#else
     return getwstring(block.trainername);
-    #endif
+#endif
 }
 std::wstring getsavtrainername(const bw2savblock_obj * block)
 {
-    #ifdef __linux__
+#ifdef __linux__
     return getwstring((char*)block->trainername, 0x10);
-    #else
+#else
     return getwstring(block->trainername);
-    #endif
+#endif
 }
 std::wstring getwstring(std::wstring in)
 {
@@ -768,7 +857,7 @@ std::wstring getwstring(std::string in)
         out = out.substr(0,out.find((char)0xffff));
     }
     std::wstring retval(out.begin(), out.end());
-        return retval;
+    return retval;
 }
 std::wstring getwstring(char* in, int len)
 {

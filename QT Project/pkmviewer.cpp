@@ -159,6 +159,11 @@ void pkmviewer::displayPKM()
     *spritepixmap = getpkmsprite(temppkm);
     spritescene->addPixmap(*spritepixmap);
     ui->pbSprite->setScene(spritescene);
+    QPixmap * ballpixmap = new QPixmap();
+    QGraphicsScene * ballscene = new QGraphicsScene();
+    *ballpixmap = getballpic(temppkm->ball);
+    ballscene->addPixmap(*ballpixmap);
+    ui->pbBall->setScene(ballscene);
     updatemarks();
     redisplayok = true;
 }
