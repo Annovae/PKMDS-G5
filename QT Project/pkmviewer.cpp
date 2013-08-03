@@ -229,7 +229,6 @@ void pkmviewer::on_sbLevel_valueChanged(int arg1)
 }
 void pkmviewer::on_btnSaveChanges_clicked()
 {
-    // Fix the checksum last!
     calcchecksum(temppkm);
     *pkm = *temppkm;
     this->setWindowTitle(QString::fromStdWString(getpkmnickname(temppkm)));
@@ -254,7 +253,6 @@ void pkmviewer::on_btnExportPKMFile_clicked()
     PKMFileName = (QFileDialog::getSaveFileName(this,tr("Save a PKM file"),tr(""),tr("PKM Files (*.pkm)"))).toStdString();
     if(PKMFileName != "")
     {
-        // Fix the checksum last!
         calcchecksum(temppkm);
         write(PKMFileName.c_str(),temppkm);
     }

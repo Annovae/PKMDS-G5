@@ -2697,7 +2697,6 @@ public:
     bool heart : 1; // Heart
     bool star : 1; // Star
     bool diamond : 1; // Diamond
-    // private:
     byte : 2; // Unused bits
     markingsfield()
     {
@@ -2750,7 +2749,6 @@ struct dw_ability { //Bitfield for Dream World Ability flag, N's Pokemon Flag
 public:
     bool hasdwability : 1; // Dream World Ability flag
     bool n_pkm : 1; // N's Pokemon Flag
-    // private:
     byte : 6; //
     dw_ability()
     {
@@ -2795,7 +2793,6 @@ public:
     bool carnival_ribbon : 1; //
     bool classic_ribbon : 1; //
     bool premier_ribbon : 1; //
-    // private:
     byte : 4; // Padding to 16 bits
     sinnohrib2()
     {
@@ -2877,7 +2874,6 @@ public:
     bool tough_ribbon_great : 1; //
     bool tough_ribbon_ultra : 1; //
     bool tough_ribbon_master : 1; //
-    // private:
     byte : 4; // Padding to 16 bits
     sinnohrib4()
     {
@@ -2891,9 +2887,7 @@ public:
     uint16 ispartydatadecrypted : 1;
     uint16 isboxdatadecrypted : 1;
     uint16 isspeciesegg : 1;
-    // private:
     uint16 : 13;
-    //public:
     uint16 checksum; // The checksum for the Pokemon data; used to validate data and for encryption / decryption.
     pkmunencryptblock()
     {
@@ -2933,7 +2927,6 @@ public:
     formsfield forms; // Forms, fateful encounter, gender
     Natures::natures nature; // Nature index
     dw_ability dwability; // Dream World Ability flag, N's Pokemon flag
-    // private:
     byte : 8; //
     uint16 : 16; //
     uint16 : 16; //
@@ -2954,14 +2947,10 @@ public:
 #endif
 #endif
 
-    //	wchar_t nickname[11]; // Nickname
-    // private:
     byte : 8;
-    //public:
     Hometowns::hometowns hometown; // Original game
     sinnohrib3 sribbon3; // Sinnoh Ribbons 3
     sinnohrib4 sribbon4; // Sinnoh Ribbons 4
-    // private:
     byte : 8;
     uint32 : 32; //
     pkmblockc()
@@ -2989,7 +2978,6 @@ public:
     Balls::balls ball; // Ball captured with and kept in
     metlevelfield metlevel_otgender; // Met level, original trainer gender flag
     Encounters::encounters encounter; // Encounter type (depricated since Gen IV?)
-    // private:
     byte : 8; //
     byte : 8; //
     pkmblockd()
@@ -3018,14 +3006,10 @@ struct status_field {
 struct party_field { // Size: 0x54
 public:
     status_field status;
-    // private:
     byte : 8;
     uint16 : 16;
-    //public:
     byte level;
-    // private:
     byte : 8;
-    //public:
     uint16 hp;
     uint16 maxhp;
     uint16 attack;
@@ -3033,7 +3017,6 @@ public:
     uint16 speed;
     uint16 spatk;
     uint16 spdef;
-    // private:
     byte unknown[0x40];
     party_field()
     {
@@ -3070,11 +3053,8 @@ void DllExport decryptpkm(pokemon_obj* pkm);
 struct box_obj { // size: 0x1000
 public:
     pokemon_obj pokemon[30]; //
-    // private:
     uint16 : 16;
-    //public:
     uint16 checksum;
-    // private:
     byte buf[0x0c];
     box_obj()
     {
@@ -3101,7 +3081,6 @@ public:
     byte year;
     byte month;
     byte day;
-    // private:
     byte : 8;
     badge_obj()
     {
@@ -3115,9 +3094,7 @@ public:
     item_obj tms_pocket[TMS_POCKET_SIZE];
     item_obj medicine_pocket[MEDICINE_POCKET_SIZE];
     item_obj berries_pocket[BERRIES_POCKET_SIZE];
-    // private:
     byte data[0x66];
-    //public:
     uint16 checksum;
     bag_obj()
     {
@@ -3125,14 +3102,11 @@ public:
     }
 };
 struct party_obj { // size: 0x534
-    // private:
     uint32 : 32;
 public:
     uint32 size;
     party_pkm pokemon[6];
-    //public:
     uint16 checksum;
-    // private:
     uint16 : 16;
     party_obj()
     {
@@ -3165,7 +3139,6 @@ public:
     bool Regional_Champ_Ribbon : 1;
     bool National_Champ_Ribbon : 1;
     bool World_Champ_Ribbon : 1;
-    // private:
     byte : 1;
     wcrib2()
     {
@@ -3191,22 +3164,16 @@ public:
     uint16 trainer_id;
     uint16 secret_id;
     byte hometown;
-    // private:
     byte unused[3];
-    //public:
     uint32 pid;
     wcrib1 rib1;
     wcrib2 rib2;
     Balls::balls ball;
-    // private:
     byte : 8;
-    //public:
     Items::items item;
     Moves::moves moves[4];
     Species::pkmspecies species;
-    // private:
     byte : 8;
-    //public:
     byte language_flag;
     wchar_t nickname[11];
     byte nature_flag;
@@ -3215,19 +3182,14 @@ public:
     byte shiny_flag;
     Locations::locations eggmetloc;
     Locations::locations metloc;
-    // private:
     byte level_;
-    //public:
     byte conteststats[6];
     byte ivs_flags[6];
-    // private:
     byte : 8;
-    //public:
     wchar_t trainer_name[8];
     byte trainer_gender_flag;
     byte level_flag;
     byte egg_flag;
-    // private:
     byte unused2[3];
     /*
     0x00-0x01	 Trainer ID Number, Item Number, Power Type
@@ -3315,15 +3277,12 @@ struct card_data
 {
 public:
     wchar_t card_title[37];
-    // private:
     uint16 : 16;
-    //public:
     byte card_received_date[4];
     uint16 card_id;
     byte card_from_loc;
     byte card_type;
     byte gift_status;
-    // private:
     byte unused[23];
     /*
     0x60-0xA9	 Card Title
@@ -3356,9 +3315,7 @@ struct wondercard_obj : gift_data, card_data
 struct bw2savblock_obj { //
 public:
     byte curbox;
-    // private:
     byte unknown0[0x03]; //
-    //public:
 
 #if ! defined(MARKUP_SIZEOFWCHAR)
 #if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
@@ -3368,21 +3325,14 @@ public:
 #endif
 #endif
 
-    //	wchar_t boxnames[24][20]; // size: 0x3C0
     Wallpapers::wallpapers boxwallpapers[0x18];
-    // private:
     byte unknown1[6];
-    //public:
     uint16 block1checksum;
-    // private:
     byte unknown2[0x1c]; //
-    //public:
     box_obj boxes[24]; // size: 0x18000
     bag_obj bag; // size: 0xA00
     party_obj party; // size: 0x534
-    // private:
     byte unknown3[0xD0]; //
-    //public:
 
 #if ! defined(MARKUP_SIZEOFWCHAR)
 #if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
@@ -3395,16 +3345,11 @@ public:
 
     uint16 tid;
     uint16 sid;
-    // private:
     byte unknown4[0x32EC];
-    //public:
     badge_obj badges[8]; // size: 0x20
-    // private:
     byte unknown5[0x1210];
 
-    //public:
     uint32 adventurestarted;
-    // private:
     byte unknown6[0x226C8];
     // Gym badge dates are stored starting 1C704 - 4 bytes - year, month, day, 0
     bw2savblock_obj()

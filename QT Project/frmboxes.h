@@ -28,7 +28,7 @@ class frmBoxes : public QMainWindow
     Q_OBJECT
 public:
     explicit frmBoxes(QWidget *parent = 0);
-    MouseEventEater *mouseEventEater; // = new MouseEventEater(this);
+    MouseEventEater *mouseEventEater;
     QGraphicsView * partygraphics[6];
     QPixmap pix;
     QGraphicsScene* partyscenes[6];
