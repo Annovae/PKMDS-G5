@@ -50,6 +50,11 @@ pkmviewer::pkmviewer(QWidget *parent) :
         itemname = QString::fromStdString(lookuppkmname(speciesindex));
         ui->cbPKMSpecies->addItem(itemname);
     }
+    for(int natureindex = 0; natureindex < 25; natureindex++)
+    {
+        itemname = QString::fromStdString(getnaturename(natureindex));
+        ui->cbNatures->addItem(itemname);
+    }
     this->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
     this->setMinimumSize(this->size());
     this->setMaximumSize(this->size());
@@ -112,9 +117,9 @@ void pkmviewer::displayPKM()
     {
         otcolor = Qt::red;
     }
-    QPalette palette = ui->txtOTName->palette();
-    palette.setColor(ui->txtOTName->foregroundRole(), otcolor);
-    ui->txtOTName->setPalette(palette);
+    QPalette OTpalette = ui->txtOTName->palette();
+    OTpalette.setColor(ui->txtOTName->foregroundRole(), otcolor);
+    ui->txtOTName->setPalette(OTpalette);
     ui->txtOTName->setText(QString::fromStdWString(getpkmotname(temppkm)));
     ui->cbNicknamed->setChecked(temppkm->ivs.isnicknamed);
     QPixmap * itempix = new QPixmap();
@@ -176,8 +181,10 @@ void pkmviewer::displayPKM()
     ui->sbSpAtkEV->setValue(temppkm->evs.spatk);
     ui->sbSpDefEV->setValue(temppkm->evs.spdef);
     ui->sbSpeedEV->setValue(temppkm->evs.speed);
-    updatestats();
+    ui->cbNatures->setCurrentIndex(pkm->nature);
     updatemarks();
+    updatestats();
+    updatestatcolors();
     redisplayok = true;
 }
 void pkmviewer::updatestats()
@@ -197,6 +204,53 @@ void pkmviewer::updatestats()
     ui->sbSpAtk->setValue(getpkmstat(temppkm,Stat_IDs::spatk));
     ui->sbSpDef->setValue(getpkmstat(temppkm,Stat_IDs::spdef));
     ui->sbSpeed->setValue(getpkmstat(temppkm,Stat_IDs::speed));
+}
+void pkmviewer::updatestatcolors()
+{
+    QLabel * statlbls[6] =
+    {
+        ui->lblHPIV,
+        ui->lblAtkIV,
+        ui->lblDefIV,
+        ui->lblSpAtkIV,
+        ui->lblSpDefIV,
+        ui->lblSpeedIV
+    };
+    QColor statcolor;
+    int incr = 0;
+    int decr = 0;
+    for(int i = 0; i < 6; i++)
+    {
+        statcolor = Qt::black;
+        incr = getnatureincrease(temppkm)-1;
+        decr = getnaturedecrease(temppkm)-1;
+
+        if(incr == i)
+        {
+            if(decr == i)
+            {
+                statcolor = Qt::black;
+            }
+            else
+            {
+                statcolor = Qt::red;
+            }
+        }
+        if(decr == i)
+        {
+            if(incr == i)
+            {
+                statcolor = Qt::black;
+            }
+            else
+            {
+                statcolor = Qt::blue;
+            }
+        }
+        QPalette statpalette = statlbls[i]->palette();
+        statpalette.setColor(statlbls[i]->foregroundRole(), statcolor);
+        statlbls[i]->setPalette(statpalette);
+    }
 }
 void pkmviewer::updatemarks()
 {
@@ -503,5 +557,14 @@ void pkmviewer::on_sbSpeedEV_valueChanged(int arg1)
     {
         temppkm->evs.speed = arg1;
         updatestats();
+    }
+}
+void pkmviewer::on_cbNatures_currentIndexChanged(int index)
+{
+    if(redisplayok)
+    {
+        temppkm->nature = (Natures::natures)index;
+        updatestats();
+        updatestatcolors();
     }
 }

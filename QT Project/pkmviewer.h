@@ -35,6 +35,7 @@ public:
     void pkmviewer::displayPKM();
     void pkmviewer::updatemarks();
     void pkmviewer::updatestats();
+    void pkmviewer::updatestatcolors();
     explicit pkmviewer(QWidget *parent = 0);
     ~pkmviewer();
 private slots:
@@ -89,6 +90,8 @@ private slots:
     void on_sbDefEV_valueChanged(int arg1);
 
     void on_sbAtkEV_valueChanged(int arg1);
+
+    void on_cbNatures_currentIndexChanged(int index);
 
 private:
     Ui::pkmviewer *ui;
