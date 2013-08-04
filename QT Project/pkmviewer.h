@@ -34,6 +34,7 @@ public:
     void pkmviewer::setPKM(party_pkm * ppkm_, int box, bool isPartyPKM = true);
     void pkmviewer::displayPKM();
     void pkmviewer::updatemarks();
+    void pkmviewer::updatestats();
     explicit pkmviewer(QWidget *parent = 0);
     ~pkmviewer();
 private slots:
@@ -64,6 +65,30 @@ private slots:
     void on_sbTID_valueChanged(int arg1);
 
     void on_sbSID_valueChanged(int arg1);
+
+    void on_sbHPIV_valueChanged(int arg1);
+
+    void on_sbAtkIV_valueChanged(int arg1);
+
+    void on_sbDefIV_valueChanged(int arg1);
+
+    void on_sbSpAtkIV_valueChanged(int arg1);
+
+    void on_sbSpDefIV_valueChanged(int arg1);
+
+    void on_sbSpeedIV_valueChanged(int arg1);
+
+    void on_sbHPEV_valueChanged(int arg1);
+
+    void on_sbSpeedEV_valueChanged(int arg1);
+
+    void on_sbSpDefEV_valueChanged(int arg1);
+
+    void on_sbSpAtkEV_valueChanged(int arg1);
+
+    void on_sbDefEV_valueChanged(int arg1);
+
+    void on_sbAtkEV_valueChanged(int arg1);
 
 private:
     Ui::pkmviewer *ui;

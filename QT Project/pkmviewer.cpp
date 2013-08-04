@@ -164,8 +164,39 @@ void pkmviewer::displayPKM()
     *ballpixmap = getballpic(temppkm->ball);
     ballscene->addPixmap(*ballpixmap);
     ui->pbBall->setScene(ballscene);
+    ui->sbHPIV->setValue(temppkm->ivs.hp);
+    ui->sbAtkIV->setValue(temppkm->ivs.attack);
+    ui->sbDefIV->setValue(temppkm->ivs.defense);
+    ui->sbSpAtkIV->setValue(temppkm->ivs.spatk);
+    ui->sbSpDefIV->setValue(temppkm->ivs.spdef);
+    ui->sbSpeedIV->setValue(temppkm->ivs.speed);
+    ui->sbHPEV->setValue(temppkm->evs.hp);
+    ui->sbAtkEV->setValue(temppkm->evs.attack);
+    ui->sbDefEV->setValue(temppkm->evs.defense);
+    ui->sbSpAtkEV->setValue(temppkm->evs.spatk);
+    ui->sbSpDefEV->setValue(temppkm->evs.spdef);
+    ui->sbSpeedEV->setValue(temppkm->evs.speed);
+    updatestats();
     updatemarks();
     redisplayok = true;
+}
+void pkmviewer::updatestats()
+{
+    ui->sbTotalEVs->setValue
+            (
+                temppkm->evs.hp +
+                temppkm->evs.attack +
+                temppkm->evs.defense +
+                temppkm->evs.spatk +
+                temppkm->evs.spdef +
+                temppkm->evs.speed
+                );
+    ui->sbHP->setValue(getpkmstat(temppkm,Stat_IDs::hp));
+    ui->sbAtk->setValue(getpkmstat(temppkm,Stat_IDs::attack));
+    ui->sbDef->setValue(getpkmstat(temppkm,Stat_IDs::defense));
+    ui->sbSpAtk->setValue(getpkmstat(temppkm,Stat_IDs::spatk));
+    ui->sbSpDef->setValue(getpkmstat(temppkm,Stat_IDs::spdef));
+    ui->sbSpeed->setValue(getpkmstat(temppkm,Stat_IDs::speed));
 }
 void pkmviewer::updatemarks()
 {
@@ -202,9 +233,9 @@ void pkmviewer::updatemarks()
         markingsscene[i]->installEventFilter(mouseEventEater);
         markingsgraphics[i]->setScene(markingsscene[i]);
         markingsgraphics[i]->installEventFilter(mouseEventEater);
-//        extmarkingsgraphics[i] = markingsgraphics[i];
-//        extmarkingspix[i] = markingspix[i];
-//        extmarkingsscene[i] = markingsscene[i];
+        //        extmarkingsgraphics[i] = markingsgraphics[i];
+        //        extmarkingspix[i] = markingspix[i];
+        //        extmarkingsscene[i] = markingsscene[i];
     }
 }
 pkmviewer::~pkmviewer()
@@ -269,7 +300,6 @@ void pkmviewer::on_cbPKMSpecies_currentIndexChanged(int index)
         if(redisplayok)
         {
             temppkm->species = (Species::pkmspecies)(index+1);
-
             if((index+1) != ui->sbSpecies->value())
             {
                 ui->sbSpecies->setValue(index+1);
@@ -365,7 +395,6 @@ void pkmviewer::on_txtOTName_textChanged(const QString &arg1)
     btpnt += 14;
     memset(btpnt,0xff,2);
 }
-
 void pkmviewer::on_sbTID_valueChanged(int arg1)
 {
     if((temppkm->species > 0) && ((temppkm->pid > 0) || (temppkm->checksum > 0)))
@@ -373,11 +402,106 @@ void pkmviewer::on_sbTID_valueChanged(int arg1)
         temppkm->tid = arg1;
     }
 }
-
 void pkmviewer::on_sbSID_valueChanged(int arg1)
 {
     if((temppkm->species > 0) && ((temppkm->pid > 0) || (temppkm->checksum > 0)))
     {
         temppkm->sid = arg1;
+    }
+}
+void pkmviewer::on_sbHPIV_valueChanged(int arg1)
+{
+    if(redisplayok)
+    {
+        temppkm->ivs.hp = arg1;
+        updatestats();
+    }
+}
+void pkmviewer::on_sbAtkIV_valueChanged(int arg1)
+{
+    if(redisplayok)
+    {
+        temppkm->ivs.attack = arg1;
+        updatestats();
+    }
+}
+void pkmviewer::on_sbDefIV_valueChanged(int arg1)
+{
+    if(redisplayok)
+    {
+        temppkm->ivs.defense = arg1;
+        updatestats();
+    }
+}
+void pkmviewer::on_sbSpAtkIV_valueChanged(int arg1)
+{
+    if(redisplayok)
+    {
+        temppkm->ivs.spatk = arg1;
+        updatestats();
+    }
+}
+void pkmviewer::on_sbSpDefIV_valueChanged(int arg1)
+{
+    if(redisplayok)
+    {
+        temppkm->ivs.spdef = arg1;
+        updatestats();
+    }
+}
+void pkmviewer::on_sbSpeedIV_valueChanged(int arg1)
+{
+    if(redisplayok)
+    {
+        temppkm->ivs.speed = arg1;
+        updatestats();
+    }
+}
+void pkmviewer::on_sbHPEV_valueChanged(int arg1)
+{
+    if(redisplayok)
+    {
+        temppkm->evs.hp = arg1;
+        updatestats();
+    }
+}
+void pkmviewer::on_sbAtkEV_valueChanged(int arg1)
+{
+    if(redisplayok)
+    {
+        temppkm->evs.attack = arg1;
+        updatestats();
+    }
+}
+void pkmviewer::on_sbDefEV_valueChanged(int arg1)
+{
+    if(redisplayok)
+    {
+        temppkm->evs.defense = arg1;
+        updatestats();
+    }
+}
+void pkmviewer::on_sbSpAtkEV_valueChanged(int arg1)
+{
+    if(redisplayok)
+    {
+        temppkm->evs.spatk = arg1;
+        updatestats();
+    }
+}
+void pkmviewer::on_sbSpDefEV_valueChanged(int arg1)
+{
+    if(redisplayok)
+    {
+        temppkm->evs.spdef = arg1;
+        updatestats();
+    }
+}
+void pkmviewer::on_sbSpeedEV_valueChanged(int arg1)
+{
+    if(redisplayok)
+    {
+        temppkm->evs.speed = arg1;
+        updatestats();
     }
 }
