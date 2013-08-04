@@ -2138,7 +2138,7 @@ enum abilities : byte {
     zenmode,
     victorystar,
     turboblaze,
-    teravolt,
+    teravolt
 };
 }
 namespace Countries

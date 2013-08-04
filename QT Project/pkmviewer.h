@@ -93,6 +93,14 @@ private slots:
 
     void on_cbNatures_currentIndexChanged(int index);
 
+    void on_cbMove1_currentIndexChanged(int index);
+
+    void on_cbMove2_currentIndexChanged(int index);
+
+    void on_cbMove3_currentIndexChanged(int index);
+
+    void on_cbMove4_currentIndexChanged(int index);
+
 private:
     Ui::pkmviewer *ui;
 };

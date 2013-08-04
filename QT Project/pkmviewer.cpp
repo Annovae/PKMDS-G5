@@ -39,6 +39,7 @@ pkmviewer::pkmviewer(QWidget *parent) :
         markingsgraphics[i]->setScene(markingsscene[i]);
         markingsgraphics[i]->installEventFilter(mouseEventEater);
     }
+    QComboBox * moveboxes[4] = {ui->cbMove1,ui->cbMove2,ui->cbMove3,ui->cbMove4};
     QString itemname = "";
     for(int itemindex = 0; itemindex < (int)Items::revealglass; itemindex++)
     {
@@ -54,6 +55,14 @@ pkmviewer::pkmviewer(QWidget *parent) :
     {
         itemname = QString::fromStdString(getnaturename(natureindex));
         ui->cbNatures->addItem(itemname);
+    }
+    for(int moveid = 0; moveid <= ((int)Moves::fusionbolt); moveid++)
+    {
+        for(int moveindex = 0; moveindex < 4; moveindex++)
+        {
+            itemname = QString::fromStdString(lookupmovename(moveid));
+            moveboxes[moveindex]->addItem(itemname);
+        }
     }
     this->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
     this->setMinimumSize(this->size());
@@ -182,6 +191,10 @@ void pkmviewer::displayPKM()
     ui->sbSpDefEV->setValue(temppkm->evs.spdef);
     ui->sbSpeedEV->setValue(temppkm->evs.speed);
     ui->cbNatures->setCurrentIndex(pkm->nature);
+    ui->cbMove1->setCurrentIndex((int)pkm->moves[0]);
+    ui->cbMove2->setCurrentIndex((int)pkm->moves[1]);
+    ui->cbMove3->setCurrentIndex((int)pkm->moves[2]);
+    ui->cbMove4->setCurrentIndex((int)pkm->moves[3]);
     updatemarks();
     updatestats();
     updatestatcolors();
@@ -566,5 +579,37 @@ void pkmviewer::on_cbNatures_currentIndexChanged(int index)
         temppkm->nature = (Natures::natures)index;
         updatestats();
         updatestatcolors();
+    }
+}
+
+void pkmviewer::on_cbMove1_currentIndexChanged(int index)
+{
+    if(redisplayok)
+    {
+        pkm->moves[0] = (Moves::moves)index;
+    }
+}
+
+void pkmviewer::on_cbMove2_currentIndexChanged(int index)
+{
+    if(redisplayok)
+    {
+        pkm->moves[1] = (Moves::moves)index;
+    }
+}
+
+void pkmviewer::on_cbMove3_currentIndexChanged(int index)
+{
+    if(redisplayok)
+    {
+        pkm->moves[2] = (Moves::moves)index;
+    }
+}
+
+void pkmviewer::on_cbMove4_currentIndexChanged(int index)
+{
+    if(redisplayok)
+    {
+        pkm->moves[3] = (Moves::moves)index;
     }
 }
