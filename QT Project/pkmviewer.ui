@@ -87,7 +87,7 @@ PKM File</string>
      <string notr="true">background: transparent</string>
     </property>
     <property name="frameShape">
-     <enum>QFrame::Box</enum>
+     <enum>QFrame::NoFrame</enum>
     </property>
     <property name="frameShadow">
      <enum>QFrame::Plain</enum>
@@ -460,7 +460,7 @@ Changes</string>
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tpBasic">
     <attribute name="title">
@@ -1118,12 +1118,53 @@ Changes</string>
  </widget>
  <tabstops>
   <tabstop>twPages</tabstop>
+  <tabstop>txtNickname</tabstop>
+  <tabstop>cbNicknamed</tabstop>
+  <tabstop>txtOTName</tabstop>
+  <tabstop>rbOTMale</tabstop>
+  <tabstop>rbOTFemale</tabstop>
+  <tabstop>sbTID</tabstop>
+  <tabstop>sbSID</tabstop>
+  <tabstop>pbType1</tabstop>
+  <tabstop>pbType2</tabstop>
+  <tabstop>sbEXP</tabstop>
   <tabstop>pbSprite</tabstop>
+  <tabstop>pbGender</tabstop>
+  <tabstop>pbBall</tabstop>
+  <tabstop>pbShiny</tabstop>
+  <tabstop>pbPkrs</tabstop>
   <tabstop>cbPKMSpecies</tabstop>
+  <tabstop>sbSpecies</tabstop>
+  <tabstop>pbCircle</tabstop>
+  <tabstop>pbTriangle</tabstop>
+  <tabstop>pbSquare</tabstop>
+  <tabstop>pbHeart</tabstop>
+  <tabstop>pbStar</tabstop>
+  <tabstop>pbDiamond</tabstop>
   <tabstop>sbLevel</tabstop>
+  <tabstop>pbHeldItem</tabstop>
   <tabstop>cbPKMItem</tabstop>
   <tabstop>btnSaveChanges</tabstop>
   <tabstop>btnExportPKMFile</tabstop>
+  <tabstop>sbHPIV</tabstop>
+  <tabstop>sbAtkIV</tabstop>
+  <tabstop>sbDefIV</tabstop>
+  <tabstop>sbSpAtkIV</tabstop>
+  <tabstop>sbSpDefIV</tabstop>
+  <tabstop>sbSpeedIV</tabstop>
+  <tabstop>sbHPEV</tabstop>
+  <tabstop>sbAtkEV</tabstop>
+  <tabstop>sbDefEV</tabstop>
+  <tabstop>sbSpAtkEV</tabstop>
+  <tabstop>sbSpDefEV</tabstop>
+  <tabstop>sbSpeedEV</tabstop>
+  <tabstop>sbTotalEVs</tabstop>
+  <tabstop>sbHP</tabstop>
+  <tabstop>sbAtk</tabstop>
+  <tabstop>sbDef</tabstop>
+  <tabstop>sbSpAtk</tabstop>
+  <tabstop>sbSpDef</tabstop>
+  <tabstop>sbSpeed</tabstop>
  </tabstops>
  <resources/>
  <connections/>
