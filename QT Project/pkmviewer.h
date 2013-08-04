@@ -101,6 +101,22 @@ private slots:
 
     void on_cbMove4_currentIndexChanged(int index);
 
+    void on_sbMove1PPUps_valueChanged(int arg1);
+
+    void on_sbMove1PP_valueChanged(int arg1);
+
+    void on_sbMove2PPUps_valueChanged(int arg1);
+
+    void on_sbMove2PP_valueChanged(int arg1);
+
+    void on_sbMove3PPUps_valueChanged(int arg1);
+
+    void on_sbMove3PP_valueChanged(int arg1);
+
+    void on_sbMove4PPUps_valueChanged(int arg1);
+
+    void on_sbMove4PP_valueChanged(int arg1);
+
 private:
     Ui::pkmviewer *ui;
 };

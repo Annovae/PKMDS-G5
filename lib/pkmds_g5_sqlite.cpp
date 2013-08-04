@@ -135,14 +135,14 @@ string lookupmovename(const pokemon_obj *pkm, const int movenum, const int langi
 string lookupmoveflavortext(const uint16 moveid, const int langid, const int versiongroup)
 {
     std::ostringstream o;
-
     o << "SELECT move_flavor_text.flavor_text FROM moves " <<
          "INNER JOIN move_flavor_text ON moves.id = move_flavor_text.move_id WHERE" <<
          "(move_flavor_text.language_id = " << langid << ")" <<
          "AND (move_flavor_text.move_id = " << moveid << ")" <<
          "AND (move_flavor_text.version_group_id = " << versiongroup << ")";
-
-    return getastring(o);
+    std::string ret = getastring(o);
+    replace(ret.begin(),ret.end(),'\n',' ');
+    return ret;
 }
 string lookupmoveflavortext(const pokemon_obj &pkm, const int movenum, const int langid, const int versiongroup)
 {

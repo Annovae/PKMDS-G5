@@ -195,6 +195,13 @@ void pkmviewer::displayPKM()
     ui->cbMove2->setCurrentIndex((int)pkm->moves[1]);
     ui->cbMove3->setCurrentIndex((int)pkm->moves[2]);
     ui->cbMove4->setCurrentIndex((int)pkm->moves[3]);
+    QLabel * lblFlavors[4] = {ui->lblMove1Flavor,ui->lblMove2Flavor,ui->lblMove3Flavor,ui->lblMove4Flavor};
+    std::string flavor = "";
+    for(int movenum = 0; movenum < 4; movenum++)
+    {
+        flavor = lookupmoveflavortext(pkm,movenum);
+        lblFlavors[movenum]->setText(QString::fromStdString(flavor));
+    }
     updatemarks();
     updatestats();
     updatestatcolors();
@@ -581,7 +588,6 @@ void pkmviewer::on_cbNatures_currentIndexChanged(int index)
         updatestatcolors();
     }
 }
-
 void pkmviewer::on_cbMove1_currentIndexChanged(int index)
 {
     if(redisplayok)
@@ -589,7 +595,6 @@ void pkmviewer::on_cbMove1_currentIndexChanged(int index)
         pkm->moves[0] = (Moves::moves)index;
     }
 }
-
 void pkmviewer::on_cbMove2_currentIndexChanged(int index)
 {
     if(redisplayok)
@@ -597,7 +602,6 @@ void pkmviewer::on_cbMove2_currentIndexChanged(int index)
         pkm->moves[1] = (Moves::moves)index;
     }
 }
-
 void pkmviewer::on_cbMove3_currentIndexChanged(int index)
 {
     if(redisplayok)
@@ -605,11 +609,66 @@ void pkmviewer::on_cbMove3_currentIndexChanged(int index)
         pkm->moves[2] = (Moves::moves)index;
     }
 }
-
 void pkmviewer::on_cbMove4_currentIndexChanged(int index)
 {
     if(redisplayok)
     {
         pkm->moves[3] = (Moves::moves)index;
+    }
+}
+void pkmviewer::on_sbMove1PPUps_valueChanged(int arg1)
+{
+    if(redisplayok)
+    {
+        pkm->ppup[0] = arg1;
+    }
+}
+void pkmviewer::on_sbMove1PP_valueChanged(int arg1)
+{
+    if(redisplayok)
+    {
+        pkm->pp[0] = arg1;
+    }
+}
+void pkmviewer::on_sbMove2PPUps_valueChanged(int arg1)
+{
+    if(redisplayok)
+    {
+        pkm->ppup[1] = arg1;
+    }
+}
+void pkmviewer::on_sbMove2PP_valueChanged(int arg1)
+{
+    if(redisplayok)
+    {
+        pkm->pp[1] = arg1;
+    }
+}
+void pkmviewer::on_sbMove3PPUps_valueChanged(int arg1)
+{
+    if(redisplayok)
+    {
+        pkm->ppup[2] = arg1;
+    }
+}
+void pkmviewer::on_sbMove3PP_valueChanged(int arg1)
+{
+    if(redisplayok)
+    {
+        pkm->pp[2] = arg1;
+    }
+}
+void pkmviewer::on_sbMove4PPUps_valueChanged(int arg1)
+{
+    if(redisplayok)
+    {
+        pkm->ppup[3] = arg1;
+    }
+}
+void pkmviewer::on_sbMove4PP_valueChanged(int arg1)
+{
+    if(redisplayok)
+    {
+        pkm->pp[3] = arg1;
     }
 }
