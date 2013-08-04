@@ -43,8 +43,11 @@ coolbho3000 and of course, COM.
 Some documentation available at: http://www.projectpokemon.org/wiki/
 */
 #pragma once
-//#include <pkmds/stdafx.h>
+#ifdef PKMDS_CMAKE_USED
+#include <pkmds/stdafx.h>
+#else
 #include "stdafx.h"
+#endif
 struct pkmprng
 {
 	uint32 mseed;
