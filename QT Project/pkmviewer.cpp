@@ -195,10 +195,14 @@ void pkmviewer::displayPKM()
     ui->cbMove2->setCurrentIndex((int)pkm->moves[1]);
     ui->cbMove3->setCurrentIndex((int)pkm->moves[2]);
     ui->cbMove4->setCurrentIndex((int)pkm->moves[3]);
+    QSpinBox * movePPboxes[4] = {ui->sbMove1PP,ui->sbMove2PP,ui->sbMove3PP,ui->sbMove4PP};
+    QSpinBox * movePPUpboxes[4] = {ui->sbMove1PPUps,ui->sbMove2PPUps,ui->sbMove3PPUps,ui->sbMove4PPUps};
     QLabel * lblFlavors[4] = {ui->lblMove1Flavor,ui->lblMove2Flavor,ui->lblMove3Flavor,ui->lblMove4Flavor};
     std::string flavor = "";
     for(int movenum = 0; movenum < 4; movenum++)
     {
+        movePPboxes[movenum]->setValue(pkm->pp[movenum]);
+        movePPUpboxes[movenum]->setValue(pkm->ppup[movenum]);
         flavor = lookupmoveflavortext(pkm,movenum);
         lblFlavors[movenum]->setText(QString::fromStdString(flavor));
     }
