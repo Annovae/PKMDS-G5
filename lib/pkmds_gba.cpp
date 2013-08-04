@@ -15,8 +15,11 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
-//#include <pkmds/pkmds_gba.h>
+#ifdef PKMDS_CMAKE_USED
+#include <pkmds/pkmds_gba.h>
+#else
 #include "../../PKMDS-G5/include/pkmds/pkmds_gba.h"
+#endif
 void read(const char* file_name, gbasavefile *data)
 {
 	std::ifstream *in = new std::ifstream(file_name,std::ios::binary);

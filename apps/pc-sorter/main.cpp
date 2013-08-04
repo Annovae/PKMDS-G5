@@ -15,8 +15,13 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
+#ifdef PKMDS_CMAKE_USED
 #include <pkmds/pkmds_g5_sqlite.h>
 #include <pkmds/pkmds_vector.h>
+#else
+#include "PKMDS-G5\include\pkmds\pkmds_g5_sqlite.h"
+#include "PKMDS-G5\include\pkmds\pkmds_vector.h"
+#endif
 using namespace std;
 int main(int argc, char* argv[])
 {

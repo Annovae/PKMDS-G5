@@ -15,10 +15,13 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
-//#include <pkmds/pkmds_g5.h>
-//#include <pkmds/pokeprng.h>
+#ifdef PKMDS_CMAKE_USED
+#include <pkmds/pkmds_g5.h>
+#include <pkmds/pokeprng.h>
+#else
 #include "../../PKMDS-G5/include/pkmds/pkmds_g5.h"
 #include "../../PKMDS-G5/include/pkmds/pokeprng.h"
+#endif
 int balltoitem(int ball)
 {
     int item = 0;
