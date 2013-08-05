@@ -584,7 +584,7 @@ Changes</string>
       </rect>
      </property>
      <property name="text">
-      <string>EXP:</string>
+      <string>EXP</string>
      </property>
     </widget>
     <widget class="QSpinBox" name="sbEXP">
@@ -760,6 +760,62 @@ Changes</string>
      </property>
      <property name="text">
       <string>Trainer SID</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_9">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>120</y>
+       <width>40</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="text">
+      <string>Ability</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblAbilityFlavor">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>150</y>
+       <width>100</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="textFormat">
+      <enum>Qt::PlainText</enum>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="cbPKMAbility">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>120</y>
+       <width>100</width>
+       <height>22</height>
+      </rect>
      </property>
     </widget>
    </widget>
@@ -958,7 +1014,7 @@ Changes</string>
        </rect>
       </property>
       <property name="text">
-       <string>Total EVs:</string>
+       <string>Total EVs</string>
       </property>
      </widget>
      <widget class="QSpinBox" name="sbTotalEVs">

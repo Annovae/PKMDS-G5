@@ -140,3 +140,6 @@ void DllExport getwallpapersql(std::ostringstream& o, const Wallpapers::wallpape
 void DllExport getitemsql(std::ostringstream& itemsql, const int itemid, const int generation = GENERATION);
 void DllExport getmarkingsql(std::ostringstream& o, const Markings::markings mark, const bool marked);
 void DllExport getballsql(std::ostringstream& o, const Balls::balls ball, const int generation = GENERATION);
+int DllExport getmovepp(const Moves::moves moveid);
+int DllExport getmovepp(const pokemon_obj * pkm, const int movenum);
+int DllExport getmovetotalpp(const pokemon_obj * pkm, const int movenum);

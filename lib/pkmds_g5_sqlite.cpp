@@ -633,7 +633,9 @@ string lookupitemflavortext(const int itemid, const int generation, const int la
       << "       AND ( item_game_indices.generation_id = " << generation << " ) "
       << "       AND ( item_game_indices.game_index = " << itemid << " ) "
       << "       AND ( item_flavor_text.version_group_id = " << versiongroup << " ) ";
-    return getastring(o);
+    std::string ret = getastring(o);
+    replace(ret.begin(),ret.end(),'\n',' ');
+    return ret;
 }
 string lookupitemflavortext(const pokemon_obj &pkm, const int generation, const int langid, const int versiongroup)
 {
@@ -688,7 +690,9 @@ string lookupabilityflavortext(const int abilityid, const int version_group, con
       << "WHERE  ( ability_flavor_text.version_group_id = " << version_group << " ) "
       << "       AND ( ability_flavor_text.language_id = " << langid << " ) "
       << "       AND ( abilities.id = " << abilityid << " ) ";
-    return getastring(o);
+    std::string ret = getastring(o);
+    replace(ret.begin(),ret.end(),'\n',' ');
+    return ret;
 }
 string lookupabilityflavortext(const pokemon_obj &pkm, const int version_group, const int langid)
 {
@@ -1512,4 +1516,24 @@ void getmarkingsql(ostringstream& o, const Markings::markings mark, const bool m
 void getballsql(ostringstream& o, const Balls::balls ball, const int generation)
 {
     getitemsql(o,balltoitem((int)ball),generation);
+}
+int DllExport getmovepp(const Moves::moves moveid)
+{
+    std::ostringstream o;
+    o << ""
+      << "SELECT pp "
+      << "FROM   moves "
+      << "WHERE  ( id = " << (int)moveid << " ) ";
+    return getanint(o);
+}
+int DllExport getmovepp(const pokemon_obj * pkm, const int movenum)
+{
+    return getmovepp(pkm->moves[movenum]);
+}
+int DllExport getmovetotalpp(const pokemon_obj * pkm, const int movenum)
+{
+    int curpp = getmovepp(pkm,movenum);
+    double multiplier = pkm->ppup[movenum] * 20;
+    multiplier = (multiplier + 100) / 100;
+    return (int)(curpp * multiplier);
 }

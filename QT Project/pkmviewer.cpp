@@ -64,6 +64,11 @@ pkmviewer::pkmviewer(QWidget *parent) :
             moveboxes[moveindex]->addItem(itemname);
         }
     }
+    for(int abilityindex = 0; abilityindex < (int)Abilities::teravolt; abilityindex++)
+    {
+        itemname = QString::fromStdString(lookupabilityname(abilityindex));
+        ui->cbPKMAbility->addItem(itemname);
+    }
     this->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
     this->setMinimumSize(this->size());
     this->setMaximumSize(this->size());
@@ -190,130 +195,170 @@ void pkmviewer::displayPKM()
     ui->sbSpAtkEV->setValue(temppkm->evs.spatk);
     ui->sbSpDefEV->setValue(temppkm->evs.spdef);
     ui->sbSpeedEV->setValue(temppkm->evs.speed);
-    ui->cbNatures->setCurrentIndex(pkm->nature);
-    ui->cbMove1->setCurrentIndex((int)pkm->moves[0]);
-    ui->cbMove2->setCurrentIndex((int)pkm->moves[1]);
-    ui->cbMove3->setCurrentIndex((int)pkm->moves[2]);
-    ui->cbMove4->setCurrentIndex((int)pkm->moves[3]);
+    ui->cbNatures->setCurrentIndex(temppkm->nature);
+    ui->cbMove1->setCurrentIndex((int)temppkm->moves[0]);
+    ui->cbMove2->setCurrentIndex((int)temppkm->moves[1]);
+    ui->cbMove3->setCurrentIndex((int)temppkm->moves[2]);
+    ui->cbMove4->setCurrentIndex((int)temppkm->moves[3]);
+    ui->cbPKMAbility->setCurrentIndex(temppkm->ability);
     QSpinBox * movePPboxes[4] = {ui->sbMove1PP,ui->sbMove2PP,ui->sbMove3PP,ui->sbMove4PP};
     QSpinBox * movePPUpboxes[4] = {ui->sbMove1PPUps,ui->sbMove2PPUps,ui->sbMove3PPUps,ui->sbMove4PPUps};
-    QLabel * lblFlavors[4] = {ui->lblMove1Flavor,ui->lblMove2Flavor,ui->lblMove3Flavor,ui->lblMove4Flavor};
-    std::string flavor = "";
     for(int movenum = 0; movenum < 4; movenum++)
     {
         movePPboxes[movenum]->setValue(pkm->pp[movenum]);
         movePPUpboxes[movenum]->setValue(pkm->ppup[movenum]);
-        flavor = lookupmoveflavortext(pkm,movenum);
-        lblFlavors[movenum]->setText(QString::fromStdString(flavor));
     }
+    redisplayok = true;
+    updateabilityflavor();
     updatemarks();
     updatestats();
     updatestatcolors();
-    redisplayok = true;
+    updatemoveflavor();
+    updatemovepp();
 }
 void pkmviewer::updatestats()
 {
-    ui->sbTotalEVs->setValue
-            (
-                temppkm->evs.hp +
-                temppkm->evs.attack +
-                temppkm->evs.defense +
-                temppkm->evs.spatk +
-                temppkm->evs.spdef +
-                temppkm->evs.speed
-                );
-    ui->sbHP->setValue(getpkmstat(temppkm,Stat_IDs::hp));
-    ui->sbAtk->setValue(getpkmstat(temppkm,Stat_IDs::attack));
-    ui->sbDef->setValue(getpkmstat(temppkm,Stat_IDs::defense));
-    ui->sbSpAtk->setValue(getpkmstat(temppkm,Stat_IDs::spatk));
-    ui->sbSpDef->setValue(getpkmstat(temppkm,Stat_IDs::spdef));
-    ui->sbSpeed->setValue(getpkmstat(temppkm,Stat_IDs::speed));
+    if(redisplayok)
+    {
+        ui->sbTotalEVs->setValue
+                (
+                    temppkm->evs.hp +
+                    temppkm->evs.attack +
+                    temppkm->evs.defense +
+                    temppkm->evs.spatk +
+                    temppkm->evs.spdef +
+                    temppkm->evs.speed
+                    );
+        ui->sbHP->setValue(getpkmstat(temppkm,Stat_IDs::hp));
+        ui->sbAtk->setValue(getpkmstat(temppkm,Stat_IDs::attack));
+        ui->sbDef->setValue(getpkmstat(temppkm,Stat_IDs::defense));
+        ui->sbSpAtk->setValue(getpkmstat(temppkm,Stat_IDs::spatk));
+        ui->sbSpDef->setValue(getpkmstat(temppkm,Stat_IDs::spdef));
+        ui->sbSpeed->setValue(getpkmstat(temppkm,Stat_IDs::speed));
+    }
 }
 void pkmviewer::updatestatcolors()
 {
-    QLabel * statlbls[6] =
+    if(redisplayok)
     {
-        ui->lblHPIV,
-        ui->lblAtkIV,
-        ui->lblDefIV,
-        ui->lblSpAtkIV,
-        ui->lblSpDefIV,
-        ui->lblSpeedIV
-    };
-    QColor statcolor;
-    int incr = 0;
-    int decr = 0;
-    for(int i = 0; i < 6; i++)
-    {
-        statcolor = Qt::black;
-        incr = getnatureincrease(temppkm)-1;
-        decr = getnaturedecrease(temppkm)-1;
+        QLabel * statlbls[6] =
+        {
+            ui->lblHPIV,
+            ui->lblAtkIV,
+            ui->lblDefIV,
+            ui->lblSpAtkIV,
+            ui->lblSpDefIV,
+            ui->lblSpeedIV
+        };
+        QColor statcolor;
+        int incr = 0;
+        int decr = 0;
+        for(int i = 0; i < 6; i++)
+        {
+            statcolor = Qt::black;
+            incr = getnatureincrease(temppkm)-1;
+            decr = getnaturedecrease(temppkm)-1;
 
-        if(incr == i)
-        {
-            if(decr == i)
-            {
-                statcolor = Qt::black;
-            }
-            else
-            {
-                statcolor = Qt::red;
-            }
-        }
-        if(decr == i)
-        {
             if(incr == i)
             {
-                statcolor = Qt::black;
+                if(decr == i)
+                {
+                    statcolor = Qt::black;
+                }
+                else
+                {
+                    statcolor = Qt::red;
+                }
             }
-            else
+            if(decr == i)
             {
-                statcolor = Qt::blue;
+                if(incr == i)
+                {
+                    statcolor = Qt::black;
+                }
+                else
+                {
+                    statcolor = Qt::blue;
+                }
             }
+            QPalette statpalette = statlbls[i]->palette();
+            statpalette.setColor(statlbls[i]->foregroundRole(), statcolor);
+            statlbls[i]->setPalette(statpalette);
         }
-        QPalette statpalette = statlbls[i]->palette();
-        statpalette.setColor(statlbls[i]->foregroundRole(), statcolor);
-        statlbls[i]->setPalette(statpalette);
     }
 }
 void pkmviewer::updatemarks()
 {
-    for(int i = 0; i < 6; i++)
+    if(redisplayok)
     {
-        bool marked = false;
-        switch(Markings::markings(i))
+        for(int i = 0; i < 6; i++)
         {
-        case Markings::circle:
-            marked = temppkm->markings.circle;
-            break;
-        case Markings::diamond:
-            marked = temppkm->markings.diamond;
-            break;
-        case Markings::heart:
-            marked = temppkm->markings.heart;
-            break;
-        case Markings::square:
-            marked = temppkm->markings.square;
-            break;
-        case Markings::star:
-            marked = temppkm->markings.star;
-            break;
-        case Markings::triangle:
-            marked = temppkm->markings.triangle;
-            break;
-        default:
-            marked = false;
-            break;
+            bool marked = false;
+            switch(Markings::markings(i))
+            {
+            case Markings::circle:
+                marked = temppkm->markings.circle;
+                break;
+            case Markings::diamond:
+                marked = temppkm->markings.diamond;
+                break;
+            case Markings::heart:
+                marked = temppkm->markings.heart;
+                break;
+            case Markings::square:
+                marked = temppkm->markings.square;
+                break;
+            case Markings::star:
+                marked = temppkm->markings.star;
+                break;
+            case Markings::triangle:
+                marked = temppkm->markings.triangle;
+                break;
+            default:
+                marked = false;
+                break;
+            }
+            markingspix[i] = getmarkingimage(Markings::markings(i), marked);
+            markingsscene[i] = new QGraphicsScene();
+            markingsscene[i]->addPixmap(markingspix[i]);
+            markingsscene[i]->installEventFilter(mouseEventEater);
+            markingsgraphics[i]->setScene(markingsscene[i]);
+            markingsgraphics[i]->installEventFilter(mouseEventEater);
+            //        extmarkingsgraphics[i] = markingsgraphics[i];
+            //        extmarkingspix[i] = markingspix[i];
+            //        extmarkingsscene[i] = markingsscene[i];
         }
-        markingspix[i] = getmarkingimage(Markings::markings(i), marked);
-        markingsscene[i] = new QGraphicsScene();
-        markingsscene[i]->addPixmap(markingspix[i]);
-        markingsscene[i]->installEventFilter(mouseEventEater);
-        markingsgraphics[i]->setScene(markingsscene[i]);
-        markingsgraphics[i]->installEventFilter(mouseEventEater);
-        //        extmarkingsgraphics[i] = markingsgraphics[i];
-        //        extmarkingspix[i] = markingspix[i];
-        //        extmarkingsscene[i] = markingsscene[i];
+    }
+}
+void pkmviewer::updatemovepp()
+{
+    if(redisplayok)
+    {
+        QSpinBox * moveTotalPPboxes[4] = {ui->sbMove1TotalPP,ui->sbMove2TotalPP,ui->sbMove3TotalPP,ui->sbMove4TotalPP};
+        for(int movenum = 0; movenum < 4; movenum++)
+        {
+            moveTotalPPboxes[movenum]->setValue(getmovetotalpp(temppkm,movenum));
+        }
+    }
+}
+void pkmviewer::updatemoveflavor()
+{
+    if(redisplayok)
+    {
+        QLabel * lblFlavors[4] = {ui->lblMove1Flavor,ui->lblMove2Flavor,ui->lblMove3Flavor,ui->lblMove4Flavor};
+        std::string flavor = "";
+        for(int movenum = 0; movenum < 4; movenum++)
+        {
+            flavor = lookupmoveflavortext(temppkm,movenum);
+            lblFlavors[movenum]->setText(QString::fromStdString(flavor));
+        }
+    }
+}
+void pkmviewer::updateabilityflavor()
+{
+    if(redisplayok)
+    {
+        ui->lblAbilityFlavor->setText(QString::fromStdString(lookupabilityflavortext(temppkm->ability)));
     }
 }
 pkmviewer::~pkmviewer()
@@ -596,83 +641,99 @@ void pkmviewer::on_cbMove1_currentIndexChanged(int index)
 {
     if(redisplayok)
     {
-        pkm->moves[0] = (Moves::moves)index;
+        temppkm->moves[0] = (Moves::moves)index;
+        updatemoveflavor();
     }
 }
 void pkmviewer::on_cbMove2_currentIndexChanged(int index)
 {
     if(redisplayok)
     {
-        pkm->moves[1] = (Moves::moves)index;
+        temppkm->moves[1] = (Moves::moves)index;
+        updatemoveflavor();
     }
 }
 void pkmviewer::on_cbMove3_currentIndexChanged(int index)
 {
     if(redisplayok)
     {
-        pkm->moves[2] = (Moves::moves)index;
+        temppkm->moves[2] = (Moves::moves)index;
+        updatemoveflavor();
     }
 }
 void pkmviewer::on_cbMove4_currentIndexChanged(int index)
 {
     if(redisplayok)
     {
-        pkm->moves[3] = (Moves::moves)index;
+        temppkm->moves[3] = (Moves::moves)index;
+        updatemoveflavor();
     }
 }
 void pkmviewer::on_sbMove1PPUps_valueChanged(int arg1)
 {
     if(redisplayok)
     {
-        pkm->ppup[0] = arg1;
+        temppkm->ppup[0] = arg1;
+        updatemovepp();
     }
 }
 void pkmviewer::on_sbMove1PP_valueChanged(int arg1)
 {
     if(redisplayok)
     {
-        pkm->pp[0] = arg1;
+        temppkm->pp[0] = arg1;
     }
 }
 void pkmviewer::on_sbMove2PPUps_valueChanged(int arg1)
 {
     if(redisplayok)
     {
-        pkm->ppup[1] = arg1;
+        temppkm->ppup[1] = arg1;
+        updatemovepp();
     }
 }
 void pkmviewer::on_sbMove2PP_valueChanged(int arg1)
 {
     if(redisplayok)
     {
-        pkm->pp[1] = arg1;
+        temppkm->pp[1] = arg1;
     }
 }
 void pkmviewer::on_sbMove3PPUps_valueChanged(int arg1)
 {
     if(redisplayok)
     {
-        pkm->ppup[2] = arg1;
+        temppkm->ppup[2] = arg1;
+        updatemovepp();
     }
 }
 void pkmviewer::on_sbMove3PP_valueChanged(int arg1)
 {
     if(redisplayok)
     {
-        pkm->pp[2] = arg1;
+        temppkm->pp[2] = arg1;
     }
 }
 void pkmviewer::on_sbMove4PPUps_valueChanged(int arg1)
 {
     if(redisplayok)
     {
-        pkm->ppup[3] = arg1;
+        temppkm->ppup[3] = arg1;
+        updatemovepp();
     }
 }
 void pkmviewer::on_sbMove4PP_valueChanged(int arg1)
 {
     if(redisplayok)
     {
-        pkm->pp[3] = arg1;
+        temppkm->pp[3] = arg1;
+    }
+}
+void pkmviewer::on_cbPKMAbility_currentIndexChanged(int index)
+{
+    if(redisplayok)
+    {
+        temppkm->ability = (Abilities::abilities)index;
+        updateabilityflavor();
     }
 }

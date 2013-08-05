@@ -36,6 +36,9 @@ public:
     void pkmviewer::updatemarks();
     void pkmviewer::updatestats();
     void pkmviewer::updatestatcolors();
+    void pkmviewer::updatemovepp();
+    void pkmviewer::updatemoveflavor();
+    void pkmviewer::updateabilityflavor();
     explicit pkmviewer(QWidget *parent = 0);
     ~pkmviewer();
 private slots:
@@ -116,6 +119,8 @@ private slots:
     void on_sbMove4PPUps_valueChanged(int arg1);
 
     void on_sbMove4PP_valueChanged(int arg1);
+
+    void on_cbPKMAbility_currentIndexChanged(int index);
 
 private:
     Ui::pkmviewer *ui;
