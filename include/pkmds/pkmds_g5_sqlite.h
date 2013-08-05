@@ -143,3 +143,6 @@ void DllExport getballsql(std::ostringstream& o, const Balls::balls ball, const 
 int DllExport getmovepp(const Moves::moves moveid);
 int DllExport getmovepp(const pokemon_obj * pkm, const int movenum);
 int DllExport getmovetotalpp(const pokemon_obj * pkm, const int movenum);
+Genders::genders DllExport calcpkmgender(const pokemon_obj * pkm);
+int DllExport getpkmgenderrate(Species::pkmspecies speciesid);
+Genders::genders DllExport calcpkmgender(const pokemon_obj & pkm);

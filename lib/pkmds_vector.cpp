@@ -35,7 +35,7 @@ void sortbyspeciesasc(std::vector<pokemon_obj>& pkm)
 }
 bool comparebygenderasc(const pokemon_obj &a, const pokemon_obj &b)
 {
-	return (int)(getpkmgender(a)) < (int)(getpkmgender(b));
+    return (int)(calcpkmgender(a)) < (int)(calcpkmgender(b));
 }
 void sortbygenderasc(std::vector<pokemon_obj>& pkm)
 {
@@ -162,7 +162,7 @@ void sortbyspeciesascp(std::vector<pokemon_obj*>* pkm)
 }
 bool comparebygenderascp(const pokemon_obj *a, const pokemon_obj *b)
 {
-	return (int)(getpkmgender(a)) < (int)(getpkmgender(b));
+    return (int)(calcpkmgender(a)) < (int)(calcpkmgender(b));
 }
 //void sortbygenderascp(std::vector<pokemon_obj>* pkm)
 //{

@@ -101,6 +101,7 @@ void pkmviewer::setPKM(party_pkm * ppkm_, int box, bool isPartyPKM)
 }
 void pkmviewer::displayPKM()
 {
+    redisplayok = false;
     switch(temppkm->metlevel_otgender.otgender)
     {
     case Genders::male:
@@ -164,15 +165,6 @@ void pkmviewer::displayPKM()
     }
     shinyscene->addPixmap(*shinypix);
     ui->pbShiny->setScene(shinyscene);
-    QPixmap * genderpix = new QPixmap();
-    QGraphicsScene * genderscene = new QGraphicsScene();
-    Genders::genders thegender = getpkmgender(temppkm);
-    if((thegender == Genders::male) || (thegender == Genders::female))
-    {
-        *genderpix = getgenderpic(thegender);
-    }
-    genderscene->addPixmap(*genderpix);
-    ui->pbGender->setScene(genderscene);
     QPixmap * spritepixmap = new QPixmap();
     QGraphicsScene * spritescene = new QGraphicsScene();
     *spritepixmap = getpkmsprite(temppkm);
@@ -209,6 +201,7 @@ void pkmviewer::displayPKM()
         movePPUpboxes[movenum]->setValue(pkm->ppup[movenum]);
     }
     redisplayok = true;
+    updategenderpic();
     updateabilityflavor();
     updatemarks();
     updatestats();
@@ -361,6 +354,19 @@ void pkmviewer::updateabilityflavor()
         ui->lblAbilityFlavor->setText(QString::fromStdString(lookupabilityflavortext(temppkm->ability)));
     }
 }
+void pkmviewer::updategenderpic()
+{
+    QPixmap * genderpix = new QPixmap();
+    QGraphicsScene * genderscene = new QGraphicsScene();
+    Genders::genders thegender = calcpkmgender(temppkm);
+    if((thegender == Genders::male) || (thegender == Genders::female))
+    {
+        *genderpix = getgenderpic(thegender);
+    }
+    genderscene->addPixmap(*genderpix);
+    ui->pbGender->setScene(genderscene);
+
+}
 pkmviewer::~pkmviewer()
 {
     delete ui;
@@ -423,6 +429,8 @@ void pkmviewer::on_cbPKMSpecies_currentIndexChanged(int index)
         if(redisplayok)
         {
             temppkm->species = (Species::pkmspecies)(index+1);
+            setpkmgender(temppkm,(int)calcpkmgender(temppkm));
+            updategenderpic();
             if((index+1) != ui->sbSpecies->value())
             {
                 ui->sbSpecies->setValue(index+1);
@@ -435,9 +443,12 @@ void pkmviewer::on_sbSpecies_valueChanged(int arg1)
 {
     if((temppkm->species > 0) && ((temppkm->pid > 0) || (temppkm->checksum > 0)))
     {
-        if((arg1-1) != ui->cbPKMSpecies->currentIndex())
+        if(redisplayok)
         {
-            ui->cbPKMSpecies->setCurrentIndex(arg1-1);
+            if((arg1-1) != ui->cbPKMSpecies->currentIndex())
+            {
+                ui->cbPKMSpecies->setCurrentIndex(arg1-1);
+            }
         }
     }
 }

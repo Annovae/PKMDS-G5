@@ -522,7 +522,7 @@ int getpkmstat(const pokemon_obj *pkm, const Stat_IDs::stat_ids stat_id)
 }
 string getpkmgendername(const pokemon_obj &pkm)
 {
-    return getgendername(getpkmgender(pkm));
+    return getgendername(calcpkmgender(pkm));
 }
 bool pkmhasgenddiff(const int species)
 {
@@ -872,7 +872,7 @@ string lookupitemname(const pokemon_obj *pkm, const int generation, const int la
 }
 string getpkmgendername(const pokemon_obj *pkm)
 {
-    return getgendername(getpkmgender(pkm));
+    return getgendername(calcpkmgender(pkm));
 }
 bool pkmhasgenddiff(const pokemon_obj *pkm)
 {
@@ -1258,7 +1258,7 @@ void getspritesql(ostringstream& o, const pokemon_obj & pkm, int langid)
     o.str("");
     o.clear();
     std::string tgender = "";
-    if((pkmhasgenddiff(pkm) && (getpkmgender(pkm) == Genders::female)) & (pkm.species != Species::torchic) & (pkm.species != Species::buizel) & (pkm.species != Species::floatzel))
+    if((pkmhasgenddiff(pkm) && (calcpkmgender(pkm) == Genders::female)) & (pkm.species != Species::torchic) & (pkm.species != Species::buizel) & (pkm.species != Species::floatzel))
     {
         tgender = "female";
     }
@@ -1308,7 +1308,7 @@ void getspritesql(ostringstream& o, const pokemon_obj * pkm, int langid)
     o.str("");
     o.clear();
     std::string tgender = "";
-    if((pkmhasgenddiff(pkm) && (getpkmgender(pkm) == Genders::female)) & (pkm->species != Species::torchic) & (pkm->species != Species::buizel) & (pkm->species != Species::floatzel))
+    if((pkmhasgenddiff(pkm) && (calcpkmgender(pkm) == Genders::female)) & (pkm->species != Species::torchic) & (pkm->species != Species::buizel) & (pkm->species != Species::floatzel))
     {
         tgender = "female";
     }
@@ -1370,7 +1370,7 @@ void geticonsql(ostringstream& o, const pokemon_obj & pkm, int langid)
         o.str("");
         o.clear();
         std::string tgender = "";
-        if(((pkm.species == 521) | (pkm.species == 592) | (pkm.species == 593)) && (getpkmgender(pkm) == Genders::female))
+        if(((pkm.species == 521) | (pkm.species == 592) | (pkm.species == 593)) && (calcpkmgender(pkm) == Genders::female))
         {
             tgender = "fe";
         }
@@ -1444,7 +1444,7 @@ void geticonsql(ostringstream& o, const pokemon_obj * pkm, int langid)
         o.str("");
         o.clear();
         std::string tgender = "";
-        if(((pkm->species == 521) | (pkm->species == 592) | (pkm->species == 593)) && (getpkmgender(pkm) == Genders::female))
+        if(((pkm->species == 521) | (pkm->species == 592) | (pkm->species == 593)) && (calcpkmgender(pkm) == Genders::female))
         {
             tgender = "fe";
         }
@@ -1536,4 +1536,88 @@ int DllExport getmovetotalpp(const pokemon_obj * pkm, const int movenum)
     double multiplier = pkm->ppup[movenum] * 20;
     multiplier = (multiplier + 100) / 100;
     return (int)(curpp * multiplier);
+}
+int DllExport getpkmgenderrate(Species::pkmspecies speciesid)
+{
+    std::ostringstream o;
+    o << ""
+      << "SELECT gender_rate "
+      << "FROM   pokemon_species "
+      << "WHERE  ( id = " << (int)speciesid << " ) ";    return getanint(o);
+}
+Genders::genders DllExport calcpkmgender(const pokemon_obj * pkm)
+{
+    int genderrate = getpkmgenderrate(pkm->species);
+    int ratiobin = 0;
+    switch(genderrate)
+    {
+        case -1:
+        return Genders::genderless;
+        break;
+        case 0:
+        return Genders::male;
+        break;
+        case 1:
+        ratiobin = 31;
+        break;
+        case 2:
+        ratiobin = 63;
+        break;
+        case 4:
+        ratiobin = 127;
+        break;
+        case 6:
+        ratiobin = 191;
+        break;
+        case 8:
+        return Genders::female;
+        break;
+        default:
+        return Genders::male;
+        break;
+    }
+    int pidbin = (pkm->pid) % 256;
+    if(pidbin >= ratiobin)
+    {
+        return Genders::male;
+    }
+    return Genders::female;
+}
+Genders::genders DllExport calcpkmgender(const pokemon_obj & pkm)
+{
+    int genderrate = getpkmgenderrate(pkm.species);
+    int ratiobin = 0;
+    switch(genderrate)
+    {
+        case -1:
+        return Genders::genderless;
+        break;
+        case 0:
+        return Genders::male;
+        break;
+        case 1:
+        ratiobin = 31;
+        break;
+        case 2:
+        ratiobin = 63;
+        break;
+        case 4:
+        ratiobin = 127;
+        break;
+        case 6:
+        ratiobin = 191;
+        break;
+        case 8:
+        return Genders::female;
+        break;
+        default:
+        return Genders::male;
+        break;
+    }
+    int pidbin = (pkm.pid) % 256;
+    if(pidbin >= ratiobin)
+    {
+        return Genders::male;
+    }
+    return Genders::female;
 }
