@@ -328,9 +328,13 @@ void pkmviewer::updatemovepp()
     if(redisplayok)
     {
         QSpinBox * moveTotalPPboxes[4] = {ui->sbMove1TotalPP,ui->sbMove2TotalPP,ui->sbMove3TotalPP,ui->sbMove4TotalPP};
+        QSpinBox * movePPboxes[4] = {ui->sbMove1PP,ui->sbMove2PP,ui->sbMove3PP,ui->sbMove4PP};
+        int curppval = 0;
         for(int movenum = 0; movenum < 4; movenum++)
         {
-            moveTotalPPboxes[movenum]->setValue(getmovetotalpp(temppkm,movenum));
+            curppval = getmovetotalpp(temppkm,movenum);
+            moveTotalPPboxes[movenum]->setValue(curppval);
+            movePPboxes[movenum]->setValue(curppval);
         }
     }
 }
@@ -654,6 +658,7 @@ void pkmviewer::on_cbMove1_currentIndexChanged(int index)
     {
         temppkm->moves[0] = (Moves::moves)index;
         updatemoveflavor();
+        updatemovepp();
     }
 }
 void pkmviewer::on_cbMove2_currentIndexChanged(int index)
@@ -662,6 +667,7 @@ void pkmviewer::on_cbMove2_currentIndexChanged(int index)
     {
         temppkm->moves[1] = (Moves::moves)index;
         updatemoveflavor();
+        updatemovepp();
     }
 }
 void pkmviewer::on_cbMove3_currentIndexChanged(int index)
@@ -670,6 +676,7 @@ void pkmviewer::on_cbMove3_currentIndexChanged(int index)
     {
         temppkm->moves[2] = (Moves::moves)index;
         updatemoveflavor();
+        updatemovepp();
     }
 }
 void pkmviewer::on_cbMove4_currentIndexChanged(int index)
@@ -678,6 +685,7 @@ void pkmviewer::on_cbMove4_currentIndexChanged(int index)
     {
         temppkm->moves[3] = (Moves::moves)index;
         updatemoveflavor();
+        updatemovepp();
     }
 }
 void pkmviewer::on_sbMove1PPUps_valueChanged(int arg1)
