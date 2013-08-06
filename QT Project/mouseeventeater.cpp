@@ -24,6 +24,7 @@ MouseEventEater::MouseEventEater(QObject *parent) :
 }
 extern box_obj * frmCurBox;
 extern int frmCurBoxNum;
+int frmCurSlotNum = 0;
 extern party_obj * frmParty;
 pkmviewer * pview;
 pokemon_obj * apkm = new pokemon_obj;
@@ -40,6 +41,7 @@ bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
     int slot = 0;
     theObjName = obj->objectName();
     slot = (atoi(theObjName.right(2).toStdString().c_str()))-1;
+    frmCurSlotNum = slot;
     switch(event->type())
     {
     case QEvent::MouseButtonPress:

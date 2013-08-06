@@ -70,6 +70,7 @@ frmBoxes::frmBoxes(QWidget *parent) :
     this->setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
 }
 bw2sav_obj * sav = new bw2sav_obj;
+bw2savblock_obj * cursavblock = new bw2savblock_obj;
 box_obj * frmCurBox = new box_obj;
 int frmCurBoxNum = 0;
 party_obj * frmParty = new party_obj;
@@ -94,6 +95,7 @@ void frmBoxes::on_actionLoad_SAV_triggered()
     {
         SavDecrypted = false;
         read(SaveFileName.toStdString().c_str(),sav);
+        cursavblock = &(sav->cur);
         this->setWindowTitle(wTitle + QString::fromStdString(" - ") + QString::fromStdWString(getwstring(sav->cur.trainername)));
         for(int i = 0; i < 6; i++)
         {

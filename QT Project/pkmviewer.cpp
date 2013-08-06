@@ -93,6 +93,8 @@ party_pkm * ppkm = new party_pkm;
 bool ispartypkm = false;
 extern void * theSlot;
 extern int frmCurBoxNum;
+extern bw2savblock_obj * cursavblock;
+extern int frmCurSlotNum;
 int startbox = 0;
 void pkmviewer::setPKM(pokemon_obj * pkm_, int box, bool isPartyPKM)
 {
@@ -101,6 +103,17 @@ void pkmviewer::setPKM(pokemon_obj * pkm_, int box, bool isPartyPKM)
     *temppkm = *pkm;
     redisplayok = false;
     ispartypkm = isPartyPKM;
+    if(ispartypkm)
+    {
+        ui->sbCurrentSlot->setMaximum(5);
+        ui->sbCurrentSlot->setPageStep(2);
+    }
+    else
+    {
+        ui->sbCurrentSlot->setMaximum(29);
+        ui->sbCurrentSlot->setPageStep(6);
+    }
+    ui->sbCurrentSlot->setValue(frmCurSlotNum);
 }
 void pkmviewer::setPKM(party_pkm * ppkm_, int box, bool isPartyPKM)
 {
@@ -812,5 +825,22 @@ void pkmviewer::on_cbBall_currentIndexChanged(int index)
     if(redisplayok)
     {
         temppkm->ball = (Balls::balls)index;
+    }
+}
+
+void pkmviewer::on_sbCurrentSlot_valueChanged(int value)
+{
+    if(redisplayok)
+    {
+        frmCurSlotNum = value;
+        if(ispartypkm)
+        {
+            setPKM(&(cursavblock->party.pokemon[value]),startbox,true);
+        }
+        else
+        {
+            setPKM(&(cursavblock->boxes[startbox].pokemon[value]),startbox,false);
+        }
+        displayPKM();
     }
 }
