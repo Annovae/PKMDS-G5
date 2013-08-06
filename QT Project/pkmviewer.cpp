@@ -209,6 +209,7 @@ void pkmviewer::displayPKM()
     updatemoveflavor();
     updatemovepp();
     updatemoveimages();
+    updatemoveinfo();
 }
 void pkmviewer::updatestats()
 {
@@ -359,6 +360,19 @@ void pkmviewer::updatemoveimages()
             *movepix = getmovecatimage(temppkm->moves[movenum]);
             movescene->addPixmap(*movepix);
             movecatgraphics[movenum]->setScene(movescene);
+        }
+    }
+}
+void pkmviewer::updatemoveinfo()
+{
+    if(redisplayok)
+    {
+        QLabel * lblPower[4] = {ui->lblMove1Power,ui->lblMove2Power,ui->lblMove3Power,ui->lblMove4Power};
+        QLabel * lblAccuracy[4] = {ui->lblMove1Accuracy,ui->lblMove2Accuracy, ui->lblMove3Accuracy,ui->lblMove4Accuracy};
+        for(int movenum = 0; movenum < 4; movenum++)
+        {
+            lblPower[movenum]->setText(QString::number(getmovepower(temppkm->moves[movenum])));
+            lblAccuracy[movenum]->setText(QString::number(getmoveaccuracy(temppkm->moves[movenum])));
         }
     }
 }
@@ -684,6 +698,7 @@ void pkmviewer::on_cbMove1_currentIndexChanged(int index)
         updatemoveflavor();
         updatemovepp();
         updatemoveimages();
+        updatemoveinfo();
     }
 }
 void pkmviewer::on_cbMove2_currentIndexChanged(int index)
@@ -694,6 +709,7 @@ void pkmviewer::on_cbMove2_currentIndexChanged(int index)
         updatemoveflavor();
         updatemovepp();
         updatemoveimages();
+        updatemoveinfo();
     }
 }
 void pkmviewer::on_cbMove3_currentIndexChanged(int index)
@@ -704,6 +720,7 @@ void pkmviewer::on_cbMove3_currentIndexChanged(int index)
         updatemoveflavor();
         updatemovepp();
         updatemoveimages();
+        updatemoveinfo();
     }
 }
 void pkmviewer::on_cbMove4_currentIndexChanged(int index)
@@ -714,6 +731,7 @@ void pkmviewer::on_cbMove4_currentIndexChanged(int index)
         updatemoveflavor();
         updatemovepp();
         updatemoveimages();
+        updatemoveinfo();
     }
 }
 void pkmviewer::on_sbMove1PPUps_valueChanged(int arg1)

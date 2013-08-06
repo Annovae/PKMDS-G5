@@ -1858,6 +1858,9 @@ Changes</string>
      <property name="text">
       <string/>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
     <widget class="QLabel" name="lblMove1Accuracy">
      <property name="geometry">
@@ -1871,11 +1874,14 @@ Changes</string>
      <property name="text">
       <string/>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
     <widget class="Line" name="line">
      <property name="geometry">
       <rect>
-       <x>173</x>
+       <x>174</x>
        <y>26</y>
        <width>3</width>
        <height>33</height>
@@ -1935,6 +1941,9 @@ Changes</string>
      <property name="text">
       <string/>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
     <widget class="QLabel" name="lblMove2Accuracy">
      <property name="geometry">
@@ -1948,11 +1957,14 @@ Changes</string>
      <property name="text">
       <string/>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
     <widget class="Line" name="line_2">
      <property name="geometry">
       <rect>
-       <x>173</x>
+       <x>174</x>
        <y>100</y>
        <width>3</width>
        <height>20</height>
@@ -1974,6 +1986,9 @@ Changes</string>
      <property name="text">
       <string/>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
     <widget class="QLabel" name="lblMove3Accuracy">
      <property name="geometry">
@@ -1987,11 +2002,14 @@ Changes</string>
      <property name="text">
       <string/>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
     <widget class="Line" name="line_3">
      <property name="geometry">
       <rect>
-       <x>173</x>
+       <x>174</x>
        <y>160</y>
        <width>3</width>
        <height>20</height>
@@ -2013,6 +2031,9 @@ Changes</string>
      <property name="text">
       <string/>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
     <widget class="QLabel" name="lblMove4Accuracy">
      <property name="geometry">
@@ -2026,11 +2047,14 @@ Changes</string>
      <property name="text">
       <string/>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
     <widget class="Line" name="line_4">
      <property name="geometry">
       <rect>
-       <x>173</x>
+       <x>174</x>
        <y>220</y>
        <width>3</width>
        <height>20</height>

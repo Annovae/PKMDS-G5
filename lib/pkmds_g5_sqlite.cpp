@@ -1630,6 +1630,24 @@ int DllExport getmovecategory(const Moves::moves moveid)
       << "WHERE  ( id = " << (int)moveid << " ) ";
     return getanint(o);
 }
+int DllExport getmovepower(const Moves::moves moveid)
+{
+    std::ostringstream o;
+    o << ""
+      << "SELECT power "
+      << "FROM   moves "
+      << "WHERE  ( id = " << (int)moveid << " ) ";
+    return getanint(o);
+}
+int DllExport getmoveaccuracy(const Moves::moves moveid)
+{
+    std::ostringstream o;
+    o << ""
+      << "SELECT accuracy "
+      << "FROM   moves "
+      << "WHERE  ( id = " << (int)moveid << " ) ";
+    return getanint(o);
+}
 void DllExport getmovecatsql(ostringstream& o, const Moves::moves moveid)
 {
     std::string catname = "";
