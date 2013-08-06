@@ -125,6 +125,8 @@ private slots:
 
     void on_cbPKMAbility_currentIndexChanged(int index);
 
+    void on_cbBall_currentIndexChanged(int index);
+
 private:
     Ui::pkmviewer *ui;
 };

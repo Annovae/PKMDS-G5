@@ -64,6 +64,14 @@ pkmviewer::pkmviewer(QWidget *parent) :
             moveboxes[moveindex]->addItem(itemname);
         }
     }
+    for(int ballnum = 0; ballnum < (int)Balls::dreamball; ballnum++)
+    {
+        ui->cbBall->addItem("");
+        if((Balls::balls)ballnum != Balls::pokeball_)
+        {
+            ui->cbBall->setItemIcon(ballnum,getballpic((Balls::balls)ballnum));
+        }
+    }
     for(int abilityindex = 0; abilityindex < (int)Abilities::teravolt; abilityindex++)
     {
         itemname = QString::fromStdString(lookupabilityname(abilityindex));
@@ -170,11 +178,7 @@ void pkmviewer::displayPKM()
     *spritepixmap = getpkmsprite(temppkm);
     spritescene->addPixmap(*spritepixmap);
     ui->pbSprite->setScene(spritescene);
-    QPixmap * ballpixmap = new QPixmap();
-    QGraphicsScene * ballscene = new QGraphicsScene();
-    *ballpixmap = getballpic(temppkm->ball);
-    ballscene->addPixmap(*ballpixmap);
-    ui->pbBall->setScene(ballscene);
+    ui->cbBall->setCurrentIndex((int)temppkm->ball);
     ui->sbHPIV->setValue(temppkm->ivs.hp);
     ui->sbAtkIV->setValue(temppkm->ivs.attack);
     ui->sbDefIV->setValue(temppkm->ivs.defense);
@@ -800,5 +804,13 @@ void pkmviewer::on_cbPKMAbility_currentIndexChanged(int index)
     {
         temppkm->ability = (Abilities::abilities)index;
         updateabilityflavor();
+    }
+}
+
+void pkmviewer::on_cbBall_currentIndexChanged(int index)
+{
+    if(redisplayok)
+    {
+        temppkm->ball = (Balls::balls)index;
     }
 }

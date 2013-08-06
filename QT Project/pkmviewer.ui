@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>479</width>
+    <width>489</width>
     <height>325</height>
    </rect>
   </property>
@@ -30,7 +30,7 @@
     <rect>
      <x>330</x>
      <y>0</y>
-     <width>141</width>
+     <width>150</width>
      <height>321</height>
     </rect>
    </property>
@@ -45,7 +45,7 @@
      <rect>
       <x>0</x>
       <y>120</y>
-      <width>100</width>
+      <width>110</width>
       <height>22</height>
      </rect>
     </property>
@@ -53,7 +53,7 @@
    <widget class="QPushButton" name="btnExportPKMFile">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>80</x>
       <y>260</y>
       <width>60</width>
       <height>50</height>
@@ -102,7 +102,7 @@ PKM File</string>
    <widget class="QSpinBox" name="sbLevel">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>80</x>
       <y>180</y>
       <width>42</width>
       <height>22</height>
@@ -118,7 +118,7 @@ PKM File</string>
    <widget class="QPushButton" name="btnSaveChanges">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>10</x>
       <y>260</y>
       <width>60</width>
       <height>50</height>
@@ -132,7 +132,7 @@ Changes</string>
    <widget class="QLabel" name="lblLevel">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>40</x>
       <y>180</y>
       <width>31</width>
       <height>20</height>
@@ -147,7 +147,7 @@ Changes</string>
      <rect>
       <x>-1</x>
       <y>210</y>
-      <width>130</width>
+      <width>150</width>
       <height>20</height>
      </rect>
     </property>
@@ -161,7 +161,7 @@ Changes</string>
    <widget class="QSpinBox" name="sbSpecies">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>110</x>
       <y>120</y>
       <width>40</width>
       <height>22</height>
@@ -178,7 +178,7 @@ Changes</string>
     <property name="geometry">
      <rect>
       <x>100</x>
-      <y>50</y>
+      <y>60</y>
       <width>20</width>
       <height>20</height>
      </rect>
@@ -403,7 +403,7 @@ Changes</string>
     <property name="geometry">
      <rect>
       <x>100</x>
-      <y>70</y>
+      <y>80</y>
       <width>40</width>
       <height>20</height>
      </rect>
@@ -424,29 +424,23 @@ Changes</string>
      <enum>Qt::ScrollBarAlwaysOff</enum>
     </property>
    </widget>
-   <widget class="QGraphicsView" name="pbBall">
+   <widget class="QComboBox" name="cbBall">
     <property name="geometry">
      <rect>
       <x>100</x>
       <y>30</y>
-      <width>20</width>
-      <height>20</height>
+      <width>50</width>
+      <height>30</height>
      </rect>
     </property>
-    <property name="styleSheet">
-     <string notr="true">background: transparent</string>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
     </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Plain</enum>
-    </property>
-    <property name="verticalScrollBarPolicy">
-     <enum>Qt::ScrollBarAlwaysOff</enum>
-    </property>
-    <property name="horizontalScrollBarPolicy">
-     <enum>Qt::ScrollBarAlwaysOff</enum>
+    <property name="frame">
+     <bool>false</bool>
     </property>
    </widget>
   </widget>
@@ -2096,7 +2090,6 @@ Changes</string>
   <tabstop>sbEXP</tabstop>
   <tabstop>pbSprite</tabstop>
   <tabstop>pbGender</tabstop>
-  <tabstop>pbBall</tabstop>
   <tabstop>pbShiny</tabstop>
   <tabstop>pbPkrs</tabstop>
   <tabstop>cbPKMSpecies</tabstop>
