@@ -1551,28 +1551,28 @@ Genders::genders DllExport calcpkmgender(const pokemon_obj * pkm)
     int ratiobin = 0;
     switch(genderrate)
     {
-        case -1:
+    case -1:
         return Genders::genderless;
         break;
-        case 0:
+    case 0:
         return Genders::male;
         break;
-        case 1:
+    case 1:
         ratiobin = 31;
         break;
-        case 2:
+    case 2:
         ratiobin = 63;
         break;
-        case 4:
+    case 4:
         ratiobin = 127;
         break;
-        case 6:
+    case 6:
         ratiobin = 191;
         break;
-        case 8:
+    case 8:
         return Genders::female;
         break;
-        default:
+    default:
         return Genders::male;
         break;
     }
@@ -1589,28 +1589,28 @@ Genders::genders DllExport calcpkmgender(const pokemon_obj & pkm)
     int ratiobin = 0;
     switch(genderrate)
     {
-        case -1:
+    case -1:
         return Genders::genderless;
         break;
-        case 0:
+    case 0:
         return Genders::male;
         break;
-        case 1:
+    case 1:
         ratiobin = 31;
         break;
-        case 2:
+    case 2:
         ratiobin = 63;
         break;
-        case 4:
+    case 4:
         ratiobin = 127;
         break;
-        case 6:
+    case 6:
         ratiobin = 191;
         break;
-        case 8:
+    case 8:
         return Genders::female;
         break;
-        default:
+    default:
         return Genders::male;
         break;
     }
@@ -1620,4 +1620,39 @@ Genders::genders DllExport calcpkmgender(const pokemon_obj & pkm)
         return Genders::male;
     }
     return Genders::female;
+}
+int DllExport getmovecategory(const Moves::moves moveid)
+{
+    std::ostringstream o;
+    o << ""
+      << "SELECT damage_class_id "
+      << "FROM   moves "
+      << "WHERE  ( id = " << (int)moveid << " ) ";
+    return getanint(o);
+}
+void DllExport getmovecatsql(ostringstream& o, const Moves::moves moveid)
+{
+    std::string catname = "";
+    switch((MoveCategories::movecategories)getmovecategory(moveid))
+    {
+    case MoveCategories::physical:
+        catname = "physical";
+        break;
+    case MoveCategories::special:
+        catname = "special";
+        break;
+    case MoveCategories::other:
+        catname = "other";
+        break;
+    }
+    o << "select image from move_categories where (identifier = \"" << catname << "\")";
+}
+Types::types DllExport getmovetype(Moves::moves moveid)
+{
+    ostringstream o;
+    o << ""
+         << "SELECT type_id "
+         << "FROM   moves "
+         << "WHERE  ( id = " << (int)moveid << " ) ";
+    return (Types::types)(getanint(o)-1);
 }

@@ -2393,6 +2393,15 @@ enum markings : byte
     diamond
 };
 }
+namespace MoveCategories
+{
+enum movecategories : byte
+{
+    other=1,
+    physical,
+    special
+};
+}
 int balltoitem(int ball);
 struct pokerus {
     byte strain : 2;

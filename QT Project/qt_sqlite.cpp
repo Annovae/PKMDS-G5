@@ -374,7 +374,7 @@ QPixmap getmovecatimage(const Moves::moves themove)
 {
     QPixmap pixmap;
     std::ostringstream o;
-    o << "select image from move_categories where (identifier = \"" << "" << ")";
+    getmovecatsql(o,themove);
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];

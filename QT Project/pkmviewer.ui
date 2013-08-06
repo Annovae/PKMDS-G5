@@ -1282,7 +1282,7 @@ Changes</string>
       <rect>
        <x>40</x>
        <y>40</y>
-       <width>140</width>
+       <width>110</width>
        <height>22</height>
       </rect>
      </property>
@@ -1292,7 +1292,7 @@ Changes</string>
       <rect>
        <x>40</x>
        <y>100</y>
-       <width>140</width>
+       <width>110</width>
        <height>22</height>
       </rect>
      </property>
@@ -1302,7 +1302,7 @@ Changes</string>
       <rect>
        <x>40</x>
        <y>160</y>
-       <width>140</width>
+       <width>110</width>
        <height>22</height>
       </rect>
      </property>
@@ -1312,7 +1312,7 @@ Changes</string>
       <rect>
        <x>40</x>
        <y>220</y>
-       <width>140</width>
+       <width>110</width>
        <height>22</height>
       </rect>
      </property>
@@ -1320,7 +1320,7 @@ Changes</string>
     <widget class="QSpinBox" name="sbMove1PPUps">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>200</x>
        <y>40</y>
        <width>40</width>
        <height>20</height>
@@ -1364,7 +1364,7 @@ Changes</string>
     <widget class="QSpinBox" name="sbMove1PP">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>240</x>
        <y>40</y>
        <width>40</width>
        <height>20</height>
@@ -1380,23 +1380,10 @@ Changes</string>
       <number>0</number>
      </property>
     </widget>
-    <widget class="QLabel" name="label_2">
-     <property name="geometry">
-      <rect>
-       <x>270</x>
-       <y>40</y>
-       <width>10</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>/</string>
-     </property>
-    </widget>
     <widget class="QSpinBox" name="sbMove2PPUps">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>200</x>
        <y>100</y>
        <width>40</width>
        <height>20</height>
@@ -1415,7 +1402,7 @@ Changes</string>
     <widget class="QSpinBox" name="sbMove2PP">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>240</x>
        <y>100</y>
        <width>40</width>
        <height>20</height>
@@ -1456,23 +1443,10 @@ Changes</string>
       <number>0</number>
      </property>
     </widget>
-    <widget class="QLabel" name="label_3">
-     <property name="geometry">
-      <rect>
-       <x>270</x>
-       <y>100</y>
-       <width>10</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>/</string>
-     </property>
-    </widget>
     <widget class="QSpinBox" name="sbMove3PPUps">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>200</x>
        <y>160</y>
        <width>40</width>
        <height>20</height>
@@ -1491,7 +1465,7 @@ Changes</string>
     <widget class="QSpinBox" name="sbMove3PP">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>240</x>
        <y>160</y>
        <width>40</width>
        <height>20</height>
@@ -1532,23 +1506,10 @@ Changes</string>
       <number>0</number>
      </property>
     </widget>
-    <widget class="QLabel" name="label_4">
-     <property name="geometry">
-      <rect>
-       <x>270</x>
-       <y>160</y>
-       <width>10</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>/</string>
-     </property>
-    </widget>
     <widget class="QSpinBox" name="sbMove4PPUps">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>200</x>
        <y>220</y>
        <width>40</width>
        <height>20</height>
@@ -1567,7 +1528,7 @@ Changes</string>
     <widget class="QSpinBox" name="sbMove4PP">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>240</x>
        <y>220</y>
        <width>40</width>
        <height>20</height>
@@ -1606,19 +1567,6 @@ Changes</string>
      </property>
      <property name="value">
       <number>0</number>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_5">
-     <property name="geometry">
-      <rect>
-       <x>270</x>
-       <y>220</y>
-       <width>10</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>/</string>
      </property>
     </widget>
     <widget class="QGraphicsView" name="pbMove4Cat">
@@ -1724,7 +1672,7 @@ Changes</string>
     <widget class="QLabel" name="label_6">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>200</x>
        <y>10</y>
        <width>40</width>
        <height>30</height>
@@ -1743,14 +1691,14 @@ Changes</string>
     <widget class="QLabel" name="label_7">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>240</x>
        <y>10</y>
        <width>40</width>
        <height>30</height>
       </rect>
      </property>
      <property name="text">
-      <string>Current PP</string>
+      <string>PP</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -1896,6 +1844,200 @@ Changes</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblMove1Power">
+     <property name="geometry">
+      <rect>
+       <x>153</x>
+       <y>44</y>
+       <width>20</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblMove1Accuracy">
+     <property name="geometry">
+      <rect>
+       <x>177</x>
+       <y>44</y>
+       <width>20</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="Line" name="line">
+     <property name="geometry">
+      <rect>
+       <x>173</x>
+       <y>26</y>
+       <width>3</width>
+       <height>33</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_10">
+     <property name="geometry">
+      <rect>
+       <x>153</x>
+       <y>20</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Pwr</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_11">
+     <property name="geometry">
+      <rect>
+       <x>177</x>
+       <y>20</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Acc</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblMove2Power">
+     <property name="geometry">
+      <rect>
+       <x>153</x>
+       <y>104</y>
+       <width>20</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblMove2Accuracy">
+     <property name="geometry">
+      <rect>
+       <x>177</x>
+       <y>104</y>
+       <width>20</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="Line" name="line_2">
+     <property name="geometry">
+      <rect>
+       <x>173</x>
+       <y>100</y>
+       <width>3</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblMove3Power">
+     <property name="geometry">
+      <rect>
+       <x>153</x>
+       <y>164</y>
+       <width>20</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblMove3Accuracy">
+     <property name="geometry">
+      <rect>
+       <x>177</x>
+       <y>164</y>
+       <width>20</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="Line" name="line_3">
+     <property name="geometry">
+      <rect>
+       <x>173</x>
+       <y>160</y>
+       <width>3</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblMove4Power">
+     <property name="geometry">
+      <rect>
+       <x>153</x>
+       <y>224</y>
+       <width>20</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblMove4Accuracy">
+     <property name="geometry">
+      <rect>
+       <x>177</x>
+       <y>224</y>
+       <width>20</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="Line" name="line_4">
+     <property name="geometry">
+      <rect>
+       <x>173</x>
+       <y>220</y>
+       <width>3</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
      </property>
     </widget>
    </widget>

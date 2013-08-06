@@ -146,3 +146,6 @@ int DllExport getmovetotalpp(const pokemon_obj * pkm, const int movenum);
 Genders::genders DllExport calcpkmgender(const pokemon_obj * pkm);
 int DllExport getpkmgenderrate(Species::pkmspecies speciesid);
 Genders::genders DllExport calcpkmgender(const pokemon_obj & pkm);
+int DllExport getmovecategory(const Moves::moves moveid);
+void DllExport getmovecatsql(std::ostringstream& o, const Moves::moves moveid);
+Types::types DllExport getmovetype(Moves::moves moveid);

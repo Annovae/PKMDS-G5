@@ -208,6 +208,7 @@ void pkmviewer::displayPKM()
     updatestatcolors();
     updatemoveflavor();
     updatemovepp();
+    updatemoveimages();
 }
 void pkmviewer::updatestats()
 {
@@ -335,6 +336,29 @@ void pkmviewer::updatemovepp()
             curppval = getmovetotalpp(temppkm,movenum);
             moveTotalPPboxes[movenum]->setValue(curppval);
             movePPboxes[movenum]->setValue(curppval);
+        }
+    }
+}
+void pkmviewer::updatemoveimages()
+{
+    if(redisplayok)
+    {
+        QGraphicsView * movetypegraphics[4] = {ui->pbMove1Type,ui->pbMove2Type,ui->pbMove3Type,ui->pbMove4Type};
+        QGraphicsView * movecatgraphics[4] = {ui->pbMove1Cat,ui->pbMove2Cat,ui->pbMove3Cat,ui->pbMove4Cat};
+        QPixmap * movepix = new QPixmap();
+        QGraphicsScene * movescene = new QGraphicsScene();
+        for(int movenum = 0; movenum < 4; movenum++)
+        {
+            movepix = new QPixmap();
+            movescene = new QGraphicsScene();
+            *movepix = gettypepic((int)(getmovetype(temppkm->moves[movenum])));
+            movescene->addPixmap(*movepix);
+            movetypegraphics[movenum]->setScene(movescene);
+            movepix = new QPixmap();
+            movescene = new QGraphicsScene();
+            *movepix = getmovecatimage(temppkm->moves[movenum]);
+            movescene->addPixmap(*movepix);
+            movecatgraphics[movenum]->setScene(movescene);
         }
     }
 }
@@ -659,6 +683,7 @@ void pkmviewer::on_cbMove1_currentIndexChanged(int index)
         temppkm->moves[0] = (Moves::moves)index;
         updatemoveflavor();
         updatemovepp();
+        updatemoveimages();
     }
 }
 void pkmviewer::on_cbMove2_currentIndexChanged(int index)
@@ -668,6 +693,7 @@ void pkmviewer::on_cbMove2_currentIndexChanged(int index)
         temppkm->moves[1] = (Moves::moves)index;
         updatemoveflavor();
         updatemovepp();
+        updatemoveimages();
     }
 }
 void pkmviewer::on_cbMove3_currentIndexChanged(int index)
@@ -677,6 +703,7 @@ void pkmviewer::on_cbMove3_currentIndexChanged(int index)
         temppkm->moves[2] = (Moves::moves)index;
         updatemoveflavor();
         updatemovepp();
+        updatemoveimages();
     }
 }
 void pkmviewer::on_cbMove4_currentIndexChanged(int index)
@@ -686,6 +713,7 @@ void pkmviewer::on_cbMove4_currentIndexChanged(int index)
         temppkm->moves[3] = (Moves::moves)index;
         updatemoveflavor();
         updatemovepp();
+        updatemoveimages();
     }
 }
 void pkmviewer::on_sbMove1PPUps_valueChanged(int arg1)

@@ -40,6 +40,7 @@ public:
     void pkmviewer::updatemoveflavor();
     void pkmviewer::updateabilityflavor();
     void pkmviewer::updategenderpic();
+    void pkmviewer::updatemoveimages();
     explicit pkmviewer(QWidget *parent = 0);
     ~pkmviewer();
 private slots:

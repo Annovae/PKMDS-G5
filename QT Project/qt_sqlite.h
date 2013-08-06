@@ -31,3 +31,4 @@ QPixmap getwallpaperimage(const Wallpapers::wallpapers wallpaper);
 QPixmap getitemimage(const int itemid);
 QPixmap getmarkingimage(const Markings::markings mark, const bool marked);
 QPixmap getballpic(const Balls::balls ball);
+QPixmap getmovecatimage(const Moves::moves themove);
