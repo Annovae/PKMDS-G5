@@ -30,6 +30,21 @@ public:
     QGraphicsView * markingsgraphics[6];
     QPixmap markingspix[6];
     QGraphicsScene* markingsscene[6];
+
+#ifdef __linux__
+    void setPKM(pokemon_obj * pkm_, int box, bool isPartyPKM);
+    void setPKM(party_pkm * ppkm_, int box, bool isPartyPKM = true);
+    void displayPKM();
+    void updatemarks();
+    void updatestats();
+    void updatestatcolors();
+    void updatemovepp();
+    void updatemoveflavor();
+    void updateabilityflavor();
+    void updategenderpic();
+    void updatemoveimages();
+    void updatemoveinfo();
+#else
     void pkmviewer::setPKM(pokemon_obj * pkm_, int box, bool isPartyPKM);
     void pkmviewer::setPKM(party_pkm * ppkm_, int box, bool isPartyPKM = true);
     void pkmviewer::displayPKM();
@@ -42,6 +57,7 @@ public:
     void pkmviewer::updategenderpic();
     void pkmviewer::updatemoveimages();
     void pkmviewer::updatemoveinfo();
+#endif
     explicit pkmviewer(QWidget *parent = 0);
     ~pkmviewer();
 private slots:

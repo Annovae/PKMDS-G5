@@ -25,7 +25,7 @@ QPixmap getpkmsprite(const pokemon_obj &pkm)
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
-    strcpy_s(cmd,o.str().c_str());
+    strcpy__(cmd,o.str().c_str());
     if(sqlite3_prepare_v2(imgdatabase,cmd,-1,&imgstatement,0) == SQLITE_OK)
     {
         int cols = sqlite3_column_count(imgstatement);
@@ -54,7 +54,7 @@ QPixmap getpkmsprite(const pokemon_obj *pkm)
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
-    strcpy_s(cmd,o.str().c_str());
+    strcpy__(cmd,o.str().c_str());
     if(sqlite3_prepare_v2(imgdatabase,cmd,-1,&imgstatement,0) == SQLITE_OK)
     {
         int cols = sqlite3_column_count(imgstatement);
@@ -83,7 +83,7 @@ QPixmap getpkmicon(const pokemon_obj &pkm)
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
-    strcpy_s(cmd,o.str().c_str());
+    strcpy__(cmd,o.str().c_str());
     if(sqlite3_prepare_v2(imgdatabase,cmd,-1,&imgstatement,0) == SQLITE_OK)
     {
         int cols = sqlite3_column_count(imgstatement);
@@ -112,7 +112,7 @@ QPixmap getpkmicon(const pokemon_obj *pkm)
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
-    strcpy_s(cmd,o.str().c_str());
+    strcpy__(cmd,o.str().c_str());
     if(sqlite3_prepare_v2(imgdatabase,cmd,-1,&imgstatement,0) == SQLITE_OK)
     {
         int cols = sqlite3_column_count(imgstatement);
@@ -141,7 +141,7 @@ QPixmap gettypepic(const Types::types type)
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
-    strcpy_s(cmd,o.str().c_str());
+    strcpy__(cmd,o.str().c_str());
     if(sqlite3_prepare_v2(imgdatabase,cmd,-1,&imgstatement,0) == SQLITE_OK)
     {
         int cols = sqlite3_column_count(imgstatement);
@@ -170,7 +170,7 @@ QPixmap gettypepic(const int type)
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
-    strcpy_s(cmd,o.str().c_str());
+    strcpy__(cmd,o.str().c_str());
     if(sqlite3_prepare_v2(imgdatabase,cmd,-1,&imgstatement,0) == SQLITE_OK)
     {
         int cols = sqlite3_column_count(imgstatement);
@@ -199,7 +199,7 @@ QPixmap getshinystar()
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
-    strcpy_s(cmd,o.str().c_str());
+    strcpy__(cmd,o.str().c_str());
     if(sqlite3_prepare_v2(imgdatabase,cmd,-1,&imgstatement,0) == SQLITE_OK)
     {
         int cols = sqlite3_column_count(imgstatement);
@@ -233,7 +233,7 @@ QPixmap getgenderpic(const Genders::genders gender)
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
-    strcpy_s(cmd,o.str().c_str());
+    strcpy__(cmd,o.str().c_str());
     if(sqlite3_prepare_v2(imgdatabase,cmd,-1,&imgstatement,0) == SQLITE_OK)
     {
         int cols = sqlite3_column_count(imgstatement);
@@ -262,7 +262,7 @@ QPixmap getwallpaperimage(const Wallpapers::wallpapers wallpaper)
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
-    strcpy_s(cmd,o.str().c_str());
+    strcpy__(cmd,o.str().c_str());
     if(sqlite3_prepare_v2(imgdatabase,cmd,-1,&imgstatement,0) == SQLITE_OK)
     {
         int cols = sqlite3_column_count(imgstatement);
@@ -291,7 +291,7 @@ QPixmap getitemimage(const int itemid)
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
-    strcpy_s(cmd,o.str().c_str());
+    strcpy__(cmd,o.str().c_str());
     if(sqlite3_prepare_v2(imgdatabase,cmd,-1,&imgstatement,0) == SQLITE_OK)
     {
         int cols = sqlite3_column_count(imgstatement);
@@ -320,7 +320,7 @@ QPixmap getmarkingimage(const Markings::markings mark, const bool marked)
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
-    strcpy_s(cmd,o.str().c_str());
+    strcpy__(cmd,o.str().c_str());
     if(sqlite3_prepare_v2(imgdatabase,cmd,-1,&imgstatement,0) == SQLITE_OK)
     {
         int cols = sqlite3_column_count(imgstatement);
@@ -349,7 +349,7 @@ QPixmap getballpic(const Balls::balls ball)
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
-    strcpy_s(cmd,o.str().c_str());
+    strcpy__(cmd,o.str().c_str());
     if(sqlite3_prepare_v2(imgdatabase,cmd,-1,&imgstatement,0) == SQLITE_OK)
     {
         int cols = sqlite3_column_count(imgstatement);
@@ -378,7 +378,7 @@ QPixmap getmovecatimage(const Moves::moves themove)
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
-    strcpy_s(cmd,o.str().c_str());
+    strcpy__(cmd,o.str().c_str());
     if(sqlite3_prepare_v2(imgdatabase,cmd,-1,&imgstatement,0) == SQLITE_OK)
     {
         int cols = sqlite3_column_count(imgstatement);

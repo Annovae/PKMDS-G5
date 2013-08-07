@@ -18,6 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef FRMBOXES_H
 #define FRMBOXES_H
 #include <QMainWindow>
+#include <QGraphicsView>
 #include <../../QT Project/qt_sqlite.h>
 #include <../../QT Project/mouseeventeater.h>
 namespace Ui {

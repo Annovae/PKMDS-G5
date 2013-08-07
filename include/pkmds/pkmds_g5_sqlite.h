@@ -17,8 +17,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 #pragma once
 // Set theDB to be the full path of the SQLITE database (provided by Veekun)
+#ifdef __linux__
+static const char theDB[] = "../../SQLite Databases/veekun-pokedex.sqlite";
+static const char theimgDB[] = "../../SQLite Databases/images.sqlite";
+#else
 static const char theDB[] = "..\\..\\SQLite Databases\\veekun-pokedex.sqlite";
 static const char theimgDB[] = "..\\..\\SQLite Databases\\images.sqlite";
+#endif
 #ifdef PKMDS_CMAKE_USED
 #include <sqlite3.h>
 #include <pkmds/pkmds_g5.h>

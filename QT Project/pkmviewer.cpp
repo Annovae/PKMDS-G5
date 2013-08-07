@@ -518,7 +518,17 @@ void pkmviewer::on_txtNickname_textChanged(const QString &arg1)
         if(redisplayok)
         {
             ui->cbNicknamed->setChecked(true);
+#if ! defined(MARKUP_SIZEOFWCHAR)
+#if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
+//            arg1.toCharArray(temppkm->nickname);
+            for(int i = 0; i < arg1.length(); i++)
+            {
+                temppkm->nickname[i] = arg1[i].toAscii();
+            }
+#else
             arg1.toWCharArray(temppkm->nickname);
+#endif
+#endif
             byte * btpnt = new byte;
             btpnt = reinterpret_cast<byte*>(&(temppkm->nickname));
             memset(btpnt+(ui->txtNickname->text().length()*2),0xff,2);
@@ -581,7 +591,17 @@ void pkmviewer::on_cbNicknamed_toggled(bool checked)
 }
 void pkmviewer::on_txtOTName_textChanged(const QString &arg1)
 {
-    arg1.toWCharArray(temppkm->otname);
+#if ! defined(MARKUP_SIZEOFWCHAR)
+#if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
+//            arg1.toCharArray(temppkm->otname);
+    for(int i = 0; i < arg1.length(); i++)
+    {
+        temppkm->otname[i] = arg1[i].toAscii();
+    }
+#else
+            arg1.toWCharArray(temppkm->otname);
+#endif
+#endif
     byte * btpnt = new byte;
     btpnt = reinterpret_cast<byte*>(&(temppkm->otname));
     memset(btpnt+(ui->txtOTName->text().length()*2),0xff,2);

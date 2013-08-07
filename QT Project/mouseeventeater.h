@@ -34,7 +34,12 @@ signals:
 public slots:
 
 protected:
-    bool MouseEventEater::eventFilter(QObject *obj, QEvent *event);
+#ifdef __linux__
+bool eventFilter(QObject *obj, QEvent *event);
+#else
+bool MouseEventEater::eventFilter(QObject *obj, QEvent *event);
+#endif
+
 };
 
 #endif // MOUSEEVENTEATER_H
