@@ -453,8 +453,17 @@ Changes</string>
      <height>311</height>
     </rect>
    </property>
+   <property name="tabPosition">
+    <enum>QTabWidget::North</enum>
+   </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
+   </property>
+   <property name="usesScrollButtons">
+    <bool>false</bool>
+   </property>
+   <property name="movable">
+    <bool>true</bool>
    </property>
    <widget class="QWidget" name="tpBasic">
     <attribute name="title">
@@ -1202,6 +1211,28 @@ Changes</string>
      </property>
      <property name="text">
       <string>Nature</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblCharacteristic">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>210</y>
+       <width>100</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
      </property>
     </widget>
    </widget>
@@ -2097,9 +2128,9 @@ Changes</string>
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="tpMemo">
+   <widget class="QWidget" name="tpOrigins">
     <attribute name="title">
-     <string>Memo</string>
+     <string>Origins</string>
     </attribute>
    </widget>
    <widget class="QWidget" name="tpRibbons">

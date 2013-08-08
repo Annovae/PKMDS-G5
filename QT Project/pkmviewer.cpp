@@ -247,6 +247,7 @@ void pkmviewer::updatestats()
         ui->sbSpAtk->setValue(getpkmstat(temppkm,Stat_IDs::spatk));
         ui->sbSpDef->setValue(getpkmstat(temppkm,Stat_IDs::spdef));
         ui->sbSpeed->setValue(getpkmstat(temppkm,Stat_IDs::speed));
+        ui->lblCharacteristic->setText(QString::fromStdString(lookupcharacteristic(temppkm)));
     }
 }
 void pkmviewer::updatestatcolors()
