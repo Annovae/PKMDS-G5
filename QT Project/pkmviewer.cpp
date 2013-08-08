@@ -24,6 +24,8 @@ pkmviewer::pkmviewer(QWidget *parent) :
 {
     ui->setupUi(this);
     mouseEventEater = new MouseEventEater(this);
+//    QIntValidator * pidvalidator = new QIntValidator(0,4294967295,this);
+//    ui->txtPID->setValidator(pidvalidator);
     markingsgraphics[(int)Markings::circle] = ui->pbCircle;
     markingsgraphics[(int)Markings::diamond] = ui->pbDiamond;
     markingsgraphics[(int)Markings::heart] = ui->pbHeart;
@@ -217,6 +219,12 @@ void pkmviewer::displayPKM()
         movePPboxes[movenum]->setValue(pkm->pp[movenum]);
         movePPUpboxes[movenum]->setValue(pkm->ppup[movenum]);
     }
+    int base = 10;
+    if(ui->chkHex->isChecked())
+    {
+        base = 16;
+    }
+    ui->txtPID->setText(QString::number(temppkm->pid,base));
     redisplayok = true;
     updategenderpic();
     updateabilityflavor();
@@ -864,4 +872,14 @@ void pkmviewer::on_sbCurrentSlot_valueChanged(int value)
         }
         displayPKM();
     }
+}
+
+void pkmviewer::on_chkHex_toggled(bool checked)
+{
+    int base = 10;
+    if(checked)
+    {
+        base = 16;
+    }
+    ui->txtPID->setText(QString::number(temppkm->pid,base));
 }

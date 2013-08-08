@@ -145,6 +145,8 @@ private slots:
 
     void on_sbCurrentSlot_valueChanged(int value);
 
+    void on_chkHex_toggled(bool checked);
+
 private:
     Ui::pkmviewer *ui;
 };
