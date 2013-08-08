@@ -42,6 +42,7 @@ bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
     theObjName = obj->objectName();
     slot = (atoi(theObjName.right(2).toStdString().c_str()))-1;
     frmCurSlotNum = slot;
+    bool todisplay = false;
     switch(event->type())
     {
     case QEvent::MouseButtonPress:
@@ -55,10 +56,12 @@ bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
             case 'B':
                 apkm = &(frmCurBox->pokemon[slot]);
                 ispartypkm_ = false;
+                todisplay = true;
                 break;
             case 'P':
                 apkm = &(frmParty->pokemon[slot].pkm_data);
                 ispartypkm_ = true;
+                todisplay = true;
                 break;
             default:
                 QPixmap extmarkingspix;
@@ -100,7 +103,7 @@ bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
                 themarkingsgraphics->setScene(themarkingsscene);
                 break;
             }
-            if(apkm->species != 0)
+            if((apkm->species != 0) && todisplay)
             {
                 pview->setWindowTitle(QString::fromStdWString(getpkmnickname(apkm)));
                 pview->setPKM(apkm,frmCurBoxNum, ispartypkm_);
