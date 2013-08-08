@@ -17,6 +17,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 *********************************************************************
 PKMDS Code Library - Gen V
 
+Project outline: http://goo.gl/4KRDxN
+Collaboration document: http://goo.gl/iCTKme
+
 Created by Michael Bond (aka Codemonkey85)
 https://plus.google.com/116414067936940758871/
 *********************************************************************
