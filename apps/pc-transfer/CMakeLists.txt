@@ -4,6 +4,8 @@ ADD_EXECUTABLE(pkmds-pc-transfer main.cpp)
 IF(CMAKE_COMPILER_IS_GNUCXX)
     #Needed for scoped enums
     SET_TARGET_PROPERTIES(pkmds-pc-transfer PROPERTIES COMPILE_FLAGS "-std=c++0x")
+ELSEIF("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+    SET_TARGET_PROPERTIES(pkmds-pc-transfer PROPERTIES COMPILE_FLAGS "-std=c++11")
 ENDIF(CMAKE_COMPILER_IS_GNUCXX)
 TARGET_LINK_LIBRARIES(pkmds-pc-transfer pkmds)
 

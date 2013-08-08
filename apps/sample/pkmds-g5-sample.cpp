@@ -74,7 +74,7 @@ int main(int argc, char* argv[])
 			// Decrypt the stored Pokemon
 			decryptpkm(pkm);
 			// Determine whether or not this is an empty slot
-			if(pkm->species != 0)
+			if(int(pkm->species) != 0)
 			{
 				// Do stuff with PKM, which now points to the Pokemon at box [BOX + 1] and slot [SLOT + 1]
 				pkm->species = Species::psyduck;

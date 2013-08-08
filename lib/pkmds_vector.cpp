@@ -110,7 +110,7 @@ std::vector<pokemon_obj> *getpcvector(bw2savblock_obj * block, const bool encryp
 				decryptpkm(&(block->boxes[box].pokemon[slot]));
 			}
 			//if(block->boxes[box].pokemon[slot].blocka.species != 0)
-			if(block->boxes[box].pokemon[slot].species != 0)
+			if(int(block->boxes[box].pokemon[slot].species) != 0)
 			{
 				vpkm->push_back(block->boxes[box].pokemon[slot]);
 			}
@@ -134,7 +134,7 @@ std::vector<pokemon_obj*> *getpcvectorp(bw2savblock_obj * block, const bool encr
 				decryptpkm(&(block->boxes[box].pokemon[slot]));
 			}
 			//if(block->boxes[box].pokemon[slot].blocka.species != 0)
-			if(block->boxes[box].pokemon[slot].species != 0)
+			if(int(block->boxes[box].pokemon[slot].species) != 0)
 			{
 				vpkm->push_back(&(block->boxes[box].pokemon[slot]));
 			}
