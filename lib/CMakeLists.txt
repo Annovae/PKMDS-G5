@@ -1,15 +1,22 @@
 INCLUDE_DIRECTORIES(${PKMDS_SOURCE_DIR}/include)
 
-FILE(GLOB pkmds_sources RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.c*")
+#Clang won't apply -std=c++11 to C files, to make sqlite3 it's own library
+ADD_LIBRARY(pkmds-sqlite3 STATIC sqlite3.c)
+LIST(APPEND pkmds_sqlite3_libs ${CMAKE_DL_LIBS})
+IF(CMAKE_COMPILER_IS_GNUCXX OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+    SET_TARGET_PROPERTIES(pkmds-sqlite3 PROPERTIES COMPILE_FLAGS "-fPIC")
+    LIST(APPEND pkmds_sqlite3_libs pthread)
+ENDIF(CMAKE_COMPILER_IS_GNUCXX OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+TARGET_LINK_LIBRARIES(pkmds-sqlite3 ${pkmds_sqlite3_libs})
 
+FILE(GLOB pkmds_sources RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.cpp")
 ADD_LIBRARY(pkmds SHARED ${pkmds_sources})
 IF(CMAKE_COMPILER_IS_GNUCXX)
-	#Needed for scoped enums
     SET_TARGET_PROPERTIES(pkmds PROPERTIES COMPILE_FLAGS "-std=c++0x")
-	LIST(APPEND pkmds_libs pthread)
+ELSEIF("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+    SET_TARGET_PROPERTIES(pkmds PROPERTIES COMPILE_FLAGS "-std=c++11")
 ENDIF(CMAKE_COMPILER_IS_GNUCXX)
-LIST(APPEND pkmds_libs ${CMAKE_DL_LIBS}) #Necessary for sqlite3.c
-TARGET_LINK_LIBRARIES(pkmds ${pkmds_libs})
+TARGET_LINK_LIBRARIES(pkmds pkmds-sqlite3)
 
 INSTALL(TARGETS pkmds
         LIBRARY DESTINATION ${LIBRARY_DIR} COMPONENT Libraries #.so

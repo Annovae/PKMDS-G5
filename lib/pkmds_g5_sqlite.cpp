@@ -114,7 +114,7 @@ string lookuppkmname(const pokemon_obj &pkm, const int langid)
 }
 string lookuppkmname(const pokemon_obj *pkm, const int langid)
 {
-    return lookuppkmname(pkm->species,langid);
+    return lookuppkmname(int(pkm->species),langid);
 }
 string lookupmovename(const int moveid, const int langid)
 {
@@ -213,7 +213,7 @@ int getpkmlevel(const pokemon_obj &pkm)
 }
 int getpkmlevel(const pokemon_obj *pkm)
 {
-    return getpkmlevel(pkm->species,pkm->exp);
+    return getpkmlevel(int(pkm->species),pkm->exp);
 }
 int getpkmexptonext(const int id, const int exp)
 {
@@ -292,13 +292,13 @@ string getnaturename(const int natureid, const int langid)
 }
 string getnaturename(const pokemon_obj &pkm, const int langid)
 {
-    if(pkm.nature == 0 && pkm.hometown != Hometowns::black && pkm.hometown != Hometowns::white)
+    if(int(pkm.nature) == 0 && int(pkm.hometown) != int(Hometowns::black) && int(pkm.hometown) != int(Hometowns::white))
     {
         return getnaturename(pkm.pid % 25,langid);
     }
     else
     {
-        return getnaturename(pkm.nature,langid);
+        return getnaturename(int(pkm.nature),langid);
     }
 }
 int getnatureincrease(const int natureid)
@@ -312,24 +312,24 @@ int getnatureincrease(const int natureid)
 }
 int getnatureincrease(const pokemon_obj &pkm)
 {
-    if(pkm.nature == 0 && pkm.hometown != Hometowns::black && pkm.hometown != Hometowns::white)
+    if(int(pkm.nature) == 0 && int(pkm.hometown) != int(Hometowns::black) && int(pkm.hometown) != int(Hometowns::white))
     {
         return getnatureincrease(pkm.pid % 25);
     }
     else
     {
-        return getnatureincrease(pkm.nature);
+        return getnatureincrease(int(pkm.nature));
     }
 }
 int getnatureincrease(const pokemon_obj *pkm)
 {
-    if(pkm->nature == 0 && pkm->hometown != Hometowns::black && pkm->hometown != Hometowns::white)
+    if(int(pkm->nature) == 0 && int(pkm->hometown) != int(Hometowns::black) && int(pkm->hometown) != int(Hometowns::white))
     {
         return getnatureincrease(pkm->pid % 25);
     }
     else
     {
-        return getnatureincrease(pkm->nature);
+        return getnatureincrease(int(pkm->nature));
     }
 }
 int getnaturedecrease(const int natureid)
@@ -343,24 +343,24 @@ int getnaturedecrease(const int natureid)
 }
 int getnaturedecrease(const pokemon_obj &pkm)
 {
-    if(pkm.nature == 0 && pkm.hometown != Hometowns::black && pkm.hometown != Hometowns::white)
+    if(int(pkm.nature) == 0 && int(pkm.hometown) != int(Hometowns::black) && int(pkm.hometown) != int(Hometowns::white))
     {
         return getnaturedecrease(pkm.pid % 25);
     }
     else
     {
-        return getnaturedecrease(pkm.nature);
+        return getnaturedecrease(int(pkm.nature));
     }
 }
 int getnaturedecrease(const pokemon_obj *pkm)
 {
-    if(pkm->nature == 0 && pkm->hometown != Hometowns::black && pkm->hometown != Hometowns::white)
+    if(int(pkm->nature) == 0 && int(pkm->hometown) != int(Hometowns::black) && int(pkm->hometown) != int(Hometowns::white))
     {
         return getnaturedecrease(pkm->pid % 25);
     }
     else
     {
-        return getnaturedecrease(pkm->nature);
+        return getnaturedecrease(int(pkm->nature));
     }
 }
 string lookupitemname(const int itemid, const int generation, const int langid)
@@ -440,10 +440,10 @@ int getpkmstat(const pokemon_obj &pkm, const Stat_IDs::stat_ids stat_id)
     };
     double naturemod = 1.0;
     if (getnatureincrease(pkm) != getnaturedecrease(pkm)) {
-        if (stat_id == getnatureincrease(pkm)){
+        if (int(stat_id) == getnatureincrease(pkm)){
             naturemod = 1.1;
         };
-        if (stat_id == getnaturedecrease(pkm)){
+        if (int(stat_id) == getnaturedecrease(pkm)){
             naturemod = 0.9;
         };
     };
@@ -473,7 +473,7 @@ int getpkmstat(const pokemon_obj *pkm, const Stat_IDs::stat_ids stat_id)
       << "                      pokemon.species_id "
       << "WHERE  ( pokemon_species_names.local_language_id = 9 ) "
       << "       AND ( stat_names.local_language_id = 9 ) "
-      << "       AND ( pokemon_species_names.pokemon_species_id = " << (uint16)pkm->species << " ) "
+      << "       AND ( pokemon_species_names.pokemon_species_id = " << (uint16)int(pkm->species) << " ) "
       << "       AND ( pokemon_forms.form_order = " << (int)(pkm->forms.form) << " + 1 ) "
       << "       AND ( stat_names.stat_id = " << (int)stat_id << " ) ";
     basestat = getanint(o);
@@ -510,10 +510,10 @@ int getpkmstat(const pokemon_obj *pkm, const Stat_IDs::stat_ids stat_id)
     };
     double naturemod = 1.0;
     if (getnatureincrease(pkm) != getnaturedecrease(pkm)) {
-        if (stat_id == getnatureincrease(pkm)){
+        if (int(stat_id) == getnatureincrease(pkm)){
             naturemod = 1.1;
         };
-        if (stat_id == getnaturedecrease(pkm)){
+        if (int(stat_id) == getnaturedecrease(pkm)){
             naturemod = 0.9;
         };
     };
@@ -849,21 +849,21 @@ string lookupmovedamagetypename(const pokemon_obj *pkm, const int movenum, const
 }
 int getpkmexptonext(const pokemon_obj *pkm)
 {
-    return getpkmexptonext(pkm->species, pkm->exp);
+    return getpkmexptonext(int(pkm->species), pkm->exp);
 }
 int getpkmexpatcur(const pokemon_obj *pkm)
 {
-    return getpkmexpatcur(pkm->species,pkm->exp);
+    return getpkmexpatcur(int(pkm->species),pkm->exp);
 }
 string getnaturename(const pokemon_obj *pkm, const int langid)
 {
-    if(pkm->nature == 0 && pkm->hometown != Hometowns::black && pkm->hometown != Hometowns::white)
+    if(int(pkm->nature) == 0 && int(pkm->hometown) != int(Hometowns::black) && int(pkm->hometown) != int(Hometowns::white))
     {
         return getnaturename(pkm->pid % 25,langid);
     }
     else
     {
-        return getnaturename(pkm->nature,langid);
+        return getnaturename(int(pkm->nature),langid);
     }
 }
 string lookupitemname(const pokemon_obj *pkm, const int generation, const int langid)
@@ -876,7 +876,7 @@ string getpkmgendername(const pokemon_obj *pkm)
 }
 bool pkmhasgenddiff(const pokemon_obj *pkm)
 {
-    return pkmhasgenddiff(pkm->species);
+    return pkmhasgenddiff(int(pkm->species));
 }
 string lookupabilityname(const pokemon_obj *pkm, const int langid)
 {
@@ -898,7 +898,7 @@ string getpkmformname(const pokemon_obj *pkm, const int langid)
       << "               ON pokemon_species.id = pokemon_species_names.pokemon_species_id "
       << "WHERE  ( pokemon_form_names.local_language_id = " << langid << " ) "
       << "       AND ( pokemon_species_names.local_language_id = " << langid << " ) "
-      << "       AND ( pokemon.species_id = " << (uint16)pkm->species << " ) "
+      << "       AND ( pokemon.species_id = " << (uint16)int(pkm->species) << " ) "
       << "       AND ( pokemon_forms.form_order = " << (int)(pkm->forms.form) << " + 1 ) ";
     return getastring(o);
 }
@@ -936,11 +936,11 @@ string lookupitemflavortext(const pokemon_obj *pkm, const int generation, const 
 }
 string lookuppkmcolorname(const pokemon_obj *pkm, const int langid)
 {
-    return lookuppkmcolorname(pkm->species, langid);
+    return lookuppkmcolorname(int(pkm->species), langid);
 }
 int lookuppkmcolorid(const pokemon_obj *pkm)
 {
-    return lookuppkmcolorid(pkm->species);
+    return lookuppkmcolorid(int(pkm->species));
 }
 string lookupabilityflavortext(const pokemon_obj *pkm, const int version_group, const int langid)
 {
@@ -1024,14 +1024,14 @@ void setlevel(pokemon_obj *pkm, int level)
       << "FROM   pokemon_species "
       << "       INNER JOIN experience "
       << "               ON pokemon_species.growth_rate_id = experience.growth_rate_id "
-      << "WHERE  ( pokemon_species.id = " << (int)(pkm->species) << " ) "
+      << "WHERE  ( pokemon_species.id = " << (int)(int(pkm->species)) << " ) "
       << "       AND ( experience.level = " << level << " ) "
       << "ORDER  BY experience.experience ";
     pkm->exp = getanint(o);
 }
 int lookuppkmtype(const pokemon_obj *pkm, const int slot, const int langid)
 {
-    return lookuppkmtype(pkm->species,pkm->forms.form,slot,langid);
+    return lookuppkmtype(int(pkm->species),pkm->forms.form,slot,langid);
 }
 int lookuppkmevolvedspecies(int speciesid)
 {
@@ -1101,7 +1101,7 @@ void displaypkminconsole(pokemon_obj * pkm)
     cin.ignore();
     std::string linebreak = "\n==========================\n";
     cout << endl;
-    if(pkm->species <= 0 || pkm->species > 649)
+    if(int(pkm->species) <= 0 || int(pkm->species) > 649)
     {
         cout << "This is not a valid Pokemon!" << endl;
     }
@@ -1248,7 +1248,7 @@ void getspritesql(ostringstream& o, const pokemon_obj & pkm, int langid)
         o << "-" << formid;
     }
     formid = o.str().c_str();
-    if(pkm.species == Species::keldeo)
+    if(int(pkm.species) == int(Species::keldeo))
     {
         if(pkm.forms.form == 1)
         {
@@ -1286,19 +1286,19 @@ void getspritesql(ostringstream& o, const pokemon_obj * pkm, int langid)
             << "               ON pokemon_form_names.pokemon_form_id = pokemon_forms.id "
             << "       INNER JOIN pokemon "
             << "               ON pokemon_forms.pokemon_id = pokemon.id "
-            << "WHERE  ( pokemon.species_id = " << (int)(pkm->species) << " ) "
+            << "WHERE  ( pokemon.species_id = " << (int)(int(pkm->species)) << " ) "
             << "       AND ( pokemon_form_names.local_language_id = " << langid << " ) "
             << "       AND ( pokemon_forms.form_order = " << (int)(pkm->forms.form) << " + 1 ) ";
     std::string formid = getastring(o);
     o.str("");
     o.clear();
-    o << (int)(pkm->species);
+    o << (int)(int(pkm->species));
     if(formid != "")
     {
         o << "-" << formid;
     }
     formid = o.str().c_str();
-    if(pkm->species == Species::keldeo)
+    if(int(pkm->species) == int(Species::keldeo))
     {
         if(pkm->forms.form == 1)
         {
@@ -1308,7 +1308,7 @@ void getspritesql(ostringstream& o, const pokemon_obj * pkm, int langid)
     o.str("");
     o.clear();
     std::string tgender = "";
-    if((pkmhasgenddiff(pkm) && (calcpkmgender(pkm) == Genders::female)) & (pkm->species != Species::torchic) & (pkm->species != Species::buizel) & (pkm->species != Species::floatzel))
+    if((pkmhasgenddiff(pkm) && (calcpkmgender(pkm) == Genders::female)) & (int(pkm->species) != int(Species::torchic)) & (int(pkm->species) != int(Species::buizel)) & (int(pkm->species) != int(Species::floatzel)))
     {
         tgender = "female";
     }
@@ -1332,7 +1332,7 @@ void geticonsql(ostringstream& o, const pokemon_obj & pkm, int langid)
     std::string formid;
     if(pkm.ivs.isegg)
     {
-        if(pkm.species == Species::manaphy)
+        if(int(pkm.species) == int(Species::manaphy))
         {
             o << "SELECT image FROM icons_male WHERE (identifier = \"egg-manaphy\")"; // It's a Manaphy egg.
         }
@@ -1344,7 +1344,7 @@ void geticonsql(ostringstream& o, const pokemon_obj & pkm, int langid)
     else
     {
         int formint = pkm.forms.form;
-        if(pkm.species == Species::arceus)
+        if(int(pkm.species) == int(Species::arceus))
         {
             formint = 0;
         }
@@ -1370,12 +1370,12 @@ void geticonsql(ostringstream& o, const pokemon_obj & pkm, int langid)
         o.str("");
         o.clear();
         std::string tgender = "";
-        if(((pkm.species == 521) | (pkm.species == 592) | (pkm.species == 593)) && (calcpkmgender(pkm) == Genders::female))
+        if(((int(pkm.species) == 521) | (int(pkm.species) == 592) | (int(pkm.species) == 593)) && (calcpkmgender(pkm) == Genders::female))
         {
             tgender = "fe";
         }
         tgender += "male";
-        if(pkm.species == Species::keldeo)
+        if(int(pkm.species) == int(Species::keldeo))
         {
             switch(pkm.forms.form)
             {
@@ -1387,7 +1387,7 @@ void geticonsql(ostringstream& o, const pokemon_obj & pkm, int langid)
                 break;
             }
         }
-        if(pkm.species == Species::kyurem && pkm.forms.form != 0)
+        if(int(pkm.species) == int(Species::kyurem) && pkm.forms.form != 0)
         {
             if(pkm.forms.form == 1)
             {
@@ -1406,7 +1406,7 @@ void geticonsql(ostringstream& o, const pokemon_obj * pkm, int langid)
     std::string formid;
     if(pkm->ivs.isegg)
     {
-        if(pkm->species == Species::manaphy)
+        if(int(pkm->species) == int(Species::manaphy))
         {
             o << "SELECT image FROM icons_male WHERE (identifier = \"egg-manaphy\")"; // It's a Manaphy egg.
         }
@@ -1418,7 +1418,7 @@ void geticonsql(ostringstream& o, const pokemon_obj * pkm, int langid)
     else
     {
         int formint = pkm->forms.form;
-        if(pkm->species == Species::arceus)
+        if(int(pkm->species) == int(Species::arceus))
         {
             formint = 0;
         }
@@ -1429,13 +1429,13 @@ void geticonsql(ostringstream& o, const pokemon_obj * pkm, int langid)
                 << "               ON pokemon_form_names.pokemon_form_id = pokemon_forms.id "
                 << "       INNER JOIN pokemon "
                 << "               ON pokemon_forms.pokemon_id = pokemon.id "
-                << "WHERE  ( pokemon.species_id = " << (int)(pkm->species) << " ) "
+                << "WHERE  ( pokemon.species_id = " << (int)(int(pkm->species)) << " ) "
                 << "       AND ( pokemon_form_names.local_language_id = " << langid << " ) "
                 << "       AND ( pokemon_forms.form_order = " << formint << " + 1 ) ";
         formid = getastring(o);
         o.str("");
         o.clear();
-        o << (int)(pkm->species);
+        o << (int)(int(pkm->species));
         if(formid != "")
         {
             o << "-" << formid;
@@ -1444,12 +1444,12 @@ void geticonsql(ostringstream& o, const pokemon_obj * pkm, int langid)
         o.str("");
         o.clear();
         std::string tgender = "";
-        if(((pkm->species == 521) | (pkm->species == 592) | (pkm->species == 593)) && (calcpkmgender(pkm) == Genders::female))
+        if(((int(pkm->species) == 521) | (int(pkm->species) == 592) | (int(pkm->species) == 593)) && (calcpkmgender(pkm) == Genders::female))
         {
             tgender = "fe";
         }
         tgender += "male";
-        if(pkm->species == Species::keldeo)
+        if(int(pkm->species) == int(Species::keldeo))
         {
             switch(pkm->forms.form)
             {
@@ -1461,7 +1461,7 @@ void geticonsql(ostringstream& o, const pokemon_obj * pkm, int langid)
                 break;
             }
         }
-        if(pkm->species == Species::kyurem && pkm->forms.form != 0)
+        if(int(pkm->species) == int(Species::kyurem) && pkm->forms.form != 0)
         {
             if(pkm->forms.form == 1)
             {
