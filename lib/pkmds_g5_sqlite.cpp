@@ -473,7 +473,7 @@ int getpkmstat(const pokemon_obj *pkm, const Stat_IDs::stat_ids stat_id)
       << "                      pokemon.species_id "
       << "WHERE  ( pokemon_species_names.local_language_id = 9 ) "
       << "       AND ( stat_names.local_language_id = 9 ) "
-      << "       AND ( pokemon_species_names.pokemon_species_id = " << (uint16)int(pkm->species) << " ) "
+      << "       AND ( pokemon_species_names.pokemon_species_id = " << (uint16)(pkm->species) << " ) "
       << "       AND ( pokemon_forms.form_order = " << (int)(pkm->forms.form) << " + 1 ) "
       << "       AND ( stat_names.stat_id = " << (int)stat_id << " ) ";
     basestat = getanint(o);
@@ -898,7 +898,7 @@ string getpkmformname(const pokemon_obj *pkm, const int langid)
       << "               ON pokemon_species.id = pokemon_species_names.pokemon_species_id "
       << "WHERE  ( pokemon_form_names.local_language_id = " << langid << " ) "
       << "       AND ( pokemon_species_names.local_language_id = " << langid << " ) "
-      << "       AND ( pokemon.species_id = " << (uint16)int(pkm->species) << " ) "
+      << "       AND ( pokemon.species_id = " << (uint16)(pkm->species) << " ) "
       << "       AND ( pokemon_forms.form_order = " << (int)(pkm->forms.form) << " + 1 ) ";
     return getastring(o);
 }

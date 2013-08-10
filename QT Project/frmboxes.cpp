@@ -67,6 +67,30 @@ frmBoxes::frmBoxes(QWidget *parent) :
     boxgraphics[27] = ui->pbBoxSlot28;
     boxgraphics[28] = ui->pbBoxSlot29;
     boxgraphics[29] = ui->pbBoxSlot30;
+    boxpreviewgraphics[0] = ui->pbBox01;
+    boxpreviewgraphics[1] = ui->pbBox02;
+    boxpreviewgraphics[2] = ui->pbBox03;
+    boxpreviewgraphics[3] = ui->pbBox04;
+    boxpreviewgraphics[4] = ui->pbBox05;
+    boxpreviewgraphics[5] = ui->pbBox06;
+    boxpreviewgraphics[6] = ui->pbBox07;
+    boxpreviewgraphics[7] = ui->pbBox08;
+    boxpreviewgraphics[8] = ui->pbBox09;
+    boxpreviewgraphics[9] = ui->pbBox10;
+    boxpreviewgraphics[10] = ui->pbBox11;
+    boxpreviewgraphics[11] = ui->pbBox12;
+    boxpreviewgraphics[12] = ui->pbBox13;
+    boxpreviewgraphics[13] = ui->pbBox14;
+    boxpreviewgraphics[14] = ui->pbBox15;
+    boxpreviewgraphics[15] = ui->pbBox16;
+    boxpreviewgraphics[16] = ui->pbBox17;
+    boxpreviewgraphics[17] = ui->pbBox18;
+    boxpreviewgraphics[18] = ui->pbBox19;
+    boxpreviewgraphics[19] = ui->pbBox20;
+    boxpreviewgraphics[20] = ui->pbBox21;
+    boxpreviewgraphics[21] = ui->pbBox22;
+    boxpreviewgraphics[22] = ui->pbBox23;
+    boxpreviewgraphics[23] = ui->pbBox24;
     this->setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
 }
 bw2sav_obj * sav = new bw2sav_obj;
@@ -97,20 +121,21 @@ void frmBoxes::on_actionLoad_SAV_triggered()
         read(SaveFileName.toStdString().c_str(),sav);
         cursavblock = &(sav->cur);
         this->setWindowTitle(wTitle + QString::fromStdString(" - ") + QString::fromStdWString(getwstring(sav->cur.trainername)));
+        QGraphicsScene * partyscene = new QGraphicsScene();
         for(int i = 0; i < 6; i++)
         {
             pix = QPixmap();
-            partyscenes[i] = new QGraphicsScene();
-            partyscenes[i]->addPixmap(pix);
-            partygraphics[i]->setScene(partyscenes[i]);
+            partyscene = new QGraphicsScene();
+            partyscene->addPixmap(pix);
+            partygraphics[i]->setScene(partyscene);
         }
         for(uint32 pslot = 0; pslot < sav->cur.party.size; pslot++)
         {
             decryptpkm(&(sav->cur.party.pokemon[pslot]));
             pix = getpkmicon(sav->cur.party.pokemon[pslot].pkm_data);
-            partyscenes[pslot] = new QGraphicsScene();
-            partyscenes[pslot]->addPixmap(pix);
-            partygraphics[pslot]->setScene(partyscenes[pslot]);
+            partyscene = new QGraphicsScene();
+            partyscene->addPixmap(pix);
+            partygraphics[pslot]->setScene(partyscene);
             partygraphics[pslot]->installEventFilter(mouseEventEater);
         }
         if(ui->cbBoxes->count() == 0)
@@ -142,6 +167,7 @@ void frmBoxes::changebox(int index)
     int box = index;
     frmCurBoxNum = index;
     frmCurBox = &(sav->cur.boxes[box]);
+    QGraphicsScene * boxscene = new QGraphicsScene();
     for(int bslot = 0; bslot < 30; bslot++)
     {
         pix = QPixmap();
@@ -149,9 +175,9 @@ void frmBoxes::changebox(int index)
         {
             pix = getpkmicon(sav->cur.boxes[box].pokemon[bslot]);
         }
-        boxscenes[bslot] = new QGraphicsScene();
-        boxscenes[bslot]->addPixmap(pix);
-        boxgraphics[bslot]->setScene(boxscenes[bslot]);
+        boxscene = new QGraphicsScene();
+        boxscene->addPixmap(pix);
+        boxgraphics[bslot]->setScene(boxscene);
         boxgraphics[bslot]->installEventFilter(mouseEventEater);
     }
     if(ui->cbBoxes->currentIndex() != index)

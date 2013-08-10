@@ -32,9 +32,8 @@ public:
     MouseEventEater *mouseEventEater;
     QGraphicsView * partygraphics[6];
     QPixmap pix;
-    QGraphicsScene* partyscenes[6];
     QGraphicsView* boxgraphics[30];
-    QGraphicsScene* boxscenes[30];
+    QGraphicsView* boxpreviewgraphics[24];
     ~frmBoxes();
 private slots:
     void on_actionLoad_SAV_triggered();
