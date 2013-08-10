@@ -46,11 +46,6 @@ bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
         switch(event->type())
         {
         case QEvent::MouseButtonPress:
-            if((theObjName.left(5) == "pbBox") &&
-                    (atoi(theObjName.mid(5,2).toStdString().c_str()) > 0))
-            {
-                std::string stop = "stop";
-            }
             mouseEvent = static_cast<QMouseEvent *>(event);
             switch(mouseEvent->button())
             {
@@ -65,10 +60,6 @@ bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
                         ispartypkm_ = false;
                         todisplay = true;
                     }
-                    else
-                    {
-                        std::string test = theObjName.toStdString();
-                    }
                     break;
                 case 'P':
                     apkm = &(frmParty->pokemon[slot].pkm_data);
@@ -76,7 +67,6 @@ bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
                     todisplay = true;
                     break;
                 default:
-                    std::string test2 = "";
                     QPixmap extmarkingspix;
                     int selection = 0;
                     if(theObjName.right(theObjName.length() - 2).toStdString() == "Circle"){
@@ -127,6 +117,9 @@ bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
             default:
                 break;
             }
+            break;
+        case QEvent::MouseButtonDblClick:
+            break;
         default:
             return QObject::eventFilter(obj, event);
             break;
@@ -137,7 +130,7 @@ bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
         if(event->type() == QEvent::MouseButtonPress)
         {
             int slot = obj->property("Index").toInt();
-//            frmBoxes.changebox(slot);
+            //            frmBoxes.changebox(slot);
             boxViewer->changebox(slot);
         }
         return false;
