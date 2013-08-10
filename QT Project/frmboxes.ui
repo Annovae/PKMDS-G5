@@ -1984,6 +1984,30 @@
        </widget>
       </item>
      </layout>
+     <zorder>pbBox21</zorder>
+     <zorder>pbBox16</zorder>
+     <zorder>pbBox04</zorder>
+     <zorder>pbBox01</zorder>
+     <zorder>pbBox08</zorder>
+     <zorder>pbBox13</zorder>
+     <zorder>pbBox15</zorder>
+     <zorder>pbBox11</zorder>
+     <zorder>pbBox18</zorder>
+     <zorder>pbBox05</zorder>
+     <zorder>pbBox24</zorder>
+     <zorder>pbBox06</zorder>
+     <zorder>pbBox17</zorder>
+     <zorder>pbBox07</zorder>
+     <zorder>pbBox10</zorder>
+     <zorder>pbBox20</zorder>
+     <zorder>pbBox03</zorder>
+     <zorder>pbBox12</zorder>
+     <zorder>pbBox19</zorder>
+     <zorder>pbBox02</zorder>
+     <zorder>pbBox22</zorder>
+     <zorder>pbBox09</zorder>
+     <zorder>pbBox23</zorder>
+     <zorder>pbBox14</zorder>
     </widget>
    </widget>
   </widget>

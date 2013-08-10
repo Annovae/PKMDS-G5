@@ -450,7 +450,7 @@ Changes</string>
      <x>10</x>
      <y>0</y>
      <width>310</width>
-     <height>311</height>
+     <height>320</height>
     </rect>
    </property>
    <property name="tabPosition">
@@ -827,9 +827,9 @@ Changes</string>
      </property>
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>1</x>
        <y>270</y>
-       <width>300</width>
+       <width>301</width>
        <height>16</height>
       </rect>
      </property>

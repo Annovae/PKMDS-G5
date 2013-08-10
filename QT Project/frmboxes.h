@@ -34,11 +34,11 @@ public:
     QPixmap pix;
     QGraphicsView* boxgraphics[30];
     QGraphicsView* boxpreviewgraphics[24];
+    void changebox(int index);
     ~frmBoxes();
 private slots:
     void on_actionLoad_SAV_triggered();
     void on_cbBoxes_currentIndexChanged(int index);
-    void changebox(int index);
     void on_sbBoxIncrem_valueChanged(int value);
     void on_actionSave_changes_triggered();
 

@@ -93,6 +93,7 @@ frmBoxes::frmBoxes(QWidget *parent) :
     boxpreviewgraphics[23] = ui->pbBox24;
     this->setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
 }
+frmBoxes * boxViewer;
 bw2sav_obj * sav = new bw2sav_obj;
 bw2savblock_obj * cursavblock = new bw2savblock_obj;
 box_obj * frmCurBox = new box_obj;
@@ -117,6 +118,7 @@ void frmBoxes::on_actionLoad_SAV_triggered()
     SaveFileName = QFileDialog::getOpenFileName(this,tr("Load a SAV file"),tr(""),tr("SAV Files (*.sav)"));
     if(SaveFileName != "")
     {
+        boxViewer = this;
         SavDecrypted = false;
         read(SaveFileName.toStdString().c_str(),sav);
         cursavblock = &(sav->cur);
@@ -159,6 +161,13 @@ void frmBoxes::on_actionLoad_SAV_triggered()
         ui->cbBoxes->setEnabled(true);
         ui->sbBoxIncrem->setValue(sav->cur.curbox);
         frmParty = &(sav->cur.party);
+        for(int ic = 0; ic < 24; ic++)
+        {
+            boxpreviewgraphics[ic]->installEventFilter(mouseEventEater);
+            boxpreviewgraphics[ic]->viewport()->setMouseTracking(true);
+            boxpreviewgraphics[ic]->viewport()->setProperty("Index",ic);
+            boxpreviewgraphics[ic]->viewport()->installEventFilter(mouseEventEater);
+        }
         changebox(sav->cur.curbox);
     }
 }
