@@ -84,9 +84,6 @@ pkmviewer::pkmviewer(QWidget *parent) :
     this->setMaximumSize(this->size());
     this->setSizeGripEnabled(false);
 }
-//QGraphicsView * extmarkingsgraphics;
-//QPixmap extmarkingspix[6];
-//void* extmarkingsscene;
 bool levelchangeok = true;
 bool redisplayok = false;
 pokemon_obj * temppkm = new pokemon_obj;
