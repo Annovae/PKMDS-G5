@@ -24,8 +24,8 @@ pkmviewer::pkmviewer(QWidget *parent) :
 {
     ui->setupUi(this);
     mouseEventEater = new MouseEventEater(this);
-//    QIntValidator * pidvalidator = new QIntValidator(0,4294967295,this);
-//    ui->txtPID->setValidator(pidvalidator);
+    //    QIntValidator * pidvalidator = new QIntValidator(0,4294967295,this);
+    //    ui->txtPID->setValidator(pidvalidator);
     markingsgraphics[(int)Markings::circle] = ui->pbCircle;
     markingsgraphics[(int)Markings::diamond] = ui->pbDiamond;
     markingsgraphics[(int)Markings::heart] = ui->pbHeart;
@@ -378,14 +378,22 @@ void pkmviewer::updatemoveimages()
         {
             movepix = new QPixmap();
             movescene = new QGraphicsScene();
-            *movepix = gettypepic((int)(getmovetype(temppkm->moves[movenum])));
+            if(temppkm->moves[movenum] != Moves::NOTHING)
+            {
+                *movepix = gettypepic((int)(getmovetype(temppkm->moves[movenum])));
+            }
             movescene->addPixmap(*movepix);
             movetypegraphics[movenum]->setScene(movescene);
+
             movepix = new QPixmap();
             movescene = new QGraphicsScene();
-            *movepix = getmovecatimage(temppkm->moves[movenum]);
+            if(temppkm->moves[movenum] != Moves::NOTHING)
+            {
+                *movepix = getmovecatimage(temppkm->moves[movenum]);
+            }
             movescene->addPixmap(*movepix);
             movecatgraphics[movenum]->setScene(movescene);
+
         }
     }
 }
@@ -397,8 +405,16 @@ void pkmviewer::updatemoveinfo()
         QLabel * lblAccuracy[4] = {ui->lblMove1Accuracy,ui->lblMove2Accuracy, ui->lblMove3Accuracy,ui->lblMove4Accuracy};
         for(int movenum = 0; movenum < 4; movenum++)
         {
-            lblPower[movenum]->setText(QString::number(getmovepower(temppkm->moves[movenum])));
-            lblAccuracy[movenum]->setText(QString::number(getmoveaccuracy(temppkm->moves[movenum])));
+            if(temppkm->moves[movenum] != Moves::NOTHING)
+            {
+                lblPower[movenum]->setText(QString::number(getmovepower(temppkm->moves[movenum])));
+                lblAccuracy[movenum]->setText(QString::number(getmoveaccuracy(temppkm->moves[movenum])));
+            }
+            else
+            {
+                lblPower[movenum]->setText("");
+                lblAccuracy[movenum]->setText("");
+            }
         }
     }
 }
@@ -410,8 +426,15 @@ void pkmviewer::updatemoveflavor()
         std::string flavor = "";
         for(int movenum = 0; movenum < 4; movenum++)
         {
-            flavor = lookupmoveflavortext(temppkm,movenum);
-            lblFlavors[movenum]->setText(QString::fromStdString(flavor));
+            if(temppkm->moves[movenum] != Moves::NOTHING)
+            {
+                flavor = lookupmoveflavortext(temppkm,movenum);
+                lblFlavors[movenum]->setText(QString::fromStdString(flavor));
+            }
+            else
+            {
+                lblFlavors[movenum]->setText("");
+            }
         }
     }
 }
@@ -529,7 +552,6 @@ void pkmviewer::on_txtNickname_textChanged(const QString &arg1)
             ui->cbNicknamed->setChecked(true);
 #if ! defined(MARKUP_SIZEOFWCHAR)
 #if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
-//            arg1.toCharArray(temppkm->nickname);
             for(int i = 0; i < arg1.length(); i++)
             {
                 temppkm->nickname[i] = arg1[i].toAscii();
@@ -602,13 +624,12 @@ void pkmviewer::on_txtOTName_textChanged(const QString &arg1)
 {
 #if ! defined(MARKUP_SIZEOFWCHAR)
 #if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
-//            arg1.toCharArray(temppkm->otname);
     for(int i = 0; i < arg1.length(); i++)
     {
         temppkm->otname[i] = arg1[i].toAscii();
     }
 #else
-            arg1.toWCharArray(temppkm->otname);
+    arg1.toWCharArray(temppkm->otname);
 #endif
 #endif
     byte * btpnt = new byte;
@@ -848,7 +869,6 @@ void pkmviewer::on_cbPKMAbility_currentIndexChanged(int index)
         updateabilityflavor();
     }
 }
-
 void pkmviewer::on_cbBall_currentIndexChanged(int index)
 {
     if(redisplayok)
@@ -856,7 +876,6 @@ void pkmviewer::on_cbBall_currentIndexChanged(int index)
         temppkm->ball = (Balls::balls)index;
     }
 }
-
 void pkmviewer::on_sbCurrentSlot_valueChanged(int value)
 {
     if(redisplayok)
@@ -873,7 +892,6 @@ void pkmviewer::on_sbCurrentSlot_valueChanged(int value)
         displayPKM();
     }
 }
-
 void pkmviewer::on_chkHex_toggled(bool checked)
 {
     int base = 10;
