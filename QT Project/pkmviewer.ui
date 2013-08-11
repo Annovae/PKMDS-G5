@@ -2185,6 +2185,7 @@ Changes</string>
   </widget>
  </widget>
  <tabstops>
+  <tabstop>twPages</tabstop>
   <tabstop>txtNickname</tabstop>
   <tabstop>cbNicknamed</tabstop>
   <tabstop>txtOTName</tabstop>
@@ -2203,13 +2204,10 @@ Changes</string>
   <tabstop>pbPkrs</tabstop>
   <tabstop>cbPKMSpecies</tabstop>
   <tabstop>sbSpecies</tabstop>
-  <tabstop>txtPID</tabstop>
   <tabstop>pbCircle</tabstop>
   <tabstop>pbTriangle</tabstop>
   <tabstop>pbSquare</tabstop>
-  <tabstop>chkHex</tabstop>
   <tabstop>pbHeart</tabstop>
-  <tabstop>twPages</tabstop>
   <tabstop>pbStar</tabstop>
   <tabstop>pbDiamond</tabstop>
   <tabstop>sbLevel</tabstop>
@@ -2261,6 +2259,8 @@ Changes</string>
   <tabstop>sbMove4PPUps</tabstop>
   <tabstop>sbMove4PP</tabstop>
   <tabstop>sbMove4TotalPP</tabstop>
+  <tabstop>txtPID</tabstop>
+  <tabstop>chkHex</tabstop>
  </tabstops>
  <resources/>
  <connections/>
