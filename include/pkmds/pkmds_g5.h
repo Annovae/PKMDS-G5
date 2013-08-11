@@ -3325,6 +3325,114 @@ struct wondercard_obj : gift_data, card_data
         memset(this,0,sizeof(wondercard_obj));
     }
 };
+/*
+    The structure of a save file differs between sets of games:
+    1. Diamond/Pearl
+    2. Platinum
+    3. HeartGold/SoulSilver
+    4. Black/White
+    5. Black 2/White 2
+
+    To cover all save structures, I will write a
+    SAV object which carries an unsigned char * as
+    a member, which will point to the raw data, as
+    well as a function that determines which kind
+    of SAV the object is, and then a series of
+    members which will be initialized from the raw
+    data upon calling new(), which will get their
+    offsets from an enumeration based upon which
+    type of SAV the obeject is derived from.
+
+    I will need to figure out how to deal with the
+    difference in size for party Pokémon within the
+    save files, which is 236 in Gen IV and 220 in
+    Gen V, at a later time.
+*/
+namespace SAV_TYPES
+{
+enum sav_types : byte
+{
+    DP,
+    Pt,
+    HGSS,
+    BW,
+    BW2
+};
+}
+namespace BW2_OFFSETS
+{
+enum bw2_offsets : long
+{
+    chkloc = 0x25FA2,
+    chkcalcloc = 0x25F00,
+    chkcalclen = 0x94,
+    block1checksum = 0x03E2
+};
+}
+namespace BW_OFFSETS
+{
+enum bw_offsets : long
+{
+    chkloc = 0x23F9A,
+    chkcalcloc = 0x23F00,
+    chkcalclen = 0x8C,
+    block1checksum = 0x03E2
+};
+}
+struct sav_object
+{
+    byte * DATA;
+    byte * curbox;
+#if ! defined(MARKUP_SIZEOFWCHAR)
+#if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
+    char boxnames[24][40]; // size: 0x3C0
+#else
+    wchar_t boxnames[24][20]; // size: 0x3C0
+#endif
+#endif
+    Wallpapers::wallpapers boxwallpapers[0x18];
+    uint16 * block1checksum;
+    box_obj boxes[24]; // size: 0x18000
+    bag_obj bag; // size: 0xA00
+    party_obj party; // size: 0x534
+#if ! defined(MARKUP_SIZEOFWCHAR)
+#if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
+    char trainername[0x10]; // size: 0x10
+#else
+    wchar_t trainername[0x08]; // size: 0x10
+#endif
+#endif
+    uint16 tid;
+    uint16 sid;
+    badge_obj badges[8]; // size: 0x20
+    uint32 adventurestarted;
+    SAV_TYPES::sav_types sav_type;
+    sav_object(byte * DATA)
+    {
+        this->DATA = DATA;
+        switch(sav_type)
+        {
+        case SAV_TYPES::DP:
+
+            break;
+        case SAV_TYPES::Pt:
+
+            break;
+        case SAV_TYPES::HGSS:
+
+            break;
+        case SAV_TYPES::BW:
+
+            break;
+        case SAV_TYPES::BW2:
+
+            break;
+        default:
+
+            break;
+        }
+    }
+};
 struct bw2savblock_obj { //
 public:
     byte curbox;
@@ -3456,12 +3564,6 @@ static const int SeedTable[] =
     0xEF1F, 0xFF3E, 0xCF5D, 0xDF7C, 0xAF9B, 0xBFBA, 0x8FD9, 0x9FF8,
     0x6E17, 0x7E36, 0x4E55, 0x5E74, 0x2E93, 0x3EB2, 0x0ED1, 0x1EF0
 };
-static const long bwchkloc = 0x23F9A;
-static const long bw2chkloc = 0x25FA2;
-static const long bwchkcalcloc = 0x23F00;
-static const long bw2chkcalcloc = 0x25F00;
-static const long bwchkcalclen = 0x8C;
-static const long bw2chkcalclen = 0x94;
 static const long boxsize = 0xff0;
 uint16 DllExport getchecksum(bw2savblock_obj &block, const int start, const int length);
 void DllExport calcboxchecksum(bw2savblock_obj &block, int boxindex, bool bw2);

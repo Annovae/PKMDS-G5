@@ -278,9 +278,9 @@ void calcboxchecksum(bw2savblock_obj &block, int boxindex, bool bw2){
     block.boxes[boxindex].checksum = chk;
     byte* data = reinterpret_cast<byte*>(&block);
     if (bw2)
-        memcpy(data + bw2chkcalcloc + 2 + (boxindex * 2), &chk, 2);
+        memcpy(data + (long)BW2_OFFSETS::chkcalcloc + 2 + (boxindex * 2), &chk, 2);
     else
-        memcpy(data + bwchkcalcloc + 2 + (boxindex * 2), &chk, 2);
+        memcpy(data + (long)BW_OFFSETS::chkcalcloc + 2 + (boxindex * 2), &chk, 2);
 }
 void calcchecksum(bw2savblock_obj &block, int start, int length, int loc){
     byte* data = reinterpret_cast<byte*>(&block);
@@ -294,9 +294,9 @@ uint16 getchkfromsav(bw2savblock_obj &block, bool bw2){
     byte* data = reinterpret_cast<byte*>(&block);
     uint16 chk;
     if (bw2)
-        chk = (data[bw2chkloc]) + (data[bw2chkloc+1] * 256);
+        chk = (data[(long)BW2_OFFSETS::chkloc]) + (data[(long)BW2_OFFSETS::chkloc+1] * 256);
     else
-        chk = (data[bwchkloc]) + (data[bwchkloc+1] * 256);
+        chk = (data[(long)BW_OFFSETS::chkloc]) + (data[(long)BW_OFFSETS::chkloc+1] * 256);
     return chk;
 }
 void calcchecksum(pokemon_obj& pkm) // Calculates and assigns the checksum for the given Pokemon object.
@@ -329,9 +329,9 @@ void calcboxchecksum(bw2savblock_obj *block, int boxindex, bool bw2){
     block->boxes[boxindex].checksum = chk;
     byte* data = reinterpret_cast<byte*>(block);
     if (bw2)
-        memcpy(data + bw2chkcalcloc + 2 + (boxindex * 2), &chk, 2);
+        memcpy(data + (long)BW2_OFFSETS::chkcalcloc + 2 + (boxindex * 2), &chk, 2);
     else
-        memcpy(data + bwchkcalcloc + 2 + (boxindex * 2), &chk, 2);
+        memcpy(data + (long)BW_OFFSETS::chkcalcloc + 2 + (boxindex * 2), &chk, 2);
 }
 void calcchecksum(bw2savblock_obj *block, int start, int length, int loc){
     byte* data = reinterpret_cast<byte*>(block);
@@ -345,9 +345,9 @@ uint16 getchkfromsav(bw2savblock_obj *block, bool bw2){
     byte* data = reinterpret_cast<byte*>(block);
     uint16 chk;
     if (bw2)
-        chk = (data[bw2chkloc]) + (data[bw2chkloc+1] * 256);
+        chk = (data[(long)BW2_OFFSETS::chkloc]) + (data[(long)BW2_OFFSETS::chkloc+1] * 256);
     else
-        chk = (data[bwchkloc]) + (data[bwchkloc+1] * 256);
+        chk = (data[(long)BW_OFFSETS::chkloc]) + (data[(long)BW_OFFSETS::chkloc+1] * 256);
     return chk;
 }
 void calcchecksum(pokemon_obj* pkm) // Calculates and assigns the checksum for the given Pokemon object.
@@ -363,32 +363,32 @@ void calcchecksum(pokemon_obj* pkm) // Calculates and assigns the checksum for t
 }
 bool savisbw2(bw2sav_obj &sav)
 {
-    return (getchecksum(sav.cur,bw2chkcalcloc,bw2chkcalclen)) == (getchkfromsav(sav.cur,true));
+    return (getchecksum(sav.cur,(long)BW2_OFFSETS::chkcalcloc,(long)BW2_OFFSETS::chkcalclen)) == (getchkfromsav(sav.cur,true));
 }
 bool savisbw2(bw2sav_obj *sav)
 {
-    return (getchecksum(sav->cur,bw2chkcalcloc,bw2chkcalclen)) == (getchkfromsav(sav->cur,true));
+    return (getchecksum(sav->cur,(long)BW2_OFFSETS::chkcalcloc,(long)BW2_OFFSETS::chkcalclen)) == (getchkfromsav(sav->cur,true));
 }
 void fixsavchecksum(bw2sav_obj &sav)
 {
     if(savisbw2(sav))
     {
-        calcchecksum(sav.cur, bw2chkcalcloc, bw2chkcalclen, bw2chkloc);
+        calcchecksum(sav.cur, (long)BW2_OFFSETS::chkcalcloc, (long)BW2_OFFSETS::chkcalclen, (long)BW2_OFFSETS::chkloc);
     }
     else
     {
-        calcchecksum(sav.cur, bwchkcalcloc, bwchkcalclen, bwchkloc);
+        calcchecksum(sav.cur, (long)BW_OFFSETS::chkcalcloc, (long)BW_OFFSETS::chkcalclen, (long)BW_OFFSETS::chkloc);
     }
 }
 void fixsavchecksum(bw2sav_obj *sav)
 {
     if(savisbw2(sav))
     {
-        calcchecksum(sav->cur, bw2chkcalcloc, bw2chkcalclen, bw2chkloc);
+        calcchecksum(sav->cur, (long)BW2_OFFSETS::chkcalcloc, (long)BW2_OFFSETS::chkcalclen, (long)BW2_OFFSETS::chkloc);
     }
     else
     {
-        calcchecksum(sav->cur, bwchkcalcloc, bwchkcalclen, bwchkloc);
+        calcchecksum(sav->cur, (long)BW_OFFSETS::chkcalcloc, (long)BW_OFFSETS::chkcalclen, (long)BW_OFFSETS::chkloc);
     }
 }
 void write(const char* file_name, pokemon_obj& data) // Writes the given Pokemon data to the given file name.
