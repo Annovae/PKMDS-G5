@@ -99,6 +99,7 @@ frmBoxes::frmBoxes(QWidget *parent) :
 frmBoxes * boxViewer;
 bw2sav_obj * sav = new bw2sav_obj;
 bw2savblock_obj * cursavblock = new bw2savblock_obj;
+bw2savblock_obj * baksavblock = new bw2savblock_obj;
 box_obj * frmCurBox = new box_obj;
 int frmCurBoxNum = 0;
 party_obj * frmParty = new party_obj;
@@ -125,7 +126,8 @@ void frmBoxes::on_actionLoad_SAV_triggered()
         SavDecrypted = false;
         read(SaveFileName.toStdString().c_str(),sav);
         cursavblock = &(sav->cur);
-        this->setWindowTitle(wTitle + QString::fromStdString(" - ") + QString::fromStdWString(getwstring(sav->cur.trainername)));
+        baksavblock = &(sav->bak);
+        this->setWindowTitle(wTitle + QString::fromStdString(" - ") + QString::fromStdWString(getwstring(cursavblock->trainername)));
         QGraphicsScene * partyscene = new QGraphicsScene();
         for(int i = 0; i < 6; i++)
         {
@@ -134,14 +136,18 @@ void frmBoxes::on_actionLoad_SAV_triggered()
             partyscene->addPixmap(pix);
             partygraphics[i]->setScene(partyscene);
         }
-        for(uint32 pslot = 0; pslot < sav->cur.party.size; pslot++)
+        for(uint32 pslot = 0; pslot < cursavblock->party.size; pslot++)
         {
-            decryptpkm(&(sav->cur.party.pokemon[pslot]));
-            pix = getpkmicon(sav->cur.party.pokemon[pslot].pkm_data);
+            decryptpkm(&(cursavblock->party.pokemon[pslot]));
+            pix = getpkmicon(cursavblock->party.pokemon[pslot].pkm_data);
             partyscene = new QGraphicsScene();
             partyscene->addPixmap(pix);
             partygraphics[pslot]->setScene(partyscene);
             partygraphics[pslot]->installEventFilter(mouseEventEater);
+        }
+        for(uint32 pslot = 0; pslot < baksavblock->party.size; pslot++)
+        {
+            decryptpkm(&(baksavblock->party.pokemon[pslot]));
         }
         if(ui->cbBoxes->count() == 0)
         {
@@ -152,10 +158,11 @@ void frmBoxes::on_actionLoad_SAV_triggered()
         }
         for(int boxnum = 0; boxnum < 24; boxnum++)
         {
-            ui->cbBoxes->setItemText(boxnum,QString::fromStdWString(getwstring(sav->cur.boxnames[boxnum])));
+            ui->cbBoxes->setItemText(boxnum,QString::fromStdWString(getwstring(cursavblock->boxnames[boxnum])));
             for(int boxslot = 0; boxslot < 30; boxslot++)
             {
-                decryptpkm(&(sav->cur.boxes[boxnum].pokemon[boxslot]));
+                decryptpkm(&(cursavblock->boxes[boxnum].pokemon[boxslot]));
+                decryptpkm(&(baksavblock->boxes[boxnum].pokemon[boxslot]));
             }
         }
         SavDecrypted = true;
@@ -164,8 +171,8 @@ void frmBoxes::on_actionLoad_SAV_triggered()
         ui->saBoxes->setEnabled(true);
         ui->saBoxes->setVisible(true);
         ui->cbBoxes->setEnabled(true);
-        ui->sbBoxIncrem->setValue(sav->cur.curbox);
-        frmParty = &(sav->cur.party);
+        ui->sbBoxIncrem->setValue(cursavblock->curbox);
+        frmParty = &(cursavblock->party);
         for(int ic = 0; ic < 24; ic++)
         {
             boxpreviewgraphics[ic]->installEventFilter(mouseEventEater);
@@ -173,21 +180,21 @@ void frmBoxes::on_actionLoad_SAV_triggered()
             boxpreviewgraphics[ic]->viewport()->setProperty("Index",ic);
             boxpreviewgraphics[ic]->viewport()->installEventFilter(mouseEventEater);
         }
-        changebox(sav->cur.curbox);
+        changebox(cursavblock->curbox);
     }
 }
 void frmBoxes::changebox(int index)
 {
     int box = index;
     frmCurBoxNum = index;
-    frmCurBox = &(sav->cur.boxes[box]);
+    frmCurBox = &(cursavblock->boxes[box]);
     QGraphicsScene * boxscene = new QGraphicsScene();
     for(int bslot = 0; bslot < 30; bslot++)
     {
         pix = QPixmap();
-        if(sav->cur.boxes[box].pokemon[bslot].species != Species::NOTHING)
+        if(cursavblock->boxes[box].pokemon[bslot].species != Species::NOTHING)
         {
-            pix = getpkmicon(sav->cur.boxes[box].pokemon[bslot]);
+            pix = getpkmicon(cursavblock->boxes[box].pokemon[bslot]);
         }
         boxscene = new QGraphicsScene();
         boxscene->addPixmap(pix);
@@ -203,7 +210,7 @@ void frmBoxes::changebox(int index)
         ui->sbBoxIncrem->setValue(index);
     }
     QPixmap * wallpaperpixmap = new QPixmap;
-    *wallpaperpixmap = getwallpaperimage(sav->cur.boxwallpapers[box]);
+    *wallpaperpixmap = getwallpaperimage(cursavblock->boxwallpapers[box]);
     QGraphicsScene * wallpaperscene = new QGraphicsScene;
     wallpaperscene->addPixmap(*wallpaperpixmap);
     ui->pbPCBox->setScene(wallpaperscene);
@@ -235,7 +242,7 @@ void frmBoxes::on_actionSave_changes_triggered()
     int ret = msgBox.exec();
     if(ret == 0x800) // 2048 (or 0x800) = Save, 4194304 (or 0x400000) = Cancel
     {
-        if((sav > 0) && (sav->cur.adventurestarted != 0))
+        if((sav > 0) && (cursavblock->adventurestarted != 0))
         {
 
             bw2sav_obj * savout = new bw2sav_obj;

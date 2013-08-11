@@ -24,8 +24,8 @@ pkmviewer::pkmviewer(QWidget *parent) :
 {
     ui->setupUi(this);
     mouseEventEater = new MouseEventEater(this);
-    //    QIntValidator * pidvalidator = new QIntValidator(0,4294967295,this);
-    //    ui->txtPID->setValidator(pidvalidator);
+    ui->sbCurrentSlot->setEnabled(false);
+    ui->sbCurrentSlot->setVisible(false);
     markingsgraphics[(int)Markings::circle] = ui->pbCircle;
     markingsgraphics[(int)Markings::diamond] = ui->pbDiamond;
     markingsgraphics[(int)Markings::heart] = ui->pbHeart;

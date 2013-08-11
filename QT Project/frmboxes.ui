@@ -1233,7 +1233,7 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>0</y>
+       <y>-1564</y>
        <width>81</width>
        <height>1812</height>
       </rect>
@@ -2305,6 +2305,71 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>pbPartySlot01</tabstop>
+  <tabstop>pbPartySlot02</tabstop>
+  <tabstop>pbPartySlot03</tabstop>
+  <tabstop>pbPartySlot04</tabstop>
+  <tabstop>pbPartySlot05</tabstop>
+  <tabstop>pbPartySlot06</tabstop>
+  <tabstop>pbPCBox</tabstop>
+  <tabstop>pbBoxSlot01</tabstop>
+  <tabstop>pbBoxSlot02</tabstop>
+  <tabstop>pbBoxSlot03</tabstop>
+  <tabstop>pbBoxSlot04</tabstop>
+  <tabstop>pbBoxSlot05</tabstop>
+  <tabstop>pbBoxSlot06</tabstop>
+  <tabstop>pbBoxSlot07</tabstop>
+  <tabstop>pbBoxSlot08</tabstop>
+  <tabstop>pbBoxSlot09</tabstop>
+  <tabstop>pbBoxSlot10</tabstop>
+  <tabstop>pbBoxSlot11</tabstop>
+  <tabstop>pbBoxSlot12</tabstop>
+  <tabstop>pbBoxSlot13</tabstop>
+  <tabstop>pbBoxSlot14</tabstop>
+  <tabstop>pbBoxSlot15</tabstop>
+  <tabstop>pbBoxSlot16</tabstop>
+  <tabstop>pbBoxSlot17</tabstop>
+  <tabstop>pbBoxSlot18</tabstop>
+  <tabstop>pbBoxSlot19</tabstop>
+  <tabstop>pbBoxSlot20</tabstop>
+  <tabstop>pbBoxSlot21</tabstop>
+  <tabstop>pbBoxSlot22</tabstop>
+  <tabstop>pbBoxSlot23</tabstop>
+  <tabstop>pbBoxSlot24</tabstop>
+  <tabstop>pbBoxSlot25</tabstop>
+  <tabstop>pbBoxSlot26</tabstop>
+  <tabstop>pbBoxSlot27</tabstop>
+  <tabstop>pbBoxSlot28</tabstop>
+  <tabstop>pbBoxSlot29</tabstop>
+  <tabstop>pbBoxSlot30</tabstop>
+  <tabstop>cbBoxes</tabstop>
+  <tabstop>saBoxes</tabstop>
+  <tabstop>pbBox01</tabstop>
+  <tabstop>pbBox02</tabstop>
+  <tabstop>pbBox03</tabstop>
+  <tabstop>pbBox04</tabstop>
+  <tabstop>pbBox05</tabstop>
+  <tabstop>pbBox06</tabstop>
+  <tabstop>pbBox07</tabstop>
+  <tabstop>pbBox08</tabstop>
+  <tabstop>pbBox09</tabstop>
+  <tabstop>pbBox10</tabstop>
+  <tabstop>pbBox11</tabstop>
+  <tabstop>pbBox12</tabstop>
+  <tabstop>pbBox13</tabstop>
+  <tabstop>pbBox14</tabstop>
+  <tabstop>pbBox15</tabstop>
+  <tabstop>pbBox16</tabstop>
+  <tabstop>pbBox17</tabstop>
+  <tabstop>pbBox18</tabstop>
+  <tabstop>pbBox19</tabstop>
+  <tabstop>pbBox20</tabstop>
+  <tabstop>pbBox21</tabstop>
+  <tabstop>pbBox22</tabstop>
+  <tabstop>pbBox23</tabstop>
+  <tabstop>pbBox24</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

@@ -3329,7 +3329,6 @@ struct bw2savblock_obj { //
 public:
     byte curbox;
     byte unknown0[0x03]; //
-
 #if ! defined(MARKUP_SIZEOFWCHAR)
 #if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
     char boxnames[24][40]; // size: 0x3C0
@@ -3337,7 +3336,6 @@ public:
     wchar_t boxnames[24][20]; // size: 0x3C0
 #endif
 #endif
-
     Wallpapers::wallpapers boxwallpapers[0x18];
     byte unknown1[6];
     uint16 block1checksum;
@@ -3346,7 +3344,6 @@ public:
     bag_obj bag; // size: 0xA00
     party_obj party; // size: 0x534
     byte unknown3[0xD0]; //
-
 #if ! defined(MARKUP_SIZEOFWCHAR)
 #if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
     char trainername[0x10]; // size: 0x10
@@ -3354,16 +3351,14 @@ public:
     wchar_t trainername[0x08]; // size: 0x10
 #endif
 #endif
-
-
     uint16 tid;
     uint16 sid;
     byte unknown4[0x32EC];
     badge_obj badges[8]; // size: 0x20
     byte unknown5[0x1210];
-
     uint32 adventurestarted;
-    byte unknown6[0x226C8];
+    //    byte unknown6[0x226C8];
+    byte unknown6[0x86C8];
     // Gym badge dates are stored starting 1C704 - 4 bytes - year, month, day, 0
     bw2savblock_obj()
     {
@@ -3374,6 +3369,7 @@ struct bw2sav_obj { //
 public:
     bw2savblock_obj cur; // size:
     bw2savblock_obj bak; // size:
+    byte unknown[0x34000];
     bw2sav_obj()
     {
         memset(this,0,sizeof(bw2sav_obj));
