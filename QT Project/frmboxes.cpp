@@ -27,7 +27,10 @@ frmBoxes::frmBoxes(QWidget *parent) :
     opendb();
     openimgdb();
     ui->setupUi(this);
+    ui->saBoxes->setVisible(false);
+    ui->saBoxes->setEnabled(false);
     ui->sbBoxIncrem->setVisible(false);
+    ui->sbBoxIncrem->setEnabled(false);
     mouseEventEater = new MouseEventEater(this);
     extern pkmviewer * pview;
     pview = new pkmviewer(this);
@@ -156,8 +159,10 @@ void frmBoxes::on_actionLoad_SAV_triggered()
             }
         }
         SavDecrypted = true;
-        ui->sbBoxIncrem->setVisible(true);
         ui->sbBoxIncrem->setEnabled(true);
+        ui->sbBoxIncrem->setVisible(true);
+        ui->saBoxes->setEnabled(true);
+        ui->saBoxes->setVisible(true);
         ui->cbBoxes->setEnabled(true);
         ui->sbBoxIncrem->setValue(sav->cur.curbox);
         frmParty = &(sav->cur.party);

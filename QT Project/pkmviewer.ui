@@ -2185,7 +2185,6 @@ Changes</string>
   </widget>
  </widget>
  <tabstops>
-  <tabstop>twPages</tabstop>
   <tabstop>txtNickname</tabstop>
   <tabstop>cbNicknamed</tabstop>
   <tabstop>txtOTName</tabstop>
@@ -2196,16 +2195,21 @@ Changes</string>
   <tabstop>pbType1</tabstop>
   <tabstop>pbType2</tabstop>
   <tabstop>sbEXP</tabstop>
+  <tabstop>cbPKMAbility</tabstop>
   <tabstop>pbSprite</tabstop>
   <tabstop>pbGender</tabstop>
+  <tabstop>cbBall</tabstop>
   <tabstop>pbShiny</tabstop>
   <tabstop>pbPkrs</tabstop>
   <tabstop>cbPKMSpecies</tabstop>
   <tabstop>sbSpecies</tabstop>
+  <tabstop>txtPID</tabstop>
   <tabstop>pbCircle</tabstop>
   <tabstop>pbTriangle</tabstop>
   <tabstop>pbSquare</tabstop>
+  <tabstop>chkHex</tabstop>
   <tabstop>pbHeart</tabstop>
+  <tabstop>twPages</tabstop>
   <tabstop>pbStar</tabstop>
   <tabstop>pbDiamond</tabstop>
   <tabstop>sbLevel</tabstop>
@@ -2225,13 +2229,38 @@ Changes</string>
   <tabstop>sbSpAtkEV</tabstop>
   <tabstop>sbSpDefEV</tabstop>
   <tabstop>sbSpeedEV</tabstop>
-  <tabstop>sbTotalEVs</tabstop>
   <tabstop>sbHP</tabstop>
   <tabstop>sbAtk</tabstop>
   <tabstop>sbDef</tabstop>
   <tabstop>sbSpAtk</tabstop>
   <tabstop>sbSpDef</tabstop>
   <tabstop>sbSpeed</tabstop>
+  <tabstop>sbTotalEVs</tabstop>
+  <tabstop>cbNatures</tabstop>
+  <tabstop>pbMove1Type</tabstop>
+  <tabstop>pbMove1Cat</tabstop>
+  <tabstop>cbMove1</tabstop>
+  <tabstop>sbMove1PPUps</tabstop>
+  <tabstop>sbMove1PP</tabstop>
+  <tabstop>sbMove1TotalPP</tabstop>
+  <tabstop>pbMove2Type</tabstop>
+  <tabstop>pbMove2Cat</tabstop>
+  <tabstop>cbMove2</tabstop>
+  <tabstop>sbMove2PPUps</tabstop>
+  <tabstop>sbMove2PP</tabstop>
+  <tabstop>sbMove2TotalPP</tabstop>
+  <tabstop>pbMove3Type</tabstop>
+  <tabstop>pbMove3Cat</tabstop>
+  <tabstop>cbMove3</tabstop>
+  <tabstop>sbMove3PPUps</tabstop>
+  <tabstop>sbMove3PP</tabstop>
+  <tabstop>sbMove3TotalPP</tabstop>
+  <tabstop>pbMove4Type</tabstop>
+  <tabstop>pbMove4Cat</tabstop>
+  <tabstop>cbMove4</tabstop>
+  <tabstop>sbMove4PPUps</tabstop>
+  <tabstop>sbMove4PP</tabstop>
+  <tabstop>sbMove4TotalPP</tabstop>
  </tabstops>
  <resources/>
  <connections/>

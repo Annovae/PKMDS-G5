@@ -221,7 +221,7 @@ void pkmviewer::displayPKM()
     {
         base = 16;
     }
-    ui->txtPID->setText(QString::number(temppkm->pid,base));
+    ui->txtPID->setText(QString::number(temppkm->pid,base).toUpper());
     redisplayok = true;
     updategenderpic();
     updateabilityflavor();
@@ -896,5 +896,5 @@ void pkmviewer::on_chkHex_toggled(bool checked)
     {
         base = 16;
     }
-    ui->txtPID->setText(QString::number(temppkm->pid,base));
+    ui->txtPID->setText(QString::number(temppkm->pid,base).toUpper());
 }

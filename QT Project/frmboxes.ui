@@ -1235,10 +1235,20 @@
        <x>0</x>
        <y>0</y>
        <width>81</width>
-       <height>1356</height>
+       <height>1812</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="lblBox01">
+        <property name="text">
+         <string>Box 1</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+        </property>
+       </widget>
+      </item>
       <item>
        <widget class="QGraphicsView" name="pbBox01">
         <property name="sizePolicy">
@@ -1267,6 +1277,16 @@
         </property>
         <property name="horizontalScrollBarPolicy">
          <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lblBox02">
+        <property name="text">
+         <string>Box 2</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
         </property>
        </widget>
       </item>
@@ -1302,6 +1322,16 @@
        </widget>
       </item>
       <item>
+       <widget class="QLabel" name="lblBox03">
+        <property name="text">
+         <string>Box 3</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QGraphicsView" name="pbBox03">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -1329,6 +1359,16 @@
         </property>
         <property name="horizontalScrollBarPolicy">
          <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lblBox04">
+        <property name="text">
+         <string>Box 4</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
         </property>
        </widget>
       </item>
@@ -1364,6 +1404,16 @@
        </widget>
       </item>
       <item>
+       <widget class="QLabel" name="lblBox05">
+        <property name="text">
+         <string>Box 5</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QGraphicsView" name="pbBox05">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -1391,6 +1441,16 @@
         </property>
         <property name="horizontalScrollBarPolicy">
          <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lblBox06">
+        <property name="text">
+         <string>Box 6</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
         </property>
        </widget>
       </item>
@@ -1426,6 +1486,16 @@
        </widget>
       </item>
       <item>
+       <widget class="QLabel" name="lblBox07">
+        <property name="text">
+         <string>Box 7</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QGraphicsView" name="pbBox07">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -1453,6 +1523,16 @@
         </property>
         <property name="horizontalScrollBarPolicy">
          <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lblBox08">
+        <property name="text">
+         <string>Box 8</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
         </property>
        </widget>
       </item>
@@ -1488,6 +1568,16 @@
        </widget>
       </item>
       <item>
+       <widget class="QLabel" name="lblBox09">
+        <property name="text">
+         <string>Box 9</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QGraphicsView" name="pbBox09">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -1515,6 +1605,16 @@
         </property>
         <property name="horizontalScrollBarPolicy">
          <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lblBox10">
+        <property name="text">
+         <string>Box 10</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
         </property>
        </widget>
       </item>
@@ -1550,6 +1650,16 @@
        </widget>
       </item>
       <item>
+       <widget class="QLabel" name="lblBox11">
+        <property name="text">
+         <string>Box 11</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QGraphicsView" name="pbBox11">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -1577,6 +1687,16 @@
         </property>
         <property name="horizontalScrollBarPolicy">
          <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lblBox12">
+        <property name="text">
+         <string>Box 12</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
         </property>
        </widget>
       </item>
@@ -1612,6 +1732,16 @@
        </widget>
       </item>
       <item>
+       <widget class="QLabel" name="lblBox13">
+        <property name="text">
+         <string>Box 13</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QGraphicsView" name="pbBox13">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -1639,6 +1769,16 @@
         </property>
         <property name="horizontalScrollBarPolicy">
          <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lblBox14">
+        <property name="text">
+         <string>Box 14</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
         </property>
        </widget>
       </item>
@@ -1674,6 +1814,16 @@
        </widget>
       </item>
       <item>
+       <widget class="QLabel" name="lblBox15">
+        <property name="text">
+         <string>Box 15</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QGraphicsView" name="pbBox15">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -1701,6 +1851,16 @@
         </property>
         <property name="horizontalScrollBarPolicy">
          <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lblBox16">
+        <property name="text">
+         <string>Box 16</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
         </property>
        </widget>
       </item>
@@ -1736,6 +1896,16 @@
        </widget>
       </item>
       <item>
+       <widget class="QLabel" name="lblBox17">
+        <property name="text">
+         <string>Box 17</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QGraphicsView" name="pbBox17">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -1763,6 +1933,16 @@
         </property>
         <property name="horizontalScrollBarPolicy">
          <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lblBox18">
+        <property name="text">
+         <string>Box 18</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
         </property>
        </widget>
       </item>
@@ -1798,6 +1978,16 @@
        </widget>
       </item>
       <item>
+       <widget class="QLabel" name="lblBox19">
+        <property name="text">
+         <string>Box 19</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QGraphicsView" name="pbBox19">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -1825,6 +2015,16 @@
         </property>
         <property name="horizontalScrollBarPolicy">
          <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lblBox20">
+        <property name="text">
+         <string>Box 20</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
         </property>
        </widget>
       </item>
@@ -1860,6 +2060,16 @@
        </widget>
       </item>
       <item>
+       <widget class="QLabel" name="lblBox21">
+        <property name="text">
+         <string>Box 21</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QGraphicsView" name="pbBox21">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -1887,6 +2097,16 @@
         </property>
         <property name="horizontalScrollBarPolicy">
          <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lblBox22">
+        <property name="text">
+         <string>Box 22</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
         </property>
        </widget>
       </item>
@@ -1922,6 +2142,16 @@
        </widget>
       </item>
       <item>
+       <widget class="QLabel" name="lblBox23">
+        <property name="text">
+         <string>Box 23</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QGraphicsView" name="pbBox23">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -1949,6 +2179,16 @@
         </property>
         <property name="horizontalScrollBarPolicy">
          <enum>Qt::ScrollBarAlwaysOff</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lblBox24">
+        <property name="text">
+         <string>Box 24</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignHCenter</set>
         </property>
        </widget>
       </item>
@@ -2008,6 +2248,30 @@
      <zorder>pbBox09</zorder>
      <zorder>pbBox23</zorder>
      <zorder>pbBox14</zorder>
+     <zorder>lblBox01</zorder>
+     <zorder>lblBox02</zorder>
+     <zorder>lblBox03</zorder>
+     <zorder>lblBox04</zorder>
+     <zorder>lblBox05</zorder>
+     <zorder>lblBox06</zorder>
+     <zorder>lblBox24</zorder>
+     <zorder>lblBox23</zorder>
+     <zorder>lblBox22</zorder>
+     <zorder>lblBox21</zorder>
+     <zorder>lblBox20</zorder>
+     <zorder>lblBox19</zorder>
+     <zorder>lblBox18</zorder>
+     <zorder>lblBox17</zorder>
+     <zorder>lblBox16</zorder>
+     <zorder>lblBox15</zorder>
+     <zorder>lblBox14</zorder>
+     <zorder>lblBox13</zorder>
+     <zorder>lblBox12</zorder>
+     <zorder>lblBox11</zorder>
+     <zorder>lblBox10</zorder>
+     <zorder>lblBox09</zorder>
+     <zorder>lblBox08</zorder>
+     <zorder>lblBox07</zorder>
     </widget>
    </widget>
   </widget>
