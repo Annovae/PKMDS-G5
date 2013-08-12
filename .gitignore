@@ -29,3 +29,19 @@ Makefile
 *-build-*
 *build-*
 *build-PKMDS_QT-Desktop_with_debugger-Debug/*
+
+#VS2010
+
+*.suo
+*.sdf
+*.opensdf
+*.ipch
+*.log
+*.user
+*.filters
+*.vcxproj
+*.idb
+*.tlog
+*.lastbuildstate
+*.exp
+SAV Object Refactor.lib
