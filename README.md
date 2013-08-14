@@ -19,6 +19,8 @@ PKMDS Code Library - Gen V
 
 A C++ library for hacking Pokémon Gen V save files!
 
+See pictures of the library in action: http://goo.gl/Fg7J1r
+
 Project outline: http://goo.gl/4KRDxN
 Collaboration document: http://goo.gl/iCTKme
 
