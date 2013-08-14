@@ -32,14 +32,12 @@ Makefile
 
 #VS2010
 
-*.suo
 *.sdf
 *.opensdf
 *.ipch
 *.log
 *.user
 *.filters
-*.vcxproj
 *.idb
 *.tlog
 *.lastbuildstate
