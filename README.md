@@ -16,6 +16,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 *********************************************************************
 PKMDS Code Library - Gen V
+A C++ library for hacking Pokémon Gen V save files!
 
 Project outline: http://goo.gl/4KRDxN
 Collaboration document: http://goo.gl/iCTKme
