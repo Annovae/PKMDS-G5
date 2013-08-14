@@ -22,9 +22,11 @@ A C++ library for hacking Pokémon Gen V save files!
 See pictures of the library in action: http://goo.gl/Fg7J1r
 
 Project outline: http://goo.gl/4KRDxN
+
 Collaboration document: http://goo.gl/iCTKme
 
 Created by Michael Bond (aka Codemonkey85)
+
 https://plus.google.com/116414067936940758871/
 *********************************************************************
 
@@ -50,4 +52,4 @@ Special thanks to SCV, Sabresite, loadingNOW, Poryhack,
 GatorShark, Chase, Jiggy-Ninja, Codr, Bond697, mingot, Guested,
 coolbho3000 and of course, COM.
 
-Some documentation available at: http://www.projectpokemon.org/wiki/
+Some save file documentation available at: http://www.projectpokemon.org/wiki/
