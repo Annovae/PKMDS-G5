@@ -39,4 +39,5 @@ Makefile
 *.tlog
 *.lastbuildstate
 *.exp
+*.cache
 SAV Object Refactor.lib
