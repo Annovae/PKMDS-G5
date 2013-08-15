@@ -40,4 +40,6 @@ Makefile
 *.lastbuildstate
 *.exp
 *.cache
-SAV Object Refactor.lib
+*.unsuccessfulbuild
+pkmds_SAV_refactor.lib
+
