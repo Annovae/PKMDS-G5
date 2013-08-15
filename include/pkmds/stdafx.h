@@ -62,6 +62,9 @@ typedef unsigned short int uint16; // 16 bits
 typedef unsigned int uint32; // 32 bits
 #ifdef __linux__
 #define strcpy__ strcpy
+//#define gmtime__ gmtime
 #else
 #define strcpy__ strcpy_s
+//#define gmtime__ gmtime_s
 #endif
+#define gmtime__ gmtime

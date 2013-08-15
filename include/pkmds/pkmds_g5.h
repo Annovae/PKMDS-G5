@@ -3366,7 +3366,17 @@ enum bw2_offsets : long
     chkloc = 0x25FA2,
     chkcalcloc = 0x25F00,
     chkcalclen = 0x94,
-    block1checksum = 0x03E2
+    block1checksum = 0x03E2,
+	boxnames = 0x0,
+	boxesstart = 0x400,
+	inventory = 0x18400,
+	partypkm = 0x18e00,
+	trainerdata = 0x18e00,
+	adventuredata = 0x1d900,
+	battlebox = 0x20900,
+	daycare = 0x20d00,
+	badgesmoneysayings = 0x21100,
+	pokedex = 0x21400,
 };
 }
 namespace BW_OFFSETS
@@ -3379,59 +3389,53 @@ enum bw_offsets : long
     block1checksum = 0x03E2
 };
 }
+struct pc_box_obj
+{
+	pokemon_obj pokemon[30];
+};
+struct pc_storage_obj
+{
+
+};
+struct gen_iv_storage : pc_storage_obj
+{
+	pc_box_obj boxes[18];
+};
+struct gen_v_storage : pc_storage_obj 
+{
+	pc_box_obj boxes[24];
+};
 struct sav_object
 {
-    byte * DATA;
-    byte * curbox;
-#if ! defined(MARKUP_SIZEOFWCHAR)
-#if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
-    char boxnames[24][40]; // size: 0x3C0
-#else
-    wchar_t boxnames[24][20]; // size: 0x3C0
-#endif
-#endif
-    Wallpapers::wallpapers boxwallpapers[0x18];
-    uint16 * block1checksum;
-    box_obj boxes[24]; // size: 0x18000
-    bag_obj bag; // size: 0xA00
-    party_obj party; // size: 0x534
-#if ! defined(MARKUP_SIZEOFWCHAR)
-#if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
-    char trainername[0x10]; // size: 0x10
-#else
-    wchar_t trainername[0x08]; // size: 0x10
-#endif
-#endif
-    uint16 tid;
-    uint16 sid;
-    badge_obj badges[8]; // size: 0x20
-    uint32 adventurestarted;
-    SAV_TYPES::sav_types sav_type;
-    sav_object(byte * DATA)
-    {
-        this->DATA = DATA;
-        switch(sav_type)
-        {
-        case SAV_TYPES::DP:
+	byte DATA[0x80000];
+	pc_storage_obj * pc_storage;
+	SAV_TYPES::sav_types sav_type;
+	sav_object(){}
 
-            break;
-        case SAV_TYPES::Pt:
+	void setdata()
+	{
+		switch(sav_type)
+		{
+		case SAV_TYPES::DP:
 
-            break;
-        case SAV_TYPES::HGSS:
+			break;
+		case SAV_TYPES::Pt:
 
-            break;
-        case SAV_TYPES::BW:
+			break;
+		case SAV_TYPES::HGSS:
 
-            break;
-        case SAV_TYPES::BW2:
+			break;
+		case SAV_TYPES::BW:
 
-            break;
-        default:
+			break;
+		case SAV_TYPES::BW2:
+			pc_storage = reinterpret_cast<gen_v_storage*>(DATA + BW2_OFFSETS::boxesstart);
+			break;
+		default:
 
-            break;
-        }
-    }
+			break;
+		}
+	}
 };
 struct bw2savblock_obj { //
 public:
@@ -3621,6 +3625,7 @@ void DllExport read(const char* file_name, pokemon_obj& data); // Reads the give
 void DllExport read(const char* file_name, pokemon_obj *data); // Reads the given file and assigns the data to the given Pokemon object.
 void DllExport read(const char* file_name, bw2sav_obj& data); // Reads the given file and assigns the data to the given save file object.
 void DllExport read(const char* file_name, bw2sav_obj *data); // Reads the given file and assigns the data to the given save file object.
+void read(const char* file_name, sav_object *data);
 std::wstring DllExport getpkmnickname(const pokemon_obj &pkm);
 std::wstring DllExport getpkmotname(const pokemon_obj &pkm);
 std::wstring DllExport getpkmnickname(const pokemon_obj *pkm);

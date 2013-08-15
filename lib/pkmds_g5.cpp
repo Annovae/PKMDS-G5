@@ -465,6 +465,14 @@ void read(const char* file_name, bw2sav_obj *data) // Reads the given file and a
     delete in;
     in = 0;
 }
+void read(const char* file_name, sav_object *data) // Reads the given file and assigns the data to the given save file object.
+{
+    std::ifstream *in = new std::ifstream(file_name,std::ios::binary);
+    in->read(reinterpret_cast<char*>(&(data->DATA)), sizeof(bw2sav_obj));
+    in->close();
+    delete in;
+    in = 0;
+}
 std::wstring getpkmnickname(const pokemon_obj &pkm)
 {
 #ifdef __linux__
@@ -806,7 +814,7 @@ std::string advstrttimestring(const bw2savblock_obj &block)
     time_t * adstarttime = new time_t;
     adstarttime = advstrttime(&block);
     tm * ptm;
-    ptm = gmtime(adstarttime);
+    ptm = gmtime__(adstarttime);
     ptm->tm_year += 1900;
     std::ostringstream o;
     o << ptm->tm_year << "/" << ptm->tm_mon << "/" << ptm->tm_mday << " " << ptm->tm_hour << ":" << ptm->tm_min << ":" << ptm->tm_sec;
@@ -819,7 +827,7 @@ std::string advstrttimestring(const bw2savblock_obj *block)
     time_t * adstarttime = new time_t;
     adstarttime = advstrttime(block);
     tm * ptm;
-    ptm = gmtime(adstarttime);
+    ptm = gmtime__(adstarttime);
     ptm->tm_year += 1900;
     std::ostringstream o;
     o << ptm->tm_year << "/" << ptm->tm_mon << "/" << ptm->tm_mday << " " << ptm->tm_hour << ":" << ptm->tm_min << ":" << ptm->tm_sec;
