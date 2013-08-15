@@ -3389,10 +3389,12 @@ enum bw_offsets : long
     block1checksum = 0x03E2
 };
 }
-struct pc_box_obj
-{
-	pokemon_obj pokemon[30];
-};
+//struct pc_box_obj
+//{
+//	pokemon_obj pokemon[30];
+//private:
+//	byte buf[0x10];
+//};
 //struct pc_storage_obj
 //{
 //
@@ -3408,10 +3410,10 @@ struct pc_box_obj
 struct sav_object
 {
 	private:
-	pc_box_obj * box_origin;
+	box_obj * box_origin;
 	public:
 	byte DATA[0x80000];
-	pc_box_obj * pc_storage;
+	box_obj * pc_storage;
 
 	void setbox(int box)
 {
@@ -3441,7 +3443,7 @@ struct sav_object
 		case SAV_TYPES::BW2:
 			//pc_storage = reinterpret_cast<gen_v_storage*>(DATA + BW2_OFFSETS::boxesstart);
 			//pc_storage = reinterpret_cast<pc_box_obj*>(DATA + BW2_OFFSETS::boxesstart);
-box_origin = reinterpret_cast<pc_box_obj*>(DATA + BW2_OFFSETS::boxesstart);
+box_origin = reinterpret_cast<box_obj*>(DATA + BW2_OFFSETS::boxesstart);
 			pc_storage_size = 24;
 			break;
 		default:

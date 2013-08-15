@@ -9,9 +9,7 @@ int main()
 	openimgdb("..\\..\\SQLite Databases\\images.sqlite");
 
 	sav_object * asav = new sav_object;
-	//read("C:\\Users\\Michael Bond\\Documents\\GitHub\\PKMDS-G5\\Test Sav\\TEST SAV.sav",asav);
-	read("C:\\Users\\Michael Bond\\Google Drive\\Current Development\\SAVs\\Mike B2 Sav - Copy.sav",asav);
-	//("C:\\Users\\Michael Bond\\Documents\\GitHub\\PKMDS-G5\\Test Sav\\TEST SAV.sav");
+	read(savfile,asav);
 
 	asav->sav_type = SAV_TYPES::BW2;
 	asav->setdata();
