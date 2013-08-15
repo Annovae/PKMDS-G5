@@ -3393,22 +3393,32 @@ struct pc_box_obj
 {
 	pokemon_obj pokemon[30];
 };
-struct pc_storage_obj
-{
-
-};
-struct gen_iv_storage : pc_storage_obj
-{
-	pc_box_obj boxes[18];
-};
-struct gen_v_storage : pc_storage_obj 
-{
-	pc_box_obj boxes[24];
-};
+//struct pc_storage_obj
+//{
+//
+//};
+//struct gen_iv_storage //: pc_storage_obj
+//{
+//	pc_box_obj boxes[18];
+//};
+//struct gen_v_storage //: pc_storage_obj 
+//{
+//	pc_box_obj boxes[24];
+//};
 struct sav_object
 {
+	private:
+	pc_box_obj * box_origin;
+	public:
 	byte DATA[0x80000];
-	pc_storage_obj * pc_storage;
+	pc_box_obj * pc_storage;
+
+	void setbox(int box)
+{
+		pc_storage = box_origin;
+		pc_storage += box;
+};
+	int pc_storage_size;
 	SAV_TYPES::sav_types sav_type;
 	sav_object(){}
 
@@ -3429,7 +3439,10 @@ struct sav_object
 
 			break;
 		case SAV_TYPES::BW2:
-			pc_storage = reinterpret_cast<gen_v_storage*>(DATA + BW2_OFFSETS::boxesstart);
+			//pc_storage = reinterpret_cast<gen_v_storage*>(DATA + BW2_OFFSETS::boxesstart);
+			//pc_storage = reinterpret_cast<pc_box_obj*>(DATA + BW2_OFFSETS::boxesstart);
+box_origin = reinterpret_cast<pc_box_obj*>(DATA + BW2_OFFSETS::boxesstart);
+			pc_storage_size = 24;
 			break;
 		default:
 

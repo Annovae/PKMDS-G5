@@ -9,23 +9,40 @@ int main()
 	openimgdb("..\\..\\SQLite Databases\\images.sqlite");
 
 	sav_object * asav = new sav_object;
-	read("C:\\Users\\Michael Bond\\Documents\\GitHub\\PKMDS-G5\\Test Sav\\TEST SAV.sav",asav);
+	//read("C:\\Users\\Michael Bond\\Documents\\GitHub\\PKMDS-G5\\Test Sav\\TEST SAV.sav",asav);
+	read("C:\\Users\\Michael Bond\\Google Drive\\Current Development\\SAVs\\Mike B2 Sav - Copy.sav",asav);
 	//("C:\\Users\\Michael Bond\\Documents\\GitHub\\PKMDS-G5\\Test Sav\\TEST SAV.sav");
 
 	asav->sav_type = SAV_TYPES::BW2;
 	asav->setdata();
-
-	bw2sav_obj * sav = new bw2sav_obj;
-	party_pkm * ppkm = new party_pkm;
 	pokemon_obj * pkm = new pokemon_obj;
-	read(savfile,sav);
-	for(int i = 0; i < sav->cur.party.size; i++)
+
+	for(int box = 0; box < asav->pc_storage_size; box++)
 	{
-		ppkm = &(sav->cur.party.pokemon[i]);
-		pkm = &(ppkm->pkm_data);
-		decryptpkm(ppkm);
-		cout << lookuppkmname(pkm) << "\n";
+			asav->setbox(box);
+			//pc_box_obj * stor = (asav->pc_storage);
+		for(int slot = 0; slot < 30; slot++)
+		{
+			pkm = &(asav->pc_storage->pokemon[slot]);
+			decryptpkm(pkm);
+			if(pkm->species != 0)
+			{
+				cout << "Box " << (box+1) << ", Slot " << (slot+1) << ": " << lookuppkmname(pkm) << "\n";
+			}
+		}
 	}
+
+	//bw2sav_obj * sav = new bw2sav_obj;
+	//party_pkm * ppkm = new party_pkm;
+	//pokemon_obj * pkm = new pokemon_obj;
+	//read(savfile,sav);
+	//for(int i = 0; i < sav->cur.party.size; i++)
+	//{
+	//	ppkm = &(sav->cur.party.pokemon[i]);
+	//	pkm = &(ppkm->pkm_data);
+	//	decryptpkm(ppkm);
+	//	cout << lookuppkmname(pkm) << "\n";
+	//}
 	closeimgdb();
 	closedb();
 	string empty = "";
