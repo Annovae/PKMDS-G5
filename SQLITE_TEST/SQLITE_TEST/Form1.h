@@ -11,6 +11,7 @@ namespace SQLITE_TEST {
 	using namespace System::Drawing;
 	using namespace System::Data::SQLite;
 	using namespace System::Text;
+	using namespace System::IO;
 
 	/// <summary>
 	/// Summary for Form1
@@ -137,23 +138,6 @@ namespace SQLITE_TEST {
 				 SQLiteDataReader ^reader = cmdSelect->ExecuteReader();
 				 reader->Read();
 				 return reader->GetString(0);
-				 //StringBuilder ^sb = gcnew StringBuilder();
-				 //for (int colCtr = 0; colCtr < reader->FieldCount; ++colCtr)
-				 //{
-					// // Add Seperator (If After First Column)
-					// if (colCtr > 0) sb->Append("|");
-				 //}
-				 //while (reader->Read())
-				 //{
-					// for (int colCtr = 0; colCtr < reader->FieldCount; ++colCtr)
-					// {
-					//	 // Add Seperator (If After First Column)
-					//	 if (colCtr > 0) sb->Append("|");
-					//	 // Add Column Text
-					//	 sb->Append(reader->GetValue(colCtr)->ToString());
-					// }
-				 //}
-				 //return sb->ToString();
 			 }
 	private: int getSQLInt()
 			 {
@@ -168,6 +152,20 @@ namespace SQLITE_TEST {
 				 SQLiteDataReader ^reader = cmdSelect->ExecuteReader();
 				 reader->Read();
 				 return reader->GetInt16(0);
+			 }
+	private: unsigned char* getSQLStream()
+			 {
+				 SQLiteCommand ^cmdSelect = db->CreateCommand();
+				 cmdSelect->CommandText = ""
+					 + "SELECT pokemon_species_names.pokemon_species_id "
+					 + "FROM   pokemon_species "
+					 + "       INNER JOIN pokemon_species_names "
+					 + "               ON pokemon_species.id = pokemon_species_names.pokemon_species_id "
+					 + "WHERE  ( pokemon_species_names.local_language_id = 9 ) "
+					 + "       AND ( pokemon_species_names.pokemon_species_id = " + this->numTEST->Value.ToString() + " ) ";
+				 SQLiteDataReader ^reader = cmdSelect->ExecuteReader();
+				 reader->Read();
+				 return (unsigned char[])reader->GetBytes(0);
 			 }
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
