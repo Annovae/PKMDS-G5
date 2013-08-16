@@ -42,6 +42,11 @@ Makefile
 *.cache
 *.unsuccessfulbuild
 pkmds_SAV_refactor.lib
+*.bi
+*.resources
+*.pch
+*.metagen
+*.res
 
 #General
 
