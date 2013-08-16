@@ -43,3 +43,6 @@ Makefile
 *.unsuccessfulbuild
 pkmds_SAV_refactor.lib
 
+#General
+
+*.ini
