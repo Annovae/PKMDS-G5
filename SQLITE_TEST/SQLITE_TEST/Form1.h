@@ -135,23 +135,39 @@ namespace SQLITE_TEST {
 					 + "WHERE  ( pokemon_species_names.local_language_id = 9 ) "
 					 + "       AND ( pokemon_species_names.pokemon_species_id = " + this->numTEST->Value.ToString() + " ) ";
 				 SQLiteDataReader ^reader = cmdSelect->ExecuteReader();
-				 StringBuilder ^sb = gcnew StringBuilder();
-				 for (int colCtr = 0; colCtr < reader->FieldCount; ++colCtr)
-				 {
-					 // Add Seperator (If After First Column)
-					 if (colCtr > 0) sb->Append("|");
-				 }
-				 while (reader->Read())
-				 {
-					 for (int colCtr = 0; colCtr < reader->FieldCount; ++colCtr)
-					 {
-						 // Add Seperator (If After First Column)
-						 if (colCtr > 0) sb->Append("|");
-						 // Add Column Text
-						 sb->Append(reader->GetValue(colCtr)->ToString());
-					 }
-				 }
-				 return sb->ToString();
+				 reader->Read();
+				 return reader->GetString(0);
+				 //StringBuilder ^sb = gcnew StringBuilder();
+				 //for (int colCtr = 0; colCtr < reader->FieldCount; ++colCtr)
+				 //{
+					// // Add Seperator (If After First Column)
+					// if (colCtr > 0) sb->Append("|");
+				 //}
+				 //while (reader->Read())
+				 //{
+					// for (int colCtr = 0; colCtr < reader->FieldCount; ++colCtr)
+					// {
+					//	 // Add Seperator (If After First Column)
+					//	 if (colCtr > 0) sb->Append("|");
+					//	 // Add Column Text
+					//	 sb->Append(reader->GetValue(colCtr)->ToString());
+					// }
+				 //}
+				 //return sb->ToString();
+			 }
+	private: int getSQLInt()
+			 {
+				 SQLiteCommand ^cmdSelect = db->CreateCommand();
+				 cmdSelect->CommandText = ""
+					 + "SELECT pokemon_species_names.pokemon_species_id "
+					 + "FROM   pokemon_species "
+					 + "       INNER JOIN pokemon_species_names "
+					 + "               ON pokemon_species.id = pokemon_species_names.pokemon_species_id "
+					 + "WHERE  ( pokemon_species_names.local_language_id = 9 ) "
+					 + "       AND ( pokemon_species_names.pokemon_species_id = " + this->numTEST->Value.ToString() + " ) ";
+				 SQLiteDataReader ^reader = cmdSelect->ExecuteReader();
+				 reader->Read();
+				 return reader->GetInt16(0);
 			 }
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
@@ -159,13 +175,17 @@ namespace SQLITE_TEST {
 			 }
 	private: System::Void numTEST_ValueChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
-				 this->lblTEST->Text = getSQLText();
+				 //this->lblTEST->Text = getSQLText();
+				 int val = getSQLInt();
+				 this->lblTEST->Text = val.ToString();
 			 }
 	private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e) 
 			 {
 				 db->ConnectionString = "Data Source='C:\\Users\\michaelbond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\veekun-pokedex.sqlite'";
 				 db->Open();
 				 this->lblTEST->Text = getSQLText();
+				 //int val = getSQLInt();
+				 //this->lblTEST->Text = val.ToString();
 			 }
 	private: System::Void Form1_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) 
 			 {
