@@ -125,6 +125,8 @@ namespace SQLITE_TEST {
 #pragma endregion
 
 		static SQLiteConnection ^db = gcnew SQLiteConnection();
+		static SQLiteConnection ^imgdb = gcnew SQLiteConnection();
+
 	private: System::String ^ getSQLText()
 			 {
 				 SQLiteCommand ^cmdSelect = db->CreateCommand();
@@ -153,23 +155,34 @@ namespace SQLITE_TEST {
 				 reader->Read();
 				 return reader->GetInt16(0);
 			 }
-	private: unsigned char* getSQLStream()
+			 Image^ estoimg(System::Object ^ obj){
+
+				 Image ^ img;
+				 try {
+					 // http://www.digitalcoding.com/Code-Snippets/CPP-CLI/C-CLI-Code-Snippet-Get-Image-from-sql-server.html
+					 array<System::Byte> ^_ImageData = gcnew array<System::Byte>(0);
+					 _ImageData = safe_cast<array<System::Byte>^>(obj);
+					 System::IO::MemoryStream ^_MemoryStream = gcnew System::IO::MemoryStream(_ImageData);
+					 img = System::Drawing::Image::FromStream(_MemoryStream);
+					 return img;
+				 }
+				 catch(...){ // char * str ) {
+					 //std::cout << "Exception raised: " << str << '\n';
+				 }
+				 return img;
+			 };
+
+			 Image^ getitemimg(System::String^ identifier)
 			 {
-				 SQLiteCommand ^cmdSelect = db->CreateCommand();
-				 cmdSelect->CommandText = ""
-					 + "SELECT pokemon_species_names.pokemon_species_id "
-					 + "FROM   pokemon_species "
-					 + "       INNER JOIN pokemon_species_names "
-					 + "               ON pokemon_species.id = pokemon_species_names.pokemon_species_id "
-					 + "WHERE  ( pokemon_species_names.local_language_id = 9 ) "
-					 + "       AND ( pokemon_species_names.pokemon_species_id = " + this->numTEST->Value.ToString() + " ) ";
-				 SQLiteDataReader ^reader = cmdSelect->ExecuteReader();
-				 reader->Read();
-				 return (unsigned char[])reader->GetBytes(0);
-			 }
+				 SQLiteCommand ^ cmd = imgdb->CreateCommand();
+				 cmd->CommandText = "SELECT image FROM items WHERE identifier=\"" + 
+					 identifier + "\"";
+				 Image ^ img = estoimg(cmd->ExecuteScalar());
+				 return img;
+			 };
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
-
+				 pbTEST->Image = getitemimg("bicycle");
 			 }
 	private: System::Void numTEST_ValueChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
@@ -181,6 +194,8 @@ namespace SQLITE_TEST {
 			 {
 				 db->ConnectionString = "Data Source='C:\\Users\\michaelbond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\veekun-pokedex.sqlite'";
 				 db->Open();
+				 imgdb->ConnectionString = "Data Source='C:\\Users\\michaelbond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\images.sqlite'";
+				 imgdb->Open();
 				 this->lblTEST->Text = getSQLText();
 				 //int val = getSQLInt();
 				 //this->lblTEST->Text = val.ToString();
@@ -188,6 +203,7 @@ namespace SQLITE_TEST {
 	private: System::Void Form1_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) 
 			 {
 				 db->Close();
+				 imgdb->Close();
 			 }
 	};
 }
