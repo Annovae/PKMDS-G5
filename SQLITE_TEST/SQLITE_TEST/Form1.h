@@ -1,8 +1,9 @@
 #pragma once
 #include <iostream>
-
+#include <direct.h>
+#include <stdlib.h>
+#include <stdio.h>
 namespace SQLITE_TEST {
-
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
@@ -12,7 +13,6 @@ namespace SQLITE_TEST {
 	using namespace System::Data::SQLite;
 	using namespace System::Text;
 	using namespace System::IO;
-
 	/// <summary>
 	/// Summary for Form1
 	/// </summary>
@@ -26,7 +26,6 @@ namespace SQLITE_TEST {
 			//TODO: Add the constructor code here
 			//
 		}
-
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -42,14 +41,13 @@ namespace SQLITE_TEST {
 	private: System::Windows::Forms::Label^  lblTEST;
 	private: System::Windows::Forms::PictureBox^  pbTEST;
 	private: System::Windows::Forms::NumericUpDown^  numTEST;
+	private: System::Windows::Forms::TextBox^  txtItem;
 	protected: 
-
 	private:
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		System::ComponentModel::Container ^components;
-
 #pragma region Windows Form Designer generated code
 		/// <summary>
 		/// Required method for Designer support - do not modify
@@ -61,16 +59,17 @@ namespace SQLITE_TEST {
 			this->lblTEST = (gcnew System::Windows::Forms::Label());
 			this->pbTEST = (gcnew System::Windows::Forms::PictureBox());
 			this->numTEST = (gcnew System::Windows::Forms::NumericUpDown());
+			this->txtItem = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbTEST))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numTEST))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(12, 12);
+			this->button1->Location = System::Drawing::Point(22, 37);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 23);
-			this->button1->TabIndex = 0;
+			this->button1->TabIndex = 1;
 			this->button1->Text = L"button1";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &Form1::button1_Click);
@@ -78,10 +77,10 @@ namespace SQLITE_TEST {
 			// lblTEST
 			// 
 			this->lblTEST->AutoSize = true;
-			this->lblTEST->Location = System::Drawing::Point(12, 38);
+			this->lblTEST->Location = System::Drawing::Point(12, 102);
 			this->lblTEST->Name = L"lblTEST";
 			this->lblTEST->Size = System::Drawing::Size(35, 13);
-			this->lblTEST->TabIndex = 1;
+			this->lblTEST->TabIndex = 3;
 			this->lblTEST->Text = L"label1";
 			// 
 			// pbTEST
@@ -99,15 +98,24 @@ namespace SQLITE_TEST {
 			this->numTEST->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) {1, 0, 0, 0});
 			this->numTEST->Name = L"numTEST";
 			this->numTEST->Size = System::Drawing::Size(120, 20);
-			this->numTEST->TabIndex = 3;
+			this->numTEST->TabIndex = 2;
 			this->numTEST->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) {1, 0, 0, 0});
 			this->numTEST->ValueChanged += gcnew System::EventHandler(this, &Form1::numTEST_ValueChanged);
 			// 
+			// txtItem
+			// 
+			this->txtItem->Location = System::Drawing::Point(12, 11);
+			this->txtItem->Name = L"txtItem";
+			this->txtItem->Size = System::Drawing::Size(100, 20);
+			this->txtItem->TabIndex = 0;
+			// 
 			// Form1
 			// 
+			this->AcceptButton = this->button1;
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(284, 262);
+			this->Controls->Add(this->txtItem);
 			this->Controls->Add(this->numTEST);
 			this->Controls->Add(this->pbTEST);
 			this->Controls->Add(this->lblTEST);
@@ -123,10 +131,8 @@ namespace SQLITE_TEST {
 
 		}
 #pragma endregion
-
 		static SQLiteConnection ^db = gcnew SQLiteConnection();
 		static SQLiteConnection ^imgdb = gcnew SQLiteConnection();
-
 	private: System::String ^ getSQLText()
 			 {
 				 SQLiteCommand ^cmdSelect = db->CreateCommand();
@@ -155,8 +161,8 @@ namespace SQLITE_TEST {
 				 reader->Read();
 				 return reader->GetInt16(0);
 			 }
-			 Image^ estoimg(System::Object ^ obj){
-
+			 Image^ estoimg(System::Object ^ obj)
+			 {
 				 Image ^ img;
 				 try {
 					 // http://www.digitalcoding.com/Code-Snippets/CPP-CLI/C-CLI-Code-Snippet-Get-Image-from-sql-server.html
@@ -166,12 +172,12 @@ namespace SQLITE_TEST {
 					 img = System::Drawing::Image::FromStream(_MemoryStream);
 					 return img;
 				 }
-				 catch(...){ // char * str ) {
-					 //std::cout << "Exception raised: " << str << '\n';
+				 catch(...)
+				 {
+
 				 }
 				 return img;
 			 };
-
 			 Image^ getitemimg(System::String^ identifier)
 			 {
 				 SQLiteCommand ^ cmd = imgdb->CreateCommand();
@@ -182,23 +188,37 @@ namespace SQLITE_TEST {
 			 };
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
-				 pbTEST->Image = getitemimg("bicycle");
+				 pbTEST->Image = getitemimg(txtItem->Text->Trim()->ToLower()->Replace(" ","-"));
 			 }
 	private: System::Void numTEST_ValueChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
-				 //this->lblTEST->Text = getSQLText();
-				 int val = getSQLInt();
-				 this->lblTEST->Text = val.ToString();
+				 //this->lblTEST->Text = getSQLInt().ToString();
+				 this->lblTEST->Text = getSQLText();
 			 }
 	private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e) 
 			 {
+				 //char* buffer;
+				 //// Get the current working directory: 
+				 //if( (buffer = _getcwd( NULL, 0 )) == NULL )
+					// perror( "_getcwd error" );
+				 //else
+				 //{
+					// //printf( "%s \nLength: %d\n", buffer, strlen(buffer) );
+					// System::String ^ path = gcnew String(buffer);
+					// path = path->Replace("SQLITE_TEST\SQLITE_TEST","SQLite Databases");
+					// //path = path->Replace("\","\\");
+					// MessageBox::Show(path);
+					// free(buffer);
+				 //}
+				 //System::String ^ cs = "Data Source='C:\\Users\\michaelbond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\veekun-pokedex.sqlite'";
+				 //cs = cs->Replace("{AppDir}", AppDomain.CurrentDomain.BaseDirectory);
+				 //System::String ^ imgcs = "Data Source='C:\\Users\\michaelbond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\images.sqlite'";
+				 //imgcs = imgscs->Replace("{AppDir}", AppDomain.CurrentDomain.BaseDirectory);
 				 db->ConnectionString = "Data Source='C:\\Users\\michaelbond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\veekun-pokedex.sqlite'";
 				 db->Open();
 				 imgdb->ConnectionString = "Data Source='C:\\Users\\michaelbond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\images.sqlite'";
 				 imgdb->Open();
 				 this->lblTEST->Text = getSQLText();
-				 //int val = getSQLInt();
-				 //this->lblTEST->Text = val.ToString();
 			 }
 	private: System::Void Form1_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) 
 			 {
@@ -207,4 +227,3 @@ namespace SQLITE_TEST {
 			 }
 	};
 }
-
