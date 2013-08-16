@@ -50,7 +50,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -87,19 +87,26 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\lib\pkmds_g5.cpp" />
+    <ClCompile Include="..\..\lib\pkmds_g5_sqlite.cpp" />
+    <ClCompile Include="..\..\lib\pkmds_gba.cpp" />
+    <ClCompile Include="..\..\lib\pkmds_vector.cpp" />
+    <ClCompile Include="..\..\lib\stdafx.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="SQLITE_TEST.cpp" />
-    <ClCompile Include="stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\pkmds\pkmds_g5.h" />
+    <ClInclude Include="..\..\include\pkmds\pkmds_g5_sqlite.h" />
+    <ClInclude Include="..\..\include\pkmds\pkmds_gba.h" />
+    <ClInclude Include="..\..\include\pkmds\pkmds_vector.h" />
+    <ClInclude Include="..\..\include\pkmds\pokeprng.h" />
+    <ClInclude Include="..\..\include\pkmds\stdafx.h" />
+    <ClInclude Include="..\..\include\pkmds\wondercard.h" />
     <ClInclude Include="Form1.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="resource.h" />
-    <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc" />

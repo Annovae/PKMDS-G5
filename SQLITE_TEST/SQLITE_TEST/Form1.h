@@ -66,7 +66,7 @@ namespace SQLITE_TEST {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(22, 37);
+			this->button1->Location = System::Drawing::Point(15, 76);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 23);
 			this->button1->TabIndex = 1;
@@ -93,7 +93,7 @@ namespace SQLITE_TEST {
 			// 
 			// numTEST
 			// 
-			this->numTEST->Location = System::Drawing::Point(152, 12);
+			this->numTEST->Location = System::Drawing::Point(96, 79);
 			this->numTEST->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {649, 0, 0, 0});
 			this->numTEST->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) {1, 0, 0, 0});
 			this->numTEST->Name = L"numTEST";
@@ -105,8 +105,9 @@ namespace SQLITE_TEST {
 			// txtItem
 			// 
 			this->txtItem->Location = System::Drawing::Point(12, 11);
+			this->txtItem->Multiline = true;
 			this->txtItem->Name = L"txtItem";
-			this->txtItem->Size = System::Drawing::Size(100, 20);
+			this->txtItem->Size = System::Drawing::Size(260, 59);
 			this->txtItem->TabIndex = 0;
 			// 
 			// Form1
@@ -133,92 +134,67 @@ namespace SQLITE_TEST {
 #pragma endregion
 		static SQLiteConnection ^db = gcnew SQLiteConnection();
 		static SQLiteConnection ^imgdb = gcnew SQLiteConnection();
-	private: System::String ^ getSQLText()
-			 {
-				 SQLiteCommand ^cmdSelect = db->CreateCommand();
-				 cmdSelect->CommandText = ""
-					 + "SELECT pokemon_species_names.name "
-					 + "FROM   pokemon_species "
-					 + "       INNER JOIN pokemon_species_names "
-					 + "               ON pokemon_species.id = pokemon_species_names.pokemon_species_id "
-					 + "WHERE  ( pokemon_species_names.local_language_id = 9 ) "
-					 + "       AND ( pokemon_species_names.pokemon_species_id = " + this->numTEST->Value.ToString() + " ) ";
-				 SQLiteDataReader ^reader = cmdSelect->ExecuteReader();
-				 reader->Read();
-				 return reader->GetString(0);
-			 }
-	private: int getSQLInt()
-			 {
-				 SQLiteCommand ^cmdSelect = db->CreateCommand();
-				 cmdSelect->CommandText = ""
-					 + "SELECT pokemon_species_names.pokemon_species_id "
-					 + "FROM   pokemon_species "
-					 + "       INNER JOIN pokemon_species_names "
-					 + "               ON pokemon_species.id = pokemon_species_names.pokemon_species_id "
-					 + "WHERE  ( pokemon_species_names.local_language_id = 9 ) "
-					 + "       AND ( pokemon_species_names.pokemon_species_id = " + this->numTEST->Value.ToString() + " ) ";
-				 SQLiteDataReader ^reader = cmdSelect->ExecuteReader();
-				 reader->Read();
-				 return reader->GetInt16(0);
-			 }
-			 Image^ estoimg(System::Object ^ obj)
-			 {
-				 Image ^ img;
-				 try {
-					 // http://www.digitalcoding.com/Code-Snippets/CPP-CLI/C-CLI-Code-Snippet-Get-Image-from-sql-server.html
-					 array<System::Byte> ^_ImageData = gcnew array<System::Byte>(0);
-					 _ImageData = safe_cast<array<System::Byte>^>(obj);
-					 System::IO::MemoryStream ^_MemoryStream = gcnew System::IO::MemoryStream(_ImageData);
-					 img = System::Drawing::Image::FromStream(_MemoryStream);
-					 return img;
-				 }
-				 catch(...)
-				 {
+		System::String ^ getSQLText(System::String ^ SQL)
+		{
+			SQLiteCommand ^cmdSelect = db->CreateCommand();
+			cmdSelect->CommandText = SQL;
+			SQLiteDataReader ^reader = cmdSelect->ExecuteReader();
+			reader->Read();
+			return reader->GetString(0);
+		}
+		int getSQLInt(System::String ^ SQL)
+		{
+			SQLiteCommand ^cmdSelect = db->CreateCommand();
+			cmdSelect->CommandText = SQL;
+			SQLiteDataReader ^reader = cmdSelect->ExecuteReader();
+			reader->Read();
+			return reader->GetInt16(0);
+		}
+		Image^ getSQLImage(System::String^ SQL)
+		{
+			SQLiteCommand ^ cmd = imgdb->CreateCommand();
+			cmd->CommandText = SQL;
+			System::Object ^ obj = gcnew System::Object;
+			try
+			{
+				obj = cmd->ExecuteScalar();
+			}
+			catch(...)
+			{
 
-				 }
-				 return img;
-			 };
-			 Image^ getitemimg(System::String^ identifier)
-			 {
-				 SQLiteCommand ^ cmd = imgdb->CreateCommand();
-				 cmd->CommandText = "SELECT image FROM items WHERE identifier=\"" + 
-					 identifier + "\"";
-				 Image ^ img = estoimg(cmd->ExecuteScalar());
-				 return img;
-			 };
+			}
+			Image ^ img;
+			try {
+				// http://www.digitalcoding.com/Code-Snippets/CPP-CLI/C-CLI-Code-Snippet-Get-Image-from-sql-server.html
+				array<System::Byte> ^_ImageData = gcnew array<System::Byte>(0);
+				_ImageData = safe_cast<array<System::Byte>^>(obj);
+				System::IO::MemoryStream ^_MemoryStream = gcnew System::IO::MemoryStream(_ImageData);
+				img = System::Drawing::Image::FromStream(_MemoryStream);
+				return img;
+			}
+			catch(...)
+			{
+
+			}
+			return img;
+		};
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
-				 pbTEST->Image = getitemimg(txtItem->Text->Trim()->ToLower()->Replace(" ","-"));
+				 this->lblTEST->Text = getSQLInt(txtItem->Text).ToString();
+				 this->lblTEST->Text = getSQLText(txtItem->Text);
+				 this->pbTEST->Image = getSQLImage(txtItem->Text);
 			 }
 	private: System::Void numTEST_ValueChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
 				 //this->lblTEST->Text = getSQLInt().ToString();
-				 this->lblTEST->Text = getSQLText();
+				 //this->lblTEST->Text = getSQLText();
 			 }
 	private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e) 
 			 {
-				 //char* buffer;
-				 //// Get the current working directory: 
-				 //if( (buffer = _getcwd( NULL, 0 )) == NULL )
-					// perror( "_getcwd error" );
-				 //else
-				 //{
-					// //printf( "%s \nLength: %d\n", buffer, strlen(buffer) );
-					// System::String ^ path = gcnew String(buffer);
-					// path = path->Replace("SQLITE_TEST\SQLITE_TEST","SQLite Databases");
-					// //path = path->Replace("\","\\");
-					// MessageBox::Show(path);
-					// free(buffer);
-				 //}
-				 //System::String ^ cs = "Data Source='C:\\Users\\michaelbond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\veekun-pokedex.sqlite'";
-				 //cs = cs->Replace("{AppDir}", AppDomain.CurrentDomain.BaseDirectory);
-				 //System::String ^ imgcs = "Data Source='C:\\Users\\michaelbond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\images.sqlite'";
-				 //imgcs = imgscs->Replace("{AppDir}", AppDomain.CurrentDomain.BaseDirectory);
 				 db->ConnectionString = "Data Source='C:\\Users\\michaelbond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\veekun-pokedex.sqlite'";
 				 db->Open();
 				 imgdb->ConnectionString = "Data Source='C:\\Users\\michaelbond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\images.sqlite'";
 				 imgdb->Open();
-				 this->lblTEST->Text = getSQLText();
 			 }
 	private: System::Void Form1_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) 
 			 {
