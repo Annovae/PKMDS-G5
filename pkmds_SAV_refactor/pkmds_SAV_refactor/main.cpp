@@ -4,6 +4,12 @@
 using namespace std;
 int main()
 {
+#if _MFC_VER >= 0x0
+    std::string test = "VS";
+        #else
+    std::string test = "Qt";
+#endif
+
 	char * savfile = "..\\..\\Test Sav\\TEST SAV.sav";
 	opendb("..\\..\\SQLite Databases\\veekun-pokedex.sqlite");
 	openimgdb("..\\..\\SQLite Databases\\images.sqlite");
