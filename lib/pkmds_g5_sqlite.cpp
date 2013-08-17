@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "../../PKMDS-G5/include/pkmds/pkmds_g5_sqlite.h"
 #endif
 using namespace std;
+#ifdef SQLITE_API
 sqlite3 *database;
 sqlite3_stmt *statement;
 void opendb(const char db_file[])
@@ -1674,3 +1675,4 @@ Types::types DllExport getmovetype(Moves::moves moveid)
          << "WHERE  ( id = " << (int)moveid << " ) ";
     return (Types::types)(getanint(o)-1);
 }
+#endif

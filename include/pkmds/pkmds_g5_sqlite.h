@@ -25,12 +25,18 @@ static const char theDB[] = "..\\..\\SQLite Databases\\veekun-pokedex.sqlite";
 static const char theimgDB[] = "..\\..\\SQLite Databases\\images.sqlite";
 #endif
 #ifdef PKMDS_CMAKE_USED
+#ifdef SQLITE_API
 #include <sqlite3.h>
+#endif
 #include <pkmds/pkmds_g5.h>
 #else
+#ifdef SQLITE_API
 #include "../sqlite3.h"
+#endif
+//#include "../sqlite3.h"
 #include "pkmds_g5.h"
 #endif
+#ifdef SQLITE_API
 static const int LANG_ID = 9;
 static const int VERSION_GROUP = 11;
 static const int GENERATION = 5;
@@ -156,3 +162,4 @@ void DllExport getmovecatsql(std::ostringstream& o, const Moves::moves moveid);
 Types::types DllExport getmovetype(Moves::moves moveid);
 int DllExport getmovepower(const Moves::moves moveid);
 int DllExport getmoveaccuracy(const Moves::moves moveid);
+#endif
