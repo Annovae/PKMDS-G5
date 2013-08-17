@@ -184,11 +184,6 @@ namespace SQLITE_TEST {
 				 this->lblTEST->Text = getSQLText(txtItem->Text);
 				 this->pbTEST->Image = getSQLImage(txtItem->Text);
 			 }
-	private: System::Void numTEST_ValueChanged(System::Object^  sender, System::EventArgs^  e)
-			 {
-				 //this->lblTEST->Text = getSQLInt().ToString();
-				 //this->lblTEST->Text = getSQLText();
-			 }
 	private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e) 
 			 {
 				 db->ConnectionString = "Data Source='C:\\Users\\michaelbond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\veekun-pokedex.sqlite'";
