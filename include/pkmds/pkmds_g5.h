@@ -3367,16 +3367,16 @@ enum bw2_offsets : long
     chkcalcloc = 0x25F00,
     chkcalclen = 0x94,
     block1checksum = 0x03E2,
-	boxnames = 0x0,
-	boxesstart = 0x400,
-	inventory = 0x18400,
-	partypkm = 0x18e00,
-	trainerdata = 0x18e00,
-	adventuredata = 0x1d900,
-	battlebox = 0x20900,
-	daycare = 0x20d00,
-	badgesmoneysayings = 0x21100,
-	pokedex = 0x21400,
+    boxnames = 0x0,
+    boxesstart = 0x400,
+    inventory = 0x18400,
+    partypkm = 0x18e00,
+    trainerdata = 0x18e00,
+    adventuredata = 0x1d900,
+    battlebox = 0x20900,
+    daycare = 0x20d00,
+    badgesmoneysayings = 0x21100,
+    pokedex = 0x21400,
 };
 }
 namespace BW_OFFSETS
@@ -3389,6 +3389,7 @@ enum bw_offsets : long
     block1checksum = 0x03E2
 };
 }
+/*
 //struct pc_box_obj
 //{
 //	pokemon_obj pokemon[30];
@@ -3407,50 +3408,51 @@ enum bw_offsets : long
 //{
 //	pc_box_obj boxes[24];
 //};
+*/
 struct sav_object
 {
-	private:
-	box_obj * box_origin;
-	public:
-	byte DATA[0x80000];
-	box_obj * pc_storage;
+private:
+    box_obj * box_origin;
+public:
+    byte DATA[0x80000];
+    box_obj * pc_storage;
 
-	void setbox(int box)
-{
-		pc_storage = box_origin;
-		pc_storage += box;
-};
-	int pc_storage_size;
-	SAV_TYPES::sav_types sav_type;
-	sav_object(){}
+    void setbox(int box)
+    {
+        pc_storage = box_origin;
+        pc_storage += box;
+    };
+    int pc_storage_size;
+    SAV_TYPES::sav_types sav_type;
+    sav_object(){}
 
-	void setdata()
-	{
-		switch(sav_type)
-		{
-		case SAV_TYPES::DP:
+    void setdata()
+    {
+        switch(sav_type)
+        {
+        case SAV_TYPES::DP:
 
-			break;
-		case SAV_TYPES::Pt:
+            break;
+        case SAV_TYPES::Pt:
 
-			break;
-		case SAV_TYPES::HGSS:
+            break;
+        case SAV_TYPES::HGSS:
 
-			break;
-		case SAV_TYPES::BW:
+            break;
+        case SAV_TYPES::BW:
 
-			break;
-		case SAV_TYPES::BW2:
-			//pc_storage = reinterpret_cast<gen_v_storage*>(DATA + BW2_OFFSETS::boxesstart);
-			//pc_storage = reinterpret_cast<pc_box_obj*>(DATA + BW2_OFFSETS::boxesstart);
-box_origin = reinterpret_cast<box_obj*>(DATA + BW2_OFFSETS::boxesstart);
-			pc_storage_size = 24;
-			break;
-		default:
+            break;
+        case SAV_TYPES::BW2:
+            //pc_storage = reinterpret_cast<gen_v_storage*>(DATA + BW2_OFFSETS::boxesstart);
+            //pc_storage = reinterpret_cast<pc_box_obj*>(DATA + BW2_OFFSETS::boxesstart);
+            box_origin = reinterpret_cast<box_obj*>(DATA + BW2_OFFSETS::boxesstart);
+            pc_storage_size = 24;
+            break;
+        default:
 
-			break;
-		}
-	}
+            break;
+        }
+    }
 };
 struct bw2savblock_obj { //
 public:
@@ -3689,7 +3691,6 @@ std::wstring DllExport getsavtrainername(const bw2savblock_obj * block);
 std::wstring DllExport getwstring(std::wstring in);
 std::wstring DllExport getwstring(std::string in);
 std::wstring DllExport getwstring(char* in, int len); //Linux needs this
-
 /*
     Main Save File & Backup
 
