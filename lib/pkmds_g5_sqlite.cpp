@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "../../PKMDS-G5/include/pkmds/pkmds_g5_sqlite.h"
 #endif
 using namespace std;
-#ifdef SQLITE_API
+#ifndef __cplusplus_cli
 sqlite3 *database;
 sqlite3_stmt *statement;
 void opendb(const char db_file[])

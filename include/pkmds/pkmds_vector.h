@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #else
 #include "pkmds_g5.h"
 #endif
-#ifdef SQLITE_API
+#ifndef __cplusplus_cli
 bool DllExport comparebyspeciesasc(const pokemon_obj &a, const pokemon_obj &b);
 void DllExport sortbyspeciesasc(std::vector<pokemon_obj>& pkm);
 bool DllExport comparebygenderasc(const pokemon_obj &a, const pokemon_obj &b);

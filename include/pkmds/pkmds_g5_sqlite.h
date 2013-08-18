@@ -25,18 +25,17 @@ static const char theDB[] = "..\\..\\SQLite Databases\\veekun-pokedex.sqlite";
 static const char theimgDB[] = "..\\..\\SQLite Databases\\images.sqlite";
 #endif
 #ifdef PKMDS_CMAKE_USED
-#ifdef SQLITE_API
+#ifndef __cplusplus_cli
 #include <sqlite3.h>
 #endif
 #include <pkmds/pkmds_g5.h>
 #else
-#ifdef SQLITE_API
+#ifndef __cplusplus_cli
 #include "../sqlite3.h"
 #endif
-//#include "../sqlite3.h"
 #include "pkmds_g5.h"
 #endif
-#ifdef SQLITE_API
+#ifndef __cplusplus_cli
 static const int LANG_ID = 9;
 static const int VERSION_GROUP = 11;
 static const int GENERATION = 5;

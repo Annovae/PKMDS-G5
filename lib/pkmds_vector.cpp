@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "../../PKMDS-G5/include/pkmds/pkmds_g5.h"
 #include "../../PKMDS-G5/include/pkmds/pkmds_g5_sqlite.h"
 #endif
-#ifdef SQLITE_API
+#ifndef __cplusplus_cli
 bool comparebyspeciesasc(const pokemon_obj &a, const pokemon_obj &b)
 {
 	return a.species < b.species;
