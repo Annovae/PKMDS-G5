@@ -68,6 +68,9 @@
     <ClInclude Include="..\..\include\pkmds\wondercard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Visual_Studio\vs_sqlite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">

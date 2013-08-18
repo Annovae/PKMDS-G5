@@ -103,6 +103,7 @@
     <ClInclude Include="..\..\include\pkmds\pokeprng.h" />
     <ClInclude Include="..\..\include\pkmds\stdafx.h" />
     <ClInclude Include="..\..\include\pkmds\wondercard.h" />
+    <ClInclude Include="..\..\Visual_Studio\vs_sqlite.h" />
     <ClInclude Include="Form1.h">
       <FileType>CppForm</FileType>
     </ClInclude>
