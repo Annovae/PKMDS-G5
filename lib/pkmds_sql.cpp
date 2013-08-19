@@ -468,7 +468,7 @@ void getspritesql(ostringstream& o, const pokemon_obj * pkm, int langid)
             << "               ON pokemon_form_names.pokemon_form_id = pokemon_forms.id "
             << "       INNER JOIN pokemon "
             << "               ON pokemon_forms.pokemon_id = pokemon.id "
-            << "WHERE  ( pokemon.species_id = " << (int)(int(pkm->species)) << " ) "
+            << "WHERE  ( pokemon.species_id = " << (int)(pkm->species) << " ) "
             << "       AND ( pokemon_form_names.local_language_id = " << langid << " ) "
             << "       AND ( pokemon_forms.form_order = " << (int)(pkm->forms.form) << " + 1 ) ";
     string formid = getastring(o);
