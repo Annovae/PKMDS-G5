@@ -97,6 +97,61 @@ int getanint(const ostringstream &o)
     }
     return i;
 }
+string getastring(const string &str)
+{
+    string s = "";
+    char cmd[BUFF_SIZE];
+#if defined(__linux__)
+    strcpy(cmd,str.c_str());
+#else
+    strcpy_s(cmd,str.c_str());
+#endif
+    if(sqlite3_prepare_v2(database,cmd,-1,&statement,0) == SQLITE_OK)
+    {
+        int cols = sqlite3_column_count(statement);
+        int result = 0;
+        result = sqlite3_step(statement);
+        if(result == SQLITE_ROW)
+        {
+            for(int col = 0; col < cols; col++)
+            {
+                const unsigned char* test;
+                test = sqlite3_column_text(statement, col);
+                if(sqlite3_column_text(statement, col) != 0)
+                {
+                    s = (char*)test;
+                }
+            }
+        }
+        sqlite3_finalize(statement);
+    }
+    return s;
+}
+int getanint(const string &str)
+{
+    int i = 0;
+    char cmd[BUFF_SIZE];
+#if defined(__linux__)
+    strcpy(cmd,str.c_str());
+#else
+    strcpy_s(cmd,str.c_str());
+#endif
+    if(sqlite3_prepare_v2(database,cmd,-1,&statement,0) == SQLITE_OK)
+    {
+        int cols = sqlite3_column_count(statement);
+        int result = 0;
+        result = sqlite3_step(statement);
+        if(result == SQLITE_ROW)
+        {
+            for(int col = 0; col < cols; col++)
+            {
+                i = sqlite3_column_int(statement, col);
+            }
+        }
+        sqlite3_finalize(statement);
+    }
+    return i;
+}
 void dostatement(const string &cmd)
 {
     sqlite3_prepare_v2(database,cmd.c_str(),-1,&statement,0);
@@ -104,16 +159,14 @@ void dostatement(const string &cmd)
 }
 string getspeciesnamesql(const int speciesid, const int langid)
 {
-    stringstream ss;
-    ss << "SELECT name FROM pokemon_species_names WHERE (pokemon_species_id = "
-    << speciesid << " ) AND (local_language_id = " << langid << ")";
-    return ss.str();
+    ostringstream o;
+    o << "SELECT name FROM pokemon_species_names WHERE (pokemon_species_id = "
+      << speciesid << " ) AND (local_language_id = " << langid << ")";
+    return o.str();
 }
 string lookuppkmname(const int speciesid, const int langid)
 {
-    ostringstream o;
-    o << getspeciesnamesql(speciesid,langid).c_str();
-    return getastring(o);
+    return getastring(getspeciesnamesql(speciesid,langid));
 }
 string lookuppkmname(const pokemon_obj &pkm, const int langid)
 {
@@ -125,17 +178,15 @@ string lookuppkmname(const pokemon_obj *pkm, const int langid)
 }
 string getmovenamesql(const int moveid, const int langid)
 {
-    stringstream ss;
-    ss << "SELECT name FROM move_names WHERE (move_id = "
+    ostringstream o;
+    o << "SELECT name FROM move_names WHERE (move_id = "
       << moveid << ") AND (local_language_id = "
       << langid << ")";
-    return ss.str();
+    return o.str();
 }
 string lookupmovename(const int moveid, const int langid)
 {
-    ostringstream o;
-    o << getmovenamesql(moveid,langid).c_str();
-    return getastring(o);
+    return getastring(getmovenamesql(moveid,langid));
 }
 string lookupmovename(const pokemon_obj &pkm, const int movenum, const int langid)
 {
@@ -147,19 +198,17 @@ string lookupmovename(const pokemon_obj *pkm, const int movenum, const int langi
 }
 string getmoveflavortextsql(const uint16 moveid, const int langid, const int versiongroup)
 {
-    stringstream ss;
-    ss << "SELECT move_flavor_text.flavor_text FROM moves " <<
+    ostringstream o;
+    o << "SELECT move_flavor_text.flavor_text FROM moves " <<
          "INNER JOIN move_flavor_text ON moves.id = move_flavor_text.move_id WHERE" <<
          "(move_flavor_text.language_id = " << langid << ")" <<
          "AND (move_flavor_text.move_id = " << moveid << ")" <<
          "AND (move_flavor_text.version_group_id = " << versiongroup << ")";
-    return ss.str();
+    return o.str();
 }
 string lookupmoveflavortext(const uint16 moveid, const int langid, const int versiongroup)
 {
-    ostringstream o;
-    o << getmoveflavortextsql(moveid,langid,versiongroup);
-    string ret = getastring(o);
+    string ret = getastring(getmoveflavortextsql(moveid,langid,versiongroup));
     replace(ret.begin(),ret.end(),'\n',' ');
     return ret;
 }
@@ -173,8 +222,8 @@ string lookupmoveflavortext(const pokemon_obj *pkm, const int movenum, const int
 }
 string getmovetypenamesql(const uint16 moveid, const int langid)
 {
-    stringstream ss;
-    ss << "SELECT type_names.name "
+    ostringstream o;
+    o << "SELECT type_names.name "
       << "FROM   moves "
       << "       INNER JOIN type_names "
       << "               ON moves.type_id = type_names.type_id "
@@ -183,13 +232,11 @@ string getmovetypenamesql(const uint16 moveid, const int langid)
       << "                  AND type_names.type_id = types.id "
       << "WHERE  ( moves.id = " << moveid << " ) "
       << "       AND ( type_names.local_language_id = " << langid << " ) ";
-    return ss.str();
+    return o.str();
 }
 string lookupmovetypename(const uint16 moveid, const int langid)
 {
-    ostringstream o;
-    o << getmovetypenamesql(moveid,langid);
-    return getastring(o);
+    return getastring(getmovetypenamesql(moveid,langid));
 }
 string lookupmovetypename(const pokemon_obj &pkm, const int movenum, const int langid)
 {
@@ -201,8 +248,8 @@ string lookupmovetypename(const pokemon_obj *pkm, const int movenum, const int l
 }
 string getmovedamagetypenamesql(const uint16 moveid, const int langid)
 {
-    stringstream ss;
-    ss << ""
+    ostringstream o;
+    o << ""
       << "SELECT move_damage_class_prose.name "
       << "FROM   moves "
       << "       INNER JOIN move_damage_classes "
@@ -212,13 +259,11 @@ string getmovedamagetypenamesql(const uint16 moveid, const int langid)
       << "                  move_damage_class_prose.move_damage_class_id "
       << "WHERE  ( moves.id = " << moveid << " ) "
       << "       AND ( move_damage_class_prose.local_language_id = " << langid << " ) ";
-    return ss.str();
+    return o.str();
 }
 string lookupmovedamagetypename(const uint16 moveid, const int langid)
 {
-    ostringstream o;
-    o << getmovedamagetypenamesql(moveid,langid);
-    return getastring(o);
+    return getastring(getmovedamagetypenamesql(moveid,langid));
 }
 string lookupmovedamagetypename(const pokemon_obj &pkm, const int movenum, const int langid)
 {
@@ -226,8 +271,8 @@ string lookupmovedamagetypename(const pokemon_obj &pkm, const int movenum, const
 }
 string getpkmlevelsql(const int id, const int exp)
 {
-    stringstream ss;
-    ss << ""
+    ostringstream o;
+    o << ""
       << "SELECT experience.level "
       << "FROM   experience "
       << "       INNER JOIN pokemon_species "
@@ -236,13 +281,11 @@ string getpkmlevelsql(const int id, const int exp)
       << "WHERE  ( experience.experience <= " << exp << " ) "
       << "       AND ( pokemon_species.id = " << id << " ) "
       << "ORDER  BY experience.experience DESC ";
-    return ss.str();
+    return o.str();
 }
 int getpkmlevel(const int id, const int exp)
 {
-    ostringstream o;
-    o << getpkmlevelsql(id,exp);
-    return getanint(o);
+    return getanint(getpkmlevelsql(id,exp));
 }
 int getpkmlevel(const pokemon_obj &pkm)
 {
@@ -254,8 +297,8 @@ int getpkmlevel(const pokemon_obj *pkm)
 }
 string getpkmexptonextsql(const int id, const int exp)
 {
-    stringstream ss;
-    ss << ""
+    ostringstream o;
+    o << ""
       << "SELECT experience.experience "
       << "FROM   pokemon_species "
       << "       INNER JOIN experience "
@@ -263,7 +306,7 @@ string getpkmexptonextsql(const int id, const int exp)
       << "WHERE  ( pokemon_species.id = " << id << " ) "
       << "       AND ( experience.experience > " << exp << " ) "
       << "ORDER  BY experience.experience ";
-    return ss.str();
+    return o.str();
 }
 int getpkmexptonext(const int id, const int exp)
 {
@@ -271,9 +314,7 @@ int getpkmexptonext(const int id, const int exp)
     {
         return 0;
     };
-    ostringstream o;
-    o << getpkmexptonextsql(id,exp);
-    int expatnext = getanint(o);
+    int expatnext = getanint(getpkmexptonextsql(id,exp));
     return expatnext - exp;
 }
 int getpkmexptonext(const pokemon_obj &pkm)
@@ -282,8 +323,8 @@ int getpkmexptonext(const pokemon_obj &pkm)
 }
 string getpkmexpatcursql(const int id, const int exp)
 {
-    stringstream ss;
-    ss << ""
+    ostringstream o;
+    o << ""
       << "SELECT experience.experience "
       << "FROM   pokemon_species "
       << "       INNER JOIN experience "
@@ -291,18 +332,16 @@ string getpkmexpatcursql(const int id, const int exp)
       << "WHERE  ( pokemon_species.id = " << id << " ) "
       << "       AND ( experience.level = " << getpkmlevel(id,exp) << " ) "
       << "ORDER  BY experience.experience ";
-    return ss.str();
+    return o.str();
 }
 int getpkmexpatcur(const int id, const int exp)
 {
-    ostringstream o;
-    o << getpkmexpatcursql(id,exp);
-    return getanint(o);
+    return getanint(getpkmexpatcursql(id,exp));
 }
 string getpkmexpatlevelsql(const int id, const int level)
 {
-    stringstream ss;
-    ss << ""
+    ostringstream o;
+    o << ""
       << "SELECT experience.experience "
       << "FROM   pokemon_species "
       << "       INNER JOIN experience "
@@ -310,18 +349,16 @@ string getpkmexpatlevelsql(const int id, const int level)
       << "WHERE  ( pokemon_species.id = " << id << " ) "
       << "       AND ( experience.level = " << level << " ) "
       << "ORDER  BY experience.experience ";
-    return ss.str();
+    return o.str();
 }
 int getpkmexpatlevel(const int id, const int level)
 {
-    ostringstream o;
-    o << getpkmexpatlevelsql(id,level);
-    return getanint(o);
+    return getanint(getpkmexpatlevelsql(id,level));
 }
 string getpkmexpatlevelsql(const Species::pkmspecies id, const int level)
 {
-    stringstream ss;
-        ss << ""
+    ostringstream o;
+    o << ""
       << "SELECT experience.experience "
       << "FROM   pokemon_species "
       << "       INNER JOIN experience "
@@ -329,13 +366,11 @@ string getpkmexpatlevelsql(const Species::pkmspecies id, const int level)
       << "WHERE  ( pokemon_species.id = " << (int)id << " ) "
       << "       AND ( experience.level = " << level << " ) "
       << "ORDER  BY experience.experience ";
-    return ss.str();
+    return o.str();
 }
 int getpkmexpatlevel(const Species::pkmspecies id, const int level)
 {
-    ostringstream o;
-    o << getpkmexpatlevelsql(id,level);
-    return getanint(o);
+    return getanint(getpkmexpatlevelsql(id,level));
 }
 int getpkmexpatcur(const pokemon_obj &pkm)
 {
@@ -343,19 +378,17 @@ int getpkmexpatcur(const pokemon_obj &pkm)
 }
 string getnaturenamesql(const int natureid, const int langid)
 {
-        stringstream ss;
-    ss << ""
+    ostringstream o;
+    o << ""
       << "SELECT name "
       << "FROM   nature_names "
       << "WHERE  ( nature_id = " << (int)(natureconvert[natureid][1]) << " ) "
-        << "       AND ( local_language_id = " << langid << " ) ";
-        return ss.str();
+                                                                      << "       AND ( local_language_id = " << langid << " ) ";
+    return o.str();
 }
 string getnaturename(const int natureid, const int langid)
 {
-    ostringstream o;
-    o << getnaturenamesql(natureid,langid);
-    return getastring(o);
+    return getastring(getnaturenamesql(natureid,langid));
 }
 string getnaturename(const pokemon_obj &pkm, const int langid)
 {
@@ -368,14 +401,18 @@ string getnaturename(const pokemon_obj &pkm, const int langid)
         return getnaturename(int(pkm.nature),langid);
     }
 }
-int getnatureincrease(const int natureid)
+string getnatureincreasesql(const int natureid)
 {
     ostringstream o;
     o << ""
       << "SELECT increased_stat_id "
       << "FROM   natures "
       << "WHERE  ( id = " << (int)(natureconvert[natureid][1]) << " ) ";
-    return getanint(o);
+    return o.str();
+}
+int getnatureincrease(const int natureid)
+{
+    return getanint(getnatureincreasesql(natureid));
 }
 int getnatureincrease(const pokemon_obj &pkm)
 {
@@ -399,14 +436,18 @@ int getnatureincrease(const pokemon_obj *pkm)
         return getnatureincrease(int(pkm->nature));
     }
 }
-int getnaturedecrease(const int natureid)
+string getnaturedecreasesql(const int natureid)
 {
     ostringstream o;
     o << ""
       << "SELECT decreased_stat_id "
       << "FROM   natures "
       << "WHERE  ( id = " << (int)(natureconvert[natureid][1]) << " ) ";
-    return getanint(o);
+    return o.str();
+}
+int getnaturedecrease(const int natureid)
+{
+    return getanint(getnaturedecreasesql(natureid));
 }
 int getnaturedecrease(const pokemon_obj &pkm)
 {
@@ -430,7 +471,7 @@ int getnaturedecrease(const pokemon_obj *pkm)
         return getnaturedecrease(int(pkm->nature));
     }
 }
-string lookupitemname(const int itemid, const int generation, const int langid)
+string lookupitemnamesql(const int itemid, const int generation, const int langid)
 {
     ostringstream o;
     o << ""
@@ -441,15 +482,18 @@ string lookupitemname(const int itemid, const int generation, const int langid)
       << "WHERE  ( item_game_indices.generation_id = " << generation << " ) "
       << "       AND ( item_game_indices.game_index = " << itemid << " ) "
       << "       AND ( item_names.local_language_id = " << langid << " ) ";
-    return getastring(o);
+    return o.str();
+}
+string lookupitemname(const int itemid, const int generation, const int langid)
+{
+    return getastring(lookupitemnamesql(itemid,generation,langid));
 }
 string lookupitemname(const pokemon_obj &pkm, const int generation, const int langid)
 {
     return lookupitemname(pkm.item,generation,langid);
 }
-int getpkmstat(const pokemon_obj &pkm, const Stat_IDs::stat_ids stat_id)
+string getpkmstatsql(const pokemon_obj &pkm, const Stat_IDs::stat_ids stat_id)
 {
-    int basestat = 0;
     ostringstream o;
     o << ""
       << "SELECT pokemon_stats.base_stat "
@@ -473,7 +517,39 @@ int getpkmstat(const pokemon_obj &pkm, const Stat_IDs::stat_ids stat_id)
       << "       AND ( pokemon_species_names.pokemon_species_id = " << (uint16)pkm.species << " ) "
       << "       AND ( pokemon_forms.form_order = " << (int)(pkm.forms.form) << " + 1 ) "
       << "       AND ( stat_names.stat_id = " << (int)stat_id << " ) ";
-    basestat = getanint(o);
+    return o.str();
+}
+string getpkmstatsql(const pokemon_obj *pkm, const Stat_IDs::stat_ids stat_id)
+{
+    ostringstream o;
+    o << ""
+      << "SELECT pokemon_stats.base_stat "
+      << "FROM   pokemon_stats "
+      << "       INNER JOIN pokemon_forms "
+      << "               ON pokemon_stats.pokemon_id = pokemon_forms.pokemon_id "
+      << "       INNER JOIN stats "
+      << "               ON pokemon_stats.stat_id = stats.id "
+      << "       INNER JOIN stat_names "
+      << "               ON stats.id = stat_names.stat_id "
+      << "       INNER JOIN pokemon_species_names "
+      << "               ON stat_names.local_language_id = "
+      << "                  pokemon_species_names.local_language_id "
+      << "       INNER JOIN pokemon "
+      << "               ON pokemon_stats.pokemon_id = pokemon.id "
+      << "                  AND pokemon_forms.pokemon_id = pokemon.id "
+      << "                  AND pokemon_species_names.pokemon_species_id = "
+      << "                      pokemon.species_id "
+      << "WHERE  ( pokemon_species_names.local_language_id = 9 ) "
+      << "       AND ( stat_names.local_language_id = 9 ) "
+      << "       AND ( pokemon_species_names.pokemon_species_id = " << (uint16)pkm->species << " ) "
+      << "       AND ( pokemon_forms.form_order = " << (int)(pkm->forms.form) << " + 1 ) "
+      << "       AND ( stat_names.stat_id = " << (int)stat_id << " ) ";
+    return o.str();
+}
+int getpkmstat(const pokemon_obj &pkm, const Stat_IDs::stat_ids stat_id)
+{
+    int basestat = 0;
+    basestat = getanint(getpkmstatsql(pkm,stat_id));
     int level = getpkmlevel(pkm);
     int iv = 0;
     int ev = 0;
@@ -520,30 +596,7 @@ int getpkmstat(const pokemon_obj &pkm, const Stat_IDs::stat_ids stat_id)
 int getpkmstat(const pokemon_obj *pkm, const Stat_IDs::stat_ids stat_id)
 {
     int basestat = 0;
-    ostringstream o;
-    o << ""
-      << "SELECT pokemon_stats.base_stat "
-      << "FROM   pokemon_stats "
-      << "       INNER JOIN pokemon_forms "
-      << "               ON pokemon_stats.pokemon_id = pokemon_forms.pokemon_id "
-      << "       INNER JOIN stats "
-      << "               ON pokemon_stats.stat_id = stats.id "
-      << "       INNER JOIN stat_names "
-      << "               ON stats.id = stat_names.stat_id "
-      << "       INNER JOIN pokemon_species_names "
-      << "               ON stat_names.local_language_id = "
-      << "                  pokemon_species_names.local_language_id "
-      << "       INNER JOIN pokemon "
-      << "               ON pokemon_stats.pokemon_id = pokemon.id "
-      << "                  AND pokemon_forms.pokemon_id = pokemon.id "
-      << "                  AND pokemon_species_names.pokemon_species_id = "
-      << "                      pokemon.species_id "
-      << "WHERE  ( pokemon_species_names.local_language_id = 9 ) "
-      << "       AND ( stat_names.local_language_id = 9 ) "
-      << "       AND ( pokemon_species_names.pokemon_species_id = " << (uint16)pkm->species << " ) "
-      << "       AND ( pokemon_forms.form_order = " << (int)(pkm->forms.form) << " + 1 ) "
-      << "       AND ( stat_names.stat_id = " << (int)stat_id << " ) ";
-    basestat = getanint(o);
+    basestat = getanint(getpkmstatsql(pkm,stat_id));
     int level = getpkmlevel(pkm);
     int iv = 0;
     int ev = 0;
@@ -591,21 +644,25 @@ string getpkmgendername(const pokemon_obj &pkm)
 {
     return getgendername(calcpkmgender(pkm));
 }
-bool pkmhasgenddiff(const int species)
+string pkmhasgenddiffsql(const int species)
 {
     ostringstream o;
     o << ""
       << "SELECT has_gender_differences "
       << "FROM   pokemon_species "
       << "WHERE  ( id = " << (int)species << " ) ";
-    int h = getanint(o);
+    return o.str();
+}
+bool pkmhasgenddiff(const int species)
+{
+    int h = getanint(pkmhasgenddiffsql(species));
     return (h == 1);
 }
 bool pkmhasgenddiff(const pokemon_obj &pkm)
 {
     return pkmhasgenddiff(pkm.species);
 }
-string lookupabilityname(const int abilityid, const int langid)
+string lookupabilitynamesql(const int abilityid, const int langid)
 {
     ostringstream o;
     o << ""
@@ -613,13 +670,17 @@ string lookupabilityname(const int abilityid, const int langid)
       << "FROM   ability_names "
       << "WHERE  ( local_language_id = " << langid << " ) "
       << "       AND ( ability_id = " << abilityid << " ) ";
-    return getastring(o);
+    return o.str();
+}
+string lookupabilityname(const int abilityid, const int langid)
+{
+    return getastring(lookupabilitynamesql(abilityid,langid));
 }
 string lookupabilityname(const pokemon_obj &pkm, const int langid)
 {
     return lookupabilityname(pkm.ability, langid);
 }
-string getpkmformname(const pokemon_obj &pkm, const int langid)
+string getpkmformnamesql(const pokemon_obj &pkm, const int langid)
 {
     ostringstream o;
     o << ""
@@ -635,11 +696,15 @@ string getpkmformname(const pokemon_obj &pkm, const int langid)
       << "               ON pokemon_species.id = pokemon_species_names.pokemon_species_id "
       << "WHERE  ( pokemon_form_names.local_language_id = " << langid << " ) "
       << "       AND ( pokemon_species_names.local_language_id = " << langid << " ) "
-      << "       AND ( pokemon.species_id = " << (uint16)pkm.species << " ) "
+      << "       AND ( pokemon.species_id = " << (uint16)(pkm.species) << " ) "
       << "       AND ( pokemon_forms.form_order = " << (int)(pkm.forms.form) << " + 1 ) ";
-    return getastring(o);
+    return o.str();
 }
-string lookuplocname(const int locid, const int gen, const int langid)
+string getpkmformname(const pokemon_obj &pkm, const int langid)
+{
+    return getastring(getpkmformnamesql(pkm,langid));
+}
+string lookuplocnamesql(const int locid, const int gen, const int langid)
 {
     ostringstream o;
     o << ""
@@ -655,7 +720,11 @@ string lookuplocname(const int locid, const int gen, const int langid)
       << "       AND ( generations.id = " << gen << " ) "
       << "       AND ( location_game_indices.game_index = " << locid << " ) "
       << "ORDER  BY location_game_indices.game_index ";
-    return getastring(o);
+    return o.str();
+}
+string lookuplocname(const int locid, const int gen, const int langid)
+{
+    return getastring(lookuplocnamesql(locid,gen,langid));
 }
 string getpkmmetlocname(const pokemon_obj &pkm, const int gen, const int langid)
 {
@@ -685,7 +754,7 @@ string getpkmegglocname(const pokemon_obj &pkm, const int gen, const int langid)
         return lookuplocname(pkm.eggmet, gen, langid);
     }
 }
-string lookupitemflavortext(const int itemid, const int generation, const int langid, const int versiongroup)
+string lookupitemflavortextsql(const int itemid, const int generation, const int langid, const int versiongroup)
 {
     ostringstream o;
     o << ""
@@ -700,7 +769,11 @@ string lookupitemflavortext(const int itemid, const int generation, const int la
       << "       AND ( item_game_indices.generation_id = " << generation << " ) "
       << "       AND ( item_game_indices.game_index = " << itemid << " ) "
       << "       AND ( item_flavor_text.version_group_id = " << versiongroup << " ) ";
-    string ret = getastring(o);
+    return o.str();
+}
+string lookupitemflavortext(const int itemid, const int generation, const int langid, const int versiongroup)
+{
+    string ret = getastring(lookupitemflavortextsql(itemid,generation,langid,versiongroup));
     replace(ret.begin(),ret.end(),'\n',' ');
     return ret;
 }
@@ -708,7 +781,7 @@ string lookupitemflavortext(const pokemon_obj &pkm, const int generation, const 
 {
     return lookupitemflavortext(pkm.item,generation,langid,versiongroup);
 }
-string lookuppkmcolorname(const int species, const int langid)
+string lookuppkmcolornamesql(const int species, const int langid)
 {
     ostringstream o;
     o << ""
@@ -720,13 +793,17 @@ string lookuppkmcolorname(const int species, const int langid)
       << "               ON pokemon_colors.id = pokemon_species.color_id "
       << "WHERE  ( pokemon_color_names.local_language_id = " << langid << " ) "
       << "       AND ( pokemon_species.id = " << species << " ) ";
-    return getastring(o);
+    return o.str();
+}
+string lookuppkmcolorname(const int species, const int langid)
+{
+    return getastring(lookuppkmcolornamesql(species,langid));
 }
 string lookuppkmcolorname(const pokemon_obj &pkm, const int langid)
 {
     return lookuppkmcolorname(pkm.species, langid);
 }
-int lookuppkmcolorid(const int species)
+string lookuppkmcoloridsql(const int species)
 {
     ostringstream o;
     o << ""
@@ -738,13 +815,17 @@ int lookuppkmcolorid(const int species)
       << "               ON pokemon_colors.id = pokemon_species.color_id "
       << "WHERE  ( pokemon_color_names.local_language_id = 9 ) "
       << "       AND ( pokemon_species.id = " << species << " ) ";
-    return getanint(o);
+    return o.str();
+}
+int lookuppkmcolorid(const int species)
+{
+    return getanint(lookuppkmcoloridsql(species));
 }
 int lookuppkmcolorid(const pokemon_obj &pkm)
 {
     return lookuppkmcolorid(pkm.species);
 }
-string lookupabilityflavortext(const int abilityid, const int version_group, const int langid)
+string lookupabilityflavortextsql(const int abilityid, const int version_group, const int langid)
 {
     ostringstream o;
     o << ""
@@ -757,7 +838,11 @@ string lookupabilityflavortext(const int abilityid, const int version_group, con
       << "WHERE  ( ability_flavor_text.version_group_id = " << version_group << " ) "
       << "       AND ( ability_flavor_text.language_id = " << langid << " ) "
       << "       AND ( abilities.id = " << abilityid << " ) ";
-    string ret = getastring(o);
+    return o.str();
+}
+string lookupabilityflavortext(const int abilityid, const int version_group, const int langid)
+{
+    string ret = getastring(lookupabilityflavortextsql(abilityid,version_group,langid));
     replace(ret.begin(),ret.end(),'\n',' ');
     return ret;
 }
@@ -765,7 +850,7 @@ string lookupabilityflavortext(const pokemon_obj &pkm, const int version_group, 
 {
     return lookupabilityflavortext(pkm.ability,version_group,langid);
 }
-string lookupcharacteristic(const int statid, const int iv, const int langid)
+string lookupcharacteristicsql(const int statid, const int iv, const int langid)
 {
     ostringstream o;
     o << ""
@@ -776,7 +861,11 @@ string lookupcharacteristic(const int statid, const int iv, const int langid)
       << "WHERE  ( stat_hint_names.local_language_id = " << langid << " ) "
       << "       AND ( stat_hints.stat_id = " << statid << " ) "
       << "       AND ( stat_hints.gene_mod_5 = " << (int)(iv % 5) << " ) ";
-    return getastring(o);
+    return o.str();
+}
+string lookupcharacteristic(const int statid, const int iv, const int langid)
+{
+    return getastring(lookupcharacteristicsql(statid,iv,langid));
 }
 bool compareivbyval(const ivtest &a, const ivtest &b)
 {
@@ -854,26 +943,9 @@ string lookupcharacteristic(const pokemon_obj &pkm, const int langid)
 }
 void setlevel(pokemon_obj &pkm, int level)
 {
-    if(level > 100)
-    {
-        level = 100;
-    }
-    if(level < 1)
-    {
-        level = 1;
-    }
-    ostringstream o;
-    o << ""
-      << "SELECT experience.experience "
-      << "FROM   pokemon_species "
-      << "       INNER JOIN experience "
-      << "               ON pokemon_species.growth_rate_id = experience.growth_rate_id "
-      << "WHERE  ( pokemon_species.id = " << (int)(pkm.species) << " ) "
-      << "       AND ( experience.level = " << level << " ) "
-      << "ORDER  BY experience.experience ";
-    pkm.exp = getanint(o);
+    pkm.exp = getanint(getsetlevelsql(pkm,level));
 }
-string lookuptypename(const int type, const int langid)
+string lookuptypenamesql(const int type, const int langid)
 {
     ostringstream o;
     o << ""
@@ -883,7 +955,11 @@ string lookuptypename(const int type, const int langid)
       << "               ON types.id = type_names.type_id "
       << "WHERE  ( type_names.local_language_id = " << langid << " ) "
       << "       AND ( types.id = " << (type+1) << " ) ";
-    return getastring(o);
+    return o.str();
+}
+string lookuptypename(const int type, const int langid)
+{
+    return getastring(lookuptypenamesql(type,langid));
 }
 int lookuppkmtype(const int species, const int form, const int slot, const int langid)
 {
@@ -949,7 +1025,7 @@ string lookupabilityname(const pokemon_obj *pkm, const int langid)
 {
     return lookupabilityname(pkm->ability, langid);
 }
-string getpkmformname(const pokemon_obj *pkm, const int langid)
+string getpkmformnamesql(const pokemon_obj *pkm, const int langid)
 {
     ostringstream o;
     o << ""
@@ -967,7 +1043,11 @@ string getpkmformname(const pokemon_obj *pkm, const int langid)
       << "       AND ( pokemon_species_names.local_language_id = " << langid << " ) "
       << "       AND ( pokemon.species_id = " << (uint16)(pkm->species) << " ) "
       << "       AND ( pokemon_forms.form_order = " << (int)(pkm->forms.form) << " + 1 ) ";
-    return getastring(o);
+    return o.str();
+}
+string getpkmformname(const pokemon_obj *pkm, const int langid)
+{
+    return getastring(getpkmformnamesql(pkm,langid));
 }
 string getpkmmetlocname(const pokemon_obj *pkm, const int gen, const int langid)
 {
@@ -1075,7 +1155,7 @@ string lookupcharacteristic(const pokemon_obj *pkm, const int langid)
     }
     return lookupcharacteristic(statid,highval,langid);
 }
-void setlevel(pokemon_obj *pkm, int level)
+string getsetlevelsql(pokemon_obj &pkm, int level)
 {
     if(level > 100)
     {
@@ -1091,16 +1171,41 @@ void setlevel(pokemon_obj *pkm, int level)
       << "FROM   pokemon_species "
       << "       INNER JOIN experience "
       << "               ON pokemon_species.growth_rate_id = experience.growth_rate_id "
-      << "WHERE  ( pokemon_species.id = " << (int)(int(pkm->species)) << " ) "
+      << "WHERE  ( pokemon_species.id = " << (int)(pkm.species) << " ) "
       << "       AND ( experience.level = " << level << " ) "
       << "ORDER  BY experience.experience ";
-    pkm->exp = getanint(o);
+    return o.str();
+}
+string getsetlevelsql(pokemon_obj *pkm, int level)
+{
+    if(level > 100)
+    {
+        level = 100;
+    }
+    if(level < 1)
+    {
+        level = 1;
+    }
+    ostringstream o;
+    o << ""
+      << "SELECT experience.experience "
+      << "FROM   pokemon_species "
+      << "       INNER JOIN experience "
+      << "               ON pokemon_species.growth_rate_id = experience.growth_rate_id "
+      << "WHERE  ( pokemon_species.id = " << (int)(pkm->species) << " ) "
+      << "       AND ( experience.level = " << level << " ) "
+      << "ORDER  BY experience.experience ";
+    return o.str();
+}
+void setlevel(pokemon_obj *pkm, int level)
+{
+    pkm->exp = getanint(getsetlevelsql(pkm,level));
 }
 int lookuppkmtype(const pokemon_obj *pkm, const int slot, const int langid)
 {
     return lookuppkmtype(int(pkm->species),pkm->forms.form,slot,langid);
 }
-int lookuppkmevolvedspecies(int speciesid)
+string lookuppkmevolvedspeciessql(int speciesid)
 {
     ostringstream o;
     o << ""
@@ -1112,8 +1217,12 @@ int lookuppkmevolvedspecies(int speciesid)
       << "               ON pokemon_species.evolution_chain_id = evolution_chains.id "
       << "       INNER JOIN pokemon_evolution "
       << "               ON pokemon_species.id = pokemon_evolution.evolved_species_id "
-      << "WHERE  ( pokemon_species.evolves_from_species_id = " << (int)speciesid << " ) ";
-    return getanint(o);
+      << "WHERE  ( pokemon_species.evolves_from_species_id = " << speciesid << " ) ";
+    return o.str();
+}
+int lookuppkmevolvedspecies(int speciesid)
+{
+    return getanint(lookuppkmevolvedspeciessql(speciesid));
 }
 void pctoparty(party_pkm *ppkm, const pokemon_obj *pkm)
 {
@@ -1584,27 +1693,31 @@ void getballsql(ostringstream& o, const Balls::balls ball, const int generation)
 {
     getitemsql(o,balltoitem((int)ball),generation);
 }
-int DllExport getmovepp(const Moves::moves moveid)
+string getmoveppsql(const Moves::moves moveid)
 {
     ostringstream o;
     o << ""
       << "SELECT pp "
       << "FROM   moves "
       << "WHERE  ( id = " << (int)moveid << " ) ";
-    return getanint(o);
+    return o.str();
 }
-int DllExport getmovepp(const pokemon_obj * pkm, const int movenum)
+int getmovepp(const Moves::moves moveid)
+{
+    return getanint(getmoveppsql(moveid));
+}
+int getmovepp(const pokemon_obj * pkm, const int movenum)
 {
     return getmovepp(pkm->moves[movenum]);
 }
-int DllExport getmovetotalpp(const pokemon_obj * pkm, const int movenum)
+int getmovetotalpp(const pokemon_obj * pkm, const int movenum)
 {
     int curpp = getmovepp(pkm,movenum);
     double multiplier = pkm->ppup[movenum] * 20;
     multiplier = (multiplier + 100) / 100;
     return (int)(curpp * multiplier);
 }
-int DllExport getpkmgenderrate(Species::pkmspecies speciesid)
+int getpkmgenderrate(Species::pkmspecies speciesid)
 {
     ostringstream o;
     o << ""
@@ -1612,7 +1725,7 @@ int DllExport getpkmgenderrate(Species::pkmspecies speciesid)
       << "FROM   pokemon_species "
       << "WHERE  ( id = " << (int)speciesid << " ) ";    return getanint(o);
 }
-Genders::genders DllExport calcpkmgender(const pokemon_obj * pkm)
+Genders::genders calcpkmgender(const pokemon_obj * pkm)
 {
     int genderrate = getpkmgenderrate(pkm->species);
     int ratiobin = 0;
@@ -1650,7 +1763,7 @@ Genders::genders DllExport calcpkmgender(const pokemon_obj * pkm)
     }
     return Genders::female;
 }
-Genders::genders DllExport calcpkmgender(const pokemon_obj & pkm)
+Genders::genders calcpkmgender(const pokemon_obj & pkm)
 {
     int genderrate = getpkmgenderrate(pkm.species);
     int ratiobin = 0;
@@ -1688,7 +1801,7 @@ Genders::genders DllExport calcpkmgender(const pokemon_obj & pkm)
     }
     return Genders::female;
 }
-int DllExport getmovecategory(const Moves::moves moveid)
+int getmovecategory(const Moves::moves moveid)
 {
     ostringstream o;
     o << ""
@@ -1697,7 +1810,7 @@ int DllExport getmovecategory(const Moves::moves moveid)
       << "WHERE  ( id = " << (int)moveid << " ) ";
     return getanint(o);
 }
-int DllExport getmovepower(const Moves::moves moveid)
+int getmovepower(const Moves::moves moveid)
 {
     ostringstream o;
     o << ""
@@ -1706,7 +1819,7 @@ int DllExport getmovepower(const Moves::moves moveid)
       << "WHERE  ( id = " << (int)moveid << " ) ";
     return getanint(o);
 }
-int DllExport getmoveaccuracy(const Moves::moves moveid)
+int getmoveaccuracy(const Moves::moves moveid)
 {
     ostringstream o;
     o << ""
@@ -1715,7 +1828,7 @@ int DllExport getmoveaccuracy(const Moves::moves moveid)
       << "WHERE  ( id = " << (int)moveid << " ) ";
     return getanint(o);
 }
-void DllExport getmovecatsql(ostringstream& o, const Moves::moves moveid)
+void getmovecatsql(ostringstream& o, const Moves::moves moveid)
 {
     string catname = "";
     switch((MoveCategories::movecategories)getmovecategory(moveid))
@@ -1732,7 +1845,7 @@ void DllExport getmovecatsql(ostringstream& o, const Moves::moves moveid)
     }
     o << "select image from move_categories where (identifier = \"" << catname << "\")";
 }
-Types::types DllExport getmovetype(Moves::moves moveid)
+Types::types getmovetype(Moves::moves moveid)
 {
     ostringstream o;
     o << ""
