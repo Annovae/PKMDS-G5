@@ -1,4 +1,6 @@
 #pragma once
+using namespace System;
+using namespace System::Data;
 using namespace System::Data::SQLite;
 public ref class VS_SQLite
 {
@@ -8,8 +10,8 @@ public: VS_SQLite()
 		{
 			db = gcnew SQLiteConnection();
 			imgdb = gcnew SQLiteConnection();
-			System::String ^ dbdir = "C:\\Users\\Mike\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\";
-			//System::String ^ dbdir = "C:\\Users\\michaelbond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\"
+			String ^ dbdir = "C:\\Users\\Mike\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\";
+			//String ^ dbdir = "C:\\Users\\michaelbond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\"
 			db->ConnectionString = L"Data Source='" + dbdir + L"veekun-pokedex.sqlite'";
 			db->Open();
 			imgdb->ConnectionString = L"Data Source='" + dbdir + L"images.sqlite'";
@@ -20,7 +22,7 @@ public: VS_SQLite()
 			db->Close();
 			imgdb->Close();
 		}
-		System::String ^ getSQLText(System::String ^ SQL)
+		String ^ getSQLText(String ^ SQL)
 		{
 			SQLiteCommand ^cmdSelect = db->CreateCommand();
 			cmdSelect->CommandText = SQL;
@@ -28,15 +30,15 @@ public: VS_SQLite()
 			reader->Read();
 			return reader->GetString(0);
 		}
-		System::Data::DataSet ^ getSQLDS(System::String ^ SQL)
+		DataSet ^ getSQLDS(String ^ SQL)
 		{
-			System::Data::DataSet ^ DS = gcnew System::Data::DataSet();
+			DataSet ^ DS = gcnew DataSet();
 			SQLiteDataAdapter ^ DB = gcnew SQLiteDataAdapter(SQL,db);
 			DS->Reset();
 			DB->Fill(DS);
 			return DS;
 		}
-		int getSQLInt(System::String ^ SQL)
+		int getSQLInt(String ^ SQL)
 		{
 			SQLiteCommand ^cmdSelect = db->CreateCommand();
 			cmdSelect->CommandText = SQL;
@@ -44,11 +46,11 @@ public: VS_SQLite()
 			reader->Read();
 			return reader->GetInt16(0);
 		}
-		System::Drawing::Image^ getSQLImage(System::String^ SQL)
+		Drawing::Image^ getSQLImage(String^ SQL)
 		{
 			SQLiteCommand ^ cmd = imgdb->CreateCommand();
 			cmd->CommandText = SQL;
-			System::Object ^ obj = gcnew System::Object;
+			Object ^ obj = gcnew Object;
 			try
 			{
 				obj = cmd->ExecuteScalar();
@@ -57,13 +59,13 @@ public: VS_SQLite()
 			{
 
 			}
-			System::Drawing::Image ^ img;
+			Drawing::Image ^ img;
 			try {
 				// http://www.digitalcoding.com/Code-Snippets/CPP-CLI/C-CLI-Code-Snippet-Get-Image-from-sql-server.html
-				array<System::Byte> ^_ImageData = gcnew array<System::Byte>(0);
-				_ImageData = safe_cast<array<System::Byte>^>(obj);
-				System::IO::MemoryStream ^_MemoryStream = gcnew System::IO::MemoryStream(_ImageData);
-				img = System::Drawing::Image::FromStream(_MemoryStream);
+				array<Byte> ^_ImageData = gcnew array<Byte>(0);
+				_ImageData = safe_cast<array<Byte>^>(obj);
+				IO::MemoryStream ^_MemoryStream = gcnew IO::MemoryStream(_ImageData);
+				img = Drawing::Image::FromStream(_MemoryStream);
 				return img;
 			}
 			catch(...)
@@ -71,5 +73,25 @@ public: VS_SQLite()
 
 			}
 			return img;
+		}
+		String ^ getSQLText(std::string sql)
+		{
+			String^ SQL = gcnew String(sql.c_str());
+			return getSQLText(SQL);
+		}
+		DataSet ^ getSQLDS(std::string sql)
+		{
+			String^ SQL = gcnew String(sql.c_str());
+			return getSQLDS(SQL);
+		}
+		int getSQLInt(std::string sql)
+		{
+			String^ SQL = gcnew String(sql.c_str());
+			return getSQLInt(SQL);
+		}
+		Drawing::Image^ getSQLImage(std::string sql)
+		{
+			String^ SQL = gcnew String(sql.c_str());
+			return getSQLImage(SQL);
 		}
 };
