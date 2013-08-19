@@ -97,7 +97,6 @@ namespace SQLite_VS_2010 {
 			this->Controls->Add(this->btnTest);
 			this->Name = L"Form1";
 			this->Text = L"Main Form";
-			//this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &Form1::Form1_FormClosing);
 			this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbTest))->EndInit();
 			this->ResumeLayout(false);
@@ -116,12 +115,12 @@ namespace SQLite_VS_2010 {
 				 lblTest->Text = vsqlite->fromSTD(lookuppkmname(pkm));
 				 std::ostringstream o;
 				 getspritesql(o,pkm);
+				 //geticonsql(o,pkm);
 				 pbTest->Image = vsqlite->getSQLImage(o.str());
+				 delete sav;
+				 sav = 0;
+				 pkm = 0;
 			 }
-			 //private: System::Void Form1_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) 
-			 //		 {
-			 //			 vsqlite->
-			 //		 }
 			 private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e) 
 			 		 {
 			 			 vsqlite = gcnew VS_SQLite();
