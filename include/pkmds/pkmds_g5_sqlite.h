@@ -37,18 +37,19 @@ static const char theimgDB[] = "..\\..\\SQLite Databases\\images.sqlite";
 #endif
 #include "pkmds_g5.h"
 #endif
-#ifndef __cplusplus_cli
+#include "../pkmds/pkmds_sql.h"
 using namespace std;
-static const int LANG_ID = 9;
-static const int VERSION_GROUP = 11;
-static const int GENERATION = 5;
-static const int BUFF_SIZE = 955;
+#ifndef __cplusplus_cli
+
 extern DllExport sqlite3 *imgdatabase;
 extern DllExport sqlite3_stmt *imgstatement;
 void DllExport opendb(const char db_file[] = theDB);
 void DllExport closedb();
 void DllExport openimgdb(const char db_file[] = theimgDB);
 void DllExport closeimgdb();
+#else
+
+#endif
 string DllExport getastring(const ostringstream &o);
 int DllExport getanint(const ostringstream &o);
 string DllExport getastring(const string &str);
@@ -90,8 +91,6 @@ int DllExport getnaturedecrease(const pokemon_obj *pkm);
 string DllExport lookupitemname(const int itemid, const int generation = GENERATION, const int langid = LANG_ID);
 string DllExport lookupitemname(const pokemon_obj &pkm, const int generation = GENERATION, const int langid = LANG_ID);
 string DllExport lookupitemname(const pokemon_obj *pkm, const int generation = GENERATION, const int langid = LANG_ID);
-string getpkmstatsql(const pokemon_obj &pkm, const Stat_IDs::stat_ids stat_id);
-string DllExport getpkmstatsql(const pokemon_obj *pkm, const Stat_IDs::stat_ids stat_id);
 int DllExport getpkmstat(const pokemon_obj &pkm, const Stat_IDs::stat_ids stat_id);
 int DllExport getpkmstat(const pokemon_obj *pkm, const Stat_IDs::stat_ids stat_id);
 string DllExport getpkmgendername(const pokemon_obj &pkm);
@@ -123,9 +122,9 @@ string DllExport lookupabilityflavortext(const pokemon_obj &pkm, const int versi
 string DllExport lookupabilityflavortext(const pokemon_obj *pkm, const int version_group = VERSION_GROUP, const int langid = LANG_ID);
 string DllExport lookupcharacteristic(const int statid, const int iv, const int langid = LANG_ID);
 struct ivtest{
-	byte id;
-	byte val;
-	byte order;
+    byte id;
+    byte val;
+    byte order;
 };
 bool DllExport compareivbyval(const ivtest &a, const ivtest &b);
 bool DllExport compareivbyid(const ivtest &a, const ivtest &b);
@@ -144,19 +143,8 @@ void DllExport pctoparty(party_pkm &ppkm, const pokemon_obj *pkm);
 void DllExport pctoparty(party_pkm *ppkm, const pokemon_obj &pkm);
 void DllExport pctoparty(party_pkm &ppkm, const pokemon_obj &pkm);
 void DllExport displaypkminconsole(pokemon_obj * pkm);
-void DllExport getspritesql(ostringstream& o, const pokemon_obj & pkm, int langid = LANG_ID);
-void DllExport getspritesql(ostringstream& o, const pokemon_obj * pkm, int langid = LANG_ID);
-void DllExport geticonsql(ostringstream& o, const pokemon_obj & pkm, int langid = LANG_ID);
-void DllExport geticonsql(ostringstream& o, const pokemon_obj * pkm, int langid = LANG_ID);
-void DllExport gettypesql(ostringstream& o, const Types::types type);
-void DllExport gettypesql(ostringstream& o, const int type);
 int DllExport getpkmexpatlevel(const int id, const int level);
 int DllExport getpkmexpatlevel(const Species::pkmspecies id, const int level);
-void DllExport getwallpapersql(ostringstream& o, const int wallpaper);
-void DllExport getwallpapersql(ostringstream& o, const Wallpapers::wallpapers wallpaper);
-void DllExport getitemsql(ostringstream& itemsql, const int itemid, const int generation = GENERATION);
-void DllExport getmarkingsql(ostringstream& o, const Markings::markings mark, const bool marked);
-void DllExport getballsql(ostringstream& o, const Balls::balls ball, const int generation = GENERATION);
 int DllExport getmovepp(const Moves::moves moveid);
 int DllExport getmovepp(const pokemon_obj * pkm, const int movenum);
 int DllExport getmovetotalpp(const pokemon_obj * pkm, const int movenum);
@@ -164,39 +152,6 @@ Genders::genders DllExport calcpkmgender(const pokemon_obj * pkm);
 int DllExport getpkmgenderrate(Species::pkmspecies speciesid);
 Genders::genders DllExport calcpkmgender(const pokemon_obj & pkm);
 int DllExport getmovecategory(const Moves::moves moveid);
-void DllExport getmovecatsql(ostringstream& o, const Moves::moves moveid);
 Types::types DllExport getmovetype(Moves::moves moveid);
 int DllExport getmovepower(const Moves::moves moveid);
 int DllExport getmoveaccuracy(const Moves::moves moveid);
-string DllExport getspeciesnamesql(const int speciesid, const int langid = LANG_ID);
-string DllExport getmovenamesql(const int moveid, const int langid = LANG_ID);
-string DllExport getmoveflavortextsql(const uint16 moveid, const int langid = LANG_ID, const int versiongroup = VERSION_GROUP);
-string DllExport getmovetypenamesql(const uint16 moveid, const int langid = LANG_ID);
-string DllExport getmovedamagetypenamesql(const uint16 moveid, const int langid = LANG_ID);
-string DllExport getpkmlevelsql(const int id, const int exp);
-string DllExport getpkmexptonextsql(const int id, const int exp);
-string DllExport getpkmexpatcursql(const int id, const int exp);
-string DllExport getpkmexpatlevelsql(const int id, const int level);
-string DllExport getpkmexpatlevelsql(const Species::pkmspecies id, const int level);
-string DllExport getnaturenamesql(const int natureid, const int langid = LANG_ID);
-string DllExport getmoveppsql(const Moves::moves moveid);
-string DllExport lookuppkmevolvedspeciessql(int speciesid);
-string DllExport getsetlevelsql(pokemon_obj *pkm, int level);
-string DllExport getsetlevelsql(pokemon_obj &pkm, int level);
-string DllExport getpkmformnamesql(const pokemon_obj *pkm, const int langid = LANG_ID);
-string DllExport getpkmformnamesql(const pokemon_obj &pkm, const int langid = LANG_ID);
-string DllExport  getnatureincreasesql(const int natureid);
-string DllExport  getnaturedecreasesql(const int natureid);
-string DllExport  lookupitemnamesql(const int itemid, const int generation = GENERATION, const int langid = LANG_ID);
-string DllExport  pkmhasgenddiffsql(const int species);
-string DllExport  lookupabilitynamesql(const int abilityid, const int langid = LANG_ID);
-string DllExport  lookuplocnamesql(const int locid, const int gen, const int langid = LANG_ID);
-string DllExport  lookupitemflavortextsql(const int itemid, const int generation = GENERATION, const int langid = LANG_ID, const int versiongroup = VERSION_GROUP);
-string DllExport  lookuppkmcolornamesql(const int species, const int langid = LANG_ID);
-string DllExport  lookuppkmcoloridsql(const int species);
-string DllExport  lookupabilityflavortextsql(const int abilityid, const int version_group = VERSION_GROUP, const int langid = LANG_ID);
-string DllExport  lookupcharacteristicsql(const int statid, const int iv, const int langid = LANG_ID);
-string DllExport  lookuptypenamesql(const int type, const int langid = LANG_ID);
-#else
-
-#endif

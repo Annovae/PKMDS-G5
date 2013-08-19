@@ -23,7 +23,8 @@ SOURCES += \
     ../../lib/pkmds_gba.cpp \
     ../../lib/pkmds_vector.cpp \
     ../../lib/pkmds_g5_sqlite.cpp \
-    ../../lib/pkmds_g5.cpp
+    ../../lib/pkmds_g5.cpp \
+    ../../lib/pkmds_sql.cpp
 
 HEADERS  += \
     ../qt_sqlite.h \
@@ -37,7 +38,8 @@ HEADERS  += \
     ../../include/pkmds/pkmds_gba.h \
     ../../include/pkmds/pkmds_g5_sqlite.h \
     ../../include/pkmds/stdafx.h \
-    ../../include/pkmds/pkmds_g5.h
+    ../../include/pkmds/pkmds_g5.h \
+    ../../include/pkmds/pkmds_sql.h
 
 FORMS    += \
     ../pkmviewer.ui \
