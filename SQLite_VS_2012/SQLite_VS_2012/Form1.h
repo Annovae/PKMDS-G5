@@ -1,5 +1,6 @@
 #pragma once
 #include "../../Visual_Studio/vs_sqlite.h"
+#include "../../include/pkmds/pkmds_g5_sqlite.h"
 using namespace System::Data::SQLite;
 namespace SQLite_VS_2012 {
 	using namespace System;
@@ -149,14 +150,15 @@ namespace SQLite_VS_2012 {
 			 {
 				 try
 				 {
-					 if(this->rbVeekun->Checked)
-					 {
-						 dgData->DataSource = vsqlite->getSQLDS(txtTest->Text)->Tables[0];
-					 }
-					 else
-					 {
-						 this->pbTest->Image = vsqlite->getSQLImage(txtTest->Text);
-					 }
+					 this->txtTest->Text = vsqlite->fromSTD(lookuppkmname(1));
+					 //if(this->rbVeekun->Checked)
+					 //{
+						// dgData->DataSource = vsqlite->getSQLDS(txtTest->Text)->Tables[0];
+					 //}
+					 //else
+					 //{
+						// this->pbTest->Image = vsqlite->getSQLImage(txtTest->Text);
+					 //}
 				 }
 				 catch(...)
 				 {

@@ -42,9 +42,6 @@ void closeimgdb()
 {
     sqlite3_close(imgdatabase);
 }
-#else
-
-#endif
 string getastring(const ostringstream &o)
 {
     string s = "";
@@ -160,6 +157,35 @@ void dostatement(const string &cmd)
     sqlite3_prepare_v2(database,cmd.c_str(),-1,&statement,0);
     sqlite3_step(statement);
 }
+#else
+#include "../../PKMDS-G5/Visual_Studio/vs_sqlite.h"
+string getastring(const ostringstream &o)
+{
+	VS_SQLite ^ vsqlite = gcnew VS_SQLite();
+	return vsqlite->getSQLTextstd(o.str());
+	//free(vsqlite);
+}
+int getanint(const ostringstream &o)
+{
+	VS_SQLite ^ vsqlite = gcnew VS_SQLite();
+	return vsqlite->getSQLInt(o.str());
+	//free(vsqlite);
+}
+string getastring(const string &str)
+{
+	VS_SQLite ^ vsqlite = gcnew VS_SQLite();
+	return vsqlite->getSQLTextstd(str);
+	//free(vsqlite);
+}
+int getanint(const string &str)
+{
+	VS_SQLite ^ vsqlite = gcnew VS_SQLite();
+	return vsqlite->getSQLInt(str);
+	//free(vsqlite);
+}
+void DllExport dostatement(const string &cmd)
+{}
+#endif
 string lookuppkmname(const int speciesid, const int langid)
 {
     return getastring(getspeciesnamesql(speciesid,langid));

@@ -16,14 +16,14 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 #ifdef PKMDS_CMAKE_USED
-#ifndef __cplusplus_cli
+//#ifndef __cplusplus_cli
 #include <pkmds/pkmds_g5_sqlite.h>
-#endif
+//#endif
 #include <pkmds/pkmds_sql.h>
 #else
-#ifndef __cplusplus_cli
+//#ifndef __cplusplus_cli
 #include "../../PKMDS-G5/include/pkmds/pkmds_g5_sqlite.h"
-#endif
+//#endif
 #include "../../PKMDS-G5/include/pkmds/pkmds_sql.h"
 #endif
 string getspeciesnamesql(const int speciesid, const int langid)

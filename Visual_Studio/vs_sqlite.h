@@ -1,7 +1,9 @@
 #pragma once
+#include <msclr\marshal_cppstd.h>
 using namespace System;
 using namespace System::Data;
 using namespace System::Data::SQLite;
+using namespace msclr::interop;
 public ref class VS_SQLite
 {
 public : SQLiteConnection ^db;
@@ -22,7 +24,7 @@ public: VS_SQLite()
 			db->Close();
 			imgdb->Close();
 		}
-		String ^ getSQLText(String ^ SQL)
+public: String ^ getSQLText(String ^ SQL)
 		{
 			SQLiteCommand ^cmdSelect = db->CreateCommand();
 			cmdSelect->CommandText = SQL;
@@ -30,7 +32,7 @@ public: VS_SQLite()
 			reader->Read();
 			return reader->GetString(0);
 		}
-		DataSet ^ getSQLDS(String ^ SQL)
+public: DataSet ^ getSQLDS(String ^ SQL)
 		{
 			DataSet ^ DS = gcnew DataSet();
 			SQLiteDataAdapter ^ DB = gcnew SQLiteDataAdapter(SQL,db);
@@ -38,7 +40,7 @@ public: VS_SQLite()
 			DB->Fill(DS);
 			return DS;
 		}
-		int getSQLInt(String ^ SQL)
+public: int getSQLInt(String ^ SQL)
 		{
 			SQLiteCommand ^cmdSelect = db->CreateCommand();
 			cmdSelect->CommandText = SQL;
@@ -46,7 +48,7 @@ public: VS_SQLite()
 			reader->Read();
 			return reader->GetInt16(0);
 		}
-		Drawing::Image^ getSQLImage(String^ SQL)
+public: Drawing::Image^ getSQLImage(String^ SQL)
 		{
 			SQLiteCommand ^ cmd = imgdb->CreateCommand();
 			cmd->CommandText = SQL;
@@ -74,24 +76,35 @@ public: VS_SQLite()
 			}
 			return img;
 		}
-		String ^ getSQLText(std::string sql)
+public: String ^ getSQLText(std::string sql)
 		{
 			String^ SQL = gcnew String(sql.c_str());
 			return getSQLText(SQL);
 		}
-		DataSet ^ getSQLDS(std::string sql)
+public: std::string getSQLTextstd(std::string sql)
 		{
 			String^ SQL = gcnew String(sql.c_str());
-			return getSQLDS(SQL);
+			String^ sysstring = getSQLText(SQL);
+			return marshal_as<std::string>(sysstring);
 		}
-		int getSQLInt(std::string sql)
+public: int getSQLInt(std::string sql)
 		{
 			String^ SQL = gcnew String(sql.c_str());
 			return getSQLInt(SQL);
 		}
-		Drawing::Image^ getSQLImage(std::string sql)
+public: DataSet ^ getSQLDS(std::string sql)
+		{
+			String^ SQL = gcnew String(sql.c_str());
+			return getSQLDS(SQL);
+		}
+public: Drawing::Image^ getSQLImage(std::string sql)
 		{
 			String^ SQL = gcnew String(sql.c_str());
 			return getSQLImage(SQL);
+		}
+public: System::String ^ fromSTD(std::string in)
+		{
+			System::String ^ out = gcnew System::String(in.c_str());
+			return out;
 		}
 };
