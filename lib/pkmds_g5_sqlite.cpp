@@ -318,10 +318,10 @@ int getpkmexpatlevel(const int id, const int level)
     o << getpkmexpatlevelsql(id,level);
     return getanint(o);
 }
-int getpkmexpatlevel(const Species::pkmspecies id, const int level)
+string getpkmexpatlevelsql(const Species::pkmspecies id, const int level)
 {
-    ostringstream o;
-    o << ""
+    stringstream ss;
+        ss << ""
       << "SELECT experience.experience "
       << "FROM   pokemon_species "
       << "       INNER JOIN experience "
@@ -329,20 +329,32 @@ int getpkmexpatlevel(const Species::pkmspecies id, const int level)
       << "WHERE  ( pokemon_species.id = " << (int)id << " ) "
       << "       AND ( experience.level = " << level << " ) "
       << "ORDER  BY experience.experience ";
+    return ss.str();
+}
+int getpkmexpatlevel(const Species::pkmspecies id, const int level)
+{
+    ostringstream o;
+    o << getpkmexpatlevelsql(id,level);
     return getanint(o);
 }
 int getpkmexpatcur(const pokemon_obj &pkm)
 {
     return getpkmexpatcur(pkm.species,pkm.exp);
 }
-string getnaturename(const int natureid, const int langid)
+string getnaturenamesql(const int natureid, const int langid)
 {
-    ostringstream o;
-    o << ""
+        stringstream ss;
+    ss << ""
       << "SELECT name "
       << "FROM   nature_names "
       << "WHERE  ( nature_id = " << (int)(natureconvert[natureid][1]) << " ) "
-                                                                      << "       AND ( local_language_id = " << langid << " ) ";
+        << "       AND ( local_language_id = " << langid << " ) ";
+        return ss.str();
+}
+string getnaturename(const int natureid, const int langid)
+{
+    ostringstream o;
+    o << getnaturenamesql(natureid,langid);
     return getastring(o);
 }
 string getnaturename(const pokemon_obj &pkm, const int langid)
