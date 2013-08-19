@@ -173,6 +173,8 @@ string DllExport getpkmlevelsql(const int id, const int exp);
 string DllExport getpkmexptonextsql(const int id, const int exp);
 string DllExport getpkmexpatcursql(const int id, const int exp);
 string DllExport getpkmexpatlevelsql(const int id, const int level);
+string DllExport getpkmexpatlevelsql(const Species::pkmspecies id, const int level);
+string DllExport getnaturenamesql(const int natureid, const int langid = LANG_ID);
 
 #else
 
