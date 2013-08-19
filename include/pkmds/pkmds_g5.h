@@ -18,9 +18,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #pragma once
 #include <cstdlib>
 #ifdef PKMDS_CMAKE_USED
-#include <pkmds/stdafx.h>
+#include <pkmds/pokeprng.h>
 #else
-#include "stdafx.h"
+#include "pokeprng.h"
 #endif
 // Enums
 namespace Species

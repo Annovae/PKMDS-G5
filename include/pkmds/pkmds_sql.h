@@ -17,26 +17,33 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 #pragma once
 #ifdef PKMDS_CMAKE_USED
-#include <sqlite3.h>
-#include <pkmds/pkmds_g5.h>
+//#ifndef __cplusplus_cli
+////#include <sqlite3.h>
+//#endif
+//#include <pkmds/pkmds_g5.h>
+#include <pkmds_g5_sqlite.h>
 #else
-#include "../sqlite3.h"
-
-#include "pkmds_g5.h"
+//#ifndef __cplusplus_cli
+////#include "../sqlite3.h"
+//#endif
+//#include "pkmds_g5.h"
+#include "pkmds_g5_sqlite.h"
 #endif
+//#include "pkmds_g5.h"
+//#include "pkmds_g5_sqlite.h"
 using namespace std;
-static const int LANG_ID = 9;
-static const int VERSION_GROUP = 11;
-static const int GENERATION = 5;
-static const int BUFF_SIZE = 955;
+//static const int LANG_ID = 9;
+//static const int VERSION_GROUP = 11;
+//static const int GENERATION = 5;
+//static const int BUFF_SIZE = 955;
 string DllExport getpkmstatsql(const pokemon_obj &pkm, const Stat_IDs::stat_ids stat_id);
 string DllExport getpkmstatsql(const pokemon_obj *pkm, const Stat_IDs::stat_ids stat_id);
 void DllExport getspritesql(ostringstream& o, const pokemon_obj & pkm, int langid = LANG_ID);
 void DllExport getspritesql(ostringstream& o, const pokemon_obj * pkm, int langid = LANG_ID);
 void DllExport geticonsql(ostringstream& o, const pokemon_obj & pkm, int langid = LANG_ID);
 void DllExport geticonsql(ostringstream& o, const pokemon_obj * pkm, int langid = LANG_ID);
-void DllExport gettypesql(ostringstream& o, const Types::types type);
-void DllExport gettypesql(ostringstream& o, const int type);
+//void DllExport gettypesql(ostringstream& o, const Types::types type);
+//void DllExport gettypesql(ostringstream& o, const int type);
 void DllExport getwallpapersql(ostringstream& o, const int wallpaper);
 void DllExport getwallpapersql(ostringstream& o, const Wallpapers::wallpapers wallpaper);
 void DllExport getitemsql(ostringstream& itemsql, const int itemid, const int generation = GENERATION);

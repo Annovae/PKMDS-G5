@@ -16,11 +16,10 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 #ifdef PKMDS_CMAKE_USED
-#include <pkmds/pkmds_g5_sqlite.h>
 #include <pkmds/pkmds_sql.h>
 #else
-#include "../../PKMDS-G5/include/pkmds/pkmds_g5_sqlite.h"
 #include "../../PKMDS-G5/include/pkmds/pkmds_sql.h"
+//#include "../../PKMDS-G5/include/pkmds/pkmds_g5_sqlite.h"
 #endif
 string getspeciesnamesql(const int speciesid, const int langid)
 {
@@ -653,18 +652,18 @@ void geticonsql(ostringstream& o, const pokemon_obj * pkm, int langid)
         o << "SELECT image FROM icons_" << tgender << " WHERE (identifier = \"" << formid << "\")";
     }
 }
-void gettypesql(ostringstream& o, const Types::types type)
-{
-    string type_name = lookuptypename((int)type,9);
-    type_name[0] = tolower(type_name[0]);
-    o << "Select image from types where (identifier = \"" << type_name << "\")";
-}
-void gettypesql(ostringstream& o, const int type)
-{
-    string type_name = lookuptypename(type,9);
-    type_name[0] = tolower(type_name[0]);
-    o << "Select image from types where (identifier = \"" << type_name << "\")";
-}
+//void gettypesql(ostringstream& o, const Types::types type)
+//{
+//    string type_name = lookuptypename((int)type,9);
+//    type_name[0] = tolower(type_name[0]);
+//    o << "Select image from types where (identifier = \"" << type_name << "\")";
+//}
+//void gettypesql(ostringstream& o, const int type)
+//{
+//    string type_name = lookuptypename(type,9);
+//    type_name[0] = tolower(type_name[0]);
+//    o << "Select image from types where (identifier = \"" << type_name << "\")";
+//}
 void getwallpapersql(ostringstream& o, const int wallpaper)
 {
     o << "Select image from wallpapers where (identifier = " << wallpaper << ")";

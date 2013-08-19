@@ -16,9 +16,13 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 #pragma once
-#include "frmboxes.h"
-#include "ui_frmboxes.h"
-#include <../../include/pkmds/pkmds_g5_sqlite.h>
+//#include "frmboxes.h"
+//#include "ui_frmboxes.h"
+#include <QMainWindow>
+#include <QGraphicsView>
+#include <../../include/pkmds/pkmds_sql.h>
+void gettypesql(ostringstream& o, const Types::types type);
+void gettypesql(ostringstream& o, const int type);
 QPixmap getpkmsprite(const pokemon_obj &pkm);
 QPixmap getpkmsprite(const pokemon_obj *pkm);
 QPixmap getpkmicon(const pokemon_obj &pkm);

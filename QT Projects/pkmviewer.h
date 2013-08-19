@@ -19,6 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #define PKMVIEWER_H
 #include <QDialog>
 #include <../../QT Projects/qt_sqlite.h>
+#include <../../QT Projects/mouseeventeater.h>
 namespace Ui {
 class pkmviewer;
 }

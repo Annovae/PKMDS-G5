@@ -1,7 +1,7 @@
 #pragma once
 #ifdef __cplusplus_cli
 #include <msclr\marshal_cppstd.h>
-#include "../include/pkmds/pkmds_g5_sqlite.h"
+//#include "../include/pkmds/stdafx.h"
 using namespace System;
 using namespace System::Data;
 using namespace System::Data::SQLite;
@@ -118,30 +118,6 @@ public: Drawing::Image^ getSQLImage(std::string sql)
 		{
 			String^ SQL = gcnew String(sql.c_str());
 			return getSQLImage(SQL);
-		}
-public: System::String ^ fromSTD(std::string in)
-		{
-			try
-			{
-				System::String ^ out = gcnew System::String(in.c_str());
-				return out;
-			}
-			catch(...)
-			{
-				return "";
-			}
-		}
-public: System::String ^ fromSTD(std::wstring in)
-		{
-			try
-			{
-				System::String ^ out = gcnew System::String(in.c_str());
-				return out;
-			}
-			catch(...)
-			{
-				return "";
-			}
 		}
 };
 #endif

@@ -135,4 +135,5 @@ bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
         }
         return false;
     }
+    return false;
 }

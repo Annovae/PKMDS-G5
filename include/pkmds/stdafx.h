@@ -68,3 +68,7 @@ typedef unsigned int uint32; // 32 bits
 //#define gmtime__ gmtime_s
 #endif
 #define gmtime__ gmtime
+static const int LANG_ID = 9;
+static const int VERSION_GROUP = 11;
+static const int GENERATION = 5;
+static const int BUFF_SIZE = 955;
