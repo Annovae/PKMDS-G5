@@ -136,7 +136,6 @@ namespace SQLite_VS_2012 {
 			this->Controls->Add(this->btnTest);
 			this->Name = L"Form1";
 			this->Text = L"Form1";
-			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &Form1::Form1_FormClosing);
 			this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbTest))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->dgData))->EndInit();
@@ -170,4 +169,3 @@ namespace SQLite_VS_2012 {
 			 }
 	};
 }
-

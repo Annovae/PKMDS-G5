@@ -142,9 +142,21 @@ void pkmviewer::displayPKM()
     ui->sbLevel->setValue(getpkmlevel(temppkm));
     ui->sbEXP->setMaximum(getpkmexpatlevel(temppkm->species,100));
     ui->sbEXP->setValue(temppkm->exp);
-    ui->pbTNL->setMinimum(getpkmexpatcur(temppkm));
-    ui->pbTNL->setMaximum(getpkmexptonext(temppkm) + temppkm->exp);
-    ui->pbTNL->setValue(temppkm->exp);
+    int tnl = getpkmexptonext(temppkm);
+    if(tnl == 0)
+    {
+        ui->pbTNL->setMinimum(0);
+        ui->pbTNL->setMaximum(1);
+        ui->pbTNL->setValue(0);
+        ui->pbTNL->setTextVisible(false);
+    }
+    else
+    {
+        ui->pbTNL->setMinimum(getpkmexpatcur(temppkm));
+        ui->pbTNL->setMaximum(tnl + temppkm->exp);
+        ui->pbTNL->setValue(temppkm->exp);
+        ui->pbTNL->setTextVisible(true);
+    }
     ui->lblTNL->setText(QString::number(getpkmexptonext(temppkm)));
     ui->txtNickname->setText(QString::fromStdWString(getpkmnickname(temppkm)));
     QColor otcolor = Qt::blue;
