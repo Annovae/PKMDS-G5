@@ -63,6 +63,7 @@
     <ClCompile Include="..\..\lib\pkmds_g5.cpp" />
     <ClCompile Include="..\..\lib\pkmds_g5_sqlite.cpp" />
     <ClCompile Include="..\..\lib\pkmds_gba.cpp" />
+    <ClCompile Include="..\..\lib\pkmds_sql.cpp" />
     <ClCompile Include="..\..\lib\pkmds_vector.cpp" />
     <ClCompile Include="..\..\lib\sqlite3.c" />
     <ClCompile Include="..\..\lib\stdafx.cpp" />
@@ -72,6 +73,7 @@
     <ClInclude Include="..\..\include\pkmds\pkmds_g5.h" />
     <ClInclude Include="..\..\include\pkmds\pkmds_g5_sqlite.h" />
     <ClInclude Include="..\..\include\pkmds\pkmds_gba.h" />
+    <ClInclude Include="..\..\include\pkmds\pkmds_sql.h" />
     <ClInclude Include="..\..\include\pkmds\pkmds_vector.h" />
     <ClInclude Include="..\..\include\pkmds\pokeprng.h" />
     <ClInclude Include="..\..\include\pkmds\stdafx.h" />

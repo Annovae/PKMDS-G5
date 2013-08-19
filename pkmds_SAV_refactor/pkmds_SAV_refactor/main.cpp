@@ -10,10 +10,13 @@ int main()
     //    std::string test = "Qt";
     //#endif
 
-    //    char * savfile = "C:\\Users\\Michael Bond\\Documents\\GitHub\\PKMDS-G5\\Test Sav\\TEST SAV.sav";
-    char * savfile = "..\\Test Sav\\TEST SAV.sav";
-    opendb("..\\SQLite Databases\\veekun-pokedex.sqlite");
-    openimgdb("..\\SQLite Databases\\images.sqlite");
+        char * savfile = "C:\\Users\\Michael Bond\\Documents\\GitHub\\PKMDS-G5\\Test Sav\\TEST SAV.sav";
+    //char * savfile = "..\\Test Sav\\TEST SAV.sav";
+    //opendb("..\\SQLite Databases\\veekun-pokedex.sqlite");
+    //openimgdb("..\\SQLite Databases\\images.sqlite");
+
+    opendb("C:\\Users\\Michael Bond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\veekun-pokedex.sqlite");
+    openimgdb("C:\\Users\\Michael Bond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\images.sqlite");
 
     sav_object * asav = new sav_object;
     read(savfile,asav);
