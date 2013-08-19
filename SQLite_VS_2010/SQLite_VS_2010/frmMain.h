@@ -112,7 +112,8 @@ namespace SQLite_VS_2010 {
 				 pokemon_obj * pkm = new pokemon_obj();
 				 pkm = &(sav->cur.boxes[0].pokemon[0]);
 				 decryptpkm(pkm);
-				 lblTest->Text = vsqlite->fromSTD(lookuppkmname(pkm));
+				 //lblTest->Text = vsqlite->fromSTD(lookuppkmname(pkm));
+				 lblTest->Text = vsqlite->fromSTD(pkm->otname);
 				 std::ostringstream o;
 				 getspritesql(o,pkm);
 				 //geticonsql(o,pkm);

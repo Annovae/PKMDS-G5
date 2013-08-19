@@ -32,23 +32,18 @@ static const char theimgDB[] = "..\\..\\SQLite Databases\\images.sqlite";
 #else
 #ifndef __cplusplus_cli
 #include "../sqlite3.h"
-#else
-
 #endif
 #include "pkmds_g5.h"
 #endif
 #include "../pkmds/pkmds_sql.h"
 using namespace std;
 #ifndef __cplusplus_cli
-
 extern DllExport sqlite3 *imgdatabase;
 extern DllExport sqlite3_stmt *imgstatement;
 void DllExport opendb(const char db_file[] = theDB);
 void DllExport closedb();
 void DllExport openimgdb(const char db_file[] = theimgDB);
 void DllExport closeimgdb();
-#else
-
 #endif
 string DllExport getastring(const ostringstream &o);
 int DllExport getanint(const ostringstream &o);

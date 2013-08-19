@@ -1,4 +1,5 @@
 #pragma once
+#ifdef __cplusplus_cli
 #include <msclr\marshal_cppstd.h>
 #include "../include/pkmds/pkmds_g5_sqlite.h"
 using namespace System;
@@ -14,8 +15,8 @@ public: VS_SQLite()
 			db = gcnew SQLiteConnection();
 			imgdb = gcnew SQLiteConnection();
 			//String ^ dbdir = "C:\\Users\\Mike\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\";
-			String ^ dbdir = "C:\\Users\\Michael Bond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\";
-			//String ^ dbdir = "C:\\Users\\michaelbond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\";
+			//String ^ dbdir = "C:\\Users\\Michael Bond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\";
+			String ^ dbdir = "C:\\Users\\michaelbond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\";
 			db->ConnectionString = L"Data Source='" + dbdir + L"veekun-pokedex.sqlite'";
 			db->Open();
 			imgdb->ConnectionString = L"Data Source='" + dbdir + L"images.sqlite'";
@@ -130,4 +131,17 @@ public: System::String ^ fromSTD(std::string in)
 				return "";
 			}
 		}
+public: System::String ^ fromSTD(std::wstring in)
+		{
+			try
+			{
+				System::String ^ out = gcnew System::String(in.c_str());
+				return out;
+			}
+			catch(...)
+			{
+				return "";
+			}
+		}
 };
+#endif
