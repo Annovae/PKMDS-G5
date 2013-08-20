@@ -29,7 +29,7 @@ Some documentation available at: http://www.projectpokemon.org/wiki/
 #ifdef PKMDS_CMAKE_USED
 #include <pkmds/pkmds_g5_sqlite.h>
 #else
-#include "PKMDS-G5\include\pkmds\pkmds_g5_sqlite.h"
+#include "..\\..\\include\\pkmds\\pkmds_g5_sqlite.h"
 #endif
 using namespace std;
 int main(int argc, char* argv[])

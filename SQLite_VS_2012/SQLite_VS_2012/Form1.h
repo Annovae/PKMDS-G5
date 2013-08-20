@@ -1,6 +1,6 @@
 #pragma once
-#include "../../Visual_Studio/vs_sqlite.h"
 #include "../../include/pkmds/pkmds_g5_sqlite.h"
+#include "../../include/pkmds/pkmds_sql.h"
 using namespace System::Data::SQLite;
 namespace SQLite_VS_2012 {
 	using namespace System;
@@ -150,15 +150,21 @@ namespace SQLite_VS_2012 {
 			 {
 				 try
 				 {
-					 this->txtTest->Text = vsqlite->fromSTD(lookuppkmname(1));
-					 //if(this->rbVeekun->Checked)
-					 //{
-						// dgData->DataSource = vsqlite->getSQLDS(txtTest->Text)->Tables[0];
-					 //}
-					 //else
-					 //{
-						// this->pbTest->Image = vsqlite->getSQLImage(txtTest->Text);
-					 //}
+					 bw2sav_obj * sav = new bw2sav_obj;
+					 read("C:\\Users\\Mike\\Documents\\GitHub\\PKMDS-G5\\Test Sav\\TEST SAV.sav",sav);
+					 pokemon_obj * pkm = new pokemon_obj;
+					 //pkm = &(sav->cur.boxes[0].pokemon[0]);
+					 party_pkm * ppkm = new party_pkm;
+					 ppkm = &(sav->cur.party.pokemon[0]);
+					 pkm = &(ppkm->pkm_data);
+					 decryptpkm(pkm);
+
+					 pkm->species = Species::psyduck;
+
+					 this->txtTest->Text = gcnew String(lookuppkmname(pkm).c_str());
+					 std::ostringstream o;
+					 getspritesql(o,pkm);
+					 this->pbTest->Image = vsqlite->getSQLImage(o.str());
 				 }
 				 catch(...)
 				 {

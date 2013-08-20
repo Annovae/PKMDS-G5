@@ -1018,8 +1018,34 @@ string lookupabilityname(const pokemon_obj *pkm, const int langid)
 {
     return getastring(lookupabilitynamesql(pkm->ability,langid));
 }
-
-
+string getpkmgendername(const pokemon_obj &pkm)
+{
+	return getgendername(getpkmgender(pkm));
+}
+string getpkmgendername(const pokemon_obj *pkm)
+{
+	return getgendername(getpkmgender(pkm));
+}
+string getpkmmetlocname(const pokemon_obj &pkm, const int gen, const int langid)
+{
+	return lookuplocname(pkm.met,gen,langid);
+}
+string getpkmmetlocname(const pokemon_obj *pkm, const int gen, const int langid)
+{
+	return lookuplocname(pkm->met,gen,langid);
+}
+string getpkmegglocname(const pokemon_obj &pkm, const int gen, const int langid)
+{
+	return lookuplocname(pkm.eggmet,gen,langid);
+}
+string getpkmegglocname(const pokemon_obj *pkm, const int gen, const int langid)
+{
+	return lookuplocname(pkm->eggmet,gen,langid);
+}
+string lookuplocname(const int locid, const int gen, const int langid)
+{
+	return getastring(lookuplocnamesql(locid,gen,langid));
+}
 #ifdef __cplusplus_cli
 //namespace StringConversion
 //{

@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifdef PKMDS_CMAKE_USED
 #include <pkmds/pkmds_g5.h>
 #else
-#include "PKMDS-G5\include\pkmds\pkmds_g5.h"
+#include "..\\..\\include\\pkmds\\pkmds_g5.h"
 #endif
 using namespace std;
 int main()
@@ -42,7 +42,7 @@ int main()
 	wcout << tosav->cur.party.pokemon[0].pkm_data.otname;
 	cout << "\n"; // " (ID " << (int)tosav->cur.tid << ")\n";
 	bool isbw2 = false;
-	isbw2 = (getchecksum(tosav->cur,bw2chkcalcloc,bw2chkcalclen)) == (getchkfromsav(tosav->cur,true));
+	isbw2 = (getchecksum(tosav->cur,BW2_OFFSETS::chkcalcloc,BW2_OFFSETS::chkcalclen)) == (getchkfromsav(tosav->cur,true));
 	cout << "Now beginning Pokemon transfer from ";
 	wcout << fromsav->cur.party.pokemon[0].pkm_data.otname;
 	cout << " to ";
@@ -58,11 +58,11 @@ int main()
 	}
 	if(isbw2)
 	{
-		calcchecksum(tosav->cur, bw2chkcalcloc, bw2chkcalclen, bw2chkloc);
+		calcchecksum(tosav->cur, BW2_OFFSETS::chkcalcloc, BW2_OFFSETS::chkcalclen, BW2_OFFSETS::chkloc);
 	}
 	else
 	{
-		calcchecksum(tosav->cur, bwchkcalcloc, bwchkcalclen, bwchkloc);
+		calcchecksum(tosav->cur, BW_OFFSETS::chkcalcloc, BW_OFFSETS::chkcalclen, BW_OFFSETS::chkloc);
 	}
 	write(tofile.c_str(),tosav);
 	cout << "Transfer complete. Press the [Enter] key to exit.\n";
