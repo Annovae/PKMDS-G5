@@ -32,7 +32,9 @@ namespace PKMDS_Desktop_Win {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::TableLayoutPanel^  tlPCBoxes;
+	private: System::Windows::Forms::TableLayoutPanel^  tlPCBox;
+	protected: 
+
 	protected: 
 	private: System::Windows::Forms::PictureBox^  pbBoxSlot30;
 	private: System::Windows::Forms::PictureBox^  pbBoxSlot29;
@@ -77,6 +79,84 @@ namespace PKMDS_Desktop_Win {
 	private: System::Windows::Forms::PictureBox^  pbPartySlot01;
 	private: System::Windows::Forms::GroupBox^  gbParty;
 	private: System::Windows::Forms::GroupBox^  gbBox;
+	private: System::Windows::Forms::SplitContainer^  scMain;
+	private: System::Windows::Forms::TableLayoutPanel^  tlPCBoxes;
+
+	private: System::Windows::Forms::TableLayoutPanel^  tlBox02;
+	private: System::Windows::Forms::PictureBox^  pbBox02;
+
+
+	private: System::Windows::Forms::Label^  lblBox02;
+
+	private: System::Windows::Forms::TableLayoutPanel^  tlBox01;
+	private: System::Windows::Forms::PictureBox^  pbBox01;
+	private: System::Windows::Forms::Label^  lblBox01;
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel22;
+	private: System::Windows::Forms::PictureBox^  pictureBox22;
+	private: System::Windows::Forms::Label^  label22;
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel21;
+	private: System::Windows::Forms::PictureBox^  pictureBox21;
+	private: System::Windows::Forms::Label^  label21;
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel20;
+	private: System::Windows::Forms::PictureBox^  pictureBox20;
+	private: System::Windows::Forms::Label^  label20;
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel19;
+	private: System::Windows::Forms::PictureBox^  pictureBox19;
+	private: System::Windows::Forms::Label^  label19;
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel18;
+	private: System::Windows::Forms::PictureBox^  pictureBox18;
+	private: System::Windows::Forms::Label^  label18;
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel17;
+	private: System::Windows::Forms::PictureBox^  pictureBox17;
+	private: System::Windows::Forms::Label^  label17;
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel16;
+	private: System::Windows::Forms::PictureBox^  pictureBox16;
+	private: System::Windows::Forms::Label^  label16;
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel15;
+	private: System::Windows::Forms::PictureBox^  pictureBox15;
+	private: System::Windows::Forms::Label^  label15;
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel14;
+	private: System::Windows::Forms::PictureBox^  pictureBox14;
+	private: System::Windows::Forms::Label^  label14;
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel13;
+	private: System::Windows::Forms::PictureBox^  pictureBox13;
+	private: System::Windows::Forms::Label^  label13;
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel12;
+	private: System::Windows::Forms::PictureBox^  pictureBox12;
+	private: System::Windows::Forms::Label^  label12;
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel11;
+	private: System::Windows::Forms::PictureBox^  pictureBox11;
+	private: System::Windows::Forms::Label^  label11;
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel10;
+	private: System::Windows::Forms::PictureBox^  pictureBox10;
+	private: System::Windows::Forms::Label^  label10;
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel9;
+	private: System::Windows::Forms::PictureBox^  pictureBox9;
+	private: System::Windows::Forms::Label^  label9;
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel8;
+	private: System::Windows::Forms::PictureBox^  pictureBox8;
+	private: System::Windows::Forms::Label^  label8;
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel7;
+	private: System::Windows::Forms::PictureBox^  pictureBox7;
+	private: System::Windows::Forms::Label^  label7;
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel6;
+	private: System::Windows::Forms::PictureBox^  pictureBox6;
+	private: System::Windows::Forms::Label^  label6;
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel5;
+	private: System::Windows::Forms::PictureBox^  pictureBox5;
+	private: System::Windows::Forms::Label^  label5;
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel4;
+	private: System::Windows::Forms::PictureBox^  pictureBox4;
+	private: System::Windows::Forms::Label^  label4;
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel3;
+	private: System::Windows::Forms::PictureBox^  pictureBox3;
+	private: System::Windows::Forms::Label^  label3;
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel2;
+	private: System::Windows::Forms::PictureBox^  pictureBox2;
+	private: System::Windows::Forms::Label^  label2;
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel1;
+	private: System::Windows::Forms::PictureBox^  pictureBox1;
+	private: System::Windows::Forms::Label^  label1;
 	protected: 
 	private:
 		/// <summary>
@@ -90,7 +170,7 @@ namespace PKMDS_Desktop_Win {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->tlPCBoxes = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->tlPCBox = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->pbBoxSlot30 = (gcnew System::Windows::Forms::PictureBox());
 			this->pbBoxSlot29 = (gcnew System::Windows::Forms::PictureBox());
 			this->pbBoxSlot28 = (gcnew System::Windows::Forms::PictureBox());
@@ -134,7 +214,81 @@ namespace PKMDS_Desktop_Win {
 			this->pbPartySlot01 = (gcnew System::Windows::Forms::PictureBox());
 			this->gbParty = (gcnew System::Windows::Forms::GroupBox());
 			this->gbBox = (gcnew System::Windows::Forms::GroupBox());
-			this->tlPCBoxes->SuspendLayout();
+			this->scMain = (gcnew System::Windows::Forms::SplitContainer());
+			this->tlPCBoxes = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->tlBox01 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->pbBox01 = (gcnew System::Windows::Forms::PictureBox());
+			this->lblBox01 = (gcnew System::Windows::Forms::Label());
+			this->tlBox02 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->pbBox02 = (gcnew System::Windows::Forms::PictureBox());
+			this->lblBox02 = (gcnew System::Windows::Forms::Label());
+			this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->tableLayoutPanel2 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->tableLayoutPanel3 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->pictureBox3 = (gcnew System::Windows::Forms::PictureBox());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->tableLayoutPanel4 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->pictureBox4 = (gcnew System::Windows::Forms::PictureBox());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->tableLayoutPanel5 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->pictureBox5 = (gcnew System::Windows::Forms::PictureBox());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->tableLayoutPanel6 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->pictureBox6 = (gcnew System::Windows::Forms::PictureBox());
+			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->tableLayoutPanel7 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->pictureBox7 = (gcnew System::Windows::Forms::PictureBox());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->tableLayoutPanel8 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->pictureBox8 = (gcnew System::Windows::Forms::PictureBox());
+			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->tableLayoutPanel9 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->pictureBox9 = (gcnew System::Windows::Forms::PictureBox());
+			this->label9 = (gcnew System::Windows::Forms::Label());
+			this->tableLayoutPanel10 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->pictureBox10 = (gcnew System::Windows::Forms::PictureBox());
+			this->label10 = (gcnew System::Windows::Forms::Label());
+			this->tableLayoutPanel11 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->pictureBox11 = (gcnew System::Windows::Forms::PictureBox());
+			this->label11 = (gcnew System::Windows::Forms::Label());
+			this->tableLayoutPanel12 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->pictureBox12 = (gcnew System::Windows::Forms::PictureBox());
+			this->label12 = (gcnew System::Windows::Forms::Label());
+			this->tableLayoutPanel13 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->pictureBox13 = (gcnew System::Windows::Forms::PictureBox());
+			this->label13 = (gcnew System::Windows::Forms::Label());
+			this->tableLayoutPanel14 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->pictureBox14 = (gcnew System::Windows::Forms::PictureBox());
+			this->label14 = (gcnew System::Windows::Forms::Label());
+			this->tableLayoutPanel15 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->pictureBox15 = (gcnew System::Windows::Forms::PictureBox());
+			this->label15 = (gcnew System::Windows::Forms::Label());
+			this->tableLayoutPanel16 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->pictureBox16 = (gcnew System::Windows::Forms::PictureBox());
+			this->label16 = (gcnew System::Windows::Forms::Label());
+			this->tableLayoutPanel17 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->pictureBox17 = (gcnew System::Windows::Forms::PictureBox());
+			this->label17 = (gcnew System::Windows::Forms::Label());
+			this->tableLayoutPanel18 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->pictureBox18 = (gcnew System::Windows::Forms::PictureBox());
+			this->label18 = (gcnew System::Windows::Forms::Label());
+			this->tableLayoutPanel19 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->pictureBox19 = (gcnew System::Windows::Forms::PictureBox());
+			this->label19 = (gcnew System::Windows::Forms::Label());
+			this->tableLayoutPanel20 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->pictureBox20 = (gcnew System::Windows::Forms::PictureBox());
+			this->label20 = (gcnew System::Windows::Forms::Label());
+			this->tableLayoutPanel21 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->pictureBox21 = (gcnew System::Windows::Forms::PictureBox());
+			this->label21 = (gcnew System::Windows::Forms::Label());
+			this->tableLayoutPanel22 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->pictureBox22 = (gcnew System::Windows::Forms::PictureBox());
+			this->label22 = (gcnew System::Windows::Forms::Label());
+			this->tlPCBox->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbBoxSlot30))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbBoxSlot29))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbBoxSlot28))->BeginInit();
@@ -175,58 +329,111 @@ namespace PKMDS_Desktop_Win {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbPartySlot01))->BeginInit();
 			this->gbParty->SuspendLayout();
 			this->gbBox->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->scMain))->BeginInit();
+			this->scMain->Panel1->SuspendLayout();
+			this->scMain->Panel2->SuspendLayout();
+			this->scMain->SuspendLayout();
+			this->tlPCBoxes->SuspendLayout();
+			this->tlBox01->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbBox01))->BeginInit();
+			this->tlBox02->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbBox02))->BeginInit();
+			this->tableLayoutPanel1->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox1))->BeginInit();
+			this->tableLayoutPanel2->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox2))->BeginInit();
+			this->tableLayoutPanel3->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox3))->BeginInit();
+			this->tableLayoutPanel4->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox4))->BeginInit();
+			this->tableLayoutPanel5->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox5))->BeginInit();
+			this->tableLayoutPanel6->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox6))->BeginInit();
+			this->tableLayoutPanel7->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox7))->BeginInit();
+			this->tableLayoutPanel8->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox8))->BeginInit();
+			this->tableLayoutPanel9->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox9))->BeginInit();
+			this->tableLayoutPanel10->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox10))->BeginInit();
+			this->tableLayoutPanel11->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox11))->BeginInit();
+			this->tableLayoutPanel12->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox12))->BeginInit();
+			this->tableLayoutPanel13->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox13))->BeginInit();
+			this->tableLayoutPanel14->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox14))->BeginInit();
+			this->tableLayoutPanel15->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox15))->BeginInit();
+			this->tableLayoutPanel16->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox16))->BeginInit();
+			this->tableLayoutPanel17->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox17))->BeginInit();
+			this->tableLayoutPanel18->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox18))->BeginInit();
+			this->tableLayoutPanel19->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox19))->BeginInit();
+			this->tableLayoutPanel20->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox20))->BeginInit();
+			this->tableLayoutPanel21->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox21))->BeginInit();
+			this->tableLayoutPanel22->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox22))->BeginInit();
 			this->SuspendLayout();
 			// 
-			// tlPCBoxes
+			// tlPCBox
 			// 
-			this->tlPCBoxes->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->tlPCBoxes->ColumnCount = 6;
-			this->tlPCBoxes->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-			this->tlPCBoxes->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-			this->tlPCBoxes->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-			this->tlPCBoxes->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-			this->tlPCBoxes->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-			this->tlPCBoxes->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot30, 5, 4);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot29, 4, 4);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot28, 3, 4);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot27, 2, 4);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot26, 1, 4);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot25, 0, 4);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot24, 5, 3);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot23, 4, 3);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot22, 3, 3);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot21, 2, 3);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot20, 1, 3);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot19, 0, 3);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot18, 5, 2);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot17, 4, 2);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot16, 3, 2);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot15, 2, 2);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot14, 1, 2);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot13, 0, 2);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot12, 5, 1);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot11, 4, 1);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot10, 3, 1);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot09, 2, 1);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot08, 1, 1);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot07, 0, 1);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot06, 5, 0);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot05, 4, 0);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot04, 3, 0);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot03, 2, 0);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot02, 1, 0);
-			this->tlPCBoxes->Controls->Add(this->pbBoxSlot01, 0, 0);
-			this->tlPCBoxes->Location = System::Drawing::Point(6, 19);
-			this->tlPCBoxes->Name = L"tlPCBoxes";
-			this->tlPCBoxes->RowCount = 5;
-			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 20)));
-			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 20)));
-			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 20)));
-			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 20)));
-			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 20)));
-			this->tlPCBoxes->Size = System::Drawing::Size(192, 160);
-			this->tlPCBoxes->TabIndex = 2;
+			this->tlPCBox->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->tlPCBox->ColumnCount = 6;
+			this->tlPCBox->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
+			this->tlPCBox->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
+			this->tlPCBox->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
+			this->tlPCBox->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
+			this->tlPCBox->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
+			this->tlPCBox->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
+			this->tlPCBox->Controls->Add(this->pbBoxSlot30, 5, 4);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot29, 4, 4);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot28, 3, 4);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot27, 2, 4);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot26, 1, 4);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot25, 0, 4);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot24, 5, 3);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot23, 4, 3);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot22, 3, 3);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot21, 2, 3);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot20, 1, 3);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot19, 0, 3);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot18, 5, 2);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot17, 4, 2);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot16, 3, 2);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot15, 2, 2);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot14, 1, 2);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot13, 0, 2);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot12, 5, 1);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot11, 4, 1);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot10, 3, 1);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot09, 2, 1);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot08, 1, 1);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot07, 0, 1);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot06, 5, 0);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot05, 4, 0);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot04, 3, 0);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot03, 2, 0);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot02, 1, 0);
+			this->tlPCBox->Controls->Add(this->pbBoxSlot01, 0, 0);
+			this->tlPCBox->Location = System::Drawing::Point(6, 19);
+			this->tlPCBox->Name = L"tlPCBox";
+			this->tlPCBox->RowCount = 5;
+			this->tlPCBox->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 20)));
+			this->tlPCBox->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 20)));
+			this->tlPCBox->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 20)));
+			this->tlPCBox->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 20)));
+			this->tlPCBox->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 20)));
+			this->tlPCBox->Size = System::Drawing::Size(192, 160);
+			this->tlPCBox->TabIndex = 2;
 			// 
 			// pbBoxSlot30
 			// 
@@ -863,7 +1070,7 @@ namespace PKMDS_Desktop_Win {
 			this->msMain->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) {this->fileToolStripMenuItem});
 			this->msMain->Location = System::Drawing::Point(0, 0);
 			this->msMain->Name = L"msMain";
-			this->msMain->Size = System::Drawing::Size(383, 24);
+			this->msMain->Size = System::Drawing::Size(368, 24);
 			this->msMain->TabIndex = 0;
 			this->msMain->Text = L"menuStrip1";
 			// 
@@ -877,7 +1084,7 @@ namespace PKMDS_Desktop_Win {
 			// loadSAVToolStripMenuItem
 			// 
 			this->loadSAVToolStripMenuItem->Name = L"loadSAVToolStripMenuItem";
-			this->loadSAVToolStripMenuItem->Size = System::Drawing::Size(152, 22);
+			this->loadSAVToolStripMenuItem->Size = System::Drawing::Size(124, 22);
 			this->loadSAVToolStripMenuItem->Text = L"Load SAV";
 			this->loadSAVToolStripMenuItem->Click += gcnew System::EventHandler(this, &frmBoxes::loadSAVToolStripMenuItem_Click);
 			// 
@@ -1037,7 +1244,7 @@ namespace PKMDS_Desktop_Win {
 			// gbParty
 			// 
 			this->gbParty->Controls->Add(this->tlParty);
-			this->gbParty->Location = System::Drawing::Point(12, 27);
+			this->gbParty->Location = System::Drawing::Point(3, 3);
 			this->gbParty->Name = L"gbParty";
 			this->gbParty->Size = System::Drawing::Size(204, 61);
 			this->gbParty->TabIndex = 3;
@@ -1046,27 +1253,1032 @@ namespace PKMDS_Desktop_Win {
 			// 
 			// gbBox
 			// 
-			this->gbBox->Controls->Add(this->tlPCBoxes);
-			this->gbBox->Location = System::Drawing::Point(12, 94);
+			this->gbBox->Controls->Add(this->tlPCBox);
+			this->gbBox->Location = System::Drawing::Point(3, 70);
 			this->gbBox->Name = L"gbBox";
 			this->gbBox->Size = System::Drawing::Size(204, 185);
 			this->gbBox->TabIndex = 4;
 			this->gbBox->TabStop = false;
 			this->gbBox->Text = L"PC Storage";
 			// 
+			// scMain
+			// 
+			this->scMain->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->scMain->Location = System::Drawing::Point(0, 24);
+			this->scMain->Name = L"scMain";
+			// 
+			// scMain.Panel1
+			// 
+			this->scMain->Panel1->Controls->Add(this->gbParty);
+			this->scMain->Panel1->Controls->Add(this->gbBox);
+			// 
+			// scMain.Panel2
+			// 
+			this->scMain->Panel2->AutoScroll = true;
+			this->scMain->Panel2->Controls->Add(this->tlPCBoxes);
+			this->scMain->Size = System::Drawing::Size(368, 263);
+			this->scMain->SplitterDistance = 217;
+			this->scMain->TabIndex = 5;
+			// 
+			// tlPCBoxes
+			// 
+			this->tlPCBoxes->ColumnCount = 1;
+			this->tlPCBoxes->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute, 120)));
+			this->tlPCBoxes->Controls->Add(this->tableLayoutPanel22, 0, 23);
+			this->tlPCBoxes->Controls->Add(this->tableLayoutPanel21, 0, 22);
+			this->tlPCBoxes->Controls->Add(this->tableLayoutPanel20, 0, 21);
+			this->tlPCBoxes->Controls->Add(this->tableLayoutPanel19, 0, 20);
+			this->tlPCBoxes->Controls->Add(this->tableLayoutPanel18, 0, 19);
+			this->tlPCBoxes->Controls->Add(this->tableLayoutPanel17, 0, 18);
+			this->tlPCBoxes->Controls->Add(this->tableLayoutPanel16, 0, 17);
+			this->tlPCBoxes->Controls->Add(this->tableLayoutPanel15, 0, 16);
+			this->tlPCBoxes->Controls->Add(this->tableLayoutPanel14, 0, 15);
+			this->tlPCBoxes->Controls->Add(this->tableLayoutPanel13, 0, 14);
+			this->tlPCBoxes->Controls->Add(this->tableLayoutPanel12, 0, 13);
+			this->tlPCBoxes->Controls->Add(this->tableLayoutPanel11, 0, 12);
+			this->tlPCBoxes->Controls->Add(this->tableLayoutPanel10, 0, 11);
+			this->tlPCBoxes->Controls->Add(this->tableLayoutPanel9, 0, 10);
+			this->tlPCBoxes->Controls->Add(this->tableLayoutPanel8, 0, 9);
+			this->tlPCBoxes->Controls->Add(this->tableLayoutPanel7, 0, 8);
+			this->tlPCBoxes->Controls->Add(this->tableLayoutPanel6, 0, 7);
+			this->tlPCBoxes->Controls->Add(this->tableLayoutPanel5, 0, 6);
+			this->tlPCBoxes->Controls->Add(this->tableLayoutPanel4, 0, 5);
+			this->tlPCBoxes->Controls->Add(this->tableLayoutPanel3, 0, 4);
+			this->tlPCBoxes->Controls->Add(this->tableLayoutPanel2, 0, 3);
+			this->tlPCBoxes->Controls->Add(this->tableLayoutPanel1, 0, 2);
+			this->tlPCBoxes->Controls->Add(this->tlBox01, 0, 0);
+			this->tlPCBoxes->Controls->Add(this->tlBox02, 0, 1);
+			this->tlPCBoxes->Location = System::Drawing::Point(0, 3);
+			this->tlPCBoxes->Margin = System::Windows::Forms::Padding(0);
+			this->tlPCBoxes->Name = L"tlPCBoxes";
+			this->tlPCBoxes->RowCount = 24;
+			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 120)));
+			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 120)));
+			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 120)));
+			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 120)));
+			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 120)));
+			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 120)));
+			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 120)));
+			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 120)));
+			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 120)));
+			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 120)));
+			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 120)));
+			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 120)));
+			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 120)));
+			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 120)));
+			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 120)));
+			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 120)));
+			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 120)));
+			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 120)));
+			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 120)));
+			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 120)));
+			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 120)));
+			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 120)));
+			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 120)));
+			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 120)));
+			this->tlPCBoxes->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 20)));
+			this->tlPCBoxes->Size = System::Drawing::Size(120, 2880);
+			this->tlPCBoxes->TabIndex = 2;
+			// 
+			// tlBox01
+			// 
+			this->tlBox01->ColumnCount = 1;
+			this->tlBox01->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tlBox01->Controls->Add(this->pbBox01, 0, 1);
+			this->tlBox01->Controls->Add(this->lblBox01, 0, 0);
+			this->tlBox01->Location = System::Drawing::Point(0, 0);
+			this->tlBox01->Margin = System::Windows::Forms::Padding(0);
+			this->tlBox01->Name = L"tlBox01";
+			this->tlBox01->RowCount = 2;
+			this->tlBox01->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 20)));
+			this->tlBox01->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tlBox01->Size = System::Drawing::Size(120, 120);
+			this->tlBox01->TabIndex = 0;
+			// 
+			// pbBox01
+			// 
+			this->pbBox01->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pbBox01->Location = System::Drawing::Point(0, 20);
+			this->pbBox01->Margin = System::Windows::Forms::Padding(0);
+			this->pbBox01->Name = L"pbBox01";
+			this->pbBox01->Size = System::Drawing::Size(120, 100);
+			this->pbBox01->TabIndex = 0;
+			this->pbBox01->TabStop = false;
+			// 
+			// lblBox01
+			// 
+			this->lblBox01->AutoSize = true;
+			this->lblBox01->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->lblBox01->Location = System::Drawing::Point(0, 0);
+			this->lblBox01->Margin = System::Windows::Forms::Padding(0);
+			this->lblBox01->Name = L"lblBox01";
+			this->lblBox01->Size = System::Drawing::Size(120, 20);
+			this->lblBox01->TabIndex = 1;
+			this->lblBox01->Text = L"Box 1";
+			this->lblBox01->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// tlBox02
+			// 
+			this->tlBox02->ColumnCount = 1;
+			this->tlBox02->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tlBox02->Controls->Add(this->pbBox02, 0, 1);
+			this->tlBox02->Controls->Add(this->lblBox02, 0, 0);
+			this->tlBox02->Location = System::Drawing::Point(0, 120);
+			this->tlBox02->Margin = System::Windows::Forms::Padding(0);
+			this->tlBox02->Name = L"tlBox02";
+			this->tlBox02->RowCount = 2;
+			this->tlBox02->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 20)));
+			this->tlBox02->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tlBox02->Size = System::Drawing::Size(120, 120);
+			this->tlBox02->TabIndex = 1;
+			// 
+			// pbBox02
+			// 
+			this->pbBox02->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pbBox02->Location = System::Drawing::Point(0, 20);
+			this->pbBox02->Margin = System::Windows::Forms::Padding(0);
+			this->pbBox02->Name = L"pbBox02";
+			this->pbBox02->Size = System::Drawing::Size(120, 100);
+			this->pbBox02->TabIndex = 0;
+			this->pbBox02->TabStop = false;
+			// 
+			// lblBox02
+			// 
+			this->lblBox02->AutoSize = true;
+			this->lblBox02->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->lblBox02->Location = System::Drawing::Point(0, 0);
+			this->lblBox02->Margin = System::Windows::Forms::Padding(0);
+			this->lblBox02->Name = L"lblBox02";
+			this->lblBox02->Size = System::Drawing::Size(120, 20);
+			this->lblBox02->TabIndex = 1;
+			this->lblBox02->Text = L"Box 2";
+			this->lblBox02->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// tableLayoutPanel1
+			// 
+			this->tableLayoutPanel1->ColumnCount = 1;
+			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 
+				100)));
+			this->tableLayoutPanel1->Controls->Add(this->pictureBox1, 0, 1);
+			this->tableLayoutPanel1->Controls->Add(this->label1, 0, 0);
+			this->tableLayoutPanel1->Location = System::Drawing::Point(0, 240);
+			this->tableLayoutPanel1->Margin = System::Windows::Forms::Padding(0);
+			this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
+			this->tableLayoutPanel1->RowCount = 2;
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 20)));
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tableLayoutPanel1->Size = System::Drawing::Size(120, 120);
+			this->tableLayoutPanel1->TabIndex = 3;
+			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox1->Location = System::Drawing::Point(0, 20);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(0);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(120, 100);
+			this->pictureBox1->TabIndex = 0;
+			this->pictureBox1->TabStop = false;
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->label1->Location = System::Drawing::Point(0, 0);
+			this->label1->Margin = System::Windows::Forms::Padding(0);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(120, 20);
+			this->label1->TabIndex = 1;
+			this->label1->Text = L"Box 2";
+			this->label1->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// tableLayoutPanel2
+			// 
+			this->tableLayoutPanel2->ColumnCount = 1;
+			this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 
+				100)));
+			this->tableLayoutPanel2->Controls->Add(this->pictureBox2, 0, 1);
+			this->tableLayoutPanel2->Controls->Add(this->label2, 0, 0);
+			this->tableLayoutPanel2->Location = System::Drawing::Point(0, 360);
+			this->tableLayoutPanel2->Margin = System::Windows::Forms::Padding(0);
+			this->tableLayoutPanel2->Name = L"tableLayoutPanel2";
+			this->tableLayoutPanel2->RowCount = 2;
+			this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 20)));
+			this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tableLayoutPanel2->Size = System::Drawing::Size(120, 120);
+			this->tableLayoutPanel2->TabIndex = 3;
+			// 
+			// pictureBox2
+			// 
+			this->pictureBox2->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox2->Location = System::Drawing::Point(0, 20);
+			this->pictureBox2->Margin = System::Windows::Forms::Padding(0);
+			this->pictureBox2->Name = L"pictureBox2";
+			this->pictureBox2->Size = System::Drawing::Size(120, 100);
+			this->pictureBox2->TabIndex = 0;
+			this->pictureBox2->TabStop = false;
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->label2->Location = System::Drawing::Point(0, 0);
+			this->label2->Margin = System::Windows::Forms::Padding(0);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(120, 20);
+			this->label2->TabIndex = 1;
+			this->label2->Text = L"Box 2";
+			this->label2->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// tableLayoutPanel3
+			// 
+			this->tableLayoutPanel3->ColumnCount = 1;
+			this->tableLayoutPanel3->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 
+				100)));
+			this->tableLayoutPanel3->Controls->Add(this->pictureBox3, 0, 1);
+			this->tableLayoutPanel3->Controls->Add(this->label3, 0, 0);
+			this->tableLayoutPanel3->Location = System::Drawing::Point(0, 480);
+			this->tableLayoutPanel3->Margin = System::Windows::Forms::Padding(0);
+			this->tableLayoutPanel3->Name = L"tableLayoutPanel3";
+			this->tableLayoutPanel3->RowCount = 2;
+			this->tableLayoutPanel3->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 20)));
+			this->tableLayoutPanel3->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tableLayoutPanel3->Size = System::Drawing::Size(120, 120);
+			this->tableLayoutPanel3->TabIndex = 3;
+			// 
+			// pictureBox3
+			// 
+			this->pictureBox3->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox3->Location = System::Drawing::Point(0, 20);
+			this->pictureBox3->Margin = System::Windows::Forms::Padding(0);
+			this->pictureBox3->Name = L"pictureBox3";
+			this->pictureBox3->Size = System::Drawing::Size(120, 100);
+			this->pictureBox3->TabIndex = 0;
+			this->pictureBox3->TabStop = false;
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->label3->Location = System::Drawing::Point(0, 0);
+			this->label3->Margin = System::Windows::Forms::Padding(0);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(120, 20);
+			this->label3->TabIndex = 1;
+			this->label3->Text = L"Box 2";
+			this->label3->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// tableLayoutPanel4
+			// 
+			this->tableLayoutPanel4->ColumnCount = 1;
+			this->tableLayoutPanel4->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 
+				100)));
+			this->tableLayoutPanel4->Controls->Add(this->pictureBox4, 0, 1);
+			this->tableLayoutPanel4->Controls->Add(this->label4, 0, 0);
+			this->tableLayoutPanel4->Location = System::Drawing::Point(0, 600);
+			this->tableLayoutPanel4->Margin = System::Windows::Forms::Padding(0);
+			this->tableLayoutPanel4->Name = L"tableLayoutPanel4";
+			this->tableLayoutPanel4->RowCount = 2;
+			this->tableLayoutPanel4->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 20)));
+			this->tableLayoutPanel4->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tableLayoutPanel4->Size = System::Drawing::Size(120, 120);
+			this->tableLayoutPanel4->TabIndex = 3;
+			// 
+			// pictureBox4
+			// 
+			this->pictureBox4->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox4->Location = System::Drawing::Point(0, 20);
+			this->pictureBox4->Margin = System::Windows::Forms::Padding(0);
+			this->pictureBox4->Name = L"pictureBox4";
+			this->pictureBox4->Size = System::Drawing::Size(120, 100);
+			this->pictureBox4->TabIndex = 0;
+			this->pictureBox4->TabStop = false;
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->label4->Location = System::Drawing::Point(0, 0);
+			this->label4->Margin = System::Windows::Forms::Padding(0);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(120, 20);
+			this->label4->TabIndex = 1;
+			this->label4->Text = L"Box 2";
+			this->label4->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// tableLayoutPanel5
+			// 
+			this->tableLayoutPanel5->ColumnCount = 1;
+			this->tableLayoutPanel5->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 
+				100)));
+			this->tableLayoutPanel5->Controls->Add(this->pictureBox5, 0, 1);
+			this->tableLayoutPanel5->Controls->Add(this->label5, 0, 0);
+			this->tableLayoutPanel5->Location = System::Drawing::Point(0, 720);
+			this->tableLayoutPanel5->Margin = System::Windows::Forms::Padding(0);
+			this->tableLayoutPanel5->Name = L"tableLayoutPanel5";
+			this->tableLayoutPanel5->RowCount = 2;
+			this->tableLayoutPanel5->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 20)));
+			this->tableLayoutPanel5->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tableLayoutPanel5->Size = System::Drawing::Size(120, 120);
+			this->tableLayoutPanel5->TabIndex = 3;
+			// 
+			// pictureBox5
+			// 
+			this->pictureBox5->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox5->Location = System::Drawing::Point(0, 20);
+			this->pictureBox5->Margin = System::Windows::Forms::Padding(0);
+			this->pictureBox5->Name = L"pictureBox5";
+			this->pictureBox5->Size = System::Drawing::Size(120, 100);
+			this->pictureBox5->TabIndex = 0;
+			this->pictureBox5->TabStop = false;
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->label5->Location = System::Drawing::Point(0, 0);
+			this->label5->Margin = System::Windows::Forms::Padding(0);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(120, 20);
+			this->label5->TabIndex = 1;
+			this->label5->Text = L"Box 2";
+			this->label5->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// tableLayoutPanel6
+			// 
+			this->tableLayoutPanel6->ColumnCount = 1;
+			this->tableLayoutPanel6->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 
+				100)));
+			this->tableLayoutPanel6->Controls->Add(this->pictureBox6, 0, 1);
+			this->tableLayoutPanel6->Controls->Add(this->label6, 0, 0);
+			this->tableLayoutPanel6->Location = System::Drawing::Point(0, 840);
+			this->tableLayoutPanel6->Margin = System::Windows::Forms::Padding(0);
+			this->tableLayoutPanel6->Name = L"tableLayoutPanel6";
+			this->tableLayoutPanel6->RowCount = 2;
+			this->tableLayoutPanel6->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 20)));
+			this->tableLayoutPanel6->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tableLayoutPanel6->Size = System::Drawing::Size(120, 120);
+			this->tableLayoutPanel6->TabIndex = 3;
+			// 
+			// pictureBox6
+			// 
+			this->pictureBox6->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox6->Location = System::Drawing::Point(0, 20);
+			this->pictureBox6->Margin = System::Windows::Forms::Padding(0);
+			this->pictureBox6->Name = L"pictureBox6";
+			this->pictureBox6->Size = System::Drawing::Size(120, 100);
+			this->pictureBox6->TabIndex = 0;
+			this->pictureBox6->TabStop = false;
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->label6->Location = System::Drawing::Point(0, 0);
+			this->label6->Margin = System::Windows::Forms::Padding(0);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(120, 20);
+			this->label6->TabIndex = 1;
+			this->label6->Text = L"Box 2";
+			this->label6->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// tableLayoutPanel7
+			// 
+			this->tableLayoutPanel7->ColumnCount = 1;
+			this->tableLayoutPanel7->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 
+				100)));
+			this->tableLayoutPanel7->Controls->Add(this->pictureBox7, 0, 1);
+			this->tableLayoutPanel7->Controls->Add(this->label7, 0, 0);
+			this->tableLayoutPanel7->Location = System::Drawing::Point(0, 960);
+			this->tableLayoutPanel7->Margin = System::Windows::Forms::Padding(0);
+			this->tableLayoutPanel7->Name = L"tableLayoutPanel7";
+			this->tableLayoutPanel7->RowCount = 2;
+			this->tableLayoutPanel7->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 20)));
+			this->tableLayoutPanel7->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tableLayoutPanel7->Size = System::Drawing::Size(120, 120);
+			this->tableLayoutPanel7->TabIndex = 3;
+			// 
+			// pictureBox7
+			// 
+			this->pictureBox7->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox7->Location = System::Drawing::Point(0, 20);
+			this->pictureBox7->Margin = System::Windows::Forms::Padding(0);
+			this->pictureBox7->Name = L"pictureBox7";
+			this->pictureBox7->Size = System::Drawing::Size(120, 100);
+			this->pictureBox7->TabIndex = 0;
+			this->pictureBox7->TabStop = false;
+			// 
+			// label7
+			// 
+			this->label7->AutoSize = true;
+			this->label7->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->label7->Location = System::Drawing::Point(0, 0);
+			this->label7->Margin = System::Windows::Forms::Padding(0);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(120, 20);
+			this->label7->TabIndex = 1;
+			this->label7->Text = L"Box 2";
+			this->label7->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// tableLayoutPanel8
+			// 
+			this->tableLayoutPanel8->ColumnCount = 1;
+			this->tableLayoutPanel8->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 
+				100)));
+			this->tableLayoutPanel8->Controls->Add(this->pictureBox8, 0, 1);
+			this->tableLayoutPanel8->Controls->Add(this->label8, 0, 0);
+			this->tableLayoutPanel8->Location = System::Drawing::Point(0, 1080);
+			this->tableLayoutPanel8->Margin = System::Windows::Forms::Padding(0);
+			this->tableLayoutPanel8->Name = L"tableLayoutPanel8";
+			this->tableLayoutPanel8->RowCount = 2;
+			this->tableLayoutPanel8->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 20)));
+			this->tableLayoutPanel8->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tableLayoutPanel8->Size = System::Drawing::Size(120, 120);
+			this->tableLayoutPanel8->TabIndex = 3;
+			// 
+			// pictureBox8
+			// 
+			this->pictureBox8->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox8->Location = System::Drawing::Point(0, 20);
+			this->pictureBox8->Margin = System::Windows::Forms::Padding(0);
+			this->pictureBox8->Name = L"pictureBox8";
+			this->pictureBox8->Size = System::Drawing::Size(120, 100);
+			this->pictureBox8->TabIndex = 0;
+			this->pictureBox8->TabStop = false;
+			// 
+			// label8
+			// 
+			this->label8->AutoSize = true;
+			this->label8->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->label8->Location = System::Drawing::Point(0, 0);
+			this->label8->Margin = System::Windows::Forms::Padding(0);
+			this->label8->Name = L"label8";
+			this->label8->Size = System::Drawing::Size(120, 20);
+			this->label8->TabIndex = 1;
+			this->label8->Text = L"Box 2";
+			this->label8->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// tableLayoutPanel9
+			// 
+			this->tableLayoutPanel9->ColumnCount = 1;
+			this->tableLayoutPanel9->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 
+				100)));
+			this->tableLayoutPanel9->Controls->Add(this->pictureBox9, 0, 1);
+			this->tableLayoutPanel9->Controls->Add(this->label9, 0, 0);
+			this->tableLayoutPanel9->Location = System::Drawing::Point(0, 1200);
+			this->tableLayoutPanel9->Margin = System::Windows::Forms::Padding(0);
+			this->tableLayoutPanel9->Name = L"tableLayoutPanel9";
+			this->tableLayoutPanel9->RowCount = 2;
+			this->tableLayoutPanel9->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 20)));
+			this->tableLayoutPanel9->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tableLayoutPanel9->Size = System::Drawing::Size(120, 120);
+			this->tableLayoutPanel9->TabIndex = 3;
+			// 
+			// pictureBox9
+			// 
+			this->pictureBox9->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox9->Location = System::Drawing::Point(0, 20);
+			this->pictureBox9->Margin = System::Windows::Forms::Padding(0);
+			this->pictureBox9->Name = L"pictureBox9";
+			this->pictureBox9->Size = System::Drawing::Size(120, 100);
+			this->pictureBox9->TabIndex = 0;
+			this->pictureBox9->TabStop = false;
+			// 
+			// label9
+			// 
+			this->label9->AutoSize = true;
+			this->label9->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->label9->Location = System::Drawing::Point(0, 0);
+			this->label9->Margin = System::Windows::Forms::Padding(0);
+			this->label9->Name = L"label9";
+			this->label9->Size = System::Drawing::Size(120, 20);
+			this->label9->TabIndex = 1;
+			this->label9->Text = L"Box 2";
+			this->label9->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// tableLayoutPanel10
+			// 
+			this->tableLayoutPanel10->ColumnCount = 1;
+			this->tableLayoutPanel10->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 
+				100)));
+			this->tableLayoutPanel10->Controls->Add(this->pictureBox10, 0, 1);
+			this->tableLayoutPanel10->Controls->Add(this->label10, 0, 0);
+			this->tableLayoutPanel10->Location = System::Drawing::Point(0, 1320);
+			this->tableLayoutPanel10->Margin = System::Windows::Forms::Padding(0);
+			this->tableLayoutPanel10->Name = L"tableLayoutPanel10";
+			this->tableLayoutPanel10->RowCount = 2;
+			this->tableLayoutPanel10->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 
+				20)));
+			this->tableLayoutPanel10->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tableLayoutPanel10->Size = System::Drawing::Size(120, 120);
+			this->tableLayoutPanel10->TabIndex = 3;
+			// 
+			// pictureBox10
+			// 
+			this->pictureBox10->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox10->Location = System::Drawing::Point(0, 20);
+			this->pictureBox10->Margin = System::Windows::Forms::Padding(0);
+			this->pictureBox10->Name = L"pictureBox10";
+			this->pictureBox10->Size = System::Drawing::Size(120, 100);
+			this->pictureBox10->TabIndex = 0;
+			this->pictureBox10->TabStop = false;
+			// 
+			// label10
+			// 
+			this->label10->AutoSize = true;
+			this->label10->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->label10->Location = System::Drawing::Point(0, 0);
+			this->label10->Margin = System::Windows::Forms::Padding(0);
+			this->label10->Name = L"label10";
+			this->label10->Size = System::Drawing::Size(120, 20);
+			this->label10->TabIndex = 1;
+			this->label10->Text = L"Box 2";
+			this->label10->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// tableLayoutPanel11
+			// 
+			this->tableLayoutPanel11->ColumnCount = 1;
+			this->tableLayoutPanel11->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 
+				100)));
+			this->tableLayoutPanel11->Controls->Add(this->pictureBox11, 0, 1);
+			this->tableLayoutPanel11->Controls->Add(this->label11, 0, 0);
+			this->tableLayoutPanel11->Location = System::Drawing::Point(0, 1440);
+			this->tableLayoutPanel11->Margin = System::Windows::Forms::Padding(0);
+			this->tableLayoutPanel11->Name = L"tableLayoutPanel11";
+			this->tableLayoutPanel11->RowCount = 2;
+			this->tableLayoutPanel11->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 
+				20)));
+			this->tableLayoutPanel11->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tableLayoutPanel11->Size = System::Drawing::Size(120, 120);
+			this->tableLayoutPanel11->TabIndex = 3;
+			// 
+			// pictureBox11
+			// 
+			this->pictureBox11->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox11->Location = System::Drawing::Point(0, 20);
+			this->pictureBox11->Margin = System::Windows::Forms::Padding(0);
+			this->pictureBox11->Name = L"pictureBox11";
+			this->pictureBox11->Size = System::Drawing::Size(120, 100);
+			this->pictureBox11->TabIndex = 0;
+			this->pictureBox11->TabStop = false;
+			// 
+			// label11
+			// 
+			this->label11->AutoSize = true;
+			this->label11->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->label11->Location = System::Drawing::Point(0, 0);
+			this->label11->Margin = System::Windows::Forms::Padding(0);
+			this->label11->Name = L"label11";
+			this->label11->Size = System::Drawing::Size(120, 20);
+			this->label11->TabIndex = 1;
+			this->label11->Text = L"Box 2";
+			this->label11->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// tableLayoutPanel12
+			// 
+			this->tableLayoutPanel12->ColumnCount = 1;
+			this->tableLayoutPanel12->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 
+				100)));
+			this->tableLayoutPanel12->Controls->Add(this->pictureBox12, 0, 1);
+			this->tableLayoutPanel12->Controls->Add(this->label12, 0, 0);
+			this->tableLayoutPanel12->Location = System::Drawing::Point(0, 1560);
+			this->tableLayoutPanel12->Margin = System::Windows::Forms::Padding(0);
+			this->tableLayoutPanel12->Name = L"tableLayoutPanel12";
+			this->tableLayoutPanel12->RowCount = 2;
+			this->tableLayoutPanel12->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 
+				20)));
+			this->tableLayoutPanel12->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tableLayoutPanel12->Size = System::Drawing::Size(120, 120);
+			this->tableLayoutPanel12->TabIndex = 3;
+			// 
+			// pictureBox12
+			// 
+			this->pictureBox12->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox12->Location = System::Drawing::Point(0, 20);
+			this->pictureBox12->Margin = System::Windows::Forms::Padding(0);
+			this->pictureBox12->Name = L"pictureBox12";
+			this->pictureBox12->Size = System::Drawing::Size(120, 100);
+			this->pictureBox12->TabIndex = 0;
+			this->pictureBox12->TabStop = false;
+			// 
+			// label12
+			// 
+			this->label12->AutoSize = true;
+			this->label12->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->label12->Location = System::Drawing::Point(0, 0);
+			this->label12->Margin = System::Windows::Forms::Padding(0);
+			this->label12->Name = L"label12";
+			this->label12->Size = System::Drawing::Size(120, 20);
+			this->label12->TabIndex = 1;
+			this->label12->Text = L"Box 2";
+			this->label12->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// tableLayoutPanel13
+			// 
+			this->tableLayoutPanel13->ColumnCount = 1;
+			this->tableLayoutPanel13->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 
+				100)));
+			this->tableLayoutPanel13->Controls->Add(this->pictureBox13, 0, 1);
+			this->tableLayoutPanel13->Controls->Add(this->label13, 0, 0);
+			this->tableLayoutPanel13->Location = System::Drawing::Point(0, 1680);
+			this->tableLayoutPanel13->Margin = System::Windows::Forms::Padding(0);
+			this->tableLayoutPanel13->Name = L"tableLayoutPanel13";
+			this->tableLayoutPanel13->RowCount = 2;
+			this->tableLayoutPanel13->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 
+				20)));
+			this->tableLayoutPanel13->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tableLayoutPanel13->Size = System::Drawing::Size(120, 120);
+			this->tableLayoutPanel13->TabIndex = 3;
+			// 
+			// pictureBox13
+			// 
+			this->pictureBox13->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox13->Location = System::Drawing::Point(0, 20);
+			this->pictureBox13->Margin = System::Windows::Forms::Padding(0);
+			this->pictureBox13->Name = L"pictureBox13";
+			this->pictureBox13->Size = System::Drawing::Size(120, 100);
+			this->pictureBox13->TabIndex = 0;
+			this->pictureBox13->TabStop = false;
+			// 
+			// label13
+			// 
+			this->label13->AutoSize = true;
+			this->label13->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->label13->Location = System::Drawing::Point(0, 0);
+			this->label13->Margin = System::Windows::Forms::Padding(0);
+			this->label13->Name = L"label13";
+			this->label13->Size = System::Drawing::Size(120, 20);
+			this->label13->TabIndex = 1;
+			this->label13->Text = L"Box 2";
+			this->label13->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// tableLayoutPanel14
+			// 
+			this->tableLayoutPanel14->ColumnCount = 1;
+			this->tableLayoutPanel14->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 
+				100)));
+			this->tableLayoutPanel14->Controls->Add(this->pictureBox14, 0, 1);
+			this->tableLayoutPanel14->Controls->Add(this->label14, 0, 0);
+			this->tableLayoutPanel14->Location = System::Drawing::Point(0, 1800);
+			this->tableLayoutPanel14->Margin = System::Windows::Forms::Padding(0);
+			this->tableLayoutPanel14->Name = L"tableLayoutPanel14";
+			this->tableLayoutPanel14->RowCount = 2;
+			this->tableLayoutPanel14->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 
+				20)));
+			this->tableLayoutPanel14->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tableLayoutPanel14->Size = System::Drawing::Size(120, 120);
+			this->tableLayoutPanel14->TabIndex = 3;
+			// 
+			// pictureBox14
+			// 
+			this->pictureBox14->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox14->Location = System::Drawing::Point(0, 20);
+			this->pictureBox14->Margin = System::Windows::Forms::Padding(0);
+			this->pictureBox14->Name = L"pictureBox14";
+			this->pictureBox14->Size = System::Drawing::Size(120, 100);
+			this->pictureBox14->TabIndex = 0;
+			this->pictureBox14->TabStop = false;
+			// 
+			// label14
+			// 
+			this->label14->AutoSize = true;
+			this->label14->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->label14->Location = System::Drawing::Point(0, 0);
+			this->label14->Margin = System::Windows::Forms::Padding(0);
+			this->label14->Name = L"label14";
+			this->label14->Size = System::Drawing::Size(120, 20);
+			this->label14->TabIndex = 1;
+			this->label14->Text = L"Box 2";
+			this->label14->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// tableLayoutPanel15
+			// 
+			this->tableLayoutPanel15->ColumnCount = 1;
+			this->tableLayoutPanel15->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 
+				100)));
+			this->tableLayoutPanel15->Controls->Add(this->pictureBox15, 0, 1);
+			this->tableLayoutPanel15->Controls->Add(this->label15, 0, 0);
+			this->tableLayoutPanel15->Location = System::Drawing::Point(0, 1920);
+			this->tableLayoutPanel15->Margin = System::Windows::Forms::Padding(0);
+			this->tableLayoutPanel15->Name = L"tableLayoutPanel15";
+			this->tableLayoutPanel15->RowCount = 2;
+			this->tableLayoutPanel15->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 
+				20)));
+			this->tableLayoutPanel15->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tableLayoutPanel15->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 
+				20)));
+			this->tableLayoutPanel15->Size = System::Drawing::Size(120, 120);
+			this->tableLayoutPanel15->TabIndex = 3;
+			// 
+			// pictureBox15
+			// 
+			this->pictureBox15->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox15->Location = System::Drawing::Point(0, 20);
+			this->pictureBox15->Margin = System::Windows::Forms::Padding(0);
+			this->pictureBox15->Name = L"pictureBox15";
+			this->pictureBox15->Size = System::Drawing::Size(120, 100);
+			this->pictureBox15->TabIndex = 0;
+			this->pictureBox15->TabStop = false;
+			// 
+			// label15
+			// 
+			this->label15->AutoSize = true;
+			this->label15->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->label15->Location = System::Drawing::Point(0, 0);
+			this->label15->Margin = System::Windows::Forms::Padding(0);
+			this->label15->Name = L"label15";
+			this->label15->Size = System::Drawing::Size(120, 20);
+			this->label15->TabIndex = 1;
+			this->label15->Text = L"Box 2";
+			this->label15->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// tableLayoutPanel16
+			// 
+			this->tableLayoutPanel16->ColumnCount = 1;
+			this->tableLayoutPanel16->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 
+				100)));
+			this->tableLayoutPanel16->Controls->Add(this->pictureBox16, 0, 1);
+			this->tableLayoutPanel16->Controls->Add(this->label16, 0, 0);
+			this->tableLayoutPanel16->Location = System::Drawing::Point(0, 2040);
+			this->tableLayoutPanel16->Margin = System::Windows::Forms::Padding(0);
+			this->tableLayoutPanel16->Name = L"tableLayoutPanel16";
+			this->tableLayoutPanel16->RowCount = 2;
+			this->tableLayoutPanel16->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 
+				20)));
+			this->tableLayoutPanel16->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tableLayoutPanel16->Size = System::Drawing::Size(120, 120);
+			this->tableLayoutPanel16->TabIndex = 3;
+			// 
+			// pictureBox16
+			// 
+			this->pictureBox16->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox16->Location = System::Drawing::Point(0, 20);
+			this->pictureBox16->Margin = System::Windows::Forms::Padding(0);
+			this->pictureBox16->Name = L"pictureBox16";
+			this->pictureBox16->Size = System::Drawing::Size(120, 100);
+			this->pictureBox16->TabIndex = 0;
+			this->pictureBox16->TabStop = false;
+			// 
+			// label16
+			// 
+			this->label16->AutoSize = true;
+			this->label16->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->label16->Location = System::Drawing::Point(0, 0);
+			this->label16->Margin = System::Windows::Forms::Padding(0);
+			this->label16->Name = L"label16";
+			this->label16->Size = System::Drawing::Size(120, 20);
+			this->label16->TabIndex = 1;
+			this->label16->Text = L"Box 2";
+			this->label16->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// tableLayoutPanel17
+			// 
+			this->tableLayoutPanel17->ColumnCount = 1;
+			this->tableLayoutPanel17->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 
+				100)));
+			this->tableLayoutPanel17->Controls->Add(this->pictureBox17, 0, 1);
+			this->tableLayoutPanel17->Controls->Add(this->label17, 0, 0);
+			this->tableLayoutPanel17->Location = System::Drawing::Point(0, 2160);
+			this->tableLayoutPanel17->Margin = System::Windows::Forms::Padding(0);
+			this->tableLayoutPanel17->Name = L"tableLayoutPanel17";
+			this->tableLayoutPanel17->RowCount = 2;
+			this->tableLayoutPanel17->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 
+				20)));
+			this->tableLayoutPanel17->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tableLayoutPanel17->Size = System::Drawing::Size(120, 120);
+			this->tableLayoutPanel17->TabIndex = 3;
+			// 
+			// pictureBox17
+			// 
+			this->pictureBox17->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox17->Location = System::Drawing::Point(0, 20);
+			this->pictureBox17->Margin = System::Windows::Forms::Padding(0);
+			this->pictureBox17->Name = L"pictureBox17";
+			this->pictureBox17->Size = System::Drawing::Size(120, 100);
+			this->pictureBox17->TabIndex = 0;
+			this->pictureBox17->TabStop = false;
+			// 
+			// label17
+			// 
+			this->label17->AutoSize = true;
+			this->label17->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->label17->Location = System::Drawing::Point(0, 0);
+			this->label17->Margin = System::Windows::Forms::Padding(0);
+			this->label17->Name = L"label17";
+			this->label17->Size = System::Drawing::Size(120, 20);
+			this->label17->TabIndex = 1;
+			this->label17->Text = L"Box 2";
+			this->label17->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// tableLayoutPanel18
+			// 
+			this->tableLayoutPanel18->ColumnCount = 1;
+			this->tableLayoutPanel18->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 
+				100)));
+			this->tableLayoutPanel18->Controls->Add(this->pictureBox18, 0, 1);
+			this->tableLayoutPanel18->Controls->Add(this->label18, 0, 0);
+			this->tableLayoutPanel18->Location = System::Drawing::Point(0, 2280);
+			this->tableLayoutPanel18->Margin = System::Windows::Forms::Padding(0);
+			this->tableLayoutPanel18->Name = L"tableLayoutPanel18";
+			this->tableLayoutPanel18->RowCount = 2;
+			this->tableLayoutPanel18->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 
+				20)));
+			this->tableLayoutPanel18->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tableLayoutPanel18->Size = System::Drawing::Size(120, 120);
+			this->tableLayoutPanel18->TabIndex = 3;
+			// 
+			// pictureBox18
+			// 
+			this->pictureBox18->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox18->Location = System::Drawing::Point(0, 20);
+			this->pictureBox18->Margin = System::Windows::Forms::Padding(0);
+			this->pictureBox18->Name = L"pictureBox18";
+			this->pictureBox18->Size = System::Drawing::Size(120, 100);
+			this->pictureBox18->TabIndex = 0;
+			this->pictureBox18->TabStop = false;
+			// 
+			// label18
+			// 
+			this->label18->AutoSize = true;
+			this->label18->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->label18->Location = System::Drawing::Point(0, 0);
+			this->label18->Margin = System::Windows::Forms::Padding(0);
+			this->label18->Name = L"label18";
+			this->label18->Size = System::Drawing::Size(120, 20);
+			this->label18->TabIndex = 1;
+			this->label18->Text = L"Box 2";
+			this->label18->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// tableLayoutPanel19
+			// 
+			this->tableLayoutPanel19->ColumnCount = 1;
+			this->tableLayoutPanel19->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 
+				100)));
+			this->tableLayoutPanel19->Controls->Add(this->pictureBox19, 0, 1);
+			this->tableLayoutPanel19->Controls->Add(this->label19, 0, 0);
+			this->tableLayoutPanel19->Location = System::Drawing::Point(0, 2400);
+			this->tableLayoutPanel19->Margin = System::Windows::Forms::Padding(0);
+			this->tableLayoutPanel19->Name = L"tableLayoutPanel19";
+			this->tableLayoutPanel19->RowCount = 2;
+			this->tableLayoutPanel19->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 
+				20)));
+			this->tableLayoutPanel19->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tableLayoutPanel19->Size = System::Drawing::Size(120, 120);
+			this->tableLayoutPanel19->TabIndex = 3;
+			// 
+			// pictureBox19
+			// 
+			this->pictureBox19->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox19->Location = System::Drawing::Point(0, 20);
+			this->pictureBox19->Margin = System::Windows::Forms::Padding(0);
+			this->pictureBox19->Name = L"pictureBox19";
+			this->pictureBox19->Size = System::Drawing::Size(120, 100);
+			this->pictureBox19->TabIndex = 0;
+			this->pictureBox19->TabStop = false;
+			// 
+			// label19
+			// 
+			this->label19->AutoSize = true;
+			this->label19->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->label19->Location = System::Drawing::Point(0, 0);
+			this->label19->Margin = System::Windows::Forms::Padding(0);
+			this->label19->Name = L"label19";
+			this->label19->Size = System::Drawing::Size(120, 20);
+			this->label19->TabIndex = 1;
+			this->label19->Text = L"Box 2";
+			this->label19->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// tableLayoutPanel20
+			// 
+			this->tableLayoutPanel20->ColumnCount = 1;
+			this->tableLayoutPanel20->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 
+				100)));
+			this->tableLayoutPanel20->Controls->Add(this->pictureBox20, 0, 1);
+			this->tableLayoutPanel20->Controls->Add(this->label20, 0, 0);
+			this->tableLayoutPanel20->Location = System::Drawing::Point(0, 2520);
+			this->tableLayoutPanel20->Margin = System::Windows::Forms::Padding(0);
+			this->tableLayoutPanel20->Name = L"tableLayoutPanel20";
+			this->tableLayoutPanel20->RowCount = 2;
+			this->tableLayoutPanel20->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 
+				20)));
+			this->tableLayoutPanel20->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tableLayoutPanel20->Size = System::Drawing::Size(120, 120);
+			this->tableLayoutPanel20->TabIndex = 3;
+			// 
+			// pictureBox20
+			// 
+			this->pictureBox20->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox20->Location = System::Drawing::Point(0, 20);
+			this->pictureBox20->Margin = System::Windows::Forms::Padding(0);
+			this->pictureBox20->Name = L"pictureBox20";
+			this->pictureBox20->Size = System::Drawing::Size(120, 100);
+			this->pictureBox20->TabIndex = 0;
+			this->pictureBox20->TabStop = false;
+			// 
+			// label20
+			// 
+			this->label20->AutoSize = true;
+			this->label20->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->label20->Location = System::Drawing::Point(0, 0);
+			this->label20->Margin = System::Windows::Forms::Padding(0);
+			this->label20->Name = L"label20";
+			this->label20->Size = System::Drawing::Size(120, 20);
+			this->label20->TabIndex = 1;
+			this->label20->Text = L"Box 2";
+			this->label20->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// tableLayoutPanel21
+			// 
+			this->tableLayoutPanel21->ColumnCount = 1;
+			this->tableLayoutPanel21->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 
+				100)));
+			this->tableLayoutPanel21->Controls->Add(this->pictureBox21, 0, 1);
+			this->tableLayoutPanel21->Controls->Add(this->label21, 0, 0);
+			this->tableLayoutPanel21->Location = System::Drawing::Point(0, 2640);
+			this->tableLayoutPanel21->Margin = System::Windows::Forms::Padding(0);
+			this->tableLayoutPanel21->Name = L"tableLayoutPanel21";
+			this->tableLayoutPanel21->RowCount = 2;
+			this->tableLayoutPanel21->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 
+				20)));
+			this->tableLayoutPanel21->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tableLayoutPanel21->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 
+				20)));
+			this->tableLayoutPanel21->Size = System::Drawing::Size(120, 120);
+			this->tableLayoutPanel21->TabIndex = 3;
+			// 
+			// pictureBox21
+			// 
+			this->pictureBox21->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox21->Location = System::Drawing::Point(0, 20);
+			this->pictureBox21->Margin = System::Windows::Forms::Padding(0);
+			this->pictureBox21->Name = L"pictureBox21";
+			this->pictureBox21->Size = System::Drawing::Size(120, 100);
+			this->pictureBox21->TabIndex = 0;
+			this->pictureBox21->TabStop = false;
+			// 
+			// label21
+			// 
+			this->label21->AutoSize = true;
+			this->label21->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->label21->Location = System::Drawing::Point(0, 0);
+			this->label21->Margin = System::Windows::Forms::Padding(0);
+			this->label21->Name = L"label21";
+			this->label21->Size = System::Drawing::Size(120, 20);
+			this->label21->TabIndex = 1;
+			this->label21->Text = L"Box 2";
+			this->label21->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// tableLayoutPanel22
+			// 
+			this->tableLayoutPanel22->ColumnCount = 1;
+			this->tableLayoutPanel22->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 
+				100)));
+			this->tableLayoutPanel22->Controls->Add(this->pictureBox22, 0, 1);
+			this->tableLayoutPanel22->Controls->Add(this->label22, 0, 0);
+			this->tableLayoutPanel22->Location = System::Drawing::Point(0, 2760);
+			this->tableLayoutPanel22->Margin = System::Windows::Forms::Padding(0);
+			this->tableLayoutPanel22->Name = L"tableLayoutPanel22";
+			this->tableLayoutPanel22->RowCount = 2;
+			this->tableLayoutPanel22->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 
+				20)));
+			this->tableLayoutPanel22->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tableLayoutPanel22->Size = System::Drawing::Size(120, 120);
+			this->tableLayoutPanel22->TabIndex = 3;
+			// 
+			// pictureBox22
+			// 
+			this->pictureBox22->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox22->Location = System::Drawing::Point(0, 20);
+			this->pictureBox22->Margin = System::Windows::Forms::Padding(0);
+			this->pictureBox22->Name = L"pictureBox22";
+			this->pictureBox22->Size = System::Drawing::Size(120, 100);
+			this->pictureBox22->TabIndex = 0;
+			this->pictureBox22->TabStop = false;
+			// 
+			// label22
+			// 
+			this->label22->AutoSize = true;
+			this->label22->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->label22->Location = System::Drawing::Point(0, 0);
+			this->label22->Margin = System::Windows::Forms::Padding(0);
+			this->label22->Name = L"label22";
+			this->label22->Size = System::Drawing::Size(120, 20);
+			this->label22->TabIndex = 1;
+			this->label22->Text = L"Box 2";
+			this->label22->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
 			// frmBoxes
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(383, 286);
-			this->Controls->Add(this->gbBox);
-			this->Controls->Add(this->gbParty);
+			this->ClientSize = System::Drawing::Size(368, 287);
+			this->Controls->Add(this->scMain);
 			this->Controls->Add(this->msMain);
 			this->MainMenuStrip = this->msMain;
 			this->Name = L"frmBoxes";
 			this->Text = L"PKMDS: Desktop Windows";
 			this->Load += gcnew System::EventHandler(this, &frmBoxes::frmBoxes_Load);
-			this->tlPCBoxes->ResumeLayout(false);
+			this->tlPCBox->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbBoxSlot30))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbBoxSlot29))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbBoxSlot28))->EndInit();
@@ -1108,6 +2320,83 @@ namespace PKMDS_Desktop_Win {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbPartySlot01))->EndInit();
 			this->gbParty->ResumeLayout(false);
 			this->gbBox->ResumeLayout(false);
+			this->scMain->Panel1->ResumeLayout(false);
+			this->scMain->Panel2->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->scMain))->EndInit();
+			this->scMain->ResumeLayout(false);
+			this->tlPCBoxes->ResumeLayout(false);
+			this->tlBox01->ResumeLayout(false);
+			this->tlBox01->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbBox01))->EndInit();
+			this->tlBox02->ResumeLayout(false);
+			this->tlBox02->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbBox02))->EndInit();
+			this->tableLayoutPanel1->ResumeLayout(false);
+			this->tableLayoutPanel1->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox1))->EndInit();
+			this->tableLayoutPanel2->ResumeLayout(false);
+			this->tableLayoutPanel2->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox2))->EndInit();
+			this->tableLayoutPanel3->ResumeLayout(false);
+			this->tableLayoutPanel3->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox3))->EndInit();
+			this->tableLayoutPanel4->ResumeLayout(false);
+			this->tableLayoutPanel4->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox4))->EndInit();
+			this->tableLayoutPanel5->ResumeLayout(false);
+			this->tableLayoutPanel5->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox5))->EndInit();
+			this->tableLayoutPanel6->ResumeLayout(false);
+			this->tableLayoutPanel6->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox6))->EndInit();
+			this->tableLayoutPanel7->ResumeLayout(false);
+			this->tableLayoutPanel7->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox7))->EndInit();
+			this->tableLayoutPanel8->ResumeLayout(false);
+			this->tableLayoutPanel8->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox8))->EndInit();
+			this->tableLayoutPanel9->ResumeLayout(false);
+			this->tableLayoutPanel9->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox9))->EndInit();
+			this->tableLayoutPanel10->ResumeLayout(false);
+			this->tableLayoutPanel10->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox10))->EndInit();
+			this->tableLayoutPanel11->ResumeLayout(false);
+			this->tableLayoutPanel11->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox11))->EndInit();
+			this->tableLayoutPanel12->ResumeLayout(false);
+			this->tableLayoutPanel12->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox12))->EndInit();
+			this->tableLayoutPanel13->ResumeLayout(false);
+			this->tableLayoutPanel13->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox13))->EndInit();
+			this->tableLayoutPanel14->ResumeLayout(false);
+			this->tableLayoutPanel14->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox14))->EndInit();
+			this->tableLayoutPanel15->ResumeLayout(false);
+			this->tableLayoutPanel15->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox15))->EndInit();
+			this->tableLayoutPanel16->ResumeLayout(false);
+			this->tableLayoutPanel16->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox16))->EndInit();
+			this->tableLayoutPanel17->ResumeLayout(false);
+			this->tableLayoutPanel17->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox17))->EndInit();
+			this->tableLayoutPanel18->ResumeLayout(false);
+			this->tableLayoutPanel18->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox18))->EndInit();
+			this->tableLayoutPanel19->ResumeLayout(false);
+			this->tableLayoutPanel19->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox19))->EndInit();
+			this->tableLayoutPanel20->ResumeLayout(false);
+			this->tableLayoutPanel20->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox20))->EndInit();
+			this->tableLayoutPanel21->ResumeLayout(false);
+			this->tableLayoutPanel21->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox21))->EndInit();
+			this->tableLayoutPanel22->ResumeLayout(false);
+			this->tableLayoutPanel22->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox22))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -1129,8 +2418,8 @@ namespace PKMDS_Desktop_Win {
 				 int box = 0;
 				 std::ostringstream wpsql;
 				 getwallpapersql(wpsql,(int)(sav->cur.boxwallpapers[box]));
-				 tlPCBoxes->BackgroundImage = vsqlite->getSQLImage(wpsql.str());
-				 for each (System::Windows::Forms::PictureBox^ pb in tlPCBoxes->Controls)
+				 tlPCBox->BackgroundImage = vsqlite->getSQLImage(wpsql.str());
+				 for each (System::Windows::Forms::PictureBox^ pb in tlPCBox->Controls)
 				 {
 					 pb->Image = nullptr;
 					 int slot = int::Parse(pb->Name->Substring(9));
