@@ -34,7 +34,6 @@ namespace PKMDS_Desktop_Win {
 		}
 	private: System::Windows::Forms::TableLayoutPanel^  tlPCBox;
 	protected: 
-
 	protected: 
 	private: System::Windows::Forms::PictureBox^  pbBoxSlot30;
 	private: System::Windows::Forms::PictureBox^  pbBoxSlot29;
@@ -81,13 +80,9 @@ namespace PKMDS_Desktop_Win {
 	private: System::Windows::Forms::GroupBox^  gbBox;
 	private: System::Windows::Forms::SplitContainer^  scMain;
 	private: System::Windows::Forms::TableLayoutPanel^  tlPCBoxes;
-
 	private: System::Windows::Forms::TableLayoutPanel^  tlBox02;
 	private: System::Windows::Forms::PictureBox^  pbBox02;
-
-
 	private: System::Windows::Forms::Label^  lblBox02;
-
 	private: System::Windows::Forms::TableLayoutPanel^  tlBox01;
 	private: System::Windows::Forms::PictureBox^  pbBox01;
 	private: System::Windows::Forms::Label^  lblBox01;
@@ -150,20 +145,13 @@ namespace PKMDS_Desktop_Win {
 	private: System::Windows::Forms::Label^  lblBox06;
 	private: System::Windows::Forms::TableLayoutPanel^  tlBox05;
 	private: System::Windows::Forms::PictureBox^  pbBox05;
-private: System::Windows::Forms::Label^  lblBox05;
-private: System::Windows::Forms::TableLayoutPanel^  tlBox04;
-
-
-private: System::Windows::Forms::PictureBox^  pbBox04;
-
-private: System::Windows::Forms::Label^  lblBox04;
-private: System::Windows::Forms::TableLayoutPanel^  tlBox03;
-
-
-private: System::Windows::Forms::PictureBox^  pbBox03;
-
-private: System::Windows::Forms::Label^  lblBox03;
-
+	private: System::Windows::Forms::Label^  lblBox05;
+	private: System::Windows::Forms::TableLayoutPanel^  tlBox04;
+	private: System::Windows::Forms::PictureBox^  pbBox04;
+	private: System::Windows::Forms::Label^  lblBox04;
+	private: System::Windows::Forms::TableLayoutPanel^  tlBox03;
+	private: System::Windows::Forms::PictureBox^  pbBox03;
+	private: System::Windows::Forms::Label^  lblBox03;
 	protected: 
 	private:
 		/// <summary>
@@ -1371,17 +1359,16 @@ private: System::Windows::Forms::Label^  lblBox03;
 			this->pbBox24->Size = System::Drawing::Size(120, 100);
 			this->pbBox24->TabIndex = 0;
 			this->pbBox24->TabStop = false;
-			this->pbBox24->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragDrop);
-			this->pbBox24->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragEnter);
-			this->pbBox24->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragOver);
-			this->pbBox24->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DragLeave);
-			this->pbBox24->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DoubleClick);
-			this->pbBox24->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseClick);
-			this->pbBox24->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseDoubleClick);
-			this->pbBox24->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseEnter);
-			this->pbBox24->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseLeave);
-			this->pbBox24->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseHover);
-			this->pbBox24->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseMove);
+			this->pbBox24->Click += gcnew System::EventHandler(this, &frmBoxes::pbBox_Click);
+			this->pbBox24->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragDrop);
+			this->pbBox24->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragEnter);
+			this->pbBox24->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragOver);
+			this->pbBox24->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_DragLeave);
+			this->pbBox24->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox_DoubleClick);
+			this->pbBox24->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseEnter);
+			this->pbBox24->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseLeave);
+			this->pbBox24->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseHover);
+			this->pbBox24->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox_MouseMove);
 			// 
 			// lblBox24
 			// 
@@ -1420,17 +1407,16 @@ private: System::Windows::Forms::Label^  lblBox03;
 			this->pbBox23->Size = System::Drawing::Size(120, 100);
 			this->pbBox23->TabIndex = 0;
 			this->pbBox23->TabStop = false;
-			this->pbBox23->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragDrop);
-			this->pbBox23->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragEnter);
-			this->pbBox23->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragOver);
-			this->pbBox23->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DragLeave);
-			this->pbBox23->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DoubleClick);
-			this->pbBox23->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseClick);
-			this->pbBox23->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseDoubleClick);
-			this->pbBox23->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseEnter);
-			this->pbBox23->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseLeave);
-			this->pbBox23->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseHover);
-			this->pbBox23->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseMove);
+			this->pbBox23->Click += gcnew System::EventHandler(this, &frmBoxes::pbBox_Click);
+			this->pbBox23->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragDrop);
+			this->pbBox23->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragEnter);
+			this->pbBox23->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragOver);
+			this->pbBox23->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_DragLeave);
+			this->pbBox23->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox_DoubleClick);
+			this->pbBox23->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseEnter);
+			this->pbBox23->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseLeave);
+			this->pbBox23->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseHover);
+			this->pbBox23->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox_MouseMove);
 			// 
 			// lblBox23
 			// 
@@ -1468,17 +1454,16 @@ private: System::Windows::Forms::Label^  lblBox03;
 			this->pbBox22->Size = System::Drawing::Size(120, 100);
 			this->pbBox22->TabIndex = 0;
 			this->pbBox22->TabStop = false;
-			this->pbBox22->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragDrop);
-			this->pbBox22->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragEnter);
-			this->pbBox22->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragOver);
-			this->pbBox22->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DragLeave);
-			this->pbBox22->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DoubleClick);
-			this->pbBox22->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseClick);
-			this->pbBox22->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseDoubleClick);
-			this->pbBox22->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseEnter);
-			this->pbBox22->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseLeave);
-			this->pbBox22->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseHover);
-			this->pbBox22->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseMove);
+			this->pbBox22->Click += gcnew System::EventHandler(this, &frmBoxes::pbBox_Click);
+			this->pbBox22->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragDrop);
+			this->pbBox22->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragEnter);
+			this->pbBox22->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragOver);
+			this->pbBox22->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_DragLeave);
+			this->pbBox22->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox_DoubleClick);
+			this->pbBox22->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseEnter);
+			this->pbBox22->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseLeave);
+			this->pbBox22->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseHover);
+			this->pbBox22->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox_MouseMove);
 			// 
 			// lblBox22
 			// 
@@ -1516,17 +1501,16 @@ private: System::Windows::Forms::Label^  lblBox03;
 			this->pbBox21->Size = System::Drawing::Size(120, 100);
 			this->pbBox21->TabIndex = 0;
 			this->pbBox21->TabStop = false;
-			this->pbBox21->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragDrop);
-			this->pbBox21->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragEnter);
-			this->pbBox21->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragOver);
-			this->pbBox21->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DragLeave);
-			this->pbBox21->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DoubleClick);
-			this->pbBox21->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseClick);
-			this->pbBox21->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseDoubleClick);
-			this->pbBox21->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseEnter);
-			this->pbBox21->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseLeave);
-			this->pbBox21->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseHover);
-			this->pbBox21->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseMove);
+			this->pbBox21->Click += gcnew System::EventHandler(this, &frmBoxes::pbBox_Click);
+			this->pbBox21->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragDrop);
+			this->pbBox21->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragEnter);
+			this->pbBox21->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragOver);
+			this->pbBox21->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_DragLeave);
+			this->pbBox21->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox_DoubleClick);
+			this->pbBox21->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseEnter);
+			this->pbBox21->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseLeave);
+			this->pbBox21->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseHover);
+			this->pbBox21->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox_MouseMove);
 			// 
 			// lblBox21
 			// 
@@ -1564,17 +1548,16 @@ private: System::Windows::Forms::Label^  lblBox03;
 			this->pbBox20->Size = System::Drawing::Size(120, 100);
 			this->pbBox20->TabIndex = 0;
 			this->pbBox20->TabStop = false;
-			this->pbBox20->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragDrop);
-			this->pbBox20->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragEnter);
-			this->pbBox20->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragOver);
-			this->pbBox20->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DragLeave);
-			this->pbBox20->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DoubleClick);
-			this->pbBox20->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseClick);
-			this->pbBox20->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseDoubleClick);
-			this->pbBox20->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseEnter);
-			this->pbBox20->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseLeave);
-			this->pbBox20->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseHover);
-			this->pbBox20->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseMove);
+			this->pbBox20->Click += gcnew System::EventHandler(this, &frmBoxes::pbBox_Click);
+			this->pbBox20->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragDrop);
+			this->pbBox20->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragEnter);
+			this->pbBox20->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragOver);
+			this->pbBox20->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_DragLeave);
+			this->pbBox20->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox_DoubleClick);
+			this->pbBox20->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseEnter);
+			this->pbBox20->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseLeave);
+			this->pbBox20->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseHover);
+			this->pbBox20->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox_MouseMove);
 			// 
 			// lblBox20
 			// 
@@ -1612,17 +1595,16 @@ private: System::Windows::Forms::Label^  lblBox03;
 			this->pbBox19->Size = System::Drawing::Size(120, 100);
 			this->pbBox19->TabIndex = 0;
 			this->pbBox19->TabStop = false;
-			this->pbBox19->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragDrop);
-			this->pbBox19->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragEnter);
-			this->pbBox19->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragOver);
-			this->pbBox19->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DragLeave);
-			this->pbBox19->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DoubleClick);
-			this->pbBox19->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseClick);
-			this->pbBox19->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseDoubleClick);
-			this->pbBox19->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseEnter);
-			this->pbBox19->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseLeave);
-			this->pbBox19->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseHover);
-			this->pbBox19->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseMove);
+			this->pbBox19->Click += gcnew System::EventHandler(this, &frmBoxes::pbBox_Click);
+			this->pbBox19->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragDrop);
+			this->pbBox19->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragEnter);
+			this->pbBox19->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragOver);
+			this->pbBox19->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_DragLeave);
+			this->pbBox19->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox_DoubleClick);
+			this->pbBox19->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseEnter);
+			this->pbBox19->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseLeave);
+			this->pbBox19->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseHover);
+			this->pbBox19->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox_MouseMove);
 			// 
 			// lblBox19
 			// 
@@ -1660,17 +1642,16 @@ private: System::Windows::Forms::Label^  lblBox03;
 			this->pbBox18->Size = System::Drawing::Size(120, 100);
 			this->pbBox18->TabIndex = 0;
 			this->pbBox18->TabStop = false;
-			this->pbBox18->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragDrop);
-			this->pbBox18->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragEnter);
-			this->pbBox18->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragOver);
-			this->pbBox18->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DragLeave);
-			this->pbBox18->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DoubleClick);
-			this->pbBox18->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseClick);
-			this->pbBox18->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseDoubleClick);
-			this->pbBox18->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseEnter);
-			this->pbBox18->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseLeave);
-			this->pbBox18->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseHover);
-			this->pbBox18->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseMove);
+			this->pbBox18->Click += gcnew System::EventHandler(this, &frmBoxes::pbBox_Click);
+			this->pbBox18->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragDrop);
+			this->pbBox18->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragEnter);
+			this->pbBox18->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragOver);
+			this->pbBox18->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_DragLeave);
+			this->pbBox18->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox_DoubleClick);
+			this->pbBox18->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseEnter);
+			this->pbBox18->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseLeave);
+			this->pbBox18->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseHover);
+			this->pbBox18->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox_MouseMove);
 			// 
 			// lblBox18
 			// 
@@ -1709,17 +1690,16 @@ private: System::Windows::Forms::Label^  lblBox03;
 			this->pbBox17->Size = System::Drawing::Size(120, 100);
 			this->pbBox17->TabIndex = 0;
 			this->pbBox17->TabStop = false;
-			this->pbBox17->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragDrop);
-			this->pbBox17->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragEnter);
-			this->pbBox17->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragOver);
-			this->pbBox17->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DragLeave);
-			this->pbBox17->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DoubleClick);
-			this->pbBox17->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseClick);
-			this->pbBox17->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseDoubleClick);
-			this->pbBox17->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseEnter);
-			this->pbBox17->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseLeave);
-			this->pbBox17->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseHover);
-			this->pbBox17->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseMove);
+			this->pbBox17->Click += gcnew System::EventHandler(this, &frmBoxes::pbBox_Click);
+			this->pbBox17->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragDrop);
+			this->pbBox17->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragEnter);
+			this->pbBox17->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragOver);
+			this->pbBox17->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_DragLeave);
+			this->pbBox17->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox_DoubleClick);
+			this->pbBox17->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseEnter);
+			this->pbBox17->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseLeave);
+			this->pbBox17->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseHover);
+			this->pbBox17->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox_MouseMove);
 			// 
 			// lblBox17
 			// 
@@ -1757,17 +1737,16 @@ private: System::Windows::Forms::Label^  lblBox03;
 			this->pbBox16->Size = System::Drawing::Size(120, 100);
 			this->pbBox16->TabIndex = 0;
 			this->pbBox16->TabStop = false;
-			this->pbBox16->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragDrop);
-			this->pbBox16->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragEnter);
-			this->pbBox16->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragOver);
-			this->pbBox16->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DragLeave);
-			this->pbBox16->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DoubleClick);
-			this->pbBox16->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseClick);
-			this->pbBox16->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseDoubleClick);
-			this->pbBox16->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseEnter);
-			this->pbBox16->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseLeave);
-			this->pbBox16->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseHover);
-			this->pbBox16->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseMove);
+			this->pbBox16->Click += gcnew System::EventHandler(this, &frmBoxes::pbBox_Click);
+			this->pbBox16->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragDrop);
+			this->pbBox16->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragEnter);
+			this->pbBox16->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragOver);
+			this->pbBox16->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_DragLeave);
+			this->pbBox16->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox_DoubleClick);
+			this->pbBox16->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseEnter);
+			this->pbBox16->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseLeave);
+			this->pbBox16->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseHover);
+			this->pbBox16->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox_MouseMove);
 			// 
 			// lblBox16
 			// 
@@ -1805,17 +1784,16 @@ private: System::Windows::Forms::Label^  lblBox03;
 			this->pbBox15->Size = System::Drawing::Size(120, 100);
 			this->pbBox15->TabIndex = 0;
 			this->pbBox15->TabStop = false;
-			this->pbBox15->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragDrop);
-			this->pbBox15->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragEnter);
-			this->pbBox15->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragOver);
-			this->pbBox15->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DragLeave);
-			this->pbBox15->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DoubleClick);
-			this->pbBox15->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseClick);
-			this->pbBox15->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseDoubleClick);
-			this->pbBox15->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseEnter);
-			this->pbBox15->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseLeave);
-			this->pbBox15->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseHover);
-			this->pbBox15->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseMove);
+			this->pbBox15->Click += gcnew System::EventHandler(this, &frmBoxes::pbBox_Click);
+			this->pbBox15->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragDrop);
+			this->pbBox15->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragEnter);
+			this->pbBox15->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragOver);
+			this->pbBox15->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_DragLeave);
+			this->pbBox15->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox_DoubleClick);
+			this->pbBox15->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseEnter);
+			this->pbBox15->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseLeave);
+			this->pbBox15->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseHover);
+			this->pbBox15->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox_MouseMove);
 			// 
 			// lblBox15
 			// 
@@ -1853,17 +1831,16 @@ private: System::Windows::Forms::Label^  lblBox03;
 			this->pbBox14->Size = System::Drawing::Size(120, 100);
 			this->pbBox14->TabIndex = 0;
 			this->pbBox14->TabStop = false;
-			this->pbBox14->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragDrop);
-			this->pbBox14->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragEnter);
-			this->pbBox14->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragOver);
-			this->pbBox14->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DragLeave);
-			this->pbBox14->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DoubleClick);
-			this->pbBox14->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseClick);
-			this->pbBox14->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseDoubleClick);
-			this->pbBox14->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseEnter);
-			this->pbBox14->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseLeave);
-			this->pbBox14->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseHover);
-			this->pbBox14->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseMove);
+			this->pbBox14->Click += gcnew System::EventHandler(this, &frmBoxes::pbBox_Click);
+			this->pbBox14->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragDrop);
+			this->pbBox14->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragEnter);
+			this->pbBox14->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragOver);
+			this->pbBox14->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_DragLeave);
+			this->pbBox14->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox_DoubleClick);
+			this->pbBox14->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseEnter);
+			this->pbBox14->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseLeave);
+			this->pbBox14->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseHover);
+			this->pbBox14->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox_MouseMove);
 			// 
 			// lblBox14
 			// 
@@ -1901,17 +1878,16 @@ private: System::Windows::Forms::Label^  lblBox03;
 			this->pbBox13->Size = System::Drawing::Size(120, 100);
 			this->pbBox13->TabIndex = 0;
 			this->pbBox13->TabStop = false;
-			this->pbBox13->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragDrop);
-			this->pbBox13->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragEnter);
-			this->pbBox13->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragOver);
-			this->pbBox13->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DragLeave);
-			this->pbBox13->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DoubleClick);
-			this->pbBox13->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseClick);
-			this->pbBox13->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseDoubleClick);
-			this->pbBox13->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseEnter);
-			this->pbBox13->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseLeave);
-			this->pbBox13->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseHover);
-			this->pbBox13->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseMove);
+			this->pbBox13->Click += gcnew System::EventHandler(this, &frmBoxes::pbBox_Click);
+			this->pbBox13->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragDrop);
+			this->pbBox13->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragEnter);
+			this->pbBox13->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragOver);
+			this->pbBox13->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_DragLeave);
+			this->pbBox13->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox_DoubleClick);
+			this->pbBox13->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseEnter);
+			this->pbBox13->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseLeave);
+			this->pbBox13->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseHover);
+			this->pbBox13->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox_MouseMove);
 			// 
 			// lblBox13
 			// 
@@ -1949,17 +1925,16 @@ private: System::Windows::Forms::Label^  lblBox03;
 			this->pbBox12->Size = System::Drawing::Size(120, 100);
 			this->pbBox12->TabIndex = 0;
 			this->pbBox12->TabStop = false;
-			this->pbBox12->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragDrop);
-			this->pbBox12->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragEnter);
-			this->pbBox12->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragOver);
-			this->pbBox12->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DragLeave);
-			this->pbBox12->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DoubleClick);
-			this->pbBox12->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseClick);
-			this->pbBox12->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseDoubleClick);
-			this->pbBox12->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseEnter);
-			this->pbBox12->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseLeave);
-			this->pbBox12->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseHover);
-			this->pbBox12->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseMove);
+			this->pbBox12->Click += gcnew System::EventHandler(this, &frmBoxes::pbBox_Click);
+			this->pbBox12->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragDrop);
+			this->pbBox12->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragEnter);
+			this->pbBox12->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragOver);
+			this->pbBox12->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_DragLeave);
+			this->pbBox12->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox_DoubleClick);
+			this->pbBox12->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseEnter);
+			this->pbBox12->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseLeave);
+			this->pbBox12->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseHover);
+			this->pbBox12->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox_MouseMove);
 			// 
 			// lblBox12
 			// 
@@ -1997,17 +1972,16 @@ private: System::Windows::Forms::Label^  lblBox03;
 			this->pbBox11->Size = System::Drawing::Size(120, 100);
 			this->pbBox11->TabIndex = 0;
 			this->pbBox11->TabStop = false;
-			this->pbBox11->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragDrop);
-			this->pbBox11->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragEnter);
-			this->pbBox11->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragOver);
-			this->pbBox11->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DragLeave);
-			this->pbBox11->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DoubleClick);
-			this->pbBox11->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseClick);
-			this->pbBox11->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseDoubleClick);
-			this->pbBox11->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseEnter);
-			this->pbBox11->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseLeave);
-			this->pbBox11->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseHover);
-			this->pbBox11->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseMove);
+			this->pbBox11->Click += gcnew System::EventHandler(this, &frmBoxes::pbBox_Click);
+			this->pbBox11->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragDrop);
+			this->pbBox11->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragEnter);
+			this->pbBox11->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragOver);
+			this->pbBox11->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_DragLeave);
+			this->pbBox11->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox_DoubleClick);
+			this->pbBox11->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseEnter);
+			this->pbBox11->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseLeave);
+			this->pbBox11->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseHover);
+			this->pbBox11->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox_MouseMove);
 			// 
 			// lblBox11
 			// 
@@ -2045,17 +2019,16 @@ private: System::Windows::Forms::Label^  lblBox03;
 			this->pbBox10->Size = System::Drawing::Size(120, 100);
 			this->pbBox10->TabIndex = 0;
 			this->pbBox10->TabStop = false;
-			this->pbBox10->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragDrop);
-			this->pbBox10->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragEnter);
-			this->pbBox10->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragOver);
-			this->pbBox10->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DragLeave);
-			this->pbBox10->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DoubleClick);
-			this->pbBox10->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseClick);
-			this->pbBox10->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseDoubleClick);
-			this->pbBox10->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseEnter);
-			this->pbBox10->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseLeave);
-			this->pbBox10->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseHover);
-			this->pbBox10->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseMove);
+			this->pbBox10->Click += gcnew System::EventHandler(this, &frmBoxes::pbBox_Click);
+			this->pbBox10->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragDrop);
+			this->pbBox10->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragEnter);
+			this->pbBox10->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragOver);
+			this->pbBox10->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_DragLeave);
+			this->pbBox10->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox_DoubleClick);
+			this->pbBox10->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseEnter);
+			this->pbBox10->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseLeave);
+			this->pbBox10->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseHover);
+			this->pbBox10->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox_MouseMove);
 			// 
 			// lblBox10
 			// 
@@ -2093,17 +2066,16 @@ private: System::Windows::Forms::Label^  lblBox03;
 			this->pbBox09->Size = System::Drawing::Size(120, 100);
 			this->pbBox09->TabIndex = 0;
 			this->pbBox09->TabStop = false;
-			this->pbBox09->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragDrop);
-			this->pbBox09->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragEnter);
-			this->pbBox09->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragOver);
-			this->pbBox09->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DragLeave);
-			this->pbBox09->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DoubleClick);
-			this->pbBox09->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseClick);
-			this->pbBox09->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseDoubleClick);
-			this->pbBox09->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseEnter);
-			this->pbBox09->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseLeave);
-			this->pbBox09->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseHover);
-			this->pbBox09->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseMove);
+			this->pbBox09->Click += gcnew System::EventHandler(this, &frmBoxes::pbBox_Click);
+			this->pbBox09->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragDrop);
+			this->pbBox09->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragEnter);
+			this->pbBox09->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragOver);
+			this->pbBox09->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_DragLeave);
+			this->pbBox09->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox_DoubleClick);
+			this->pbBox09->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseEnter);
+			this->pbBox09->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseLeave);
+			this->pbBox09->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseHover);
+			this->pbBox09->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox_MouseMove);
 			// 
 			// lblBox09
 			// 
@@ -2141,17 +2113,16 @@ private: System::Windows::Forms::Label^  lblBox03;
 			this->pbBox08->Size = System::Drawing::Size(120, 100);
 			this->pbBox08->TabIndex = 0;
 			this->pbBox08->TabStop = false;
-			this->pbBox08->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragDrop);
-			this->pbBox08->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragEnter);
-			this->pbBox08->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragOver);
-			this->pbBox08->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DragLeave);
-			this->pbBox08->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DoubleClick);
-			this->pbBox08->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseClick);
-			this->pbBox08->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseDoubleClick);
-			this->pbBox08->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseEnter);
-			this->pbBox08->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseLeave);
-			this->pbBox08->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseHover);
-			this->pbBox08->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseMove);
+			this->pbBox08->Click += gcnew System::EventHandler(this, &frmBoxes::pbBox_Click);
+			this->pbBox08->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragDrop);
+			this->pbBox08->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragEnter);
+			this->pbBox08->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragOver);
+			this->pbBox08->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_DragLeave);
+			this->pbBox08->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox_DoubleClick);
+			this->pbBox08->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseEnter);
+			this->pbBox08->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseLeave);
+			this->pbBox08->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseHover);
+			this->pbBox08->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox_MouseMove);
 			// 
 			// lblBox08
 			// 
@@ -2189,17 +2160,16 @@ private: System::Windows::Forms::Label^  lblBox03;
 			this->pbBox07->Size = System::Drawing::Size(120, 100);
 			this->pbBox07->TabIndex = 0;
 			this->pbBox07->TabStop = false;
-			this->pbBox07->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragDrop);
-			this->pbBox07->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragEnter);
-			this->pbBox07->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragOver);
-			this->pbBox07->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DragLeave);
-			this->pbBox07->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DoubleClick);
-			this->pbBox07->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseClick);
-			this->pbBox07->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseDoubleClick);
-			this->pbBox07->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseEnter);
-			this->pbBox07->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseLeave);
-			this->pbBox07->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseHover);
-			this->pbBox07->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseMove);
+			this->pbBox07->Click += gcnew System::EventHandler(this, &frmBoxes::pbBox_Click);
+			this->pbBox07->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragDrop);
+			this->pbBox07->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragEnter);
+			this->pbBox07->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragOver);
+			this->pbBox07->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_DragLeave);
+			this->pbBox07->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox_DoubleClick);
+			this->pbBox07->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseEnter);
+			this->pbBox07->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseLeave);
+			this->pbBox07->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseHover);
+			this->pbBox07->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox_MouseMove);
 			// 
 			// lblBox07
 			// 
@@ -2237,17 +2207,16 @@ private: System::Windows::Forms::Label^  lblBox03;
 			this->pbBox06->Size = System::Drawing::Size(120, 100);
 			this->pbBox06->TabIndex = 0;
 			this->pbBox06->TabStop = false;
-			this->pbBox06->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragDrop);
-			this->pbBox06->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragEnter);
-			this->pbBox06->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragOver);
-			this->pbBox06->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DragLeave);
-			this->pbBox06->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DoubleClick);
-			this->pbBox06->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseClick);
-			this->pbBox06->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseDoubleClick);
-			this->pbBox06->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseEnter);
-			this->pbBox06->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseLeave);
-			this->pbBox06->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseHover);
-			this->pbBox06->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseMove);
+			this->pbBox06->Click += gcnew System::EventHandler(this, &frmBoxes::pbBox_Click);
+			this->pbBox06->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragDrop);
+			this->pbBox06->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragEnter);
+			this->pbBox06->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragOver);
+			this->pbBox06->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_DragLeave);
+			this->pbBox06->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox_DoubleClick);
+			this->pbBox06->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseEnter);
+			this->pbBox06->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseLeave);
+			this->pbBox06->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseHover);
+			this->pbBox06->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox_MouseMove);
 			// 
 			// lblBox06
 			// 
@@ -2285,17 +2254,16 @@ private: System::Windows::Forms::Label^  lblBox03;
 			this->pbBox05->Size = System::Drawing::Size(120, 100);
 			this->pbBox05->TabIndex = 0;
 			this->pbBox05->TabStop = false;
-			this->pbBox05->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragDrop);
-			this->pbBox05->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragEnter);
-			this->pbBox05->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragOver);
-			this->pbBox05->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DragLeave);
-			this->pbBox05->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DoubleClick);
-			this->pbBox05->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseClick);
-			this->pbBox05->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseDoubleClick);
-			this->pbBox05->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseEnter);
-			this->pbBox05->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseLeave);
-			this->pbBox05->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseHover);
-			this->pbBox05->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseMove);
+			this->pbBox05->Click += gcnew System::EventHandler(this, &frmBoxes::pbBox_Click);
+			this->pbBox05->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragDrop);
+			this->pbBox05->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragEnter);
+			this->pbBox05->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragOver);
+			this->pbBox05->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_DragLeave);
+			this->pbBox05->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox_DoubleClick);
+			this->pbBox05->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseEnter);
+			this->pbBox05->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseLeave);
+			this->pbBox05->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseHover);
+			this->pbBox05->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox_MouseMove);
 			// 
 			// lblBox05
 			// 
@@ -2333,17 +2301,16 @@ private: System::Windows::Forms::Label^  lblBox03;
 			this->pbBox04->Size = System::Drawing::Size(120, 100);
 			this->pbBox04->TabIndex = 0;
 			this->pbBox04->TabStop = false;
-			this->pbBox04->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragDrop);
-			this->pbBox04->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragEnter);
-			this->pbBox04->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragOver);
-			this->pbBox04->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DragLeave);
-			this->pbBox04->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DoubleClick);
-			this->pbBox04->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseClick);
-			this->pbBox04->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseDoubleClick);
-			this->pbBox04->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseEnter);
-			this->pbBox04->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseLeave);
-			this->pbBox04->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseHover);
-			this->pbBox04->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseMove);
+			this->pbBox04->Click += gcnew System::EventHandler(this, &frmBoxes::pbBox_Click);
+			this->pbBox04->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragDrop);
+			this->pbBox04->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragEnter);
+			this->pbBox04->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragOver);
+			this->pbBox04->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_DragLeave);
+			this->pbBox04->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox_DoubleClick);
+			this->pbBox04->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseEnter);
+			this->pbBox04->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseLeave);
+			this->pbBox04->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseHover);
+			this->pbBox04->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox_MouseMove);
 			// 
 			// lblBox04
 			// 
@@ -2381,17 +2348,16 @@ private: System::Windows::Forms::Label^  lblBox03;
 			this->pbBox03->Size = System::Drawing::Size(120, 100);
 			this->pbBox03->TabIndex = 0;
 			this->pbBox03->TabStop = false;
-			this->pbBox03->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragDrop);
-			this->pbBox03->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragEnter);
-			this->pbBox03->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragOver);
-			this->pbBox03->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DragLeave);
-			this->pbBox03->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DoubleClick);
-			this->pbBox03->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseClick);
-			this->pbBox03->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseDoubleClick);
-			this->pbBox03->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseEnter);
-			this->pbBox03->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseLeave);
-			this->pbBox03->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseHover);
-			this->pbBox03->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseMove);
+			this->pbBox03->Click += gcnew System::EventHandler(this, &frmBoxes::pbBox_Click);
+			this->pbBox03->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragDrop);
+			this->pbBox03->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragEnter);
+			this->pbBox03->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragOver);
+			this->pbBox03->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_DragLeave);
+			this->pbBox03->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox_DoubleClick);
+			this->pbBox03->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseEnter);
+			this->pbBox03->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseLeave);
+			this->pbBox03->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseHover);
+			this->pbBox03->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox_MouseMove);
 			// 
 			// lblBox03
 			// 
@@ -2429,17 +2395,16 @@ private: System::Windows::Forms::Label^  lblBox03;
 			this->pbBox01->Size = System::Drawing::Size(120, 100);
 			this->pbBox01->TabIndex = 0;
 			this->pbBox01->TabStop = false;
-			this->pbBox01->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragDrop);
-			this->pbBox01->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragEnter);
-			this->pbBox01->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragOver);
-			this->pbBox01->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DragLeave);
-			this->pbBox01->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DoubleClick);
-			this->pbBox01->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseClick);
-			this->pbBox01->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseDoubleClick);
-			this->pbBox01->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseEnter);
-			this->pbBox01->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseLeave);
-			this->pbBox01->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseHover);
-			this->pbBox01->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseMove);
+			this->pbBox01->Click += gcnew System::EventHandler(this, &frmBoxes::pbBox_Click);
+			this->pbBox01->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragDrop);
+			this->pbBox01->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragEnter);
+			this->pbBox01->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragOver);
+			this->pbBox01->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_DragLeave);
+			this->pbBox01->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox_DoubleClick);
+			this->pbBox01->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseEnter);
+			this->pbBox01->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseLeave);
+			this->pbBox01->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseHover);
+			this->pbBox01->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox_MouseMove);
 			// 
 			// lblBox01
 			// 
@@ -2477,17 +2442,16 @@ private: System::Windows::Forms::Label^  lblBox03;
 			this->pbBox02->Size = System::Drawing::Size(120, 100);
 			this->pbBox02->TabIndex = 0;
 			this->pbBox02->TabStop = false;
-			this->pbBox02->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragDrop);
-			this->pbBox02->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragEnter);
-			this->pbBox02->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox01_DragOver);
-			this->pbBox02->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DragLeave);
-			this->pbBox02->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox01_DoubleClick);
-			this->pbBox02->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseClick);
-			this->pbBox02->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseDoubleClick);
-			this->pbBox02->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseEnter);
-			this->pbBox02->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseLeave);
-			this->pbBox02->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox01_MouseHover);
-			this->pbBox02->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox01_MouseMove);
+			this->pbBox02->Click += gcnew System::EventHandler(this, &frmBoxes::pbBox_Click);
+			this->pbBox02->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragDrop);
+			this->pbBox02->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragEnter);
+			this->pbBox02->DragOver += gcnew System::Windows::Forms::DragEventHandler(this, &frmBoxes::pbBox_DragOver);
+			this->pbBox02->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_DragLeave);
+			this->pbBox02->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBox_DoubleClick);
+			this->pbBox02->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseEnter);
+			this->pbBox02->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseLeave);
+			this->pbBox02->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBox_MouseHover);
+			this->pbBox02->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBox_MouseMove);
 			// 
 			// lblBox02
 			// 
@@ -2638,18 +2602,16 @@ private: System::Windows::Forms::Label^  lblBox03;
 #pragma endregion
 		VS_SQLite ^ vsqlite;
 		bw2sav_obj * sav;
+		bool savloaded;
 	private: System::Void frmBoxes_Load(System::Object^  sender, System::EventArgs^  e) 
 			 {
 				 vsqlite = gcnew VS_SQLite();
 				 sav = new bw2sav_obj;
+				 savloaded = false;
+				 //sav = 0;
 			 }
-	private: System::Void loadSAVToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) 
+			 void changebox(int box)
 			 {
-				 if((fileOpen->ShowDialog() != System::Windows::Forms::DialogResult::Cancel) & (fileOpen->FileName != ""))
-				 {
-					 read(marshal_as<std::string>(fileOpen->FileName).c_str(),sav);
-				 }
-				 int box = 0;
 				 std::ostringstream wpsql;
 				 getwallpapersql(wpsql,(int)(sav->cur.boxwallpapers[box]));
 				 tlPCBox->BackgroundImage = vsqlite->getSQLImage(wpsql.str());
@@ -2667,6 +2629,49 @@ private: System::Windows::Forms::Label^  lblBox03;
 						 pb->Image = vsqlite->getSQLImage(o.str());
 					 }
 				 }
+			 }
+			 void clearboxselection()
+			 {
+				 for each (System::Windows::Forms::TableLayoutPanel^ tl in this->tlPCBoxes->Controls)
+				 {
+					 for each (System::Windows::Forms::Control^ cont in tl->Controls)
+					 {
+						 if(cont->Name->Substring(0,5) == "pbBox")
+						 {
+							 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)cont;
+							 pb->BorderStyle = BorderStyle::None;
+						 }
+					 }
+				 }
+			 }
+			 void clearboxslotselection()
+			 {
+				 for each (System::Windows::Forms::PictureBox^ pb in tlPCBox->Controls)
+				 {
+					 pb->BorderStyle = BorderStyle::None;
+				 }
+
+			 }
+			 void clearpartyslotselection()
+			 {
+				 for each (System::Windows::Forms::PictureBox^ pb in tlParty->Controls)
+				 {
+					 pb->BorderStyle = BorderStyle::None;
+				 }
+
+			 }
+	private: System::Void loadSAVToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) 
+			 {
+				 //char buffer[65];
+				 //_itoa( sizeof(bw2sav_obj), buffer, 10 );
+				 //MessageBox::Show(gcnew System::String(buffer));
+				 savloaded = false;
+				 if((fileOpen->ShowDialog() != System::Windows::Forms::DialogResult::Cancel) & (fileOpen->FileName != ""))
+				 {
+					 read(marshal_as<std::string>(fileOpen->FileName).c_str(),sav);
+				 }
+				 savloaded = true;
+				 changebox(sav->cur.curbox);
 				 for each (System::Windows::Forms::PictureBox^ pb in tlParty->Controls)
 				 {
 					 pb->Image = nullptr;
@@ -2677,7 +2682,7 @@ private: System::Windows::Forms::Label^  lblBox03;
 						 pokemon_obj * pkm = new pokemon_obj;
 						 ppkm = &(sav->cur.party.pokemon[slot-1]);
 						 pkm = &(ppkm->pkm_data);
-						 decryptpkm(pkm);
+						 decryptpkm(ppkm);
 						 if(pkm->species != 0)
 						 {
 							 std::ostringstream o;
@@ -2687,108 +2692,262 @@ private: System::Windows::Forms::Label^  lblBox03;
 					 }
 				 }
 			 }
+
 	private: System::Void pbBoxSlot_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
-
+				 if(savloaded)
+				 {
+					 clearpartyslotselection();
+					 clearboxslotselection();
+					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
+					 pb->BorderStyle = BorderStyle::FixedSingle;
+				 }
 			 }
 	private: System::Void pbBoxSlot_MouseEnter(System::Object^  sender, System::EventArgs^  e)
 			 {
-				 ((System::Windows::Forms::PictureBox^)(sender))->BackColor = System::Drawing::Color::Orange;
+				 if(savloaded)
+				 {
+					 ((System::Windows::Forms::PictureBox^)(sender))->BackColor = System::Drawing::Color::Orange;
+				 }
 			 }
 	private: System::Void pbBoxSlot_MouseHover(System::Object^  sender, System::EventArgs^  e) 
 			 {
+				 if(savloaded)
+				 {
+					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
 
+				 }
 			 }
 	private: System::Void pbBoxSlot_MouseLeave(System::Object^  sender, System::EventArgs^  e) 
 			 {
-				 ((System::Windows::Forms::PictureBox^)(sender))->BackColor = System::Drawing::Color::Transparent;
+				 if(savloaded)
+				 {
+					 ((System::Windows::Forms::PictureBox^)(sender))->BackColor = System::Drawing::Color::Transparent;
+				 }
 			 }
 	private: System::Void pbBoxSlot_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) 
 			 {
+				 if(savloaded)
+				 {
+					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
 
+				 }
 			 }
 	private: System::Void pbBoxSlot_DragDrop(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e)
 			 {
+				 if(savloaded)
+				 {
+					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
 
+				 }
 			 }
 	private: System::Void pbBoxSlot_DoubleClick(System::Object^  sender, System::EventArgs^  e)
 			 {
+				 if(savloaded)
+				 {
+					 clearpartyslotselection();
+					 clearboxslotselection();
+					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
+					 pb->BorderStyle = BorderStyle::FixedSingle;
 
+				 }
 			 }
 	private: System::Void pbBoxSlot_DragEnter(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e)
 			 {
+				 if(savloaded)
+				 {
+					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
 
+				 }
 			 }
 	private: System::Void pbBoxSlot_DragLeave(System::Object^  sender, System::EventArgs^  e) 
 			 {
+				 if(savloaded)
+				 {
+					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
 
+				 }
 			 }
 	private: System::Void pbBoxSlot_DragOver(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e) 
 			 {
+				 if(savloaded)
+				 {
+					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
 
+				 }
 			 }
+
 	private: System::Void pbPartySlot_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
-
+				 if(savloaded)
+				 {
+					 clearpartyslotselection();
+					 clearboxslotselection();
+					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
+					 pb->BorderStyle = BorderStyle::FixedSingle;
+				 }
 			 }
 	private: System::Void pbPartySlot_DoubleClick(System::Object^  sender, System::EventArgs^  e) 
 			 {
+				 if(savloaded)
+				 {
+					 clearpartyslotselection();
+					 clearboxslotselection();
+					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
+					 pb->BorderStyle = BorderStyle::FixedSingle;
 
+				 }
 			 }
 	private: System::Void pbPartySlot_DragDrop(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e) 
 			 {
+				 if(savloaded)
+				 {
+					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
 
+				 }
 			 }
 	private: System::Void pbPartySlot_DragEnter(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e)
 			 {
+				 if(savloaded)
+				 {
+					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
 
+				 }
 			 }
 	private: System::Void pbPartySlot_DragLeave(System::Object^  sender, System::EventArgs^  e)
 			 {
+				 if(savloaded)
+				 {
+					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
 
+				 }
 			 }
 	private: System::Void pbPartySlot_DragOver(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e) 
 			 {
+				 if(savloaded)
+				 {
+					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
 
+				 }
 			 }
 	private: System::Void pbPartySlot_MouseEnter(System::Object^  sender, System::EventArgs^  e)
 			 {
-				 ((System::Windows::Forms::PictureBox^)(sender))->BackColor = System::Drawing::Color::Orange;
+				 if(savloaded)
+				 {
+					 ((System::Windows::Forms::PictureBox^)(sender))->BackColor = System::Drawing::Color::Orange;
+				 }
 			 }
 	private: System::Void pbPartySlot_MouseHover(System::Object^  sender, System::EventArgs^  e)
 			 {
+				 if(savloaded)
+				 {
+					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
 
+				 }
 			 }
 	private: System::Void pbPartySlot_MouseLeave(System::Object^  sender, System::EventArgs^  e)
 			 {
-				 ((System::Windows::Forms::PictureBox^)(sender))->BackColor = System::Drawing::Color::Transparent;
+				 if(savloaded)
+				 {
+					 ((System::Windows::Forms::PictureBox^)(sender))->BackColor = System::Drawing::Color::Transparent;
+				 }
 			 }
 	private: System::Void pbPartySlot_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) 
 			 {
+				 if(savloaded)
+				 {
+					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
 
+				 }
 			 }
-	private: System::Void pbBox01_MouseClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+
+	private: System::Void pbBox_MouseEnter(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(savloaded)
+				 {
+					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
+
+				 }
 			 }
-private: System::Void pbBox01_MouseDoubleClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-		 }
-private: System::Void pbBox01_MouseEnter(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void pbBox01_MouseHover(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void pbBox01_MouseLeave(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void pbBox01_DoubleClick(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void pbBox01_DragDrop(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e) {
-		 }
-private: System::Void pbBox01_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-		 }
-private: System::Void pbBox01_DragEnter(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e) {
-		 }
-private: System::Void pbBox01_DragLeave(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void pbBox01_DragOver(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e) {
-		 }
-};
+	private: System::Void pbBox_MouseHover(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(savloaded)
+				 {
+					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
+
+				 }
+			 }
+	private: System::Void pbBox_MouseLeave(System::Object^  sender, System::EventArgs^  e) 
+			 {
+				 if(savloaded)
+				 {
+					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
+
+				 }
+			 }
+	private: System::Void pbBox_DoubleClick(System::Object^  sender, System::EventArgs^  e) 
+			 {
+				 if(savloaded)
+				 {
+					 clearboxselection();
+					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
+					 pb->BorderStyle = BorderStyle::FixedSingle;
+					 int box;
+					 if(int::TryParse(pb->Name->Substring(pb->Name->Length - 2, 2), box))
+					 {
+						 box--;
+						 changebox(box);
+					 }
+				 }
+			 }
+	private: System::Void pbBox_DragDrop(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e)
+			 {
+				 if(savloaded)
+				 {
+					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
+
+				 }
+			 }
+	private: System::Void pbBox_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e)
+			 {
+				 if(savloaded)
+				 {
+					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
+
+				 }
+			 }
+	private: System::Void pbBox_DragEnter(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e)
+			 {
+				 if(savloaded)
+				 {
+					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
+
+				 }
+			 }
+	private: System::Void pbBox_DragLeave(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(savloaded)
+				 {
+					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
+
+				 }
+			 }
+	private: System::Void pbBox_DragOver(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e) 
+			 {
+				 if(savloaded)
+				 {
+					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
+
+				 }
+			 }
+	private: System::Void pbBox_Click(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(savloaded)
+				 {
+					 clearboxselection();
+					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
+					 pb->BorderStyle = BorderStyle::FixedSingle;
+				 }
+			 }
+	};
 }
-
