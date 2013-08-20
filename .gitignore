@@ -43,6 +43,7 @@ Makefile
 *.unsuccessfulbuild
 pkmds_SAV_refactor.lib
 SQLite_VS_2010.lib
+PKMDS_Desktop_Win.lib
 *.bi
 *.resources
 *.pch
