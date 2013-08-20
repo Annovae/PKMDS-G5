@@ -264,6 +264,11 @@ void pkmviewer::updatestats()
         ui->sbSpAtk->setValue(getpkmstat(temppkm,Stat_IDs::spatk));
         ui->sbSpDef->setValue(getpkmstat(temppkm,Stat_IDs::spdef));
         ui->sbSpeed->setValue(getpkmstat(temppkm,Stat_IDs::speed));
+
+        std::string thechar = lookupcharacteristic(temppkm);
+
+        QString test = QString::fromStdString(lookupcharacteristic(temppkm));
+
         ui->lblCharacteristic->setText(QString::fromStdString(lookupcharacteristic(temppkm)));
     }
 }

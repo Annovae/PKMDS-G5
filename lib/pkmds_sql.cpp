@@ -469,7 +469,7 @@ void getspritesql(ostringstream& o, const pokemon_obj * pkm, int langid)
     string formid = getastring(o);
     o.str("");
     o.clear();
-    o << (int)(int(pkm->species));
+    o << (int)(pkm->species);
     if(formid != "")
     {
         o << "-" << formid;

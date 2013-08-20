@@ -102,6 +102,9 @@ int getanint(const ostringstream &o)
 }
 string getastring(const string &str)
 {
+
+    string test = str;
+
     string s = "";
     char cmd[BUFF_SIZE];
 #if defined(__linux__)
@@ -864,7 +867,7 @@ string lookupcharacteristic(const pokemon_obj &pkm, const int langid)
         }
         if(highcount == 1)
         {
-            return getastring(lookupcharacteristic(statid,highval,langid));
+            return lookupcharacteristic(statid,highval,langid);
         }
         int startindex = pkm.pid % 6;
 
@@ -872,7 +875,7 @@ string lookupcharacteristic(const pokemon_obj &pkm, const int langid)
         {
             if(ivs[startindex].val == highval)
             {
-                return getastring(lookupcharacteristic(ivs[startindex].id,highval,langid));
+                return lookupcharacteristic(ivs[startindex].id,highval,langid);
             }
             startindex++;
             if(startindex ==6)
@@ -880,7 +883,7 @@ string lookupcharacteristic(const pokemon_obj &pkm, const int langid)
                 startindex = 0;
             }
         }
-        return getastring(lookupcharacteristic(statid,highval,langid));
+        return lookupcharacteristic(statid,highval,langid);
 }
 string lookupcharacteristic(const pokemon_obj *pkm, const int langid)
 {
@@ -926,7 +929,7 @@ string lookupcharacteristic(const pokemon_obj *pkm, const int langid)
     }
     if(highcount == 1)
     {
-        return getastring(lookupcharacteristic(statid,highval,langid));
+        return lookupcharacteristic(statid,highval,langid);
     }
     int startindex = pkm->pid % 6;
 
@@ -934,7 +937,7 @@ string lookupcharacteristic(const pokemon_obj *pkm, const int langid)
     {
         if(ivs[startindex].val == highval)
         {
-            return getastring(lookupcharacteristic(ivs[startindex].id,highval,langid));
+            return lookupcharacteristic(ivs[startindex].id,highval,langid);
         }
         startindex++;
         if(startindex ==6)
@@ -942,7 +945,7 @@ string lookupcharacteristic(const pokemon_obj *pkm, const int langid)
             startindex = 0;
         }
     }
-    return getastring(lookupcharacteristic(statid,highval,langid));
+    return lookupcharacteristic(statid,highval,langid);
 }
 string lookuppkmname(const int speciesid, const int langid)
 {
