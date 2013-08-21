@@ -41,7 +41,7 @@ void sortsaveblocks(gbasavehalf * savehalf)
 		theblocks->push_back(&(savehalf->blocks[i]));
 	}
 	sortblocks(theblocks);
-	byte data[0x14000];
+	byte * data = new byte[0x14000];
 	for(int i = 0; i < 14; i++)
 	{
 		memcpy(&(data[0x1000*i]),(*theblocks)[i],0x1000);
