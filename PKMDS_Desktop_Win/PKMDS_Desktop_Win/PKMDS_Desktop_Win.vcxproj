@@ -97,6 +97,7 @@
     <ClCompile Include="..\..\lib\pkmds_vector.cpp" />
     <ClCompile Include="..\..\lib\stdafx.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="frmPKMViewer.cpp" />
     <ClCompile Include="PKMDS_Desktop_Win.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +111,9 @@
     <ClInclude Include="..\..\include\pkmds\wondercard.h" />
     <ClInclude Include="..\..\Visual_Studio\vs_sqlite.h" />
     <ClInclude Include="frmBoxes.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="frmPKMViewer.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="resource.h" />

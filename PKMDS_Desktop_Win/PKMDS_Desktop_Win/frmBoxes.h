@@ -1065,7 +1065,7 @@ namespace PKMDS_Desktop_Win {
 			this->msMain->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) {this->fileToolStripMenuItem});
 			this->msMain->Location = System::Drawing::Point(0, 0);
 			this->msMain->Name = L"msMain";
-			this->msMain->Size = System::Drawing::Size(372, 24);
+			this->msMain->Size = System::Drawing::Size(366, 24);
 			this->msMain->TabIndex = 0;
 			this->msMain->Text = L"menuStrip1";
 			// 
@@ -1260,6 +1260,7 @@ namespace PKMDS_Desktop_Win {
 			// scMain
 			// 
 			this->scMain->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->scMain->IsSplitterFixed = true;
 			this->scMain->Location = System::Drawing::Point(0, 24);
 			this->scMain->Name = L"scMain";
 			// 
@@ -1272,13 +1273,13 @@ namespace PKMDS_Desktop_Win {
 			// 
 			this->scMain->Panel2->AutoScroll = true;
 			this->scMain->Panel2->Controls->Add(this->tlPCBoxes);
-			this->scMain->Size = System::Drawing::Size(372, 263);
+			this->scMain->Size = System::Drawing::Size(366, 263);
 			this->scMain->SplitterDistance = 212;
+			this->scMain->SplitterWidth = 1;
 			this->scMain->TabIndex = 5;
 			// 
 			// tlPCBoxes
 			// 
-			this->tlPCBoxes->CellBorderStyle = System::Windows::Forms::TableLayoutPanelCellBorderStyle::Single;
 			this->tlPCBoxes->ColumnCount = 1;
 			this->tlPCBoxes->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute, 121)));
 			this->tlPCBoxes->Controls->Add(this->tlBox24, 0, 23);
@@ -1343,7 +1344,7 @@ namespace PKMDS_Desktop_Win {
 			this->tlBox24->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
 			this->tlBox24->Controls->Add(this->pbBox24, 0, 1);
 			this->tlBox24->Controls->Add(this->lblBox24, 0, 0);
-			this->tlBox24->Location = System::Drawing::Point(1, 2784);
+			this->tlBox24->Location = System::Drawing::Point(0, 2760);
 			this->tlBox24->Margin = System::Windows::Forms::Padding(0);
 			this->tlBox24->Name = L"tlBox24";
 			this->tlBox24->RowCount = 2;
@@ -1390,7 +1391,7 @@ namespace PKMDS_Desktop_Win {
 			this->tlBox23->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
 			this->tlBox23->Controls->Add(this->pbBox23, 0, 1);
 			this->tlBox23->Controls->Add(this->lblBox23, 0, 0);
-			this->tlBox23->Location = System::Drawing::Point(1, 2663);
+			this->tlBox23->Location = System::Drawing::Point(0, 2640);
 			this->tlBox23->Margin = System::Windows::Forms::Padding(0);
 			this->tlBox23->Name = L"tlBox23";
 			this->tlBox23->RowCount = 2;
@@ -1438,7 +1439,7 @@ namespace PKMDS_Desktop_Win {
 			this->tlBox22->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
 			this->tlBox22->Controls->Add(this->pbBox22, 0, 1);
 			this->tlBox22->Controls->Add(this->lblBox22, 0, 0);
-			this->tlBox22->Location = System::Drawing::Point(1, 2542);
+			this->tlBox22->Location = System::Drawing::Point(0, 2520);
 			this->tlBox22->Margin = System::Windows::Forms::Padding(0);
 			this->tlBox22->Name = L"tlBox22";
 			this->tlBox22->RowCount = 2;
@@ -1485,7 +1486,7 @@ namespace PKMDS_Desktop_Win {
 			this->tlBox21->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
 			this->tlBox21->Controls->Add(this->pbBox21, 0, 1);
 			this->tlBox21->Controls->Add(this->lblBox21, 0, 0);
-			this->tlBox21->Location = System::Drawing::Point(1, 2421);
+			this->tlBox21->Location = System::Drawing::Point(0, 2400);
 			this->tlBox21->Margin = System::Windows::Forms::Padding(0);
 			this->tlBox21->Name = L"tlBox21";
 			this->tlBox21->RowCount = 2;
@@ -1532,7 +1533,7 @@ namespace PKMDS_Desktop_Win {
 			this->tlBox20->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
 			this->tlBox20->Controls->Add(this->pbBox20, 0, 1);
 			this->tlBox20->Controls->Add(this->lblBox20, 0, 0);
-			this->tlBox20->Location = System::Drawing::Point(1, 2300);
+			this->tlBox20->Location = System::Drawing::Point(0, 2280);
 			this->tlBox20->Margin = System::Windows::Forms::Padding(0);
 			this->tlBox20->Name = L"tlBox20";
 			this->tlBox20->RowCount = 2;
@@ -1579,7 +1580,7 @@ namespace PKMDS_Desktop_Win {
 			this->tlBox19->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
 			this->tlBox19->Controls->Add(this->pbBox19, 0, 1);
 			this->tlBox19->Controls->Add(this->lblBox19, 0, 0);
-			this->tlBox19->Location = System::Drawing::Point(1, 2179);
+			this->tlBox19->Location = System::Drawing::Point(0, 2160);
 			this->tlBox19->Margin = System::Windows::Forms::Padding(0);
 			this->tlBox19->Name = L"tlBox19";
 			this->tlBox19->RowCount = 2;
@@ -1626,7 +1627,7 @@ namespace PKMDS_Desktop_Win {
 			this->tlBox18->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
 			this->tlBox18->Controls->Add(this->pbBox18, 0, 1);
 			this->tlBox18->Controls->Add(this->lblBox18, 0, 0);
-			this->tlBox18->Location = System::Drawing::Point(1, 2058);
+			this->tlBox18->Location = System::Drawing::Point(0, 2040);
 			this->tlBox18->Margin = System::Windows::Forms::Padding(0);
 			this->tlBox18->Name = L"tlBox18";
 			this->tlBox18->RowCount = 2;
@@ -1673,7 +1674,7 @@ namespace PKMDS_Desktop_Win {
 			this->tlBox17->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
 			this->tlBox17->Controls->Add(this->pbBox17, 0, 1);
 			this->tlBox17->Controls->Add(this->lblBox17, 0, 0);
-			this->tlBox17->Location = System::Drawing::Point(1, 1937);
+			this->tlBox17->Location = System::Drawing::Point(0, 1920);
 			this->tlBox17->Margin = System::Windows::Forms::Padding(0);
 			this->tlBox17->Name = L"tlBox17";
 			this->tlBox17->RowCount = 2;
@@ -1721,7 +1722,7 @@ namespace PKMDS_Desktop_Win {
 			this->tlBox16->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
 			this->tlBox16->Controls->Add(this->pbBox16, 0, 1);
 			this->tlBox16->Controls->Add(this->lblBox16, 0, 0);
-			this->tlBox16->Location = System::Drawing::Point(1, 1816);
+			this->tlBox16->Location = System::Drawing::Point(0, 1800);
 			this->tlBox16->Margin = System::Windows::Forms::Padding(0);
 			this->tlBox16->Name = L"tlBox16";
 			this->tlBox16->RowCount = 2;
@@ -1768,7 +1769,7 @@ namespace PKMDS_Desktop_Win {
 			this->tlBox15->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
 			this->tlBox15->Controls->Add(this->pbBox15, 0, 1);
 			this->tlBox15->Controls->Add(this->lblBox15, 0, 0);
-			this->tlBox15->Location = System::Drawing::Point(1, 1695);
+			this->tlBox15->Location = System::Drawing::Point(0, 1680);
 			this->tlBox15->Margin = System::Windows::Forms::Padding(0);
 			this->tlBox15->Name = L"tlBox15";
 			this->tlBox15->RowCount = 2;
@@ -1815,7 +1816,7 @@ namespace PKMDS_Desktop_Win {
 			this->tlBox14->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
 			this->tlBox14->Controls->Add(this->pbBox14, 0, 1);
 			this->tlBox14->Controls->Add(this->lblBox14, 0, 0);
-			this->tlBox14->Location = System::Drawing::Point(1, 1574);
+			this->tlBox14->Location = System::Drawing::Point(0, 1560);
 			this->tlBox14->Margin = System::Windows::Forms::Padding(0);
 			this->tlBox14->Name = L"tlBox14";
 			this->tlBox14->RowCount = 2;
@@ -1862,7 +1863,7 @@ namespace PKMDS_Desktop_Win {
 			this->tlBox13->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
 			this->tlBox13->Controls->Add(this->pbBox13, 0, 1);
 			this->tlBox13->Controls->Add(this->lblBox13, 0, 0);
-			this->tlBox13->Location = System::Drawing::Point(1, 1453);
+			this->tlBox13->Location = System::Drawing::Point(0, 1440);
 			this->tlBox13->Margin = System::Windows::Forms::Padding(0);
 			this->tlBox13->Name = L"tlBox13";
 			this->tlBox13->RowCount = 2;
@@ -1909,7 +1910,7 @@ namespace PKMDS_Desktop_Win {
 			this->tlBox12->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
 			this->tlBox12->Controls->Add(this->pbBox12, 0, 1);
 			this->tlBox12->Controls->Add(this->lblBox12, 0, 0);
-			this->tlBox12->Location = System::Drawing::Point(1, 1332);
+			this->tlBox12->Location = System::Drawing::Point(0, 1320);
 			this->tlBox12->Margin = System::Windows::Forms::Padding(0);
 			this->tlBox12->Name = L"tlBox12";
 			this->tlBox12->RowCount = 2;
@@ -1956,7 +1957,7 @@ namespace PKMDS_Desktop_Win {
 			this->tlBox11->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
 			this->tlBox11->Controls->Add(this->pbBox11, 0, 1);
 			this->tlBox11->Controls->Add(this->lblBox11, 0, 0);
-			this->tlBox11->Location = System::Drawing::Point(1, 1211);
+			this->tlBox11->Location = System::Drawing::Point(0, 1200);
 			this->tlBox11->Margin = System::Windows::Forms::Padding(0);
 			this->tlBox11->Name = L"tlBox11";
 			this->tlBox11->RowCount = 2;
@@ -2003,7 +2004,7 @@ namespace PKMDS_Desktop_Win {
 			this->tlBox10->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
 			this->tlBox10->Controls->Add(this->pbBox10, 0, 1);
 			this->tlBox10->Controls->Add(this->lblBox10, 0, 0);
-			this->tlBox10->Location = System::Drawing::Point(1, 1090);
+			this->tlBox10->Location = System::Drawing::Point(0, 1080);
 			this->tlBox10->Margin = System::Windows::Forms::Padding(0);
 			this->tlBox10->Name = L"tlBox10";
 			this->tlBox10->RowCount = 2;
@@ -2050,7 +2051,7 @@ namespace PKMDS_Desktop_Win {
 			this->tlBox09->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
 			this->tlBox09->Controls->Add(this->pbBox09, 0, 1);
 			this->tlBox09->Controls->Add(this->lblBox09, 0, 0);
-			this->tlBox09->Location = System::Drawing::Point(1, 969);
+			this->tlBox09->Location = System::Drawing::Point(0, 960);
 			this->tlBox09->Margin = System::Windows::Forms::Padding(0);
 			this->tlBox09->Name = L"tlBox09";
 			this->tlBox09->RowCount = 2;
@@ -2097,7 +2098,7 @@ namespace PKMDS_Desktop_Win {
 			this->tlBox08->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
 			this->tlBox08->Controls->Add(this->pbBox08, 0, 1);
 			this->tlBox08->Controls->Add(this->lblBox08, 0, 0);
-			this->tlBox08->Location = System::Drawing::Point(1, 848);
+			this->tlBox08->Location = System::Drawing::Point(0, 840);
 			this->tlBox08->Margin = System::Windows::Forms::Padding(0);
 			this->tlBox08->Name = L"tlBox08";
 			this->tlBox08->RowCount = 2;
@@ -2144,7 +2145,7 @@ namespace PKMDS_Desktop_Win {
 			this->tlBox07->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
 			this->tlBox07->Controls->Add(this->pbBox07, 0, 1);
 			this->tlBox07->Controls->Add(this->lblBox07, 0, 0);
-			this->tlBox07->Location = System::Drawing::Point(1, 727);
+			this->tlBox07->Location = System::Drawing::Point(0, 720);
 			this->tlBox07->Margin = System::Windows::Forms::Padding(0);
 			this->tlBox07->Name = L"tlBox07";
 			this->tlBox07->RowCount = 2;
@@ -2191,7 +2192,7 @@ namespace PKMDS_Desktop_Win {
 			this->tlBox06->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
 			this->tlBox06->Controls->Add(this->pbBox06, 0, 1);
 			this->tlBox06->Controls->Add(this->lblBox06, 0, 0);
-			this->tlBox06->Location = System::Drawing::Point(1, 606);
+			this->tlBox06->Location = System::Drawing::Point(0, 600);
 			this->tlBox06->Margin = System::Windows::Forms::Padding(0);
 			this->tlBox06->Name = L"tlBox06";
 			this->tlBox06->RowCount = 2;
@@ -2238,7 +2239,7 @@ namespace PKMDS_Desktop_Win {
 			this->tlBox05->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
 			this->tlBox05->Controls->Add(this->pbBox05, 0, 1);
 			this->tlBox05->Controls->Add(this->lblBox05, 0, 0);
-			this->tlBox05->Location = System::Drawing::Point(1, 485);
+			this->tlBox05->Location = System::Drawing::Point(0, 480);
 			this->tlBox05->Margin = System::Windows::Forms::Padding(0);
 			this->tlBox05->Name = L"tlBox05";
 			this->tlBox05->RowCount = 2;
@@ -2285,7 +2286,7 @@ namespace PKMDS_Desktop_Win {
 			this->tlBox04->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
 			this->tlBox04->Controls->Add(this->pbBox04, 0, 1);
 			this->tlBox04->Controls->Add(this->lblBox04, 0, 0);
-			this->tlBox04->Location = System::Drawing::Point(1, 364);
+			this->tlBox04->Location = System::Drawing::Point(0, 360);
 			this->tlBox04->Margin = System::Windows::Forms::Padding(0);
 			this->tlBox04->Name = L"tlBox04";
 			this->tlBox04->RowCount = 2;
@@ -2332,7 +2333,7 @@ namespace PKMDS_Desktop_Win {
 			this->tlBox03->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
 			this->tlBox03->Controls->Add(this->pbBox03, 0, 1);
 			this->tlBox03->Controls->Add(this->lblBox03, 0, 0);
-			this->tlBox03->Location = System::Drawing::Point(1, 243);
+			this->tlBox03->Location = System::Drawing::Point(0, 240);
 			this->tlBox03->Margin = System::Windows::Forms::Padding(0);
 			this->tlBox03->Name = L"tlBox03";
 			this->tlBox03->RowCount = 2;
@@ -2379,7 +2380,7 @@ namespace PKMDS_Desktop_Win {
 			this->tlBox01->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
 			this->tlBox01->Controls->Add(this->pbBox01, 0, 1);
 			this->tlBox01->Controls->Add(this->lblBox01, 0, 0);
-			this->tlBox01->Location = System::Drawing::Point(1, 1);
+			this->tlBox01->Location = System::Drawing::Point(0, 0);
 			this->tlBox01->Margin = System::Windows::Forms::Padding(0);
 			this->tlBox01->Name = L"tlBox01";
 			this->tlBox01->RowCount = 2;
@@ -2426,7 +2427,7 @@ namespace PKMDS_Desktop_Win {
 			this->tlBox02->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
 			this->tlBox02->Controls->Add(this->pbBox02, 0, 1);
 			this->tlBox02->Controls->Add(this->lblBox02, 0, 0);
-			this->tlBox02->Location = System::Drawing::Point(1, 122);
+			this->tlBox02->Location = System::Drawing::Point(0, 120);
 			this->tlBox02->Margin = System::Windows::Forms::Padding(0);
 			this->tlBox02->Name = L"tlBox02";
 			this->tlBox02->RowCount = 2;
@@ -2471,7 +2472,7 @@ namespace PKMDS_Desktop_Win {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(372, 287);
+			this->ClientSize = System::Drawing::Size(366, 287);
 			this->Controls->Add(this->scMain);
 			this->Controls->Add(this->msMain);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
@@ -2618,6 +2619,7 @@ namespace PKMDS_Desktop_Win {
 				 pkm = new pokemon_obj;
 				 savloaded = false;
 				 form_box = new box_obj;
+				 
 				 //sav = 0;
 			 }
 			 void changebox(int box)
@@ -2650,18 +2652,18 @@ namespace PKMDS_Desktop_Win {
 			 {
 				 for each (System::Windows::Forms::TableLayoutPanel^ tl in this->tlPCBoxes->Controls)
 				 {
-					// for each (System::Windows::Forms::Control^ cont in tl->Controls)
-					// {
-					//	 if(cont->Name->Substring(0,6) == "lblBox")
-					//	 {
-					//		 System::Windows::Forms::Label^ lbl = (System::Windows::Forms::Label^)cont;
-					//		 int box = 0;
-					//		 if(int::TryParse(lbl->Name->Substring(lbl->Name->Length - 2, 2), box))
-					//		 {
-					//			 lbl->Text = gcnew System::String(sav->cur.boxnames[box-1]);
-					//		 }
-					//	 }
-					// }
+					 for each (System::Windows::Forms::Control^ cont in tl->Controls)
+					 {
+						 if(cont->Name->Substring(0,6) == "lblBox")
+						 {
+							 System::Windows::Forms::Label^ lbl = (System::Windows::Forms::Label^)cont;
+							 int box = 0;
+							 if(int::TryParse(lbl->Name->Substring(lbl->Name->Length - 2, 2), box))
+							 {
+								 lbl->Text = gcnew System::String(sav->cur.boxnames[box-1]);
+							 }
+						 }
+					 }
 				 }
 			 }
 			 void clearboxselection()
@@ -2673,6 +2675,7 @@ namespace PKMDS_Desktop_Win {
 						 if(cont->Name->Substring(0,5) == "pbBox")
 						 {
 							 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)cont;
+							 pb->Tag = "";
 							 pb->BorderStyle = BorderStyle::None;
 						 }
 					 }
@@ -2922,7 +2925,7 @@ namespace PKMDS_Desktop_Win {
 				 if(savloaded)
 				 {
 					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
-
+					 pb->BorderStyle = BorderStyle::FixedSingle;
 				 }
 			 }
 	private: System::Void pbBox_MouseHover(System::Object^  sender, System::EventArgs^  e)
@@ -2938,7 +2941,10 @@ namespace PKMDS_Desktop_Win {
 				 if(savloaded)
 				 {
 					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
-
+					 if(pb->Tag != "Selected")
+					 {
+						 pb->BorderStyle = BorderStyle::None;
+					 }
 				 }
 			 }
 	private: System::Void pbBox_DoubleClick(System::Object^  sender, System::EventArgs^  e) 
@@ -2994,6 +3000,7 @@ namespace PKMDS_Desktop_Win {
 				 {
 					 clearboxselection();
 					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
+					 pb->Tag = "Selected";
 					 pb->BorderStyle = BorderStyle::FixedSingle;
 					 int box;
 					 if(int::TryParse(pb->Name->Substring(pb->Name->Length - 2, 2), box))
