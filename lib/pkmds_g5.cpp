@@ -604,11 +604,12 @@ bool pkmmetasegg(const pokemon_obj *pkm){
 }
 void swap_pkm(box_obj &frombox, const int fromslot, box_obj &tobox, const int toslot)
 {
-	pokemon_obj frompkm, topkm;
-	frompkm = frombox.pokemon[fromslot];
-	topkm = tobox.pokemon[toslot];
-	frombox.pokemon[fromslot] = topkm;
-	tobox.pokemon[toslot] = frompkm;
+	std::swap(frombox.pokemon[fromslot],tobox.pokemon[toslot]);
+	//pokemon_obj frompkm, topkm;
+	//frompkm = frombox.pokemon[fromslot];
+	//topkm = tobox.pokemon[toslot];
+	//frombox.pokemon[fromslot] = topkm;
+	//tobox.pokemon[toslot] = frompkm;
 }
 void put_pkm(box_obj &box, const int slot, pokemon_obj &pkm, const bool isencrypted)
 {
@@ -620,11 +621,12 @@ void put_pkm(box_obj &box, const int slot, pokemon_obj &pkm, const bool isencryp
 }
 void swap_pkm(box_obj *frombox, const int fromslot, box_obj *tobox, const int toslot)
 {
-	pokemon_obj frompkm, topkm;
-	frompkm = frombox->pokemon[fromslot];
-	topkm = tobox->pokemon[toslot];
-	frombox->pokemon[fromslot] = topkm;
-	tobox->pokemon[toslot] = frompkm;
+	std::swap(frombox->pokemon[fromslot],tobox->pokemon[toslot]);
+	//pokemon_obj frompkm, topkm;
+	//frompkm = frombox->pokemon[fromslot];
+	//topkm = tobox->pokemon[toslot];
+	//frombox->pokemon[fromslot] = topkm;
+	//tobox->pokemon[toslot] = frompkm;
 }
 void put_pkm(box_obj *box, const int slot, pokemon_obj *pkm, const bool isencrypted)
 {
@@ -639,7 +641,7 @@ void remove_pkm(box_obj &box, const int slot)
 	// TODO: Test blank pkm
 	//pokemon_obj blank = {};
 	pokemon_obj blank;
-	memset(&blank,0,sizeof(blank));
+	memset(&blank,0,sizeof(pokemon_obj));
 	encryptpkm(blank);
 	box.pokemon[slot] = blank;
 }
@@ -647,7 +649,7 @@ void remove_pkm(box_obj *box, const int slot)
 {
 	//pokemon_obj blank = {};
 	pokemon_obj blank;
-	memset(&blank,0,sizeof(blank));
+	memset(&blank,0,sizeof(pokemon_obj));
 	encryptpkm(blank);
 	box->pokemon[slot] = blank;
 }
