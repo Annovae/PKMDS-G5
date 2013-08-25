@@ -244,7 +244,6 @@ void frmBoxes::on_actionSave_changes_triggered()
     {
         if((sav > 0) && (cursavblock->adventurestarted != 0))
         {
-
             bw2sav_obj * savout = new bw2sav_obj;
             *savout = *sav;
             bool isbw2 = savisbw2(savout);

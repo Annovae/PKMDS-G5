@@ -152,6 +152,8 @@ namespace PKMDS_Desktop_Win {
 	private: System::Windows::Forms::TableLayoutPanel^  tlBox03;
 	private: System::Windows::Forms::PictureBox^  pbBox03;
 	private: System::Windows::Forms::Label^  lblBox03;
+	private: System::Windows::Forms::ToolStripMenuItem^  saveToolStripMenuItem;
+	private: System::Windows::Forms::SaveFileDialog^  fileSave;
 	protected: 
 	private:
 		/// <summary>
@@ -200,6 +202,7 @@ namespace PKMDS_Desktop_Win {
 			this->msMain = (gcnew System::Windows::Forms::MenuStrip());
 			this->fileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->loadSAVToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->saveToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->fileOpen = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->tlParty = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->pbPartySlot06 = (gcnew System::Windows::Forms::PictureBox());
@@ -284,6 +287,7 @@ namespace PKMDS_Desktop_Win {
 			this->tlBox02 = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->pbBox02 = (gcnew System::Windows::Forms::PictureBox());
 			this->lblBox02 = (gcnew System::Windows::Forms::Label());
+			this->fileSave = (gcnew System::Windows::Forms::SaveFileDialog());
 			this->tlPCBox->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbBoxSlot30))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbBoxSlot29))->BeginInit();
@@ -1102,7 +1106,8 @@ namespace PKMDS_Desktop_Win {
 			// 
 			// fileToolStripMenuItem
 			// 
-			this->fileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) {this->loadSAVToolStripMenuItem});
+			this->fileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {this->loadSAVToolStripMenuItem, 
+				this->saveToolStripMenuItem});
 			this->fileToolStripMenuItem->Name = L"fileToolStripMenuItem";
 			this->fileToolStripMenuItem->Size = System::Drawing::Size(37, 20);
 			this->fileToolStripMenuItem->Text = L"File";
@@ -1110,9 +1115,16 @@ namespace PKMDS_Desktop_Win {
 			// loadSAVToolStripMenuItem
 			// 
 			this->loadSAVToolStripMenuItem->Name = L"loadSAVToolStripMenuItem";
-			this->loadSAVToolStripMenuItem->Size = System::Drawing::Size(124, 22);
-			this->loadSAVToolStripMenuItem->Text = L"Load SAV";
+			this->loadSAVToolStripMenuItem->Size = System::Drawing::Size(109, 22);
+			this->loadSAVToolStripMenuItem->Text = L"Load...";
 			this->loadSAVToolStripMenuItem->Click += gcnew System::EventHandler(this, &frmBoxes::loadSAVToolStripMenuItem_Click);
+			// 
+			// saveToolStripMenuItem
+			// 
+			this->saveToolStripMenuItem->Name = L"saveToolStripMenuItem";
+			this->saveToolStripMenuItem->Size = System::Drawing::Size(109, 22);
+			this->saveToolStripMenuItem->Text = L"Save...";
+			this->saveToolStripMenuItem->Click += gcnew System::EventHandler(this, &frmBoxes::saveToolStripMenuItem_Click);
 			// 
 			// fileOpen
 			// 
@@ -2529,6 +2541,10 @@ namespace PKMDS_Desktop_Win {
 			this->lblBox02->Text = L"Box 02";
 			this->lblBox02->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
+			// fileSave
+			// 
+			this->fileSave->Filter = L"SAV Files|*.sav|All Files|*.*";
+			// 
 			// frmBoxes
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -2690,6 +2706,7 @@ namespace PKMDS_Desktop_Win {
 				 clearpartyslotselection();
 				 clearboxslotselection();
 				 std::ostringstream wpsql;
+				 sav->cur.curbox = box;
 				 getwallpapersql(wpsql,(int)(sav->cur.boxwallpapers[box]));
 				 tlPCBox->BackgroundImage = vsqlite->getSQLImage(wpsql.str());
 				 form_box = &(sav->cur.boxes[box]);
@@ -3128,6 +3145,31 @@ namespace PKMDS_Desktop_Win {
 	private: System::Void scMain_Panel2_MouseEnter(System::Object^  sender, System::EventArgs^  e) 
 			 {
 				 clearboxselection(false);
+			 }
+	private: System::Void saveToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) 
+			 {
+				 if((fileSave->ShowDialog() != System::Windows::Forms::DialogResult::Cancel) & (fileSave->FileName != ""))
+				 {
+					 bw2sav_obj * savout = new bw2sav_obj;
+					 *savout = *sav;
+					 bool isbw2 = savisbw2(savout);
+					 savout->cur.block1checksum = getchecksum(&(savout->cur),0x0,0x3e0);
+					 for(uint32 pslot = 0; pslot < savout->cur.party.size; pslot++)
+					 {
+						 encryptpkm(&(savout->cur.party.pokemon[pslot]));
+					 }
+					 calcpartychecksum(&(savout->cur));
+					 for(int boxnum = 0; boxnum < 24; boxnum++)
+					 {
+						 for(int boxslot = 0; boxslot < 30; boxslot++)
+						 {
+							 encryptpkm(&(savout->cur.boxes[boxnum].pokemon[boxslot]));
+						 }
+						 calcboxchecksum(&(savout->cur),boxnum,isbw2);
+					 }
+					 fixsavchecksum(savout);
+					 write(marshal_as<std::string>(fileSave->FileName).c_str(),savout);
+				 }
 			 }
 	};
 }

@@ -69,6 +69,14 @@ namespace PKMDS_Desktop_Win {
 	private: System::Windows::Forms::Button^  btnSave;
 	private: System::Windows::Forms::Label^  lblItem;
 	private: System::Windows::Forms::ComboBox^  cbItem;
+	private: System::Windows::Forms::NumericUpDown^  numSpecies;
+	private: System::Windows::Forms::ComboBox^  cbSpecies;
+	private: System::Windows::Forms::PictureBox^  pbItem;
+
+
+
+
+
 
 
 
@@ -90,6 +98,9 @@ namespace PKMDS_Desktop_Win {
 		{
 			this->tlViewer = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->panGeneral = (gcnew System::Windows::Forms::Panel());
+			this->pbItem = (gcnew System::Windows::Forms::PictureBox());
+			this->numSpecies = (gcnew System::Windows::Forms::NumericUpDown());
+			this->cbSpecies = (gcnew System::Windows::Forms::ComboBox());
 			this->btnExport = (gcnew System::Windows::Forms::Button());
 			this->btnSave = (gcnew System::Windows::Forms::Button());
 			this->lblItem = (gcnew System::Windows::Forms::Label());
@@ -116,6 +127,8 @@ namespace PKMDS_Desktop_Win {
 			this->tpMisc = (gcnew System::Windows::Forms::TabPage());
 			this->tlViewer->SuspendLayout();
 			this->panGeneral->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbItem))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numSpecies))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numLevel))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbDiamond))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbStar))->BeginInit();
@@ -147,6 +160,9 @@ namespace PKMDS_Desktop_Win {
 			// 
 			// panGeneral
 			// 
+			this->panGeneral->Controls->Add(this->pbItem);
+			this->panGeneral->Controls->Add(this->numSpecies);
+			this->panGeneral->Controls->Add(this->cbSpecies);
 			this->panGeneral->Controls->Add(this->btnExport);
 			this->panGeneral->Controls->Add(this->btnSave);
 			this->panGeneral->Controls->Add(this->lblItem);
@@ -169,6 +185,36 @@ namespace PKMDS_Desktop_Win {
 			this->panGeneral->Name = L"panGeneral";
 			this->panGeneral->Size = System::Drawing::Size(162, 280);
 			this->panGeneral->TabIndex = 1;
+			// 
+			// pbItem
+			// 
+			this->pbItem->BackColor = System::Drawing::Color::Transparent;
+			this->pbItem->Location = System::Drawing::Point(5, 190);
+			this->pbItem->Name = L"pbItem";
+			this->pbItem->Size = System::Drawing::Size(30, 30);
+			this->pbItem->SizeMode = System::Windows::Forms::PictureBoxSizeMode::CenterImage;
+			this->pbItem->TabIndex = 20;
+			this->pbItem->TabStop = false;
+			// 
+			// numSpecies
+			// 
+			this->numSpecies->Location = System::Drawing::Point(116, 108);
+			this->numSpecies->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {649, 0, 0, 0});
+			this->numSpecies->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) {1, 0, 0, 0});
+			this->numSpecies->Name = L"numSpecies";
+			this->numSpecies->Size = System::Drawing::Size(43, 20);
+			this->numSpecies->TabIndex = 19;
+			this->numSpecies->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) {1, 0, 0, 0});
+			this->numSpecies->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::numSpecies_ValueChanged);
+			// 
+			// cbSpecies
+			// 
+			this->cbSpecies->FormattingEnabled = true;
+			this->cbSpecies->Location = System::Drawing::Point(3, 107);
+			this->cbSpecies->Name = L"cbSpecies";
+			this->cbSpecies->Size = System::Drawing::Size(107, 21);
+			this->cbSpecies->TabIndex = 18;
+			this->cbSpecies->SelectedIndexChanged += gcnew System::EventHandler(this, &frmPKMViewer::cbSpecies_SelectedIndexChanged);
 			// 
 			// btnExport
 			// 
@@ -193,7 +239,7 @@ namespace PKMDS_Desktop_Win {
 			// lblItem
 			// 
 			this->lblItem->AutoSize = true;
-			this->lblItem->Location = System::Drawing::Point(68, 169);
+			this->lblItem->Location = System::Drawing::Point(68, 183);
 			this->lblItem->Name = L"lblItem";
 			this->lblItem->Size = System::Drawing::Size(52, 13);
 			this->lblItem->TabIndex = 15;
@@ -202,25 +248,26 @@ namespace PKMDS_Desktop_Win {
 			// cbItem
 			// 
 			this->cbItem->FormattingEnabled = true;
-			this->cbItem->Location = System::Drawing::Point(7, 185);
+			this->cbItem->Location = System::Drawing::Point(41, 200);
 			this->cbItem->Name = L"cbItem";
-			this->cbItem->Size = System::Drawing::Size(146, 21);
+			this->cbItem->Size = System::Drawing::Size(118, 21);
 			this->cbItem->TabIndex = 14;
 			this->cbItem->SelectedIndexChanged += gcnew System::EventHandler(this, &frmPKMViewer::cbItem_SelectedIndexChanged);
 			// 
 			// numLevel
 			// 
-			this->numLevel->Location = System::Drawing::Point(81, 135);
+			this->numLevel->Location = System::Drawing::Point(77, 160);
 			this->numLevel->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) {1, 0, 0, 0});
 			this->numLevel->Name = L"numLevel";
 			this->numLevel->Size = System::Drawing::Size(43, 20);
 			this->numLevel->TabIndex = 13;
 			this->numLevel->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) {1, 0, 0, 0});
+			this->numLevel->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::numLevel_ValueChanged);
 			// 
 			// lblLevel
 			// 
 			this->lblLevel->AutoSize = true;
-			this->lblLevel->Location = System::Drawing::Point(41, 135);
+			this->lblLevel->Location = System::Drawing::Point(37, 160);
 			this->lblLevel->Name = L"lblLevel";
 			this->lblLevel->Size = System::Drawing::Size(33, 13);
 			this->lblLevel->TabIndex = 12;
@@ -229,7 +276,7 @@ namespace PKMDS_Desktop_Win {
 			// pbDiamond
 			// 
 			this->pbDiamond->BackColor = System::Drawing::Color::Transparent;
-			this->pbDiamond->Location = System::Drawing::Point(133, 109);
+			this->pbDiamond->Location = System::Drawing::Point(135, 134);
 			this->pbDiamond->Name = L"pbDiamond";
 			this->pbDiamond->Size = System::Drawing::Size(20, 20);
 			this->pbDiamond->SizeMode = System::Windows::Forms::PictureBoxSizeMode::CenterImage;
@@ -240,7 +287,7 @@ namespace PKMDS_Desktop_Win {
 			// pbStar
 			// 
 			this->pbStar->BackColor = System::Drawing::Color::Transparent;
-			this->pbStar->Location = System::Drawing::Point(107, 109);
+			this->pbStar->Location = System::Drawing::Point(109, 134);
 			this->pbStar->Name = L"pbStar";
 			this->pbStar->Size = System::Drawing::Size(20, 20);
 			this->pbStar->SizeMode = System::Windows::Forms::PictureBoxSizeMode::CenterImage;
@@ -251,7 +298,7 @@ namespace PKMDS_Desktop_Win {
 			// pbHeart
 			// 
 			this->pbHeart->BackColor = System::Drawing::Color::Transparent;
-			this->pbHeart->Location = System::Drawing::Point(81, 109);
+			this->pbHeart->Location = System::Drawing::Point(83, 134);
 			this->pbHeart->Name = L"pbHeart";
 			this->pbHeart->Size = System::Drawing::Size(20, 20);
 			this->pbHeart->SizeMode = System::Windows::Forms::PictureBoxSizeMode::CenterImage;
@@ -262,7 +309,7 @@ namespace PKMDS_Desktop_Win {
 			// pbSquare
 			// 
 			this->pbSquare->BackColor = System::Drawing::Color::Transparent;
-			this->pbSquare->Location = System::Drawing::Point(55, 109);
+			this->pbSquare->Location = System::Drawing::Point(57, 134);
 			this->pbSquare->Name = L"pbSquare";
 			this->pbSquare->Size = System::Drawing::Size(20, 20);
 			this->pbSquare->SizeMode = System::Windows::Forms::PictureBoxSizeMode::CenterImage;
@@ -273,7 +320,7 @@ namespace PKMDS_Desktop_Win {
 			// pbTriangle
 			// 
 			this->pbTriangle->BackColor = System::Drawing::Color::Transparent;
-			this->pbTriangle->Location = System::Drawing::Point(29, 109);
+			this->pbTriangle->Location = System::Drawing::Point(31, 134);
 			this->pbTriangle->Name = L"pbTriangle";
 			this->pbTriangle->Size = System::Drawing::Size(20, 20);
 			this->pbTriangle->SizeMode = System::Windows::Forms::PictureBoxSizeMode::CenterImage;
@@ -284,7 +331,7 @@ namespace PKMDS_Desktop_Win {
 			// pbCircle
 			// 
 			this->pbCircle->BackColor = System::Drawing::Color::Transparent;
-			this->pbCircle->Location = System::Drawing::Point(3, 109);
+			this->pbCircle->Location = System::Drawing::Point(5, 134);
 			this->pbCircle->Name = L"pbCircle";
 			this->pbCircle->Size = System::Drawing::Size(20, 20);
 			this->pbCircle->SizeMode = System::Windows::Forms::PictureBoxSizeMode::CenterImage;
@@ -299,6 +346,7 @@ namespace PKMDS_Desktop_Win {
 			this->cbBall->Name = L"cbBall";
 			this->cbBall->Size = System::Drawing::Size(44, 21);
 			this->cbBall->TabIndex = 5;
+			this->cbBall->SelectedIndexChanged += gcnew System::EventHandler(this, &frmPKMViewer::cbBall_SelectedIndexChanged);
 			// 
 			// pbPKRS
 			// 
@@ -428,6 +476,8 @@ namespace PKMDS_Desktop_Win {
 			this->tlViewer->ResumeLayout(false);
 			this->panGeneral->ResumeLayout(false);
 			this->panGeneral->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbItem))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numSpecies))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numLevel))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbDiamond))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbStar))->EndInit();
@@ -503,6 +553,9 @@ namespace PKMDS_Desktop_Win {
 			SQL.str("");
 			SQL.clear();
 			cbItem->SelectedIndex = cbItem->FindString(gcnew System::String(lookupitemname(pkm_).c_str()));
+			ostringstream itemsql;
+			getitemsql(itemsql,(uint16)temppkm->item);
+			pbItem->Image = (pviewvsqlite->getSQLImage(itemsql.str()));
 
 			redisplayok = true;
 		}
@@ -515,7 +568,9 @@ namespace PKMDS_Desktop_Win {
 			 {
 				 DataSet^ itemds = pviewvsqlite->getSQLDS
 					 (
-					 "SELECT item_game_indices.game_index, item_names.name FROM items INNER JOIN item_names ON items.id = item_names.item_id INNER JOIN item_game_indices ON items.id = item_game_indices.item_id WHERE (item_names.local_language_id = 9) AND (item_game_indices.generation_id = 5) order by name asc"
+					 "SELECT item_game_indices.game_index, item_names.name FROM items INNER JOIN item_names ON items.id = item_names.item_id " +
+					 "INNER JOIN item_game_indices ON items.id = item_game_indices.item_id WHERE (item_names.local_language_id = 9) AND " +
+					 "(item_game_indices.generation_id = 5) order by name asc"
 					 );
 				 DataRow^ blankitem = itemds->Tables[0]->NewRow();
 				 blankitem["game_index"] = 0;
@@ -524,45 +579,36 @@ namespace PKMDS_Desktop_Win {
 				 cbItem->DataSource = itemds->Tables[0];
 				 cbItem->DisplayMember = "name";
 				 cbItem->ValueMember = "game_index";
+
+				 DataSet^ speciesds = pviewvsqlite->getSQLDS("SELECT pokemon_species_id, name FROM pokemon_species_names WHERE (local_language_id = 9)");
+				 cbSpecies->DataSource = speciesds->Tables[0];
+				 cbSpecies->DisplayMember = "name";
+				 cbSpecies->ValueMember = "pokemon_species_id";
+
+				 //DataSet^ abilitiesds = pviewvsqlite->getSQLDS("SELECT ability_id, name FROM ability_names WHERE (local_language_id = 9) AND (ability_id < 10000)");
+				 ////cbItem->DataSource = abilitiesds->Tables[0];
+				 ////cbItem->DisplayMember = "name";
+				 ////cbItem->ValueMember = "ability_id";
+				 //
+				 //DataSet^ movesds = pviewvsqlite->getSQLDS("SELECT move_id, name FROM move_names WHERE (local_language_id = 9) AND (move_id < 10000)");
+				 //DataRow^ blankmove = movesds->Tables[0]->NewRow();
+				 //blankmove["move_id"] = 0;
+				 //blankmove["name"] = "";
+				 //movesds->Tables[0]->Rows->InsertAt(blankmove,0);
+				 ////cbItem->DataSource = movesds->Tables[0];
+				 ////cbItem->DisplayMember = "name";
+				 ////cbItem->ValueMember = "move_id";
+				 ////cbItem->DataSource = movesds->Tables[0];
+				 ////cbItem->DisplayMember = "name";
+				 ////cbItem->ValueMember = "move_id";
+				 ////cbItem->DataSource = movesds->Tables[0];
+				 ////cbItem->DisplayMember = "name";
+				 ////cbItem->ValueMember = "move_id";
+				 ////cbItem->DataSource = movesds->Tables[0];
+				 ////cbItem->DisplayMember = "name";
+				 ////cbItem->ValueMember = "move_id";
+
 				 displayPKM(temppkm);
-				 //for(int itemindex = 0; itemindex < (int)Items::revealglass; itemindex++)
-				 //{
-				 // System::String ^ itemname = gcnew System::String(lookupitemname(itemindex).c_str());
-				 // cbItem->Items->Add(itemname);
-				 //}
-				 /*
-				 for(int speciesindex = 1; speciesindex < 650; speciesindex++)
-				 {
-				 itemname = QString::fromStdString(lookuppkmname(speciesindex));
-				 ui->cbPKMSpecies->addItem(itemname);
-				 }
-				 for(int natureindex = 0; natureindex < 25; natureindex++)
-				 {
-				 itemname = QString::fromStdString(getnaturename(natureindex));
-				 ui->cbNatures->addItem(itemname);
-				 }
-				 for(int moveid = 0; moveid <= ((int)Moves::fusionbolt); moveid++)
-				 {
-				 for(int moveindex = 0; moveindex < 4; moveindex++)
-				 {
-				 itemname = QString::fromStdString(lookupmovename(moveid));
-				 moveboxes[moveindex]->addItem(itemname);
-				 }
-				 }
-				 for(int ballnum = 0; ballnum < (int)Balls::dreamball; ballnum++)
-				 {
-				 ui->cbBall->addItem("");
-				 if((Balls::balls)ballnum != Balls::pokeball_)
-				 {
-				 ui->cbBall->setItemIcon(ballnum,getballpic((Balls::balls)ballnum));
-				 }
-				 }
-				 for(int abilityindex = 0; abilityindex < (int)Abilities::teravolt; abilityindex++)
-				 {
-				 itemname = QString::fromStdString(lookupabilityname(abilityindex));
-				 ui->cbPKMAbility->addItem(itemname);
-				 }
-				 */
 			 }
 	private: System::Void btnSave_Click(System::Object^  sender, System::EventArgs^  e)
 			 {
@@ -620,7 +666,26 @@ namespace PKMDS_Desktop_Win {
 				 if(redisplayok)
 				 {
 					 temppkm->item = (Items::items)(Convert::ToUInt16(cbItem->SelectedValue));
+					 ostringstream itemsql;
+					 getitemsql(itemsql,(uint16)temppkm->item);
+					 pbItem->Image = (pviewvsqlite->getSQLImage(itemsql.str()));
 				 }
+			 }
+	private: System::Void cbBall_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) 
+			 {
+
+			 }
+	private: System::Void cbSpecies_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) 
+			 {
+
+			 }
+	private: System::Void numSpecies_ValueChanged(System::Object^  sender, System::EventArgs^  e) 
+			 {
+
+			 }
+	private: System::Void numLevel_ValueChanged(System::Object^  sender, System::EventArgs^  e) 
+			 {
+
 			 }
 	};
 }
