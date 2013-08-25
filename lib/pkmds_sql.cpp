@@ -672,7 +672,7 @@ void getwallpapersql(ostringstream& o, const Wallpapers::wallpapers wallpaper)
 {
     o << "Select image from wallpapers where (identifier = " << (int)wallpaper << ")";
 }
-void getitemsql(ostringstream& itemsql, const int itemid, const int generation)
+void getitemsql(ostringstream& itemsql, const uint16 itemid, const int generation)
 {
     string identifier = "";
     ostringstream o;

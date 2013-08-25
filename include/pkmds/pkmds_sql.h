@@ -46,7 +46,7 @@ void DllExport geticonsql(ostringstream& o, const pokemon_obj * pkm, int langid 
 //void DllExport gettypesql(ostringstream& o, const int type);
 void DllExport getwallpapersql(ostringstream& o, const int wallpaper);
 void DllExport getwallpapersql(ostringstream& o, const Wallpapers::wallpapers wallpaper);
-void DllExport getitemsql(ostringstream& itemsql, const int itemid, const int generation = GENERATION);
+void DllExport getitemsql(ostringstream& itemsql, const uint16 itemid, const int generation = GENERATION);
 void DllExport getmarkingsql(ostringstream& o, const Markings::markings mark, const bool marked);
 void DllExport getballsql(ostringstream& o, const Balls::balls ball, const int generation = GENERATION);
 string DllExport getspeciesnamesql(const int speciesid, const int langid = LANG_ID);

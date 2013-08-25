@@ -19,6 +19,7 @@ namespace PKMDS_Desktop_Win {
 	public:
 		frmPKMViewer(void)
 		{
+			redisplayok = false;
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
@@ -450,7 +451,6 @@ namespace PKMDS_Desktop_Win {
 		bool redisplayok;
 		void displayPKM(pokemon_obj * pkm_)
 		{
-			redisplayok = false;
 			std::ostringstream SQL;
 			getspritesql(SQL,pkm_);
 			pbSprite->Image = pviewvsqlite->getSQLImage(SQL.str());
@@ -502,6 +502,7 @@ namespace PKMDS_Desktop_Win {
 			pbDiamond->Image = pviewvsqlite->getSQLImage(SQL.str());
 			SQL.str("");
 			SQL.clear();
+			cbItem->SelectedIndex = cbItem->FindString(gcnew System::String(lookupitemname(pkm_).c_str()));
 
 			redisplayok = true;
 		}
@@ -509,16 +510,21 @@ namespace PKMDS_Desktop_Win {
 			{
 				this->pkm = pkm_;
 				*temppkm = *pkm;
-				displayPKM(temppkm);
 			}
 	private: System::Void frmPKMViewer_Load(System::Object^  sender, System::EventArgs^  e) 
 			 {
 				 DataSet^ itemds = pviewvsqlite->getSQLDS
 					 (
-					 "select item_id, name from item_names where local_language_id = 9"
+					 "SELECT item_game_indices.game_index, item_names.name FROM items INNER JOIN item_names ON items.id = item_names.item_id INNER JOIN item_game_indices ON items.id = item_game_indices.item_id WHERE (item_names.local_language_id = 9) AND (item_game_indices.generation_id = 5) order by name asc"
 					 );
+				 DataRow^ blankitem = itemds->Tables[0]->NewRow();
+				 blankitem["game_index"] = 0;
+				 blankitem["name"] = "";
+				 itemds->Tables[0]->Rows->InsertAt(blankitem,0);
 				 cbItem->DataSource = itemds->Tables[0];
-				 cbItem->ValueMember = "name";
+				 cbItem->DisplayMember = "name";
+				 cbItem->ValueMember = "game_index";
+				 displayPKM(temppkm);
 				 //for(int itemindex = 0; itemindex < (int)Items::revealglass; itemindex++)
 				 //{
 				 // System::String ^ itemname = gcnew System::String(lookupitemname(itemindex).c_str());
@@ -611,8 +617,10 @@ namespace PKMDS_Desktop_Win {
 			 }
 	private: System::Void cbItem_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) 
 			 {
-				 MessageBox::Show(cbItem->SelectedItem->GetType()->ToString());
-
+				 if(redisplayok)
+				 {
+					 temppkm->item = (Items::items)(Convert::ToUInt16(cbItem->SelectedValue));
+				 }
 			 }
 	};
 }
