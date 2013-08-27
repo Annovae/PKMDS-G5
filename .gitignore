@@ -65,9 +65,8 @@ Makefile
 *.xml
 *.metagen
 *.bi
-pkmds_SAV_refactor.lib
-SQLite_VS_2010.lib
 PKMDS_Desktop_Win.lib
+PKMDS_Desktop_Win_2010.lib
 
 #General
 
