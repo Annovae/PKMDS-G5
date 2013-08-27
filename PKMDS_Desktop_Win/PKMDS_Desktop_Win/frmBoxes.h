@@ -2688,6 +2688,8 @@ namespace PKMDS_Desktop_Win {
 		bw2sav_obj * sav;
 		party_pkm * ppkm;
 		pokemon_obj * pkm;
+		pokemon_obj * a;
+		pokemon_obj * b;
 		box_obj * form_box;
 		bool savloaded;
 	private: System::Void frmBoxes_Load(System::Object^  sender, System::EventArgs^  e) 
@@ -2696,6 +2698,8 @@ namespace PKMDS_Desktop_Win {
 				 sav = new bw2sav_obj;
 				 ppkm = new party_pkm;
 				 pkm = new pokemon_obj;
+				 a = new pokemon_obj;
+				 b = new pokemon_obj;
 				 savloaded = false;
 				 form_box = new box_obj;
 
@@ -2825,6 +2829,12 @@ namespace PKMDS_Desktop_Win {
 
 			 }
 			 /*
+			 S'more: http://social.msdn.microsoft.com/Forums/vstudio/en-US/4a0e68f5-b386-4d7d-9d57-b0abceb4c5ad/how-to-drag-and-drop-an-object-pointer-with-mfc
+
+			 And another: http://www.codeguru.com/cpp/misc/misc/draganddrop/article.php/c349/Drag-And-Drop-between-Window-Controls.htm
+
+			 Another link: http://www.codeproject.com/Articles/840/How-to-Implement-Drag-and-Drop-Between-Your-Progra
+
 			 Better info: http://stackoverflow.com/questions/16004682/c-sharp-drag-and-drop-from-one-picture-box-into-another
 
 			 Drag+drop is hidden on the PictureBox control. Not sure why, it works just fine. The probable guidance here is that it will not be obvious to the user that you could drop an image on the control.
@@ -2860,8 +2870,8 @@ namespace PKMDS_Desktop_Win {
 			 pictureBox2.Image = bmp;
 			 }
 			 This does allow you to drag an image from another application into the box. Let's call it a feature. Use a bool flag if you want to disallow this.
-
 			 */
+
 			 /*
 			 Drag and drop info: http://support.microsoft.com/kb/815667
 
@@ -2984,6 +2994,16 @@ namespace PKMDS_Desktop_Win {
 			 }
 	private: System::Void pbBoxSlot_DragDrop(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e)
 			 {
+
+				 //void pictureBox2_DragEnter(object sender, DragEventArgs e) {
+				 //if (e.Data.GetDataPresent(DataFormats.Bitmap))
+				 //e.Effect = DragDropEffects.Move;
+				 //}
+
+				 //void pictureBox2_DragDrop(object sender, DragEventArgs e) {
+				 //var bmp = (Bitmap)e.Data.GetData(DataFormats.Bitmap);
+				 //pictureBox2.Image = bmp;
+
 				 //if(savloaded)
 				 //{
 				 // System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
@@ -3026,6 +3046,17 @@ namespace PKMDS_Desktop_Win {
 			 }
 	private: System::Void pbBoxSlot_DragEnter(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e)
 			 {
+
+				 //void pictureBox2_DragEnter(object sender, DragEventArgs e) {
+				 //if (e.Data.GetDataPresent(DataFormats.Bitmap))
+				 //e.Effect = DragDropEffects.Move;
+				 //}
+
+				 //void pictureBox2_DragDrop(object sender, DragEventArgs e) {
+				 //var bmp = (Bitmap)e.Data.GetData(DataFormats.Bitmap);
+				 //pictureBox2.Image = bmp;
+				 //}
+
 				 //if(savloaded)
 				 //{
 				 // System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
@@ -3279,6 +3310,35 @@ namespace PKMDS_Desktop_Win {
 					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
 				 }
 
+			 }
+
+	private: void pictureBox1_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e)
+			 {
+				 if(savloaded)
+				 {
+					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
+					 int slot;
+					 if(int::TryParse(pb->Name->Substring(pb->Name->Length - 2, 2), slot))
+					 {
+						 a = &(form_box->pokemon[slot-1]);
+						 if(!((bool)a->isboxdatadecrypted))
+						 {
+							 decryptpkm(a);
+						 }
+						 if(a->species != 0)
+						 {
+							 //var img = pictureBox1.Image;
+							 //pokemon_obj * pkmpnt = new pokemon_obj;
+							 //if (img == null) return;
+							 if (DoDragDrop(a, DragDropEffects::Move) == DragDropEffects::Move) 
+							 {
+								 //pictureBox1.Image = null;
+								 refreshparty();
+								 refreshbox();
+							 }
+						 }
+					 }
+				 }
 			 }
 
 	private: System::Void scMain_Panel2_MouseEnter(System::Object^  sender, System::EventArgs^  e) 
