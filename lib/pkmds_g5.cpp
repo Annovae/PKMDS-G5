@@ -264,7 +264,7 @@ uint16 getchecksum(bw2savblock_obj &block, const int start, const int length){
 	int sum = 0xFFFF;
 	for ( int i = start; i < start + length; i++ ){
 		sum = (sum << 8) ^ SeedTable[ (byte)(data[i] ^ (byte)(sum>>8)) ];};
-	return (uint16)sum;
+		return (uint16)sum;
 }
 void calcpartychecksum(bw2savblock_obj &block)
 {
@@ -315,7 +315,7 @@ uint16 getchecksum(bw2savblock_obj *block, const int start, const int length){
 	int sum = 0xFFFF;
 	for ( int i = start; i < start + length; i++ ){
 		sum = (sum << 8) ^ SeedTable[ (byte)(data[i] ^ (byte)(sum>>8)) ];};
-	return (uint16)sum;
+		return (uint16)sum;
 }
 void calcpartychecksum(bw2savblock_obj *block)
 {
@@ -602,6 +602,14 @@ bool getpkmshiny(const pokemon_obj *pkm){
 bool pkmmetasegg(const pokemon_obj *pkm){
 	return ((pkm->eggdate.year != 0) & (pkm->eggdate.month != 0) & (pkm->eggdate.day != 0));
 }
+void put_pkm(box_obj &box, const int slot, pokemon_obj &pkm, const bool isencrypted)
+{
+	if(! isencrypted)
+	{
+		encryptpkm(pkm);
+	}
+	box.pokemon[slot] = pkm;
+}
 void swap_pkm(box_obj &frombox, const int fromslot, box_obj &tobox, const int toslot)
 {
 	std::swap(frombox.pokemon[fromslot],tobox.pokemon[toslot]);
@@ -611,14 +619,6 @@ void swap_pkm(box_obj &frombox, const int fromslot, box_obj &tobox, const int to
 	//frombox.pokemon[fromslot] = topkm;
 	//tobox.pokemon[toslot] = frompkm;
 }
-void put_pkm(box_obj &box, const int slot, pokemon_obj &pkm, const bool isencrypted)
-{
-	if(! isencrypted)
-	{
-		encryptpkm(pkm);
-	}
-	box.pokemon[slot] = pkm;
-}
 void swap_pkm(box_obj *frombox, const int fromslot, box_obj *tobox, const int toslot)
 {
 	std::swap(frombox->pokemon[fromslot],tobox->pokemon[toslot]);
@@ -627,6 +627,42 @@ void swap_pkm(box_obj *frombox, const int fromslot, box_obj *tobox, const int to
 	//topkm = tobox->pokemon[toslot];
 	//frombox->pokemon[fromslot] = topkm;
 	//tobox->pokemon[toslot] = frompkm;
+}
+void swap_pkm(party_pkm *a, party_pkm *b)
+{
+	std::swap(*a,*b);
+}
+void swap_pkm(pokemon_obj *a, pokemon_obj *b)
+{
+	std::swap(*a,*b);
+}
+void swap_pkm(party_pkm *a, pokemon_obj *b)
+{
+	memset(&(a->party_data),0,sizeof(party_field));
+	std::swap(a->pkm_data,*b);
+}
+void swap_pkm(pokemon_obj *a, party_pkm *b)
+{
+	memset(&(b->party_data),0,sizeof(party_field));
+	std::swap(*a,b->pkm_data);
+}
+void swap_pkm(party_pkm &a, party_pkm &b)
+{
+	std::swap(a,b);
+}
+void swap_pkm(pokemon_obj &a, pokemon_obj &b)
+{
+	std::swap(a,b);
+}
+void swap_pkm(party_pkm &a, pokemon_obj &b)
+{
+	memset(&(a.party_data),0,sizeof(party_field));
+	std::swap((a.pkm_data),b);
+}
+void swap_pkm(pokemon_obj &a, party_pkm &b)
+{
+	memset(&(b.party_data),0,sizeof(party_field));
+	std::swap(a,(b.pkm_data));
 }
 void put_pkm(box_obj *box, const int slot, pokemon_obj *pkm, const bool isencrypted)
 {

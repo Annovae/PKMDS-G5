@@ -2701,15 +2701,8 @@ namespace PKMDS_Desktop_Win {
 
 				 //sav = 0;
 			 }
-			 void changebox(int box)
+			 void refreshbox()
 			 {
-				 clearpartyslotselection();
-				 clearboxslotselection();
-				 std::ostringstream wpsql;
-				 sav->cur.curbox = box;
-				 getwallpapersql(wpsql,(int)(sav->cur.boxwallpapers[box]));
-				 tlPCBox->BackgroundImage = vsqlite->getSQLImage(wpsql.str());
-				 form_box = &(sav->cur.boxes[box]);
 				 for each (System::Windows::Forms::PictureBox^ pb in tlPCBox->Controls)
 				 {
 					 pb->Image = nullptr;
@@ -2727,6 +2720,17 @@ namespace PKMDS_Desktop_Win {
 						 pb->Image = vsqlite->getSQLImage(o.str());
 					 }
 				 }
+			 }
+			 void changebox(int box)
+			 {
+				 clearpartyslotselection();
+				 clearboxslotselection();
+				 std::ostringstream wpsql;
+				 sav->cur.curbox = box;
+				 getwallpapersql(wpsql,(int)(sav->cur.boxwallpapers[box]));
+				 tlPCBox->BackgroundImage = vsqlite->getSQLImage(wpsql.str());
+				 form_box = &(sav->cur.boxes[box]);
+				 refreshbox();
 			 }
 			 void setboxnames()
 			 {
@@ -2791,16 +2795,8 @@ namespace PKMDS_Desktop_Win {
 				 pkmviewer->ShowDialog();
 				 delete pkmviewer;
 			 }
-	private: System::Void loadSAVToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) 
+			 void refreshparty()
 			 {
-				 savloaded = false;
-				 if((fileOpen->ShowDialog() != System::Windows::Forms::DialogResult::Cancel) & (fileOpen->FileName != ""))
-				 {
-					 read(marshal_as<std::string>(fileOpen->FileName).c_str(),sav);
-				 }
-				 savloaded = true;
-				 setboxnames();
-				 changebox(sav->cur.curbox);
 				 for each (System::Windows::Forms::PictureBox^ pb in tlParty->Controls)
 				 {
 					 pb->Image = nullptr;
@@ -2811,7 +2807,10 @@ namespace PKMDS_Desktop_Win {
 						 pokemon_obj * pkm_ = new pokemon_obj;
 						 ppkm_ = &(sav->cur.party.pokemon[slot-1]);
 						 pkm_ = &(ppkm_->pkm_data);
-						 decryptpkm(ppkm_);
+						 if(!((bool)ppkm_->pkm_data.ispartydatadecrypted))
+						 {
+							 decryptpkm(ppkm_);
+						 }
 						 if(pkm_->species != 0)
 						 {
 							 std::ostringstream o;
@@ -2820,6 +2819,19 @@ namespace PKMDS_Desktop_Win {
 						 }
 					 }
 				 }
+
+			 }
+	private: System::Void loadSAVToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) 
+			 {
+				 savloaded = false;
+				 if((fileOpen->ShowDialog() != System::Windows::Forms::DialogResult::Cancel) & (fileOpen->FileName != ""))
+				 {
+					 read(marshal_as<std::string>(fileOpen->FileName).c_str(),sav);
+				 }
+				 savloaded = true;
+				 setboxnames();
+				 changebox(sav->cur.curbox);
+				 refreshparty();
 			 }
 
 	private: System::Void pbBoxSlot_Click(System::Object^  sender, System::EventArgs^  e) 
@@ -3156,14 +3168,20 @@ namespace PKMDS_Desktop_Win {
 					 savout->cur.block1checksum = getchecksum(&(savout->cur),0x0,0x3e0);
 					 for(uint32 pslot = 0; pslot < savout->cur.party.size; pslot++)
 					 {
-						 encryptpkm(&(savout->cur.party.pokemon[pslot]));
+						 if(!((bool)(savout->cur.party.pokemon[pslot]).pkm_data.ispartydatadecrypted))
+						 {
+							 encryptpkm(&(savout->cur.party.pokemon[pslot]));
+						 }
 					 }
 					 calcpartychecksum(&(savout->cur));
 					 for(int boxnum = 0; boxnum < 24; boxnum++)
 					 {
 						 for(int boxslot = 0; boxslot < 30; boxslot++)
 						 {
-							 encryptpkm(&(savout->cur.boxes[boxnum].pokemon[boxslot]));
+							 if(((bool)(savout->cur.boxes[boxnum].pokemon[boxslot]).isboxdatadecrypted))
+							 {
+								 encryptpkm(&(savout->cur.boxes[boxnum].pokemon[boxslot]));
+							 }
 						 }
 						 calcboxchecksum(&(savout->cur),boxnum,isbw2);
 					 }
