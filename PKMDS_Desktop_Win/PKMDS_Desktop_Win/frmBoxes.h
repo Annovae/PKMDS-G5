@@ -2870,6 +2870,8 @@ namespace PKMDS_Desktop_Win {
 				 pkmviewer->setpkm(pkm_);
 				 pkmviewer->ShowDialog();
 				 delete pkmviewer;
+				 refreshbox();
+				 refreshparty();
 			 }
 			 void refreshparty()
 			 {
@@ -2897,120 +2899,6 @@ namespace PKMDS_Desktop_Win {
 				 }
 
 			 }
-			 /*
-			 S'more: http://social.msdn.microsoft.com/Forums/vstudio/en-US/4a0e68f5-b386-4d7d-9d57-b0abceb4c5ad/how-to-drag-and-drop-an-object-pointer-with-mfc
-
-			 And another: http://www.codeguru.com/cpp/misc/misc/draganddrop/article.php/c349/Drag-And-Drop-between-Window-Controls.htm
-
-			 Another link: http://www.codeproject.com/Articles/840/How-to-Implement-Drag-and-Drop-Between-Your-Progra
-
-			 Better info: http://stackoverflow.com/questions/16004682/c-sharp-drag-and-drop-from-one-picture-box-into-another
-
-			 Drag+drop is hidden on the PictureBox control. Not sure why, it works just fine. The probable guidance here is that it will not be obvious to the user that you could drop an image on the control.
-			 You'll have to do something about that, at least set the BackColor property to a non-default value so the user can see it.
-
-			 Anyhoo, you'll need to implement the MouseDown event on the first picturebox so you can click it and start dragging:
-
-			 private void pictureBox1_MouseDown(object sender, MouseEventArgs e) {
-			 var img = pictureBox1.Image;
-			 if (img == null) return;
-			 if (DoDragDrop(img, DragDropEffects.Move) == DragDropEffects.Move) {
-			 pictureBox1.Image = null;
-			 }
-			 }
-			 I assumed you wanted to move the image, tweak if necessary if copying was intended. Then you'll have to implement the DragEnter and DragDrop events on the second picturebox.
-			 Since the properties are hidden, you should set them in the form's constructor. Like this:
-
-			 public Form1() {
-			 InitializeComponent();
-			 pictureBox1.MouseDown += pictureBox1_MouseDown;
-			 pictureBox2.AllowDrop = true;
-			 pictureBox2.DragEnter += pictureBox2_DragEnter;
-			 pictureBox2.DragDrop += pictureBox2_DragDrop;
-			 }
-
-			 void pictureBox2_DragEnter(object sender, DragEventArgs e) {
-			 if (e.Data.GetDataPresent(DataFormats.Bitmap))
-			 e.Effect = DragDropEffects.Move;
-			 }
-
-			 void pictureBox2_DragDrop(object sender, DragEventArgs e) {
-			 var bmp = (Bitmap)e.Data.GetData(DataFormats.Bitmap);
-			 pictureBox2.Image = bmp;
-			 }
-			 This does allow you to drag an image from another application into the box. Let's call it a feature. Use a bool flag if you want to disallow this.
-			 */
-
-			 /*
-			 Drag and drop info: http://support.microsoft.com/kb/815667
-
-			 This step-by-step article describes how to provide file drag-and-drop functionality in a Microsoft Visual C++ .NET application. A ListBox control is used as the destination of
-			 the file drag-and-drop procedure.
-
-			 Requirements
-
-			 The following list outlines the recommended hardware, software, network infrastructure, and service packs that you need:
-			 Microsoft Visual Studio .NET 2003 or Microsoft Visual Studio 2005
-			 Microsoft .NET Framework 1.1
-			 This article assumes that you are familiar with the following topics:
-			 Windows Forms ListBox control
-			 Windows Forms event handling
-			 Steps to build the sample
-
-			 The ListBox control provides two drag-and-drop events: DragEnter and DragDrop. The DragEnter event occurs when you drag an object in the bounds of the control and is
-			 used to determine whether the object that is being dragged is one that you can drop on the control. You use the DragEnter event when you drag a file or files to the control.
-			 The Windows form displays the appropriate icon when the object is dragged over the control, depending on the object that is being dragged. The DragDrop event occurs when you
-			 release the object that is being dragged on the control. You use the DragDrop event to retrieve the object. You use the Data object to retrieve the data.
-
-			 The GetData method of the Data object returns an array of strings that contain the full path names of the files that were dragged to the ListBox control. You can use this file
-			 path information to perform operations on the files. For example, you can use classes in the System::IO namespace to open and read the files, to move the files, or to copy the
-			 files to a new location. In this example, you add the full path of the files that are dragged to the ListBox control.
-
-			 To provide file drag-and-drop functionality in a Visual C++ .NET or Visual C++ 2005 application, follow these steps:
-			 Start Microsoft Visual Studio .NET 2003 or Microsoft Visual Studio 2005.
-			 On the File menu, point to New, and then click Project.
-			 Click Visual C++ Projects under Project Types, and then click Windows Forms Application (.NET) under Templates.
-
-			 Note In Visual Studio 2005, Visual C++ Projects is changed to Visual C++ and Windows Forms Application (.NET) is changed to Windows Forms Application.
-			 In the Name box, type DragDrop, and then click OK. By default, the Form1 form is created, and is opened in Design mode.
-			 Add a ListBox control to Form1.
-			 Right-click listBox1, and then click Properties.
-			 Change the AllowDrop property to True.
-			 Click the Events button.
-			 Double-click the DragEnter event to add a listBox1_DragEnter event handler to the code window.
-			 Add the following code in the listBox1_DragEnter event handler.
-			 if(e->Data->GetDataPresent(DataFormats::FileDrop))
-			 e->Effect = DragDropEffects::All;
-			 else
-			 e->Effect = DragDropEffects::None;
-			 On the View menu, click Designer to switch to Design mode.
-			 Right-click listBox1, and then click Properties.
-			 Click the Events button.
-			 Double-click the DragDrop event to add a listBox1_DragDrop event handler to the code window.
-			 Add the following code in the listBox1_DragDrop event handler.
-			 String *s[] = (String *[]) e->Data->GetData(DataFormats::FileDrop, false);
-			 int i;
-			 for(i = 0; i < s->Length; i++)
-			 listBox1->Items->Add(s[i]);
-			 Note You must add the common language runtime support compiler option (/clr:oldSyntax) in Visual C++ 2005 to successfully compile the previous code sample. To add the common
-			 language runtime support compiler option in Visual C++ 2005, follow these steps:
-			 Click Project, and then click <ProjectName> Properties. 
-
-			 Note <ProjectName> is a placeholder for the name of the project.
-			 Expand Configuration Properties, and then click General.
-			 Click to select Common Language Runtime Support, Old Syntax (/clr:oldSyntax) in the Common Language Runtime support project setting in the right pane, click Apply, and then click OK.
-			 For more information about the common language runtime support compiler option, visit the following Microsoft Web site:
-			 /clr (Common Language Runtime Compilation)
-			 http://msdn2.microsoft.com/en-us/library/k8d11d4s.aspx
-			 Press the CTRL+SHIFT+S key combination to save the project.
-			 Press the CTRL+SHIFT+B key combination to build the solution.
-			 Press the CTRL+F5 key combination to run the project.
-			 Drag one or more files from the desktop or from another folder to the ListBox control. Notice that the full path of the files is added to the ListBox control.
-
-			 For more information about the DragEnter and the DragDrop events, see the following Microsoft Developer Network (MSDN) Web sites:
-			 http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.dragenter(vs.71).aspx
-			 http://msdn2.microsoft.com/en-us/library/system.windows.forms.control.dragdrop(vs.71).aspx
-			 */
 	private: System::Void loadSAVToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
 				 fileOpen->FileName = "";
@@ -3024,7 +2912,6 @@ namespace PKMDS_Desktop_Win {
 				 changebox(sav->cur.curbox);
 				 refreshparty();
 			 }
-
 	private: System::Void pbBoxSlot_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
 				 if(savloaded)
@@ -3180,7 +3067,6 @@ namespace PKMDS_Desktop_Win {
 					 }
 				 }
 			 }
-
 	private: System::Void pbPartySlot_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
 				 if(savloaded)
@@ -3330,7 +3216,6 @@ namespace PKMDS_Desktop_Win {
 					 }
 				 }
 			 }
-
 	private: System::Void pbBox_MouseEnter(System::Object^  sender, System::EventArgs^  e)
 			 {
 				 if(savloaded)
@@ -3429,7 +3314,6 @@ namespace PKMDS_Desktop_Win {
 				 }
 
 			 }
-
 	private: System::Void scMain_Panel2_MouseEnter(System::Object^  sender, System::EventArgs^  e) 
 			 {
 				 clearboxselection(false);

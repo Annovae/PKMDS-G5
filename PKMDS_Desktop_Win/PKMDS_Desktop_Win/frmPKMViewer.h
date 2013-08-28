@@ -499,14 +499,17 @@ namespace PKMDS_Desktop_Win {
 		pokemon_obj * temppkm;
 		VS_SQLite ^ pviewvsqlite;
 		bool redisplayok;
-		void displayPKM(pokemon_obj * pkm_)
+		void refreshsprite()
 		{
 			std::ostringstream SQL;
-			getspritesql(SQL,pkm_);
+			getspritesql(SQL,temppkm);
 			pbSprite->Image = pviewvsqlite->getSQLImage(SQL.str());
-			SQL.str("");
-			SQL.clear();
-			switch(getpkmgender(pkm_))
+		}
+		void displayPKM()
+		{
+			refreshsprite();
+			std::ostringstream SQL;
+			switch(getpkmgender(temppkm))
 			{
 			case Genders::male:
 				SQL << "select image from misc where identifier = \"male\"";
@@ -521,47 +524,49 @@ namespace PKMDS_Desktop_Win {
 				SQL.clear();
 				break;
 			}
-			if(getpkmshiny(pkm_))
+			if(getpkmshiny(temppkm))
 			{
 				SQL << "select image from misc where identifier = \"shiny\"";
 				pbShiny->Image = pviewvsqlite->getSQLImage(SQL.str());
 				SQL.str("");
 				SQL.clear();
 			}
-			getmarkingsql(SQL,Markings::circle,pkm_->markings.circle);
+			getmarkingsql(SQL,Markings::circle,temppkm->markings.circle);
 			pbCircle->Image = pviewvsqlite->getSQLImage(SQL.str());
 			SQL.str("");
 			SQL.clear();
-			getmarkingsql(SQL,Markings::triangle,pkm_->markings.triangle);
+			getmarkingsql(SQL,Markings::triangle,temppkm->markings.triangle);
 			pbTriangle->Image = pviewvsqlite->getSQLImage(SQL.str());
 			SQL.str("");
 			SQL.clear();
-			getmarkingsql(SQL,Markings::square,pkm_->markings.square);
+			getmarkingsql(SQL,Markings::square,temppkm->markings.square);
 			pbSquare->Image = pviewvsqlite->getSQLImage(SQL.str());
 			SQL.str("");
 			SQL.clear();
-			getmarkingsql(SQL,Markings::heart,pkm_->markings.heart);
+			getmarkingsql(SQL,Markings::heart,temppkm->markings.heart);
 			pbHeart->Image = pviewvsqlite->getSQLImage(SQL.str());
 			SQL.str("");
 			SQL.clear();
-			getmarkingsql(SQL,Markings::star,pkm_->markings.star);
+			getmarkingsql(SQL,Markings::star,temppkm->markings.star);
 			pbStar->Image = pviewvsqlite->getSQLImage(SQL.str());
 			SQL.str("");
 			SQL.clear();
-			getmarkingsql(SQL,Markings::diamond,pkm_->markings.diamond);
+			getmarkingsql(SQL,Markings::diamond,temppkm->markings.diamond);
 			pbDiamond->Image = pviewvsqlite->getSQLImage(SQL.str());
 			SQL.str("");
 			SQL.clear();
-			cbItem->SelectedIndex = cbItem->FindString(gcnew System::String(lookupitemname(pkm_).c_str()));
+			cbItem->SelectedIndex = cbItem->FindString(gcnew System::String(lookupitemname(temppkm).c_str()));
 			ostringstream itemsql;
 			getitemsql(itemsql,(uint16)temppkm->item);
 			pbItem->Image = (pviewvsqlite->getSQLImage(itemsql.str()));
+			cbSpecies->SelectedIndex = cbSpecies->FindString(gcnew System::String(lookuppkmname(temppkm).c_str()))/*(int)(temppkm->species)-1*/;
+			numSpecies->Value = (Decimal)(temppkm->species);
 
 			redisplayok = true;
 		}
-	public: void setpkm(pokemon_obj * pkm_)
+	public: void setpkm(pokemon_obj * pkm)
 			{
-				this->pkm = pkm_;
+				this->pkm = pkm;
 				*temppkm = *pkm;
 			}
 	private: System::Void frmPKMViewer_Load(System::Object^  sender, System::EventArgs^  e) 
@@ -579,8 +584,7 @@ namespace PKMDS_Desktop_Win {
 				 cbItem->DataSource = itemds->Tables[0];
 				 cbItem->DisplayMember = "name";
 				 cbItem->ValueMember = "game_index";
-
-				 DataSet^ speciesds = pviewvsqlite->getSQLDS("SELECT pokemon_species_id, name FROM pokemon_species_names WHERE (local_language_id = 9)");
+				 DataSet^ speciesds = pviewvsqlite->getSQLDS("SELECT pokemon_species_id, name FROM pokemon_species_names WHERE (local_language_id = 9) order by name asc");
 				 cbSpecies->DataSource = speciesds->Tables[0];
 				 cbSpecies->DisplayMember = "name";
 				 cbSpecies->ValueMember = "pokemon_species_id";
@@ -608,7 +612,7 @@ namespace PKMDS_Desktop_Win {
 				 ////cbItem->DisplayMember = "name";
 				 ////cbItem->ValueMember = "move_id";
 
-				 displayPKM(temppkm);
+				 displayPKM();
 			 }
 	private: System::Void btnSave_Click(System::Object^  sender, System::EventArgs^  e)
 			 {
@@ -677,15 +681,30 @@ namespace PKMDS_Desktop_Win {
 			 }
 	private: System::Void cbSpecies_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) 
 			 {
-
+				 if(redisplayok)
+				 {
+					 temppkm->species = (Species::pkmspecies)(Convert::ToUInt16(cbSpecies->SelectedValue));
+					 refreshsprite();
+					 redisplayok = false;
+					 numSpecies->Value = (Decimal)(temppkm->species);
+					 redisplayok = true;
+				 }
 			 }
 	private: System::Void numSpecies_ValueChanged(System::Object^  sender, System::EventArgs^  e) 
 			 {
-
+				 if(redisplayok)
+				 {
+					 temppkm->species = (Species::pkmspecies)((UInt16)(numSpecies->Value));
+					 cbSpecies->SelectedIndex = cbSpecies->FindString(gcnew System::String(lookuppkmname(temppkm).c_str()))/*(int)(temppkm->species)-1*/;
+					 //cbSpecies->SelectedIndex = (int)(numSpecies->Value) - 1;
+				 }
 			 }
 	private: System::Void numLevel_ValueChanged(System::Object^  sender, System::EventArgs^  e) 
 			 {
+				 if(redisplayok)
+				 {
 
+				 }
 			 }
 	};
 }
