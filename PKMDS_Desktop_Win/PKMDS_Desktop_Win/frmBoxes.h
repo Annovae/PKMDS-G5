@@ -452,6 +452,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot30->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot30->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot30->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot30->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot30->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot30->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot30->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -474,6 +475,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot29->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot29->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot29->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot29->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot29->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot29->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot29->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -496,6 +498,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot28->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot28->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot28->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot28->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot28->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot28->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot28->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -518,6 +521,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot27->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot27->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot27->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot27->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot27->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot27->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot27->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -540,6 +544,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot26->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot26->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot26->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot26->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot26->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot26->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot26->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -562,6 +567,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot25->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot25->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot25->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot25->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot25->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot25->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot25->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -584,6 +590,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot24->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot24->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot24->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot24->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot24->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot24->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot24->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -606,6 +613,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot23->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot23->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot23->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot23->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot23->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot23->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot23->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -628,6 +636,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot22->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot22->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot22->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot22->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot22->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot22->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot22->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -650,6 +659,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot21->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot21->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot21->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot21->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot21->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot21->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot21->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -672,6 +682,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot20->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot20->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot20->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot20->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot20->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot20->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot20->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -694,6 +705,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot19->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot19->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot19->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot19->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot19->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot19->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot19->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -716,6 +728,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot18->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot18->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot18->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot18->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot18->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot18->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot18->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -738,6 +751,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot17->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot17->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot17->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot17->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot17->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot17->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot17->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -760,6 +774,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot16->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot16->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot16->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot16->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot16->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot16->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot16->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -782,6 +797,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot15->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot15->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot15->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot15->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot15->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot15->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot15->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -804,6 +820,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot14->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot14->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot14->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot14->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot14->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot14->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot14->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -826,6 +843,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot13->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot13->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot13->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot13->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot13->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot13->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot13->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -848,6 +866,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot12->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot12->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot12->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot12->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot12->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot12->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot12->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -870,6 +889,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot11->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot11->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot11->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot11->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot11->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot11->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot11->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -892,6 +912,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot10->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot10->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot10->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot10->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot10->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot10->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot10->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -914,6 +935,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot09->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot09->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot09->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot09->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot09->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot09->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot09->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -936,6 +958,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot08->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot08->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot08->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot08->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot08->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot08->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot08->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -958,6 +981,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot07->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot07->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot07->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot07->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot07->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot07->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot07->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -980,6 +1004,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot06->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot06->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot06->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot06->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot06->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot06->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot06->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -1002,6 +1027,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot05->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot05->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot05->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot05->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot05->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot05->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot05->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -1024,6 +1050,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot04->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot04->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot04->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot04->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot04->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot04->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot04->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -1046,6 +1073,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot03->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot03->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot03->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot03->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot03->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot03->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot03->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -1068,6 +1096,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot02->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot02->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot02->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot02->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot02->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot02->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot02->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -1090,6 +1119,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbBoxSlot01->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DragLeave);
 			this->pbBoxSlot01->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbBoxSlot_Paint);
 			this->pbBoxSlot01->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_DoubleClick);
+			this->pbBoxSlot01->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbBoxSlot_MouseDown);
 			this->pbBoxSlot01->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseEnter);
 			this->pbBoxSlot01->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseLeave);
 			this->pbBoxSlot01->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbBoxSlot_MouseHover);
@@ -1171,6 +1201,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbPartySlot06->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_DragLeave);
 			this->pbPartySlot06->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbPartySlot_Paint);
 			this->pbPartySlot06->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_DoubleClick);
+			this->pbPartySlot06->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbPartySlot_MouseDown);
 			this->pbPartySlot06->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_MouseEnter);
 			this->pbPartySlot06->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_MouseLeave);
 			this->pbPartySlot06->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_MouseHover);
@@ -1193,6 +1224,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbPartySlot05->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_DragLeave);
 			this->pbPartySlot05->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbPartySlot_Paint);
 			this->pbPartySlot05->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_DoubleClick);
+			this->pbPartySlot05->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbPartySlot_MouseDown);
 			this->pbPartySlot05->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_MouseEnter);
 			this->pbPartySlot05->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_MouseLeave);
 			this->pbPartySlot05->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_MouseHover);
@@ -1215,6 +1247,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbPartySlot04->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_DragLeave);
 			this->pbPartySlot04->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbPartySlot_Paint);
 			this->pbPartySlot04->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_DoubleClick);
+			this->pbPartySlot04->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbPartySlot_MouseDown);
 			this->pbPartySlot04->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_MouseEnter);
 			this->pbPartySlot04->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_MouseLeave);
 			this->pbPartySlot04->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_MouseHover);
@@ -1237,6 +1270,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbPartySlot03->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_DragLeave);
 			this->pbPartySlot03->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbPartySlot_Paint);
 			this->pbPartySlot03->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_DoubleClick);
+			this->pbPartySlot03->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbPartySlot_MouseDown);
 			this->pbPartySlot03->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_MouseEnter);
 			this->pbPartySlot03->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_MouseLeave);
 			this->pbPartySlot03->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_MouseHover);
@@ -1259,6 +1293,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbPartySlot02->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_DragLeave);
 			this->pbPartySlot02->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbPartySlot_Paint);
 			this->pbPartySlot02->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_DoubleClick);
+			this->pbPartySlot02->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbPartySlot_MouseDown);
 			this->pbPartySlot02->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_MouseEnter);
 			this->pbPartySlot02->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_MouseLeave);
 			this->pbPartySlot02->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_MouseHover);
@@ -1281,6 +1316,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbPartySlot01->DragLeave += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_DragLeave);
 			this->pbPartySlot01->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmBoxes::pbPartySlot_Paint);
 			this->pbPartySlot01->DoubleClick += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_DoubleClick);
+			this->pbPartySlot01->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmBoxes::pbPartySlot_MouseDown);
 			this->pbPartySlot01->MouseEnter += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_MouseEnter);
 			this->pbPartySlot01->MouseLeave += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_MouseLeave);
 			this->pbPartySlot01->MouseHover += gcnew System::EventHandler(this, &frmBoxes::pbPartySlot_MouseHover);
@@ -2702,9 +2738,42 @@ namespace PKMDS_Desktop_Win {
 				 b = new pokemon_obj;
 				 savloaded = false;
 				 form_box = new box_obj;
-
 				 pbBoxSlot01->AllowDrop = true;
 				 pbBoxSlot02->AllowDrop = true;
+				 pbBoxSlot03->AllowDrop = true;
+				 pbBoxSlot04->AllowDrop = true;
+				 pbBoxSlot05->AllowDrop = true;
+				 pbBoxSlot06->AllowDrop = true;
+				 pbBoxSlot07->AllowDrop = true;
+				 pbBoxSlot08->AllowDrop = true;
+				 pbBoxSlot09->AllowDrop = true;
+				 pbBoxSlot10->AllowDrop = true;
+				 pbBoxSlot11->AllowDrop = true;
+				 pbBoxSlot12->AllowDrop = true;
+				 pbBoxSlot13->AllowDrop = true;
+				 pbBoxSlot14->AllowDrop = true;
+				 pbBoxSlot15->AllowDrop = true;
+				 pbBoxSlot16->AllowDrop = true;
+				 pbBoxSlot17->AllowDrop = true;
+				 pbBoxSlot18->AllowDrop = true;
+				 pbBoxSlot19->AllowDrop = true;
+				 pbBoxSlot20->AllowDrop = true;
+				 pbBoxSlot21->AllowDrop = true;
+				 pbBoxSlot22->AllowDrop = true;
+				 pbBoxSlot23->AllowDrop = true;
+				 pbBoxSlot24->AllowDrop = true;
+				 pbBoxSlot25->AllowDrop = true;
+				 pbBoxSlot26->AllowDrop = true;
+				 pbBoxSlot27->AllowDrop = true;
+				 pbBoxSlot28->AllowDrop = true;
+				 pbBoxSlot29->AllowDrop = true;
+				 pbBoxSlot30->AllowDrop = true;
+				 pbPartySlot01->AllowDrop = true;
+				 pbPartySlot02->AllowDrop = true;
+				 pbPartySlot03->AllowDrop = true;
+				 pbPartySlot04->AllowDrop = true;
+				 pbPartySlot05->AllowDrop = true;
+				 pbPartySlot06->AllowDrop = true;
 
 				 //sav = 0;
 			 }
@@ -2779,7 +2848,7 @@ namespace PKMDS_Desktop_Win {
 			 {
 				 for each (System::Windows::Forms::PictureBox^ pb in tlPCBox->Controls)
 				 {
-					 pb->BorderStyle = BorderStyle::None;
+					 //pb->BorderStyle = BorderStyle::None;
 					 pb->BackColor = System::Drawing::Color::Transparent;
 					 pb->Tag = "";
 				 }
@@ -2789,7 +2858,7 @@ namespace PKMDS_Desktop_Win {
 			 {
 				 for each (System::Windows::Forms::PictureBox^ pb in tlParty->Controls)
 				 {
-					 pb->BorderStyle = BorderStyle::None;
+					 //pb->BorderStyle = BorderStyle::None;
 					 pb->BackColor = System::Drawing::Color::Transparent;
 					 pb->Tag = "";
 				 }
@@ -2944,6 +3013,7 @@ namespace PKMDS_Desktop_Win {
 			 */
 	private: System::Void loadSAVToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
+				 fileOpen->FileName = "";
 				 savloaded = false;
 				 if((fileOpen->ShowDialog() != System::Windows::Forms::DialogResult::Cancel) & (fileOpen->FileName != ""))
 				 {
@@ -2994,30 +3064,20 @@ namespace PKMDS_Desktop_Win {
 			 }
 	private: System::Void pbBoxSlot_DragDrop(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e)
 			 {
-
-				 //void pictureBox2_DragEnter(object sender, DragEventArgs e) {
-				 //if (e.Data.GetDataPresent(DataFormats.Bitmap))
-				 //e.Effect = DragDropEffects.Move;
-				 //}
-
-				 //void pictureBox2_DragDrop(object sender, DragEventArgs e) {
-				 //var bmp = (Bitmap)e.Data.GetData(DataFormats.Bitmap);
-				 //pictureBox2.Image = bmp;
-
-				 //if(savloaded)
-				 //{
-				 // System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
-				 Object ^ obj = e->Data->GetData(DataFormats::FileDrop, false);
-
-				 MessageBox::Show(obj->GetType()->ToString());
-
-				 // //String *s[] = (String *[]) e->Data->GetData(DataFormats::FileDrop, false);
-				 // //int i;
-				 // //for(i = 0; i < s->Length; i++)
-				 // //{
-				 // //listBox1->Items->Add(s[i]);
-				 // //}
-				 //}
+				 if(savloaded)
+				 {
+					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
+					 int slot;
+					 if(int::TryParse(pb->Name->Substring(pb->Name->Length - 2, 2), slot))
+					 {
+						 pkm = &(form_box->pokemon[slot-1]);
+					 }
+					 IntPtr ^ ipt = safe_cast<IntPtr^>(e->Data->GetData("Pokemon",true));
+					 pokemon_obj * apkm = reinterpret_cast<pokemon_obj*>(ipt->ToPointer());
+					 swap_pkm(pkm,apkm);
+					 refreshparty();
+					 refreshbox();
+				 }
 			 }
 	private: System::Void pbBoxSlot_DoubleClick(System::Object^  sender, System::EventArgs^  e)
 			 {
@@ -3026,7 +3086,7 @@ namespace PKMDS_Desktop_Win {
 					 clearpartyslotselection();
 					 clearboxslotselection();
 					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
-					 pb->BorderStyle = BorderStyle::FixedSingle;
+					 //pb->BorderStyle = BorderStyle::FixedSingle;
 					 pb->Tag = "Selected";
 					 int slot;
 					 if(int::TryParse(pb->Name->Substring(pb->Name->Length - 2, 2), slot))
@@ -3038,7 +3098,6 @@ namespace PKMDS_Desktop_Win {
 						 }
 						 if(pkm->species != 0)
 						 {
-							 //MessageBox::Show(gcnew System::String(lookuppkmname(pkm).c_str()));
 							 displaypkm(pkm);
 						 }
 					 }
@@ -3046,29 +3105,17 @@ namespace PKMDS_Desktop_Win {
 			 }
 	private: System::Void pbBoxSlot_DragEnter(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e)
 			 {
-
-				 //void pictureBox2_DragEnter(object sender, DragEventArgs e) {
-				 //if (e.Data.GetDataPresent(DataFormats.Bitmap))
-				 //e.Effect = DragDropEffects.Move;
-				 //}
-
-				 //void pictureBox2_DragDrop(object sender, DragEventArgs e) {
-				 //var bmp = (Bitmap)e.Data.GetData(DataFormats.Bitmap);
-				 //pictureBox2.Image = bmp;
-				 //}
-
-				 //if(savloaded)
-				 //{
-				 // System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
-				 if(e->Data->GetDataPresent(DataFormats::FileDrop))
+				 if(savloaded)
 				 {
-					 e->Effect = DragDropEffects::All;
+					 if(e->Data->GetDataPresent("Pokemon"))
+					 {
+						 e->Effect = DragDropEffects::All;
+					 }
+					 else
+					 {
+						 e->Effect = DragDropEffects::None;
+					 }
 				 }
-				 else
-				 {
-					 e->Effect = DragDropEffects::None;
-				 }
-				 //}
 			 }
 	private: System::Void pbBoxSlot_DragLeave(System::Object^  sender, System::EventArgs^  e) 
 			 {
@@ -3105,6 +3152,34 @@ namespace PKMDS_Desktop_Win {
 				 // }
 				 //}
 			 }
+	private: System::Void pbBoxSlot_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) 
+			 {
+				 if(savloaded)
+				 {
+					 if(e->Clicks <= 1)
+					 {
+						 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
+						 int slot;
+						 if(int::TryParse(pb->Name->Substring(pb->Name->Length - 2, 2), slot))
+						 {
+							 a = &(form_box->pokemon[slot-1]);
+							 if(!((bool)a->isboxdatadecrypted))
+							 {
+								 decryptpkm(a);
+							 }
+							 if(a->species != 0)
+							 {
+								 IntPtr ^ ipt = gcnew IntPtr(a);
+								 DataObject ^ d = gcnew DataObject("Pokemon",ipt);
+								 /*if (*/DoDragDrop(d, DragDropEffects::Move)/* == DragDropEffects::Move)*/;
+								 //{
+
+								 //}
+							 }
+						 }
+					 }
+				 }
+			 }
 
 	private: System::Void pbPartySlot_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
@@ -3120,7 +3195,7 @@ namespace PKMDS_Desktop_Win {
 					 clearpartyslotselection();
 					 clearboxslotselection();
 					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
-					 pb->BorderStyle = BorderStyle::FixedSingle;
+					 //pb->BorderStyle = BorderStyle::FixedSingle;
 					 pb->Tag = "Selected";
 					 int slot;
 					 if(int::TryParse(pb->Name->Substring(pb->Name->Length - 2, 2), slot))
@@ -3147,15 +3222,30 @@ namespace PKMDS_Desktop_Win {
 				 if(savloaded)
 				 {
 					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
-
+					 int slot;
+					 if(int::TryParse(pb->Name->Substring(pb->Name->Length - 2, 2), slot))
+					 {
+						 pkm = &(sav->cur.party.pokemon[slot-1].pkm_data);
+					 }
+					 IntPtr ^ ipt = safe_cast<IntPtr^>(e->Data->GetData("Pokemon",true));
+					 pokemon_obj * apkm = reinterpret_cast<pokemon_obj*>(ipt->ToPointer());
+					 swap_pkm(pkm,apkm);
+					 refreshparty();
+					 refreshbox();
 				 }
 			 }
 	private: System::Void pbPartySlot_DragEnter(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e)
 			 {
 				 if(savloaded)
 				 {
-					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
-
+					 if(e->Data->GetDataPresent("Pokemon"))
+					 {
+						 e->Effect = DragDropEffects::All;
+					 }
+					 else
+					 {
+						 e->Effect = DragDropEffects::None;
+					 }
 				 }
 			 }
 	private: System::Void pbPartySlot_DragLeave(System::Object^  sender, System::EventArgs^  e)
@@ -3211,6 +3301,34 @@ namespace PKMDS_Desktop_Win {
 					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
 				 }
 
+			 }
+	private: System::Void pbPartySlot_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) 
+			 {
+				 if(savloaded)
+				 {
+					 if(e->Clicks <= 1)
+					 {
+						 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
+						 int slot;
+						 if(int::TryParse(pb->Name->Substring(pb->Name->Length - 2, 2), slot))
+						 {
+							 a = &(sav->cur.party.pokemon[slot-1].pkm_data);
+							 if(!((bool)a->isboxdatadecrypted))
+							 {
+								 decryptpkm(a);
+							 }
+							 if(a->species != 0)
+							 {
+								 IntPtr ^ ipt = gcnew IntPtr(a);
+								 DataObject ^ d = gcnew DataObject("Pokemon",ipt);
+								 /*if (*/DoDragDrop(d, DragDropEffects::Move)/* == DragDropEffects::Move)*/;
+								 //{
+
+								 //}
+							 }
+						 }
+					 }
+				 }
 			 }
 
 	private: System::Void pbBox_MouseEnter(System::Object^  sender, System::EventArgs^  e)
@@ -3312,41 +3430,13 @@ namespace PKMDS_Desktop_Win {
 
 			 }
 
-	private: void pictureBox1_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e)
-			 {
-				 if(savloaded)
-				 {
-					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
-					 int slot;
-					 if(int::TryParse(pb->Name->Substring(pb->Name->Length - 2, 2), slot))
-					 {
-						 a = &(form_box->pokemon[slot-1]);
-						 if(!((bool)a->isboxdatadecrypted))
-						 {
-							 decryptpkm(a);
-						 }
-						 if(a->species != 0)
-						 {
-							 //var img = pictureBox1.Image;
-							 //pokemon_obj * pkmpnt = new pokemon_obj;
-							 //if (img == null) return;
-							 if (DoDragDrop(a, DragDropEffects::Move) == DragDropEffects::Move) 
-							 {
-								 //pictureBox1.Image = null;
-								 refreshparty();
-								 refreshbox();
-							 }
-						 }
-					 }
-				 }
-			 }
-
 	private: System::Void scMain_Panel2_MouseEnter(System::Object^  sender, System::EventArgs^  e) 
 			 {
 				 clearboxselection(false);
 			 }
 	private: System::Void saveToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
+				 fileSave->FileName = "";
 				 if((fileSave->ShowDialog() != System::Windows::Forms::DialogResult::Cancel) & (fileSave->FileName != ""))
 				 {
 					 bw2sav_obj * savout = new bw2sav_obj;
@@ -3355,9 +3445,13 @@ namespace PKMDS_Desktop_Win {
 					 savout->cur.block1checksum = getchecksum(&(savout->cur),0x0,0x3e0);
 					 for(uint32 pslot = 0; pslot < savout->cur.party.size; pslot++)
 					 {
-						 if(!((bool)(savout->cur.party.pokemon[pslot]).pkm_data.ispartydatadecrypted))
+						 if((bool)(savout->cur.party.pokemon[pslot].pkm_data.ispartydatadecrypted) && (bool)(savout->cur.party.pokemon[pslot].pkm_data.isboxdatadecrypted))
 						 {
 							 encryptpkm(&(savout->cur.party.pokemon[pslot]));
+						 }
+						 if((bool)(savout->cur.party.pokemon[pslot].pkm_data.isboxdatadecrypted))
+						 {
+							 encryptpkm(&(savout->cur.party.pokemon[pslot].pkm_data));
 						 }
 					 }
 					 calcpartychecksum(&(savout->cur));
@@ -3365,7 +3459,7 @@ namespace PKMDS_Desktop_Win {
 					 {
 						 for(int boxslot = 0; boxslot < 30; boxslot++)
 						 {
-							 if(((bool)(savout->cur.boxes[boxnum].pokemon[boxslot]).isboxdatadecrypted))
+							 if((bool)(savout->cur.boxes[boxnum].pokemon[boxslot].isboxdatadecrypted))
 							 {
 								 encryptpkm(&(savout->cur.boxes[boxnum].pokemon[boxslot]));
 							 }
