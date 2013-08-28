@@ -120,11 +120,9 @@
     <ResourceCompile Include="app.rc" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\..\PKMDS_Desktop_Win\PKMDS_Desktop_Win\frmBoxes.resX" />
     <EmbeddedResource Include="..\..\PKMDS_Desktop_Win\PKMDS_Desktop_Win\frmBoxes.resX">
       <DependentUpon>frmBoxes.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\..\PKMDS_Desktop_Win\PKMDS_Desktop_Win\frmPKMViewer.resx" />
     <EmbeddedResource Include="..\..\PKMDS_Desktop_Win\PKMDS_Desktop_Win\frmPKMViewer.resx">
       <DependentUpon>frmPKMViewer.h</DependentUpon>
     </EmbeddedResource>
