@@ -107,8 +107,12 @@
     <ClInclude Include="..\..\include\pkmds\pokeprng.h" />
     <ClInclude Include="..\..\include\pkmds\stdafx.h" />
     <ClInclude Include="..\..\include\pkmds\wondercard.h" />
-    <ClInclude Include="..\..\PKMDS_Desktop_Win\PKMDS_Desktop_Win\frmBoxes.h" />
-    <ClInclude Include="..\..\PKMDS_Desktop_Win\PKMDS_Desktop_Win\frmPKMViewer.h" />
+    <ClInclude Include="..\..\PKMDS_Desktop_Win\PKMDS_Desktop_Win\frmBoxes.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="..\..\PKMDS_Desktop_Win\PKMDS_Desktop_Win\frmPKMViewer.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="..\..\Visual_Studio\vs_sqlite.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
@@ -117,7 +121,13 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\PKMDS_Desktop_Win\PKMDS_Desktop_Win\frmBoxes.resX" />
+    <EmbeddedResource Include="..\..\PKMDS_Desktop_Win\PKMDS_Desktop_Win\frmBoxes.resX">
+      <DependentUpon>frmBoxes.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="..\..\PKMDS_Desktop_Win\PKMDS_Desktop_Win\frmPKMViewer.resx" />
+    <EmbeddedResource Include="..\..\PKMDS_Desktop_Win\PKMDS_Desktop_Win\frmPKMViewer.resx">
+      <DependentUpon>frmPKMViewer.h</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
