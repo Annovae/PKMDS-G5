@@ -560,7 +560,7 @@ namespace PKMDS_Desktop_Win {
 			getitemsql(itemsql,(uint16)temppkm->item);
 			pbItem->Image = (pviewvsqlite->getSQLImage(itemsql.str()));
 			cbSpecies->SelectedIndex = cbSpecies->FindString(gcnew System::String(lookuppkmname(temppkm).c_str()))/*(int)(temppkm->species)-1*/;
-			numSpecies->Value = (Decimal)(temppkm->species);
+			numSpecies->Value = Convert::ToDecimal((UInt16)(temppkm->species));
 
 			redisplayok = true;
 		}
@@ -686,7 +686,7 @@ namespace PKMDS_Desktop_Win {
 					 temppkm->species = (Species::pkmspecies)(Convert::ToUInt16(cbSpecies->SelectedValue));
 					 refreshsprite();
 					 redisplayok = false;
-					 numSpecies->Value = (Decimal)(temppkm->species);
+					 numSpecies->Value = Convert::ToDecimal((UInt16)(temppkm->species));
 					 redisplayok = true;
 				 }
 			 }
