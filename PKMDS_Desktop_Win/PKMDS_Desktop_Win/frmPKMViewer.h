@@ -2458,17 +2458,22 @@ namespace PKMDS_Desktop_Win {
 			txtMove3TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,2));
 			txtMove4TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,3));
 			refreshnatureeffect();
+			numEXP->Value = temppkm->exp;
+			numLevel->Value = getpkmlevel(temppkm);
+			txtCalcHP->Text = System::Convert::ToString(getpkmstat(temppkm,Stat_IDs::hp));
+			txtCalcAttack->Text = System::Convert::ToString(getpkmstat(temppkm,Stat_IDs::attack));
+			txtCalcDefense->Text = System::Convert::ToString(getpkmstat(temppkm,Stat_IDs::defense));
+			txtCalcSpAtk->Text = System::Convert::ToString(getpkmstat(temppkm,Stat_IDs::spatk));
+			txtCalcSpDef->Text = System::Convert::ToString(getpkmstat(temppkm,Stat_IDs::spdef));
+			txtCalcSpeed->Text = System::Convert::ToString(getpkmstat(temppkm,Stat_IDs::speed));
+			txtPID->Text = System::Convert::ToString(temppkm->pid);
 
 			/*
 			Type
-			EXP
-			Level
-			Ball
 			PKRS
-			Calc Stats
-			PID
 			Move Types
 			Move Cats
+			Ball
 			*/
 			redisplayok = true;
 		}
