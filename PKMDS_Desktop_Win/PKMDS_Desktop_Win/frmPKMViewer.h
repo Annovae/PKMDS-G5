@@ -72,6 +72,30 @@ namespace PKMDS_Desktop_Win {
 	private: System::Windows::Forms::NumericUpDown^  numSpecies;
 	private: System::Windows::Forms::ComboBox^  cbSpecies;
 	private: System::Windows::Forms::PictureBox^  pbItem;
+	private: System::Windows::Forms::GroupBox^  gbOT;
+	private: System::Windows::Forms::TextBox^  txtNickname;
+	private: System::Windows::Forms::CheckBox^  chkNicknamed;
+	private: System::Windows::Forms::Label^  lblNickname;
+	private: System::Windows::Forms::RadioButton^  rbFemale;
+	private: System::Windows::Forms::RadioButton^  rbMale;
+	private: System::Windows::Forms::Label^  lblOTName;
+
+	private: System::Windows::Forms::TextBox^  textBox1;
+	private: System::Windows::Forms::NumericUpDown^  numTID;
+	private: System::Windows::Forms::Label^  lblTrainerID;
+	private: System::Windows::Forms::NumericUpDown^  numSID;
+	private: System::Windows::Forms::Label^  lblSecretID;
+	private: System::Windows::Forms::NumericUpDown^  numericUpDown1;
+	private: System::Windows::Forms::Label^  lblEXP;
+	private: System::Windows::Forms::PictureBox^  pbType2;
+	private: System::Windows::Forms::PictureBox^  pbType1;
+	private: System::Windows::Forms::Label^  lblType;
+	private: System::Windows::Forms::ComboBox^  cbAbility;
+
+	private: System::Windows::Forms::Label^  lblAbility;
+	private: System::Windows::Forms::Label^  lblTNL;
+	private: System::Windows::Forms::ProgressBar^  pbTNL;
+	private: System::Windows::Forms::GroupBox^  gbIVs;
 
 
 
@@ -125,6 +149,28 @@ namespace PKMDS_Desktop_Win {
 			this->tpOrigins = (gcnew System::Windows::Forms::TabPage());
 			this->tpRibbons = (gcnew System::Windows::Forms::TabPage());
 			this->tpMisc = (gcnew System::Windows::Forms::TabPage());
+			this->gbOT = (gcnew System::Windows::Forms::GroupBox());
+			this->txtNickname = (gcnew System::Windows::Forms::TextBox());
+			this->chkNicknamed = (gcnew System::Windows::Forms::CheckBox());
+			this->lblNickname = (gcnew System::Windows::Forms::Label());
+			this->lblOTName = (gcnew System::Windows::Forms::Label());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->rbMale = (gcnew System::Windows::Forms::RadioButton());
+			this->rbFemale = (gcnew System::Windows::Forms::RadioButton());
+			this->lblTrainerID = (gcnew System::Windows::Forms::Label());
+			this->numTID = (gcnew System::Windows::Forms::NumericUpDown());
+			this->numSID = (gcnew System::Windows::Forms::NumericUpDown());
+			this->lblSecretID = (gcnew System::Windows::Forms::Label());
+			this->numericUpDown1 = (gcnew System::Windows::Forms::NumericUpDown());
+			this->lblEXP = (gcnew System::Windows::Forms::Label());
+			this->lblType = (gcnew System::Windows::Forms::Label());
+			this->pbType1 = (gcnew System::Windows::Forms::PictureBox());
+			this->pbType2 = (gcnew System::Windows::Forms::PictureBox());
+			this->lblAbility = (gcnew System::Windows::Forms::Label());
+			this->cbAbility = (gcnew System::Windows::Forms::ComboBox());
+			this->lblTNL = (gcnew System::Windows::Forms::Label());
+			this->pbTNL = (gcnew System::Windows::Forms::ProgressBar());
+			this->gbIVs = (gcnew System::Windows::Forms::GroupBox());
 			this->tlViewer->SuspendLayout();
 			this->panGeneral->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbItem))->BeginInit();
@@ -141,6 +187,14 @@ namespace PKMDS_Desktop_Win {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbGender))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbSprite))->BeginInit();
 			this->tcViewer->SuspendLayout();
+			this->tpBasic->SuspendLayout();
+			this->tpStats->SuspendLayout();
+			this->gbOT->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numTID))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numSID))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numericUpDown1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbType1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbType2))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// tlViewer
@@ -276,7 +330,8 @@ namespace PKMDS_Desktop_Win {
 			// pbDiamond
 			// 
 			this->pbDiamond->BackColor = System::Drawing::Color::Transparent;
-			this->pbDiamond->Location = System::Drawing::Point(135, 134);
+			this->pbDiamond->Location = System::Drawing::Point(120, 134);
+			this->pbDiamond->Margin = System::Windows::Forms::Padding(0);
 			this->pbDiamond->Name = L"pbDiamond";
 			this->pbDiamond->Size = System::Drawing::Size(20, 20);
 			this->pbDiamond->SizeMode = System::Windows::Forms::PictureBoxSizeMode::CenterImage;
@@ -287,7 +342,8 @@ namespace PKMDS_Desktop_Win {
 			// pbStar
 			// 
 			this->pbStar->BackColor = System::Drawing::Color::Transparent;
-			this->pbStar->Location = System::Drawing::Point(109, 134);
+			this->pbStar->Location = System::Drawing::Point(100, 134);
+			this->pbStar->Margin = System::Windows::Forms::Padding(0);
 			this->pbStar->Name = L"pbStar";
 			this->pbStar->Size = System::Drawing::Size(20, 20);
 			this->pbStar->SizeMode = System::Windows::Forms::PictureBoxSizeMode::CenterImage;
@@ -298,7 +354,8 @@ namespace PKMDS_Desktop_Win {
 			// pbHeart
 			// 
 			this->pbHeart->BackColor = System::Drawing::Color::Transparent;
-			this->pbHeart->Location = System::Drawing::Point(83, 134);
+			this->pbHeart->Location = System::Drawing::Point(80, 134);
+			this->pbHeart->Margin = System::Windows::Forms::Padding(0);
 			this->pbHeart->Name = L"pbHeart";
 			this->pbHeart->Size = System::Drawing::Size(20, 20);
 			this->pbHeart->SizeMode = System::Windows::Forms::PictureBoxSizeMode::CenterImage;
@@ -309,7 +366,8 @@ namespace PKMDS_Desktop_Win {
 			// pbSquare
 			// 
 			this->pbSquare->BackColor = System::Drawing::Color::Transparent;
-			this->pbSquare->Location = System::Drawing::Point(57, 134);
+			this->pbSquare->Location = System::Drawing::Point(60, 134);
+			this->pbSquare->Margin = System::Windows::Forms::Padding(0);
 			this->pbSquare->Name = L"pbSquare";
 			this->pbSquare->Size = System::Drawing::Size(20, 20);
 			this->pbSquare->SizeMode = System::Windows::Forms::PictureBoxSizeMode::CenterImage;
@@ -320,7 +378,8 @@ namespace PKMDS_Desktop_Win {
 			// pbTriangle
 			// 
 			this->pbTriangle->BackColor = System::Drawing::Color::Transparent;
-			this->pbTriangle->Location = System::Drawing::Point(31, 134);
+			this->pbTriangle->Location = System::Drawing::Point(40, 134);
+			this->pbTriangle->Margin = System::Windows::Forms::Padding(0);
 			this->pbTriangle->Name = L"pbTriangle";
 			this->pbTriangle->Size = System::Drawing::Size(20, 20);
 			this->pbTriangle->SizeMode = System::Windows::Forms::PictureBoxSizeMode::CenterImage;
@@ -331,7 +390,8 @@ namespace PKMDS_Desktop_Win {
 			// pbCircle
 			// 
 			this->pbCircle->BackColor = System::Drawing::Color::Transparent;
-			this->pbCircle->Location = System::Drawing::Point(5, 134);
+			this->pbCircle->Location = System::Drawing::Point(20, 134);
+			this->pbCircle->Margin = System::Windows::Forms::Padding(0);
 			this->pbCircle->Name = L"pbCircle";
 			this->pbCircle->Size = System::Drawing::Size(20, 20);
 			this->pbCircle->SizeMode = System::Windows::Forms::PictureBoxSizeMode::CenterImage;
@@ -407,6 +467,19 @@ namespace PKMDS_Desktop_Win {
 			// 
 			// tpBasic
 			// 
+			this->tpBasic->Controls->Add(this->pbTNL);
+			this->tpBasic->Controls->Add(this->lblTNL);
+			this->tpBasic->Controls->Add(this->cbAbility);
+			this->tpBasic->Controls->Add(this->lblAbility);
+			this->tpBasic->Controls->Add(this->pbType2);
+			this->tpBasic->Controls->Add(this->pbType1);
+			this->tpBasic->Controls->Add(this->lblType);
+			this->tpBasic->Controls->Add(this->numericUpDown1);
+			this->tpBasic->Controls->Add(this->lblEXP);
+			this->tpBasic->Controls->Add(this->lblNickname);
+			this->tpBasic->Controls->Add(this->chkNicknamed);
+			this->tpBasic->Controls->Add(this->txtNickname);
+			this->tpBasic->Controls->Add(this->gbOT);
 			this->tpBasic->Location = System::Drawing::Point(4, 22);
 			this->tpBasic->Name = L"tpBasic";
 			this->tpBasic->Padding = System::Windows::Forms::Padding(3);
@@ -417,6 +490,7 @@ namespace PKMDS_Desktop_Win {
 			// 
 			// tpStats
 			// 
+			this->tpStats->Controls->Add(this->gbIVs);
 			this->tpStats->Location = System::Drawing::Point(4, 22);
 			this->tpStats->Name = L"tpStats";
 			this->tpStats->Padding = System::Windows::Forms::Padding(3);
@@ -461,6 +535,211 @@ namespace PKMDS_Desktop_Win {
 			this->tpMisc->Text = L"Misc";
 			this->tpMisc->UseVisualStyleBackColor = true;
 			// 
+			// gbOT
+			// 
+			this->gbOT->Controls->Add(this->numSID);
+			this->gbOT->Controls->Add(this->lblSecretID);
+			this->gbOT->Controls->Add(this->numTID);
+			this->gbOT->Controls->Add(this->lblTrainerID);
+			this->gbOT->Controls->Add(this->rbFemale);
+			this->gbOT->Controls->Add(this->rbMale);
+			this->gbOT->Controls->Add(this->lblOTName);
+			this->gbOT->Controls->Add(this->textBox1);
+			this->gbOT->Location = System::Drawing::Point(6, 32);
+			this->gbOT->Name = L"gbOT";
+			this->gbOT->Size = System::Drawing::Size(279, 87);
+			this->gbOT->TabIndex = 0;
+			this->gbOT->TabStop = false;
+			this->gbOT->Text = L"OT";
+			// 
+			// txtNickname
+			// 
+			this->txtNickname->Location = System::Drawing::Point(71, 6);
+			this->txtNickname->Name = L"txtNickname";
+			this->txtNickname->Size = System::Drawing::Size(128, 20);
+			this->txtNickname->TabIndex = 1;
+			// 
+			// chkNicknamed
+			// 
+			this->chkNicknamed->AutoSize = true;
+			this->chkNicknamed->Location = System::Drawing::Point(205, 8);
+			this->chkNicknamed->Name = L"chkNicknamed";
+			this->chkNicknamed->Size = System::Drawing::Size(80, 17);
+			this->chkNicknamed->TabIndex = 2;
+			this->chkNicknamed->Text = L"Nicknamed";
+			this->chkNicknamed->UseVisualStyleBackColor = true;
+			// 
+			// lblNickname
+			// 
+			this->lblNickname->AutoSize = true;
+			this->lblNickname->Location = System::Drawing::Point(6, 10);
+			this->lblNickname->Name = L"lblNickname";
+			this->lblNickname->Size = System::Drawing::Size(55, 13);
+			this->lblNickname->TabIndex = 3;
+			this->lblNickname->Text = L"Nickname";
+			// 
+			// lblOTName
+			// 
+			this->lblOTName->AutoSize = true;
+			this->lblOTName->Location = System::Drawing::Point(6, 16);
+			this->lblOTName->Name = L"lblOTName";
+			this->lblOTName->Size = System::Drawing::Size(53, 13);
+			this->lblOTName->TabIndex = 5;
+			this->lblOTName->Text = L"OT Name";
+			// 
+			// textBox1
+			// 
+			this->textBox1->Location = System::Drawing::Point(65, 13);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(128, 20);
+			this->textBox1->TabIndex = 4;
+			// 
+			// rbMale
+			// 
+			this->rbMale->AutoSize = true;
+			this->rbMale->Location = System::Drawing::Point(214, 18);
+			this->rbMale->Name = L"rbMale";
+			this->rbMale->Size = System::Drawing::Size(48, 17);
+			this->rbMale->TabIndex = 6;
+			this->rbMale->TabStop = true;
+			this->rbMale->Text = L"Male";
+			this->rbMale->UseVisualStyleBackColor = true;
+			// 
+			// rbFemale
+			// 
+			this->rbFemale->AutoSize = true;
+			this->rbFemale->Location = System::Drawing::Point(214, 41);
+			this->rbFemale->Name = L"rbFemale";
+			this->rbFemale->Size = System::Drawing::Size(59, 17);
+			this->rbFemale->TabIndex = 7;
+			this->rbFemale->TabStop = true;
+			this->rbFemale->Text = L"Female";
+			this->rbFemale->UseVisualStyleBackColor = true;
+			// 
+			// lblTrainerID
+			// 
+			this->lblTrainerID->AutoSize = true;
+			this->lblTrainerID->Location = System::Drawing::Point(62, 43);
+			this->lblTrainerID->Name = L"lblTrainerID";
+			this->lblTrainerID->Size = System::Drawing::Size(54, 13);
+			this->lblTrainerID->TabIndex = 8;
+			this->lblTrainerID->Text = L"Trainer ID";
+			// 
+			// numTID
+			// 
+			this->numTID->Location = System::Drawing::Point(65, 59);
+			this->numTID->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {65535, 0, 0, 0});
+			this->numTID->Name = L"numTID";
+			this->numTID->Size = System::Drawing::Size(52, 20);
+			this->numTID->TabIndex = 9;
+			this->numTID->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::numTID_ValueChanged);
+			// 
+			// numSID
+			// 
+			this->numSID->Location = System::Drawing::Point(123, 59);
+			this->numSID->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {65535, 0, 0, 0});
+			this->numSID->Name = L"numSID";
+			this->numSID->Size = System::Drawing::Size(52, 20);
+			this->numSID->TabIndex = 11;
+			// 
+			// lblSecretID
+			// 
+			this->lblSecretID->AutoSize = true;
+			this->lblSecretID->Location = System::Drawing::Point(122, 43);
+			this->lblSecretID->Name = L"lblSecretID";
+			this->lblSecretID->Size = System::Drawing::Size(52, 13);
+			this->lblSecretID->TabIndex = 10;
+			this->lblSecretID->Text = L"Secret ID";
+			// 
+			// numericUpDown1
+			// 
+			this->numericUpDown1->Location = System::Drawing::Point(40, 159);
+			this->numericUpDown1->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {65535, 0, 0, 0});
+			this->numericUpDown1->Name = L"numericUpDown1";
+			this->numericUpDown1->Size = System::Drawing::Size(89, 20);
+			this->numericUpDown1->TabIndex = 11;
+			// 
+			// lblEXP
+			// 
+			this->lblEXP->AutoSize = true;
+			this->lblEXP->Location = System::Drawing::Point(6, 161);
+			this->lblEXP->Name = L"lblEXP";
+			this->lblEXP->Size = System::Drawing::Size(28, 13);
+			this->lblEXP->TabIndex = 10;
+			this->lblEXP->Text = L"EXP";
+			// 
+			// lblType
+			// 
+			this->lblType->AutoSize = true;
+			this->lblType->Location = System::Drawing::Point(6, 125);
+			this->lblType->Name = L"lblType";
+			this->lblType->Size = System::Drawing::Size(31, 13);
+			this->lblType->TabIndex = 12;
+			this->lblType->Text = L"Type";
+			// 
+			// pbType1
+			// 
+			this->pbType1->BackColor = System::Drawing::Color::Transparent;
+			this->pbType1->Location = System::Drawing::Point(43, 125);
+			this->pbType1->Name = L"pbType1";
+			this->pbType1->Size = System::Drawing::Size(40, 20);
+			this->pbType1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::CenterImage;
+			this->pbType1->TabIndex = 13;
+			this->pbType1->TabStop = false;
+			// 
+			// pbType2
+			// 
+			this->pbType2->BackColor = System::Drawing::Color::Transparent;
+			this->pbType2->Location = System::Drawing::Point(89, 125);
+			this->pbType2->Name = L"pbType2";
+			this->pbType2->Size = System::Drawing::Size(40, 20);
+			this->pbType2->SizeMode = System::Windows::Forms::PictureBoxSizeMode::CenterImage;
+			this->pbType2->TabIndex = 14;
+			this->pbType2->TabStop = false;
+			// 
+			// lblAbility
+			// 
+			this->lblAbility->AutoSize = true;
+			this->lblAbility->Location = System::Drawing::Point(135, 128);
+			this->lblAbility->Name = L"lblAbility";
+			this->lblAbility->Size = System::Drawing::Size(34, 13);
+			this->lblAbility->TabIndex = 15;
+			this->lblAbility->Text = L"Ability";
+			// 
+			// cbAbility
+			// 
+			this->cbAbility->FormattingEnabled = true;
+			this->cbAbility->Location = System::Drawing::Point(175, 125);
+			this->cbAbility->Name = L"cbAbility";
+			this->cbAbility->Size = System::Drawing::Size(110, 21);
+			this->cbAbility->TabIndex = 19;
+			// 
+			// lblTNL
+			// 
+			this->lblTNL->AutoSize = true;
+			this->lblTNL->Location = System::Drawing::Point(6, 186);
+			this->lblTNL->Name = L"lblTNL";
+			this->lblTNL->Size = System::Drawing::Size(74, 13);
+			this->lblTNL->TabIndex = 20;
+			this->lblTNL->Text = L"To Next Level";
+			// 
+			// pbTNL
+			// 
+			this->pbTNL->Location = System::Drawing::Point(6, 202);
+			this->pbTNL->Name = L"pbTNL";
+			this->pbTNL->Size = System::Drawing::Size(279, 23);
+			this->pbTNL->Style = System::Windows::Forms::ProgressBarStyle::Continuous;
+			this->pbTNL->TabIndex = 21;
+			// 
+			// gbIVs
+			// 
+			this->gbIVs->Location = System::Drawing::Point(6, 6);
+			this->gbIVs->Name = L"gbIVs";
+			this->gbIVs->Size = System::Drawing::Size(95, 152);
+			this->gbIVs->TabIndex = 0;
+			this->gbIVs->TabStop = false;
+			this->gbIVs->Text = L"groupBox1";
+			// 
 			// frmPKMViewer
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -490,6 +769,16 @@ namespace PKMDS_Desktop_Win {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbGender))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbSprite))->EndInit();
 			this->tcViewer->ResumeLayout(false);
+			this->tpBasic->ResumeLayout(false);
+			this->tpBasic->PerformLayout();
+			this->tpStats->ResumeLayout(false);
+			this->gbOT->ResumeLayout(false);
+			this->gbOT->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numTID))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numSID))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numericUpDown1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbType1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbType2))->EndInit();
 			this->ResumeLayout(false);
 
 		}
@@ -706,5 +995,7 @@ namespace PKMDS_Desktop_Win {
 
 				 }
 			 }
-	};
+	private: System::Void numTID_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
+			 }
+};
 }
