@@ -2302,6 +2302,59 @@ namespace PKMDS_Desktop_Win {
 			getspritesql(SQL,temppkm);
 			pbSprite->Image = pviewvsqlite->getSQLImage(SQL.str());
 		}
+		void refreshnatureeffect()
+		{
+			lblAttackIV->ForeColor = Color::Black;
+			lblDefenseIV->ForeColor = Color::Black;
+			lblSpAtkIV->ForeColor = Color::Black;
+			lblSpDefIV->ForeColor = Color::Black;
+			lblSpeedIV->ForeColor = Color::Black;
+			int inc = getnatureincrease(temppkm);
+			int dec = getnaturedecrease(temppkm);
+			if(inc != dec)
+			{
+				switch((Stat_IDs::stat_ids)(inc))
+				{
+				case Stat_IDs::attack:
+					lblAttackIV->ForeColor = Color::Red;
+					break;
+				case Stat_IDs::defense:
+					lblDefenseIV->ForeColor = Color::Red;
+					break;
+				case Stat_IDs::spatk:
+					lblSpAtkIV->ForeColor = Color::Red;
+					break;
+				case Stat_IDs::spdef:
+					lblSpDefIV->ForeColor = Color::Red;
+					break;
+				case Stat_IDs::speed:
+					lblSpeedIV->ForeColor = Color::Red;
+					break;
+				default:
+					break;
+				}
+				switch((Stat_IDs::stat_ids)(dec))
+				{
+				case Stat_IDs::attack:
+					lblAttackIV->ForeColor = Color::Blue;
+					break;
+				case Stat_IDs::defense:
+					lblDefenseIV->ForeColor = Color::Blue;
+					break;
+				case Stat_IDs::spatk:
+					lblSpAtkIV->ForeColor = Color::Blue;
+					break;
+				case Stat_IDs::spdef:
+					lblSpDefIV->ForeColor = Color::Blue;
+					break;
+				case Stat_IDs::speed:
+					lblSpeedIV->ForeColor = Color::Blue;
+					break;
+				default:
+					break;
+				}
+			}
+		}
 		void displayPKM()
 		{
 			refreshsprite();
@@ -2358,34 +2411,65 @@ namespace PKMDS_Desktop_Win {
 			pbItem->Image = (pviewvsqlite->getSQLImage(itemsql.str()));
 			cbSpecies->SelectedIndex = cbSpecies->FindString(gcnew System::String(lookuppkmname(temppkm).c_str()))/*(int)(temppkm->species)-1*/;
 			numSpecies->Value = Convert::ToDecimal((UInt16)(temppkm->species));
+			txtNickname->Text = gcnew System::String(getpkmnickname(temppkm).c_str());
+			txtOTName->Text = gcnew System::String(getpkmotname(temppkm).c_str());
+			if(temppkm->metlevel_otgender.otgender == Genders::female)
+			{
+				rbOTFemale->Checked = true;
+				txtOTName->ForeColor = Color::Red;
+			}
+			else
+			{
+				rbOTMale->Checked = true;
+				txtOTName->ForeColor = Color::Blue;
+			}
+			chkNicknamed->Checked = (bool)(temppkm->ivs.isnicknamed);
+			numTID->Value = temppkm->tid;
+			numSID->Value = temppkm->sid;
+			cbMove1->SelectedIndex = cbMove1->FindString(gcnew System::String(lookupmovename(temppkm,0).c_str()));
+			if(temppkm->moves[1] != Moves::NOTHING){ cbMove2->SelectedIndex = cbMove2->FindString(gcnew System::String(lookupmovename(temppkm,1).c_str()));}
+			if(temppkm->moves[2] != Moves::NOTHING){ cbMove3->SelectedIndex = cbMove3->FindString(gcnew System::String(lookupmovename(temppkm,2).c_str()));}
+			if(temppkm->moves[3] != Moves::NOTHING){ cbMove4->SelectedIndex = cbMove4->FindString(gcnew System::String(lookupmovename(temppkm,3).c_str()));}
+			cbNature->SelectedIndex = cbNature->FindString(gcnew System::String(getnaturename(temppkm).c_str()));
+			cbAbility->SelectedIndex = cbAbility->FindString(gcnew System::String(lookupabilityname(temppkm).c_str()));
+			txtTotalEVs->Text = System::Convert::ToString(temppkm->evs.hp + temppkm->evs.attack + temppkm->evs.defense + temppkm->evs.spatk + temppkm->evs.spdef + temppkm->evs.speed);
+			numHPIV->Value = temppkm->ivs.hp;
+			numAttackIV->Value = temppkm->ivs.attack;
+			numDefenseIV->Value = temppkm->ivs.defense;
+			numSpAtkIV->Value = temppkm->ivs.spatk;
+			numSpDefIV->Value = temppkm->ivs.spdef;
+			numSpeedIV->Value = temppkm->ivs.speed;
+			numHPEV->Value = temppkm->evs.hp;
+			numAttackEV->Value = temppkm->evs.attack;
+			numDefenseEV->Value = temppkm->evs.defense;
+			numSpAtkEV->Value = temppkm->evs.spatk;
+			numSpDefEV->Value = temppkm->evs.spdef;
+			numSpeedEV->Value = temppkm->evs.speed;
+			numMove1PPUps->Value = temppkm->ppup[0];
+			numMove2PPUps->Value = temppkm->ppup[1];
+			numMove3PPUps->Value = temppkm->ppup[2];
+			numMove4PPUps->Value = temppkm->ppup[3];
+			numMove1PP->Value = temppkm->pp[0];
+			numMove2PP->Value = temppkm->pp[1];
+			numMove3PP->Value = temppkm->pp[2];
+			numMove4PP->Value = temppkm->pp[3];
+			txtMove1TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,0));
+			txtMove2TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,1));
+			txtMove3TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,2));
+			txtMove4TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,3));
+			refreshnatureeffect();
+
 			/*
-			Nickname
-			Nicknamed
-			OT Name
-			OT Gender
-			TID
-			SID
 			Type
-			Ability
 			EXP
 			Level
 			Ball
-			Shiny
 			PKRS
-			IVs
-			EVs
 			Calc Stats
-			Total EVs
-			Nature
 			PID
-			Moves
 			Move Types
 			Move Cats
-			Move PP Ups
-			Move PP
-			Move Total PP
 			*/
-
 			redisplayok = true;
 		}
 	public: void setpkm(pokemon_obj * pkm)
@@ -2457,7 +2541,18 @@ namespace PKMDS_Desktop_Win {
 				 lblMove2Accuracy->DataBindings->Add("Text",movesds2->Tables[0],"accuracy",true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
 				 lblMove3Accuracy->DataBindings->Add("Text",movesds3->Tables[0],"accuracy",true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
 				 lblMove4Accuracy->DataBindings->Add("Text",movesds4->Tables[0],"accuracy",true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
-
+				 DataTable^ naturesdt = gcnew DataTable();
+				 naturesdt->Columns->Add("id");
+				 naturesdt->Columns->Add("name");
+				 for(int natureindex = 0; natureindex < 25; natureindex++)
+				 {
+					 System::String ^ naturename = gcnew System::String(getnaturename(natureindex).c_str());
+					 naturesdt->Rows->Add(natureindex,naturename);
+				 }
+				 //cbNature->Sorted = true;
+				 cbNature->DataSource = naturesdt;
+				 cbNature->DisplayMember = "name";
+				 cbNature->ValueMember = "id";
 				 displayPKM();
 			 }
 	private: System::Void btnSave_Click(System::Object^  sender, System::EventArgs^  e)
@@ -2562,7 +2657,7 @@ namespace PKMDS_Desktop_Win {
 			 {
 				 if(redisplayok)
 				 {
-					 pkm->tid = Convert::ToUInt16(numTID->Value);
+					 temppkm->tid = Convert::ToUInt16(numTID->Value);
 				 }
 			 }
 	private: System::Void txtNickname_TextChanged(System::Object^  sender, System::EventArgs^  e) 
@@ -2576,7 +2671,7 @@ namespace PKMDS_Desktop_Win {
 			 {
 				 if(redisplayok)
 				 {
-					 pkm->ivs.isnicknamed = (uint32)(chkNicknamed->Checked);
+					 temppkm->ivs.isnicknamed = (uint32)(chkNicknamed->Checked);
 				 }
 			 }
 	private: System::Void txtOTName_TextChanged(System::Object^  sender, System::EventArgs^  e)
@@ -2592,7 +2687,8 @@ namespace PKMDS_Desktop_Win {
 				 {
 					 if(rbOTMale->Checked)
 					 {
-						 pkm->metlevel_otgender.otgender = Genders::male;
+						 temppkm->metlevel_otgender.otgender = Genders::male;
+						 txtOTName->ForeColor = Color::Blue;
 					 }
 				 }
 			 }
@@ -2602,7 +2698,8 @@ namespace PKMDS_Desktop_Win {
 				 {
 					 if(rbOTFemale->Checked)
 					 {
-						 pkm->metlevel_otgender.otgender = Genders::female;
+						 temppkm->metlevel_otgender.otgender = Genders::female;
+						 txtOTName->ForeColor = Color::Red;
 					 }
 				 }
 			 }
@@ -2610,7 +2707,7 @@ namespace PKMDS_Desktop_Win {
 			 {
 				 if(redisplayok)
 				 {
-					 pkm->sid = Convert::ToUInt16(numSID->Value);
+					 temppkm->sid = Convert::ToUInt16(numSID->Value);
 				 }
 			 }
 	private: System::Void cbAbility_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
@@ -2729,7 +2826,8 @@ namespace PKMDS_Desktop_Win {
 			 {
 				 if(redisplayok)
 				 {
-
+					 temppkm->nature = (Natures::natures)(Convert::ToUInt16(cbNature->SelectedValue));
+					 refreshnatureeffect();
 				 }
 			 }
 	private: System::Void cbMove1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
