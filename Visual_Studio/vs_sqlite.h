@@ -50,6 +50,14 @@ public: DataSet ^ getSQLDS(String ^ SQL)
 			DB->Fill(DS);
 			return DS;
 		}
+public: DataSet ^ getSQLIMGDS(String ^ SQL)
+		{
+			DataSet ^ DS = gcnew DataSet();
+			SQLiteDataAdapter ^ DB = gcnew SQLiteDataAdapter(SQL,imgdb);
+			DS->Reset();
+			DB->Fill(DS);
+			return DS;
+		}
 public: int getSQLInt(String ^ SQL)
 		{
 			SQLiteCommand ^cmdSelect = db->CreateCommand();

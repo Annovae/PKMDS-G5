@@ -140,116 +140,116 @@ namespace PKMDS_Desktop_Win {
 	private: System::Windows::Forms::NumericUpDown^  numSpAtkIV;
 	private: System::Windows::Forms::NumericUpDown^  numSpDefIV;
 	private: System::Windows::Forms::NumericUpDown^  numSpeedIV;
-private: System::Windows::Forms::TextBox^  txtTotalEVs;
-private: System::Windows::Forms::Label^  lblTotalEVs;
-private: System::Windows::Forms::TextBox^  txtCalcSpeed;
+	private: System::Windows::Forms::TextBox^  txtTotalEVs;
+	private: System::Windows::Forms::Label^  lblTotalEVs;
+	private: System::Windows::Forms::TextBox^  txtCalcSpeed;
 
-private: System::Windows::Forms::TextBox^  txtCalcSpDef;
+	private: System::Windows::Forms::TextBox^  txtCalcSpDef;
 
-private: System::Windows::Forms::TextBox^  txtCalcSpAtk;
+	private: System::Windows::Forms::TextBox^  txtCalcSpAtk;
 
-private: System::Windows::Forms::TextBox^  txtCalcDefense;
+	private: System::Windows::Forms::TextBox^  txtCalcDefense;
 
-private: System::Windows::Forms::TextBox^  txtCalcAttack;
+	private: System::Windows::Forms::TextBox^  txtCalcAttack;
 
-private: System::Windows::Forms::TextBox^  txtCalcHP;
-private: System::Windows::Forms::ComboBox^  cbNature;
-private: System::Windows::Forms::Label^  lblNature;
-private: System::Windows::Forms::TableLayoutPanel^  tlMoves;
-private: System::Windows::Forms::TableLayoutPanel^  tlMove1TotalPP;
+	private: System::Windows::Forms::TextBox^  txtCalcHP;
+	private: System::Windows::Forms::ComboBox^  cbNature;
+	private: System::Windows::Forms::Label^  lblNature;
+	private: System::Windows::Forms::TableLayoutPanel^  tlMoves;
+	private: System::Windows::Forms::TableLayoutPanel^  tlMove1TotalPP;
 
-private: System::Windows::Forms::TextBox^  txtMove1TotalPP;
-private: System::Windows::Forms::Label^  lblMove1TotalPP;
-private: System::Windows::Forms::TableLayoutPanel^  tlMove1PP;
+	private: System::Windows::Forms::TextBox^  txtMove1TotalPP;
+	private: System::Windows::Forms::Label^  lblMove1TotalPP;
+	private: System::Windows::Forms::TableLayoutPanel^  tlMove1PP;
 
-private: System::Windows::Forms::Label^  lblMove1PP;
-private: System::Windows::Forms::NumericUpDown^  numMove1PP;
-private: System::Windows::Forms::TableLayoutPanel^  tlMove1PPUPs;
-private: System::Windows::Forms::Label^  lblPPUps;
-private: System::Windows::Forms::NumericUpDown^  numMove1PPUps;
-private: System::Windows::Forms::TableLayoutPanel^  tlMove1Accuracy;
-private: System::Windows::Forms::Label^  lblMove1Accuracy;
-private: System::Windows::Forms::Label^  lblAccuracy;
-private: System::Windows::Forms::ComboBox^  cbMove1;
+	private: System::Windows::Forms::Label^  lblMove1PP;
+	private: System::Windows::Forms::NumericUpDown^  numMove1PP;
+	private: System::Windows::Forms::TableLayoutPanel^  tlMove1PPUPs;
+	private: System::Windows::Forms::Label^  lblPPUps;
+	private: System::Windows::Forms::NumericUpDown^  numMove1PPUps;
+	private: System::Windows::Forms::TableLayoutPanel^  tlMove1Accuracy;
+	private: System::Windows::Forms::Label^  lblMove1Accuracy;
+	private: System::Windows::Forms::Label^  lblAccuracy;
+	private: System::Windows::Forms::ComboBox^  cbMove1;
 
-private: System::Windows::Forms::TableLayoutPanel^  tlMove1Power;
-private: System::Windows::Forms::Label^  lblMove1Power;
-private: System::Windows::Forms::Label^  lblPower;
-private: System::Windows::Forms::TableLayoutPanel^  tlMove1NameEtc;
-private: System::Windows::Forms::TableLayoutPanel^  tlMove1TypeCat;
-private: System::Windows::Forms::PictureBox^  pbMove1Cat;
-private: System::Windows::Forms::PictureBox^  pbMove1Type;
-private: System::Windows::Forms::TableLayoutPanel^  tlMove1TypeCatlbls;
+	private: System::Windows::Forms::TableLayoutPanel^  tlMove1Power;
+	private: System::Windows::Forms::Label^  lblMove1Power;
+	private: System::Windows::Forms::Label^  lblPower;
+	private: System::Windows::Forms::TableLayoutPanel^  tlMove1NameEtc;
+	private: System::Windows::Forms::TableLayoutPanel^  tlMove1TypeCat;
+	private: System::Windows::Forms::PictureBox^  pbMove1Cat;
+	private: System::Windows::Forms::PictureBox^  pbMove1Type;
+	private: System::Windows::Forms::TableLayoutPanel^  tlMove1TypeCatlbls;
 
-private: System::Windows::Forms::Label^  lblMove1Cat;
-private: System::Windows::Forms::Label^  lblMove1Type;
-private: System::Windows::Forms::Label^  lblMoveName;
-
-
-private: System::Windows::Forms::TableLayoutPanel^  tlMove2NameEtc;
-
-private: System::Windows::Forms::ComboBox^  cbMove2;
-
-private: System::Windows::Forms::TableLayoutPanel^  tlMove2TypeCat;
-private: System::Windows::Forms::PictureBox^  pbMove2Cat;
+	private: System::Windows::Forms::Label^  lblMove1Cat;
+	private: System::Windows::Forms::Label^  lblMove1Type;
+	private: System::Windows::Forms::Label^  lblMoveName;
 
 
-private: System::Windows::Forms::PictureBox^  pbMove2Type;
-private: System::Windows::Forms::Label^  lblMove2Power;
-private: System::Windows::Forms::Label^  lblMove2Accuracy;
-private: System::Windows::Forms::NumericUpDown^  numMove2PPUps;
-private: System::Windows::Forms::NumericUpDown^  numMove2PP;
-private: System::Windows::Forms::TextBox^  txtMove2TotalPP;
-private: System::Windows::Forms::CheckBox^  chkPIDHex;
+	private: System::Windows::Forms::TableLayoutPanel^  tlMove2NameEtc;
+
+	private: System::Windows::Forms::ComboBox^  cbMove2;
+
+	private: System::Windows::Forms::TableLayoutPanel^  tlMove2TypeCat;
+	private: System::Windows::Forms::PictureBox^  pbMove2Cat;
 
 
-private: System::Windows::Forms::Label^  lblPID;
-private: System::Windows::Forms::TextBox^  txtPID;
-private: System::Windows::Forms::TableLayoutPanel^  tlMove3NameEtc;
-private: System::Windows::Forms::ComboBox^  cbMove3;
+	private: System::Windows::Forms::PictureBox^  pbMove2Type;
+	private: System::Windows::Forms::Label^  lblMove2Power;
+	private: System::Windows::Forms::Label^  lblMove2Accuracy;
+	private: System::Windows::Forms::NumericUpDown^  numMove2PPUps;
+	private: System::Windows::Forms::NumericUpDown^  numMove2PP;
+	private: System::Windows::Forms::TextBox^  txtMove2TotalPP;
+	private: System::Windows::Forms::CheckBox^  chkPIDHex;
 
 
-private: System::Windows::Forms::TableLayoutPanel^  tlMove3TypeCat;
-private: System::Windows::Forms::PictureBox^  pbMove3Cat;
-private: System::Windows::Forms::PictureBox^  pbMove3Type;
+	private: System::Windows::Forms::Label^  lblPID;
+	private: System::Windows::Forms::TextBox^  txtPID;
+	private: System::Windows::Forms::TableLayoutPanel^  tlMove3NameEtc;
+	private: System::Windows::Forms::ComboBox^  cbMove3;
 
 
-
-private: System::Windows::Forms::TableLayoutPanel^  tlMove4NameEtc;
-private: System::Windows::Forms::ComboBox^  cbMove4;
-
-
-private: System::Windows::Forms::TableLayoutPanel^  tlMove4TypeCat;
-private: System::Windows::Forms::PictureBox^  pbMove4Cat;
-private: System::Windows::Forms::PictureBox^  pbMove4Type;
+	private: System::Windows::Forms::TableLayoutPanel^  tlMove3TypeCat;
+	private: System::Windows::Forms::PictureBox^  pbMove3Cat;
+	private: System::Windows::Forms::PictureBox^  pbMove3Type;
 
 
 
-private: System::Windows::Forms::Label^  lblMove3Power;
-
-private: System::Windows::Forms::Label^  lblMove3Accuracy;
-private: System::Windows::Forms::Label^  lblMove4Power;
+	private: System::Windows::Forms::TableLayoutPanel^  tlMove4NameEtc;
+	private: System::Windows::Forms::ComboBox^  cbMove4;
 
 
-private: System::Windows::Forms::Label^  lblMove4Accuracy;
-
-private: System::Windows::Forms::NumericUpDown^  numMove3PPUps;
-
-private: System::Windows::Forms::NumericUpDown^  numMove3PP;
-private: System::Windows::Forms::NumericUpDown^  numMove4PP;
-private: System::Windows::Forms::NumericUpDown^  numMove4PPUps;
+	private: System::Windows::Forms::TableLayoutPanel^  tlMove4TypeCat;
+	private: System::Windows::Forms::PictureBox^  pbMove4Cat;
+	private: System::Windows::Forms::PictureBox^  pbMove4Type;
 
 
 
-private: System::Windows::Forms::TextBox^  txtMove3TotalPP;
-private: System::Windows::Forms::TextBox^  txtMove4TotalPP;
+	private: System::Windows::Forms::Label^  lblMove3Power;
+
+	private: System::Windows::Forms::Label^  lblMove3Accuracy;
+	private: System::Windows::Forms::Label^  lblMove4Power;
 
 
-private: System::Windows::Forms::ToolTip^  ttMove1Flavor;
-private: System::Windows::Forms::ToolTip^  ttMove2Flavor;
-private: System::Windows::Forms::ToolTip^  ttMove3Flavor;
-private: System::Windows::Forms::ToolTip^  ttMove4Flavor;
-private: System::ComponentModel::IContainer^  components;
+	private: System::Windows::Forms::Label^  lblMove4Accuracy;
+
+	private: System::Windows::Forms::NumericUpDown^  numMove3PPUps;
+
+	private: System::Windows::Forms::NumericUpDown^  numMove3PP;
+	private: System::Windows::Forms::NumericUpDown^  numMove4PP;
+	private: System::Windows::Forms::NumericUpDown^  numMove4PPUps;
+
+
+
+	private: System::Windows::Forms::TextBox^  txtMove3TotalPP;
+	private: System::Windows::Forms::TextBox^  txtMove4TotalPP;
+
+
+	private: System::Windows::Forms::ToolTip^  ttMove1Flavor;
+	private: System::Windows::Forms::ToolTip^  ttMove2Flavor;
+	private: System::Windows::Forms::ToolTip^  ttMove3Flavor;
+	private: System::Windows::Forms::ToolTip^  ttMove4Flavor;
+	private: System::ComponentModel::IContainer^  components;
 
 
 
@@ -398,12 +398,6 @@ private: System::ComponentModel::IContainer^  components;
 			this->numMove2PPUps = (gcnew System::Windows::Forms::NumericUpDown());
 			this->numMove2PP = (gcnew System::Windows::Forms::NumericUpDown());
 			this->txtMove2TotalPP = (gcnew System::Windows::Forms::TextBox());
-			this->tpOrigins = (gcnew System::Windows::Forms::TabPage());
-			this->tpRibbons = (gcnew System::Windows::Forms::TabPage());
-			this->tpMisc = (gcnew System::Windows::Forms::TabPage());
-			this->chkPIDHex = (gcnew System::Windows::Forms::CheckBox());
-			this->lblPID = (gcnew System::Windows::Forms::Label());
-			this->txtPID = (gcnew System::Windows::Forms::TextBox());
 			this->tlMove3NameEtc = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->cbMove3 = (gcnew System::Windows::Forms::ComboBox());
 			this->tlMove3TypeCat = (gcnew System::Windows::Forms::TableLayoutPanel());
@@ -424,6 +418,12 @@ private: System::ComponentModel::IContainer^  components;
 			this->numMove4PPUps = (gcnew System::Windows::Forms::NumericUpDown());
 			this->txtMove3TotalPP = (gcnew System::Windows::Forms::TextBox());
 			this->txtMove4TotalPP = (gcnew System::Windows::Forms::TextBox());
+			this->tpOrigins = (gcnew System::Windows::Forms::TabPage());
+			this->tpRibbons = (gcnew System::Windows::Forms::TabPage());
+			this->tpMisc = (gcnew System::Windows::Forms::TabPage());
+			this->chkPIDHex = (gcnew System::Windows::Forms::CheckBox());
+			this->lblPID = (gcnew System::Windows::Forms::Label());
+			this->txtPID = (gcnew System::Windows::Forms::TextBox());
 			this->ttMove1Flavor = (gcnew System::Windows::Forms::ToolTip(this->components));
 			this->ttMove2Flavor = (gcnew System::Windows::Forms::ToolTip(this->components));
 			this->ttMove3Flavor = (gcnew System::Windows::Forms::ToolTip(this->components));
@@ -490,7 +490,6 @@ private: System::ComponentModel::IContainer^  components;
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbMove2Type))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMove2PPUps))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMove2PP))->BeginInit();
-			this->tpMisc->SuspendLayout();
 			this->tlMove3NameEtc->SuspendLayout();
 			this->tlMove3TypeCat->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbMove3Cat))->BeginInit();
@@ -503,6 +502,7 @@ private: System::ComponentModel::IContainer^  components;
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMove3PP))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMove4PP))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMove4PPUps))->BeginInit();
+			this->tpMisc->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// tlViewer
@@ -517,7 +517,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->tlViewer->Name = L"tlViewer";
 			this->tlViewer->RowCount = 1;
 			this->tlViewer->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
-			this->tlViewer->Size = System::Drawing::Size(577, 286);
+			this->tlViewer->Size = System::Drawing::Size(616, 286);
 			this->tlViewer->TabIndex = 0;
 			// 
 			// panGeneral
@@ -543,7 +543,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->panGeneral->Controls->Add(this->pbGender);
 			this->panGeneral->Controls->Add(this->pbSprite);
 			this->panGeneral->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->panGeneral->Location = System::Drawing::Point(410, 3);
+			this->panGeneral->Location = System::Drawing::Point(449, 3);
 			this->panGeneral->Name = L"panGeneral";
 			this->panGeneral->Size = System::Drawing::Size(164, 280);
 			this->panGeneral->TabIndex = 1;
@@ -770,7 +770,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->tcViewer->Multiline = true;
 			this->tcViewer->Name = L"tcViewer";
 			this->tcViewer->SelectedIndex = 0;
-			this->tcViewer->Size = System::Drawing::Size(401, 280);
+			this->tcViewer->Size = System::Drawing::Size(440, 280);
 			this->tcViewer->TabIndex = 0;
 			// 
 			// tpBasic
@@ -791,7 +791,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->tpBasic->Location = System::Drawing::Point(4, 22);
 			this->tpBasic->Name = L"tpBasic";
 			this->tpBasic->Padding = System::Windows::Forms::Padding(3);
-			this->tpBasic->Size = System::Drawing::Size(393, 254);
+			this->tpBasic->Size = System::Drawing::Size(432, 254);
 			this->tpBasic->TabIndex = 0;
 			this->tpBasic->Text = L"Basic";
 			this->tpBasic->UseVisualStyleBackColor = true;
@@ -1012,7 +1012,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->tpStats->Location = System::Drawing::Point(4, 22);
 			this->tpStats->Name = L"tpStats";
 			this->tpStats->Padding = System::Windows::Forms::Padding(3);
-			this->tpStats->Size = System::Drawing::Size(393, 254);
+			this->tpStats->Size = System::Drawing::Size(432, 254);
 			this->tpStats->TabIndex = 1;
 			this->tpStats->Text = L"Stats";
 			this->tpStats->UseVisualStyleBackColor = true;
@@ -1399,7 +1399,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->tpMoves->Controls->Add(this->tlMoves);
 			this->tpMoves->Location = System::Drawing::Point(4, 22);
 			this->tpMoves->Name = L"tpMoves";
-			this->tpMoves->Size = System::Drawing::Size(393, 254);
+			this->tpMoves->Size = System::Drawing::Size(432, 254);
 			this->tpMoves->TabIndex = 2;
 			this->tpMoves->Text = L"Moves";
 			this->tpMoves->UseVisualStyleBackColor = true;
@@ -1407,12 +1407,12 @@ private: System::ComponentModel::IContainer^  components;
 			// tlMoves
 			// 
 			this->tlMoves->ColumnCount = 6;
-			this->tlMoves->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute, 189.5393F)));
-			this->tlMoves->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 18.75F)));
+			this->tlMoves->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute, 229)));
+			this->tlMoves->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 18.2266F)));
 			this->tlMoves->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 18.71921F)));
-			this->tlMoves->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 19.21182F)));
-			this->tlMoves->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 22.16749F)));
-			this->tlMoves->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 20.68966F)));
+			this->tlMoves->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 18.71921F)));
+			this->tlMoves->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 22.33503F)));
+			this->tlMoves->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 21.3198F)));
 			this->tlMoves->Controls->Add(this->tlMove1TotalPP, 5, 0);
 			this->tlMoves->Controls->Add(this->tlMove1PP, 4, 0);
 			this->tlMoves->Controls->Add(this->tlMove1PPUPs, 3, 0);
@@ -1446,7 +1446,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->tlMoves->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 38)));
 			this->tlMoves->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 38)));
 			this->tlMoves->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 71)));
-			this->tlMoves->Size = System::Drawing::Size(393, 254);
+			this->tlMoves->Size = System::Drawing::Size(432, 254);
 			this->tlMoves->TabIndex = 0;
 			// 
 			// tlMove1TotalPP
@@ -1457,12 +1457,12 @@ private: System::ComponentModel::IContainer^  components;
 			this->tlMove1TotalPP->Controls->Add(this->txtMove1TotalPP, 0, 1);
 			this->tlMove1TotalPP->Controls->Add(this->lblMove1TotalPP, 0, 0);
 			this->tlMove1TotalPP->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->tlMove1TotalPP->Location = System::Drawing::Point(353, 3);
+			this->tlMove1TotalPP->Location = System::Drawing::Point(390, 3);
 			this->tlMove1TotalPP->Name = L"tlMove1TotalPP";
 			this->tlMove1TotalPP->RowCount = 2;
 			this->tlMove1TotalPP->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
 			this->tlMove1TotalPP->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
-			this->tlMove1TotalPP->Size = System::Drawing::Size(37, 63);
+			this->tlMove1TotalPP->Size = System::Drawing::Size(39, 63);
 			this->tlMove1TotalPP->TabIndex = 20;
 			// 
 			// txtMove1TotalPP
@@ -1471,7 +1471,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->txtMove1TotalPP->Location = System::Drawing::Point(3, 37);
 			this->txtMove1TotalPP->Name = L"txtMove1TotalPP";
 			this->txtMove1TotalPP->ReadOnly = true;
-			this->txtMove1TotalPP->Size = System::Drawing::Size(31, 20);
+			this->txtMove1TotalPP->Size = System::Drawing::Size(33, 20);
 			this->txtMove1TotalPP->TabIndex = 13;
 			// 
 			// lblMove1TotalPP
@@ -1480,9 +1480,10 @@ private: System::ComponentModel::IContainer^  components;
 			this->lblMove1TotalPP->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->lblMove1TotalPP->Location = System::Drawing::Point(3, 0);
 			this->lblMove1TotalPP->Name = L"lblMove1TotalPP";
-			this->lblMove1TotalPP->Size = System::Drawing::Size(31, 31);
+			this->lblMove1TotalPP->Size = System::Drawing::Size(33, 31);
 			this->lblMove1TotalPP->TabIndex = 0;
 			this->lblMove1TotalPP->Text = L"Total PP";
+			this->lblMove1TotalPP->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// tlMove1PP
 			// 
@@ -1491,7 +1492,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->tlMove1PP->Controls->Add(this->lblMove1PP, 0, 0);
 			this->tlMove1PP->Controls->Add(this->numMove1PP, 0, 1);
 			this->tlMove1PP->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->tlMove1PP->Location = System::Drawing::Point(308, 3);
+			this->tlMove1PP->Location = System::Drawing::Point(345, 3);
 			this->tlMove1PP->Name = L"tlMove1PP";
 			this->tlMove1PP->RowCount = 2;
 			this->tlMove1PP->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
@@ -1508,12 +1509,13 @@ private: System::ComponentModel::IContainer^  components;
 			this->lblMove1PP->Size = System::Drawing::Size(33, 31);
 			this->lblMove1PP->TabIndex = 0;
 			this->lblMove1PP->Text = L"PP";
+			this->lblMove1PP->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// numMove1PP
 			// 
 			this->numMove1PP->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
 			this->numMove1PP->Location = System::Drawing::Point(3, 37);
-			this->numMove1PP->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {255, 0, 0, 0});
+			this->numMove1PP->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {99, 0, 0, 0});
 			this->numMove1PP->Name = L"numMove1PP";
 			this->numMove1PP->Size = System::Drawing::Size(33, 20);
 			this->numMove1PP->TabIndex = 1;
@@ -1526,12 +1528,12 @@ private: System::ComponentModel::IContainer^  components;
 			this->tlMove1PPUPs->Controls->Add(this->lblPPUps, 0, 0);
 			this->tlMove1PPUPs->Controls->Add(this->numMove1PPUps, 0, 1);
 			this->tlMove1PPUPs->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->tlMove1PPUPs->Location = System::Drawing::Point(269, 3);
+			this->tlMove1PPUPs->Location = System::Drawing::Point(307, 3);
 			this->tlMove1PPUPs->Name = L"tlMove1PPUPs";
 			this->tlMove1PPUPs->RowCount = 2;
 			this->tlMove1PPUPs->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
 			this->tlMove1PPUPs->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
-			this->tlMove1PPUPs->Size = System::Drawing::Size(33, 63);
+			this->tlMove1PPUPs->Size = System::Drawing::Size(32, 63);
 			this->tlMove1PPUPs->TabIndex = 18;
 			// 
 			// lblPPUps
@@ -1540,9 +1542,10 @@ private: System::ComponentModel::IContainer^  components;
 			this->lblPPUps->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->lblPPUps->Location = System::Drawing::Point(3, 0);
 			this->lblPPUps->Name = L"lblPPUps";
-			this->lblPPUps->Size = System::Drawing::Size(27, 31);
+			this->lblPPUps->Size = System::Drawing::Size(26, 31);
 			this->lblPPUps->TabIndex = 0;
 			this->lblPPUps->Text = L"PP Ups";
+			this->lblPPUps->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// numMove1PPUps
 			// 
@@ -1550,7 +1553,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->numMove1PPUps->Location = System::Drawing::Point(3, 37);
 			this->numMove1PPUps->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {3, 0, 0, 0});
 			this->numMove1PPUps->Name = L"numMove1PPUps";
-			this->numMove1PPUps->Size = System::Drawing::Size(27, 20);
+			this->numMove1PPUps->Size = System::Drawing::Size(26, 20);
 			this->numMove1PPUps->TabIndex = 1;
 			this->numMove1PPUps->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::numMove1PPUps_ValueChanged);
 			// 
@@ -1562,7 +1565,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->tlMove1Accuracy->Controls->Add(this->lblMove1Accuracy, 0, 1);
 			this->tlMove1Accuracy->Controls->Add(this->lblAccuracy, 0, 0);
 			this->tlMove1Accuracy->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->tlMove1Accuracy->Location = System::Drawing::Point(231, 3);
+			this->tlMove1Accuracy->Location = System::Drawing::Point(269, 3);
 			this->tlMove1Accuracy->Name = L"tlMove1Accuracy";
 			this->tlMove1Accuracy->RowCount = 2;
 			this->tlMove1Accuracy->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
@@ -1578,6 +1581,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->lblMove1Accuracy->Name = L"lblMove1Accuracy";
 			this->lblMove1Accuracy->Size = System::Drawing::Size(26, 32);
 			this->lblMove1Accuracy->TabIndex = 1;
+			this->lblMove1Accuracy->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// lblAccuracy
 			// 
@@ -1588,6 +1592,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->lblAccuracy->Size = System::Drawing::Size(26, 31);
 			this->lblAccuracy->TabIndex = 0;
 			this->lblAccuracy->Text = L"Acc";
+			this->lblAccuracy->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// tlMove1Power
 			// 
@@ -1596,12 +1601,12 @@ private: System::ComponentModel::IContainer^  components;
 			this->tlMove1Power->Controls->Add(this->lblMove1Power, 0, 1);
 			this->tlMove1Power->Controls->Add(this->lblPower, 0, 0);
 			this->tlMove1Power->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->tlMove1Power->Location = System::Drawing::Point(193, 3);
+			this->tlMove1Power->Location = System::Drawing::Point(232, 3);
 			this->tlMove1Power->Name = L"tlMove1Power";
 			this->tlMove1Power->RowCount = 2;
 			this->tlMove1Power->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
 			this->tlMove1Power->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
-			this->tlMove1Power->Size = System::Drawing::Size(32, 63);
+			this->tlMove1Power->Size = System::Drawing::Size(31, 63);
 			this->tlMove1Power->TabIndex = 16;
 			// 
 			// lblMove1Power
@@ -1610,8 +1615,9 @@ private: System::ComponentModel::IContainer^  components;
 			this->lblMove1Power->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->lblMove1Power->Location = System::Drawing::Point(3, 31);
 			this->lblMove1Power->Name = L"lblMove1Power";
-			this->lblMove1Power->Size = System::Drawing::Size(26, 32);
+			this->lblMove1Power->Size = System::Drawing::Size(25, 32);
 			this->lblMove1Power->TabIndex = 1;
+			this->lblMove1Power->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// lblPower
 			// 
@@ -1619,9 +1625,10 @@ private: System::ComponentModel::IContainer^  components;
 			this->lblPower->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->lblPower->Location = System::Drawing::Point(3, 0);
 			this->lblPower->Name = L"lblPower";
-			this->lblPower->Size = System::Drawing::Size(26, 31);
+			this->lblPower->Size = System::Drawing::Size(25, 31);
 			this->lblPower->TabIndex = 0;
 			this->lblPower->Text = L"Pwr";
+			this->lblPower->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// tlMove1NameEtc
 			// 
@@ -1641,7 +1648,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->tlMove1NameEtc->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
 			this->tlMove1NameEtc->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
 			this->tlMove1NameEtc->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 20)));
-			this->tlMove1NameEtc->Size = System::Drawing::Size(184, 63);
+			this->tlMove1NameEtc->Size = System::Drawing::Size(223, 63);
 			this->tlMove1NameEtc->TabIndex = 21;
 			// 
 			// tlMove1TypeCatlbls
@@ -1670,6 +1677,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->lblMove1Cat->Size = System::Drawing::Size(40, 25);
 			this->lblMove1Cat->TabIndex = 2;
 			this->lblMove1Cat->Text = L"Cat";
+			this->lblMove1Cat->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// lblMove1Type
 			// 
@@ -1680,6 +1688,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->lblMove1Type->Size = System::Drawing::Size(40, 25);
 			this->lblMove1Type->TabIndex = 1;
 			this->lblMove1Type->Text = L"Type";
+			this->lblMove1Type->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// cbMove1
 			// 
@@ -1687,7 +1696,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->cbMove1->FormattingEnabled = true;
 			this->cbMove1->Location = System::Drawing::Point(101, 36);
 			this->cbMove1->Name = L"cbMove1";
-			this->cbMove1->Size = System::Drawing::Size(80, 21);
+			this->cbMove1->Size = System::Drawing::Size(119, 21);
 			this->cbMove1->TabIndex = 15;
 			this->cbMove1->SelectedIndexChanged += gcnew System::EventHandler(this, &frmPKMViewer::cbMove1_SelectedIndexChanged);
 			// 
@@ -1736,9 +1745,10 @@ private: System::ComponentModel::IContainer^  components;
 			this->lblMoveName->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->lblMoveName->Location = System::Drawing::Point(101, 0);
 			this->lblMoveName->Name = L"lblMoveName";
-			this->lblMoveName->Size = System::Drawing::Size(80, 31);
+			this->lblMoveName->Size = System::Drawing::Size(119, 31);
 			this->lblMoveName->TabIndex = 19;
 			this->lblMoveName->Text = L"Move Name";
+			this->lblMoveName->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// tlMove2NameEtc
 			// 
@@ -1755,7 +1765,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->tlMove2NameEtc->RowCount = 1;
 			this->tlMove2NameEtc->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
 			this->tlMove2NameEtc->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 32)));
-			this->tlMove2NameEtc->Size = System::Drawing::Size(184, 32);
+			this->tlMove2NameEtc->Size = System::Drawing::Size(223, 32);
 			this->tlMove2NameEtc->TabIndex = 22;
 			// 
 			// cbMove2
@@ -1764,7 +1774,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->cbMove2->FormattingEnabled = true;
 			this->cbMove2->Location = System::Drawing::Point(101, 5);
 			this->cbMove2->Name = L"cbMove2";
-			this->cbMove2->Size = System::Drawing::Size(80, 21);
+			this->cbMove2->Size = System::Drawing::Size(119, 21);
 			this->cbMove2->TabIndex = 15;
 			this->cbMove2->SelectedIndexChanged += gcnew System::EventHandler(this, &frmPKMViewer::cbMove2_SelectedIndexChanged);
 			// 
@@ -1811,37 +1821,39 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			this->lblMove2Power->AutoSize = true;
 			this->lblMove2Power->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->lblMove2Power->Location = System::Drawing::Point(193, 69);
+			this->lblMove2Power->Location = System::Drawing::Point(232, 69);
 			this->lblMove2Power->Name = L"lblMove2Power";
-			this->lblMove2Power->Size = System::Drawing::Size(32, 38);
+			this->lblMove2Power->Size = System::Drawing::Size(31, 38);
 			this->lblMove2Power->TabIndex = 23;
+			this->lblMove2Power->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// lblMove2Accuracy
 			// 
 			this->lblMove2Accuracy->AutoSize = true;
 			this->lblMove2Accuracy->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->lblMove2Accuracy->Location = System::Drawing::Point(231, 69);
+			this->lblMove2Accuracy->Location = System::Drawing::Point(269, 69);
 			this->lblMove2Accuracy->Name = L"lblMove2Accuracy";
 			this->lblMove2Accuracy->Size = System::Drawing::Size(32, 38);
 			this->lblMove2Accuracy->TabIndex = 24;
+			this->lblMove2Accuracy->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// numMove2PPUps
 			// 
 			this->numMove2PPUps->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
-			this->numMove2PPUps->Location = System::Drawing::Point(272, 78);
+			this->numMove2PPUps->Location = System::Drawing::Point(310, 78);
 			this->numMove2PPUps->Margin = System::Windows::Forms::Padding(6);
 			this->numMove2PPUps->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {3, 0, 0, 0});
 			this->numMove2PPUps->Name = L"numMove2PPUps";
-			this->numMove2PPUps->Size = System::Drawing::Size(27, 20);
+			this->numMove2PPUps->Size = System::Drawing::Size(26, 20);
 			this->numMove2PPUps->TabIndex = 25;
 			this->numMove2PPUps->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::numMove2PPUps_ValueChanged);
 			// 
 			// numMove2PP
 			// 
 			this->numMove2PP->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
-			this->numMove2PP->Location = System::Drawing::Point(311, 78);
+			this->numMove2PP->Location = System::Drawing::Point(348, 78);
 			this->numMove2PP->Margin = System::Windows::Forms::Padding(6);
-			this->numMove2PP->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {255, 0, 0, 0});
+			this->numMove2PP->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {99, 0, 0, 0});
 			this->numMove2PP->Name = L"numMove2PP";
 			this->numMove2PP->Size = System::Drawing::Size(33, 20);
 			this->numMove2PP->TabIndex = 26;
@@ -1850,70 +1862,12 @@ private: System::ComponentModel::IContainer^  components;
 			// txtMove2TotalPP
 			// 
 			this->txtMove2TotalPP->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
-			this->txtMove2TotalPP->Location = System::Drawing::Point(356, 78);
+			this->txtMove2TotalPP->Location = System::Drawing::Point(393, 78);
 			this->txtMove2TotalPP->Margin = System::Windows::Forms::Padding(6);
 			this->txtMove2TotalPP->Name = L"txtMove2TotalPP";
 			this->txtMove2TotalPP->ReadOnly = true;
-			this->txtMove2TotalPP->Size = System::Drawing::Size(31, 20);
+			this->txtMove2TotalPP->Size = System::Drawing::Size(33, 20);
 			this->txtMove2TotalPP->TabIndex = 27;
-			// 
-			// tpOrigins
-			// 
-			this->tpOrigins->Location = System::Drawing::Point(4, 22);
-			this->tpOrigins->Name = L"tpOrigins";
-			this->tpOrigins->Size = System::Drawing::Size(393, 254);
-			this->tpOrigins->TabIndex = 3;
-			this->tpOrigins->Text = L"Origins";
-			this->tpOrigins->UseVisualStyleBackColor = true;
-			// 
-			// tpRibbons
-			// 
-			this->tpRibbons->Location = System::Drawing::Point(4, 22);
-			this->tpRibbons->Name = L"tpRibbons";
-			this->tpRibbons->Size = System::Drawing::Size(393, 254);
-			this->tpRibbons->TabIndex = 4;
-			this->tpRibbons->Text = L"Ribbons";
-			this->tpRibbons->UseVisualStyleBackColor = true;
-			// 
-			// tpMisc
-			// 
-			this->tpMisc->Controls->Add(this->chkPIDHex);
-			this->tpMisc->Controls->Add(this->lblPID);
-			this->tpMisc->Controls->Add(this->txtPID);
-			this->tpMisc->Location = System::Drawing::Point(4, 22);
-			this->tpMisc->Name = L"tpMisc";
-			this->tpMisc->Size = System::Drawing::Size(393, 254);
-			this->tpMisc->TabIndex = 5;
-			this->tpMisc->Text = L"Misc";
-			this->tpMisc->UseVisualStyleBackColor = true;
-			// 
-			// chkPIDHex
-			// 
-			this->chkPIDHex->AutoSize = true;
-			this->chkPIDHex->Location = System::Drawing::Point(126, 25);
-			this->chkPIDHex->Name = L"chkPIDHex";
-			this->chkPIDHex->Size = System::Drawing::Size(45, 17);
-			this->chkPIDHex->TabIndex = 2;
-			this->chkPIDHex->Text = L"Hex";
-			this->chkPIDHex->UseVisualStyleBackColor = true;
-			this->chkPIDHex->CheckedChanged += gcnew System::EventHandler(this, &frmPKMViewer::chkPIDHex_CheckedChanged);
-			// 
-			// lblPID
-			// 
-			this->lblPID->AutoSize = true;
-			this->lblPID->Location = System::Drawing::Point(5, 7);
-			this->lblPID->Name = L"lblPID";
-			this->lblPID->Size = System::Drawing::Size(115, 13);
-			this->lblPID->TabIndex = 1;
-			this->lblPID->Text = L"Personality Value (PID)";
-			// 
-			// txtPID
-			// 
-			this->txtPID->Location = System::Drawing::Point(5, 23);
-			this->txtPID->Name = L"txtPID";
-			this->txtPID->Size = System::Drawing::Size(115, 20);
-			this->txtPID->TabIndex = 0;
-			this->txtPID->TextChanged += gcnew System::EventHandler(this, &frmPKMViewer::txtPID_TextChanged);
 			// 
 			// tlMove3NameEtc
 			// 
@@ -1930,7 +1884,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->tlMove3NameEtc->RowCount = 1;
 			this->tlMove3NameEtc->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
 			this->tlMove3NameEtc->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 32)));
-			this->tlMove3NameEtc->Size = System::Drawing::Size(184, 32);
+			this->tlMove3NameEtc->Size = System::Drawing::Size(223, 32);
 			this->tlMove3NameEtc->TabIndex = 28;
 			// 
 			// cbMove3
@@ -1939,7 +1893,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->cbMove3->FormattingEnabled = true;
 			this->cbMove3->Location = System::Drawing::Point(101, 5);
 			this->cbMove3->Name = L"cbMove3";
-			this->cbMove3->Size = System::Drawing::Size(80, 21);
+			this->cbMove3->Size = System::Drawing::Size(119, 21);
 			this->cbMove3->TabIndex = 15;
 			this->cbMove3->SelectedIndexChanged += gcnew System::EventHandler(this, &frmPKMViewer::cbMove3_SelectedIndexChanged);
 			// 
@@ -1997,7 +1951,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->tlMove4NameEtc->RowCount = 1;
 			this->tlMove4NameEtc->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
 			this->tlMove4NameEtc->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 32)));
-			this->tlMove4NameEtc->Size = System::Drawing::Size(184, 32);
+			this->tlMove4NameEtc->Size = System::Drawing::Size(223, 32);
 			this->tlMove4NameEtc->TabIndex = 29;
 			// 
 			// cbMove4
@@ -2006,7 +1960,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->cbMove4->FormattingEnabled = true;
 			this->cbMove4->Location = System::Drawing::Point(101, 5);
 			this->cbMove4->Name = L"cbMove4";
-			this->cbMove4->Size = System::Drawing::Size(80, 21);
+			this->cbMove4->Size = System::Drawing::Size(119, 21);
 			this->cbMove4->TabIndex = 15;
 			this->cbMove4->SelectedIndexChanged += gcnew System::EventHandler(this, &frmPKMViewer::cbMove4_SelectedIndexChanged);
 			// 
@@ -2053,55 +2007,59 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			this->lblMove3Power->AutoSize = true;
 			this->lblMove3Power->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->lblMove3Power->Location = System::Drawing::Point(193, 107);
+			this->lblMove3Power->Location = System::Drawing::Point(232, 107);
 			this->lblMove3Power->Name = L"lblMove3Power";
-			this->lblMove3Power->Size = System::Drawing::Size(32, 38);
+			this->lblMove3Power->Size = System::Drawing::Size(31, 38);
 			this->lblMove3Power->TabIndex = 30;
+			this->lblMove3Power->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// lblMove3Accuracy
 			// 
 			this->lblMove3Accuracy->AutoSize = true;
 			this->lblMove3Accuracy->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->lblMove3Accuracy->Location = System::Drawing::Point(231, 107);
+			this->lblMove3Accuracy->Location = System::Drawing::Point(269, 107);
 			this->lblMove3Accuracy->Name = L"lblMove3Accuracy";
 			this->lblMove3Accuracy->Size = System::Drawing::Size(32, 38);
 			this->lblMove3Accuracy->TabIndex = 31;
+			this->lblMove3Accuracy->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// lblMove4Power
 			// 
 			this->lblMove4Power->AutoSize = true;
 			this->lblMove4Power->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->lblMove4Power->Location = System::Drawing::Point(193, 145);
+			this->lblMove4Power->Location = System::Drawing::Point(232, 145);
 			this->lblMove4Power->Name = L"lblMove4Power";
-			this->lblMove4Power->Size = System::Drawing::Size(32, 38);
+			this->lblMove4Power->Size = System::Drawing::Size(31, 38);
 			this->lblMove4Power->TabIndex = 32;
+			this->lblMove4Power->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// lblMove4Accuracy
 			// 
 			this->lblMove4Accuracy->AutoSize = true;
 			this->lblMove4Accuracy->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->lblMove4Accuracy->Location = System::Drawing::Point(231, 145);
+			this->lblMove4Accuracy->Location = System::Drawing::Point(269, 145);
 			this->lblMove4Accuracy->Name = L"lblMove4Accuracy";
 			this->lblMove4Accuracy->Size = System::Drawing::Size(32, 38);
 			this->lblMove4Accuracy->TabIndex = 33;
+			this->lblMove4Accuracy->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// numMove3PPUps
 			// 
 			this->numMove3PPUps->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
-			this->numMove3PPUps->Location = System::Drawing::Point(272, 116);
+			this->numMove3PPUps->Location = System::Drawing::Point(310, 116);
 			this->numMove3PPUps->Margin = System::Windows::Forms::Padding(6);
 			this->numMove3PPUps->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {3, 0, 0, 0});
 			this->numMove3PPUps->Name = L"numMove3PPUps";
-			this->numMove3PPUps->Size = System::Drawing::Size(27, 20);
+			this->numMove3PPUps->Size = System::Drawing::Size(26, 20);
 			this->numMove3PPUps->TabIndex = 34;
 			this->numMove3PPUps->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::numMove3PPUps_ValueChanged);
 			// 
 			// numMove3PP
 			// 
 			this->numMove3PP->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
-			this->numMove3PP->Location = System::Drawing::Point(311, 116);
+			this->numMove3PP->Location = System::Drawing::Point(348, 116);
 			this->numMove3PP->Margin = System::Windows::Forms::Padding(6);
-			this->numMove3PP->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {255, 0, 0, 0});
+			this->numMove3PP->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {99, 0, 0, 0});
 			this->numMove3PP->Name = L"numMove3PP";
 			this->numMove3PP->Size = System::Drawing::Size(33, 20);
 			this->numMove3PP->TabIndex = 35;
@@ -2110,9 +2068,9 @@ private: System::ComponentModel::IContainer^  components;
 			// numMove4PP
 			// 
 			this->numMove4PP->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
-			this->numMove4PP->Location = System::Drawing::Point(311, 154);
+			this->numMove4PP->Location = System::Drawing::Point(348, 154);
 			this->numMove4PP->Margin = System::Windows::Forms::Padding(6);
-			this->numMove4PP->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {255, 0, 0, 0});
+			this->numMove4PP->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {99, 0, 0, 0});
 			this->numMove4PP->Name = L"numMove4PP";
 			this->numMove4PP->Size = System::Drawing::Size(33, 20);
 			this->numMove4PP->TabIndex = 36;
@@ -2121,33 +2079,91 @@ private: System::ComponentModel::IContainer^  components;
 			// numMove4PPUps
 			// 
 			this->numMove4PPUps->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
-			this->numMove4PPUps->Location = System::Drawing::Point(272, 154);
+			this->numMove4PPUps->Location = System::Drawing::Point(310, 154);
 			this->numMove4PPUps->Margin = System::Windows::Forms::Padding(6);
 			this->numMove4PPUps->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {3, 0, 0, 0});
 			this->numMove4PPUps->Name = L"numMove4PPUps";
-			this->numMove4PPUps->Size = System::Drawing::Size(27, 20);
+			this->numMove4PPUps->Size = System::Drawing::Size(26, 20);
 			this->numMove4PPUps->TabIndex = 37;
 			this->numMove4PPUps->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::numMove4PPUps_ValueChanged);
 			// 
 			// txtMove3TotalPP
 			// 
 			this->txtMove3TotalPP->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
-			this->txtMove3TotalPP->Location = System::Drawing::Point(356, 116);
+			this->txtMove3TotalPP->Location = System::Drawing::Point(393, 116);
 			this->txtMove3TotalPP->Margin = System::Windows::Forms::Padding(6);
 			this->txtMove3TotalPP->Name = L"txtMove3TotalPP";
 			this->txtMove3TotalPP->ReadOnly = true;
-			this->txtMove3TotalPP->Size = System::Drawing::Size(31, 20);
+			this->txtMove3TotalPP->Size = System::Drawing::Size(33, 20);
 			this->txtMove3TotalPP->TabIndex = 38;
 			// 
 			// txtMove4TotalPP
 			// 
 			this->txtMove4TotalPP->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
-			this->txtMove4TotalPP->Location = System::Drawing::Point(356, 154);
+			this->txtMove4TotalPP->Location = System::Drawing::Point(393, 154);
 			this->txtMove4TotalPP->Margin = System::Windows::Forms::Padding(6);
 			this->txtMove4TotalPP->Name = L"txtMove4TotalPP";
 			this->txtMove4TotalPP->ReadOnly = true;
-			this->txtMove4TotalPP->Size = System::Drawing::Size(31, 20);
+			this->txtMove4TotalPP->Size = System::Drawing::Size(33, 20);
 			this->txtMove4TotalPP->TabIndex = 39;
+			// 
+			// tpOrigins
+			// 
+			this->tpOrigins->Location = System::Drawing::Point(4, 22);
+			this->tpOrigins->Name = L"tpOrigins";
+			this->tpOrigins->Size = System::Drawing::Size(432, 254);
+			this->tpOrigins->TabIndex = 3;
+			this->tpOrigins->Text = L"Origins";
+			this->tpOrigins->UseVisualStyleBackColor = true;
+			// 
+			// tpRibbons
+			// 
+			this->tpRibbons->Location = System::Drawing::Point(4, 22);
+			this->tpRibbons->Name = L"tpRibbons";
+			this->tpRibbons->Size = System::Drawing::Size(432, 254);
+			this->tpRibbons->TabIndex = 4;
+			this->tpRibbons->Text = L"Ribbons";
+			this->tpRibbons->UseVisualStyleBackColor = true;
+			// 
+			// tpMisc
+			// 
+			this->tpMisc->Controls->Add(this->chkPIDHex);
+			this->tpMisc->Controls->Add(this->lblPID);
+			this->tpMisc->Controls->Add(this->txtPID);
+			this->tpMisc->Location = System::Drawing::Point(4, 22);
+			this->tpMisc->Name = L"tpMisc";
+			this->tpMisc->Size = System::Drawing::Size(432, 254);
+			this->tpMisc->TabIndex = 5;
+			this->tpMisc->Text = L"Misc";
+			this->tpMisc->UseVisualStyleBackColor = true;
+			// 
+			// chkPIDHex
+			// 
+			this->chkPIDHex->AutoSize = true;
+			this->chkPIDHex->Location = System::Drawing::Point(126, 25);
+			this->chkPIDHex->Name = L"chkPIDHex";
+			this->chkPIDHex->Size = System::Drawing::Size(45, 17);
+			this->chkPIDHex->TabIndex = 2;
+			this->chkPIDHex->Text = L"Hex";
+			this->chkPIDHex->UseVisualStyleBackColor = true;
+			this->chkPIDHex->CheckedChanged += gcnew System::EventHandler(this, &frmPKMViewer::chkPIDHex_CheckedChanged);
+			// 
+			// lblPID
+			// 
+			this->lblPID->AutoSize = true;
+			this->lblPID->Location = System::Drawing::Point(5, 7);
+			this->lblPID->Name = L"lblPID";
+			this->lblPID->Size = System::Drawing::Size(115, 13);
+			this->lblPID->TabIndex = 1;
+			this->lblPID->Text = L"Personality Value (PID)";
+			// 
+			// txtPID
+			// 
+			this->txtPID->Location = System::Drawing::Point(5, 23);
+			this->txtPID->Name = L"txtPID";
+			this->txtPID->Size = System::Drawing::Size(115, 20);
+			this->txtPID->TabIndex = 0;
+			this->txtPID->TextChanged += gcnew System::EventHandler(this, &frmPKMViewer::txtPID_TextChanged);
 			// 
 			// ttMove1Flavor
 			// 
@@ -2173,7 +2189,7 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(577, 286);
+			this->ClientSize = System::Drawing::Size(616, 286);
 			this->Controls->Add(this->tlViewer);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->MaximizeBox = false;
@@ -2257,8 +2273,6 @@ private: System::ComponentModel::IContainer^  components;
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbMove2Type))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMove2PPUps))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMove2PP))->EndInit();
-			this->tpMisc->ResumeLayout(false);
-			this->tpMisc->PerformLayout();
 			this->tlMove3NameEtc->ResumeLayout(false);
 			this->tlMove3TypeCat->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbMove3Cat))->EndInit();
@@ -2271,6 +2285,8 @@ private: System::ComponentModel::IContainer^  components;
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMove3PP))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMove4PP))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMove4PPUps))->EndInit();
+			this->tpMisc->ResumeLayout(false);
+			this->tpMisc->PerformLayout();
 			this->ResumeLayout(false);
 
 		}
@@ -2342,6 +2358,33 @@ private: System::ComponentModel::IContainer^  components;
 			pbItem->Image = (pviewvsqlite->getSQLImage(itemsql.str()));
 			cbSpecies->SelectedIndex = cbSpecies->FindString(gcnew System::String(lookuppkmname(temppkm).c_str()))/*(int)(temppkm->species)-1*/;
 			numSpecies->Value = Convert::ToDecimal((UInt16)(temppkm->species));
+			/*
+			Nickname
+			Nicknamed
+			OT Name
+			OT Gender
+			TID
+			SID
+			Type
+			Ability
+			EXP
+			Level
+			Ball
+			Shiny
+			PKRS
+			IVs
+			EVs
+			Calc Stats
+			Total EVs
+			Nature
+			PID
+			Moves
+			Move Types
+			Move Cats
+			Move PP Ups
+			Move PP
+			Move Total PP
+			*/
 
 			redisplayok = true;
 		}
@@ -2369,29 +2412,51 @@ private: System::ComponentModel::IContainer^  components;
 				 cbSpecies->DataSource = speciesds->Tables[0];
 				 cbSpecies->DisplayMember = "name";
 				 cbSpecies->ValueMember = "pokemon_species_id";
-
-				 //DataSet^ abilitiesds = pviewvsqlite->getSQLDS("SELECT ability_id, name FROM ability_names WHERE (local_language_id = 9) AND (ability_id < 10000)");
-				 ////cbItem->DataSource = abilitiesds->Tables[0];
-				 ////cbItem->DisplayMember = "name";
-				 ////cbItem->ValueMember = "ability_id";
-				 //
-				 //DataSet^ movesds = pviewvsqlite->getSQLDS("SELECT move_id, name FROM move_names WHERE (local_language_id = 9) AND (move_id < 10000)");
-				 //DataRow^ blankmove = movesds->Tables[0]->NewRow();
-				 //blankmove["move_id"] = 0;
-				 //blankmove["name"] = "";
-				 //movesds->Tables[0]->Rows->InsertAt(blankmove,0);
-				 ////cbItem->DataSource = movesds->Tables[0];
-				 ////cbItem->DisplayMember = "name";
-				 ////cbItem->ValueMember = "move_id";
-				 ////cbItem->DataSource = movesds->Tables[0];
-				 ////cbItem->DisplayMember = "name";
-				 ////cbItem->ValueMember = "move_id";
-				 ////cbItem->DataSource = movesds->Tables[0];
-				 ////cbItem->DisplayMember = "name";
-				 ////cbItem->ValueMember = "move_id";
-				 ////cbItem->DataSource = movesds->Tables[0];
-				 ////cbItem->DisplayMember = "name";
-				 ////cbItem->ValueMember = "move_id";
+				 DataSet^ abilitiesds = pviewvsqlite->getSQLDS("SELECT ability_id, name FROM ability_names WHERE (local_language_id = 9) AND (ability_id < 10000) order by name asc");
+				 cbAbility->DataSource = abilitiesds->Tables[0];
+				 cbAbility->DisplayMember = "name";
+				 cbAbility->ValueMember = "ability_id";
+				 System::String ^ movesql = "SELECT move_names.move_id, move_names.name, moves.power, moves.accuracy FROM moves INNER JOIN move_names ON moves.id = move_names.move_id WHERE (move_names.local_language_id = 9) AND (move_names.move_id < 10000) order by name asc";
+				 DataSet^ movesds1 = pviewvsqlite->getSQLDS(movesql);
+				 DataSet^ movesds2 = pviewvsqlite->getSQLDS(movesql);
+				 DataSet^ movesds3 = pviewvsqlite->getSQLDS(movesql);
+				 DataSet^ movesds4 = pviewvsqlite->getSQLDS(movesql);
+				 DataRow^ blankmove1 = movesds1->Tables[0]->NewRow();
+				 blankmove1["move_id"] = 0;
+				 blankmove1["name"] = "";
+				 movesds1->Tables[0]->Rows->InsertAt(blankmove1,0);
+				 DataRow^ blankmove2 = movesds2->Tables[0]->NewRow();
+				 blankmove2["move_id"] = 0;
+				 blankmove2["name"] = "";
+				 movesds2->Tables[0]->Rows->InsertAt(blankmove2,0);
+				 DataRow^ blankmove3 = movesds3->Tables[0]->NewRow();
+				 blankmove3["move_id"] = 0;
+				 blankmove3["name"] = "";
+				 movesds3->Tables[0]->Rows->InsertAt(blankmove3,0);
+				 DataRow^ blankmove4 = movesds4->Tables[0]->NewRow();
+				 blankmove4["move_id"] = 0;
+				 blankmove4["name"] = "";
+				 movesds4->Tables[0]->Rows->InsertAt(blankmove4,0);
+				 cbMove1->DataSource = movesds1->Tables[0];
+				 cbMove1->DisplayMember = "name";
+				 cbMove1->ValueMember = "move_id";
+				 cbMove2->DataSource = movesds2->Tables[0];
+				 cbMove2->DisplayMember = "name";
+				 cbMove2->ValueMember = "move_id";
+				 cbMove3->DataSource = movesds3->Tables[0];
+				 cbMove3->DisplayMember = "name";
+				 cbMove3->ValueMember = "move_id";
+				 cbMove4->DataSource = movesds4->Tables[0];
+				 cbMove4->DisplayMember = "name";
+				 cbMove4->ValueMember = "move_id";
+				 lblMove1Power->DataBindings->Add("Text",movesds1->Tables[0],"power",true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
+				 lblMove2Power->DataBindings->Add("Text",movesds2->Tables[0],"power",true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
+				 lblMove3Power->DataBindings->Add("Text",movesds3->Tables[0],"power",true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
+				 lblMove4Power->DataBindings->Add("Text",movesds4->Tables[0],"power",true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
+				 lblMove1Accuracy->DataBindings->Add("Text",movesds1->Tables[0],"accuracy",true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
+				 lblMove2Accuracy->DataBindings->Add("Text",movesds2->Tables[0],"accuracy",true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
+				 lblMove3Accuracy->DataBindings->Add("Text",movesds3->Tables[0],"accuracy",true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
+				 lblMove4Accuracy->DataBindings->Add("Text",movesds4->Tables[0],"accuracy",true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
 
 				 displayPKM();
 			 }
@@ -2451,6 +2516,9 @@ private: System::ComponentModel::IContainer^  components;
 				 if(redisplayok)
 				 {
 					 temppkm->item = (Items::items)(Convert::ToUInt16(cbItem->SelectedValue));
+					 // TODO: Figure out how to make data bindings work with images
+					 //DataSet^ itemimgds = pviewvsqlite->getSQLIMGDS("SELECT identifier, image FROM items");
+					 //pbItem->DataBindings->Add("Image",itemimgds->Tables[0],"image");
 					 ostringstream itemsql;
 					 getitemsql(itemsql,(uint16)temppkm->item);
 					 pbItem->Image = (pviewvsqlite->getSQLImage(itemsql.str()));
@@ -2458,7 +2526,10 @@ private: System::ComponentModel::IContainer^  components;
 			 }
 	private: System::Void cbBall_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) 
 			 {
+				 if(redisplayok)
+				 {
 
+				 }
 			 }
 	private: System::Void cbSpecies_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) 
 			 {
@@ -2487,77 +2558,281 @@ private: System::ComponentModel::IContainer^  components;
 
 				 }
 			 }
-	private: System::Void numTID_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void numTID_ValueChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 pkm->tid = Convert::ToUInt16(numTID->Value);
+				 }
 			 }
-private: System::Void txtNickname_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void chkNicknamed_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void txtOTName_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void rbOTMale_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void rbOTFemale_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void numSID_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void cbAbility_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void numEXP_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void txtPID_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void chkPIDHex_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void numHPIV_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void numAttackIV_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void numDefenseIV_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void numSpAtkIV_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void numSpDefIV_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void numSpeedIV_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void numHPEV_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void numAttackEV_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void numDefenseEV_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void numSpAtkEV_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void numSpDefEV_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void numSpeedEV_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void cbNature_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void cbMove1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void cbMove2_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void cbMove3_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void cbMove4_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void numMove1PPUps_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void numMove2PPUps_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void numMove3PPUps_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void numMove4PPUps_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void numMove1PP_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void numMove2PP_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void numMove3PP_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void numMove4PP_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-};
+	private: System::Void txtNickname_TextChanged(System::Object^  sender, System::EventArgs^  e) 
+			 {
+				 if(redisplayok)
+				 {
+
+				 }
+			 }
+	private: System::Void chkNicknamed_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 pkm->ivs.isnicknamed = (uint32)(chkNicknamed->Checked);
+				 }
+			 }
+	private: System::Void txtOTName_TextChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+
+				 }
+			 }
+	private: System::Void rbOTMale_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 if(rbOTMale->Checked)
+					 {
+						 pkm->metlevel_otgender.otgender = Genders::male;
+					 }
+				 }
+			 }
+	private: System::Void rbOTFemale_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 if(rbOTFemale->Checked)
+					 {
+						 pkm->metlevel_otgender.otgender = Genders::female;
+					 }
+				 }
+			 }
+	private: System::Void numSID_ValueChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 pkm->sid = Convert::ToUInt16(numSID->Value);
+				 }
+			 }
+	private: System::Void cbAbility_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 temppkm->ability = (Abilities::abilities)(Convert::ToUInt16(cbAbility->SelectedValue));
+				 }
+			 }
+	private: System::Void numEXP_ValueChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+
+				 }
+			 }
+	private: System::Void txtPID_TextChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+
+				 }
+			 }
+	private: System::Void chkPIDHex_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+
+				 }
+			 }
+	private: System::Void numHPIV_ValueChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 temppkm->ivs.hp = Convert::ToByte(numHPEV->Value);
+				 }
+			 }
+	private: System::Void numAttackIV_ValueChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 temppkm->ivs.attack = Convert::ToByte(numAttackEV->Value);
+				 }
+			 }
+	private: System::Void numDefenseIV_ValueChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 temppkm->ivs.defense = Convert::ToByte(numDefenseEV->Value);
+				 }
+			 }
+	private: System::Void numSpAtkIV_ValueChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 temppkm->ivs.spatk = Convert::ToByte(numSpAtkEV->Value);
+				 }
+			 }
+	private: System::Void numSpDefIV_ValueChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 temppkm->ivs.spdef = Convert::ToByte(numSpDefIV->Value);
+				 }
+			 }
+	private: System::Void numSpeedIV_ValueChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 temppkm->ivs.speed = Convert::ToByte(numSpeedIV->Value);
+				 }
+			 }
+	private: System::Void numHPEV_ValueChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 temppkm->evs.hp = Convert::ToByte(numHPEV->Value);
+				 }
+			 }
+	private: System::Void numAttackEV_ValueChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 temppkm->evs.attack = Convert::ToByte(numAttackEV->Value);
+				 }
+			 }
+	private: System::Void numDefenseEV_ValueChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 temppkm->evs.defense = Convert::ToByte(numDefenseEV->Value);
+				 }
+			 }
+	private: System::Void numSpAtkEV_ValueChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 temppkm->evs.spatk = Convert::ToByte(numSpAtkEV->Value);
+				 }
+			 }
+	private: System::Void numSpDefEV_ValueChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 temppkm->evs.spdef = Convert::ToByte(numSpDefEV->Value);
+				 }
+			 }
+	private: System::Void numSpeedEV_ValueChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 temppkm->evs.speed = Convert::ToByte(numSpeedEV->Value);
+				 }
+			 }
+	private: System::Void cbNature_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+
+				 }
+			 }
+	private: System::Void cbMove1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 temppkm->moves[0] = (Moves::moves)(Convert::ToUInt16(cbMove1->SelectedValue));
+				 }
+			 }
+	private: System::Void cbMove2_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 temppkm->moves[1] = (Moves::moves)(Convert::ToUInt16(cbMove2->SelectedValue));
+				 }
+			 }
+	private: System::Void cbMove3_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 temppkm->moves[2] = (Moves::moves)(Convert::ToUInt16(cbMove3->SelectedValue));
+				 }
+			 }
+	private: System::Void cbMove4_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 temppkm->moves[3] = (Moves::moves)(Convert::ToUInt16(cbMove4->SelectedValue));
+				 }
+			 }
+	private: System::Void numMove1PPUps_ValueChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+
+				 }
+			 }
+	private: System::Void numMove2PPUps_ValueChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 if(temppkm->moves[1] != Moves::NOTHING)
+					 {
+
+					 }
+				 }
+			 }
+	private: System::Void numMove3PPUps_ValueChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 if(temppkm->moves[1] != Moves::NOTHING)
+					 {
+
+					 }
+				 }
+			 }
+	private: System::Void numMove4PPUps_ValueChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 if(temppkm->moves[1] != Moves::NOTHING)
+					 {
+
+					 }
+				 }
+			 }
+	private: System::Void numMove1PP_ValueChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+
+				 }
+			 }
+	private: System::Void numMove2PP_ValueChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 if(temppkm->moves[1] != Moves::NOTHING)
+					 {
+
+					 }
+				 }
+			 }
+	private: System::Void numMove3PP_ValueChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 if(temppkm->moves[2] != Moves::NOTHING)
+					 {
+
+					 }
+				 }
+			 }
+	private: System::Void numMove4PP_ValueChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 if(temppkm->moves[3] != Moves::NOTHING)
+					 {
+
+					 }
+				 }
+			 }
+	};
 }
