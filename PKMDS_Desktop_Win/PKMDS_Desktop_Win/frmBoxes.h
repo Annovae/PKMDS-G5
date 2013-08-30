@@ -2774,7 +2774,6 @@ namespace PKMDS_Desktop_Win {
 				 pbPartySlot04->AllowDrop = true;
 				 pbPartySlot05->AllowDrop = true;
 				 pbPartySlot06->AllowDrop = true;
-
 				 //sav = 0;
 			 }
 			 void refreshbox()
@@ -3182,10 +3181,10 @@ namespace PKMDS_Desktop_Win {
 			 }
 	private: System::Void pbPartySlot_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) 
 			 {
-				 if(savloaded)
-				 {
-					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
-				 }
+				 //if(savloaded)
+				 //{
+					// System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
+				 //}
 
 			 }
 	private: System::Void pbPartySlot_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) 

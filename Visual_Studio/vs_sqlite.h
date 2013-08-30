@@ -15,8 +15,8 @@ public: VS_SQLite()
 			db = gcnew SQLiteConnection();
 			imgdb = gcnew SQLiteConnection();
 			//String ^ dbdir = "C:\\Users\\Mike\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\";
-			//String ^ dbdir = "C:\\Users\\Michael Bond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\";
-			String ^ dbdir = "C:\\Users\\michaelbond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\";
+			String ^ dbdir = "C:\\Users\\Michael Bond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\";
+			//String ^ dbdir = "C:\\Users\\michaelbond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\";
 			db->ConnectionString = L"Data Source='" + dbdir + L"veekun-pokedex.sqlite'";
 			db->Open();
 			imgdb->ConnectionString = L"Data Source='" + dbdir + L"images.sqlite'";
@@ -64,7 +64,7 @@ public: int getSQLInt(String ^ SQL)
 			cmdSelect->CommandText = SQL;
 			SQLiteDataReader ^reader = cmdSelect->ExecuteReader();
 			reader->Read();
-			return reader->GetInt16(0);
+			return reader->GetInt32(0);
 		}
 public: Drawing::Image^ getSQLImage(String^ SQL)
 		{

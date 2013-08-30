@@ -221,11 +221,11 @@ int getpkmexpatcur(const int id, const int exp)
 {
     return getanint(getpkmexpatcursql(id,exp));
 }
-int getpkmexpatlevel(const int id, const int level)
+uint32 getpkmexpatlevel(const int id, const int level)
 {
     return getanint(getpkmexpatlevelsql(id,level));
 }
-int getpkmexpatlevel(const Species::pkmspecies id, const int level)
+uint32 getpkmexpatlevel(const Species::pkmspecies id, const int level)
 {
     return getanint(getpkmexpatlevelsql(id,level));
 }

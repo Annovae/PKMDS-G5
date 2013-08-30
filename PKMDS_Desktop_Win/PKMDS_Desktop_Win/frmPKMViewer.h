@@ -2424,8 +2424,8 @@ namespace PKMDS_Desktop_Win {
 				txtOTName->ForeColor = Color::Blue;
 			}
 			chkNicknamed->Checked = (bool)(temppkm->ivs.isnicknamed);
-			numTID->Value = temppkm->tid;
-			numSID->Value = temppkm->sid;
+			numTID->Value = Convert::ToDecimal(temppkm->tid);
+			numSID->Value = Convert::ToDecimal(temppkm->sid);
 			cbMove1->SelectedIndex = cbMove1->FindString(gcnew System::String(lookupmovename(temppkm,0).c_str()));
 			if(temppkm->moves[1] != Moves::NOTHING){ cbMove2->SelectedIndex = cbMove2->FindString(gcnew System::String(lookupmovename(temppkm,1).c_str()));}
 			if(temppkm->moves[2] != Moves::NOTHING){ cbMove3->SelectedIndex = cbMove3->FindString(gcnew System::String(lookupmovename(temppkm,2).c_str()));}
@@ -2433,33 +2433,41 @@ namespace PKMDS_Desktop_Win {
 			cbNature->SelectedIndex = cbNature->FindString(gcnew System::String(getnaturename(temppkm).c_str()));
 			cbAbility->SelectedIndex = cbAbility->FindString(gcnew System::String(lookupabilityname(temppkm).c_str()));
 			txtTotalEVs->Text = System::Convert::ToString(temppkm->evs.hp + temppkm->evs.attack + temppkm->evs.defense + temppkm->evs.spatk + temppkm->evs.spdef + temppkm->evs.speed);
-			numHPIV->Value = temppkm->ivs.hp;
-			numAttackIV->Value = temppkm->ivs.attack;
-			numDefenseIV->Value = temppkm->ivs.defense;
-			numSpAtkIV->Value = temppkm->ivs.spatk;
-			numSpDefIV->Value = temppkm->ivs.spdef;
-			numSpeedIV->Value = temppkm->ivs.speed;
-			numHPEV->Value = temppkm->evs.hp;
-			numAttackEV->Value = temppkm->evs.attack;
-			numDefenseEV->Value = temppkm->evs.defense;
-			numSpAtkEV->Value = temppkm->evs.spatk;
-			numSpDefEV->Value = temppkm->evs.spdef;
-			numSpeedEV->Value = temppkm->evs.speed;
-			numMove1PPUps->Value = temppkm->ppup[0];
-			numMove2PPUps->Value = temppkm->ppup[1];
-			numMove3PPUps->Value = temppkm->ppup[2];
-			numMove4PPUps->Value = temppkm->ppup[3];
-			numMove1PP->Value = temppkm->pp[0];
-			numMove2PP->Value = temppkm->pp[1];
-			numMove3PP->Value = temppkm->pp[2];
-			numMove4PP->Value = temppkm->pp[3];
+			numHPIV->Value = Convert::ToDecimal(temppkm->ivs.hp);
+			numAttackIV->Value = Convert::ToDecimal(temppkm->ivs.attack);
+			numDefenseIV->Value = Convert::ToDecimal(temppkm->ivs.defense);
+			numSpAtkIV->Value = Convert::ToDecimal(temppkm->ivs.spatk);
+			numSpDefIV->Value = Convert::ToDecimal(temppkm->ivs.spdef);
+			numSpeedIV->Value = Convert::ToDecimal(temppkm->ivs.speed);
+			numHPEV->Value = Convert::ToDecimal(temppkm->evs.hp);
+			numAttackEV->Value = Convert::ToDecimal(temppkm->evs.attack);
+			numDefenseEV->Value = Convert::ToDecimal(temppkm->evs.defense);
+			numSpAtkEV->Value = Convert::ToDecimal(temppkm->evs.spatk);
+			numSpDefEV->Value = Convert::ToDecimal(temppkm->evs.spdef);
+			numSpeedEV->Value = Convert::ToDecimal(temppkm->evs.speed);
+			numMove1PPUps->Value = Convert::ToDecimal(temppkm->ppup[0]);
+			numMove2PPUps->Value = Convert::ToDecimal(temppkm->ppup[1]);
+			numMove3PPUps->Value = Convert::ToDecimal(temppkm->ppup[2]);
+			numMove4PPUps->Value = Convert::ToDecimal(temppkm->ppup[3]);
+			numMove1PP->Value = Convert::ToDecimal(temppkm->pp[0]);
+			numMove2PP->Value = Convert::ToDecimal(temppkm->pp[1]);
+			numMove3PP->Value = Convert::ToDecimal(temppkm->pp[2]);
+			numMove4PP->Value = Convert::ToDecimal(temppkm->pp[3]);
 			txtMove1TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,0));
-			txtMove2TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,1));
-			txtMove3TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,2));
-			txtMove4TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,3));
+			if(temppkm->moves[1] != Moves::NOTHING)
+			{
+				txtMove2TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,1));
+			}
+			if(temppkm->moves[2] != Moves::NOTHING)
+			{
+				txtMove3TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,2));
+			}
+			if(temppkm->moves[3] != Moves::NOTHING)
+			{
+				txtMove4TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,3));
+			}
 			refreshnatureeffect();
-			numEXP->Value = temppkm->exp;
-			numLevel->Value = getpkmlevel(temppkm);
+
 			txtCalcHP->Text = System::Convert::ToString(getpkmstat(temppkm,Stat_IDs::hp));
 			txtCalcAttack->Text = System::Convert::ToString(getpkmstat(temppkm,Stat_IDs::attack));
 			txtCalcDefense->Text = System::Convert::ToString(getpkmstat(temppkm,Stat_IDs::defense));
@@ -2467,6 +2475,9 @@ namespace PKMDS_Desktop_Win {
 			txtCalcSpDef->Text = System::Convert::ToString(getpkmstat(temppkm,Stat_IDs::spdef));
 			txtCalcSpeed->Text = System::Convert::ToString(getpkmstat(temppkm,Stat_IDs::speed));
 			txtPID->Text = System::Convert::ToString(temppkm->pid);
+			numLevel->Value = Convert::ToDecimal(getpkmlevel(temppkm));
+			numEXP->Maximum = (getpkmexpatlevel(temppkm->species,100));
+			numEXP->Value = temppkm->exp;
 
 			/*
 			Type
@@ -2491,7 +2502,7 @@ namespace PKMDS_Desktop_Win {
 					 "(item_game_indices.generation_id = 5) order by name asc"
 					 );
 				 DataRow^ blankitem = itemds->Tables[0]->NewRow();
-				 blankitem["game_index"] = 0;
+				 blankitem["game_index"] = 0 /*nullptr*/;
 				 blankitem["name"] = "";
 				 itemds->Tables[0]->Rows->InsertAt(blankitem,0);
 				 cbItem->DataSource = itemds->Tables[0];
@@ -2511,19 +2522,19 @@ namespace PKMDS_Desktop_Win {
 				 DataSet^ movesds3 = pviewvsqlite->getSQLDS(movesql);
 				 DataSet^ movesds4 = pviewvsqlite->getSQLDS(movesql);
 				 DataRow^ blankmove1 = movesds1->Tables[0]->NewRow();
-				 blankmove1["move_id"] = 0;
+				 blankmove1["move_id"] = 0 /*nullptr*/;
 				 blankmove1["name"] = "";
 				 movesds1->Tables[0]->Rows->InsertAt(blankmove1,0);
 				 DataRow^ blankmove2 = movesds2->Tables[0]->NewRow();
-				 blankmove2["move_id"] = 0;
+				 blankmove2["move_id"] = 0 /*nullptr*/;
 				 blankmove2["name"] = "";
 				 movesds2->Tables[0]->Rows->InsertAt(blankmove2,0);
 				 DataRow^ blankmove3 = movesds3->Tables[0]->NewRow();
-				 blankmove3["move_id"] = 0;
+				 blankmove3["move_id"] = 0 /*nullptr*/;
 				 blankmove3["name"] = "";
 				 movesds3->Tables[0]->Rows->InsertAt(blankmove3,0);
 				 DataRow^ blankmove4 = movesds4->Tables[0]->NewRow();
-				 blankmove4["move_id"] = 0;
+				 blankmove4["move_id"] = 0 /*nullptr*/;
 				 blankmove4["name"] = "";
 				 movesds4->Tables[0]->Rows->InsertAt(blankmove4,0);
 				 cbMove1->DataSource = movesds1->Tables[0];

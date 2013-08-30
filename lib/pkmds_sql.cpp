@@ -121,11 +121,11 @@ string getpkmexpatlevelsql(const int id, const int level)
     o << ""
       << "SELECT experience.experience "
       << "FROM   pokemon_species "
-      << "       INNER JOIN experience "
-      << "               ON pokemon_species.growth_rate_id = experience.growth_rate_id "
+      << " INNER JOIN experience "
+      << " ON pokemon_species.growth_rate_id = experience.growth_rate_id "
       << "WHERE  ( pokemon_species.id = " << id << " ) "
-      << "       AND ( experience.level = " << level << " ) "
-      << "ORDER  BY experience.experience ";
+      << " AND ( experience.level = " << level << " ) "
+      << "ORDER  BY experience.experience";
     return o.str();
 }
 string getpkmexpatlevelsql(const Species::pkmspecies id, const int level)
@@ -133,12 +133,12 @@ string getpkmexpatlevelsql(const Species::pkmspecies id, const int level)
     ostringstream o;
     o << ""
       << "SELECT experience.experience "
-      << "FROM   pokemon_species "
-      << "       INNER JOIN experience "
-      << "               ON pokemon_species.growth_rate_id = experience.growth_rate_id "
+      << "FROM pokemon_species "
+      << " INNER JOIN experience "
+      << " ON pokemon_species.growth_rate_id = experience.growth_rate_id "
       << "WHERE  ( pokemon_species.id = " << (int)id << " ) "
-      << "       AND ( experience.level = " << level << " ) "
-      << "ORDER  BY experience.experience ";
+      << " AND ( experience.level = " << level << " ) "
+      << "ORDER  BY experience.experience";
     return o.str();
 }
 string getnaturenamesql(const int natureid, const int langid)
