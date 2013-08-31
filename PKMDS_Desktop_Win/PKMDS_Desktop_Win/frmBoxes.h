@@ -2877,7 +2877,7 @@ namespace PKMDS_Desktop_Win {
 				 for each (System::Windows::Forms::PictureBox^ pb in tlParty->Controls)
 				 {
 					 pb->Image = nullptr;
-					 int slot = int::Parse(pb->Name->Substring(11));
+					 uint16 slot = (uint16)(int::Parse(pb->Name->Substring(11)));
 					 if(slot <= sav->cur.party.size)
 					 {
 						 party_pkm * ppkm_ = new party_pkm;
@@ -3082,10 +3082,10 @@ namespace PKMDS_Desktop_Win {
 					 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
 					 //pb->BorderStyle = BorderStyle::FixedSingle;
 					 pb->Tag = "Selected";
-					 int slot;
+					 int slot = 0;
 					 if(int::TryParse(pb->Name->Substring(pb->Name->Length - 2, 2), slot))
 					 {
-						 if((slot-1) < sav->cur.party.size)
+						 if((uint16)(slot-1) < sav->cur.party.size)
 						 {
 							 ppkm = &(sav->cur.party.pokemon[slot-1]);
 							 if(!((bool)ppkm->pkm_data.isboxdatadecrypted))

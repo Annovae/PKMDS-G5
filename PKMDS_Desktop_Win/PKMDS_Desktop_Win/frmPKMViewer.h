@@ -2479,6 +2479,8 @@ namespace PKMDS_Desktop_Win {
 			numEXP->Maximum = (getpkmexpatlevel(temppkm->species,100));
 			numEXP->Value = temppkm->exp;
 
+
+
 			/*
 			Type
 			PKRS
@@ -2502,7 +2504,7 @@ namespace PKMDS_Desktop_Win {
 					 "(item_game_indices.generation_id = 5) order by name asc"
 					 );
 				 DataRow^ blankitem = itemds->Tables[0]->NewRow();
-				 blankitem["game_index"] = 0 /*nullptr*/;
+				 blankitem["game_index"] = nullptr;
 				 blankitem["name"] = "";
 				 itemds->Tables[0]->Rows->InsertAt(blankitem,0);
 				 cbItem->DataSource = itemds->Tables[0];
@@ -2522,19 +2524,19 @@ namespace PKMDS_Desktop_Win {
 				 DataSet^ movesds3 = pviewvsqlite->getSQLDS(movesql);
 				 DataSet^ movesds4 = pviewvsqlite->getSQLDS(movesql);
 				 DataRow^ blankmove1 = movesds1->Tables[0]->NewRow();
-				 blankmove1["move_id"] = 0 /*nullptr*/;
+				 blankmove1["move_id"] = nullptr;
 				 blankmove1["name"] = "";
 				 movesds1->Tables[0]->Rows->InsertAt(blankmove1,0);
 				 DataRow^ blankmove2 = movesds2->Tables[0]->NewRow();
-				 blankmove2["move_id"] = 0 /*nullptr*/;
+				 blankmove2["move_id"] = nullptr;
 				 blankmove2["name"] = "";
 				 movesds2->Tables[0]->Rows->InsertAt(blankmove2,0);
 				 DataRow^ blankmove3 = movesds3->Tables[0]->NewRow();
-				 blankmove3["move_id"] = 0 /*nullptr*/;
+				 blankmove3["move_id"] = nullptr;
 				 blankmove3["name"] = "";
 				 movesds3->Tables[0]->Rows->InsertAt(blankmove3,0);
 				 DataRow^ blankmove4 = movesds4->Tables[0]->NewRow();
-				 blankmove4["move_id"] = 0 /*nullptr*/;
+				 blankmove4["move_id"] = nullptr;
 				 blankmove4["name"] = "";
 				 movesds4->Tables[0]->Rows->InsertAt(blankmove4,0);
 				 cbMove1->DataSource = movesds1->Tables[0];
