@@ -42,8 +42,8 @@ void DllExport getspritesql(ostringstream& o, const pokemon_obj & pkm, int langi
 void DllExport getspritesql(ostringstream& o, const pokemon_obj * pkm, int langid = LANG_ID);
 void DllExport geticonsql(ostringstream& o, const pokemon_obj & pkm, int langid = LANG_ID);
 void DllExport geticonsql(ostringstream& o, const pokemon_obj * pkm, int langid = LANG_ID);
-//void DllExport gettypesql(ostringstream& o, const Types::types type);
-//void DllExport gettypesql(ostringstream& o, const int type);
+void DllExport gettypesql(ostringstream& o, const Types::types type);
+void DllExport gettypesql(ostringstream& o, const int type);
 void DllExport getwallpapersql(ostringstream& o, const int wallpaper);
 void DllExport getwallpapersql(ostringstream& o, const Wallpapers::wallpapers wallpaper);
 void DllExport getitemsql(ostringstream& itemsql, const uint16 itemid, const int generation = GENERATION);

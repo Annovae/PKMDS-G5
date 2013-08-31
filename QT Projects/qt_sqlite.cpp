@@ -17,18 +17,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 #pragma once
 #include "qt_sqlite.h"
-void gettypesql(ostringstream& o, const Types::types type)
-{
-    string type_name = lookuptypename((int)type,9);
-    type_name[0] = tolower(type_name[0]);
-    o << "Select image from types where (identifier = \"" << type_name << "\")";
-}
-void gettypesql(ostringstream& o, const int type)
-{
-    string type_name = lookuptypename(type,9);
-    type_name[0] = tolower(type_name[0]);
-    o << "Select image from types where (identifier = \"" << type_name << "\")";
-}
 QPixmap getpkmsprite(const pokemon_obj &pkm)
 {
     QPixmap pixmap;
@@ -411,15 +399,3 @@ QPixmap getmovecatimage(const Moves::moves themove)
     }
     return pixmap;
 }
-//void gettypesql(ostringstream& o, const Types::types type)
-//{
-//    string type_name = lookuptypename((int)type,9);
-//    type_name[0] = tolower(type_name[0]);
-//    o << "Select image from types where (identifier = \"" << type_name << "\")";
-//}
-//void gettypesql(ostringstream& o, const int type)
-//{
-//    string type_name = lookuptypename(type,9);
-//    type_name[0] = tolower(type_name[0]);
-//    o << "Select image from types where (identifier = \"" << type_name << "\")";
-//}

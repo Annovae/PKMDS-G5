@@ -2404,6 +2404,7 @@ namespace MoveCategories
 }
 int balltoitem(int ball);
 struct pokerus {
+	byte : 4;
 	byte strain : 2;
 	byte days : 2;
 	pokerus()

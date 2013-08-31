@@ -53,7 +53,7 @@ namespace PKMDS_Desktop_Win {
 	private: System::Windows::Forms::TabPage^  tpRibbons;
 	private: System::Windows::Forms::TabPage^  tpMisc;
 	private: System::Windows::Forms::PictureBox^  pbSprite;
-	private: System::Windows::Forms::ComboBox^  cbBall;
+
 	private: System::Windows::Forms::PictureBox^  pbPKRS;
 	private: System::Windows::Forms::PictureBox^  pbShiny;
 	private: System::Windows::Forms::PictureBox^  pbGender;
@@ -249,6 +249,9 @@ namespace PKMDS_Desktop_Win {
 	private: System::Windows::Forms::ToolTip^  ttMove2Flavor;
 	private: System::Windows::Forms::ToolTip^  ttMove3Flavor;
 	private: System::Windows::Forms::ToolTip^  ttMove4Flavor;
+	private: System::Windows::Forms::ListView^  lvBall;
+	private: System::Windows::Forms::ImageList^  imgBalls;
+
 	private: System::ComponentModel::IContainer^  components;
 
 
@@ -299,13 +302,14 @@ namespace PKMDS_Desktop_Win {
 			this->pbSquare = (gcnew System::Windows::Forms::PictureBox());
 			this->pbTriangle = (gcnew System::Windows::Forms::PictureBox());
 			this->pbCircle = (gcnew System::Windows::Forms::PictureBox());
-			this->cbBall = (gcnew System::Windows::Forms::ComboBox());
 			this->pbPKRS = (gcnew System::Windows::Forms::PictureBox());
 			this->pbShiny = (gcnew System::Windows::Forms::PictureBox());
 			this->pbGender = (gcnew System::Windows::Forms::PictureBox());
 			this->pbSprite = (gcnew System::Windows::Forms::PictureBox());
 			this->tcViewer = (gcnew System::Windows::Forms::TabControl());
 			this->tpBasic = (gcnew System::Windows::Forms::TabPage());
+			this->lvBall = (gcnew System::Windows::Forms::ListView());
+			this->imgBalls = (gcnew System::Windows::Forms::ImageList(this->components));
 			this->pbTNL = (gcnew System::Windows::Forms::ProgressBar());
 			this->lblTNL = (gcnew System::Windows::Forms::Label());
 			this->cbAbility = (gcnew System::Windows::Forms::ComboBox());
@@ -537,7 +541,6 @@ namespace PKMDS_Desktop_Win {
 			this->panGeneral->Controls->Add(this->pbSquare);
 			this->panGeneral->Controls->Add(this->pbTriangle);
 			this->panGeneral->Controls->Add(this->pbCircle);
-			this->panGeneral->Controls->Add(this->cbBall);
 			this->panGeneral->Controls->Add(this->pbPKRS);
 			this->panGeneral->Controls->Add(this->pbShiny);
 			this->panGeneral->Controls->Add(this->pbGender);
@@ -707,15 +710,6 @@ namespace PKMDS_Desktop_Win {
 			this->pbCircle->TabStop = false;
 			this->pbCircle->Click += gcnew System::EventHandler(this, &frmPKMViewer::pbCircle_Click);
 			// 
-			// cbBall
-			// 
-			this->cbBall->FormattingEnabled = true;
-			this->cbBall->Location = System::Drawing::Point(109, 29);
-			this->cbBall->Name = L"cbBall";
-			this->cbBall->Size = System::Drawing::Size(44, 21);
-			this->cbBall->TabIndex = 5;
-			this->cbBall->SelectedIndexChanged += gcnew System::EventHandler(this, &frmPKMViewer::cbBall_SelectedIndexChanged);
-			// 
 			// pbPKRS
 			// 
 			this->pbPKRS->BackColor = System::Drawing::Color::Transparent;
@@ -729,7 +723,7 @@ namespace PKMDS_Desktop_Win {
 			// pbShiny
 			// 
 			this->pbShiny->BackColor = System::Drawing::Color::Transparent;
-			this->pbShiny->Location = System::Drawing::Point(109, 56);
+			this->pbShiny->Location = System::Drawing::Point(135, 3);
 			this->pbShiny->Name = L"pbShiny";
 			this->pbShiny->Size = System::Drawing::Size(20, 20);
 			this->pbShiny->SizeMode = System::Windows::Forms::PictureBoxSizeMode::CenterImage;
@@ -775,6 +769,7 @@ namespace PKMDS_Desktop_Win {
 			// 
 			// tpBasic
 			// 
+			this->tpBasic->Controls->Add(this->lvBall);
 			this->tpBasic->Controls->Add(this->pbTNL);
 			this->tpBasic->Controls->Add(this->lblTNL);
 			this->tpBasic->Controls->Add(this->cbAbility);
@@ -795,6 +790,30 @@ namespace PKMDS_Desktop_Win {
 			this->tpBasic->TabIndex = 0;
 			this->tpBasic->Text = L"Basic";
 			this->tpBasic->UseVisualStyleBackColor = true;
+			// 
+			// lvBall
+			// 
+			this->lvBall->Alignment = System::Windows::Forms::ListViewAlignment::Left;
+			this->lvBall->AutoArrange = false;
+			this->lvBall->HeaderStyle = System::Windows::Forms::ColumnHeaderStyle::None;
+			this->lvBall->LargeImageList = this->imgBalls;
+			this->lvBall->Location = System::Drawing::Point(291, 6);
+			this->lvBall->MultiSelect = false;
+			this->lvBall->Name = L"lvBall";
+			this->lvBall->ShowGroups = false;
+			this->lvBall->Size = System::Drawing::Size(135, 242);
+			this->lvBall->SmallImageList = this->imgBalls;
+			this->lvBall->StateImageList = this->imgBalls;
+			this->lvBall->TabIndex = 21;
+			this->lvBall->TileSize = System::Drawing::Size(24, 24);
+			this->lvBall->UseCompatibleStateImageBehavior = false;
+			this->lvBall->View = System::Windows::Forms::View::Tile;
+			// 
+			// imgBalls
+			// 
+			this->imgBalls->ColorDepth = System::Windows::Forms::ColorDepth::Depth32Bit;
+			this->imgBalls->ImageSize = System::Drawing::Size(24, 24);
+			this->imgBalls->TransparentColor = System::Drawing::Color::Transparent;
 			// 
 			// pbTNL
 			// 
@@ -2403,12 +2422,11 @@ namespace PKMDS_Desktop_Win {
 			SQL.clear();
 			getmarkingsql(SQL,Markings::diamond,temppkm->markings.diamond);
 			pbDiamond->Image = pviewvsqlite->getSQLImage(SQL.str());
+			cbItem->SelectedIndex = cbItem->FindString(gcnew System::String(lookupitemname(temppkm).c_str()));
+			getitemsql(SQL,(uint16)temppkm->item);
+			pbItem->Image = (pviewvsqlite->getSQLImage(SQL.str()));
 			SQL.str("");
 			SQL.clear();
-			cbItem->SelectedIndex = cbItem->FindString(gcnew System::String(lookupitemname(temppkm).c_str()));
-			ostringstream itemsql;
-			getitemsql(itemsql,(uint16)temppkm->item);
-			pbItem->Image = (pviewvsqlite->getSQLImage(itemsql.str()));
 			cbSpecies->SelectedIndex = cbSpecies->FindString(gcnew System::String(lookuppkmname(temppkm).c_str()))/*(int)(temppkm->species)-1*/;
 			numSpecies->Value = Convert::ToDecimal((UInt16)(temppkm->species));
 			txtNickname->Text = gcnew System::String(getpkmnickname(temppkm).c_str());
@@ -2453,21 +2471,7 @@ namespace PKMDS_Desktop_Win {
 			numMove2PP->Value = Convert::ToDecimal(temppkm->pp[1]);
 			numMove3PP->Value = Convert::ToDecimal(temppkm->pp[2]);
 			numMove4PP->Value = Convert::ToDecimal(temppkm->pp[3]);
-			txtMove1TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,0));
-			if(temppkm->moves[1] != Moves::NOTHING)
-			{
-				txtMove2TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,1));
-			}
-			if(temppkm->moves[2] != Moves::NOTHING)
-			{
-				txtMove3TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,2));
-			}
-			if(temppkm->moves[3] != Moves::NOTHING)
-			{
-				txtMove4TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,3));
-			}
 			refreshnatureeffect();
-
 			txtCalcHP->Text = System::Convert::ToString(getpkmstat(temppkm,Stat_IDs::hp));
 			txtCalcAttack->Text = System::Convert::ToString(getpkmstat(temppkm,Stat_IDs::attack));
 			txtCalcDefense->Text = System::Convert::ToString(getpkmstat(temppkm,Stat_IDs::defense));
@@ -2478,16 +2482,88 @@ namespace PKMDS_Desktop_Win {
 			numLevel->Value = Convert::ToDecimal(getpkmlevel(temppkm));
 			numEXP->Maximum = (getpkmexpatlevel(temppkm->species,100));
 			numEXP->Value = temppkm->exp;
-
-
-
-			/*
-			Type
-			PKRS
-			Move Types
-			Move Cats
-			Ball
-			*/
+			int t = lookuppkmtype(temppkm,1);
+			gettypesql(SQL,(Types::types)(t));
+			pbType1->Image = pviewvsqlite->getSQLImage(SQL.str());
+			SQL.str("");
+			SQL.clear();
+			t = lookuppkmtype(temppkm,2);
+			if(t != -1)
+			{
+				gettypesql(SQL,(Types::types)(t));
+				pbType2->Image = pviewvsqlite->getSQLImage(SQL.str());
+				SQL.str("");
+				SQL.clear();
+			}
+			if(temppkm->pkrs.strain > 0)
+			{
+				if(temppkm->pkrs.days > 0)
+				{
+					pbPKRS->Image = pviewvsqlite->getSQLImage("select image from misc where identifier = \"pokerus_infected\"");
+				}
+				else
+				{
+					pbPKRS->Image = pviewvsqlite->getSQLImage("select image from misc where identifier = \"pokerus_cured\"");
+				}
+			}
+			txtMove1TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,0));
+			gettypesql(SQL,(Types::types)(getmovetype(pkm->moves[0])));
+			pbMove1Type->Image = pviewvsqlite->getSQLImage(SQL.str());
+			SQL.str("");
+			SQL.clear();
+			getmovecatsql(SQL,pkm->moves[0]);
+			pbMove1Cat->Image = pviewvsqlite->getSQLImage(SQL.str());
+			SQL.str("");
+			SQL.clear();
+			if(temppkm->moves[1] != Moves::NOTHING)
+			{
+				txtMove2TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,1));
+				gettypesql(SQL,(Types::types)(getmovetype(pkm->moves[1])));
+				pbMove2Type->Image = pviewvsqlite->getSQLImage(SQL.str());
+				SQL.str("");
+				SQL.clear();
+				getmovecatsql(SQL,pkm->moves[1]);
+				pbMove2Cat->Image = pviewvsqlite->getSQLImage(SQL.str());
+				SQL.str("");
+				SQL.clear();
+			}
+			if(temppkm->moves[2] != Moves::NOTHING)
+			{
+				txtMove3TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,2));
+				gettypesql(SQL,(Types::types)(getmovetype(pkm->moves[2])));
+				pbMove3Type->Image = pviewvsqlite->getSQLImage(SQL.str());
+				SQL.str("");
+				SQL.clear();
+				getmovecatsql(SQL,pkm->moves[2]);
+				pbMove3Cat->Image = pviewvsqlite->getSQLImage(SQL.str());
+				SQL.str("");
+				SQL.clear();
+			}
+			if(temppkm->moves[3] != Moves::NOTHING)
+			{
+				txtMove4TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,3));
+				gettypesql(SQL,(Types::types)(getmovetype(pkm->moves[3])));
+				pbMove4Type->Image = pviewvsqlite->getSQLImage(SQL.str());
+				SQL.str("");
+				SQL.clear();
+				getmovecatsql(SQL,pkm->moves[3]);
+				pbMove4Cat->Image = pviewvsqlite->getSQLImage(SQL.str());
+				SQL.str("");
+				SQL.clear();
+			}
+			lvBall->Columns->Add("");
+			for(int ballnum = 1; ballnum < (int)Balls::dreamball; ballnum++)
+			{
+				if((Balls::balls)ballnum != Balls::pokeball_)
+				{
+					getballsql(SQL,(Balls::balls)(ballnum));
+					imgBalls->Images->Add(pviewvsqlite->getSQLImage(SQL.str()));
+					lvBall->Items->Add("",ballnum-1);
+					SQL.str("");
+					SQL.clear();
+				}
+			}
+			//lvBall->Items[(int)(temppkm->ball)]->Selected = true;
 			redisplayok = true;
 		}
 	public: void setpkm(pokemon_obj * pkm)
@@ -2504,7 +2580,7 @@ namespace PKMDS_Desktop_Win {
 					 "(item_game_indices.generation_id = 5) order by name asc"
 					 );
 				 DataRow^ blankitem = itemds->Tables[0]->NewRow();
-				 blankitem["game_index"] = nullptr;
+				 blankitem["game_index"] = DBNull::Value;
 				 blankitem["name"] = "";
 				 itemds->Tables[0]->Rows->InsertAt(blankitem,0);
 				 cbItem->DataSource = itemds->Tables[0];
@@ -2524,19 +2600,19 @@ namespace PKMDS_Desktop_Win {
 				 DataSet^ movesds3 = pviewvsqlite->getSQLDS(movesql);
 				 DataSet^ movesds4 = pviewvsqlite->getSQLDS(movesql);
 				 DataRow^ blankmove1 = movesds1->Tables[0]->NewRow();
-				 blankmove1["move_id"] = nullptr;
+				 blankmove1["move_id"] = DBNull::Value;
 				 blankmove1["name"] = "";
 				 movesds1->Tables[0]->Rows->InsertAt(blankmove1,0);
 				 DataRow^ blankmove2 = movesds2->Tables[0]->NewRow();
-				 blankmove2["move_id"] = nullptr;
+				 blankmove2["move_id"] = DBNull::Value;
 				 blankmove2["name"] = "";
 				 movesds2->Tables[0]->Rows->InsertAt(blankmove2,0);
 				 DataRow^ blankmove3 = movesds3->Tables[0]->NewRow();
-				 blankmove3["move_id"] = nullptr;
+				 blankmove3["move_id"] = DBNull::Value;
 				 blankmove3["name"] = "";
 				 movesds3->Tables[0]->Rows->InsertAt(blankmove3,0);
 				 DataRow^ blankmove4 = movesds4->Tables[0]->NewRow();
-				 blankmove4["move_id"] = nullptr;
+				 blankmove4["move_id"] = DBNull::Value;
 				 blankmove4["name"] = "";
 				 movesds4->Tables[0]->Rows->InsertAt(blankmove4,0);
 				 cbMove1->DataSource = movesds1->Tables[0];
@@ -2635,13 +2711,6 @@ namespace PKMDS_Desktop_Win {
 					 ostringstream itemsql;
 					 getitemsql(itemsql,(uint16)temppkm->item);
 					 pbItem->Image = (pviewvsqlite->getSQLImage(itemsql.str()));
-				 }
-			 }
-	private: System::Void cbBall_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) 
-			 {
-				 if(redisplayok)
-				 {
-
 				 }
 			 }
 	private: System::Void cbSpecies_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) 

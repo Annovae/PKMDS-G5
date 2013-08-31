@@ -21,8 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <QMainWindow>
 #include <QGraphicsView>
 #include <../../include/pkmds/pkmds_sql.h>
-void gettypesql(ostringstream& o, const Types::types type);
-void gettypesql(ostringstream& o, const int type);
 QPixmap getpkmsprite(const pokemon_obj &pkm);
 QPixmap getpkmsprite(const pokemon_obj *pkm);
 QPixmap getpkmicon(const pokemon_obj &pkm);
