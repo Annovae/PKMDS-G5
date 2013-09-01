@@ -807,7 +807,7 @@ namespace PKMDS_Desktop_Win {
 			this->lvBall->TabIndex = 21;
 			this->lvBall->TileSize = System::Drawing::Size(24, 24);
 			this->lvBall->UseCompatibleStateImageBehavior = false;
-			this->lvBall->View = System::Windows::Forms::View::Tile;
+			this->lvBall->View = System::Windows::Forms::View::Details;
 			// 
 			// imgBalls
 			// 
@@ -2552,6 +2552,7 @@ namespace PKMDS_Desktop_Win {
 				SQL.clear();
 			}
 			lvBall->Columns->Add("");
+			//lvBall->Columns[0]->Width = 40;
 			for(int ballnum = 1; ballnum < (int)Balls::dreamball; ballnum++)
 			{
 				if((Balls::balls)ballnum != Balls::pokeball_)
@@ -2563,6 +2564,7 @@ namespace PKMDS_Desktop_Win {
 					SQL.clear();
 				}
 			}
+			MessageBox::Show(System::Convert::ToString(lvBall->Columns[0]->Width));
 			//lvBall->Items[(int)(temppkm->ball)]->Selected = true;
 			redisplayok = true;
 		}
