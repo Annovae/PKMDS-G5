@@ -251,6 +251,8 @@ namespace PKMDS_Desktop_Win {
 	private: System::Windows::Forms::ToolTip^  ttMove4Flavor;
 	private: System::Windows::Forms::ListView^  lvBall;
 	private: System::Windows::Forms::ImageList^  imgBalls;
+	private: System::Windows::Forms::Label^  lblAbilityFlavor;
+	private: System::Windows::Forms::SaveFileDialog^  savePKM;
 
 	private: System::ComponentModel::IContainer^  components;
 
@@ -308,6 +310,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbSprite = (gcnew System::Windows::Forms::PictureBox());
 			this->tcViewer = (gcnew System::Windows::Forms::TabControl());
 			this->tpBasic = (gcnew System::Windows::Forms::TabPage());
+			this->lblAbilityFlavor = (gcnew System::Windows::Forms::Label());
 			this->lvBall = (gcnew System::Windows::Forms::ListView());
 			this->imgBalls = (gcnew System::Windows::Forms::ImageList(this->components));
 			this->pbTNL = (gcnew System::Windows::Forms::ProgressBar());
@@ -432,6 +435,7 @@ namespace PKMDS_Desktop_Win {
 			this->ttMove2Flavor = (gcnew System::Windows::Forms::ToolTip(this->components));
 			this->ttMove3Flavor = (gcnew System::Windows::Forms::ToolTip(this->components));
 			this->ttMove4Flavor = (gcnew System::Windows::Forms::ToolTip(this->components));
+			this->savePKM = (gcnew System::Windows::Forms::SaveFileDialog());
 			this->tlViewer->SuspendLayout();
 			this->panGeneral->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbItem))->BeginInit();
@@ -587,7 +591,7 @@ namespace PKMDS_Desktop_Win {
 			this->btnExport->Name = L"btnExport";
 			this->btnExport->Size = System::Drawing::Size(60, 50);
 			this->btnExport->TabIndex = 17;
-			this->btnExport->Text = L"Export PKM File";
+			this->btnExport->Text = L"Export PKM Data";
 			this->btnExport->UseVisualStyleBackColor = true;
 			this->btnExport->Click += gcnew System::EventHandler(this, &frmPKMViewer::btnExport_Click);
 			// 
@@ -769,6 +773,7 @@ namespace PKMDS_Desktop_Win {
 			// 
 			// tpBasic
 			// 
+			this->tpBasic->Controls->Add(this->lblAbilityFlavor);
 			this->tpBasic->Controls->Add(this->lvBall);
 			this->tpBasic->Controls->Add(this->pbTNL);
 			this->tpBasic->Controls->Add(this->lblTNL);
@@ -790,6 +795,13 @@ namespace PKMDS_Desktop_Win {
 			this->tpBasic->TabIndex = 0;
 			this->tpBasic->Text = L"Basic";
 			this->tpBasic->UseVisualStyleBackColor = true;
+			// 
+			// lblAbilityFlavor
+			// 
+			this->lblAbilityFlavor->Location = System::Drawing::Point(138, 149);
+			this->lblAbilityFlavor->Name = L"lblAbilityFlavor";
+			this->lblAbilityFlavor->Size = System::Drawing::Size(147, 50);
+			this->lblAbilityFlavor->TabIndex = 22;
 			// 
 			// lvBall
 			// 
@@ -2204,6 +2216,12 @@ namespace PKMDS_Desktop_Win {
 			this->ttMove4Flavor->IsBalloon = true;
 			this->ttMove4Flavor->ToolTipIcon = System::Windows::Forms::ToolTipIcon::Info;
 			// 
+			// savePKM
+			// 
+			this->savePKM->DefaultExt = L"pkm";
+			this->savePKM->Filter = L"PKM Files|*.pkm|*BIN Files|*.bin";
+			this->savePKM->Title = L"Export PKM Data";
+			// 
 			// frmPKMViewer
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -2374,32 +2392,34 @@ namespace PKMDS_Desktop_Win {
 				}
 			}
 		}
-		void displayPKM()
+		void refreshgender()
 		{
-			refreshsprite();
 			std::ostringstream SQL;
 			switch(getpkmgender(temppkm))
 			{
 			case Genders::male:
 				SQL << "select image from misc where identifier = \"male\"";
 				pbGender->Image = pviewvsqlite->getSQLImage(SQL.str());
-				SQL.str("");
-				SQL.clear();
 				break;
 			case Genders::female:
 				SQL << "select image from misc where identifier = \"female\"";
 				pbGender->Image = pviewvsqlite->getSQLImage(SQL.str());
-				SQL.str("");
-				SQL.clear();
 				break;
 			}
+
+		}
+		void refreshshiny()
+		{
+			std::ostringstream SQL;
 			if(getpkmshiny(temppkm))
 			{
 				SQL << "select image from misc where identifier = \"shiny\"";
 				pbShiny->Image = pviewvsqlite->getSQLImage(SQL.str());
-				SQL.str("");
-				SQL.clear();
 			}
+		}
+		void refreshmarkings()
+		{
+			std::ostringstream SQL;
 			getmarkingsql(SQL,Markings::circle,temppkm->markings.circle);
 			pbCircle->Image = pviewvsqlite->getSQLImage(SQL.str());
 			SQL.str("");
@@ -2422,12 +2442,129 @@ namespace PKMDS_Desktop_Win {
 			SQL.clear();
 			getmarkingsql(SQL,Markings::diamond,temppkm->markings.diamond);
 			pbDiamond->Image = pviewvsqlite->getSQLImage(SQL.str());
-			cbItem->SelectedIndex = cbItem->FindString(gcnew System::String(lookupitemname(temppkm).c_str()));
+		}
+		void refreshitem()
+		{
+			std::ostringstream SQL;
 			getitemsql(SQL,(uint16)temppkm->item);
 			pbItem->Image = (pviewvsqlite->getSQLImage(SQL.str()));
+		}
+		void refreshtotalevs()
+		{
+			txtTotalEVs->Text = System::Convert::ToString(temppkm->evs.hp + temppkm->evs.attack + temppkm->evs.defense + temppkm->evs.spatk + temppkm->evs.spdef + temppkm->evs.speed);
+		}
+		void refreshcalcstats()
+		{
+			txtCalcHP->Text = System::Convert::ToString(getpkmstat(temppkm,Stat_IDs::hp));
+			txtCalcAttack->Text = System::Convert::ToString(getpkmstat(temppkm,Stat_IDs::attack));
+			txtCalcDefense->Text = System::Convert::ToString(getpkmstat(temppkm,Stat_IDs::defense));
+			txtCalcSpAtk->Text = System::Convert::ToString(getpkmstat(temppkm,Stat_IDs::spatk));
+			txtCalcSpDef->Text = System::Convert::ToString(getpkmstat(temppkm,Stat_IDs::spdef));
+			txtCalcSpeed->Text = System::Convert::ToString(getpkmstat(temppkm,Stat_IDs::speed));
+		}
+		void refreshexp()
+		{
+			numEXP->Maximum = (getpkmexpatlevel(temppkm->species,100));
+			numEXP->Value = temppkm->exp;
+		}
+		void refreshlevel()
+		{
+			numLevel->Value = Convert::ToDecimal(getpkmlevel(temppkm));
+		}
+		void refreshtypes()
+		{
+			std::ostringstream SQL;
+			int t = lookuppkmtype(temppkm,1);
+			gettypesql(SQL,(Types::types)(t));
+			pbType1->Image = pviewvsqlite->getSQLImage(SQL.str());
 			SQL.str("");
 			SQL.clear();
-			cbSpecies->SelectedIndex = cbSpecies->FindString(gcnew System::String(lookuppkmname(temppkm).c_str()))/*(int)(temppkm->species)-1*/;
+			t = lookuppkmtype(temppkm,2);
+			if(t != -1)
+			{
+				gettypesql(SQL,(Types::types)(t));
+				pbType2->Image = pviewvsqlite->getSQLImage(SQL.str());
+				SQL.str("");
+				SQL.clear();
+			}
+		}
+		void refreshpkrs()
+		{
+			if(temppkm->pkrs.strain > 0)
+			{
+				if(temppkm->pkrs.days > 0)
+				{
+					pbPKRS->Image = pviewvsqlite->getSQLImage("select image from misc where identifier = \"pokerus_infected\"");
+				}
+				else
+				{
+					pbPKRS->Image = pviewvsqlite->getSQLImage("select image from misc where identifier = \"pokerus_cured\"");
+				}
+			}
+		}
+		void refreshmove1()
+		{
+			std::ostringstream SQL;
+			txtMove1TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,0));
+			gettypesql(SQL,(Types::types)(getmovetype(temppkm->moves[0])));
+			pbMove1Type->Image = pviewvsqlite->getSQLImage(SQL.str());
+			SQL.str("");
+			SQL.clear();
+			getmovecatsql(SQL,temppkm->moves[0]);
+			pbMove1Cat->Image = pviewvsqlite->getSQLImage(SQL.str());
+		}
+		void refreshmove2()
+		{
+			if(temppkm->moves[1] != Moves::NOTHING)
+			{
+				std::ostringstream SQL;
+				txtMove2TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,1));
+				gettypesql(SQL,(Types::types)(getmovetype(temppkm->moves[1])));
+				pbMove2Type->Image = pviewvsqlite->getSQLImage(SQL.str());
+				SQL.str("");
+				SQL.clear();
+				getmovecatsql(SQL,temppkm->moves[1]);
+				pbMove2Cat->Image = pviewvsqlite->getSQLImage(SQL.str());
+			}
+		}
+		void refreshmove3()
+		{
+			if(temppkm->moves[2] != Moves::NOTHING)
+			{
+				std::ostringstream SQL;
+				txtMove3TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,2));
+				gettypesql(SQL,(Types::types)(getmovetype(temppkm->moves[2])));
+				pbMove3Type->Image = pviewvsqlite->getSQLImage(SQL.str());
+				SQL.str("");
+				SQL.clear();
+				getmovecatsql(SQL,temppkm->moves[2]);
+				pbMove3Cat->Image = pviewvsqlite->getSQLImage(SQL.str());
+			}
+		}
+		void refreshmove4()
+		{
+			if(temppkm->moves[3] != Moves::NOTHING)
+			{
+				std::ostringstream SQL;
+				txtMove4TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,3));
+				gettypesql(SQL,(Types::types)(getmovetype(temppkm->moves[3])));
+				pbMove4Type->Image = pviewvsqlite->getSQLImage(SQL.str());
+				SQL.str("");
+				SQL.clear();
+				getmovecatsql(SQL,temppkm->moves[3]);
+				pbMove4Cat->Image = pviewvsqlite->getSQLImage(SQL.str());
+			}
+		}
+		void refreshmoves()
+		{
+			refreshmove1();
+			refreshmove2();
+			refreshmove3();
+			refreshmove4();
+		}
+		void displayPKM()
+		{
+			cbSpecies->SelectedIndex = cbSpecies->FindString(gcnew System::String(lookuppkmname(temppkm).c_str()));
 			numSpecies->Value = Convert::ToDecimal((UInt16)(temppkm->species));
 			txtNickname->Text = gcnew System::String(getpkmnickname(temppkm).c_str());
 			txtOTName->Text = gcnew System::String(getpkmotname(temppkm).c_str());
@@ -2450,7 +2587,6 @@ namespace PKMDS_Desktop_Win {
 			if(temppkm->moves[3] != Moves::NOTHING){ cbMove4->SelectedIndex = cbMove4->FindString(gcnew System::String(lookupmovename(temppkm,3).c_str()));}
 			cbNature->SelectedIndex = cbNature->FindString(gcnew System::String(getnaturename(temppkm).c_str()));
 			cbAbility->SelectedIndex = cbAbility->FindString(gcnew System::String(lookupabilityname(temppkm).c_str()));
-			txtTotalEVs->Text = System::Convert::ToString(temppkm->evs.hp + temppkm->evs.attack + temppkm->evs.defense + temppkm->evs.spatk + temppkm->evs.spdef + temppkm->evs.speed);
 			numHPIV->Value = Convert::ToDecimal(temppkm->ivs.hp);
 			numAttackIV->Value = Convert::ToDecimal(temppkm->ivs.attack);
 			numDefenseIV->Value = Convert::ToDecimal(temppkm->ivs.defense);
@@ -2471,87 +2607,11 @@ namespace PKMDS_Desktop_Win {
 			numMove2PP->Value = Convert::ToDecimal(temppkm->pp[1]);
 			numMove3PP->Value = Convert::ToDecimal(temppkm->pp[2]);
 			numMove4PP->Value = Convert::ToDecimal(temppkm->pp[3]);
-			refreshnatureeffect();
-			txtCalcHP->Text = System::Convert::ToString(getpkmstat(temppkm,Stat_IDs::hp));
-			txtCalcAttack->Text = System::Convert::ToString(getpkmstat(temppkm,Stat_IDs::attack));
-			txtCalcDefense->Text = System::Convert::ToString(getpkmstat(temppkm,Stat_IDs::defense));
-			txtCalcSpAtk->Text = System::Convert::ToString(getpkmstat(temppkm,Stat_IDs::spatk));
-			txtCalcSpDef->Text = System::Convert::ToString(getpkmstat(temppkm,Stat_IDs::spdef));
-			txtCalcSpeed->Text = System::Convert::ToString(getpkmstat(temppkm,Stat_IDs::speed));
 			txtPID->Text = System::Convert::ToString(temppkm->pid);
-			numLevel->Value = Convert::ToDecimal(getpkmlevel(temppkm));
-			numEXP->Maximum = (getpkmexpatlevel(temppkm->species,100));
-			numEXP->Value = temppkm->exp;
-			int t = lookuppkmtype(temppkm,1);
-			gettypesql(SQL,(Types::types)(t));
-			pbType1->Image = pviewvsqlite->getSQLImage(SQL.str());
-			SQL.str("");
-			SQL.clear();
-			t = lookuppkmtype(temppkm,2);
-			if(t != -1)
-			{
-				gettypesql(SQL,(Types::types)(t));
-				pbType2->Image = pviewvsqlite->getSQLImage(SQL.str());
-				SQL.str("");
-				SQL.clear();
-			}
-			if(temppkm->pkrs.strain > 0)
-			{
-				if(temppkm->pkrs.days > 0)
-				{
-					pbPKRS->Image = pviewvsqlite->getSQLImage("select image from misc where identifier = \"pokerus_infected\"");
-				}
-				else
-				{
-					pbPKRS->Image = pviewvsqlite->getSQLImage("select image from misc where identifier = \"pokerus_cured\"");
-				}
-			}
-			txtMove1TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,0));
-			gettypesql(SQL,(Types::types)(getmovetype(pkm->moves[0])));
-			pbMove1Type->Image = pviewvsqlite->getSQLImage(SQL.str());
-			SQL.str("");
-			SQL.clear();
-			getmovecatsql(SQL,pkm->moves[0]);
-			pbMove1Cat->Image = pviewvsqlite->getSQLImage(SQL.str());
-			SQL.str("");
-			SQL.clear();
-			if(temppkm->moves[1] != Moves::NOTHING)
-			{
-				txtMove2TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,1));
-				gettypesql(SQL,(Types::types)(getmovetype(pkm->moves[1])));
-				pbMove2Type->Image = pviewvsqlite->getSQLImage(SQL.str());
-				SQL.str("");
-				SQL.clear();
-				getmovecatsql(SQL,pkm->moves[1]);
-				pbMove2Cat->Image = pviewvsqlite->getSQLImage(SQL.str());
-				SQL.str("");
-				SQL.clear();
-			}
-			if(temppkm->moves[2] != Moves::NOTHING)
-			{
-				txtMove3TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,2));
-				gettypesql(SQL,(Types::types)(getmovetype(pkm->moves[2])));
-				pbMove3Type->Image = pviewvsqlite->getSQLImage(SQL.str());
-				SQL.str("");
-				SQL.clear();
-				getmovecatsql(SQL,pkm->moves[2]);
-				pbMove3Cat->Image = pviewvsqlite->getSQLImage(SQL.str());
-				SQL.str("");
-				SQL.clear();
-			}
-			if(temppkm->moves[3] != Moves::NOTHING)
-			{
-				txtMove4TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,3));
-				gettypesql(SQL,(Types::types)(getmovetype(pkm->moves[3])));
-				pbMove4Type->Image = pviewvsqlite->getSQLImage(SQL.str());
-				SQL.str("");
-				SQL.clear();
-				getmovecatsql(SQL,pkm->moves[3]);
-				pbMove4Cat->Image = pviewvsqlite->getSQLImage(SQL.str());
-				SQL.str("");
-				SQL.clear();
-			}
+			cbItem->SelectedIndex = cbItem->FindString(gcnew System::String(lookupitemname(temppkm).c_str()));
+
 			lvBall->Columns->Add("");
+			std::ostringstream SQL;
 			//lvBall->Columns[0]->Width = 40;
 			for(int ballnum = 1; ballnum < (int)Balls::dreamball; ballnum++)
 			{
@@ -2564,8 +2624,20 @@ namespace PKMDS_Desktop_Win {
 					SQL.clear();
 				}
 			}
-			MessageBox::Show(System::Convert::ToString(lvBall->Columns[0]->Width));
+			//MessageBox::Show(System::Convert::ToString(lvBall->Columns[0]->Width));
 			//lvBall->Items[(int)(temppkm->ball)]->Selected = true;
+
+			refreshsprite();
+			refreshgender();
+			refreshshiny();
+			refreshmarkings();
+			refreshitem();
+			refreshtotalevs();
+			refreshnatureeffect();
+			refreshcalcstats();
+			refreshtypes();
+			refreshpkrs();
+			refreshmoves();
 			redisplayok = true;
 		}
 	public: void setpkm(pokemon_obj * pkm)
@@ -2592,10 +2664,11 @@ namespace PKMDS_Desktop_Win {
 				 cbSpecies->DataSource = speciesds->Tables[0];
 				 cbSpecies->DisplayMember = "name";
 				 cbSpecies->ValueMember = "pokemon_species_id";
-				 DataSet^ abilitiesds = pviewvsqlite->getSQLDS("SELECT ability_id, name FROM ability_names WHERE (local_language_id = 9) AND (ability_id < 10000) order by name asc");
+				 DataSet^ abilitiesds = pviewvsqlite->getSQLDS("SELECT ability_names.ability_id, ability_names.name, ability_flavor_text.flavor_text FROM ability_names INNER JOIN ability_flavor_text ON ability_names.ability_id = ability_flavor_text.ability_id WHERE (ability_names.local_language_id = 9) AND (ability_names.ability_id < 10000) AND (ability_flavor_text.language_id = 9) AND (ability_flavor_text.version_group_id = 14) ORDER BY ability_names.name");
 				 cbAbility->DataSource = abilitiesds->Tables[0];
 				 cbAbility->DisplayMember = "name";
 				 cbAbility->ValueMember = "ability_id";
+				 lblAbilityFlavor->DataBindings->Add("Text",abilitiesds->Tables[0],"flavor_text",true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-");
 				 System::String ^ movesql = "SELECT move_names.move_id, move_names.name, moves.power, moves.accuracy FROM moves INNER JOIN move_names ON moves.id = move_names.move_id WHERE (move_names.local_language_id = 9) AND (move_names.move_id < 10000) order by name asc";
 				 DataSet^ movesds1 = pviewvsqlite->getSQLDS(movesql);
 				 DataSet^ movesds2 = pviewvsqlite->getSQLDS(movesql);
@@ -2658,7 +2731,20 @@ namespace PKMDS_Desktop_Win {
 			 }
 	private: System::Void btnExport_Click(System::Object^  sender, System::EventArgs^  e)
 			 {
-				 calcchecksum(temppkm);
+				 savePKM->FileName = "";
+				 if((savePKM->ShowDialog() != System::Windows::Forms::DialogResult::Cancel) & (savePKM->FileName != ""))
+				 {
+					 calcchecksum(temppkm);
+					 if(savePKM->FileName->Trim()->ToLower()->EndsWith(".bin"))
+					 {
+						 encryptpkm(temppkm);
+					 }
+					 write(marshal_as<std::string>(savePKM->FileName->Trim()).c_str(),temppkm);
+					 if(savePKM->FileName->Trim()->ToLower()->EndsWith(".bin"))
+					 {
+						 decryptpkm(temppkm);
+					 }
+				 }
 			 }
 	private: System::Void pbCircle_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
@@ -2710,20 +2796,7 @@ namespace PKMDS_Desktop_Win {
 					 // TODO: Figure out how to make data bindings work with images
 					 //DataSet^ itemimgds = pviewvsqlite->getSQLIMGDS("SELECT identifier, image FROM items");
 					 //pbItem->DataBindings->Add("Image",itemimgds->Tables[0],"image");
-					 ostringstream itemsql;
-					 getitemsql(itemsql,(uint16)temppkm->item);
-					 pbItem->Image = (pviewvsqlite->getSQLImage(itemsql.str()));
-				 }
-			 }
-	private: System::Void cbSpecies_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) 
-			 {
-				 if(redisplayok)
-				 {
-					 temppkm->species = (Species::pkmspecies)(Convert::ToUInt16(cbSpecies->SelectedValue));
-					 refreshsprite();
-					 redisplayok = false;
-					 numSpecies->Value = Convert::ToDecimal((UInt16)(temppkm->species));
-					 redisplayok = true;
+					 refreshitem();
 				 }
 			 }
 	private: System::Void numSpecies_ValueChanged(System::Object^  sender, System::EventArgs^  e) 
@@ -2735,11 +2808,39 @@ namespace PKMDS_Desktop_Win {
 					 //cbSpecies->SelectedIndex = (int)(numSpecies->Value) - 1;
 				 }
 			 }
+	private: System::Void cbSpecies_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) 
+			 {
+				 if(redisplayok)
+				 {
+					 temppkm->species = (Species::pkmspecies)(Convert::ToUInt16(cbSpecies->SelectedValue));
+					 redisplayok = false;
+					 refreshsprite();
+					 refreshgender();
+					 refreshcalcstats();
+					 refreshlevel();
+					 refreshtypes();
+					 numSpecies->Value = Convert::ToDecimal((UInt16)(temppkm->species));
+					 redisplayok = true;
+				 }
+			 }
 	private: System::Void numLevel_ValueChanged(System::Object^  sender, System::EventArgs^  e) 
 			 {
 				 if(redisplayok)
 				 {
-
+					 setlevel(temppkm,Convert::ToByte(numLevel->Value));
+					 redisplayok = false;
+					 refreshexp();
+					 redisplayok = true;
+				 }
+			 }
+	private: System::Void numEXP_ValueChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 temppkm->exp = (uint32)(Convert::ToInt32(numEXP->Value));
+					 redisplayok = false;
+					 refreshlevel();
+					 redisplayok = true;
 				 }
 			 }
 	private: System::Void numTID_ValueChanged(System::Object^  sender, System::EventArgs^  e)
@@ -2806,25 +2907,18 @@ namespace PKMDS_Desktop_Win {
 					 temppkm->ability = (Abilities::abilities)(Convert::ToUInt16(cbAbility->SelectedValue));
 				 }
 			 }
-	private: System::Void numEXP_ValueChanged(System::Object^  sender, System::EventArgs^  e)
-			 {
-				 if(redisplayok)
-				 {
-
-				 }
-			 }
 	private: System::Void txtPID_TextChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
 				 if(redisplayok)
 				 {
-
+					 //temppkm->pid = 
 				 }
 			 }
 	private: System::Void chkPIDHex_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
 				 if(redisplayok)
 				 {
-
+					 //txtPID->
 				 }
 			 }
 	private: System::Void numHPIV_ValueChanged(System::Object^  sender, System::EventArgs^  e)
@@ -2924,6 +3018,7 @@ namespace PKMDS_Desktop_Win {
 				 if(redisplayok)
 				 {
 					 temppkm->moves[0] = (Moves::moves)(Convert::ToUInt16(cbMove1->SelectedValue));
+					 refreshmove1();
 				 }
 			 }
 	private: System::Void cbMove2_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
@@ -2931,6 +3026,7 @@ namespace PKMDS_Desktop_Win {
 				 if(redisplayok)
 				 {
 					 temppkm->moves[1] = (Moves::moves)(Convert::ToUInt16(cbMove2->SelectedValue));
+					 refreshmove2();
 				 }
 			 }
 	private: System::Void cbMove3_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
@@ -2938,6 +3034,7 @@ namespace PKMDS_Desktop_Win {
 				 if(redisplayok)
 				 {
 					 temppkm->moves[2] = (Moves::moves)(Convert::ToUInt16(cbMove3->SelectedValue));
+					 refreshmove3();
 				 }
 			 }
 	private: System::Void cbMove4_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
@@ -2945,13 +3042,15 @@ namespace PKMDS_Desktop_Win {
 				 if(redisplayok)
 				 {
 					 temppkm->moves[3] = (Moves::moves)(Convert::ToUInt16(cbMove4->SelectedValue));
+					 refreshmove4();
 				 }
 			 }
 	private: System::Void numMove1PPUps_ValueChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
 				 if(redisplayok)
 				 {
-
+					 temppkm->ppup[0] = Convert::ToByte(numMove1PPUps->Value);
+					 txtMove1TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,0));
 				 }
 			 }
 	private: System::Void numMove2PPUps_ValueChanged(System::Object^  sender, System::EventArgs^  e)
@@ -2960,7 +3059,8 @@ namespace PKMDS_Desktop_Win {
 				 {
 					 if(temppkm->moves[1] != Moves::NOTHING)
 					 {
-
+						 temppkm->ppup[1] = Convert::ToByte(numMove2PPUps->Value);
+						 txtMove2TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,1));
 					 }
 				 }
 			 }
@@ -2968,9 +3068,10 @@ namespace PKMDS_Desktop_Win {
 			 {
 				 if(redisplayok)
 				 {
-					 if(temppkm->moves[1] != Moves::NOTHING)
+					 if(temppkm->moves[2] != Moves::NOTHING)
 					 {
-
+						 temppkm->ppup[2] = Convert::ToByte(numMove3PPUps->Value);
+						 txtMove3TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,2));
 					 }
 				 }
 			 }
@@ -2978,9 +3079,10 @@ namespace PKMDS_Desktop_Win {
 			 {
 				 if(redisplayok)
 				 {
-					 if(temppkm->moves[1] != Moves::NOTHING)
+					 if(temppkm->moves[3] != Moves::NOTHING)
 					 {
-
+						 temppkm->ppup[3] = Convert::ToByte(numMove4PPUps->Value);
+						 txtMove4TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,3));
 					 }
 				 }
 			 }
@@ -2988,7 +3090,7 @@ namespace PKMDS_Desktop_Win {
 			 {
 				 if(redisplayok)
 				 {
-
+					 temppkm->pp[0] = Convert::ToByte(numMove1PP->Value);
 				 }
 			 }
 	private: System::Void numMove2PP_ValueChanged(System::Object^  sender, System::EventArgs^  e)
@@ -2997,7 +3099,7 @@ namespace PKMDS_Desktop_Win {
 				 {
 					 if(temppkm->moves[1] != Moves::NOTHING)
 					 {
-
+						 temppkm->pp[1] = Convert::ToByte(numMove2PP->Value);
 					 }
 				 }
 			 }
@@ -3007,7 +3109,7 @@ namespace PKMDS_Desktop_Win {
 				 {
 					 if(temppkm->moves[2] != Moves::NOTHING)
 					 {
-
+						 temppkm->pp[2] = Convert::ToByte(numMove3PP->Value);
 					 }
 				 }
 			 }
@@ -3017,7 +3119,7 @@ namespace PKMDS_Desktop_Win {
 				 {
 					 if(temppkm->moves[3] != Moves::NOTHING)
 					 {
-
+						 temppkm->pp[3] = Convert::ToByte(numMove4PP->Value);
 					 }
 				 }
 			 }

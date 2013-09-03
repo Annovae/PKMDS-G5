@@ -2904,7 +2904,7 @@ namespace PKMDS_Desktop_Win {
 				 savloaded = false;
 				 if((fileOpen->ShowDialog() != System::Windows::Forms::DialogResult::Cancel) & (fileOpen->FileName != ""))
 				 {
-					 read(marshal_as<std::string>(fileOpen->FileName).c_str(),sav);
+					 read(marshal_as<std::string>(fileOpen->FileName->Trim()).c_str(),sav);
 				 }
 				 savloaded = true;
 				 setboxnames();
