@@ -801,12 +801,10 @@ string lookupmoveflavortext(const pokemon_obj *pkm, const int movenum, const int
 {
     return lookupmoveflavortext((uint16)pkm->moves[movenum],langid,versiongroup);
 }
-
 string lookupabilityflavortext(const pokemon_obj *pkm, const int version_group, const int langid)
 {
     return getastring(lookupabilityflavortext(pkm->ability,version_group,langid));
 }
-
 string lookupabilityflavortext(const int abilityid, const int version_group, const int langid)
 {
     string ret = getastring(lookupabilityflavortextsql(abilityid,version_group,langid));
@@ -817,8 +815,6 @@ string lookupabilityflavortext(const pokemon_obj &pkm, const int version_group, 
 {
     return getastring(lookupabilityflavortext(pkm.ability,version_group,langid));
 }
-
-
 string lookupcharacteristic(const int statid, const int iv, const int langid)
 {
     return getastring(lookupcharacteristicsql(statid,iv,langid));
@@ -1049,392 +1045,392 @@ string lookuplocname(const int locid, const int gen, const int langid)
 {
 	return getastring(lookuplocnamesql(locid,gen,langid));
 }
-#ifdef __cplusplus_cli
-//namespace StringConversion
-//{
-//	//System::String ^ SSfromSTDS(std::string in)
-//	//{
-//	//	try
-//	//	{
-//	//		System::String ^ out = gcnew System::String(in.c_str());
-//	//		return out;
-//	//	}
-//	//	catch(...)
-//	//	{
-//	//		return "";
-//	//	}
-//	//}
-//	System::String ^ SSfromSTD(const char * in)
-//	{
-//		try
-//		{
-//			System::String ^ out = gcnew System::String(in);
-//			return out;
-//		}
-//		catch(...)
-//		{
-//			return "";
-//		}
-//	}
-//}
-//System::String ^ lookuppkmnameSS(const int speciesid, const int langid)
-//{
-//    return StringConversion::SSfromSTDS(getastring(getspeciesnamesql(speciesid,langid)));
-//}
-//System::String ^ lookuppkmnameSS(const pokemon_obj &pkm, const int langid)
-//{
-//    return StringConversion::SSfromSTDS(lookuppkmname(pkm.species,langid));
-//}
-//System::String ^ lookuppkmnameSS(const pokemon_obj *pkm, const int langid)
-//{
-    //return StringConversion::SSfromSTDS(lookuppkmname(int(pkm->species),langid));
-//}
-//System::String ^ lookupmovenameSS(const int moveid, const int langid)
-//{
-//    return StringConversion::SSfromSTDS(getastring(getmovenamesql(moveid,langid)));
-//}
-//System::String ^ lookupmovenameSS(const pokemon_obj &pkm, const int movenum, const int langid)
-//{
-//    return StringConversion::SSfromSTDS(lookupmovename(pkm.moves[movenum],langid));
-//}
-//System::String ^ lookupmovenameSS(const pokemon_obj *pkm, const int movenum, const int langid)
-//{
-//    return StringConversion::SSfromSTDS(lookupmovename(pkm->moves[movenum],langid));
-//}
-//System::String ^ lookupmoveflavortextSS(const uint16 moveid, const int langid, const int versiongroup)
-//{
-//    string ret = getastring(getmoveflavortextsql(moveid,langid,versiongroup));
-//    replace(ret.begin(),ret.end(),'\n',' ');
-//    return StringConversion::SSfromSTDS(ret);
-//}
-//System::String ^ lookupmoveflavortextSS(const pokemon_obj &pkm, const int movenum, const int langid, const int versiongroup)
-//{
-//    return StringConversion::SSfromSTDS(lookupmoveflavortext(pkm.moves[movenum],langid,versiongroup));
-//}
-//System::String ^ lookupmoveflavortextSS(const pokemon_obj *pkm, const int movenum, const int langid, const int versiongroup)
-//{
-//    return StringConversion::SSfromSTDS(lookupmoveflavortext(pkm->moves[movenum],langid,versiongroup));
-//}
-//System::String ^ lookupmovetypenameSS(const uint16 moveid, const int langid)
-//{
-//    return StringConversion::SSfromSTDS(getastring(getmovetypenamesql(moveid,langid)));
-//}
-//System::String ^ lookupmovetypenameSS(const pokemon_obj &pkm, const int movenum, const int langid)
-//{
-//    return StringConversion::SSfromSTDS(lookupmovetypename(pkm.moves[movenum],langid));
-//}
-//System::String ^ lookupmovetypenameSS(const pokemon_obj *pkm, const int movenum, const int langid)
-//{
-//    return StringConversion::SSfromSTDS(lookupmovetypename(pkm->moves[movenum],langid));
-//}
-//System::String ^ lookupmovedamagetypenameSS(const uint16 moveid, const int langid)
-//{
-//    return StringConversion::SSfromSTDS(getastring(getmovedamagetypenamesql(moveid,langid)));
-//}
-//System::String ^ lookupmovedamagetypenameSS(const pokemon_obj &pkm, const int movenum, const int langid)
-//{
-//    return StringConversion::SSfromSTDS(lookupmovedamagetypename(pkm.moves[movenum],langid));
-//}
-//System::String ^ lookupnaturenameSS(const pokemon_obj *pkm, const int langid)
-//{
-//    if(int(pkm->nature) == 0 && int(pkm->hometown) != int(Hometowns::black) && int(pkm->hometown) != int(Hometowns::white))
-//    {
-//        return StringConversion::SSfromSTDS(getnaturename(pkm->pid % 25,langid));
-//    }
-//    else
-//    {
-//        return StringConversion::SSfromSTDS(getnaturename(int(pkm->nature),langid));
-//    }
-//}
-//System::String ^ lookupitemnameSS(const pokemon_obj *pkm, const int generation, const int langid)
-//{
-//    return StringConversion::SSfromSTDS(lookupitemname(pkm->item,generation,langid));
-//}
-//System::String ^ lookuppkmgendernameSS(const pokemon_obj *pkm)
-//{
-//    return StringConversion::SSfromSTDS(getgendername(calcpkmgender(pkm)));
-//}
-//System::String ^ lookupabilitynameSS(const pokemon_obj *pkm, const int langid)
-//{
-//    return StringConversion::SSfromSTDS(lookupabilityname(pkm->ability, langid));
-//}
-//System::String ^ lookuppkmformnameSS(const pokemon_obj *pkm, const int langid)
-//{
-//    return StringConversion::SSfromSTDS(getastring(getpkmformnamesql(pkm,langid)));
-//}
-//System::String ^ lookuppkmmetlocnameSS(const pokemon_obj *pkm, const int gen, const int langid)
-//{
-//    switch(pkm->met)
-//    {
-//    case Locations::poketransfer:
-//        return "Poke Transfer Lab";
-//        break;
-//    case Locations::daycarecouple:
-//        return "Day-Care Couple";
-//        break;
-//    default:
-//        return StringConversion::SSfromSTDS(lookuplocname(pkm->met, gen, langid));
-//    }
-//}
-//System::String ^ lookuppkmegglocnameSS(const pokemon_obj *pkm, const int gen, const int langid)
-//{
-//    switch(pkm->eggmet)
-//    {
-//    case Locations::poketransfer:
-//        return "Poke Transfer Lab";
-//        break;
-//    case Locations::daycarecouple:
-//        return "Day-Care Couple";
-//        break;
-//    default:
-//        return StringConversion::SSfromSTDS(lookuplocname(pkm->eggmet, gen, langid));
-//    }
-//}
-//System::String ^ lookupitemflavortextSS(const pokemon_obj *pkm, const int generation, const int langid, const int versiongroup)
-//{
-//    return StringConversion::SSfromSTDS(lookupitemflavortext(pkm->item,generation,langid,versiongroup));
-//}
-//System::String ^ lookuppkmcolornameSS(const pokemon_obj *pkm, const int langid)
-//{
-//    return StringConversion::SSfromSTDS(lookuppkmcolorname(int(pkm->species), langid));
-//}
-//System::String ^ lookupabilityflavortextSS(const pokemon_obj *pkm, const int version_group, const int langid)
-//{
-//    return StringConversion::SSfromSTDS(lookupabilityflavortext(pkm->ability,version_group,langid));
-//}
-//System::String ^ lookupcharacteristicSS(const pokemon_obj *pkm, const int langid)
-//{
-//    int statid = 0;
-//    int highval = 0;
-//    ivtest ivbuf = {};
-//    vector<ivtest> ivs;
-//    ivbuf.id = Stat_IDs::hp;
-//    ivbuf.val = pkm->ivs.hp;
-//    ivbuf.order = 0;
-//    ivs.push_back(ivbuf);
-//    ivbuf.id = Stat_IDs::attack;
-//    ivbuf.val = pkm->ivs.attack;
-//    ivbuf.order = 1;
-//    ivs.push_back(ivbuf);
-//    ivbuf.id = Stat_IDs::defense;
-//    ivbuf.val = pkm->ivs.defense;
-//    ivbuf.order = 2;
-//    ivs.push_back(ivbuf);
-//    ivbuf.id = Stat_IDs::speed;
-//    ivbuf.val = pkm->ivs.speed;
-//    ivbuf.order = 3;
-//    ivs.push_back(ivbuf);
-//    ivbuf.id = Stat_IDs::spatk;
-//    ivbuf.val = pkm->ivs.spatk;
-//    ivbuf.order = 4;
-//    ivs.push_back(ivbuf);
-//    ivbuf.id = Stat_IDs::spdef;
-//    ivbuf.val = pkm->ivs.spdef;
-//    ivbuf.order = 5;
-//    ivs.push_back(ivbuf);
-//    sort(ivs.begin(),ivs.end(),compareivbyval);
-//    highval = ivs[0].val;
-//    sort(ivs.begin(),ivs.end(),compareivbyorder);
-//    int highcount = 0;
-//    for(int i=0;i<6;i++)
-//    {
-//        if(ivs[i].val == highval)
-//        {
-//            statid = i+1;
-//            highcount++;
-//        }
-//    }
-//    if(highcount == 1)
-//    {
-//        return StringConversion::SSfromSTDS(lookupcharacteristic(statid,highval,langid));
-//    }
-//    int startindex = pkm->pid % 6;
-//
-//    for(int i=0; i<6; i++)
-//    {
-//        if(ivs[startindex].val == highval)
-//        {
-//            return StringConversion::SSfromSTDS(lookupcharacteristic(ivs[startindex].id,highval,langid));
-//        }
-//        startindex++;
-//        if(startindex ==6)
-//        {
-//            startindex = 0;
-//        }
-//    }
-//    return StringConversion::SSfromSTDS(lookupcharacteristic(statid,highval,langid));
-//}
-//System::String ^ lookupabilitynameSS(const int abilityid, const int langid)
-//{
-//    return StringConversion::SSfromSTDS(getastring(lookupabilitynamesql(abilityid,langid)));
-//}
-//System::String ^ lookupabilitynameSS(const pokemon_obj &pkm, const int langid)
-//{
-//    return StringConversion::SSfromSTDS(lookupabilityname(pkm.ability, langid));
-//}
-//System::String ^ lookuppkmformnameSS(const pokemon_obj &pkm, const int langid)
-//{
-//    return StringConversion::SSfromSTDS(getastring(getpkmformnamesql(pkm,langid)));
-//}
-//System::String ^ lookuplocnameSS(const int locid, const int gen, const int langid)
-//{
-//    return StringConversion::SSfromSTDS(getastring(lookuplocnamesql(locid,gen,langid)));
-//}
-//System::String ^ lookuppkmmetlocnameSS(const pokemon_obj &pkm, const int gen, const int langid)
-//{
-//    switch(pkm.met)
-//    {
-//    case Locations::poketransfer:
-//        return "Poke Transfer Lab";
-//        break;
-//    case Locations::daycarecouple:
-//        return "Day-Care Couple";
-//        break;
-//    default:
-//        return StringConversion::SSfromSTDS(lookuplocname(pkm.met, gen, langid));
-//    }
-//}
-//System::String ^ lookuppkmegglocnameSS(const pokemon_obj &pkm, const int gen, const int langid)
-//{
-//    switch(pkm.eggmet)
-//    {
-//    case Locations::poketransfer:
-//        return "Poke Transfer Lab";
-//        break;
-//    case Locations::daycarecouple:
-//        return "Day-Care Couple";
-//        break;
-//    default:
-//        return StringConversion::SSfromSTDS(lookuplocname(pkm.eggmet, gen, langid));
-//    }
-//}
-//System::String ^ lookupitemflavortextSS(const int itemid, const int generation, const int langid, const int versiongroup)
-//{
-//    string ret = getastring(lookupitemflavortextsql(itemid,generation,langid,versiongroup));
-//    replace(ret.begin(),ret.end(),'\n',' ');
-//    return StringConversion::SSfromSTDS(ret);
-//}
-//System::String ^ lookupitemflavortextSS(const pokemon_obj &pkm, const int generation, const int langid, const int versiongroup)
-//{
-//    return StringConversion::SSfromSTDS(lookupitemflavortext(pkm.item,generation,langid,versiongroup));
-//}
-//System::String ^ lookuppkmcolornameSS(const int species, const int langid)
-//{
-//    return StringConversion::SSfromSTDS(getastring(lookuppkmcolornamesql(species,langid)));
-//}
-//System::String ^ lookuppkmcolornameSS(const pokemon_obj &pkm, const int langid)
-//{
-//    return StringConversion::SSfromSTDS(lookuppkmcolorname(pkm.species, langid));
-//}
-//System::String ^ lookupnaturenameSS(const int natureid, const int langid)
-//{
-//    return StringConversion::SSfromSTDS(getastring(getnaturenamesql(natureid,langid)));
-//}
-//System::String ^ lookupnaturenameSS(const pokemon_obj &pkm, const int langid)
-//{
-//    if(int(pkm.nature) == 0 && int(pkm.hometown) != int(Hometowns::black) && int(pkm.hometown) != int(Hometowns::white))
-//    {
-//        return StringConversion::SSfromSTDS(getnaturename(pkm.pid % 25,langid));
-//    }
-//    else
-//    {
-//        return StringConversion::SSfromSTDS(getnaturename(int(pkm.nature),langid));
-//    }
-//}
-//System::String ^ lookupitemnameSS(const int itemid, const int generation, const int langid)
-//{
-//    return StringConversion::SSfromSTDS(getastring(lookupitemnamesql(itemid,generation,langid)));
-//}
-//System::String ^ lookupitemnameSS(const pokemon_obj &pkm, const int generation, const int langid)
-//{
-//    return StringConversion::SSfromSTDS(lookupitemname(pkm.item,generation,langid));
-//}
-//System::String ^ lookupabilityflavortextSS(const int abilityid, const int version_group, const int langid)
-//{
-//    string ret = getastring(lookupabilityflavortextsql(abilityid,version_group,langid));
-//    replace(ret.begin(),ret.end(),'\n',' ');
-//    return StringConversion::SSfromSTDS(ret);
-//}
-//System::String ^ lookupabilityflavortextSS(const pokemon_obj &pkm, const int version_group, const int langid)
-//{
-//    return StringConversion::SSfromSTDS(lookupabilityflavortext(pkm.ability,version_group,langid));
-//}
-//System::String ^ lookupcharacteristicSS(const int statid, const int iv, const int langid)
-//{
-//    return StringConversion::SSfromSTDS(getastring(lookupcharacteristicsql(statid,iv,langid)));
-//}
-//System::String ^ lookuppkmgendernameSS(const pokemon_obj &pkm)
-//{
-//    return StringConversion::SSfromSTDS(getgendername(calcpkmgender(pkm)));
-//}
-//System::String ^ lookupcharacteristicSS(const pokemon_obj &pkm, const int langid)
-//{
-//    int statid = 0;
-//    int highval = 0;
-//    ivtest ivbuf = {};
-//    vector<ivtest> ivs;
-//    ivbuf.id = Stat_IDs::hp;
-//    ivbuf.val = pkm.ivs.hp;
-//    ivbuf.order = 0;
-//    ivs.push_back(ivbuf);
-//    ivbuf.id = Stat_IDs::attack;
-//    ivbuf.val = pkm.ivs.attack;
-//    ivbuf.order = 1;
-//    ivs.push_back(ivbuf);
-//    ivbuf.id = Stat_IDs::defense;
-//    ivbuf.val = pkm.ivs.defense;
-//    ivbuf.order = 2;
-//    ivs.push_back(ivbuf);
-//    ivbuf.id = Stat_IDs::speed;
-//    ivbuf.val = pkm.ivs.speed;
-//    ivbuf.order = 3;
-//    ivs.push_back(ivbuf);
-//    ivbuf.id = Stat_IDs::spatk;
-//    ivbuf.val = pkm.ivs.spatk;
-//    ivbuf.order = 4;
-//    ivs.push_back(ivbuf);
-//    ivbuf.id = Stat_IDs::spdef;
-//    ivbuf.val = pkm.ivs.spdef;
-//    ivbuf.order = 5;
-//    ivs.push_back(ivbuf);
-//    sort(ivs.begin(),ivs.end(),compareivbyval);
-//    highval = ivs[0].val;
-//    sort(ivs.begin(),ivs.end(),compareivbyorder);
-//    int highcount = 0;
-//    for(int i=0;i<6;i++)
-//    {
-//        if(ivs[i].val == highval)
-//        {
-//            statid = i+1;
-//            highcount++;
-//        }
-//    }
-//    if(highcount == 1)
-//    {
-//        return StringConversion::SSfromSTDS(lookupcharacteristic(statid,highval,langid));
-//    }
-//    int startindex = pkm.pid % 6;
-//
-//    for(int i=0; i<6; i++)
-//    {
-//        if(ivs[startindex].val == highval)
-//        {
-//            return StringConversion::SSfromSTDS(lookupcharacteristic(ivs[startindex].id,highval,langid));
-//        }
-//        startindex++;
-//        if(startindex ==6)
-//        {
-//            startindex = 0;
-//        }
-//    }
-//    return StringConversion::SSfromSTDS(lookupcharacteristic(statid,highval,langid));
-//}
-//System::String ^ lookuptypenameSS(const int type, const int langid)
-//{
-//    return StringConversion::SSfromSTDS(getastring(lookuptypenamesql(type,langid)));
-//}
-//System::String ^ lookupmovedamagetypenameSS(const pokemon_obj *pkm, const int movenum, const int langid)
-//{
-//    return StringConversion::SSfromSTDS(lookupmovedamagetypename(pkm->moves[movenum],langid));
-//}
-#endif
+//#ifdef __cplusplus_cli
+////namespace StringConversion
+////{
+////	//System::String ^ SSfromSTDS(std::string in)
+////	//{
+////	//	try
+////	//	{
+////	//		System::String ^ out = gcnew System::String(in.c_str());
+////	//		return out;
+////	//	}
+////	//	catch(...)
+////	//	{
+////	//		return "";
+////	//	}
+////	//}
+////	System::String ^ SSfromSTD(const char * in)
+////	{
+////		try
+////		{
+////			System::String ^ out = gcnew System::String(in);
+////			return out;
+////		}
+////		catch(...)
+////		{
+////			return "";
+////		}
+////	}
+////}
+////System::String ^ lookuppkmnameSS(const int speciesid, const int langid)
+////{
+////    return StringConversion::SSfromSTDS(getastring(getspeciesnamesql(speciesid,langid)));
+////}
+////System::String ^ lookuppkmnameSS(const pokemon_obj &pkm, const int langid)
+////{
+////    return StringConversion::SSfromSTDS(lookuppkmname(pkm.species,langid));
+////}
+////System::String ^ lookuppkmnameSS(const pokemon_obj *pkm, const int langid)
+////{
+//    //return StringConversion::SSfromSTDS(lookuppkmname(int(pkm->species),langid));
+////}
+////System::String ^ lookupmovenameSS(const int moveid, const int langid)
+////{
+////    return StringConversion::SSfromSTDS(getastring(getmovenamesql(moveid,langid)));
+////}
+////System::String ^ lookupmovenameSS(const pokemon_obj &pkm, const int movenum, const int langid)
+////{
+////    return StringConversion::SSfromSTDS(lookupmovename(pkm.moves[movenum],langid));
+////}
+////System::String ^ lookupmovenameSS(const pokemon_obj *pkm, const int movenum, const int langid)
+////{
+////    return StringConversion::SSfromSTDS(lookupmovename(pkm->moves[movenum],langid));
+////}
+////System::String ^ lookupmoveflavortextSS(const uint16 moveid, const int langid, const int versiongroup)
+////{
+////    string ret = getastring(getmoveflavortextsql(moveid,langid,versiongroup));
+////    replace(ret.begin(),ret.end(),'\n',' ');
+////    return StringConversion::SSfromSTDS(ret);
+////}
+////System::String ^ lookupmoveflavortextSS(const pokemon_obj &pkm, const int movenum, const int langid, const int versiongroup)
+////{
+////    return StringConversion::SSfromSTDS(lookupmoveflavortext(pkm.moves[movenum],langid,versiongroup));
+////}
+////System::String ^ lookupmoveflavortextSS(const pokemon_obj *pkm, const int movenum, const int langid, const int versiongroup)
+////{
+////    return StringConversion::SSfromSTDS(lookupmoveflavortext(pkm->moves[movenum],langid,versiongroup));
+////}
+////System::String ^ lookupmovetypenameSS(const uint16 moveid, const int langid)
+////{
+////    return StringConversion::SSfromSTDS(getastring(getmovetypenamesql(moveid,langid)));
+////}
+////System::String ^ lookupmovetypenameSS(const pokemon_obj &pkm, const int movenum, const int langid)
+////{
+////    return StringConversion::SSfromSTDS(lookupmovetypename(pkm.moves[movenum],langid));
+////}
+////System::String ^ lookupmovetypenameSS(const pokemon_obj *pkm, const int movenum, const int langid)
+////{
+////    return StringConversion::SSfromSTDS(lookupmovetypename(pkm->moves[movenum],langid));
+////}
+////System::String ^ lookupmovedamagetypenameSS(const uint16 moveid, const int langid)
+////{
+////    return StringConversion::SSfromSTDS(getastring(getmovedamagetypenamesql(moveid,langid)));
+////}
+////System::String ^ lookupmovedamagetypenameSS(const pokemon_obj &pkm, const int movenum, const int langid)
+////{
+////    return StringConversion::SSfromSTDS(lookupmovedamagetypename(pkm.moves[movenum],langid));
+////}
+////System::String ^ lookupnaturenameSS(const pokemon_obj *pkm, const int langid)
+////{
+////    if(int(pkm->nature) == 0 && int(pkm->hometown) != int(Hometowns::black) && int(pkm->hometown) != int(Hometowns::white))
+////    {
+////        return StringConversion::SSfromSTDS(getnaturename(pkm->pid % 25,langid));
+////    }
+////    else
+////    {
+////        return StringConversion::SSfromSTDS(getnaturename(int(pkm->nature),langid));
+////    }
+////}
+////System::String ^ lookupitemnameSS(const pokemon_obj *pkm, const int generation, const int langid)
+////{
+////    return StringConversion::SSfromSTDS(lookupitemname(pkm->item,generation,langid));
+////}
+////System::String ^ lookuppkmgendernameSS(const pokemon_obj *pkm)
+////{
+////    return StringConversion::SSfromSTDS(getgendername(calcpkmgender(pkm)));
+////}
+////System::String ^ lookupabilitynameSS(const pokemon_obj *pkm, const int langid)
+////{
+////    return StringConversion::SSfromSTDS(lookupabilityname(pkm->ability, langid));
+////}
+////System::String ^ lookuppkmformnameSS(const pokemon_obj *pkm, const int langid)
+////{
+////    return StringConversion::SSfromSTDS(getastring(getpkmformnamesql(pkm,langid)));
+////}
+////System::String ^ lookuppkmmetlocnameSS(const pokemon_obj *pkm, const int gen, const int langid)
+////{
+////    switch(pkm->met)
+////    {
+////    case Locations::poketransfer:
+////        return "Poke Transfer Lab";
+////        break;
+////    case Locations::daycarecouple:
+////        return "Day-Care Couple";
+////        break;
+////    default:
+////        return StringConversion::SSfromSTDS(lookuplocname(pkm->met, gen, langid));
+////    }
+////}
+////System::String ^ lookuppkmegglocnameSS(const pokemon_obj *pkm, const int gen, const int langid)
+////{
+////    switch(pkm->eggmet)
+////    {
+////    case Locations::poketransfer:
+////        return "Poke Transfer Lab";
+////        break;
+////    case Locations::daycarecouple:
+////        return "Day-Care Couple";
+////        break;
+////    default:
+////        return StringConversion::SSfromSTDS(lookuplocname(pkm->eggmet, gen, langid));
+////    }
+////}
+////System::String ^ lookupitemflavortextSS(const pokemon_obj *pkm, const int generation, const int langid, const int versiongroup)
+////{
+////    return StringConversion::SSfromSTDS(lookupitemflavortext(pkm->item,generation,langid,versiongroup));
+////}
+////System::String ^ lookuppkmcolornameSS(const pokemon_obj *pkm, const int langid)
+////{
+////    return StringConversion::SSfromSTDS(lookuppkmcolorname(int(pkm->species), langid));
+////}
+////System::String ^ lookupabilityflavortextSS(const pokemon_obj *pkm, const int version_group, const int langid)
+////{
+////    return StringConversion::SSfromSTDS(lookupabilityflavortext(pkm->ability,version_group,langid));
+////}
+////System::String ^ lookupcharacteristicSS(const pokemon_obj *pkm, const int langid)
+////{
+////    int statid = 0;
+////    int highval = 0;
+////    ivtest ivbuf = {};
+////    vector<ivtest> ivs;
+////    ivbuf.id = Stat_IDs::hp;
+////    ivbuf.val = pkm->ivs.hp;
+////    ivbuf.order = 0;
+////    ivs.push_back(ivbuf);
+////    ivbuf.id = Stat_IDs::attack;
+////    ivbuf.val = pkm->ivs.attack;
+////    ivbuf.order = 1;
+////    ivs.push_back(ivbuf);
+////    ivbuf.id = Stat_IDs::defense;
+////    ivbuf.val = pkm->ivs.defense;
+////    ivbuf.order = 2;
+////    ivs.push_back(ivbuf);
+////    ivbuf.id = Stat_IDs::speed;
+////    ivbuf.val = pkm->ivs.speed;
+////    ivbuf.order = 3;
+////    ivs.push_back(ivbuf);
+////    ivbuf.id = Stat_IDs::spatk;
+////    ivbuf.val = pkm->ivs.spatk;
+////    ivbuf.order = 4;
+////    ivs.push_back(ivbuf);
+////    ivbuf.id = Stat_IDs::spdef;
+////    ivbuf.val = pkm->ivs.spdef;
+////    ivbuf.order = 5;
+////    ivs.push_back(ivbuf);
+////    sort(ivs.begin(),ivs.end(),compareivbyval);
+////    highval = ivs[0].val;
+////    sort(ivs.begin(),ivs.end(),compareivbyorder);
+////    int highcount = 0;
+////    for(int i=0;i<6;i++)
+////    {
+////        if(ivs[i].val == highval)
+////        {
+////            statid = i+1;
+////            highcount++;
+////        }
+////    }
+////    if(highcount == 1)
+////    {
+////        return StringConversion::SSfromSTDS(lookupcharacteristic(statid,highval,langid));
+////    }
+////    int startindex = pkm->pid % 6;
+////
+////    for(int i=0; i<6; i++)
+////    {
+////        if(ivs[startindex].val == highval)
+////        {
+////            return StringConversion::SSfromSTDS(lookupcharacteristic(ivs[startindex].id,highval,langid));
+////        }
+////        startindex++;
+////        if(startindex ==6)
+////        {
+////            startindex = 0;
+////        }
+////    }
+////    return StringConversion::SSfromSTDS(lookupcharacteristic(statid,highval,langid));
+////}
+////System::String ^ lookupabilitynameSS(const int abilityid, const int langid)
+////{
+////    return StringConversion::SSfromSTDS(getastring(lookupabilitynamesql(abilityid,langid)));
+////}
+////System::String ^ lookupabilitynameSS(const pokemon_obj &pkm, const int langid)
+////{
+////    return StringConversion::SSfromSTDS(lookupabilityname(pkm.ability, langid));
+////}
+////System::String ^ lookuppkmformnameSS(const pokemon_obj &pkm, const int langid)
+////{
+////    return StringConversion::SSfromSTDS(getastring(getpkmformnamesql(pkm,langid)));
+////}
+////System::String ^ lookuplocnameSS(const int locid, const int gen, const int langid)
+////{
+////    return StringConversion::SSfromSTDS(getastring(lookuplocnamesql(locid,gen,langid)));
+////}
+////System::String ^ lookuppkmmetlocnameSS(const pokemon_obj &pkm, const int gen, const int langid)
+////{
+////    switch(pkm.met)
+////    {
+////    case Locations::poketransfer:
+////        return "Poke Transfer Lab";
+////        break;
+////    case Locations::daycarecouple:
+////        return "Day-Care Couple";
+////        break;
+////    default:
+////        return StringConversion::SSfromSTDS(lookuplocname(pkm.met, gen, langid));
+////    }
+////}
+////System::String ^ lookuppkmegglocnameSS(const pokemon_obj &pkm, const int gen, const int langid)
+////{
+////    switch(pkm.eggmet)
+////    {
+////    case Locations::poketransfer:
+////        return "Poke Transfer Lab";
+////        break;
+////    case Locations::daycarecouple:
+////        return "Day-Care Couple";
+////        break;
+////    default:
+////        return StringConversion::SSfromSTDS(lookuplocname(pkm.eggmet, gen, langid));
+////    }
+////}
+////System::String ^ lookupitemflavortextSS(const int itemid, const int generation, const int langid, const int versiongroup)
+////{
+////    string ret = getastring(lookupitemflavortextsql(itemid,generation,langid,versiongroup));
+////    replace(ret.begin(),ret.end(),'\n',' ');
+////    return StringConversion::SSfromSTDS(ret);
+////}
+////System::String ^ lookupitemflavortextSS(const pokemon_obj &pkm, const int generation, const int langid, const int versiongroup)
+////{
+////    return StringConversion::SSfromSTDS(lookupitemflavortext(pkm.item,generation,langid,versiongroup));
+////}
+////System::String ^ lookuppkmcolornameSS(const int species, const int langid)
+////{
+////    return StringConversion::SSfromSTDS(getastring(lookuppkmcolornamesql(species,langid)));
+////}
+////System::String ^ lookuppkmcolornameSS(const pokemon_obj &pkm, const int langid)
+////{
+////    return StringConversion::SSfromSTDS(lookuppkmcolorname(pkm.species, langid));
+////}
+////System::String ^ lookupnaturenameSS(const int natureid, const int langid)
+////{
+////    return StringConversion::SSfromSTDS(getastring(getnaturenamesql(natureid,langid)));
+////}
+////System::String ^ lookupnaturenameSS(const pokemon_obj &pkm, const int langid)
+////{
+////    if(int(pkm.nature) == 0 && int(pkm.hometown) != int(Hometowns::black) && int(pkm.hometown) != int(Hometowns::white))
+////    {
+////        return StringConversion::SSfromSTDS(getnaturename(pkm.pid % 25,langid));
+////    }
+////    else
+////    {
+////        return StringConversion::SSfromSTDS(getnaturename(int(pkm.nature),langid));
+////    }
+////}
+////System::String ^ lookupitemnameSS(const int itemid, const int generation, const int langid)
+////{
+////    return StringConversion::SSfromSTDS(getastring(lookupitemnamesql(itemid,generation,langid)));
+////}
+////System::String ^ lookupitemnameSS(const pokemon_obj &pkm, const int generation, const int langid)
+////{
+////    return StringConversion::SSfromSTDS(lookupitemname(pkm.item,generation,langid));
+////}
+////System::String ^ lookupabilityflavortextSS(const int abilityid, const int version_group, const int langid)
+////{
+////    string ret = getastring(lookupabilityflavortextsql(abilityid,version_group,langid));
+////    replace(ret.begin(),ret.end(),'\n',' ');
+////    return StringConversion::SSfromSTDS(ret);
+////}
+////System::String ^ lookupabilityflavortextSS(const pokemon_obj &pkm, const int version_group, const int langid)
+////{
+////    return StringConversion::SSfromSTDS(lookupabilityflavortext(pkm.ability,version_group,langid));
+////}
+////System::String ^ lookupcharacteristicSS(const int statid, const int iv, const int langid)
+////{
+////    return StringConversion::SSfromSTDS(getastring(lookupcharacteristicsql(statid,iv,langid)));
+////}
+////System::String ^ lookuppkmgendernameSS(const pokemon_obj &pkm)
+////{
+////    return StringConversion::SSfromSTDS(getgendername(calcpkmgender(pkm)));
+////}
+////System::String ^ lookupcharacteristicSS(const pokemon_obj &pkm, const int langid)
+////{
+////    int statid = 0;
+////    int highval = 0;
+////    ivtest ivbuf = {};
+////    vector<ivtest> ivs;
+////    ivbuf.id = Stat_IDs::hp;
+////    ivbuf.val = pkm.ivs.hp;
+////    ivbuf.order = 0;
+////    ivs.push_back(ivbuf);
+////    ivbuf.id = Stat_IDs::attack;
+////    ivbuf.val = pkm.ivs.attack;
+////    ivbuf.order = 1;
+////    ivs.push_back(ivbuf);
+////    ivbuf.id = Stat_IDs::defense;
+////    ivbuf.val = pkm.ivs.defense;
+////    ivbuf.order = 2;
+////    ivs.push_back(ivbuf);
+////    ivbuf.id = Stat_IDs::speed;
+////    ivbuf.val = pkm.ivs.speed;
+////    ivbuf.order = 3;
+////    ivs.push_back(ivbuf);
+////    ivbuf.id = Stat_IDs::spatk;
+////    ivbuf.val = pkm.ivs.spatk;
+////    ivbuf.order = 4;
+////    ivs.push_back(ivbuf);
+////    ivbuf.id = Stat_IDs::spdef;
+////    ivbuf.val = pkm.ivs.spdef;
+////    ivbuf.order = 5;
+////    ivs.push_back(ivbuf);
+////    sort(ivs.begin(),ivs.end(),compareivbyval);
+////    highval = ivs[0].val;
+////    sort(ivs.begin(),ivs.end(),compareivbyorder);
+////    int highcount = 0;
+////    for(int i=0;i<6;i++)
+////    {
+////        if(ivs[i].val == highval)
+////        {
+////            statid = i+1;
+////            highcount++;
+////        }
+////    }
+////    if(highcount == 1)
+////    {
+////        return StringConversion::SSfromSTDS(lookupcharacteristic(statid,highval,langid));
+////    }
+////    int startindex = pkm.pid % 6;
+////
+////    for(int i=0; i<6; i++)
+////    {
+////        if(ivs[startindex].val == highval)
+////        {
+////            return StringConversion::SSfromSTDS(lookupcharacteristic(ivs[startindex].id,highval,langid));
+////        }
+////        startindex++;
+////        if(startindex ==6)
+////        {
+////            startindex = 0;
+////        }
+////    }
+////    return StringConversion::SSfromSTDS(lookupcharacteristic(statid,highval,langid));
+////}
+////System::String ^ lookuptypenameSS(const int type, const int langid)
+////{
+////    return StringConversion::SSfromSTDS(getastring(lookuptypenamesql(type,langid)));
+////}
+////System::String ^ lookupmovedamagetypenameSS(const pokemon_obj *pkm, const int movenum, const int langid)
+////{
+////    return StringConversion::SSfromSTDS(lookupmovedamagetypename(pkm->moves[movenum],langid));
+////}
+//#endif

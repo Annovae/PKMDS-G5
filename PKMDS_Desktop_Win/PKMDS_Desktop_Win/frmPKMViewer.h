@@ -3,14 +3,12 @@
 #include "../../include/pkmds/pkmds_g5_sqlite.h"
 #include "../../include/pkmds/pkmds_sql.h"
 namespace PKMDS_Desktop_Win {
-
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-
 	/// <summary>
 	/// Summary for frmPKMViewer
 	/// </summary>
@@ -27,8 +25,89 @@ namespace PKMDS_Desktop_Win {
 			pkm = new pokemon_obj;
 			temppkm = new pokemon_obj;
 			pviewvsqlite = gcnew VS_SQLite();
-		}
 
+			DataSet^ itemds = pviewvsqlite->getSQLDS
+				(
+				"SELECT item_game_indices.game_index, item_names.name FROM items INNER JOIN item_names ON items.id = item_names.item_id " +
+				"INNER JOIN item_game_indices ON items.id = item_game_indices.item_id WHERE (item_names.local_language_id = 9) AND " +
+				"(item_game_indices.generation_id = 5) order by name asc"
+				);
+			DataRow^ blankitem = itemds->Tables[0]->NewRow();
+			blankitem["game_index"] = DBNull::Value;
+			blankitem["name"] = "";
+			itemds->Tables[0]->Rows->InsertAt(blankitem,0);
+			cbItem->DataSource = itemds->Tables[0];
+			//cbItem->DataBindings->Add("SelectedValue",itemds->Tables[0],"game_index");
+			cbItem->DisplayMember = "name";
+			cbItem->ValueMember = "game_index";
+			DataSet^ speciesds = pviewvsqlite->getSQLDS("SELECT pokemon_species_id, name FROM pokemon_species_names WHERE (local_language_id = 9) order by name asc");
+			numSpecies->DataBindings->Add("Value",speciesds->Tables[0],"pokemon_species_id");
+			cbSpecies->DataSource = speciesds->Tables[0];
+			//cbSpecies->DataBindings->Add("SelectedValue",speciesds->Tables[0],"pokemon_species_id");
+			cbSpecies->DisplayMember = "name";
+			cbSpecies->ValueMember = "pokemon_species_id";
+			DataSet^ abilitiesds = pviewvsqlite->getSQLDS("SELECT ability_names.ability_id, ability_names.name, ability_flavor_text.flavor_text FROM ability_names INNER JOIN ability_flavor_text ON ability_names.ability_id = ability_flavor_text.ability_id WHERE (ability_names.local_language_id = 9) AND (ability_names.ability_id < 10000) AND (ability_flavor_text.language_id = 9) AND (ability_flavor_text.version_group_id = 14) ORDER BY ability_names.name");
+			cbAbility->DataSource = abilitiesds->Tables[0];
+			cbAbility->DisplayMember = "name";
+			cbAbility->ValueMember = "ability_id";
+			lblAbilityFlavor->DataBindings->Add("Text",abilitiesds->Tables[0],"flavor_text",true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-");
+
+			System::String ^ movesql = "SELECT move_names.move_id, move_names.name, moves.power, moves.accuracy FROM moves INNER JOIN move_names ON moves.id = move_names.move_id WHERE (move_names.local_language_id = 9) AND (move_names.move_id < 10000) order by name asc";
+			DataSet^ movesds1 = pviewvsqlite->getSQLDS(movesql);
+			DataSet^ movesds2 = pviewvsqlite->getSQLDS(movesql);
+			DataSet^ movesds3 = pviewvsqlite->getSQLDS(movesql);
+			DataSet^ movesds4 = pviewvsqlite->getSQLDS(movesql);
+			//DataRow^ blankmove1 = movesds1->Tables[0]->NewRow();
+			//blankmove1["move_id"] = DBNull::Value;
+			//blankmove1["name"] = "";
+			//movesds1->Tables[0]->Rows->InsertAt(blankmove1,0);
+			DataRow^ blankmove2 = movesds2->Tables[0]->NewRow();
+			blankmove2["move_id"] = DBNull::Value;
+			blankmove2["name"] = "";
+			movesds2->Tables[0]->Rows->InsertAt(blankmove2,0);
+			DataRow^ blankmove3 = movesds3->Tables[0]->NewRow();
+			blankmove3["move_id"] = DBNull::Value;
+			blankmove3["name"] = "";
+			movesds3->Tables[0]->Rows->InsertAt(blankmove3,0);
+			DataRow^ blankmove4 = movesds4->Tables[0]->NewRow();
+			blankmove4["move_id"] = DBNull::Value;
+			blankmove4["name"] = "";
+			movesds4->Tables[0]->Rows->InsertAt(blankmove4,0);
+			cbMove1->DataSource = movesds1->Tables[0];
+			cbMove1->DisplayMember = "name";
+			cbMove1->ValueMember = "move_id";
+			cbMove2->DataSource = movesds2->Tables[0];
+			cbMove2->DisplayMember = "name";
+			cbMove2->ValueMember = "move_id";
+			cbMove3->DataSource = movesds3->Tables[0];
+			cbMove3->DisplayMember = "name";
+			cbMove3->ValueMember = "move_id";
+			cbMove4->DataSource = movesds4->Tables[0];
+			cbMove4->DisplayMember = "name";
+			cbMove4->ValueMember = "move_id";
+			lblMove1Power->DataBindings->Add("Text",movesds1->Tables[0],"power"); //,true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
+			lblMove2Power->DataBindings->Add("Text",movesds2->Tables[0],"power"); //,true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
+			lblMove3Power->DataBindings->Add("Text",movesds3->Tables[0],"power"); //,true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
+			lblMove4Power->DataBindings->Add("Text",movesds4->Tables[0],"power"); //,true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
+			lblMove1Accuracy->DataBindings->Add("Text",movesds1->Tables[0],"accuracy"); //,true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
+			lblMove2Accuracy->DataBindings->Add("Text",movesds2->Tables[0],"accuracy"); //,true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
+			lblMove3Accuracy->DataBindings->Add("Text",movesds3->Tables[0],"accuracy"); //,true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
+			lblMove4Accuracy->DataBindings->Add("Text",movesds4->Tables[0],"accuracy"); //,true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
+
+			DataTable^ naturesdt = gcnew DataTable();
+			naturesdt->Columns->Add("id");
+			naturesdt->Columns->Add("name");
+			for(int natureindex = 0; natureindex < 25; natureindex++)
+			{
+				System::String ^ naturename = gcnew System::String(getnaturename(natureindex).c_str());
+				naturesdt->Rows->Add(natureindex,naturename);
+				delete naturename;
+			}
+			//cbNature->Sorted = true;
+			cbNature->DataSource = naturesdt;
+			cbNature->DisplayMember = "name";
+			cbNature->ValueMember = "id";
+		}
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -38,11 +117,12 @@ namespace PKMDS_Desktop_Win {
 			if (components)
 			{
 				delete components;
+				delete pkm;
+				delete temppkm;
+				delete pviewvsqlite;
 			}
 		}
 	private: System::Windows::Forms::TableLayoutPanel^  tlViewer;
-	protected: 
-
 	protected: 
 	private: System::Windows::Forms::Panel^  panGeneral;
 	private: System::Windows::Forms::TabControl^  tcViewer;
@@ -53,7 +133,6 @@ namespace PKMDS_Desktop_Win {
 	private: System::Windows::Forms::TabPage^  tpRibbons;
 	private: System::Windows::Forms::TabPage^  tpMisc;
 	private: System::Windows::Forms::PictureBox^  pbSprite;
-
 	private: System::Windows::Forms::PictureBox^  pbPKRS;
 	private: System::Windows::Forms::PictureBox^  pbShiny;
 	private: System::Windows::Forms::PictureBox^  pbGender;
@@ -77,56 +156,33 @@ namespace PKMDS_Desktop_Win {
 	private: System::Windows::Forms::CheckBox^  chkNicknamed;
 	private: System::Windows::Forms::Label^  lblNickname;
 	private: System::Windows::Forms::RadioButton^  rbOTFemale;
-
 	private: System::Windows::Forms::RadioButton^  rbOTMale;
-
 	private: System::Windows::Forms::Label^  lblOTName;
 	private: System::Windows::Forms::TextBox^  txtOTName;
-
-
 	private: System::Windows::Forms::NumericUpDown^  numTID;
 	private: System::Windows::Forms::Label^  lblTrainerID;
 	private: System::Windows::Forms::NumericUpDown^  numSID;
 	private: System::Windows::Forms::Label^  lblSecretID;
 	private: System::Windows::Forms::NumericUpDown^  numEXP;
-
 	private: System::Windows::Forms::Label^  lblEXP;
 	private: System::Windows::Forms::PictureBox^  pbType2;
 	private: System::Windows::Forms::PictureBox^  pbType1;
 	private: System::Windows::Forms::Label^  lblType;
 	private: System::Windows::Forms::ComboBox^  cbAbility;
-
 	private: System::Windows::Forms::Label^  lblAbility;
 	private: System::Windows::Forms::Label^  lblTNL;
 	private: System::Windows::Forms::ProgressBar^  pbTNL;
 	private: System::Windows::Forms::GroupBox^  gbIVs;
 	private: System::Windows::Forms::GroupBox^  gbCalcStats;
 	private: System::Windows::Forms::TableLayoutPanel^  tlCalcStats;
-
-
-
 	private: System::Windows::Forms::GroupBox^  gbEVs;
 	private: System::Windows::Forms::TableLayoutPanel^  tlEVs;
-
-
-
-
-
-
-
-
 	private: System::Windows::Forms::NumericUpDown^  numHPEV;
 	private: System::Windows::Forms::NumericUpDown^  numAttackEV;
 	private: System::Windows::Forms::NumericUpDown^  numDefenseEV;
 	private: System::Windows::Forms::NumericUpDown^  numSpAtkEV;
 	private: System::Windows::Forms::NumericUpDown^  numSpDefEV;
 	private: System::Windows::Forms::NumericUpDown^  numSpeedEV;
-
-
-
-
-
-
 	private: System::Windows::Forms::TableLayoutPanel^  tlIVs;
 	private: System::Windows::Forms::Label^  lblSpeedIV;
 	private: System::Windows::Forms::Label^  lblSpDefIV;
@@ -143,25 +199,18 @@ namespace PKMDS_Desktop_Win {
 	private: System::Windows::Forms::TextBox^  txtTotalEVs;
 	private: System::Windows::Forms::Label^  lblTotalEVs;
 	private: System::Windows::Forms::TextBox^  txtCalcSpeed;
-
 	private: System::Windows::Forms::TextBox^  txtCalcSpDef;
-
 	private: System::Windows::Forms::TextBox^  txtCalcSpAtk;
-
 	private: System::Windows::Forms::TextBox^  txtCalcDefense;
-
 	private: System::Windows::Forms::TextBox^  txtCalcAttack;
-
 	private: System::Windows::Forms::TextBox^  txtCalcHP;
 	private: System::Windows::Forms::ComboBox^  cbNature;
 	private: System::Windows::Forms::Label^  lblNature;
 	private: System::Windows::Forms::TableLayoutPanel^  tlMoves;
 	private: System::Windows::Forms::TableLayoutPanel^  tlMove1TotalPP;
-
 	private: System::Windows::Forms::TextBox^  txtMove1TotalPP;
 	private: System::Windows::Forms::Label^  lblMove1TotalPP;
 	private: System::Windows::Forms::TableLayoutPanel^  tlMove1PP;
-
 	private: System::Windows::Forms::Label^  lblMove1PP;
 	private: System::Windows::Forms::NumericUpDown^  numMove1PP;
 	private: System::Windows::Forms::TableLayoutPanel^  tlMove1PPUPs;
@@ -171,7 +220,6 @@ namespace PKMDS_Desktop_Win {
 	private: System::Windows::Forms::Label^  lblMove1Accuracy;
 	private: System::Windows::Forms::Label^  lblAccuracy;
 	private: System::Windows::Forms::ComboBox^  cbMove1;
-
 	private: System::Windows::Forms::TableLayoutPanel^  tlMove1Power;
 	private: System::Windows::Forms::Label^  lblMove1Power;
 	private: System::Windows::Forms::Label^  lblPower;
@@ -180,20 +228,13 @@ namespace PKMDS_Desktop_Win {
 	private: System::Windows::Forms::PictureBox^  pbMove1Cat;
 	private: System::Windows::Forms::PictureBox^  pbMove1Type;
 	private: System::Windows::Forms::TableLayoutPanel^  tlMove1TypeCatlbls;
-
 	private: System::Windows::Forms::Label^  lblMove1Cat;
 	private: System::Windows::Forms::Label^  lblMove1Type;
 	private: System::Windows::Forms::Label^  lblMoveName;
-
-
 	private: System::Windows::Forms::TableLayoutPanel^  tlMove2NameEtc;
-
 	private: System::Windows::Forms::ComboBox^  cbMove2;
-
 	private: System::Windows::Forms::TableLayoutPanel^  tlMove2TypeCat;
 	private: System::Windows::Forms::PictureBox^  pbMove2Cat;
-
-
 	private: System::Windows::Forms::PictureBox^  pbMove2Type;
 	private: System::Windows::Forms::Label^  lblMove2Power;
 	private: System::Windows::Forms::Label^  lblMove2Accuracy;
@@ -201,50 +242,28 @@ namespace PKMDS_Desktop_Win {
 	private: System::Windows::Forms::NumericUpDown^  numMove2PP;
 	private: System::Windows::Forms::TextBox^  txtMove2TotalPP;
 	private: System::Windows::Forms::CheckBox^  chkPIDHex;
-
-
 	private: System::Windows::Forms::Label^  lblPID;
 	private: System::Windows::Forms::TextBox^  txtPID;
 	private: System::Windows::Forms::TableLayoutPanel^  tlMove3NameEtc;
 	private: System::Windows::Forms::ComboBox^  cbMove3;
-
-
 	private: System::Windows::Forms::TableLayoutPanel^  tlMove3TypeCat;
 	private: System::Windows::Forms::PictureBox^  pbMove3Cat;
 	private: System::Windows::Forms::PictureBox^  pbMove3Type;
-
-
-
 	private: System::Windows::Forms::TableLayoutPanel^  tlMove4NameEtc;
 	private: System::Windows::Forms::ComboBox^  cbMove4;
-
-
 	private: System::Windows::Forms::TableLayoutPanel^  tlMove4TypeCat;
 	private: System::Windows::Forms::PictureBox^  pbMove4Cat;
 	private: System::Windows::Forms::PictureBox^  pbMove4Type;
-
-
-
 	private: System::Windows::Forms::Label^  lblMove3Power;
-
 	private: System::Windows::Forms::Label^  lblMove3Accuracy;
 	private: System::Windows::Forms::Label^  lblMove4Power;
-
-
 	private: System::Windows::Forms::Label^  lblMove4Accuracy;
-
 	private: System::Windows::Forms::NumericUpDown^  numMove3PPUps;
-
 	private: System::Windows::Forms::NumericUpDown^  numMove3PP;
 	private: System::Windows::Forms::NumericUpDown^  numMove4PP;
 	private: System::Windows::Forms::NumericUpDown^  numMove4PPUps;
-
-
-
 	private: System::Windows::Forms::TextBox^  txtMove3TotalPP;
 	private: System::Windows::Forms::TextBox^  txtMove4TotalPP;
-
-
 	private: System::Windows::Forms::ToolTip^  ttMove1Flavor;
 	private: System::Windows::Forms::ToolTip^  ttMove2Flavor;
 	private: System::Windows::Forms::ToolTip^  ttMove3Flavor;
@@ -253,31 +272,11 @@ namespace PKMDS_Desktop_Win {
 	private: System::Windows::Forms::ImageList^  imgBalls;
 	private: System::Windows::Forms::Label^  lblAbilityFlavor;
 	private: System::Windows::Forms::SaveFileDialog^  savePKM;
-
 	private: System::ComponentModel::IContainer^  components;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	private:
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -571,6 +570,7 @@ namespace PKMDS_Desktop_Win {
 			this->numSpecies->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {649, 0, 0, 0});
 			this->numSpecies->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) {1, 0, 0, 0});
 			this->numSpecies->Name = L"numSpecies";
+			this->numSpecies->ReadOnly = true;
 			this->numSpecies->Size = System::Drawing::Size(43, 20);
 			this->numSpecies->TabIndex = 19;
 			this->numSpecies->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) {1, 0, 0, 0});
@@ -932,6 +932,7 @@ namespace PKMDS_Desktop_Win {
 			// txtNickname
 			// 
 			this->txtNickname->Location = System::Drawing::Point(71, 6);
+			this->txtNickname->MaxLength = 10;
 			this->txtNickname->Name = L"txtNickname";
 			this->txtNickname->Size = System::Drawing::Size(128, 20);
 			this->txtNickname->TabIndex = 1;
@@ -1026,6 +1027,7 @@ namespace PKMDS_Desktop_Win {
 			// txtOTName
 			// 
 			this->txtOTName->Location = System::Drawing::Point(65, 13);
+			this->txtOTName->MaxLength = 7;
 			this->txtOTName->Name = L"txtOTName";
 			this->txtOTName->Size = System::Drawing::Size(128, 20);
 			this->txtOTName->TabIndex = 4;
@@ -2445,9 +2447,16 @@ namespace PKMDS_Desktop_Win {
 		}
 		void refreshitem()
 		{
-			std::ostringstream SQL;
-			getitemsql(SQL,(uint16)temppkm->item);
-			pbItem->Image = (pviewvsqlite->getSQLImage(SQL.str()));
+			if(temppkm->item != Items::NOTHING)
+			{
+				std::ostringstream SQL;
+				getitemsql(SQL,(uint16)temppkm->item);
+				pbItem->Image = (pviewvsqlite->getSQLImage(SQL.str()));
+			}
+			else
+			{
+				pbItem->Image = nullptr;
+			}
 		}
 		void refreshtotalevs()
 		{
@@ -2506,14 +2515,23 @@ namespace PKMDS_Desktop_Win {
 		}
 		void refreshmove1()
 		{
-			std::ostringstream SQL;
-			txtMove1TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,0));
-			gettypesql(SQL,(Types::types)(getmovetype(temppkm->moves[0])));
-			pbMove1Type->Image = pviewvsqlite->getSQLImage(SQL.str());
-			SQL.str("");
-			SQL.clear();
-			getmovecatsql(SQL,temppkm->moves[0]);
-			pbMove1Cat->Image = pviewvsqlite->getSQLImage(SQL.str());
+			if(temppkm->moves[0] != Moves::NOTHING)
+			{
+				std::ostringstream SQL;
+				txtMove1TotalPP->Text = System::Convert::ToString(getmovetotalpp(temppkm,0));
+				gettypesql(SQL,(Types::types)(getmovetype(temppkm->moves[0])));
+				pbMove1Type->Image = pviewvsqlite->getSQLImage(SQL.str());
+				SQL.str("");
+				SQL.clear();
+				getmovecatsql(SQL,temppkm->moves[0]);
+				pbMove1Cat->Image = pviewvsqlite->getSQLImage(SQL.str());
+			}
+			else
+			{
+				txtMove2TotalPP->Text = "";
+				pbMove2Type->Image = nullptr;
+				pbMove2Cat->Image = nullptr;
+			}
 		}
 		void refreshmove2()
 		{
@@ -2527,6 +2545,12 @@ namespace PKMDS_Desktop_Win {
 				SQL.clear();
 				getmovecatsql(SQL,temppkm->moves[1]);
 				pbMove2Cat->Image = pviewvsqlite->getSQLImage(SQL.str());
+			}
+			else
+			{
+				txtMove2TotalPP->Text = "";
+				pbMove2Type->Image = nullptr;
+				pbMove2Cat->Image = nullptr;
 			}
 		}
 		void refreshmove3()
@@ -2542,6 +2566,12 @@ namespace PKMDS_Desktop_Win {
 				getmovecatsql(SQL,temppkm->moves[2]);
 				pbMove3Cat->Image = pviewvsqlite->getSQLImage(SQL.str());
 			}
+			else
+			{
+				txtMove3TotalPP->Text = "";
+				pbMove3Type->Image = nullptr;
+				pbMove3Cat->Image = nullptr;
+			}
 		}
 		void refreshmove4()
 		{
@@ -2556,6 +2586,12 @@ namespace PKMDS_Desktop_Win {
 				getmovecatsql(SQL,temppkm->moves[3]);
 				pbMove4Cat->Image = pviewvsqlite->getSQLImage(SQL.str());
 			}
+			else
+			{
+				txtMove4TotalPP->Text = "";
+				pbMove4Type->Image = nullptr;
+				pbMove4Cat->Image = nullptr;
+			}
 		}
 		void refreshmoves()
 		{
@@ -2564,86 +2600,113 @@ namespace PKMDS_Desktop_Win {
 			refreshmove3();
 			refreshmove4();
 		}
-		void displayPKM()
-		{
-			cbSpecies->SelectedIndex = cbSpecies->FindString(gcnew System::String(lookuppkmname(temppkm).c_str()));
-			numSpecies->Value = Convert::ToDecimal((UInt16)(temppkm->species));
-			txtNickname->Text = gcnew System::String(getpkmnickname(temppkm).c_str());
-			txtOTName->Text = gcnew System::String(getpkmotname(temppkm).c_str());
-			if(temppkm->metlevel_otgender.otgender == Genders::female)
+	public: void displayPKM()
 			{
-				rbOTFemale->Checked = true;
-				txtOTName->ForeColor = Color::Red;
-			}
-			else
-			{
-				rbOTMale->Checked = true;
-				txtOTName->ForeColor = Color::Blue;
-			}
-			chkNicknamed->Checked = (bool)(temppkm->ivs.isnicknamed);
-			numTID->Value = Convert::ToDecimal(temppkm->tid);
-			numSID->Value = Convert::ToDecimal(temppkm->sid);
-			cbMove1->SelectedIndex = cbMove1->FindString(gcnew System::String(lookupmovename(temppkm,0).c_str()));
-			if(temppkm->moves[1] != Moves::NOTHING){ cbMove2->SelectedIndex = cbMove2->FindString(gcnew System::String(lookupmovename(temppkm,1).c_str()));}
-			if(temppkm->moves[2] != Moves::NOTHING){ cbMove3->SelectedIndex = cbMove3->FindString(gcnew System::String(lookupmovename(temppkm,2).c_str()));}
-			if(temppkm->moves[3] != Moves::NOTHING){ cbMove4->SelectedIndex = cbMove4->FindString(gcnew System::String(lookupmovename(temppkm,3).c_str()));}
-			cbNature->SelectedIndex = cbNature->FindString(gcnew System::String(getnaturename(temppkm).c_str()));
-			cbAbility->SelectedIndex = cbAbility->FindString(gcnew System::String(lookupabilityname(temppkm).c_str()));
-			numHPIV->Value = Convert::ToDecimal(temppkm->ivs.hp);
-			numAttackIV->Value = Convert::ToDecimal(temppkm->ivs.attack);
-			numDefenseIV->Value = Convert::ToDecimal(temppkm->ivs.defense);
-			numSpAtkIV->Value = Convert::ToDecimal(temppkm->ivs.spatk);
-			numSpDefIV->Value = Convert::ToDecimal(temppkm->ivs.spdef);
-			numSpeedIV->Value = Convert::ToDecimal(temppkm->ivs.speed);
-			numHPEV->Value = Convert::ToDecimal(temppkm->evs.hp);
-			numAttackEV->Value = Convert::ToDecimal(temppkm->evs.attack);
-			numDefenseEV->Value = Convert::ToDecimal(temppkm->evs.defense);
-			numSpAtkEV->Value = Convert::ToDecimal(temppkm->evs.spatk);
-			numSpDefEV->Value = Convert::ToDecimal(temppkm->evs.spdef);
-			numSpeedEV->Value = Convert::ToDecimal(temppkm->evs.speed);
-			numMove1PPUps->Value = Convert::ToDecimal(temppkm->ppup[0]);
-			numMove2PPUps->Value = Convert::ToDecimal(temppkm->ppup[1]);
-			numMove3PPUps->Value = Convert::ToDecimal(temppkm->ppup[2]);
-			numMove4PPUps->Value = Convert::ToDecimal(temppkm->ppup[3]);
-			numMove1PP->Value = Convert::ToDecimal(temppkm->pp[0]);
-			numMove2PP->Value = Convert::ToDecimal(temppkm->pp[1]);
-			numMove3PP->Value = Convert::ToDecimal(temppkm->pp[2]);
-			numMove4PP->Value = Convert::ToDecimal(temppkm->pp[3]);
-			txtPID->Text = System::Convert::ToString(temppkm->pid);
-			cbItem->SelectedIndex = cbItem->FindString(gcnew System::String(lookupitemname(temppkm).c_str()));
+				redisplayok = false;
+				// TODO: Is FindString causing performance issues?
+				cbSpecies->SelectedIndex = cbSpecies->FindString(gcnew System::String(lookuppkmname(temppkm).c_str()));
 
-			lvBall->Columns->Add("");
-			std::ostringstream SQL;
-			//lvBall->Columns[0]->Width = 40;
-			for(int ballnum = 1; ballnum < (int)Balls::dreamball; ballnum++)
-			{
-				if((Balls::balls)ballnum != Balls::pokeball_)
+				//numSpecies->Value = Convert::ToDecimal((UInt16)(temppkm->species));
+				txtNickname->Text = gcnew System::String(getpkmnickname(temppkm).c_str());
+				txtOTName->Text = gcnew System::String(getpkmotname(temppkm).c_str());
+				if(temppkm->metlevel_otgender.otgender == Genders::female)
 				{
-					getballsql(SQL,(Balls::balls)(ballnum));
-					imgBalls->Images->Add(pviewvsqlite->getSQLImage(SQL.str()));
-					lvBall->Items->Add("",ballnum-1);
-					SQL.str("");
-					SQL.clear();
+					rbOTFemale->Checked = true;
+					txtOTName->ForeColor = Color::Red;
 				}
-			}
-			//MessageBox::Show(System::Convert::ToString(lvBall->Columns[0]->Width));
-			//lvBall->Items[(int)(temppkm->ball)]->Selected = true;
+				else
+				{
+					rbOTMale->Checked = true;
+					txtOTName->ForeColor = Color::Blue;
+				}
+				chkNicknamed->Checked = (bool)(temppkm->ivs.isnicknamed);
+				numTID->Value = Convert::ToDecimal(temppkm->tid);
+				numSID->Value = Convert::ToDecimal(temppkm->sid);
 
-			//refreshexp();
-			//refreshlevel();
-			//refreshsprite();
-			//refreshgender();
-			//refreshshiny();
-			//refreshmarkings();
-			//refreshitem();
-			//refreshtotalevs();
-			//refreshnatureeffect();
-			//refreshcalcstats();
-			//refreshtypes();
-			//refreshpkrs();
-			//refreshmoves();
-			redisplayok = true;
-		}
+				// TODO: Is FindString causing performance issues?
+				cbMove1->SelectedIndex = cbMove1->FindString(gcnew System::String(lookupmovename(temppkm,0).c_str()));
+				if(temppkm->moves[1] != Moves::NOTHING)
+				{ 
+					cbMove2->SelectedIndex = cbMove2->FindString(gcnew System::String(lookupmovename(temppkm,1).c_str()));}
+				else
+				{
+					cbMove2->SelectedIndex = 0;
+				}
+				if(temppkm->moves[2] != Moves::NOTHING)
+				{ 
+					cbMove3->SelectedIndex = cbMove3->FindString(gcnew System::String(lookupmovename(temppkm,2).c_str()));}
+				else
+				{
+					cbMove3->SelectedIndex = 0;
+				}
+				if(temppkm->moves[3] != Moves::NOTHING)
+				{ 
+					cbMove4->SelectedIndex = cbMove4->FindString(gcnew System::String(lookupmovename(temppkm,3).c_str()));}
+				else
+				{
+					cbMove4->SelectedIndex = 0;
+				}
+				cbNature->SelectedIndex = cbNature->FindString(gcnew System::String(getnaturename(temppkm).c_str()));
+				cbAbility->SelectedIndex = cbAbility->FindString(gcnew System::String(lookupabilityname(temppkm).c_str()));
+
+				numHPIV->Value = Convert::ToDecimal(temppkm->ivs.hp);
+				numAttackIV->Value = Convert::ToDecimal(temppkm->ivs.attack);
+				numDefenseIV->Value = Convert::ToDecimal(temppkm->ivs.defense);
+				numSpAtkIV->Value = Convert::ToDecimal(temppkm->ivs.spatk);
+				numSpDefIV->Value = Convert::ToDecimal(temppkm->ivs.spdef);
+				numSpeedIV->Value = Convert::ToDecimal(temppkm->ivs.speed);
+				numHPEV->Value = Convert::ToDecimal(temppkm->evs.hp);
+				numAttackEV->Value = Convert::ToDecimal(temppkm->evs.attack);
+				numDefenseEV->Value = Convert::ToDecimal(temppkm->evs.defense);
+				numSpAtkEV->Value = Convert::ToDecimal(temppkm->evs.spatk);
+				numSpDefEV->Value = Convert::ToDecimal(temppkm->evs.spdef);
+				numSpeedEV->Value = Convert::ToDecimal(temppkm->evs.speed);
+				numMove1PPUps->Value = Convert::ToDecimal(temppkm->ppup[0]);
+				numMove2PPUps->Value = Convert::ToDecimal(temppkm->ppup[1]);
+				numMove3PPUps->Value = Convert::ToDecimal(temppkm->ppup[2]);
+				numMove4PPUps->Value = Convert::ToDecimal(temppkm->ppup[3]);
+				numMove1PP->Value = Convert::ToDecimal(temppkm->pp[0]);
+				numMove2PP->Value = Convert::ToDecimal(temppkm->pp[1]);
+				numMove3PP->Value = Convert::ToDecimal(temppkm->pp[2]);
+				numMove4PP->Value = Convert::ToDecimal(temppkm->pp[3]);
+				txtPID->Text = System::Convert::ToString(temppkm->pid);
+
+				// TODO: Is FindString causing performance issues?
+				cbItem->SelectedIndex = cbItem->FindString(gcnew System::String(lookupitemname(temppkm).c_str()));
+
+				//lvBall->Columns->Add("");
+				//std::ostringstream SQL;
+				////lvBall->Columns[0]->Width = 40;
+				//for(int ballnum = 1; ballnum < (int)Balls::dreamball; ballnum++)
+				//{
+				//	if((Balls::balls)ballnum != Balls::pokeball_)
+				//	{
+				//		getballsql(SQL,(Balls::balls)(ballnum));
+				//		imgBalls->Images->Add(pviewvsqlite->getSQLImage(SQL.str()));
+				//		lvBall->Items->Add("",ballnum-1);
+				//		SQL.str("");
+				//		SQL.clear();
+				//	}
+				//}
+
+				//MessageBox::Show(System::Convert::ToString(lvBall->Columns[0]->Width));
+				//lvBall->Items[(int)(temppkm->ball)]->Selected = true;
+
+				refreshexp();
+				refreshlevel();
+				refreshsprite();
+				refreshgender();
+				refreshshiny();
+				refreshmarkings();
+				refreshitem();
+				refreshtotalevs();
+				refreshnatureeffect();
+				refreshcalcstats();
+				refreshtypes();
+				refreshpkrs();
+				refreshmoves();
+				redisplayok = true;
+			}
 	public: void setpkm(pokemon_obj * pkm)
 			{
 				this->pkm = pkm;
@@ -2651,82 +2714,7 @@ namespace PKMDS_Desktop_Win {
 			}
 	private: System::Void frmPKMViewer_Load(System::Object^  sender, System::EventArgs^  e) 
 			 {
-				 DataSet^ itemds = pviewvsqlite->getSQLDS
-					 (
-					 "SELECT item_game_indices.game_index, item_names.name FROM items INNER JOIN item_names ON items.id = item_names.item_id " +
-					 "INNER JOIN item_game_indices ON items.id = item_game_indices.item_id WHERE (item_names.local_language_id = 9) AND " +
-					 "(item_game_indices.generation_id = 5) order by name asc"
-					 );
-				 DataRow^ blankitem = itemds->Tables[0]->NewRow();
-				 blankitem["game_index"] = DBNull::Value;
-				 blankitem["name"] = "";
-				 itemds->Tables[0]->Rows->InsertAt(blankitem,0);
-				 cbItem->DataSource = itemds->Tables[0];
-				 cbItem->DisplayMember = "name";
-				 cbItem->ValueMember = "game_index";
-				 DataSet^ speciesds = pviewvsqlite->getSQLDS("SELECT pokemon_species_id, name FROM pokemon_species_names WHERE (local_language_id = 9) order by name asc");
-				 cbSpecies->DataSource = speciesds->Tables[0];
-				 cbSpecies->DisplayMember = "name";
-				 cbSpecies->ValueMember = "pokemon_species_id";
-				 DataSet^ abilitiesds = pviewvsqlite->getSQLDS("SELECT ability_names.ability_id, ability_names.name, ability_flavor_text.flavor_text FROM ability_names INNER JOIN ability_flavor_text ON ability_names.ability_id = ability_flavor_text.ability_id WHERE (ability_names.local_language_id = 9) AND (ability_names.ability_id < 10000) AND (ability_flavor_text.language_id = 9) AND (ability_flavor_text.version_group_id = 14) ORDER BY ability_names.name");
-				 cbAbility->DataSource = abilitiesds->Tables[0];
-				 cbAbility->DisplayMember = "name";
-				 cbAbility->ValueMember = "ability_id";
-				 lblAbilityFlavor->DataBindings->Add("Text",abilitiesds->Tables[0],"flavor_text",true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-");
-				 System::String ^ movesql = "SELECT move_names.move_id, move_names.name, moves.power, moves.accuracy FROM moves INNER JOIN move_names ON moves.id = move_names.move_id WHERE (move_names.local_language_id = 9) AND (move_names.move_id < 10000) order by name asc";
-				 DataSet^ movesds1 = pviewvsqlite->getSQLDS(movesql);
-				 DataSet^ movesds2 = pviewvsqlite->getSQLDS(movesql);
-				 DataSet^ movesds3 = pviewvsqlite->getSQLDS(movesql);
-				 DataSet^ movesds4 = pviewvsqlite->getSQLDS(movesql);
-				 DataRow^ blankmove1 = movesds1->Tables[0]->NewRow();
-				 blankmove1["move_id"] = DBNull::Value;
-				 blankmove1["name"] = "";
-				 movesds1->Tables[0]->Rows->InsertAt(blankmove1,0);
-				 DataRow^ blankmove2 = movesds2->Tables[0]->NewRow();
-				 blankmove2["move_id"] = DBNull::Value;
-				 blankmove2["name"] = "";
-				 movesds2->Tables[0]->Rows->InsertAt(blankmove2,0);
-				 DataRow^ blankmove3 = movesds3->Tables[0]->NewRow();
-				 blankmove3["move_id"] = DBNull::Value;
-				 blankmove3["name"] = "";
-				 movesds3->Tables[0]->Rows->InsertAt(blankmove3,0);
-				 DataRow^ blankmove4 = movesds4->Tables[0]->NewRow();
-				 blankmove4["move_id"] = DBNull::Value;
-				 blankmove4["name"] = "";
-				 movesds4->Tables[0]->Rows->InsertAt(blankmove4,0);
-				 cbMove1->DataSource = movesds1->Tables[0];
-				 cbMove1->DisplayMember = "name";
-				 cbMove1->ValueMember = "move_id";
-				 cbMove2->DataSource = movesds2->Tables[0];
-				 cbMove2->DisplayMember = "name";
-				 cbMove2->ValueMember = "move_id";
-				 cbMove3->DataSource = movesds3->Tables[0];
-				 cbMove3->DisplayMember = "name";
-				 cbMove3->ValueMember = "move_id";
-				 cbMove4->DataSource = movesds4->Tables[0];
-				 cbMove4->DisplayMember = "name";
-				 cbMove4->ValueMember = "move_id";
-				 lblMove1Power->DataBindings->Add("Text",movesds1->Tables[0],"power",true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
-				 lblMove2Power->DataBindings->Add("Text",movesds2->Tables[0],"power",true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
-				 lblMove3Power->DataBindings->Add("Text",movesds3->Tables[0],"power",true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
-				 lblMove4Power->DataBindings->Add("Text",movesds4->Tables[0],"power",true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
-				 lblMove1Accuracy->DataBindings->Add("Text",movesds1->Tables[0],"accuracy",true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
-				 lblMove2Accuracy->DataBindings->Add("Text",movesds2->Tables[0],"accuracy",true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
-				 lblMove3Accuracy->DataBindings->Add("Text",movesds3->Tables[0],"accuracy",true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
-				 lblMove4Accuracy->DataBindings->Add("Text",movesds4->Tables[0],"accuracy",true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
-				 DataTable^ naturesdt = gcnew DataTable();
-				 naturesdt->Columns->Add("id");
-				 naturesdt->Columns->Add("name");
-				 for(int natureindex = 0; natureindex < 25; natureindex++)
-				 {
-					 System::String ^ naturename = gcnew System::String(getnaturename(natureindex).c_str());
-					 naturesdt->Rows->Add(natureindex,naturename);
-				 }
-				 //cbNature->Sorted = true;
-				 cbNature->DataSource = naturesdt;
-				 cbNature->DisplayMember = "name";
-				 cbNature->ValueMember = "id";
-				 displayPKM();
+				 //displayPKM();
 			 }
 	private: System::Void btnSave_Click(System::Object^  sender, System::EventArgs^  e)
 			 {
@@ -2796,34 +2784,49 @@ namespace PKMDS_Desktop_Win {
 			 {
 				 if(redisplayok)
 				 {
-					 temppkm->item = (Items::items)(Convert::ToUInt16(cbItem->SelectedValue));
-					 // TODO: Figure out how to make data bindings work with images
-					 //DataSet^ itemimgds = pviewvsqlite->getSQLIMGDS("SELECT identifier, image FROM items");
-					 //pbItem->DataBindings->Add("Image",itemimgds->Tables[0],"image");
+					 if(cbItem->SelectedValue == DBNull::Value)
+					 {
+						 temppkm->item = Items::NOTHING;
+						 // TODO: Figure out how to make data bindings work with images
+						 //DataSet^ itemimgds = pviewvsqlite->getSQLIMGDS("SELECT identifier, image FROM items");
+						 //pbItem->DataBindings->Add("Image",itemimgds->Tables[0],"image");
+					 }
+					 else
+					 {
+						 temppkm->item = (Items::items)(Convert::ToUInt16(cbItem->SelectedValue));
+					 }
 					 refreshitem();
 				 }
 			 }
 	private: System::Void numSpecies_ValueChanged(System::Object^  sender, System::EventArgs^  e) 
 			 {
-				 if(redisplayok)
-				 {
-					 temppkm->species = (Species::pkmspecies)((UInt16)(numSpecies->Value));
-					 cbSpecies->SelectedIndex = cbSpecies->FindString(gcnew System::String(lookuppkmname(temppkm).c_str()))/*(int)(temppkm->species)-1*/;
-					 //cbSpecies->SelectedIndex = (int)(numSpecies->Value) - 1;
-				 }
+				 //if(redisplayok)
+				 //{
+				 // //temppkm->species = (Species::pkmspecies)((UInt16)(numSpecies->Value));
+
+				 // // TODO: Is FindString causing performance issues?
+				 // //cbSpecies->SelectedIndex = cbSpecies->FindString(gcnew System::String(lookuppkmname(temppkm).c_str()))/*(int)(temppkm->species)-1*/;
+				 // //cbSpecies->SelectedIndex = (int)(numSpecies->Value) - 1;
+				 //}
 			 }
 	private: System::Void cbSpecies_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) 
 			 {
 				 if(redisplayok)
 				 {
-					 temppkm->species = (Species::pkmspecies)(Convert::ToUInt16(cbSpecies->SelectedValue));
+					 if(cbSpecies->SelectedValue == DBNull::Value)
+					 {
+						 temppkm->species = Species::NOTHING;
+					 }
+					 else
+					 {
+						 temppkm->species = (Species::pkmspecies)(Convert::ToUInt16(cbSpecies->SelectedValue));
+					 }
 					 redisplayok = false;
 					 refreshsprite();
 					 refreshgender();
 					 refreshcalcstats();
 					 refreshlevel();
 					 refreshtypes();
-					 numSpecies->Value = Convert::ToDecimal((UInt16)(temppkm->species));
 					 redisplayok = true;
 				 }
 			 }
@@ -2834,6 +2837,7 @@ namespace PKMDS_Desktop_Win {
 					 setlevel(temppkm,Convert::ToByte(numLevel->Value));
 					 redisplayok = false;
 					 refreshexp();
+					 refreshcalcstats();
 					 redisplayok = true;
 				 }
 			 }
@@ -2844,6 +2848,7 @@ namespace PKMDS_Desktop_Win {
 					 temppkm->exp = (uint32)(Convert::ToInt32(numEXP->Value));
 					 redisplayok = false;
 					 refreshlevel();
+					 refreshcalcstats();
 					 redisplayok = true;
 				 }
 			 }
@@ -2858,8 +2863,30 @@ namespace PKMDS_Desktop_Win {
 			 {
 				 if(redisplayok)
 				 {
-
+#if ! defined(MARKUP_SIZEOFWCHAR)
+#if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
+					 pin_ptr<const char> strPtr = PtrToStringChars(txtNickname->Text);
+					 char* thenick = (char*)strPtr;
+					 for(int i = 0; i < txtNickname->Text->Length; i++)
+					 {
+						 (temppkm->nickname[i]) = (thenick[i]);
+					 }
+#else
+					 pin_ptr<const wchar_t> strPtr = PtrToStringChars(txtNickname->Text);
+					 wchar_t* thenick = (wchar_t*)strPtr;
+					 for(int i = 0; i < txtNickname->Text->Length; i++)
+					 {
+						 (temppkm->nickname[i]) = (thenick[i]);
+					 }
+#endif
+#endif
+					 byte * btpnt = new byte;
+					 btpnt = reinterpret_cast<byte*>(&(temppkm->nickname));
+					 memset(btpnt+(txtNickname->Text->Length*2),0xff,2);
+					 btpnt += 20;
+					 memset(btpnt,0xff,2);
 				 }
+				 chkNicknamed->Checked = true;
 			 }
 	private: System::Void chkNicknamed_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
@@ -2872,7 +2899,28 @@ namespace PKMDS_Desktop_Win {
 			 {
 				 if(redisplayok)
 				 {
-
+#if ! defined(MARKUP_SIZEOFWCHAR)
+#if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
+					 pin_ptr<const char> strPtr = PtrToStringChars(txtOTName->Text);
+					 char* theot = (char*)strPtr;
+					 for(int i = 0; i < txtOTName->Text->Length; i++)
+					 {
+						 (temppkm->otname[i]) = (theot[i]);
+					 }
+#else
+					 pin_ptr<const wchar_t> strPtr = PtrToStringChars(txtOTName->Text);
+					 wchar_t* theot = (wchar_t*)strPtr;
+					 for(int i = 0; i < txtOTName->Text->Length; i++)
+					 {
+						 (temppkm->otname[i]) = (theot[i]);
+					 }
+#endif
+#endif
+					 byte * btpnt = new byte;
+					 btpnt = reinterpret_cast<byte*>(&(temppkm->otname));
+					 memset(btpnt+(txtOTName->Text->Length*2),0xff,2);
+					 btpnt += 14;
+					 memset(btpnt,0xff,2);
 				 }
 			 }
 	private: System::Void rbOTMale_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
@@ -2930,6 +2978,7 @@ namespace PKMDS_Desktop_Win {
 				 if(redisplayok)
 				 {
 					 temppkm->ivs.hp = Convert::ToByte(numHPEV->Value);
+					 refreshcalcstats();
 				 }
 			 }
 	private: System::Void numAttackIV_ValueChanged(System::Object^  sender, System::EventArgs^  e)
@@ -2937,6 +2986,7 @@ namespace PKMDS_Desktop_Win {
 				 if(redisplayok)
 				 {
 					 temppkm->ivs.attack = Convert::ToByte(numAttackEV->Value);
+					 refreshcalcstats();
 				 }
 			 }
 	private: System::Void numDefenseIV_ValueChanged(System::Object^  sender, System::EventArgs^  e)
@@ -2944,6 +2994,7 @@ namespace PKMDS_Desktop_Win {
 				 if(redisplayok)
 				 {
 					 temppkm->ivs.defense = Convert::ToByte(numDefenseEV->Value);
+					 refreshcalcstats();
 				 }
 			 }
 	private: System::Void numSpAtkIV_ValueChanged(System::Object^  sender, System::EventArgs^  e)
@@ -2951,6 +3002,7 @@ namespace PKMDS_Desktop_Win {
 				 if(redisplayok)
 				 {
 					 temppkm->ivs.spatk = Convert::ToByte(numSpAtkEV->Value);
+					 refreshcalcstats();
 				 }
 			 }
 	private: System::Void numSpDefIV_ValueChanged(System::Object^  sender, System::EventArgs^  e)
@@ -2958,6 +3010,7 @@ namespace PKMDS_Desktop_Win {
 				 if(redisplayok)
 				 {
 					 temppkm->ivs.spdef = Convert::ToByte(numSpDefIV->Value);
+					 refreshcalcstats();
 				 }
 			 }
 	private: System::Void numSpeedIV_ValueChanged(System::Object^  sender, System::EventArgs^  e)
@@ -2965,6 +3018,7 @@ namespace PKMDS_Desktop_Win {
 				 if(redisplayok)
 				 {
 					 temppkm->ivs.speed = Convert::ToByte(numSpeedIV->Value);
+					 refreshcalcstats();
 				 }
 			 }
 	private: System::Void numHPEV_ValueChanged(System::Object^  sender, System::EventArgs^  e)
@@ -2972,6 +3026,7 @@ namespace PKMDS_Desktop_Win {
 				 if(redisplayok)
 				 {
 					 temppkm->evs.hp = Convert::ToByte(numHPEV->Value);
+					 refreshcalcstats();
 				 }
 			 }
 	private: System::Void numAttackEV_ValueChanged(System::Object^  sender, System::EventArgs^  e)
@@ -2979,6 +3034,7 @@ namespace PKMDS_Desktop_Win {
 				 if(redisplayok)
 				 {
 					 temppkm->evs.attack = Convert::ToByte(numAttackEV->Value);
+					 refreshcalcstats();
 				 }
 			 }
 	private: System::Void numDefenseEV_ValueChanged(System::Object^  sender, System::EventArgs^  e)
@@ -2986,6 +3042,7 @@ namespace PKMDS_Desktop_Win {
 				 if(redisplayok)
 				 {
 					 temppkm->evs.defense = Convert::ToByte(numDefenseEV->Value);
+					 refreshcalcstats();
 				 }
 			 }
 	private: System::Void numSpAtkEV_ValueChanged(System::Object^  sender, System::EventArgs^  e)
@@ -2993,6 +3050,7 @@ namespace PKMDS_Desktop_Win {
 				 if(redisplayok)
 				 {
 					 temppkm->evs.spatk = Convert::ToByte(numSpAtkEV->Value);
+					 refreshcalcstats();
 				 }
 			 }
 	private: System::Void numSpDefEV_ValueChanged(System::Object^  sender, System::EventArgs^  e)
@@ -3000,6 +3058,7 @@ namespace PKMDS_Desktop_Win {
 				 if(redisplayok)
 				 {
 					 temppkm->evs.spdef = Convert::ToByte(numSpDefEV->Value);
+					 refreshcalcstats();
 				 }
 			 }
 	private: System::Void numSpeedEV_ValueChanged(System::Object^  sender, System::EventArgs^  e)
@@ -3007,6 +3066,7 @@ namespace PKMDS_Desktop_Win {
 				 if(redisplayok)
 				 {
 					 temppkm->evs.speed = Convert::ToByte(numSpeedEV->Value);
+					 refreshcalcstats();
 				 }
 			 }
 	private: System::Void cbNature_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
@@ -3015,13 +3075,21 @@ namespace PKMDS_Desktop_Win {
 				 {
 					 temppkm->nature = (Natures::natures)(Convert::ToUInt16(cbNature->SelectedValue));
 					 refreshnatureeffect();
+					 refreshcalcstats();
 				 }
 			 }
 	private: System::Void cbMove1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
 				 if(redisplayok)
 				 {
-					 temppkm->moves[0] = (Moves::moves)(Convert::ToUInt16(cbMove1->SelectedValue));
+					 if(cbMove1->SelectedValue == DBNull::Value)
+					 {
+						 temppkm->moves[0] = Moves::NOTHING;
+					 }
+					 else
+					 {
+						 temppkm->moves[0] = (Moves::moves)(Convert::ToUInt16(cbMove1->SelectedValue));
+					 }
 					 refreshmove1();
 				 }
 			 }
@@ -3029,24 +3097,45 @@ namespace PKMDS_Desktop_Win {
 			 {
 				 if(redisplayok)
 				 {
-					 temppkm->moves[1] = (Moves::moves)(Convert::ToUInt16(cbMove2->SelectedValue));
-					 refreshmove2();
+					 if(cbMove2->SelectedValue == DBNull::Value)
+					 {
+						 temppkm->moves[1] = Moves::NOTHING;
+					 }
+					 else
+					 {
+						 temppkm->moves[1] = (Moves::moves)(Convert::ToUInt16(cbMove2->SelectedValue));
+						 refreshmove2();
+					 }
 				 }
 			 }
 	private: System::Void cbMove3_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
 				 if(redisplayok)
 				 {
-					 temppkm->moves[2] = (Moves::moves)(Convert::ToUInt16(cbMove3->SelectedValue));
-					 refreshmove3();
+					 if(cbMove3->SelectedValue == DBNull::Value)
+					 {
+						 temppkm->moves[2] = Moves::NOTHING;
+					 }
+					 else
+					 {
+						 temppkm->moves[2] = (Moves::moves)(Convert::ToUInt16(cbMove3->SelectedValue));
+						 refreshmove3();
+					 }
 				 }
 			 }
 	private: System::Void cbMove4_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
 				 if(redisplayok)
 				 {
-					 temppkm->moves[3] = (Moves::moves)(Convert::ToUInt16(cbMove4->SelectedValue));
-					 refreshmove4();
+					 if(cbMove4->SelectedValue == DBNull::Value)
+					 {
+						 temppkm->moves[3] = Moves::NOTHING;
+					 }
+					 else
+					 {
+						 temppkm->moves[3] = (Moves::moves)(Convert::ToUInt16(cbMove4->SelectedValue));
+						 refreshmove4();
+					 }
 				 }
 			 }
 	private: System::Void numMove1PPUps_ValueChanged(System::Object^  sender, System::EventArgs^  e)

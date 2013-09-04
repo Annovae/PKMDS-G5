@@ -30,6 +30,15 @@ namespace PKMDS_Desktop_Win {
 			if (components)
 			{
 				delete components;
+				delete pkmviewer;
+				delete vsqlite;
+				delete sav;
+				delete ppkm;
+				delete pkm;
+				delete a;
+				delete b;
+				delete form_box;
+
 			}
 		}
 	private: System::Windows::Forms::TableLayoutPanel^  tlPCBox;
@@ -1145,14 +1154,15 @@ namespace PKMDS_Desktop_Win {
 			// loadSAVToolStripMenuItem
 			// 
 			this->loadSAVToolStripMenuItem->Name = L"loadSAVToolStripMenuItem";
-			this->loadSAVToolStripMenuItem->Size = System::Drawing::Size(109, 22);
+			this->loadSAVToolStripMenuItem->Size = System::Drawing::Size(152, 22);
 			this->loadSAVToolStripMenuItem->Text = L"Load...";
 			this->loadSAVToolStripMenuItem->Click += gcnew System::EventHandler(this, &frmBoxes::loadSAVToolStripMenuItem_Click);
 			// 
 			// saveToolStripMenuItem
 			// 
+			this->saveToolStripMenuItem->Enabled = false;
 			this->saveToolStripMenuItem->Name = L"saveToolStripMenuItem";
-			this->saveToolStripMenuItem->Size = System::Drawing::Size(109, 22);
+			this->saveToolStripMenuItem->Size = System::Drawing::Size(152, 22);
 			this->saveToolStripMenuItem->Text = L"Save...";
 			this->saveToolStripMenuItem->Click += gcnew System::EventHandler(this, &frmBoxes::saveToolStripMenuItem_Click);
 			// 
@@ -2806,6 +2816,7 @@ namespace PKMDS_Desktop_Win {
 				 tlPCBox->BackgroundImage = vsqlite->getSQLImage(wpsql.str());
 				 form_box = &(sav->cur.boxes[box]);
 				 refreshbox();
+				 pkmviewer = gcnew frmPKMViewer();
 			 }
 			 void setboxnames()
 			 {
@@ -2865,10 +2876,9 @@ namespace PKMDS_Desktop_Win {
 			 }
 			 void displaypkm(pokemon_obj * pkm_)
 			 {
-				 pkmviewer = gcnew frmPKMViewer();
 				 pkmviewer->setpkm(pkm_);
+				 pkmviewer->displayPKM();
 				 pkmviewer->ShowDialog();
-				 delete pkmviewer;
 				 refreshbox();
 				 refreshparty();
 			 }
@@ -2902,11 +2912,13 @@ namespace PKMDS_Desktop_Win {
 			 {
 				 fileOpen->FileName = "";
 				 savloaded = false;
+				 saveToolStripMenuItem->Enabled = false;
 				 if((fileOpen->ShowDialog() != System::Windows::Forms::DialogResult::Cancel) & (fileOpen->FileName != ""))
 				 {
 					 read(marshal_as<std::string>(fileOpen->FileName->Trim()).c_str(),sav);
 				 }
 				 savloaded = true;
+				 saveToolStripMenuItem->Enabled = true;
 				 setboxnames();
 				 changebox(sav->cur.curbox);
 				 refreshparty();
@@ -3183,7 +3195,7 @@ namespace PKMDS_Desktop_Win {
 			 {
 				 //if(savloaded)
 				 //{
-					// System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
+				 // System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
 				 //}
 
 			 }

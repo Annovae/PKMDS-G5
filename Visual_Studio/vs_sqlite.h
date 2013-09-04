@@ -10,13 +10,17 @@ public ref class VS_SQLite
 {
 public : SQLiteConnection ^db;
 public : SQLiteConnection ^imgdb;
+
+		 SQLiteCommand ^cmdSelect;
+		 SQLiteDataReader ^reader;
+
 public: VS_SQLite()
 		{
 			db = gcnew SQLiteConnection();
 			imgdb = gcnew SQLiteConnection();
 			//String ^ dbdir = "C:\\Users\\Mike\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\"; // Laptop
-			String ^ dbdir = "C:\\Users\\Michael Bond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\"; // Desktop
-			//String ^ dbdir = "C:\\Users\\michaelbond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\"; // Work
+			//String ^ dbdir = "C:\\Users\\Michael Bond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\"; // Desktop
+			String ^ dbdir = "C:\\Users\\michaelbond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\"; // Work
 			db->ConnectionString = L"Data Source='" + dbdir + L"veekun-pokedex.sqlite'";
 			db->Open();
 			imgdb->ConnectionString = L"Data Source='" + dbdir + L"images.sqlite'";
@@ -28,14 +32,16 @@ public: VS_SQLite()
 			imgdb->Close();
 			delete db;
 			delete imgdb;
+			delete cmdSelect;
+			delete reader;
 		}
 public: String ^ getSQLText(String ^ SQL)
 		{
 			try
 			{
-				SQLiteCommand ^cmdSelect = db->CreateCommand();
+				cmdSelect = db->CreateCommand();
 				cmdSelect->CommandText = SQL;
-				SQLiteDataReader ^reader = cmdSelect->ExecuteReader();
+				reader = cmdSelect->ExecuteReader();
 				reader->Read();
 				return reader->GetString(0);
 			}
@@ -66,9 +72,9 @@ public: int getSQLInt(String ^ SQL)
 		{
 			try
 			{
-				SQLiteCommand ^cmdSelect = db->CreateCommand();
+				cmdSelect = db->CreateCommand();
 				cmdSelect->CommandText = SQL;
-				SQLiteDataReader ^reader = cmdSelect->ExecuteReader();
+				reader = cmdSelect->ExecuteReader();
 				reader->Read();
 				return reader->GetInt32(0);
 			}
@@ -91,6 +97,7 @@ public: Drawing::Image^ getSQLImage(String^ SQL)
 
 			}
 			Drawing::Image ^ img;
+			img = nullptr;
 			try {
 				// http://www.digitalcoding.com/Code-Snippets/CPP-CLI/C-CLI-Code-Snippet-Get-Image-from-sql-server.html
 				array<Byte> ^_ImageData = gcnew array<Byte>(0);
@@ -100,12 +107,14 @@ public: Drawing::Image^ getSQLImage(String^ SQL)
 				delete cmd;
 				delete obj;
 				delete _ImageData;
+				//return nullptr;
 				return img;
 			}
 			catch(...)
 			{
 
 			}
+			//return nullptr;
 			return img;
 		}
 public: String ^ getSQLText(std::string sql)
