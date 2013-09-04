@@ -600,7 +600,7 @@ bool getpkmshiny(const pokemon_obj *pkm){
 	return (E ^ F) < 8;
 }
 bool pkmmetasegg(const pokemon_obj *pkm){
-	return ((pkm->eggdate.year != 0) & (pkm->eggdate.month != 0) & (pkm->eggdate.day != 0));
+	return (((bool)(pkm->ivs.isegg)) | ((pkm->eggdate.year != 0) & (pkm->eggdate.month != 0) & (pkm->eggdate.day != 0)));
 }
 void put_pkm(box_obj &box, const int slot, pokemon_obj &pkm, const bool isencrypted)
 {

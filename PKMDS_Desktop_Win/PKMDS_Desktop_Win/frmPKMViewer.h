@@ -46,13 +46,16 @@ namespace PKMDS_Desktop_Win {
 			//cbSpecies->DataBindings->Add("SelectedValue",speciesds->Tables[0],"pokemon_species_id");
 			cbSpecies->DisplayMember = "name";
 			cbSpecies->ValueMember = "pokemon_species_id";
-			DataSet^ abilitiesds = pviewvsqlite->getSQLDS("SELECT ability_names.ability_id, ability_names.name, ability_flavor_text.flavor_text FROM ability_names INNER JOIN ability_flavor_text ON ability_names.ability_id = ability_flavor_text.ability_id WHERE (ability_names.local_language_id = 9) AND (ability_names.ability_id < 10000) AND (ability_flavor_text.language_id = 9) AND (ability_flavor_text.version_group_id = 14) ORDER BY ability_names.name");
+			DataSet^ abilitiesds = pviewvsqlite->getSQLDS("SELECT ability_names.ability_id, ability_names.name, ability_flavor_text.flavor_text " +
+				"FROM ability_names INNER JOIN ability_flavor_text ON ability_names.ability_id = ability_flavor_text.ability_id WHERE " +
+				"(ability_names.local_language_id = 9) AND (ability_names.ability_id < 10000) AND (ability_flavor_text.language_id = 9) AND " +
+				"(ability_flavor_text.version_group_id = 14) ORDER BY ability_names.name");
 			cbAbility->DataSource = abilitiesds->Tables[0];
 			cbAbility->DisplayMember = "name";
 			cbAbility->ValueMember = "ability_id";
 			lblAbilityFlavor->DataBindings->Add("Text",abilitiesds->Tables[0],"flavor_text",true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-");
-
-			System::String ^ movesql = "SELECT move_names.move_id, move_names.name, moves.power, moves.accuracy FROM moves INNER JOIN move_names ON moves.id = move_names.move_id WHERE (move_names.local_language_id = 9) AND (move_names.move_id < 10000) order by name asc";
+			System::String ^ movesql = "SELECT move_names.move_id, move_names.name, moves.power, moves.accuracy FROM moves INNER JOIN move_names ON " +
+				"moves.id = move_names.move_id WHERE (move_names.local_language_id = 9) AND (move_names.move_id < 10000) order by name asc";
 			DataSet^ movesds1 = pviewvsqlite->getSQLDS(movesql);
 			DataSet^ movesds2 = pviewvsqlite->getSQLDS(movesql);
 			DataSet^ movesds3 = pviewvsqlite->getSQLDS(movesql);
@@ -93,7 +96,6 @@ namespace PKMDS_Desktop_Win {
 			lblMove2Accuracy->DataBindings->Add("Text",movesds2->Tables[0],"accuracy"); //,true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
 			lblMove3Accuracy->DataBindings->Add("Text",movesds3->Tables[0],"accuracy"); //,true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
 			lblMove4Accuracy->DataBindings->Add("Text",movesds4->Tables[0],"accuracy"); //,true,System::Windows::Forms::DataSourceUpdateMode::OnPropertyChanged,"-","0");
-
 			DataTable^ naturesdt = gcnew DataTable();
 			naturesdt->Columns->Add("id");
 			naturesdt->Columns->Add("name");
@@ -103,10 +105,55 @@ namespace PKMDS_Desktop_Win {
 				naturesdt->Rows->Add(natureindex,naturename);
 				delete naturename;
 			}
-			//cbNature->Sorted = true;
 			cbNature->DataSource = naturesdt;
 			cbNature->DisplayMember = "name";
 			cbNature->ValueMember = "id";
+			DataTable^ langdt = gcnew DataTable();
+			langdt->Columns->Add("id");
+			langdt->Columns->Add("name");
+			langdt->Rows->Add("1","JA");
+			langdt->Rows->Add("2","ENG");
+			langdt->Rows->Add("3","FR");
+			langdt->Rows->Add("4","ITA");
+			langdt->Rows->Add("5","DE");
+			langdt->Rows->Add("7","SPA");
+			langdt->Rows->Add("8","KOR");
+			cbLanguage->DataSource = langdt;
+			cbLanguage->DisplayMember = "name";
+			cbLanguage->ValueMember = "id";
+			DataTable^ homedt = gcnew DataTable();
+			homedt->Columns->Add("id");
+			homedt->Columns->Add("name");
+			homedt->Rows->Add("1","Sapphire");
+			homedt->Rows->Add("2","Ruby");
+			homedt->Rows->Add("3","Emerald");
+			homedt->Rows->Add("4","FireRed");
+			homedt->Rows->Add("5","LeafGreen");
+			homedt->Rows->Add("7","HeartGold");
+			homedt->Rows->Add("8","SoulSilver");
+			homedt->Rows->Add("10","Diamond");
+			homedt->Rows->Add("11","Pearl");
+			homedt->Rows->Add("12","Platinum");
+			homedt->Rows->Add("15","Colosseum / XD");
+			homedt->Rows->Add("20","White");
+			homedt->Rows->Add("21","Black");
+			homedt->Rows->Add("22","White 2");
+			homedt->Rows->Add("23","Black 2");
+			cbGame->DataSource = homedt;
+			cbGame->DisplayMember = "name";
+			cbGame->ValueMember = "id";
+			System::String ^ locsql = "SELECT location_game_indices.game_index, location_names.name FROM " +
+				"locations INNER JOIN location_game_indices ON locations.id = location_game_indices.location_id " +
+				"INNER JOIN location_names ON locations.id = location_names.location_id WHERE " +
+				"(location_names.local_language_id = 9) AND (location_game_indices.generation_id = 5) ORDER BY location_names.name";
+			DataSet^ metlocds = pviewvsqlite->getSQLDS(locsql);
+			DataSet^ egglocds = pviewvsqlite->getSQLDS(locsql);
+			cbMetLoc->DataSource = metlocds->Tables[0];
+			cbEggLoc->DataSource = egglocds->Tables[0];
+			cbMetLoc->DisplayMember = "name";
+			cbEggLoc->DisplayMember = "name";
+			cbMetLoc->ValueMember = "game_index";
+			cbEggLoc->ValueMember = "game_index";
 		}
 	protected:
 		/// <summary>
@@ -272,6 +319,23 @@ namespace PKMDS_Desktop_Win {
 	private: System::Windows::Forms::ImageList^  imgBalls;
 	private: System::Windows::Forms::Label^  lblAbilityFlavor;
 	private: System::Windows::Forms::SaveFileDialog^  savePKM;
+
+	private: System::Windows::Forms::GroupBox^  gbMet;
+	private: System::Windows::Forms::ComboBox^  cbMetLoc;
+
+	private: System::Windows::Forms::DateTimePicker^  dtMet;
+	private: System::Windows::Forms::GroupBox^  gbEgg;
+	private: System::Windows::Forms::CheckBox^  chkEggMet;
+	private: System::Windows::Forms::ComboBox^  cbEggLoc;
+	private: System::Windows::Forms::DateTimePicker^  dtEgg;
+	private: System::Windows::Forms::ComboBox^  cbLanguage;
+
+	private: System::Windows::Forms::ComboBox^  cbGame;
+	private: System::Windows::Forms::NumericUpDown^  numMetLevel;
+
+	private: System::Windows::Forms::CheckBox^  chkNPKM;
+	private: System::Windows::Forms::CheckBox^  chkFateful;
+
 	private: System::ComponentModel::IContainer^  components;
 	private:
 		/// <summary>
@@ -425,6 +489,18 @@ namespace PKMDS_Desktop_Win {
 			this->txtMove3TotalPP = (gcnew System::Windows::Forms::TextBox());
 			this->txtMove4TotalPP = (gcnew System::Windows::Forms::TextBox());
 			this->tpOrigins = (gcnew System::Windows::Forms::TabPage());
+			this->numMetLevel = (gcnew System::Windows::Forms::NumericUpDown());
+			this->chkNPKM = (gcnew System::Windows::Forms::CheckBox());
+			this->chkFateful = (gcnew System::Windows::Forms::CheckBox());
+			this->cbLanguage = (gcnew System::Windows::Forms::ComboBox());
+			this->cbGame = (gcnew System::Windows::Forms::ComboBox());
+			this->gbEgg = (gcnew System::Windows::Forms::GroupBox());
+			this->chkEggMet = (gcnew System::Windows::Forms::CheckBox());
+			this->cbEggLoc = (gcnew System::Windows::Forms::ComboBox());
+			this->dtEgg = (gcnew System::Windows::Forms::DateTimePicker());
+			this->gbMet = (gcnew System::Windows::Forms::GroupBox());
+			this->cbMetLoc = (gcnew System::Windows::Forms::ComboBox());
+			this->dtMet = (gcnew System::Windows::Forms::DateTimePicker());
 			this->tpRibbons = (gcnew System::Windows::Forms::TabPage());
 			this->tpMisc = (gcnew System::Windows::Forms::TabPage());
 			this->chkPIDHex = (gcnew System::Windows::Forms::CheckBox());
@@ -509,6 +585,10 @@ namespace PKMDS_Desktop_Win {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMove3PP))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMove4PP))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMove4PPUps))->BeginInit();
+			this->tpOrigins->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMetLevel))->BeginInit();
+			this->gbEgg->SuspendLayout();
+			this->gbMet->SuspendLayout();
 			this->tpMisc->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -2142,12 +2222,139 @@ namespace PKMDS_Desktop_Win {
 			// 
 			// tpOrigins
 			// 
+			this->tpOrigins->Controls->Add(this->numMetLevel);
+			this->tpOrigins->Controls->Add(this->chkNPKM);
+			this->tpOrigins->Controls->Add(this->chkFateful);
+			this->tpOrigins->Controls->Add(this->cbLanguage);
+			this->tpOrigins->Controls->Add(this->cbGame);
+			this->tpOrigins->Controls->Add(this->gbEgg);
+			this->tpOrigins->Controls->Add(this->gbMet);
 			this->tpOrigins->Location = System::Drawing::Point(4, 22);
 			this->tpOrigins->Name = L"tpOrigins";
 			this->tpOrigins->Size = System::Drawing::Size(432, 254);
 			this->tpOrigins->TabIndex = 3;
 			this->tpOrigins->Text = L"Origins";
 			this->tpOrigins->UseVisualStyleBackColor = true;
+			// 
+			// numMetLevel
+			// 
+			this->numMetLevel->Location = System::Drawing::Point(252, 155);
+			this->numMetLevel->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) {1, 0, 0, 0});
+			this->numMetLevel->Name = L"numMetLevel";
+			this->numMetLevel->Size = System::Drawing::Size(43, 20);
+			this->numMetLevel->TabIndex = 14;
+			this->numMetLevel->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) {1, 0, 0, 0});
+			this->numMetLevel->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::numMetLevel_ValueChanged);
+			// 
+			// chkNPKM
+			// 
+			this->chkNPKM->AutoSize = true;
+			this->chkNPKM->Location = System::Drawing::Point(240, 135);
+			this->chkNPKM->Name = L"chkNPKM";
+			this->chkNPKM->Size = System::Drawing::Size(89, 17);
+			this->chkNPKM->TabIndex = 5;
+			this->chkNPKM->Text = L"N\'s Pokémon";
+			this->chkNPKM->UseVisualStyleBackColor = true;
+			this->chkNPKM->CheckedChanged += gcnew System::EventHandler(this, &frmPKMViewer::chkNPKM_CheckedChanged);
+			// 
+			// chkFateful
+			// 
+			this->chkFateful->AutoSize = true;
+			this->chkFateful->Location = System::Drawing::Point(240, 112);
+			this->chkFateful->Name = L"chkFateful";
+			this->chkFateful->Size = System::Drawing::Size(109, 17);
+			this->chkFateful->TabIndex = 4;
+			this->chkFateful->Text = L"Fateful encounter";
+			this->chkFateful->UseVisualStyleBackColor = true;
+			this->chkFateful->CheckedChanged += gcnew System::EventHandler(this, &frmPKMViewer::chkFateful_CheckedChanged);
+			// 
+			// cbLanguage
+			// 
+			this->cbLanguage->FormattingEnabled = true;
+			this->cbLanguage->Location = System::Drawing::Point(240, 85);
+			this->cbLanguage->Name = L"cbLanguage";
+			this->cbLanguage->Size = System::Drawing::Size(89, 21);
+			this->cbLanguage->TabIndex = 3;
+			this->cbLanguage->SelectedIndexChanged += gcnew System::EventHandler(this, &frmPKMViewer::cbLanguage_SelectedIndexChanged);
+			// 
+			// cbGame
+			// 
+			this->cbGame->FormattingEnabled = true;
+			this->cbGame->Location = System::Drawing::Point(240, 60);
+			this->cbGame->Name = L"cbGame";
+			this->cbGame->Size = System::Drawing::Size(89, 21);
+			this->cbGame->TabIndex = 2;
+			this->cbGame->SelectedIndexChanged += gcnew System::EventHandler(this, &frmPKMViewer::cbGame_SelectedIndexChanged);
+			// 
+			// gbEgg
+			// 
+			this->gbEgg->Controls->Add(this->chkEggMet);
+			this->gbEgg->Controls->Add(this->cbEggLoc);
+			this->gbEgg->Controls->Add(this->dtEgg);
+			this->gbEgg->Location = System::Drawing::Point(5, 85);
+			this->gbEgg->Name = L"gbEgg";
+			this->gbEgg->Size = System::Drawing::Size(200, 96);
+			this->gbEgg->TabIndex = 1;
+			this->gbEgg->TabStop = false;
+			this->gbEgg->Text = L"Egg";
+			// 
+			// chkEggMet
+			// 
+			this->chkEggMet->AutoSize = true;
+			this->chkEggMet->Location = System::Drawing::Point(7, 20);
+			this->chkEggMet->Name = L"chkEggMet";
+			this->chkEggMet->Size = System::Drawing::Size(79, 17);
+			this->chkEggMet->TabIndex = 2;
+			this->chkEggMet->Text = L"Met as egg";
+			this->chkEggMet->UseVisualStyleBackColor = true;
+			this->chkEggMet->CheckedChanged += gcnew System::EventHandler(this, &frmPKMViewer::chkEggMet_CheckedChanged);
+			// 
+			// cbEggLoc
+			// 
+			this->cbEggLoc->Enabled = false;
+			this->cbEggLoc->FormattingEnabled = true;
+			this->cbEggLoc->Location = System::Drawing::Point(6, 43);
+			this->cbEggLoc->Name = L"cbEggLoc";
+			this->cbEggLoc->Size = System::Drawing::Size(187, 21);
+			this->cbEggLoc->TabIndex = 1;
+			this->cbEggLoc->SelectedIndexChanged += gcnew System::EventHandler(this, &frmPKMViewer::cbEggLoc_SelectedIndexChanged);
+			// 
+			// dtEgg
+			// 
+			this->dtEgg->Enabled = false;
+			this->dtEgg->Location = System::Drawing::Point(6, 70);
+			this->dtEgg->Name = L"dtEgg";
+			this->dtEgg->Size = System::Drawing::Size(188, 20);
+			this->dtEgg->TabIndex = 0;
+			this->dtEgg->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::dtEgg_ValueChanged);
+			// 
+			// gbMet
+			// 
+			this->gbMet->Controls->Add(this->cbMetLoc);
+			this->gbMet->Controls->Add(this->dtMet);
+			this->gbMet->Location = System::Drawing::Point(5, 6);
+			this->gbMet->Name = L"gbMet";
+			this->gbMet->Size = System::Drawing::Size(200, 73);
+			this->gbMet->TabIndex = 0;
+			this->gbMet->TabStop = false;
+			this->gbMet->Text = L"Met";
+			// 
+			// cbMetLoc
+			// 
+			this->cbMetLoc->FormattingEnabled = true;
+			this->cbMetLoc->Location = System::Drawing::Point(7, 20);
+			this->cbMetLoc->Name = L"cbMetLoc";
+			this->cbMetLoc->Size = System::Drawing::Size(187, 21);
+			this->cbMetLoc->TabIndex = 1;
+			this->cbMetLoc->SelectedIndexChanged += gcnew System::EventHandler(this, &frmPKMViewer::cbMetLoc_SelectedIndexChanged);
+			// 
+			// dtMet
+			// 
+			this->dtMet->Location = System::Drawing::Point(6, 47);
+			this->dtMet->Name = L"dtMet";
+			this->dtMet->Size = System::Drawing::Size(188, 20);
+			this->dtMet->TabIndex = 0;
+			this->dtMet->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::dtMet_ValueChanged);
 			// 
 			// tpRibbons
 			// 
@@ -2235,7 +2442,6 @@ namespace PKMDS_Desktop_Win {
 			this->Name = L"frmPKMViewer";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"Pokémon Viewer";
-			this->Load += gcnew System::EventHandler(this, &frmPKMViewer::frmPKMViewer_Load);
 			this->tlViewer->ResumeLayout(false);
 			this->panGeneral->ResumeLayout(false);
 			this->panGeneral->PerformLayout();
@@ -2324,6 +2530,12 @@ namespace PKMDS_Desktop_Win {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMove3PP))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMove4PP))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMove4PPUps))->EndInit();
+			this->tpOrigins->ResumeLayout(false);
+			this->tpOrigins->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMetLevel))->EndInit();
+			this->gbEgg->ResumeLayout(false);
+			this->gbEgg->PerformLayout();
+			this->gbMet->ResumeLayout(false);
 			this->tpMisc->ResumeLayout(false);
 			this->tpMisc->PerformLayout();
 			this->ResumeLayout(false);
@@ -2602,9 +2814,13 @@ namespace PKMDS_Desktop_Win {
 		}
 	public: void displayPKM()
 			{
+
+				tpRibbons->Visible = false;
+
 				redisplayok = false;
 				// TODO: Is FindString causing performance issues?
-				cbSpecies->SelectedIndex = cbSpecies->FindString(gcnew System::String(lookuppkmname(temppkm).c_str()));
+				//cbSpecies->SelectedIndex = cbSpecies->FindString(gcnew System::String(lookuppkmname(temppkm).c_str()));
+				cbSpecies->SelectedValue = (uint16)(temppkm->species);
 
 				//numSpecies->Value = Convert::ToDecimal((UInt16)(temppkm->species));
 				txtNickname->Text = gcnew System::String(getpkmnickname(temppkm).c_str());
@@ -2624,30 +2840,48 @@ namespace PKMDS_Desktop_Win {
 				numSID->Value = Convert::ToDecimal(temppkm->sid);
 
 				// TODO: Is FindString causing performance issues?
-				cbMove1->SelectedIndex = cbMove1->FindString(gcnew System::String(lookupmovename(temppkm,0).c_str()));
+				//cbMove1->SelectedIndex = cbMove1->FindString(gcnew System::String(lookupmovename(temppkm,0).c_str()));
+				cbMove1->SelectedValue = (uint16)(temppkm->moves[0]);
 				if(temppkm->moves[1] != Moves::NOTHING)
 				{ 
-					cbMove2->SelectedIndex = cbMove2->FindString(gcnew System::String(lookupmovename(temppkm,1).c_str()));}
+					//cbMove2->SelectedIndex = cbMove2->FindString(gcnew System::String(lookupmovename(temppkm,1).c_str()));}
+					cbMove2->SelectedValue = (uint16)(temppkm->moves[1]);
+				}
 				else
 				{
 					cbMove2->SelectedIndex = 0;
 				}
 				if(temppkm->moves[2] != Moves::NOTHING)
 				{ 
-					cbMove3->SelectedIndex = cbMove3->FindString(gcnew System::String(lookupmovename(temppkm,2).c_str()));}
+					//cbMove3->SelectedIndex = cbMove3->FindString(gcnew System::String(lookupmovename(temppkm,2).c_str()));}
+					cbMove3->SelectedValue = (uint16)(temppkm->moves[2]);
+				}
 				else
 				{
 					cbMove3->SelectedIndex = 0;
 				}
 				if(temppkm->moves[3] != Moves::NOTHING)
 				{ 
-					cbMove4->SelectedIndex = cbMove4->FindString(gcnew System::String(lookupmovename(temppkm,3).c_str()));}
+					//cbMove4->SelectedIndex = cbMove4->FindString(gcnew System::String(lookupmovename(temppkm,3).c_str()));}
+					cbMove4->SelectedValue = (uint16)(temppkm->moves[3]);
+				}
 				else
 				{
 					cbMove4->SelectedIndex = 0;
 				}
-				cbNature->SelectedIndex = cbNature->FindString(gcnew System::String(getnaturename(temppkm).c_str()));
-				cbAbility->SelectedIndex = cbAbility->FindString(gcnew System::String(lookupabilityname(temppkm).c_str()));
+				//cbNature->SelectedIndex = cbNature->FindString(gcnew System::String(getnaturename(temppkm).c_str()));
+				cbNature->SelectedValue = (uint16)(temppkm->nature);
+
+				if(int(temppkm->nature) == 0 && int(temppkm->hometown) != int(Hometowns::black) && int(temppkm->hometown) != int(Hometowns::white))
+				{
+					cbNature->SelectedValue = (temppkm->pid % 25);
+				}
+				else
+				{
+					cbNature->SelectedValue = (uint16)(temppkm->nature);
+				}
+				//cbAbility->SelectedIndex = cbAbility->FindString(gcnew System::String(lookupabilityname(temppkm).c_str()));
+				cbAbility->SelectedValue = (uint16)(temppkm->ability);
 
 				numHPIV->Value = Convert::ToDecimal(temppkm->ivs.hp);
 				numAttackIV->Value = Convert::ToDecimal(temppkm->ivs.attack);
@@ -2671,8 +2905,27 @@ namespace PKMDS_Desktop_Win {
 				numMove4PP->Value = Convert::ToDecimal(temppkm->pp[3]);
 				txtPID->Text = System::Convert::ToString(temppkm->pid);
 
+				chkFateful->Checked = temppkm->forms.fencounter;
+				chkNPKM->Checked = temppkm->dwability.n_pkm;
+				chkEggMet->Checked = pkmmetasegg(temppkm);
+				cbEggLoc->Enabled = pkmmetasegg(temppkm);
+				dtEgg->Enabled = pkmmetasegg(temppkm);
+
+				cbMetLoc->SelectedValue = (uint16)(pkm->met);
+				cbEggLoc->SelectedValue = (uint16)(pkm->eggmet);
+
+				dtMet->Value = DateTime(temppkm->metdate.year + 2000, temppkm->metdate.month, temppkm->metdate.day);
+				if(pkmmetasegg(temppkm))
+				{
+					dtEgg->Value =  DateTime(temppkm->eggdate.year + 2000, temppkm->eggdate.month, temppkm->eggdate.day);
+				}
+				cbGame->SelectedValue = (uint16)(temppkm->hometown);
+				cbLanguage->SelectedValue = (uint16)(temppkm->country);
+				numMetLevel->Value = Convert::ToDecimal(temppkm->metlevel_otgender.metlevel);
+
 				// TODO: Is FindString causing performance issues?
-				cbItem->SelectedIndex = cbItem->FindString(gcnew System::String(lookupitemname(temppkm).c_str()));
+				//cbItem->SelectedIndex = cbItem->FindString(gcnew System::String(lookupitemname(temppkm).c_str()));
+				cbItem->SelectedValue = (uint16)(temppkm->item);
 
 				//lvBall->Columns->Add("");
 				//std::ostringstream SQL;
@@ -2712,10 +2965,6 @@ namespace PKMDS_Desktop_Win {
 				this->pkm = pkm;
 				*temppkm = *pkm;
 			}
-	private: System::Void frmPKMViewer_Load(System::Object^  sender, System::EventArgs^  e) 
-			 {
-				 //displayPKM();
-			 }
 	private: System::Void btnSave_Click(System::Object^  sender, System::EventArgs^  e)
 			 {
 				 calcchecksum(temppkm);
@@ -3214,6 +3463,123 @@ namespace PKMDS_Desktop_Win {
 					 {
 						 temppkm->pp[3] = Convert::ToByte(numMove4PP->Value);
 					 }
+				 }
+			 }
+	private: System::Void cbMetLoc_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 if(cbMetLoc->SelectedValue == DBNull::Value)
+					 {
+						 temppkm->met = Locations::mysteryzone_;
+					 }
+					 else
+					 {
+						 temppkm->met = (Locations::locations)(Convert::ToUInt16(cbMetLoc->SelectedValue));
+					 }
+				 }
+			 }
+	private: System::Void cbEggLoc_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 if(cbEggLoc->SelectedValue == DBNull::Value)
+					 {
+						 temppkm->eggmet = Locations::mysteryzone_;
+					 }
+					 else
+					 {
+						 temppkm->eggmet = (Locations::locations)(Convert::ToUInt16(cbEggLoc->SelectedValue));
+					 }
+				 }
+			 }
+	private: System::Void chkEggMet_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 cbEggLoc->Enabled = chkEggMet->Checked;
+					 dtEgg->Enabled = chkEggMet->Checked;
+					 if(chkEggMet->Checked)
+					 {
+						 temppkm->eggmet = (Locations::locations)(Convert::ToUInt16(cbEggLoc->SelectedValue));
+						 temppkm->eggdate.year = dtEgg->Value.Year - 2000;
+						 temppkm->eggdate.month = dtEgg->Value.Month;
+						 temppkm->eggdate.day = dtEgg->Value.Day;
+					 }
+					 else
+					 {
+						 temppkm->eggmet = Locations::mysteryzone_;
+						 temppkm->eggdate.year = 0;
+						 temppkm->eggdate.month = 0;
+						 temppkm->eggdate.day = 0;
+					 }
+				 }
+			 }
+	private: System::Void dtMet_ValueChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 temppkm->metdate.year = dtMet->Value.Year - 2000;
+					 temppkm->metdate.month = dtMet->Value.Month;
+					 temppkm->metdate.day = dtMet->Value.Day;
+				 }
+			 }
+	private: System::Void dtEgg_ValueChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 temppkm->eggdate.year = dtEgg->Value.Year - 2000;
+					 temppkm->eggdate.month = dtEgg->Value.Month;
+					 temppkm->eggdate.day = dtEgg->Value.Day;
+				 }
+			 }
+	private: System::Void cbGame_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 if(cbGame->SelectedValue == DBNull::Value)
+					 {
+						 temppkm->hometown = Hometowns::NOTHING;
+					 }
+					 else
+					 {
+						 temppkm->hometown = (Hometowns::hometowns)(Convert::ToUInt16(cbGame->SelectedValue));
+					 }
+				 }
+			 }
+	private: System::Void cbLanguage_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 if(cbLanguage->SelectedValue == DBNull::Value)
+					 {
+						 temppkm->country = Countries::english;
+					 }
+					 else
+					 {
+						 temppkm->country = (Countries::countries)(Convert::ToUInt16(cbLanguage->SelectedValue));
+					 }
+				 }
+			 }
+	private: System::Void chkFateful_CheckedChanged(System::Object^  sender, System::EventArgs^  e) 
+			 {
+				 if(redisplayok)
+				 {
+					 temppkm->forms.fencounter = chkFateful->Checked;
+				 }
+			 }
+	private: System::Void chkNPKM_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 temppkm->dwability.n_pkm = chkNPKM->Checked;
+				 }
+			 }
+	private: System::Void numMetLevel_ValueChanged(System::Object^  sender, System::EventArgs^  e)
+			 {
+				 if(redisplayok)
+				 {
+					 temppkm->metlevel_otgender.metlevel = Convert::ToByte(numMetLevel->Value);
 				 }
 			 }
 	};

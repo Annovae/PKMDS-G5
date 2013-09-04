@@ -2991,7 +2991,7 @@ public:
 	pokerus pkrs; // PokeRus
 	Balls::balls ball; // Ball captured with and kept in
 	metlevelfield metlevel_otgender; // Met level, original trainer gender flag
-	Encounters::encounters encounter; // Encounter type (depricated since Gen IV?)
+	Encounters::encounters encounter; // Encounter type (unused since Gen V?)
 byte : 8; //
 byte : 8; //
 	pkmblockd()
