@@ -2484,8 +2484,10 @@ namespace PKMDS_Desktop_Win {
 			{
 				gettypesql(SQL,(Types::types)(t));
 				pbType2->Image = pviewvsqlite->getSQLImage(SQL.str());
-				SQL.str("");
-				SQL.clear();
+			}
+			else
+			{
+				pbType2->Image = nullptr;
 			}
 		}
 		void refreshpkrs()
@@ -2627,17 +2629,19 @@ namespace PKMDS_Desktop_Win {
 			//MessageBox::Show(System::Convert::ToString(lvBall->Columns[0]->Width));
 			//lvBall->Items[(int)(temppkm->ball)]->Selected = true;
 
-			refreshsprite();
-			refreshgender();
-			refreshshiny();
-			refreshmarkings();
-			refreshitem();
-			refreshtotalevs();
-			refreshnatureeffect();
-			refreshcalcstats();
-			refreshtypes();
-			refreshpkrs();
-			refreshmoves();
+			//refreshexp();
+			//refreshlevel();
+			//refreshsprite();
+			//refreshgender();
+			//refreshshiny();
+			//refreshmarkings();
+			//refreshitem();
+			//refreshtotalevs();
+			//refreshnatureeffect();
+			//refreshcalcstats();
+			//refreshtypes();
+			//refreshpkrs();
+			//refreshmoves();
 			redisplayok = true;
 		}
 	public: void setpkm(pokemon_obj * pkm)

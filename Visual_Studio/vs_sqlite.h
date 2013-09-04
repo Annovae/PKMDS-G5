@@ -15,8 +15,8 @@ public: VS_SQLite()
 			db = gcnew SQLiteConnection();
 			imgdb = gcnew SQLiteConnection();
 			//String ^ dbdir = "C:\\Users\\Mike\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\"; // Laptop
-			//String ^ dbdir = "C:\\Users\\Michael Bond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\"; // Desktop
-			String ^ dbdir = "C:\\Users\\michaelbond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\"; // Work
+			String ^ dbdir = "C:\\Users\\Michael Bond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\"; // Desktop
+			//String ^ dbdir = "C:\\Users\\michaelbond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\"; // Work
 			db->ConnectionString = L"Data Source='" + dbdir + L"veekun-pokedex.sqlite'";
 			db->Open();
 			imgdb->ConnectionString = L"Data Source='" + dbdir + L"images.sqlite'";
@@ -26,6 +26,8 @@ public: VS_SQLite()
 		{
 			db->Close();
 			imgdb->Close();
+			delete db;
+			delete imgdb;
 		}
 public: String ^ getSQLText(String ^ SQL)
 		{
@@ -48,6 +50,7 @@ public: DataSet ^ getSQLDS(String ^ SQL)
 			SQLiteDataAdapter ^ DB = gcnew SQLiteDataAdapter(SQL,db);
 			DS->Reset();
 			DB->Fill(DS);
+			delete DB;
 			return DS;
 		}
 public: DataSet ^ getSQLIMGDS(String ^ SQL)
@@ -56,6 +59,7 @@ public: DataSet ^ getSQLIMGDS(String ^ SQL)
 			SQLiteDataAdapter ^ DB = gcnew SQLiteDataAdapter(SQL,imgdb);
 			DS->Reset();
 			DB->Fill(DS);
+			delete DB;
 			return DS;
 		}
 public: int getSQLInt(String ^ SQL)
@@ -93,6 +97,9 @@ public: Drawing::Image^ getSQLImage(String^ SQL)
 				_ImageData = safe_cast<array<Byte>^>(obj);
 				IO::MemoryStream ^_MemoryStream = gcnew IO::MemoryStream(_ImageData);
 				img = Drawing::Image::FromStream(_MemoryStream);
+				delete cmd;
+				delete obj;
+				delete _ImageData;
 				return img;
 			}
 			catch(...)
@@ -117,6 +124,7 @@ public: std::string getSQLTextstd(std::string sql)
 		{
 			String^ SQL = gcnew String(sql.c_str());
 			String^ sysstring = getSQLText(SQL);
+			delete SQL;
 			return marshal_as<std::string>(sysstring);
 		}
 public: int getSQLInt(std::string sql)
