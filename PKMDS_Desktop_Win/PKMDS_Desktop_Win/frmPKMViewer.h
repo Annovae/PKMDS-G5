@@ -25,7 +25,8 @@ namespace PKMDS_Desktop_Win {
 			pkm = new pokemon_obj;
 			temppkm = new pokemon_obj;
 			pviewvsqlite = gcnew VS_SQLite();
-
+			this->dtEgg->MaxDate = System::DateTime(DateTime::Now.Year + 100, 12, 31);
+			this->dtMet->MaxDate = System::DateTime(DateTime::Now.Year + 100, 12, 31);
 			DataSet^ itemds = pviewvsqlite->getSQLDS
 				(
 				"SELECT item_game_indices.game_index, item_names.name FROM items INNER JOIN item_names ON items.id = item_names.item_id " +
@@ -148,6 +149,31 @@ namespace PKMDS_Desktop_Win {
 				"(location_names.local_language_id = 9) AND (location_game_indices.generation_id = 5) ORDER BY location_names.name";
 			DataSet^ metlocds = pviewvsqlite->getSQLDS(locsql);
 			DataSet^ egglocds = pviewvsqlite->getSQLDS(locsql);
+			DataRow^ newrow;
+			newrow = metlocds->Tables[0]->NewRow();
+			newrow["game_index"] = 40001;
+			newrow["name"] = "Lovely Place";
+			metlocds->Tables[0]->Rows->InsertAt(newrow,0);
+			newrow = metlocds->Tables[0]->NewRow();
+			newrow["game_index"] = 30001;
+			newrow["name"] = "Poké Transfer";
+			metlocds->Tables[0]->Rows->InsertAt(newrow,0);
+			newrow = metlocds->Tables[0]->NewRow();
+			newrow["game_index"] = 60002;
+			newrow["name"] = "Day-Care Couple";
+			metlocds->Tables[0]->Rows->InsertAt(newrow,0);
+			newrow = egglocds->Tables[0]->NewRow();
+			newrow["game_index"] = 40001;
+			newrow["name"] = "Lovely Place";
+			egglocds->Tables[0]->Rows->InsertAt(newrow,0);
+			newrow = egglocds->Tables[0]->NewRow();
+			newrow["game_index"] = 30001;
+			newrow["name"] = "Poké Transfer";
+			egglocds->Tables[0]->Rows->InsertAt(newrow,0);
+			newrow = egglocds->Tables[0]->NewRow();
+			newrow["game_index"] = 60002;
+			newrow["name"] = "Day-Care Couple";
+			egglocds->Tables[0]->Rows->InsertAt(newrow,0);
 			cbMetLoc->DataSource = metlocds->Tables[0];
 			cbEggLoc->DataSource = egglocds->Tables[0];
 			cbMetLoc->DisplayMember = "name";
@@ -335,6 +361,9 @@ namespace PKMDS_Desktop_Win {
 
 	private: System::Windows::Forms::CheckBox^  chkNPKM;
 	private: System::Windows::Forms::CheckBox^  chkFateful;
+	private: System::Windows::Forms::Label^  lblMetLevel;
+	private: System::Windows::Forms::Label^  lblNationality;
+	private: System::Windows::Forms::Label^  lblGame;
 
 	private: System::ComponentModel::IContainer^  components;
 	private:
@@ -489,6 +518,9 @@ namespace PKMDS_Desktop_Win {
 			this->txtMove3TotalPP = (gcnew System::Windows::Forms::TextBox());
 			this->txtMove4TotalPP = (gcnew System::Windows::Forms::TextBox());
 			this->tpOrigins = (gcnew System::Windows::Forms::TabPage());
+			this->lblMetLevel = (gcnew System::Windows::Forms::Label());
+			this->lblNationality = (gcnew System::Windows::Forms::Label());
+			this->lblGame = (gcnew System::Windows::Forms::Label());
 			this->numMetLevel = (gcnew System::Windows::Forms::NumericUpDown());
 			this->chkNPKM = (gcnew System::Windows::Forms::CheckBox());
 			this->chkFateful = (gcnew System::Windows::Forms::CheckBox());
@@ -652,17 +684,18 @@ namespace PKMDS_Desktop_Win {
 			this->numSpecies->Name = L"numSpecies";
 			this->numSpecies->ReadOnly = true;
 			this->numSpecies->Size = System::Drawing::Size(43, 20);
-			this->numSpecies->TabIndex = 19;
+			this->numSpecies->TabIndex = 1;
 			this->numSpecies->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) {1, 0, 0, 0});
-			this->numSpecies->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::numSpecies_ValueChanged);
 			// 
 			// cbSpecies
 			// 
+			this->cbSpecies->AutoCompleteMode = System::Windows::Forms::AutoCompleteMode::SuggestAppend;
+			this->cbSpecies->AutoCompleteSource = System::Windows::Forms::AutoCompleteSource::ListItems;
 			this->cbSpecies->FormattingEnabled = true;
 			this->cbSpecies->Location = System::Drawing::Point(3, 107);
 			this->cbSpecies->Name = L"cbSpecies";
 			this->cbSpecies->Size = System::Drawing::Size(107, 21);
-			this->cbSpecies->TabIndex = 18;
+			this->cbSpecies->TabIndex = 0;
 			this->cbSpecies->SelectedIndexChanged += gcnew System::EventHandler(this, &frmPKMViewer::cbSpecies_SelectedIndexChanged);
 			// 
 			// btnExport
@@ -670,7 +703,7 @@ namespace PKMDS_Desktop_Win {
 			this->btnExport->Location = System::Drawing::Point(99, 227);
 			this->btnExport->Name = L"btnExport";
 			this->btnExport->Size = System::Drawing::Size(60, 50);
-			this->btnExport->TabIndex = 17;
+			this->btnExport->TabIndex = 7;
 			this->btnExport->Text = L"Export PKM Data";
 			this->btnExport->UseVisualStyleBackColor = true;
 			this->btnExport->Click += gcnew System::EventHandler(this, &frmPKMViewer::btnExport_Click);
@@ -680,7 +713,7 @@ namespace PKMDS_Desktop_Win {
 			this->btnSave->Location = System::Drawing::Point(3, 226);
 			this->btnSave->Name = L"btnSave";
 			this->btnSave->Size = System::Drawing::Size(60, 50);
-			this->btnSave->TabIndex = 16;
+			this->btnSave->TabIndex = 6;
 			this->btnSave->Text = L"Save Changes";
 			this->btnSave->UseVisualStyleBackColor = true;
 			this->btnSave->Click += gcnew System::EventHandler(this, &frmPKMViewer::btnSave_Click);
@@ -691,16 +724,18 @@ namespace PKMDS_Desktop_Win {
 			this->lblItem->Location = System::Drawing::Point(68, 183);
 			this->lblItem->Name = L"lblItem";
 			this->lblItem->Size = System::Drawing::Size(52, 13);
-			this->lblItem->TabIndex = 15;
+			this->lblItem->TabIndex = 4;
 			this->lblItem->Text = L"Held Item";
 			// 
 			// cbItem
 			// 
+			this->cbItem->AutoCompleteMode = System::Windows::Forms::AutoCompleteMode::SuggestAppend;
+			this->cbItem->AutoCompleteSource = System::Windows::Forms::AutoCompleteSource::ListItems;
 			this->cbItem->FormattingEnabled = true;
 			this->cbItem->Location = System::Drawing::Point(41, 200);
 			this->cbItem->Name = L"cbItem";
 			this->cbItem->Size = System::Drawing::Size(118, 21);
-			this->cbItem->TabIndex = 14;
+			this->cbItem->TabIndex = 5;
 			this->cbItem->SelectedIndexChanged += gcnew System::EventHandler(this, &frmPKMViewer::cbItem_SelectedIndexChanged);
 			// 
 			// numLevel
@@ -709,7 +744,7 @@ namespace PKMDS_Desktop_Win {
 			this->numLevel->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) {1, 0, 0, 0});
 			this->numLevel->Name = L"numLevel";
 			this->numLevel->Size = System::Drawing::Size(43, 20);
-			this->numLevel->TabIndex = 13;
+			this->numLevel->TabIndex = 3;
 			this->numLevel->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) {1, 0, 0, 0});
 			this->numLevel->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::numLevel_ValueChanged);
 			// 
@@ -719,7 +754,7 @@ namespace PKMDS_Desktop_Win {
 			this->lblLevel->Location = System::Drawing::Point(37, 160);
 			this->lblLevel->Name = L"lblLevel";
 			this->lblLevel->Size = System::Drawing::Size(33, 13);
-			this->lblLevel->TabIndex = 12;
+			this->lblLevel->TabIndex = 2;
 			this->lblLevel->Text = L"Level";
 			// 
 			// pbDiamond
@@ -881,7 +916,7 @@ namespace PKMDS_Desktop_Win {
 			this->lblAbilityFlavor->Location = System::Drawing::Point(138, 149);
 			this->lblAbilityFlavor->Name = L"lblAbilityFlavor";
 			this->lblAbilityFlavor->Size = System::Drawing::Size(147, 50);
-			this->lblAbilityFlavor->TabIndex = 22;
+			this->lblAbilityFlavor->TabIndex = 9;
 			// 
 			// lvBall
 			// 
@@ -896,7 +931,7 @@ namespace PKMDS_Desktop_Win {
 			this->lvBall->Size = System::Drawing::Size(135, 242);
 			this->lvBall->SmallImageList = this->imgBalls;
 			this->lvBall->StateImageList = this->imgBalls;
-			this->lvBall->TabIndex = 21;
+			this->lvBall->TabIndex = 12;
 			this->lvBall->TileSize = System::Drawing::Size(24, 24);
 			this->lvBall->UseCompatibleStateImageBehavior = false;
 			this->lvBall->View = System::Windows::Forms::View::Details;
@@ -913,7 +948,7 @@ namespace PKMDS_Desktop_Win {
 			this->pbTNL->Name = L"pbTNL";
 			this->pbTNL->Size = System::Drawing::Size(279, 23);
 			this->pbTNL->Style = System::Windows::Forms::ProgressBarStyle::Continuous;
-			this->pbTNL->TabIndex = 21;
+			this->pbTNL->TabIndex = 11;
 			// 
 			// lblTNL
 			// 
@@ -921,16 +956,18 @@ namespace PKMDS_Desktop_Win {
 			this->lblTNL->Location = System::Drawing::Point(6, 186);
 			this->lblTNL->Name = L"lblTNL";
 			this->lblTNL->Size = System::Drawing::Size(74, 13);
-			this->lblTNL->TabIndex = 20;
+			this->lblTNL->TabIndex = 10;
 			this->lblTNL->Text = L"To Next Level";
 			// 
 			// cbAbility
 			// 
+			this->cbAbility->AutoCompleteMode = System::Windows::Forms::AutoCompleteMode::SuggestAppend;
+			this->cbAbility->AutoCompleteSource = System::Windows::Forms::AutoCompleteSource::ListItems;
 			this->cbAbility->FormattingEnabled = true;
 			this->cbAbility->Location = System::Drawing::Point(175, 125);
 			this->cbAbility->Name = L"cbAbility";
 			this->cbAbility->Size = System::Drawing::Size(110, 21);
-			this->cbAbility->TabIndex = 19;
+			this->cbAbility->TabIndex = 6;
 			this->cbAbility->SelectedIndexChanged += gcnew System::EventHandler(this, &frmPKMViewer::cbAbility_SelectedIndexChanged);
 			// 
 			// lblAbility
@@ -939,7 +976,7 @@ namespace PKMDS_Desktop_Win {
 			this->lblAbility->Location = System::Drawing::Point(135, 128);
 			this->lblAbility->Name = L"lblAbility";
 			this->lblAbility->Size = System::Drawing::Size(34, 13);
-			this->lblAbility->TabIndex = 15;
+			this->lblAbility->TabIndex = 5;
 			this->lblAbility->Text = L"Ability";
 			// 
 			// pbType2
@@ -968,7 +1005,7 @@ namespace PKMDS_Desktop_Win {
 			this->lblType->Location = System::Drawing::Point(6, 125);
 			this->lblType->Name = L"lblType";
 			this->lblType->Size = System::Drawing::Size(31, 13);
-			this->lblType->TabIndex = 12;
+			this->lblType->TabIndex = 4;
 			this->lblType->Text = L"Type";
 			// 
 			// numEXP
@@ -977,7 +1014,7 @@ namespace PKMDS_Desktop_Win {
 			this->numEXP->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {65535, 0, 0, 0});
 			this->numEXP->Name = L"numEXP";
 			this->numEXP->Size = System::Drawing::Size(89, 20);
-			this->numEXP->TabIndex = 11;
+			this->numEXP->TabIndex = 8;
 			this->numEXP->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::numEXP_ValueChanged);
 			// 
 			// lblEXP
@@ -986,7 +1023,7 @@ namespace PKMDS_Desktop_Win {
 			this->lblEXP->Location = System::Drawing::Point(6, 161);
 			this->lblEXP->Name = L"lblEXP";
 			this->lblEXP->Size = System::Drawing::Size(28, 13);
-			this->lblEXP->TabIndex = 10;
+			this->lblEXP->TabIndex = 7;
 			this->lblEXP->Text = L"EXP";
 			// 
 			// lblNickname
@@ -995,7 +1032,7 @@ namespace PKMDS_Desktop_Win {
 			this->lblNickname->Location = System::Drawing::Point(6, 10);
 			this->lblNickname->Name = L"lblNickname";
 			this->lblNickname->Size = System::Drawing::Size(55, 13);
-			this->lblNickname->TabIndex = 3;
+			this->lblNickname->TabIndex = 0;
 			this->lblNickname->Text = L"Nickname";
 			// 
 			// chkNicknamed
@@ -1031,7 +1068,7 @@ namespace PKMDS_Desktop_Win {
 			this->gbOT->Location = System::Drawing::Point(6, 32);
 			this->gbOT->Name = L"gbOT";
 			this->gbOT->Size = System::Drawing::Size(279, 87);
-			this->gbOT->TabIndex = 0;
+			this->gbOT->TabIndex = 3;
 			this->gbOT->TabStop = false;
 			this->gbOT->Text = L"OT";
 			// 
@@ -1041,7 +1078,7 @@ namespace PKMDS_Desktop_Win {
 			this->numSID->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {65535, 0, 0, 0});
 			this->numSID->Name = L"numSID";
 			this->numSID->Size = System::Drawing::Size(52, 20);
-			this->numSID->TabIndex = 11;
+			this->numSID->TabIndex = 5;
 			this->numSID->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::numSID_ValueChanged);
 			// 
 			// lblSecretID
@@ -1050,7 +1087,7 @@ namespace PKMDS_Desktop_Win {
 			this->lblSecretID->Location = System::Drawing::Point(122, 43);
 			this->lblSecretID->Name = L"lblSecretID";
 			this->lblSecretID->Size = System::Drawing::Size(52, 13);
-			this->lblSecretID->TabIndex = 10;
+			this->lblSecretID->TabIndex = 3;
 			this->lblSecretID->Text = L"Secret ID";
 			// 
 			// numTID
@@ -1059,7 +1096,7 @@ namespace PKMDS_Desktop_Win {
 			this->numTID->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {65535, 0, 0, 0});
 			this->numTID->Name = L"numTID";
 			this->numTID->Size = System::Drawing::Size(52, 20);
-			this->numTID->TabIndex = 9;
+			this->numTID->TabIndex = 4;
 			this->numTID->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::numTID_ValueChanged);
 			// 
 			// lblTrainerID
@@ -1068,7 +1105,7 @@ namespace PKMDS_Desktop_Win {
 			this->lblTrainerID->Location = System::Drawing::Point(62, 43);
 			this->lblTrainerID->Name = L"lblTrainerID";
 			this->lblTrainerID->Size = System::Drawing::Size(54, 13);
-			this->lblTrainerID->TabIndex = 8;
+			this->lblTrainerID->TabIndex = 2;
 			this->lblTrainerID->Text = L"Trainer ID";
 			// 
 			// rbOTFemale
@@ -1101,7 +1138,7 @@ namespace PKMDS_Desktop_Win {
 			this->lblOTName->Location = System::Drawing::Point(6, 16);
 			this->lblOTName->Name = L"lblOTName";
 			this->lblOTName->Size = System::Drawing::Size(53, 13);
-			this->lblOTName->TabIndex = 5;
+			this->lblOTName->TabIndex = 0;
 			this->lblOTName->Text = L"OT Name";
 			// 
 			// txtOTName
@@ -1110,7 +1147,7 @@ namespace PKMDS_Desktop_Win {
 			this->txtOTName->MaxLength = 7;
 			this->txtOTName->Name = L"txtOTName";
 			this->txtOTName->Size = System::Drawing::Size(128, 20);
-			this->txtOTName->TabIndex = 4;
+			this->txtOTName->TabIndex = 1;
 			this->txtOTName->TextChanged += gcnew System::EventHandler(this, &frmPKMViewer::txtOTName_TextChanged);
 			// 
 			// tpStats
@@ -1132,11 +1169,13 @@ namespace PKMDS_Desktop_Win {
 			// 
 			// cbNature
 			// 
+			this->cbNature->AutoCompleteMode = System::Windows::Forms::AutoCompleteMode::SuggestAppend;
+			this->cbNature->AutoCompleteSource = System::Windows::Forms::AutoCompleteSource::ListItems;
 			this->cbNature->FormattingEnabled = true;
 			this->cbNature->Location = System::Drawing::Point(87, 223);
 			this->cbNature->Name = L"cbNature";
 			this->cbNature->Size = System::Drawing::Size(131, 21);
-			this->cbNature->TabIndex = 15;
+			this->cbNature->TabIndex = 6;
 			this->cbNature->SelectedIndexChanged += gcnew System::EventHandler(this, &frmPKMViewer::cbNature_SelectedIndexChanged);
 			// 
 			// lblNature
@@ -1145,7 +1184,7 @@ namespace PKMDS_Desktop_Win {
 			this->lblNature->Location = System::Drawing::Point(42, 224);
 			this->lblNature->Name = L"lblNature";
 			this->lblNature->Size = System::Drawing::Size(39, 13);
-			this->lblNature->TabIndex = 13;
+			this->lblNature->TabIndex = 5;
 			this->lblNature->Text = L"Nature";
 			// 
 			// txtTotalEVs
@@ -1154,7 +1193,7 @@ namespace PKMDS_Desktop_Win {
 			this->txtTotalEVs->Name = L"txtTotalEVs";
 			this->txtTotalEVs->ReadOnly = true;
 			this->txtTotalEVs->Size = System::Drawing::Size(46, 20);
-			this->txtTotalEVs->TabIndex = 12;
+			this->txtTotalEVs->TabIndex = 4;
 			// 
 			// lblTotalEVs
 			// 
@@ -1162,7 +1201,7 @@ namespace PKMDS_Desktop_Win {
 			this->lblTotalEVs->Location = System::Drawing::Point(64, 200);
 			this->lblTotalEVs->Name = L"lblTotalEVs";
 			this->lblTotalEVs->Size = System::Drawing::Size(53, 13);
-			this->lblTotalEVs->TabIndex = 11;
+			this->lblTotalEVs->TabIndex = 3;
 			this->lblTotalEVs->Text = L"Total EVs";
 			// 
 			// gbCalcStats
@@ -1294,7 +1333,7 @@ namespace PKMDS_Desktop_Win {
 			this->numHPEV->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {255, 0, 0, 0});
 			this->numHPEV->Name = L"numHPEV";
 			this->numHPEV->Size = System::Drawing::Size(46, 20);
-			this->numHPEV->TabIndex = 1;
+			this->numHPEV->TabIndex = 0;
 			this->numHPEV->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::numHPEV_ValueChanged);
 			// 
 			// numAttackEV
@@ -1304,7 +1343,7 @@ namespace PKMDS_Desktop_Win {
 			this->numAttackEV->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {255, 0, 0, 0});
 			this->numAttackEV->Name = L"numAttackEV";
 			this->numAttackEV->Size = System::Drawing::Size(46, 20);
-			this->numAttackEV->TabIndex = 2;
+			this->numAttackEV->TabIndex = 1;
 			this->numAttackEV->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::numAttackEV_ValueChanged);
 			// 
 			// numDefenseEV
@@ -1314,7 +1353,7 @@ namespace PKMDS_Desktop_Win {
 			this->numDefenseEV->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {255, 0, 0, 0});
 			this->numDefenseEV->Name = L"numDefenseEV";
 			this->numDefenseEV->Size = System::Drawing::Size(46, 20);
-			this->numDefenseEV->TabIndex = 3;
+			this->numDefenseEV->TabIndex = 2;
 			this->numDefenseEV->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::numDefenseEV_ValueChanged);
 			// 
 			// numSpAtkEV
@@ -1324,7 +1363,7 @@ namespace PKMDS_Desktop_Win {
 			this->numSpAtkEV->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {255, 0, 0, 0});
 			this->numSpAtkEV->Name = L"numSpAtkEV";
 			this->numSpAtkEV->Size = System::Drawing::Size(46, 20);
-			this->numSpAtkEV->TabIndex = 4;
+			this->numSpAtkEV->TabIndex = 3;
 			this->numSpAtkEV->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::numSpAtkEV_ValueChanged);
 			// 
 			// numSpDefEV
@@ -1334,7 +1373,7 @@ namespace PKMDS_Desktop_Win {
 			this->numSpDefEV->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {255, 0, 0, 0});
 			this->numSpDefEV->Name = L"numSpDefEV";
 			this->numSpDefEV->Size = System::Drawing::Size(46, 20);
-			this->numSpDefEV->TabIndex = 5;
+			this->numSpDefEV->TabIndex = 4;
 			this->numSpDefEV->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::numSpDefEV_ValueChanged);
 			// 
 			// numSpeedEV
@@ -1344,7 +1383,7 @@ namespace PKMDS_Desktop_Win {
 			this->numSpeedEV->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {255, 0, 0, 0});
 			this->numSpeedEV->Name = L"numSpeedEV";
 			this->numSpeedEV->Size = System::Drawing::Size(46, 20);
-			this->numSpeedEV->TabIndex = 6;
+			this->numSpeedEV->TabIndex = 5;
 			this->numSpeedEV->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::numSpeedEV_ValueChanged);
 			// 
 			// gbIVs
@@ -1394,7 +1433,7 @@ namespace PKMDS_Desktop_Win {
 			this->lblSpeedIV->Location = System::Drawing::Point(3, 148);
 			this->lblSpeedIV->Name = L"lblSpeedIV";
 			this->lblSpeedIV->Size = System::Drawing::Size(47, 13);
-			this->lblSpeedIV->TabIndex = 11;
+			this->lblSpeedIV->TabIndex = 10;
 			this->lblSpeedIV->Text = L"Speed";
 			// 
 			// lblSpDefIV
@@ -1404,7 +1443,7 @@ namespace PKMDS_Desktop_Win {
 			this->lblSpDefIV->Location = System::Drawing::Point(3, 119);
 			this->lblSpDefIV->Name = L"lblSpDefIV";
 			this->lblSpDefIV->Size = System::Drawing::Size(47, 13);
-			this->lblSpDefIV->TabIndex = 10;
+			this->lblSpDefIV->TabIndex = 8;
 			this->lblSpDefIV->Text = L"Sp Def";
 			// 
 			// lblSpAtkIV
@@ -1414,7 +1453,7 @@ namespace PKMDS_Desktop_Win {
 			this->lblSpAtkIV->Location = System::Drawing::Point(3, 91);
 			this->lblSpAtkIV->Name = L"lblSpAtkIV";
 			this->lblSpAtkIV->Size = System::Drawing::Size(47, 13);
-			this->lblSpAtkIV->TabIndex = 9;
+			this->lblSpAtkIV->TabIndex = 6;
 			this->lblSpAtkIV->Text = L"Sp Atk";
 			// 
 			// lblDefenseIV
@@ -1424,7 +1463,7 @@ namespace PKMDS_Desktop_Win {
 			this->lblDefenseIV->Location = System::Drawing::Point(3, 63);
 			this->lblDefenseIV->Name = L"lblDefenseIV";
 			this->lblDefenseIV->Size = System::Drawing::Size(47, 13);
-			this->lblDefenseIV->TabIndex = 8;
+			this->lblDefenseIV->TabIndex = 4;
 			this->lblDefenseIV->Text = L"Defense";
 			// 
 			// lblAttackIV
@@ -1434,7 +1473,7 @@ namespace PKMDS_Desktop_Win {
 			this->lblAttackIV->Location = System::Drawing::Point(3, 35);
 			this->lblAttackIV->Name = L"lblAttackIV";
 			this->lblAttackIV->Size = System::Drawing::Size(47, 13);
-			this->lblAttackIV->TabIndex = 7;
+			this->lblAttackIV->TabIndex = 2;
 			this->lblAttackIV->Text = L"Attack";
 			// 
 			// lblHPIV
@@ -1464,7 +1503,7 @@ namespace PKMDS_Desktop_Win {
 			this->numAttackIV->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {31, 0, 0, 0});
 			this->numAttackIV->Name = L"numAttackIV";
 			this->numAttackIV->Size = System::Drawing::Size(46, 20);
-			this->numAttackIV->TabIndex = 2;
+			this->numAttackIV->TabIndex = 3;
 			this->numAttackIV->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::numAttackIV_ValueChanged);
 			// 
 			// numDefenseIV
@@ -1474,7 +1513,7 @@ namespace PKMDS_Desktop_Win {
 			this->numDefenseIV->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {31, 0, 0, 0});
 			this->numDefenseIV->Name = L"numDefenseIV";
 			this->numDefenseIV->Size = System::Drawing::Size(46, 20);
-			this->numDefenseIV->TabIndex = 3;
+			this->numDefenseIV->TabIndex = 5;
 			this->numDefenseIV->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::numDefenseIV_ValueChanged);
 			// 
 			// numSpAtkIV
@@ -1484,7 +1523,7 @@ namespace PKMDS_Desktop_Win {
 			this->numSpAtkIV->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {31, 0, 0, 0});
 			this->numSpAtkIV->Name = L"numSpAtkIV";
 			this->numSpAtkIV->Size = System::Drawing::Size(46, 20);
-			this->numSpAtkIV->TabIndex = 4;
+			this->numSpAtkIV->TabIndex = 7;
 			this->numSpAtkIV->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::numSpAtkIV_ValueChanged);
 			// 
 			// numSpDefIV
@@ -1494,7 +1533,7 @@ namespace PKMDS_Desktop_Win {
 			this->numSpDefIV->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {31, 0, 0, 0});
 			this->numSpDefIV->Name = L"numSpDefIV";
 			this->numSpDefIV->Size = System::Drawing::Size(46, 20);
-			this->numSpDefIV->TabIndex = 5;
+			this->numSpDefIV->TabIndex = 9;
 			this->numSpDefIV->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::numSpDefIV_ValueChanged);
 			// 
 			// numSpeedIV
@@ -1504,7 +1543,7 @@ namespace PKMDS_Desktop_Win {
 			this->numSpeedIV->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {31, 0, 0, 0});
 			this->numSpeedIV->Name = L"numSpeedIV";
 			this->numSpeedIV->Size = System::Drawing::Size(46, 20);
-			this->numSpeedIV->TabIndex = 6;
+			this->numSpeedIV->TabIndex = 11;
 			this->numSpeedIV->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::numSpeedIV_ValueChanged);
 			// 
 			// tpMoves
@@ -1762,7 +1801,7 @@ namespace PKMDS_Desktop_Win {
 			this->tlMove1NameEtc->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
 			this->tlMove1NameEtc->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 20)));
 			this->tlMove1NameEtc->Size = System::Drawing::Size(223, 63);
-			this->tlMove1NameEtc->TabIndex = 21;
+			this->tlMove1NameEtc->TabIndex = 5;
 			// 
 			// tlMove1TypeCatlbls
 			// 
@@ -1806,6 +1845,8 @@ namespace PKMDS_Desktop_Win {
 			// cbMove1
 			// 
 			this->cbMove1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
+			this->cbMove1->AutoCompleteMode = System::Windows::Forms::AutoCompleteMode::SuggestAppend;
+			this->cbMove1->AutoCompleteSource = System::Windows::Forms::AutoCompleteSource::ListItems;
 			this->cbMove1->FormattingEnabled = true;
 			this->cbMove1->Location = System::Drawing::Point(101, 36);
 			this->cbMove1->Name = L"cbMove1";
@@ -1884,6 +1925,8 @@ namespace PKMDS_Desktop_Win {
 			// cbMove2
 			// 
 			this->cbMove2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
+			this->cbMove2->AutoCompleteMode = System::Windows::Forms::AutoCompleteMode::SuggestAppend;
+			this->cbMove2->AutoCompleteSource = System::Windows::Forms::AutoCompleteSource::ListItems;
 			this->cbMove2->FormattingEnabled = true;
 			this->cbMove2->Location = System::Drawing::Point(101, 5);
 			this->cbMove2->Name = L"cbMove2";
@@ -2003,6 +2046,8 @@ namespace PKMDS_Desktop_Win {
 			// cbMove3
 			// 
 			this->cbMove3->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
+			this->cbMove3->AutoCompleteMode = System::Windows::Forms::AutoCompleteMode::SuggestAppend;
+			this->cbMove3->AutoCompleteSource = System::Windows::Forms::AutoCompleteSource::ListItems;
 			this->cbMove3->FormattingEnabled = true;
 			this->cbMove3->Location = System::Drawing::Point(101, 5);
 			this->cbMove3->Name = L"cbMove3";
@@ -2070,6 +2115,8 @@ namespace PKMDS_Desktop_Win {
 			// cbMove4
 			// 
 			this->cbMove4->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
+			this->cbMove4->AutoCompleteMode = System::Windows::Forms::AutoCompleteMode::SuggestAppend;
+			this->cbMove4->AutoCompleteSource = System::Windows::Forms::AutoCompleteSource::ListItems;
 			this->cbMove4->FormattingEnabled = true;
 			this->cbMove4->Location = System::Drawing::Point(101, 5);
 			this->cbMove4->Name = L"cbMove4";
@@ -2222,6 +2269,9 @@ namespace PKMDS_Desktop_Win {
 			// 
 			// tpOrigins
 			// 
+			this->tpOrigins->Controls->Add(this->lblMetLevel);
+			this->tpOrigins->Controls->Add(this->lblNationality);
+			this->tpOrigins->Controls->Add(this->lblGame);
 			this->tpOrigins->Controls->Add(this->numMetLevel);
 			this->tpOrigins->Controls->Add(this->chkNPKM);
 			this->tpOrigins->Controls->Add(this->chkFateful);
@@ -2236,23 +2286,50 @@ namespace PKMDS_Desktop_Win {
 			this->tpOrigins->Text = L"Origins";
 			this->tpOrigins->UseVisualStyleBackColor = true;
 			// 
+			// lblMetLevel
+			// 
+			this->lblMetLevel->AutoSize = true;
+			this->lblMetLevel->Location = System::Drawing::Point(95, 189);
+			this->lblMetLevel->Name = L"lblMetLevel";
+			this->lblMetLevel->Size = System::Drawing::Size(54, 13);
+			this->lblMetLevel->TabIndex = 8;
+			this->lblMetLevel->Text = L"Met Level";
+			// 
+			// lblNationality
+			// 
+			this->lblNationality->AutoSize = true;
+			this->lblNationality->Location = System::Drawing::Point(228, 56);
+			this->lblNationality->Name = L"lblNationality";
+			this->lblNationality->Size = System::Drawing::Size(56, 13);
+			this->lblNationality->TabIndex = 4;
+			this->lblNationality->Text = L"Nationality";
+			// 
+			// lblGame
+			// 
+			this->lblGame->AutoSize = true;
+			this->lblGame->Location = System::Drawing::Point(211, 29);
+			this->lblGame->Name = L"lblGame";
+			this->lblGame->Size = System::Drawing::Size(73, 13);
+			this->lblGame->TabIndex = 2;
+			this->lblGame->Text = L"Original Game";
+			// 
 			// numMetLevel
 			// 
-			this->numMetLevel->Location = System::Drawing::Point(252, 155);
+			this->numMetLevel->Location = System::Drawing::Point(155, 187);
 			this->numMetLevel->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) {1, 0, 0, 0});
 			this->numMetLevel->Name = L"numMetLevel";
 			this->numMetLevel->Size = System::Drawing::Size(43, 20);
-			this->numMetLevel->TabIndex = 14;
+			this->numMetLevel->TabIndex = 9;
 			this->numMetLevel->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) {1, 0, 0, 0});
 			this->numMetLevel->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::numMetLevel_ValueChanged);
 			// 
 			// chkNPKM
 			// 
 			this->chkNPKM->AutoSize = true;
-			this->chkNPKM->Location = System::Drawing::Point(240, 135);
+			this->chkNPKM->Location = System::Drawing::Point(290, 103);
 			this->chkNPKM->Name = L"chkNPKM";
 			this->chkNPKM->Size = System::Drawing::Size(89, 17);
-			this->chkNPKM->TabIndex = 5;
+			this->chkNPKM->TabIndex = 7;
 			this->chkNPKM->Text = L"N\'s Pokémon";
 			this->chkNPKM->UseVisualStyleBackColor = true;
 			this->chkNPKM->CheckedChanged += gcnew System::EventHandler(this, &frmPKMViewer::chkNPKM_CheckedChanged);
@@ -2260,30 +2337,34 @@ namespace PKMDS_Desktop_Win {
 			// chkFateful
 			// 
 			this->chkFateful->AutoSize = true;
-			this->chkFateful->Location = System::Drawing::Point(240, 112);
+			this->chkFateful->Location = System::Drawing::Point(290, 80);
 			this->chkFateful->Name = L"chkFateful";
 			this->chkFateful->Size = System::Drawing::Size(109, 17);
-			this->chkFateful->TabIndex = 4;
+			this->chkFateful->TabIndex = 6;
 			this->chkFateful->Text = L"Fateful encounter";
 			this->chkFateful->UseVisualStyleBackColor = true;
 			this->chkFateful->CheckedChanged += gcnew System::EventHandler(this, &frmPKMViewer::chkFateful_CheckedChanged);
 			// 
 			// cbLanguage
 			// 
+			this->cbLanguage->AutoCompleteMode = System::Windows::Forms::AutoCompleteMode::SuggestAppend;
+			this->cbLanguage->AutoCompleteSource = System::Windows::Forms::AutoCompleteSource::ListItems;
 			this->cbLanguage->FormattingEnabled = true;
-			this->cbLanguage->Location = System::Drawing::Point(240, 85);
+			this->cbLanguage->Location = System::Drawing::Point(290, 53);
 			this->cbLanguage->Name = L"cbLanguage";
-			this->cbLanguage->Size = System::Drawing::Size(89, 21);
-			this->cbLanguage->TabIndex = 3;
+			this->cbLanguage->Size = System::Drawing::Size(137, 21);
+			this->cbLanguage->TabIndex = 5;
 			this->cbLanguage->SelectedIndexChanged += gcnew System::EventHandler(this, &frmPKMViewer::cbLanguage_SelectedIndexChanged);
 			// 
 			// cbGame
 			// 
+			this->cbGame->AutoCompleteMode = System::Windows::Forms::AutoCompleteMode::SuggestAppend;
+			this->cbGame->AutoCompleteSource = System::Windows::Forms::AutoCompleteSource::ListItems;
 			this->cbGame->FormattingEnabled = true;
-			this->cbGame->Location = System::Drawing::Point(240, 60);
+			this->cbGame->Location = System::Drawing::Point(290, 26);
 			this->cbGame->Name = L"cbGame";
-			this->cbGame->Size = System::Drawing::Size(89, 21);
-			this->cbGame->TabIndex = 2;
+			this->cbGame->Size = System::Drawing::Size(137, 21);
+			this->cbGame->TabIndex = 3;
 			this->cbGame->SelectedIndexChanged += gcnew System::EventHandler(this, &frmPKMViewer::cbGame_SelectedIndexChanged);
 			// 
 			// gbEgg
@@ -2304,13 +2385,15 @@ namespace PKMDS_Desktop_Win {
 			this->chkEggMet->Location = System::Drawing::Point(7, 20);
 			this->chkEggMet->Name = L"chkEggMet";
 			this->chkEggMet->Size = System::Drawing::Size(79, 17);
-			this->chkEggMet->TabIndex = 2;
+			this->chkEggMet->TabIndex = 0;
 			this->chkEggMet->Text = L"Met as egg";
 			this->chkEggMet->UseVisualStyleBackColor = true;
 			this->chkEggMet->CheckedChanged += gcnew System::EventHandler(this, &frmPKMViewer::chkEggMet_CheckedChanged);
 			// 
 			// cbEggLoc
 			// 
+			this->cbEggLoc->AutoCompleteMode = System::Windows::Forms::AutoCompleteMode::SuggestAppend;
+			this->cbEggLoc->AutoCompleteSource = System::Windows::Forms::AutoCompleteSource::ListItems;
 			this->cbEggLoc->Enabled = false;
 			this->cbEggLoc->FormattingEnabled = true;
 			this->cbEggLoc->Location = System::Drawing::Point(6, 43);
@@ -2323,9 +2406,10 @@ namespace PKMDS_Desktop_Win {
 			// 
 			this->dtEgg->Enabled = false;
 			this->dtEgg->Location = System::Drawing::Point(6, 70);
+			this->dtEgg->MinDate = System::DateTime(2006, 1, 1, 0, 0, 0, 0);
 			this->dtEgg->Name = L"dtEgg";
 			this->dtEgg->Size = System::Drawing::Size(188, 20);
-			this->dtEgg->TabIndex = 0;
+			this->dtEgg->TabIndex = 2;
 			this->dtEgg->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::dtEgg_ValueChanged);
 			// 
 			// gbMet
@@ -2341,19 +2425,22 @@ namespace PKMDS_Desktop_Win {
 			// 
 			// cbMetLoc
 			// 
+			this->cbMetLoc->AutoCompleteMode = System::Windows::Forms::AutoCompleteMode::SuggestAppend;
+			this->cbMetLoc->AutoCompleteSource = System::Windows::Forms::AutoCompleteSource::ListItems;
 			this->cbMetLoc->FormattingEnabled = true;
 			this->cbMetLoc->Location = System::Drawing::Point(7, 20);
 			this->cbMetLoc->Name = L"cbMetLoc";
 			this->cbMetLoc->Size = System::Drawing::Size(187, 21);
-			this->cbMetLoc->TabIndex = 1;
+			this->cbMetLoc->TabIndex = 0;
 			this->cbMetLoc->SelectedIndexChanged += gcnew System::EventHandler(this, &frmPKMViewer::cbMetLoc_SelectedIndexChanged);
 			// 
 			// dtMet
 			// 
 			this->dtMet->Location = System::Drawing::Point(6, 47);
+			this->dtMet->MinDate = System::DateTime(2006, 1, 1, 0, 0, 0, 0);
 			this->dtMet->Name = L"dtMet";
 			this->dtMet->Size = System::Drawing::Size(188, 20);
-			this->dtMet->TabIndex = 0;
+			this->dtMet->TabIndex = 1;
 			this->dtMet->ValueChanged += gcnew System::EventHandler(this, &frmPKMViewer::dtMet_ValueChanged);
 			// 
 			// tpRibbons
@@ -2394,7 +2481,7 @@ namespace PKMDS_Desktop_Win {
 			this->lblPID->Location = System::Drawing::Point(5, 7);
 			this->lblPID->Name = L"lblPID";
 			this->lblPID->Size = System::Drawing::Size(115, 13);
-			this->lblPID->TabIndex = 1;
+			this->lblPID->TabIndex = 0;
 			this->lblPID->Text = L"Personality Value (PID)";
 			// 
 			// txtPID
@@ -2402,7 +2489,7 @@ namespace PKMDS_Desktop_Win {
 			this->txtPID->Location = System::Drawing::Point(5, 23);
 			this->txtPID->Name = L"txtPID";
 			this->txtPID->Size = System::Drawing::Size(115, 20);
-			this->txtPID->TabIndex = 0;
+			this->txtPID->TabIndex = 1;
 			this->txtPID->TextChanged += gcnew System::EventHandler(this, &frmPKMViewer::txtPID_TextChanged);
 			// 
 			// ttMove1Flavor
@@ -2630,6 +2717,10 @@ namespace PKMDS_Desktop_Win {
 				SQL << "select image from misc where identifier = \"shiny\"";
 				pbShiny->Image = pviewvsqlite->getSQLImage(SQL.str());
 			}
+			else
+			{
+				pbShiny->Image = nullptr;
+			}
 		}
 		void refreshmarkings()
 		{
@@ -2685,8 +2776,8 @@ namespace PKMDS_Desktop_Win {
 		}
 		void refreshexp()
 		{
-			numEXP->Maximum = (getpkmexpatlevel(temppkm->species,100));
-			numEXP->Value = temppkm->exp;
+			//numEXP->Maximum = (getpkmexpatlevel(temppkm->species,100));
+			numEXP->Value = Convert::ToDecimal(temppkm->exp);
 		}
 		void refreshlevel()
 		{
@@ -2743,6 +2834,8 @@ namespace PKMDS_Desktop_Win {
 				txtMove2TotalPP->Text = "";
 				pbMove2Type->Image = nullptr;
 				pbMove2Cat->Image = nullptr;
+				numMove1PPUps->Value = 0;
+				numMove1PP->Value = 0;
 			}
 		}
 		void refreshmove2()
@@ -2763,6 +2856,8 @@ namespace PKMDS_Desktop_Win {
 				txtMove2TotalPP->Text = "";
 				pbMove2Type->Image = nullptr;
 				pbMove2Cat->Image = nullptr;
+				numMove2PPUps->Value = 0;
+				numMove2PP->Value = 0;
 			}
 		}
 		void refreshmove3()
@@ -2783,6 +2878,8 @@ namespace PKMDS_Desktop_Win {
 				txtMove3TotalPP->Text = "";
 				pbMove3Type->Image = nullptr;
 				pbMove3Cat->Image = nullptr;
+				numMove3PPUps->Value = 0;
+				numMove3PP->Value = 0;
 			}
 		}
 		void refreshmove4()
@@ -2803,6 +2900,8 @@ namespace PKMDS_Desktop_Win {
 				txtMove4TotalPP->Text = "";
 				pbMove4Type->Image = nullptr;
 				pbMove4Cat->Image = nullptr;
+				numMove4PPUps->Value = 0;
+				numMove4PP->Value = 0;
 			}
 		}
 		void refreshmoves()
@@ -2814,15 +2913,9 @@ namespace PKMDS_Desktop_Win {
 		}
 	public: void displayPKM()
 			{
-
-				tpRibbons->Visible = false;
-
 				redisplayok = false;
-				// TODO: Is FindString causing performance issues?
-				//cbSpecies->SelectedIndex = cbSpecies->FindString(gcnew System::String(lookuppkmname(temppkm).c_str()));
 				cbSpecies->SelectedValue = (uint16)(temppkm->species);
-
-				//numSpecies->Value = Convert::ToDecimal((UInt16)(temppkm->species));
+				numEXP->Maximum = (getpkmexpatlevel(temppkm->species,100));
 				txtNickname->Text = gcnew System::String(getpkmnickname(temppkm).c_str());
 				txtOTName->Text = gcnew System::String(getpkmotname(temppkm).c_str());
 				if(temppkm->metlevel_otgender.otgender == Genders::female)
@@ -2839,12 +2932,9 @@ namespace PKMDS_Desktop_Win {
 				numTID->Value = Convert::ToDecimal(temppkm->tid);
 				numSID->Value = Convert::ToDecimal(temppkm->sid);
 
-				// TODO: Is FindString causing performance issues?
-				//cbMove1->SelectedIndex = cbMove1->FindString(gcnew System::String(lookupmovename(temppkm,0).c_str()));
 				cbMove1->SelectedValue = (uint16)(temppkm->moves[0]);
 				if(temppkm->moves[1] != Moves::NOTHING)
 				{ 
-					//cbMove2->SelectedIndex = cbMove2->FindString(gcnew System::String(lookupmovename(temppkm,1).c_str()));}
 					cbMove2->SelectedValue = (uint16)(temppkm->moves[1]);
 				}
 				else
@@ -2853,7 +2943,6 @@ namespace PKMDS_Desktop_Win {
 				}
 				if(temppkm->moves[2] != Moves::NOTHING)
 				{ 
-					//cbMove3->SelectedIndex = cbMove3->FindString(gcnew System::String(lookupmovename(temppkm,2).c_str()));}
 					cbMove3->SelectedValue = (uint16)(temppkm->moves[2]);
 				}
 				else
@@ -2862,14 +2951,12 @@ namespace PKMDS_Desktop_Win {
 				}
 				if(temppkm->moves[3] != Moves::NOTHING)
 				{ 
-					//cbMove4->SelectedIndex = cbMove4->FindString(gcnew System::String(lookupmovename(temppkm,3).c_str()));}
 					cbMove4->SelectedValue = (uint16)(temppkm->moves[3]);
 				}
 				else
 				{
 					cbMove4->SelectedIndex = 0;
 				}
-				//cbNature->SelectedIndex = cbNature->FindString(gcnew System::String(getnaturename(temppkm).c_str()));
 				cbNature->SelectedValue = (uint16)(temppkm->nature);
 
 				if(int(temppkm->nature) == 0 && int(temppkm->hometown) != int(Hometowns::black) && int(temppkm->hometown) != int(Hometowns::white))
@@ -2880,7 +2967,6 @@ namespace PKMDS_Desktop_Win {
 				{
 					cbNature->SelectedValue = (uint16)(temppkm->nature);
 				}
-				//cbAbility->SelectedIndex = cbAbility->FindString(gcnew System::String(lookupabilityname(temppkm).c_str()));
 				cbAbility->SelectedValue = (uint16)(temppkm->ability);
 
 				numHPIV->Value = Convert::ToDecimal(temppkm->ivs.hp);
@@ -2889,6 +2975,7 @@ namespace PKMDS_Desktop_Win {
 				numSpAtkIV->Value = Convert::ToDecimal(temppkm->ivs.spatk);
 				numSpDefIV->Value = Convert::ToDecimal(temppkm->ivs.spdef);
 				numSpeedIV->Value = Convert::ToDecimal(temppkm->ivs.speed);
+
 				numHPEV->Value = Convert::ToDecimal(temppkm->evs.hp);
 				numAttackEV->Value = Convert::ToDecimal(temppkm->evs.attack);
 				numDefenseEV->Value = Convert::ToDecimal(temppkm->evs.defense);
@@ -2904,16 +2991,13 @@ namespace PKMDS_Desktop_Win {
 				numMove3PP->Value = Convert::ToDecimal(temppkm->pp[2]);
 				numMove4PP->Value = Convert::ToDecimal(temppkm->pp[3]);
 				txtPID->Text = System::Convert::ToString(temppkm->pid);
-
 				chkFateful->Checked = temppkm->forms.fencounter;
 				chkNPKM->Checked = temppkm->dwability.n_pkm;
 				chkEggMet->Checked = pkmmetasegg(temppkm);
 				cbEggLoc->Enabled = pkmmetasegg(temppkm);
 				dtEgg->Enabled = pkmmetasegg(temppkm);
-
 				cbMetLoc->SelectedValue = (uint16)(pkm->met);
 				cbEggLoc->SelectedValue = (uint16)(pkm->eggmet);
-
 				dtMet->Value = DateTime(temppkm->metdate.year + 2000, temppkm->metdate.month, temppkm->metdate.day);
 				if(pkmmetasegg(temppkm))
 				{
@@ -2922,9 +3006,6 @@ namespace PKMDS_Desktop_Win {
 				cbGame->SelectedValue = (uint16)(temppkm->hometown);
 				cbLanguage->SelectedValue = (uint16)(temppkm->country);
 				numMetLevel->Value = Convert::ToDecimal(temppkm->metlevel_otgender.metlevel);
-
-				// TODO: Is FindString causing performance issues?
-				//cbItem->SelectedIndex = cbItem->FindString(gcnew System::String(lookupitemname(temppkm).c_str()));
 				cbItem->SelectedValue = (uint16)(temppkm->item);
 
 				//lvBall->Columns->Add("");
@@ -2945,6 +3026,18 @@ namespace PKMDS_Desktop_Win {
 				//MessageBox::Show(System::Convert::ToString(lvBall->Columns[0]->Width));
 				//lvBall->Items[(int)(temppkm->ball)]->Selected = true;
 
+				/*
+				tameness
+				form
+				ability (1 or 2)
+				pokerus
+				isegg
+				encounter
+				characteristic
+				hidden power
+				contest stats
+				*/
+
 				refreshexp();
 				refreshlevel();
 				refreshsprite();
@@ -2958,6 +3051,13 @@ namespace PKMDS_Desktop_Win {
 				refreshtypes();
 				refreshpkrs();
 				refreshmoves();
+
+				//tpRibbons->Visible = false;
+				if(tcViewer->TabPages->Count == 6)
+				{
+					tcViewer->TabPages->RemoveAt(4);
+				}
+
 				redisplayok = true;
 			}
 	public: void setpkm(pokemon_obj * pkm)
@@ -3046,17 +3146,6 @@ namespace PKMDS_Desktop_Win {
 					 }
 					 refreshitem();
 				 }
-			 }
-	private: System::Void numSpecies_ValueChanged(System::Object^  sender, System::EventArgs^  e) 
-			 {
-				 //if(redisplayok)
-				 //{
-				 // //temppkm->species = (Species::pkmspecies)((UInt16)(numSpecies->Value));
-
-				 // // TODO: Is FindString causing performance issues?
-				 // //cbSpecies->SelectedIndex = cbSpecies->FindString(gcnew System::String(lookuppkmname(temppkm).c_str()))/*(int)(temppkm->species)-1*/;
-				 // //cbSpecies->SelectedIndex = (int)(numSpecies->Value) - 1;
-				 //}
 			 }
 	private: System::Void cbSpecies_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) 
 			 {
@@ -3226,7 +3315,7 @@ namespace PKMDS_Desktop_Win {
 			 {
 				 if(redisplayok)
 				 {
-					 temppkm->ivs.hp = Convert::ToByte(numHPEV->Value);
+					 temppkm->ivs.hp = byte(numHPIV->Value);
 					 refreshcalcstats();
 				 }
 			 }
@@ -3234,7 +3323,7 @@ namespace PKMDS_Desktop_Win {
 			 {
 				 if(redisplayok)
 				 {
-					 temppkm->ivs.attack = Convert::ToByte(numAttackEV->Value);
+					 temppkm->ivs.attack = byte(numAttackIV->Value);
 					 refreshcalcstats();
 				 }
 			 }
@@ -3242,7 +3331,7 @@ namespace PKMDS_Desktop_Win {
 			 {
 				 if(redisplayok)
 				 {
-					 temppkm->ivs.defense = Convert::ToByte(numDefenseEV->Value);
+					 temppkm->ivs.defense = byte(numDefenseIV->Value);
 					 refreshcalcstats();
 				 }
 			 }
@@ -3250,7 +3339,7 @@ namespace PKMDS_Desktop_Win {
 			 {
 				 if(redisplayok)
 				 {
-					 temppkm->ivs.spatk = Convert::ToByte(numSpAtkEV->Value);
+					 temppkm->ivs.spatk = byte(numSpAtkIV->Value);
 					 refreshcalcstats();
 				 }
 			 }
@@ -3258,7 +3347,7 @@ namespace PKMDS_Desktop_Win {
 			 {
 				 if(redisplayok)
 				 {
-					 temppkm->ivs.spdef = Convert::ToByte(numSpDefIV->Value);
+					 temppkm->ivs.spdef = byte(numSpDefIV->Value);
 					 refreshcalcstats();
 				 }
 			 }
@@ -3266,7 +3355,7 @@ namespace PKMDS_Desktop_Win {
 			 {
 				 if(redisplayok)
 				 {
-					 temppkm->ivs.speed = Convert::ToByte(numSpeedIV->Value);
+					 temppkm->ivs.speed = byte(numSpeedIV->Value);
 					 refreshcalcstats();
 				 }
 			 }
@@ -3275,6 +3364,7 @@ namespace PKMDS_Desktop_Win {
 				 if(redisplayok)
 				 {
 					 temppkm->evs.hp = Convert::ToByte(numHPEV->Value);
+					 refreshtotalevs();
 					 refreshcalcstats();
 				 }
 			 }
@@ -3283,6 +3373,7 @@ namespace PKMDS_Desktop_Win {
 				 if(redisplayok)
 				 {
 					 temppkm->evs.attack = Convert::ToByte(numAttackEV->Value);
+					 refreshtotalevs();
 					 refreshcalcstats();
 				 }
 			 }
@@ -3291,6 +3382,7 @@ namespace PKMDS_Desktop_Win {
 				 if(redisplayok)
 				 {
 					 temppkm->evs.defense = Convert::ToByte(numDefenseEV->Value);
+					 refreshtotalevs();
 					 refreshcalcstats();
 				 }
 			 }
@@ -3299,6 +3391,7 @@ namespace PKMDS_Desktop_Win {
 				 if(redisplayok)
 				 {
 					 temppkm->evs.spatk = Convert::ToByte(numSpAtkEV->Value);
+					 refreshtotalevs();
 					 refreshcalcstats();
 				 }
 			 }
@@ -3307,6 +3400,7 @@ namespace PKMDS_Desktop_Win {
 				 if(redisplayok)
 				 {
 					 temppkm->evs.spdef = Convert::ToByte(numSpDefEV->Value);
+					 refreshtotalevs();
 					 refreshcalcstats();
 				 }
 			 }
@@ -3315,6 +3409,7 @@ namespace PKMDS_Desktop_Win {
 				 if(redisplayok)
 				 {
 					 temppkm->evs.speed = Convert::ToByte(numSpeedEV->Value);
+					 refreshtotalevs();
 					 refreshcalcstats();
 				 }
 			 }
@@ -3346,45 +3441,45 @@ namespace PKMDS_Desktop_Win {
 			 {
 				 if(redisplayok)
 				 {
-					 if(cbMove2->SelectedValue == DBNull::Value)
+					 if((cbMove2->SelectedValue == DBNull::Value) | (cbMove2->SelectedIndex == 0))
 					 {
 						 temppkm->moves[1] = Moves::NOTHING;
 					 }
 					 else
 					 {
 						 temppkm->moves[1] = (Moves::moves)(Convert::ToUInt16(cbMove2->SelectedValue));
-						 refreshmove2();
 					 }
+					 refreshmove2();
 				 }
 			 }
 	private: System::Void cbMove3_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
 				 if(redisplayok)
 				 {
-					 if(cbMove3->SelectedValue == DBNull::Value)
+					 if((cbMove3->SelectedValue == DBNull::Value) | (cbMove3->SelectedIndex == 0))
 					 {
 						 temppkm->moves[2] = Moves::NOTHING;
 					 }
 					 else
 					 {
 						 temppkm->moves[2] = (Moves::moves)(Convert::ToUInt16(cbMove3->SelectedValue));
-						 refreshmove3();
 					 }
+					 refreshmove3();
 				 }
 			 }
 	private: System::Void cbMove4_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
 			 {
 				 if(redisplayok)
 				 {
-					 if(cbMove4->SelectedValue == DBNull::Value)
+					 if((cbMove4->SelectedValue == DBNull::Value) | (cbMove4->SelectedIndex == 0))
 					 {
 						 temppkm->moves[3] = Moves::NOTHING;
 					 }
 					 else
 					 {
 						 temppkm->moves[3] = (Moves::moves)(Convert::ToUInt16(cbMove4->SelectedValue));
-						 refreshmove4();
 					 }
+					 refreshmove4();
 				 }
 			 }
 	private: System::Void numMove1PPUps_ValueChanged(System::Object^  sender, System::EventArgs^  e)

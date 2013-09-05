@@ -177,6 +177,7 @@ namespace PKMDS_Desktop_Win {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(frmBoxes::typeid));
 			this->tlPCBox = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->pbBoxSlot30 = (gcnew System::Windows::Forms::PictureBox());
 			this->pbBoxSlot29 = (gcnew System::Windows::Forms::PictureBox());
@@ -1154,7 +1155,7 @@ namespace PKMDS_Desktop_Win {
 			// loadSAVToolStripMenuItem
 			// 
 			this->loadSAVToolStripMenuItem->Name = L"loadSAVToolStripMenuItem";
-			this->loadSAVToolStripMenuItem->Size = System::Drawing::Size(152, 22);
+			this->loadSAVToolStripMenuItem->Size = System::Drawing::Size(109, 22);
 			this->loadSAVToolStripMenuItem->Text = L"Load...";
 			this->loadSAVToolStripMenuItem->Click += gcnew System::EventHandler(this, &frmBoxes::loadSAVToolStripMenuItem_Click);
 			// 
@@ -1162,7 +1163,7 @@ namespace PKMDS_Desktop_Win {
 			// 
 			this->saveToolStripMenuItem->Enabled = false;
 			this->saveToolStripMenuItem->Name = L"saveToolStripMenuItem";
-			this->saveToolStripMenuItem->Size = System::Drawing::Size(152, 22);
+			this->saveToolStripMenuItem->Size = System::Drawing::Size(109, 22);
 			this->saveToolStripMenuItem->Text = L"Save...";
 			this->saveToolStripMenuItem->Click += gcnew System::EventHandler(this, &frmBoxes::saveToolStripMenuItem_Click);
 			// 

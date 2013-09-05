@@ -68,7 +68,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <StringPooling>true</StringPooling>
     </ClCompile>
@@ -78,7 +78,7 @@
       </AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>main</EntryPointSymbol>
-      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -91,7 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\PKMDS_Desktop_Win\PKMDS_Desktop_Win\ReadMe.txt" />
-    <None Include="app.ico" />
+    <None Include="dreamball_icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\lib\pkmds_g5.cpp" />
@@ -102,6 +102,7 @@
     <ClCompile Include="..\..\lib\stdafx.cpp" />
     <ClCompile Include="..\..\PKMDS_Desktop_Win\PKMDS_Desktop_Win\frmPKMViewer.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="pkmdataviewer.cpp" />
     <ClCompile Include="PKMDS_Desktop_Win_2010.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -120,17 +121,23 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="..\..\Visual_Studio\vs_sqlite.h" />
+    <ClInclude Include="pkmdataviewer.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\..\PKMDS_Desktop_Win\PKMDS_Desktop_Win\frmBoxes.resX">
+    <EmbeddedResource Include="..\..\PKMDS_Desktop_Win\PKMDS_Desktop_Win\frmBoxes.resx">
       <DependentUpon>frmBoxes.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="..\..\PKMDS_Desktop_Win\PKMDS_Desktop_Win\frmPKMViewer.resx">
       <DependentUpon>frmPKMViewer.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pkmdataviewer.resx">
+      <DependentUpon>pkmdataviewer.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

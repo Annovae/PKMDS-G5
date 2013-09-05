@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.ico">
+    <None Include="..\..\PKMDS_Desktop_Win\PKMDS_Desktop_Win\ReadMe.txt" />
+    <None Include="dreamball_icon.ico">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="..\..\PKMDS_Desktop_Win\PKMDS_Desktop_Win\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PKMDS_Desktop_Win_2010.cpp">
@@ -46,6 +46,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\PKMDS_Desktop_Win\PKMDS_Desktop_Win\frmPKMViewer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pkmdataviewer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -86,18 +89,13 @@
     <ClInclude Include="..\..\PKMDS_Desktop_Win\PKMDS_Desktop_Win\frmPKMViewer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="pkmdataviewer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="..\..\PKMDS_Desktop_Win\PKMDS_Desktop_Win\frmBoxes.resX">
-      <Filter>Resource Files</Filter>
-    </EmbeddedResource>
-    <EmbeddedResource Include="..\..\PKMDS_Desktop_Win\PKMDS_Desktop_Win\frmPKMViewer.resx">
-      <Filter>Resource Files</Filter>
-    </EmbeddedResource>
   </ItemGroup>
 </Project>
