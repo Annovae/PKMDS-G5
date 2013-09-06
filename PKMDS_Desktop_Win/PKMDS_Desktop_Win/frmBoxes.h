@@ -1,6 +1,7 @@
 #pragma region Stuff I dont need to see
 #pragma once
 #include "frmPKMViewer.h"
+#include "../../PKMDS_Desktop_Win_2010/PKMDS_Desktop_Win_2010/pkmdataviewer.h"
 namespace PKMDS_Desktop_Win {
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -163,6 +164,8 @@ namespace PKMDS_Desktop_Win {
 	private: System::Windows::Forms::Label^  lblBox03;
 	private: System::Windows::Forms::ToolStripMenuItem^  saveToolStripMenuItem;
 	private: System::Windows::Forms::SaveFileDialog^  fileSave;
+private: System::Windows::Forms::ToolStripMenuItem^  viewToolStripMenuItem;
+private: System::Windows::Forms::ToolStripMenuItem^  reportToolStripMenuItem;
 	protected: 
 	private:
 		/// <summary>
@@ -177,7 +180,6 @@ namespace PKMDS_Desktop_Win {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(frmBoxes::typeid));
 			this->tlPCBox = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->pbBoxSlot30 = (gcnew System::Windows::Forms::PictureBox());
 			this->pbBoxSlot29 = (gcnew System::Windows::Forms::PictureBox());
@@ -298,6 +300,8 @@ namespace PKMDS_Desktop_Win {
 			this->pbBox02 = (gcnew System::Windows::Forms::PictureBox());
 			this->lblBox02 = (gcnew System::Windows::Forms::Label());
 			this->fileSave = (gcnew System::Windows::Forms::SaveFileDialog());
+			this->viewToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->reportToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->tlPCBox->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbBoxSlot30))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pbBoxSlot29))->BeginInit();
@@ -1137,7 +1141,8 @@ namespace PKMDS_Desktop_Win {
 			// 
 			// msMain
 			// 
-			this->msMain->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) {this->fileToolStripMenuItem});
+			this->msMain->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {this->fileToolStripMenuItem, 
+				this->viewToolStripMenuItem});
 			this->msMain->Location = System::Drawing::Point(0, 0);
 			this->msMain->Name = L"msMain";
 			this->msMain->Size = System::Drawing::Size(361, 24);
@@ -2592,6 +2597,20 @@ namespace PKMDS_Desktop_Win {
 			// 
 			this->fileSave->Filter = L"SAV Files|*.sav|All Files|*.*";
 			// 
+			// viewToolStripMenuItem
+			// 
+			this->viewToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) {this->reportToolStripMenuItem});
+			this->viewToolStripMenuItem->Name = L"viewToolStripMenuItem";
+			this->viewToolStripMenuItem->Size = System::Drawing::Size(44, 20);
+			this->viewToolStripMenuItem->Text = L"View";
+			// 
+			// reportToolStripMenuItem
+			// 
+			this->reportToolStripMenuItem->Name = L"reportToolStripMenuItem";
+			this->reportToolStripMenuItem->Size = System::Drawing::Size(152, 22);
+			this->reportToolStripMenuItem->Text = L"Report";
+			this->reportToolStripMenuItem->Click += gcnew System::EventHandler(this, &frmBoxes::reportToolStripMenuItem_Click);
+			// 
 			// frmBoxes
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -3392,5 +3411,11 @@ namespace PKMDS_Desktop_Win {
 					 write(marshal_as<std::string>(fileSave->FileName).c_str(),savout);
 				 }
 			 }
-	};
+	private: System::Void reportToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) 
+			 {
+				 PKMDS_Desktop_Win_2010::pkmdataviewer^ dataviewer = gcnew PKMDS_Desktop_Win_2010::pkmdataviewer();
+				 dataviewer->setsav(sav);
+				 dataviewer->ShowDialog();
+			 }
+};
 }
