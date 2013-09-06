@@ -2739,6 +2739,7 @@ namespace PKMDS_Desktop_Win {
 		pokemon_obj * b;
 		box_obj * form_box;
 		bool savloaded;
+		bool dragpkmisparty;
 	private: System::Void frmBoxes_Load(System::Object^  sender, System::EventArgs^  e) 
 			 {
 				 vsqlite = gcnew VS_SQLite();
@@ -2785,6 +2786,7 @@ namespace PKMDS_Desktop_Win {
 				 pbPartySlot04->AllowDrop = true;
 				 pbPartySlot05->AllowDrop = true;
 				 pbPartySlot06->AllowDrop = true;
+				 dragpkmisparty = false;
 				 //sav = 0;
 			 }
 			 void refreshbox()
@@ -2806,6 +2808,32 @@ namespace PKMDS_Desktop_Win {
 						 pb->Image = vsqlite->getSQLImage(o.str());
 					 }
 				 }
+			 }
+			 void refreshparty()
+			 {
+				 for each (System::Windows::Forms::PictureBox^ pb in tlParty->Controls)
+				 {
+					 pb->Image = nullptr;
+					 uint16 slot = (uint16)(int::Parse(pb->Name->Substring(11)));
+					 if(slot <= sav->cur.party.size)
+					 {
+						 party_pkm * ppkm_ = new party_pkm;
+						 pokemon_obj * pkm_ = new pokemon_obj;
+						 ppkm_ = &(sav->cur.party.pokemon[slot-1]);
+						 pkm_ = &(ppkm_->pkm_data);
+						 if(!((bool)ppkm_->pkm_data.ispartydatadecrypted))
+						 {
+							 decryptpkm(ppkm_);
+						 }
+						 if(pkm_->species != 0)
+						 {
+							 std::ostringstream o;
+							 geticonsql(o,pkm_);
+							 pb->Image = vsqlite->getSQLImage(o.str());
+						 }
+					 }
+				 }
+
 			 }
 			 void changebox(int box)
 			 {
@@ -2883,32 +2911,6 @@ namespace PKMDS_Desktop_Win {
 				 refreshbox();
 				 refreshparty();
 			 }
-			 void refreshparty()
-			 {
-				 for each (System::Windows::Forms::PictureBox^ pb in tlParty->Controls)
-				 {
-					 pb->Image = nullptr;
-					 uint16 slot = (uint16)(int::Parse(pb->Name->Substring(11)));
-					 if(slot <= sav->cur.party.size)
-					 {
-						 party_pkm * ppkm_ = new party_pkm;
-						 pokemon_obj * pkm_ = new pokemon_obj;
-						 ppkm_ = &(sav->cur.party.pokemon[slot-1]);
-						 pkm_ = &(ppkm_->pkm_data);
-						 if(!((bool)ppkm_->pkm_data.ispartydatadecrypted))
-						 {
-							 decryptpkm(ppkm_);
-						 }
-						 if(pkm_->species != 0)
-						 {
-							 std::ostringstream o;
-							 geticonsql(o,pkm_);
-							 pb->Image = vsqlite->getSQLImage(o.str());
-						 }
-					 }
-				 }
-
-			 }
 	private: System::Void loadSAVToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) 
 			 {
 				 fileOpen->FileName = "";
@@ -2973,6 +2975,17 @@ namespace PKMDS_Desktop_Win {
 					 }
 					 IntPtr ^ ipt = safe_cast<IntPtr^>(e->Data->GetData("Pokemon",true));
 					 pokemon_obj * apkm = reinterpret_cast<pokemon_obj*>(ipt->ToPointer());
+					 if(dragpkmisparty)
+					 {
+						 if((pkm->species == Species::NOTHING) & (apkm->species != Species::NOTHING))
+						 {
+							 sav->cur.party.size--;
+						 }
+						 if((pkm->species != Species::NOTHING) & (apkm->species == Species::NOTHING))
+						 {
+							 sav->cur.party.size++;
+						 }
+					 }
 					 swap_pkm(pkm,apkm);
 					 refreshparty();
 					 refreshbox();
@@ -3057,6 +3070,7 @@ namespace PKMDS_Desktop_Win {
 				 {
 					 if(e->Clicks <= 1)
 					 {
+						 dragpkmisparty = false;
 						 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
 						 int slot;
 						 if(int::TryParse(pb->Name->Substring(pb->Name->Length - 2, 2), slot))
@@ -3127,6 +3141,17 @@ namespace PKMDS_Desktop_Win {
 					 }
 					 IntPtr ^ ipt = safe_cast<IntPtr^>(e->Data->GetData("Pokemon",true));
 					 pokemon_obj * apkm = reinterpret_cast<pokemon_obj*>(ipt->ToPointer());
+					 if(!dragpkmisparty)
+					 {
+						 if((pkm->species == Species::NOTHING) & (apkm->species != Species::NOTHING))
+						 {
+							 sav->cur.party.size++;
+						 }
+						 if((pkm->species != Species::NOTHING) & (apkm->species == Species::NOTHING))
+						 {
+							 sav->cur.party.size--;
+						 }
+					 }
 					 swap_pkm(pkm,apkm);
 					 refreshparty();
 					 refreshbox();
@@ -3206,6 +3231,7 @@ namespace PKMDS_Desktop_Win {
 				 {
 					 if(e->Clicks <= 1)
 					 {
+						 dragpkmisparty = true;
 						 System::Windows::Forms::PictureBox^ pb = (System::Windows::Forms::PictureBox^)sender;
 						 int slot;
 						 if(int::TryParse(pb->Name->Substring(pb->Name->Length - 2, 2), slot))

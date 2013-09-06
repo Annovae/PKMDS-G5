@@ -19,9 +19,11 @@ public: VS_SQLite()
 			db = gcnew SQLiteConnection();
 			imgdb = gcnew SQLiteConnection();
 			String ^ dbdir = "";
+#ifdef _DEBUG
 			//dbdir = "C:\\Users\\Mike\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\"; // Laptop
-			//dbdir = "C:\\Users\\Michael Bond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\"; // Desktop
+			dbdir = "C:\\Users\\Michael Bond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\"; // Desktop
 			//dbdir = "C:\\Users\\michaelbond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\"; // Work
+#endif
 			db->ConnectionString = L"Data Source='" + dbdir + L"veekun-pokedex.sqlite'";
 			db->Open();
 			imgdb->ConnectionString = L"Data Source='" + dbdir + L"images.sqlite'";

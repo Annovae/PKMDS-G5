@@ -3080,10 +3080,20 @@ namespace PKMDS_Desktop_Win {
 					 {
 						 encryptpkm(temppkm);
 					 }
+					 else
+					 {
+						 pkm->ispartydatadecrypted = 0;
+						 pkm->isboxdatadecrypted = 0;
+					 }
 					 write(marshal_as<std::string>(savePKM->FileName->Trim()).c_str(),temppkm);
 					 if(savePKM->FileName->Trim()->ToLower()->EndsWith(".bin"))
 					 {
 						 decryptpkm(temppkm);
+					 }
+					 else
+					 {
+						 pkm->ispartydatadecrypted = 1;
+						 pkm->isboxdatadecrypted = 1;
 					 }
 				 }
 			 }
