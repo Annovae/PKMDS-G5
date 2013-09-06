@@ -14,7 +14,7 @@ public : SQLiteConnection ^imgdb;
 		 SQLiteCommand ^cmdSelect;
 		 SQLiteDataReader ^reader;
 
-public: VS_SQLite()
+public: DllExport VS_SQLite()
 		{
 			db = gcnew SQLiteConnection();
 			imgdb = gcnew SQLiteConnection();
@@ -38,7 +38,7 @@ public: VS_SQLite()
 			delete cmdSelect;
 			delete reader;
 		}
-public: String ^ getSQLText(String ^ SQL)
+public: DllExport String ^ getSQLText(String ^ SQL)
 		{
 			try
 			{
@@ -53,7 +53,7 @@ public: String ^ getSQLText(String ^ SQL)
 				return "";
 			}
 		}
-public: DataSet ^ getSQLDS(String ^ SQL)
+public: DllExport DataSet ^ getSQLDS(String ^ SQL)
 		{
 			DataSet ^ DS = gcnew DataSet();
 			SQLiteDataAdapter ^ DB = gcnew SQLiteDataAdapter(SQL,db);
@@ -62,7 +62,7 @@ public: DataSet ^ getSQLDS(String ^ SQL)
 			delete DB;
 			return DS;
 		}
-public: DataSet ^ getSQLIMGDS(String ^ SQL)
+public: DllExport DataSet ^ getSQLIMGDS(String ^ SQL)
 		{
 			DataSet ^ DS = gcnew DataSet();
 			SQLiteDataAdapter ^ DB = gcnew SQLiteDataAdapter(SQL,imgdb);
@@ -71,7 +71,7 @@ public: DataSet ^ getSQLIMGDS(String ^ SQL)
 			delete DB;
 			return DS;
 		}
-public: int getSQLInt(String ^ SQL)
+public: DllExport int getSQLInt(String ^ SQL)
 		{
 			try
 			{
@@ -86,7 +86,7 @@ public: int getSQLInt(String ^ SQL)
 				return 0;
 			}
 		}
-public: Drawing::Image^ getSQLImage(String^ SQL)
+public: DllExport Drawing::Image^ getSQLImage(String^ SQL)
 		{
 			SQLiteCommand ^ cmd = imgdb->CreateCommand();
 			cmd->CommandText = SQL;
@@ -118,7 +118,7 @@ public: Drawing::Image^ getSQLImage(String^ SQL)
 			}
 			return img;
 		}
-public: String ^ getSQLText(std::string sql)
+public: DllExport String ^ getSQLText(std::string sql)
 		{
 			try
 			{
@@ -130,24 +130,24 @@ public: String ^ getSQLText(std::string sql)
 				return "";
 			}
 		}
-public: std::string getSQLTextstd(std::string sql)
+public: DllExport std::string getSQLTextstd(std::string sql)
 		{
 			String^ SQL = gcnew String(sql.c_str());
 			String^ sysstring = getSQLText(SQL);
 			delete SQL;
 			return marshal_as<std::string>(sysstring);
 		}
-public: int getSQLInt(std::string sql)
+public: DllExport int getSQLInt(std::string sql)
 		{
 			String^ SQL = gcnew String(sql.c_str());
 			return getSQLInt(SQL);
 		}
-public: DataSet ^ getSQLDS(std::string sql)
+public: DllExport DataSet ^ getSQLDS(std::string sql)
 		{
 			String^ SQL = gcnew String(sql.c_str());
 			return getSQLDS(SQL);
 		}
-public: Drawing::Image^ getSQLImage(std::string sql)
+public: DllExport Drawing::Image^ getSQLImage(std::string sql)
 		{
 			String^ SQL = gcnew String(sql.c_str());
 			return getSQLImage(SQL);
