@@ -86,7 +86,7 @@ string getpkmlevelsql(const int id, const int exp)
       << "                  AND experience.growth_rate_id = pokemon_species.growth_rate_id "
       << "WHERE  ( experience.experience <= " << exp << " ) "
       << "       AND ( pokemon_species.id = " << id << " ) "
-      << "ORDER  BY experience.experience DESC ";
+      << "ORDER  BY experience.level DESC ";
     return o.str();
 }
 string getpkmexptonextsql(const int id, const int exp)

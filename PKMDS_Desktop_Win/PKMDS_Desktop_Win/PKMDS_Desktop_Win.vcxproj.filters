@@ -48,6 +48,9 @@
     <ClCompile Include="frmPKMViewer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\PKMDS_Desktop_Win_2010\PKMDS_Desktop_Win_2010\pkmdataviewer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -86,6 +89,9 @@
     <ClInclude Include="frmPKMViewer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\PKMDS_Desktop_Win_2010\PKMDS_Desktop_Win_2010\pkmdataviewer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">
@@ -97,6 +103,9 @@
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPKMViewer.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\PKMDS_Desktop_Win_2010\PKMDS_Desktop_Win_2010\pkmdataviewer.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
   </ItemGroup>

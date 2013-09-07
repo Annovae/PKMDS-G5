@@ -27,7 +27,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <CLRSupport>Pure</CLRSupport>
+    <CLRSupport>true</CLRSupport>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
@@ -67,7 +67,9 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -96,6 +98,7 @@
     <ClCompile Include="..\..\lib\pkmds_sql.cpp" />
     <ClCompile Include="..\..\lib\pkmds_vector.cpp" />
     <ClCompile Include="..\..\lib\stdafx.cpp" />
+    <ClCompile Include="..\..\PKMDS_Desktop_Win_2010\PKMDS_Desktop_Win_2010\pkmdataviewer.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="frmPKMViewer.cpp" />
     <ClCompile Include="PKMDS_Desktop_Win.cpp" />
@@ -109,6 +112,9 @@
     <ClInclude Include="..\..\include\pkmds\pokeprng.h" />
     <ClInclude Include="..\..\include\pkmds\stdafx.h" />
     <ClInclude Include="..\..\include\pkmds\wondercard.h" />
+    <ClInclude Include="..\..\PKMDS_Desktop_Win_2010\PKMDS_Desktop_Win_2010\pkmdataviewer.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="..\..\Visual_Studio\vs_sqlite.h" />
     <ClInclude Include="frmBoxes.h">
       <FileType>CppForm</FileType>
@@ -122,6 +128,9 @@
     <ResourceCompile Include="app.rc" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="..\..\PKMDS_Desktop_Win_2010\PKMDS_Desktop_Win_2010\pkmdataviewer.resx">
+      <DependentUpon>..\..\PKMDS_Desktop_Win_2010\PKMDS_Desktop_Win_2010\pkmdataviewer.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmBoxes.resX">
       <DependentUpon>frmBoxes.h</DependentUpon>
       <SubType>Designer</SubType>

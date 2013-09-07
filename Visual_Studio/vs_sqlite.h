@@ -14,14 +14,14 @@ public : SQLiteConnection ^imgdb;
 		 SQLiteCommand ^cmdSelect;
 		 SQLiteDataReader ^reader;
 
-public: DllExport VS_SQLite()
+public:  VS_SQLite()
 		{
 			db = gcnew SQLiteConnection();
 			imgdb = gcnew SQLiteConnection();
 			String ^ dbdir = "";
 #ifdef _DEBUG
-			//dbdir = "C:\\Users\\Mike\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\"; // Laptop
-			dbdir = "C:\\Users\\Michael Bond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\"; // Desktop
+			dbdir = "C:\\Users\\Mike\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\"; // Laptop
+			//dbdir = "C:\\Users\\Michael Bond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\"; // Desktop
 			//dbdir = "C:\\Users\\michaelbond\\Documents\\GitHub\\PKMDS-G5\\SQLite Databases\\"; // Work
 #endif
 			db->ConnectionString = L"Data Source='" + dbdir + L"veekun-pokedex.sqlite'";
@@ -38,7 +38,7 @@ public: DllExport VS_SQLite()
 			delete cmdSelect;
 			delete reader;
 		}
-public: DllExport String ^ getSQLText(String ^ SQL)
+public:  String ^ getSQLText(String ^ SQL)
 		{
 			try
 			{
@@ -53,7 +53,7 @@ public: DllExport String ^ getSQLText(String ^ SQL)
 				return "";
 			}
 		}
-public: DllExport DataSet ^ getSQLDS(String ^ SQL)
+public:  DataSet ^ getSQLDS(String ^ SQL)
 		{
 			DataSet ^ DS = gcnew DataSet();
 			SQLiteDataAdapter ^ DB = gcnew SQLiteDataAdapter(SQL,db);
@@ -62,7 +62,7 @@ public: DllExport DataSet ^ getSQLDS(String ^ SQL)
 			delete DB;
 			return DS;
 		}
-public: DllExport DataSet ^ getSQLIMGDS(String ^ SQL)
+public:  DataSet ^ getSQLIMGDS(String ^ SQL)
 		{
 			DataSet ^ DS = gcnew DataSet();
 			SQLiteDataAdapter ^ DB = gcnew SQLiteDataAdapter(SQL,imgdb);
@@ -71,7 +71,7 @@ public: DllExport DataSet ^ getSQLIMGDS(String ^ SQL)
 			delete DB;
 			return DS;
 		}
-public: DllExport int getSQLInt(String ^ SQL)
+public:  int getSQLInt(String ^ SQL)
 		{
 			try
 			{
@@ -86,7 +86,7 @@ public: DllExport int getSQLInt(String ^ SQL)
 				return 0;
 			}
 		}
-public: DllExport Drawing::Image^ getSQLImage(String^ SQL)
+public:  Drawing::Image^ getSQLImage(String^ SQL)
 		{
 			SQLiteCommand ^ cmd = imgdb->CreateCommand();
 			cmd->CommandText = SQL;
@@ -118,7 +118,7 @@ public: DllExport Drawing::Image^ getSQLImage(String^ SQL)
 			}
 			return img;
 		}
-public: DllExport String ^ getSQLText(std::string sql)
+public:  String ^ getSQLText(std::string sql)
 		{
 			try
 			{
@@ -130,24 +130,24 @@ public: DllExport String ^ getSQLText(std::string sql)
 				return "";
 			}
 		}
-public: DllExport std::string getSQLTextstd(std::string sql)
+public:  std::string getSQLTextstd(std::string sql)
 		{
 			String^ SQL = gcnew String(sql.c_str());
 			String^ sysstring = getSQLText(SQL);
 			delete SQL;
 			return marshal_as<std::string>(sysstring);
 		}
-public: DllExport int getSQLInt(std::string sql)
+public:  int getSQLInt(std::string sql)
 		{
 			String^ SQL = gcnew String(sql.c_str());
 			return getSQLInt(SQL);
 		}
-public: DllExport DataSet ^ getSQLDS(std::string sql)
+public:  DataSet ^ getSQLDS(std::string sql)
 		{
 			String^ SQL = gcnew String(sql.c_str());
 			return getSQLDS(SQL);
 		}
-public: DllExport Drawing::Image^ getSQLImage(std::string sql)
+public:  Drawing::Image^ getSQLImage(std::string sql)
 		{
 			String^ SQL = gcnew String(sql.c_str());
 			return getSQLImage(SQL);
