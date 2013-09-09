@@ -145,10 +145,10 @@ void frmBoxes::on_actionLoad_SAV_triggered()
             partygraphics[pslot]->setScene(partyscene);
             partygraphics[pslot]->installEventFilter(mouseEventEater);
         }
-        for(uint32 pslot = 0; pslot < baksavblock->party.size; pslot++)
-        {
-            decryptpkm(&(baksavblock->party.pokemon[pslot]));
-        }
+//        for(uint32 pslot = 0; pslot < baksavblock->party.size; pslot++)
+//        {
+//            decryptpkm(&(baksavblock->party.pokemon[pslot]));
+//        }
         if(ui->cbBoxes->count() == 0)
         {
             for(int i = 0; i < 24; i++)
@@ -162,7 +162,7 @@ void frmBoxes::on_actionLoad_SAV_triggered()
             for(int boxslot = 0; boxslot < 30; boxslot++)
             {
                 decryptpkm(&(cursavblock->boxes[boxnum].pokemon[boxslot]));
-                decryptpkm(&(baksavblock->boxes[boxnum].pokemon[boxslot]));
+//                decryptpkm(&(baksavblock->boxes[boxnum].pokemon[boxslot]));
             }
         }
         SavDecrypted = true;
@@ -248,7 +248,6 @@ void frmBoxes::on_actionSave_changes_triggered()
             *savout = *sav;
             bool isbw2 = savisbw2(savout);
             savout->cur.curbox = ui->cbBoxes->currentIndex();
-            savout->cur.block1checksum = getchecksum(&(savout->cur),0x0,0x3e0);
             for(uint32 pslot = 0; pslot < savout->cur.party.size; pslot++)
             {
                 encryptpkm(&(savout->cur.party.pokemon[pslot]));
@@ -262,6 +261,7 @@ void frmBoxes::on_actionSave_changes_triggered()
                 }
                 calcboxchecksum(&(savout->cur),boxnum,isbw2);
             }
+            savout->cur.block1checksum = getchecksum(&(savout->cur),0x0,0x3e0);
             fixsavchecksum(savout);
             write(SaveFileName.toStdString().c_str(),savout);
             msgBox.setText("The file has been saved.");

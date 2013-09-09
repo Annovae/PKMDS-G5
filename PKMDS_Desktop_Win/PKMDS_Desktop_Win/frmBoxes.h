@@ -164,8 +164,8 @@ namespace PKMDS_Desktop_Win {
 	private: System::Windows::Forms::Label^  lblBox03;
 	private: System::Windows::Forms::ToolStripMenuItem^  saveToolStripMenuItem;
 	private: System::Windows::Forms::SaveFileDialog^  fileSave;
-private: System::Windows::Forms::ToolStripMenuItem^  viewToolStripMenuItem;
-private: System::Windows::Forms::ToolStripMenuItem^  reportToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  viewToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  reportToolStripMenuItem;
 	protected: 
 	private:
 		/// <summary>
@@ -3417,5 +3417,5 @@ private: System::Windows::Forms::ToolStripMenuItem^  reportToolStripMenuItem;
 				 dataviewer->setsav(sav);
 				 dataviewer->ShowDialog();
 			 }
-};
+	};
 }

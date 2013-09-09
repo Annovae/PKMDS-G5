@@ -56,6 +56,7 @@ namespace PKMDS_Desktop_Win_2010 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::Windows::Forms::DataGridViewCellStyle^  dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->dgData = (gcnew System::Windows::Forms::DataGridView());
 			this->btnData = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->dgData))->BeginInit();
@@ -65,6 +66,9 @@ namespace PKMDS_Desktop_Win_2010 {
 			// 
 			this->dgData->AllowUserToAddRows = false;
 			this->dgData->AllowUserToDeleteRows = false;
+			dataGridViewCellStyle1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)), 
+				static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+			this->dgData->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
 			this->dgData->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom) 
 				| System::Windows::Forms::AnchorStyles::Left) 
 				| System::Windows::Forms::AnchorStyles::Right));
@@ -72,6 +76,7 @@ namespace PKMDS_Desktop_Win_2010 {
 			this->dgData->Location = System::Drawing::Point(12, 42);
 			this->dgData->Name = L"dgData";
 			this->dgData->ReadOnly = true;
+			this->dgData->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
 			this->dgData->Size = System::Drawing::Size(710, 443);
 			this->dgData->TabIndex = 0;
 			// 
@@ -115,6 +120,7 @@ namespace PKMDS_Desktop_Win_2010 {
 			 {
 				 // http://msdn.microsoft.com/en-us/library/6sh2ey19.aspx
 				 vector<std::string> ColumnNames;
+				 // Add column names here
 				 ColumnNames.push_back("\"ID\"");
 				 ColumnNames.push_back("\"Species\"");
 				 ColumnNames.push_back("\"HP\"");
@@ -124,6 +130,7 @@ namespace PKMDS_Desktop_Win_2010 {
 				 ColumnNames.push_back("\"Sp. Defense\"");
 				 ColumnNames.push_back("\"Speed\"");
 				 vector<std::string> ColumnTypes;
+				 // Add column data types here
 				 ColumnTypes.push_back("Integer");
 				 ColumnTypes.push_back("String");
 				 ColumnTypes.push_back("Integer");
@@ -132,14 +139,15 @@ namespace PKMDS_Desktop_Win_2010 {
 				 ColumnTypes.push_back("Integer");
 				 ColumnTypes.push_back("Integer");
 				 ColumnTypes.push_back("Integer");
+				 // Add vectors for column data here
 				 vector<int> IDValues;
+				 vector<std::string> SpeciesNames;
 				 vector<int> HPValues;
 				 vector<int> AtkValues;
 				 vector<int> DefValues;
 				 vector<int> SpAtkValues;
 				 vector<int> SpDefValues;
 				 vector<int> SpeedValues;
-				 vector<std::string> SpeciesNames;
 				 for(int slot = 0; slot < 30; slot++)
 				 {
 					 pkm = &(sav->cur.boxes[0].pokemon[slot]);
@@ -149,6 +157,7 @@ namespace PKMDS_Desktop_Win_2010 {
 					 }
 					 if(pkm->species != Species::NOTHING)
 					 {
+						 // Add values to vectors here
 						 IDValues.push_back((int)(pkm->species));
 						 SpeciesNames.push_back(lookuppkmname(pkm));
 						 HPValues.push_back(getpkmstat(pkm,Stat_IDs::hp));
@@ -185,6 +194,7 @@ namespace PKMDS_Desktop_Win_2010 {
 				 ss2 << ") values ";
 				 for(int p = 0; p < SpeciesNames.size()-1; p++)
 				 {
+					 // Get data from vectors here
 					 ss2 << "(";
 					 ss2 << IDValues[p] << ", ";
 					 ss2 << "\"" << SpeciesNames[p] << "\", ";
@@ -197,6 +207,7 @@ namespace PKMDS_Desktop_Win_2010 {
 					 ss2 << "),\n";
 				 }
 				 int p = SpeciesNames.size()-1;
+				 // Get data from vectors here
 				 ss2 << "(";
 				 ss2 << IDValues[p] << ", ";
 				 ss2 << "\"" << SpeciesNames[p] << "\", ";
