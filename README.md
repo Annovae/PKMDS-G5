@@ -53,3 +53,5 @@ GatorShark, Chase, Jiggy-Ninja, Codr, Bond697, mingot, Guested,
 coolbho3000 and of course, COM.
 
 Some save file documentation available at: http://www.projectpokemon.org/wiki/
+
+This software is in no way affiliated with or endorsed by Nintendo, Creatures Inc. or Game Freak Inc, and is created for solely recreational and non-profit use. Pokémon, Pokémon character names, Nintendo DS and Nintendo 3DS are trademarks of Nintendo. Other trademarks are the property of their respective owners.
