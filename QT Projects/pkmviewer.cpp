@@ -941,3 +941,10 @@ void pkmviewer::on_chkHex_toggled(bool checked)
     }
     ui->txtPID->setText(QString::number(temppkm->pid,base).toUpper());
 }
+void pkmviewer::on_cbForm_currentIndexChanged(int index)
+{
+    if(redisplayok)
+    {
+        temppkm->forms.form = (byte)index;
+    }
+}

@@ -817,7 +817,8 @@ string getsetlevelsql(pokemon_obj *pkm, int level)
       << "       AND ( experience.level = " << level << " ) "
       << "ORDER  BY experience.experience ";
     return o.str();
-}string getpkmformnamesql(const pokemon_obj *pkm, const int langid)
+}
+string getpkmformnamesql(const pokemon_obj *pkm, const int langid)
 {
     ostringstream o;
     o << ""
@@ -835,5 +836,25 @@ string getsetlevelsql(pokemon_obj *pkm, int level)
       << "       AND ( pokemon_species_names.local_language_id = " << langid << " ) "
       << "       AND ( pokemon.species_id = " << (uint16)(pkm->species) << " ) "
       << "       AND ( pokemon_forms.form_order = " << (int)(pkm->forms.form) << " + 1 ) ";
+    return o.str();
+}
+string getpkmformnamesql(const pokemon_obj *pkm, const int formid, const int langid)
+{
+    ostringstream o;
+    o << ""
+      << "SELECT pokemon_form_names.form_name "
+      << "FROM   pokemon_forms "
+      << "       INNER JOIN pokemon_form_names "
+      << "               ON pokemon_forms.id = pokemon_form_names.pokemon_form_id "
+      << "       INNER JOIN pokemon "
+      << "               ON pokemon_forms.pokemon_id = pokemon.id "
+      << "       INNER JOIN pokemon_species "
+      << "               ON pokemon.species_id = pokemon_species.id "
+      << "       INNER JOIN pokemon_species_names "
+      << "               ON pokemon_species.id = pokemon_species_names.pokemon_species_id "
+      << "WHERE  ( pokemon_form_names.local_language_id = " << langid << " ) "
+      << "       AND ( pokemon_species_names.local_language_id = " << langid << " ) "
+      << "       AND ( pokemon.species_id = " << (uint16)(pkm->species) << " ) "
+      << "       AND ( pokemon_forms.form_order = " << formid << " + 1 ) ";
     return o.str();
 }

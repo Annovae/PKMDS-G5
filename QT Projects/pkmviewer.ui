@@ -44,7 +44,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>120</y>
+      <y>100</y>
       <width>110</width>
       <height>22</height>
      </rect>
@@ -54,7 +54,7 @@
     <property name="geometry">
      <rect>
       <x>80</x>
-      <y>260</y>
+      <y>270</y>
       <width>60</width>
       <height>50</height>
      </rect>
@@ -68,7 +68,7 @@ PKM File</string>
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>230</y>
+      <y>240</y>
       <width>100</width>
       <height>22</height>
      </rect>
@@ -78,7 +78,7 @@ PKM File</string>
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>10</y>
+      <y>0</y>
       <width>100</width>
       <height>100</height>
      </rect>
@@ -103,7 +103,7 @@ PKM File</string>
     <property name="geometry">
      <rect>
       <x>80</x>
-      <y>180</y>
+      <y>190</y>
       <width>42</width>
       <height>22</height>
      </rect>
@@ -119,7 +119,7 @@ PKM File</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>260</y>
+      <y>270</y>
       <width>60</width>
       <height>50</height>
      </rect>
@@ -133,7 +133,7 @@ Changes</string>
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>180</y>
+      <y>190</y>
       <width>31</width>
       <height>20</height>
      </rect>
@@ -146,7 +146,7 @@ Changes</string>
     <property name="geometry">
      <rect>
       <x>-1</x>
-      <y>210</y>
+      <y>220</y>
       <width>150</width>
       <height>20</height>
      </rect>
@@ -162,7 +162,7 @@ Changes</string>
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>120</y>
+      <y>100</y>
       <width>40</width>
       <height>22</height>
      </rect>
@@ -178,7 +178,7 @@ Changes</string>
     <property name="geometry">
      <rect>
       <x>100</x>
-      <y>60</y>
+      <y>50</y>
       <width>20</width>
       <height>20</height>
      </rect>
@@ -203,7 +203,7 @@ Changes</string>
     <property name="geometry">
      <rect>
       <x>100</x>
-      <y>10</y>
+      <y>0</y>
       <width>20</width>
       <height>20</height>
      </rect>
@@ -228,7 +228,7 @@ Changes</string>
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>220</y>
+      <y>230</y>
       <width>30</width>
       <height>30</height>
      </rect>
@@ -253,7 +253,7 @@ Changes</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>150</y>
+      <y>160</y>
       <width>20</width>
       <height>20</height>
      </rect>
@@ -278,7 +278,7 @@ Changes</string>
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>150</y>
+      <y>160</y>
       <width>20</width>
       <height>20</height>
      </rect>
@@ -303,7 +303,7 @@ Changes</string>
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>150</y>
+      <y>160</y>
       <width>20</width>
       <height>20</height>
      </rect>
@@ -328,7 +328,7 @@ Changes</string>
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>150</y>
+      <y>160</y>
       <width>20</width>
       <height>20</height>
      </rect>
@@ -353,7 +353,7 @@ Changes</string>
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>150</y>
+      <y>160</y>
       <width>20</width>
       <height>20</height>
      </rect>
@@ -378,7 +378,7 @@ Changes</string>
     <property name="geometry">
      <rect>
       <x>90</x>
-      <y>150</y>
+      <y>160</y>
       <width>20</width>
       <height>20</height>
      </rect>
@@ -403,7 +403,7 @@ Changes</string>
     <property name="geometry">
      <rect>
       <x>100</x>
-      <y>80</y>
+      <y>70</y>
       <width>40</width>
       <height>20</height>
      </rect>
@@ -428,7 +428,7 @@ Changes</string>
     <property name="geometry">
      <rect>
       <x>100</x>
-      <y>30</y>
+      <y>20</y>
       <width>50</width>
       <height>30</height>
      </rect>
@@ -441,6 +441,16 @@ Changes</string>
     </property>
     <property name="frame">
      <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="cbForm">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>130</y>
+      <width>150</width>
+      <height>22</height>
+     </rect>
     </property>
    </widget>
   </widget>
@@ -2195,8 +2205,8 @@ Changes</string>
   <tabstop>sbSID</tabstop>
   <tabstop>pbType1</tabstop>
   <tabstop>pbType2</tabstop>
-  <tabstop>sbEXP</tabstop>
   <tabstop>cbPKMAbility</tabstop>
+  <tabstop>sbEXP</tabstop>
   <tabstop>pbSprite</tabstop>
   <tabstop>pbGender</tabstop>
   <tabstop>cbBall</tabstop>
@@ -2204,6 +2214,7 @@ Changes</string>
   <tabstop>pbPkrs</tabstop>
   <tabstop>cbPKMSpecies</tabstop>
   <tabstop>sbSpecies</tabstop>
+  <tabstop>cbForm</tabstop>
   <tabstop>pbCircle</tabstop>
   <tabstop>pbTriangle</tabstop>
   <tabstop>pbSquare</tabstop>

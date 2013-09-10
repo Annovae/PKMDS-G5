@@ -148,6 +148,8 @@ private slots:
 
     void on_chkHex_toggled(bool checked);
 
+    void on_cbForm_currentIndexChanged(int index);
+
 private:
     Ui::pkmviewer *ui;
 };

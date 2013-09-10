@@ -65,6 +65,7 @@ string DllExport lookuppkmevolvedspeciessql(int speciesid);
 string DllExport getsetlevelsql(pokemon_obj *pkm, int level);
 string DllExport getsetlevelsql(pokemon_obj &pkm, int level);
 string DllExport getpkmformnamesql(const pokemon_obj *pkm, const int langid = LANG_ID);
+string DllExport getpkmformnamesql(const pokemon_obj *pkm, const int formid, const int langid = LANG_ID);
 string DllExport getpkmformnamesql(const pokemon_obj &pkm, const int langid = LANG_ID);
 string DllExport  getnatureincreasesql(const int natureid);
 string DllExport  getnaturedecreasesql(const int natureid);
