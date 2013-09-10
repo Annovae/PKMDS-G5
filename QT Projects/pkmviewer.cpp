@@ -43,7 +43,7 @@ pkmviewer::pkmviewer(QWidget *parent) :
     }
     QComboBox * moveboxes[4] = {ui->cbMove1,ui->cbMove2,ui->cbMove3,ui->cbMove4};
     QString itemname = "";
-    for(int itemindex = 0; itemindex < (int)Items::revealglass; itemindex++)
+    for(int itemindex = 0; itemindex <= (int)Items::revealglass; itemindex++)
     {
         itemname = QString::fromStdString(lookupitemname(itemindex));
         ui->cbPKMItem->addItem(itemname);
@@ -66,7 +66,7 @@ pkmviewer::pkmviewer(QWidget *parent) :
             moveboxes[moveindex]->addItem(itemname);
         }
     }
-    for(int ballnum = 0; ballnum < (int)Balls::dreamball; ballnum++)
+    for(int ballnum = 0; ballnum <= (int)Balls::dreamball; ballnum++)
     {
         ui->cbBall->addItem("");
         if((Balls::balls)ballnum != Balls::pokeball_)
