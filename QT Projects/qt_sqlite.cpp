@@ -31,7 +31,7 @@ QPixmap getpkmsprite(const pokemon_obj &pkm)
         int cols = sqlite3_column_count(imgstatement);
         int result = 0;
         result = sqlite3_step(imgstatement);
-        if(result == SQLITE_ROW)
+        if((result == SQLITE_ROW) | (result == SQLITE_DONE))
         {
             for(int col = 0; col < cols; col++)
             {
@@ -60,7 +60,7 @@ QPixmap getpkmsprite(const pokemon_obj *pkm)
         int cols = sqlite3_column_count(imgstatement);
         int result = 0;
         result = sqlite3_step(imgstatement);
-        if(result == SQLITE_ROW)
+        if((result == SQLITE_ROW) | (result == SQLITE_DONE))
         {
             for(int col = 0; col < cols; col++)
             {
@@ -89,7 +89,7 @@ QPixmap getpkmicon(const pokemon_obj &pkm)
         int cols = sqlite3_column_count(imgstatement);
         int result = 0;
         result = sqlite3_step(imgstatement);
-        if(result == SQLITE_ROW)
+        if((result == SQLITE_ROW) | (result == SQLITE_DONE))
         {
             for(int col = 0; col < cols; col++)
             {
@@ -118,7 +118,7 @@ QPixmap getpkmicon(const pokemon_obj *pkm)
         int cols = sqlite3_column_count(imgstatement);
         int result = 0;
         result = sqlite3_step(imgstatement);
-        if(result == SQLITE_ROW)
+        if((result == SQLITE_ROW) | (result == SQLITE_DONE))
         {
             for(int col = 0; col < cols; col++)
             {
@@ -147,7 +147,7 @@ QPixmap gettypepic(const Types::types type)
         int cols = sqlite3_column_count(imgstatement);
         int result = 0;
         result = sqlite3_step(imgstatement);
-        if(result == SQLITE_ROW)
+        if((result == SQLITE_ROW) | (result == SQLITE_DONE))
         {
             for(int col = 0; col < cols; col++)
             {
@@ -176,7 +176,7 @@ QPixmap gettypepic(const int type)
         int cols = sqlite3_column_count(imgstatement);
         int result = 0;
         result = sqlite3_step(imgstatement);
-        if(result == SQLITE_ROW)
+        if((result == SQLITE_ROW) | (result == SQLITE_DONE))
         {
             for(int col = 0; col < cols; col++)
             {
@@ -205,7 +205,7 @@ QPixmap getshinystar()
         int cols = sqlite3_column_count(imgstatement);
         int result = 0;
         result = sqlite3_step(imgstatement);
-        if(result == SQLITE_ROW)
+        if((result == SQLITE_ROW) | (result == SQLITE_DONE))
         {
             for(int col = 0; col < cols; col++)
             {
@@ -239,7 +239,7 @@ QPixmap getgenderpic(const Genders::genders gender)
         int cols = sqlite3_column_count(imgstatement);
         int result = 0;
         result = sqlite3_step(imgstatement);
-        if(result == SQLITE_ROW)
+        if((result == SQLITE_ROW) | (result == SQLITE_DONE))
         {
             for(int col = 0; col < cols; col++)
             {
@@ -268,7 +268,7 @@ QPixmap getwallpaperimage(const Wallpapers::wallpapers wallpaper)
         int cols = sqlite3_column_count(imgstatement);
         int result = 0;
         result = sqlite3_step(imgstatement);
-        if(result == SQLITE_ROW)
+        if((result == SQLITE_ROW) | (result == SQLITE_DONE))
         {
             for(int col = 0; col < cols; col++)
             {
@@ -297,7 +297,7 @@ QPixmap getitemimage(const int itemid)
         int cols = sqlite3_column_count(imgstatement);
         int result = 0;
         result = sqlite3_step(imgstatement);
-        if(result == SQLITE_ROW)
+        if((result == SQLITE_ROW) | (result == SQLITE_DONE))
         {
             for(int col = 0; col < cols; col++)
             {
@@ -326,7 +326,7 @@ QPixmap getmarkingimage(const Markings::markings mark, const bool marked)
         int cols = sqlite3_column_count(imgstatement);
         int result = 0;
         result = sqlite3_step(imgstatement);
-        if(result == SQLITE_ROW)
+        if((result == SQLITE_ROW) | (result == SQLITE_DONE))
         {
             for(int col = 0; col < cols; col++)
             {
@@ -355,7 +355,7 @@ QPixmap getballpic(const Balls::balls ball)
         int cols = sqlite3_column_count(imgstatement);
         int result = 0;
         result = sqlite3_step(imgstatement);
-        if(result == SQLITE_ROW)
+        if((result == SQLITE_ROW) | (result == SQLITE_DONE))
         {
             for(int col = 0; col < cols; col++)
             {
@@ -384,7 +384,7 @@ QPixmap getmovecatimage(const Moves::moves themove)
         int cols = sqlite3_column_count(imgstatement);
         int result = 0;
         result = sqlite3_step(imgstatement);
-        if(result == SQLITE_ROW)
+        if((result == SQLITE_ROW) | (result == SQLITE_DONE))
         {
             for(int col = 0; col < cols; col++)
             {

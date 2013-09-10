@@ -74,7 +74,7 @@ pkmviewer::pkmviewer(QWidget *parent) :
             ui->cbBall->setItemIcon(ballnum,getballpic((Balls::balls)ballnum));
         }
     }
-    for(int abilityindex = 0; abilityindex < (int)Abilities::teravolt; abilityindex++)
+    for(int abilityindex = 0; abilityindex <= (int)Abilities::teravolt; abilityindex++)
     {
         itemname = QString::fromStdString(lookupabilityname(abilityindex));
         ui->cbPKMAbility->addItem(itemname);
@@ -657,6 +657,19 @@ void pkmviewer::on_sbTID_valueChanged(int arg1)
     if((temppkm->species > 0) && ((temppkm->pid > 0) || (temppkm->checksum > 0)))
     {
         temppkm->tid = arg1;
+        QPixmap * shinypix = new QPixmap();
+        QGraphicsScene * shinyscene = new QGraphicsScene();
+        if(getpkmshiny(temppkm))
+        {
+            *shinypix = getshinystar();
+        }
+        shinyscene->addPixmap(*shinypix);
+        ui->pbShiny->setScene(shinyscene);
+        QPixmap * spritepixmap = new QPixmap();
+        QGraphicsScene * spritescene = new QGraphicsScene();
+        *spritepixmap = getpkmsprite(temppkm);
+        spritescene->addPixmap(*spritepixmap);
+        ui->pbSprite->setScene(spritescene);
     }
 }
 void pkmviewer::on_sbSID_valueChanged(int arg1)
@@ -664,6 +677,19 @@ void pkmviewer::on_sbSID_valueChanged(int arg1)
     if((temppkm->species > 0) && ((temppkm->pid > 0) || (temppkm->checksum > 0)))
     {
         temppkm->sid = arg1;
+        QPixmap * shinypix = new QPixmap();
+        QGraphicsScene * shinyscene = new QGraphicsScene();
+        if(getpkmshiny(temppkm))
+        {
+            *shinypix = getshinystar();
+        }
+        shinyscene->addPixmap(*shinypix);
+        ui->pbShiny->setScene(shinyscene);
+        QPixmap * spritepixmap = new QPixmap();
+        QGraphicsScene * spritescene = new QGraphicsScene();
+        *spritepixmap = getpkmsprite(temppkm);
+        spritescene->addPixmap(*spritepixmap);
+        ui->pbSprite->setScene(spritescene);
     }
 }
 void pkmviewer::on_sbHPIV_valueChanged(int arg1)

@@ -404,18 +404,27 @@ string getmoveppsql(const Moves::moves moveid)
       << "WHERE  ( id = " << (int)moveid << " ) ";
     return o.str();
 }
-void getspritesql(ostringstream& o, const pokemon_obj & pkm, int langid)
+void getspritesql(ostringstream& o, const pokemon_obj & pkm, int generation)
 {
     o
             << "SELECT pokemon_forms.form_identifier "
-            << "FROM   pokemon_form_names "
-            << "       INNER JOIN pokemon_forms "
-            << "               ON pokemon_form_names.pokemon_form_id = pokemon_forms.id "
+            << "FROM   pokemon_forms "
+            << "       INNER JOIN pokemon_form_generations "
+            << "               ON pokemon_forms.id = pokemon_form_generations.pokemon_form_id "
             << "       INNER JOIN pokemon "
             << "               ON pokemon_forms.pokemon_id = pokemon.id "
-            << "WHERE  ( pokemon.species_id = " << (int)(pkm.species) << " ) "
-            << "       AND ( pokemon_form_names.local_language_id = " << langid << " ) "
-            << "       AND ( pokemon_forms.form_order = " << (int)(pkm.forms.form) << " + 1 ) ";
+            << "WHERE  ( pokemon_form_generations.generation_id = " << generation << " ) "
+            << "       AND ( pokemon.species_id = " << (int)(pkm.species) << " ) "
+            << "       AND ( pokemon_form_generations.game_index = " << (int)(pkm.forms.form) << " ) ";
+    //            << "SELECT pokemon_forms.form_identifier "
+    //            << "FROM   pokemon_form_names "
+    //            << "       INNER JOIN pokemon_forms "
+    //            << "               ON pokemon_form_names.pokemon_form_id = pokemon_forms.id "
+    //            << "       INNER JOIN pokemon "
+    //            << "               ON pokemon_forms.pokemon_id = pokemon.id "
+    //            << "WHERE  ( pokemon.species_id = " << (int)(pkm.species) << " ) "
+    //            << "       AND ( pokemon_form_names.local_language_id = " << langid << " ) "
+    //            << "       AND ( pokemon_forms.form_order = " << (int)(pkm.forms.form) << " + 1 ) ";
     string formid = getastring(o);
     o.str("");
     o.clear();
@@ -425,11 +434,32 @@ void getspritesql(ostringstream& o, const pokemon_obj & pkm, int langid)
         o << "-" << formid;
     }
     formid = o.str().c_str();
+    string tshiny = "";
+    if(getpkmshiny(pkm))
+    {
+        tshiny = "shiny";
+    }
+    else
+    {
+        tshiny = "normal";
+    }
     if(int(pkm.species) == int(Species::keldeo))
     {
-        if(pkm.forms.form == 1)
+        switch(pkm.forms.form)
         {
+        case 0:
+            if(tshiny == "shiny")
+            {
+                formid = "647-regular";
+            }
+            else
+            {
+                formid = "647-ordinary";
+            }
+            break;
+        case 1:
             formid = "647-resolution";
+            break;
         }
     }
     o.str("");
@@ -443,29 +473,29 @@ void getspritesql(ostringstream& o, const pokemon_obj & pkm, int langid)
     {
         tgender = "male";
     }
-    string tshiny = "";
-    if(getpkmshiny(pkm))
-    {
-        tshiny = "shiny";
-    }
-    else
-    {
-        tshiny = "normal";
-    }
     o << "SELECT image FROM front_" << tgender << "_" << tshiny << "_sprites WHERE (identifier = '" << formid << "')";
 }
-void getspritesql(ostringstream& o, const pokemon_obj * pkm, int langid)
+void getspritesql(ostringstream& o, const pokemon_obj * pkm, int generation)
 {
     o
             << "SELECT pokemon_forms.form_identifier "
-            << "FROM   pokemon_form_names "
-            << "       INNER JOIN pokemon_forms "
-            << "               ON pokemon_form_names.pokemon_form_id = pokemon_forms.id "
+            << "FROM   pokemon_forms "
+            << "       INNER JOIN pokemon_form_generations "
+            << "               ON pokemon_forms.id = pokemon_form_generations.pokemon_form_id "
             << "       INNER JOIN pokemon "
             << "               ON pokemon_forms.pokemon_id = pokemon.id "
-            << "WHERE  ( pokemon.species_id = " << (int)(pkm->species) << " ) "
-            << "       AND ( pokemon_form_names.local_language_id = " << langid << " ) "
-            << "       AND ( pokemon_forms.form_order = " << (int)(pkm->forms.form) << " + 1 ) ";
+            << "WHERE  ( pokemon_form_generations.generation_id = " << generation << " ) "
+            << "       AND ( pokemon.species_id = " << (int)(pkm->species) << " ) "
+            << "       AND ( pokemon_form_generations.game_index = " << (int)(pkm->forms.form) << " ) ";
+    //            << "SELECT pokemon_forms.form_identifier "
+    //            << "FROM   pokemon_form_names "
+    //            << "       INNER JOIN pokemon_forms "
+    //            << "               ON pokemon_form_names.pokemon_form_id = pokemon_forms.id "
+    //            << "       INNER JOIN pokemon "
+    //            << "               ON pokemon_forms.pokemon_id = pokemon.id "
+    //            << "WHERE  ( pokemon.species_id = " << (int)(pkm.species) << " ) "
+    //            << "       AND ( pokemon_form_names.local_language_id = " << langid << " ) "
+    //            << "       AND ( pokemon_forms.form_order = " << (int)(pkm.forms.form) << " + 1 ) ";
     string formid = getastring(o);
     o.str("");
     o.clear();
@@ -475,11 +505,32 @@ void getspritesql(ostringstream& o, const pokemon_obj * pkm, int langid)
         o << "-" << formid;
     }
     formid = o.str().c_str();
+    string tshiny = "";
+    if(getpkmshiny(pkm))
+    {
+        tshiny = "shiny";
+    }
+    else
+    {
+        tshiny = "normal";
+    }
     if(int(pkm->species) == int(Species::keldeo))
     {
-        if(pkm->forms.form == 1)
+        switch(pkm->forms.form)
         {
+        case 0:
+            if(tshiny == "shiny")
+            {
+                formid = "647-regular";
+            }
+            else
+            {
+                formid = "647-ordinary";
+            }
+            break;
+        case 1:
             formid = "647-resolution";
+            break;
         }
     }
     o.str("");
@@ -493,18 +544,9 @@ void getspritesql(ostringstream& o, const pokemon_obj * pkm, int langid)
     {
         tgender = "male";
     }
-    string tshiny = "";
-    if(getpkmshiny(pkm))
-    {
-        tshiny = "shiny";
-    }
-    else
-    {
-        tshiny = "normal";
-    }
     o << "SELECT image FROM front_" << tgender << "_" << tshiny << "_sprites WHERE (identifier = '" << formid << "')";
 }
-void geticonsql(ostringstream& o, const pokemon_obj & pkm, int langid)
+void geticonsql(ostringstream& o, const pokemon_obj & pkm, int generation)
 {
     string formid;
     if(pkm.ivs.isegg)
@@ -520,24 +562,37 @@ void geticonsql(ostringstream& o, const pokemon_obj & pkm, int langid)
     }
     else
     {
-        int formint = pkm.forms.form;
+        //        int formint = pkm.forms.form;
         if(int(pkm.species) == int(Species::arceus))
         {
-            formint = 0;
+            //            formint = 0;
+            formid = "";
         }
-        o
-                << "SELECT pokemon_forms.form_identifier "
-                << "FROM   pokemon_form_names "
-                << "       INNER JOIN pokemon_forms "
-                << "               ON pokemon_form_names.pokemon_form_id = pokemon_forms.id "
-                << "       INNER JOIN pokemon "
-                << "               ON pokemon_forms.pokemon_id = pokemon.id "
-                << "WHERE  ( pokemon.species_id = " << (int)(pkm.species) << " ) "
-                << "       AND ( pokemon_form_names.local_language_id = " << langid << " ) "
-                << "       AND ( pokemon_forms.form_order = " << formint << " + 1 ) ";
-        formid = getastring(o);
-        o.str("");
-        o.clear();
+        else
+        {
+            o
+                    << "SELECT pokemon_forms.form_identifier "
+                    << "FROM   pokemon_forms "
+                    << "       INNER JOIN pokemon_form_generations "
+                    << "               ON pokemon_forms.id = pokemon_form_generations.pokemon_form_id "
+                    << "       INNER JOIN pokemon "
+                    << "               ON pokemon_forms.pokemon_id = pokemon.id "
+                    << "WHERE  ( pokemon_form_generations.generation_id = " << generation << " ) "
+                    << "       AND ( pokemon.species_id = " << (int)(pkm.species) << " ) "
+                    << "       AND ( pokemon_form_generations.game_index = " << (int)(pkm.forms.form) << " ) ";
+            //            << "SELECT pokemon_forms.form_identifier "
+            //            << "FROM   pokemon_form_names "
+            //            << "       INNER JOIN pokemon_forms "
+            //            << "               ON pokemon_form_names.pokemon_form_id = pokemon_forms.id "
+            //            << "       INNER JOIN pokemon "
+            //            << "               ON pokemon_forms.pokemon_id = pokemon.id "
+            //            << "WHERE  ( pokemon.species_id = " << (int)(pkm.species) << " ) "
+            //            << "       AND ( pokemon_form_names.local_language_id = " << langid << " ) "
+            //            << "       AND ( pokemon_forms.form_order = " << (int)(pkm.forms.form) << " + 1 ) ";
+            formid = getastring(o);
+            o.str("");
+            o.clear();
+        }
         o << (int)(pkm.species);
         if(formid != "")
         {
@@ -578,7 +633,7 @@ void geticonsql(ostringstream& o, const pokemon_obj & pkm, int langid)
         o << "SELECT image FROM icons_" << tgender << " WHERE (identifier = \"" << formid << "\")";
     }
 }
-void geticonsql(ostringstream& o, const pokemon_obj * pkm, int langid)
+void geticonsql(ostringstream& o, const pokemon_obj * pkm, int generation)
 {
     string formid;
     if(pkm->ivs.isegg)
@@ -594,24 +649,37 @@ void geticonsql(ostringstream& o, const pokemon_obj * pkm, int langid)
     }
     else
     {
-        int formint = pkm->forms.form;
+        //        int formint = pkm->forms.form;
         if(int(pkm->species) == int(Species::arceus))
         {
-            formint = 0;
+            //            formint = 0;
+            formid = "";
         }
-        o
-                << "SELECT pokemon_forms.form_identifier "
-                << "FROM   pokemon_form_names "
-                << "       INNER JOIN pokemon_forms "
-                << "               ON pokemon_form_names.pokemon_form_id = pokemon_forms.id "
-                << "       INNER JOIN pokemon "
-                << "               ON pokemon_forms.pokemon_id = pokemon.id "
-                << "WHERE  ( pokemon.species_id = " << (int)(int(pkm->species)) << " ) "
-                << "       AND ( pokemon_form_names.local_language_id = " << langid << " ) "
-                << "       AND ( pokemon_forms.form_order = " << formint << " + 1 ) ";
-        formid = getastring(o);
-        o.str("");
-        o.clear();
+        else
+        {
+            o
+                    << "SELECT pokemon_forms.form_identifier "
+                    << "FROM   pokemon_forms "
+                    << "       INNER JOIN pokemon_form_generations "
+                    << "               ON pokemon_forms.id = pokemon_form_generations.pokemon_form_id "
+                    << "       INNER JOIN pokemon "
+                    << "               ON pokemon_forms.pokemon_id = pokemon.id "
+                    << "WHERE  ( pokemon_form_generations.generation_id = " << generation << " ) "
+                    << "       AND ( pokemon.species_id = " << (int)(pkm->species) << " ) "
+                    << "       AND ( pokemon_form_generations.game_index = " << (int)(pkm->forms.form) << " ) ";
+            //            << "SELECT pokemon_forms.form_identifier "
+            //            << "FROM   pokemon_form_names "
+            //            << "       INNER JOIN pokemon_forms "
+            //            << "               ON pokemon_form_names.pokemon_form_id = pokemon_forms.id "
+            //            << "       INNER JOIN pokemon "
+            //            << "               ON pokemon_forms.pokemon_id = pokemon.id "
+            //            << "WHERE  ( pokemon.species_id = " << (int)(pkm.species) << " ) "
+            //            << "       AND ( pokemon_form_names.local_language_id = " << langid << " ) "
+            //            << "       AND ( pokemon_forms.form_order = " << (int)(pkm.forms.form) << " + 1 ) ";
+            formid = getastring(o);
+            o.str("");
+            o.clear();
+        }
         o << (int)(int(pkm->species));
         if(formid != "")
         {
