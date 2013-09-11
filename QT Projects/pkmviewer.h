@@ -150,6 +150,26 @@ private slots:
 
     void on_cbForm_currentIndexChanged(int index);
 
+    void on_chkMetAsEgg_toggled(bool checked);
+
+    void on_chkNsPKM_toggled(bool checked);
+
+    void on_chkFateful_toggled(bool checked);
+
+    void on_sbMetLevel_valueChanged(int arg1);
+
+    void on_cbMetLocation_currentIndexChanged(int index);
+
+    void on_dtMetDate_dateChanged(const QDate &date);
+
+    void on_cbEggLocation_currentIndexChanged(int index);
+
+    void on_dtEggDate_dateChanged(const QDate &date);
+
+    void on_cbHometown_currentIndexChanged(int index);
+
+    void on_cbCountry_currentIndexChanged(int index);
+
 private:
     Ui::pkmviewer *ui;
 };

@@ -467,7 +467,7 @@ Changes</string>
     <enum>QTabWidget::North</enum>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>3</number>
    </property>
    <property name="usesScrollButtons">
     <bool>false</bool>
@@ -2142,6 +2142,218 @@ Changes</string>
     <attribute name="title">
      <string>Origins</string>
     </attribute>
+    <widget class="QComboBox" name="cbHometown">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>130</y>
+       <width>120</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="cbCountry">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>160</y>
+       <width>120</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblHometown">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>130</y>
+       <width>41</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Game</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblCountry">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>160</y>
+       <width>41</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Country</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="chkFateful">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>130</y>
+       <width>111</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Fateful Encounter</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="chkNsPKM">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>150</y>
+       <width>111</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>N's Pokémon</string>
+     </property>
+    </widget>
+    <widget class="QGroupBox" name="gbMet">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>140</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Met</string>
+     </property>
+     <widget class="QDateEdit" name="dtMetDate">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>120</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="minimumDate">
+       <date>
+        <year>2006</year>
+        <month>1</month>
+        <day>1</day>
+       </date>
+      </property>
+      <property name="displayFormat">
+       <string>MMM-dd-yyyy</string>
+      </property>
+      <property name="calendarPopup">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="cbMetLocation">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>120</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="gbEgg">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>10</y>
+       <width>140</width>
+       <height>101</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Egg</string>
+     </property>
+     <widget class="QDateEdit" name="dtEggDate">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>120</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="minimumDate">
+       <date>
+        <year>2006</year>
+        <month>1</month>
+        <day>1</day>
+       </date>
+      </property>
+      <property name="displayFormat">
+       <string>MMM-dd-yyyy</string>
+      </property>
+      <property name="calendarPopup">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="cbEggLocation">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>120</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="chkMetAsEgg">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>120</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Met as egg</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QLabel" name="lblMetLevel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>100</y>
+       <width>50</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Met Level</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="sbMetLevel">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>100</y>
+       <width>42</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>100</number>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tpRibbons">
     <attribute name="title">
@@ -2152,7 +2364,7 @@ Changes</string>
     <attribute name="title">
      <string>Misc</string>
     </attribute>
-    <widget class="QGroupBox" name="groupBox">
+    <widget class="QGroupBox" name="gbPID">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -2270,6 +2482,16 @@ Changes</string>
   <tabstop>sbMove4PPUps</tabstop>
   <tabstop>sbMove4PP</tabstop>
   <tabstop>sbMove4TotalPP</tabstop>
+  <tabstop>cbMetLocation</tabstop>
+  <tabstop>dtMetDate</tabstop>
+  <tabstop>cbEggLocation</tabstop>
+  <tabstop>dtEggDate</tabstop>
+  <tabstop>chkMetAsEgg</tabstop>
+  <tabstop>sbMetLevel</tabstop>
+  <tabstop>cbHometown</tabstop>
+  <tabstop>cbCountry</tabstop>
+  <tabstop>chkFateful</tabstop>
+  <tabstop>chkNsPKM</tabstop>
   <tabstop>txtPID</tabstop>
   <tabstop>chkHex</tabstop>
  </tabstops>

@@ -948,3 +948,84 @@ void pkmviewer::on_cbForm_currentIndexChanged(int index)
         temppkm->forms.form = (byte)index;
     }
 }
+void pkmviewer::on_chkMetAsEgg_toggled(bool checked)
+{
+    if(redisplayok)
+    {
+        ui->cbEggLocation->setEnabled(checked);
+        ui->dtEggDate->setEnabled(checked);
+    }
+}
+void pkmviewer::on_chkNsPKM_toggled(bool checked)
+{
+    if(redisplayok)
+    {
+        temppkm->dwability.n_pkm = checked;
+    }
+}
+void pkmviewer::on_chkFateful_toggled(bool checked)
+{
+    if(redisplayok)
+    {
+        temppkm->forms.fencounter = checked;
+    }
+}
+void pkmviewer::on_sbMetLevel_valueChanged(int arg1)
+{
+    if(redisplayok)
+    {
+        temppkm->metlevel_otgender.metlevel = (byte)arg1;
+    }
+}
+void pkmviewer::on_cbMetLocation_currentIndexChanged(int index)
+{
+    if(redisplayok)
+    {
+        temppkm->met = Locations::locations(index);
+    }
+}
+void pkmviewer::on_dtMetDate_dateChanged(const QDate &date)
+{
+    if(redisplayok)
+    {
+        temppkm->metdate.year = byte(date.year());
+        temppkm->metdate.month = byte(date.month());
+        temppkm->metdate.day = byte(date.day());
+    }
+}
+void pkmviewer::on_cbEggLocation_currentIndexChanged(int index)
+{
+    if(redisplayok)
+    {
+        if(ui->chkMetAsEgg->isChecked())
+        {
+            temppkm->eggmet = Locations::locations(index);
+        }
+    }
+}
+void pkmviewer::on_dtEggDate_dateChanged(const QDate &date)
+{
+    if(redisplayok)
+    {
+        if(ui->chkMetAsEgg->isChecked())
+        {
+            temppkm->eggdate.year = byte(date.year());
+            temppkm->eggdate.month = byte(date.month());
+            temppkm->eggdate.day = byte(date.day());
+        }
+    }
+}
+void pkmviewer::on_cbHometown_currentIndexChanged(int index)
+{
+    if(redisplayok)
+    {
+        temppkm->hometown = Hometowns::hometowns(index);
+    }
+}
+void pkmviewer::on_cbCountry_currentIndexChanged(int index)
+{
+    if(redisplayok)
+    {
+        temppkm->country = Countries::countries(index);
+    }
+}
