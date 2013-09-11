@@ -43,6 +43,16 @@ pkmviewer::pkmviewer(QWidget *parent) :
     }
     QComboBox * moveboxes[4] = {ui->cbMove1,ui->cbMove2,ui->cbMove3,ui->cbMove4};
     QString itemname = "";
+    
+    std::map<int,int> itemmap;
+    std::map<int,int> locmap;
+    std::map<int,int> hometownmap;
+    std::map<int,int> countrymap;
+    //std::map<int,int> speciesmap;
+    //std::map<int,int> abilitymap;
+    //std::map<int,int> movemap;
+    //std::map<int,int> naturemap;
+
     for(int itemindex = 0; itemindex <= (int)Items::revealglass; itemindex++)
     {
         itemname = QString::fromStdString(lookupitemname(itemindex));
