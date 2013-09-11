@@ -79,6 +79,23 @@ pkmviewer::pkmviewer(QWidget *parent) :
         itemname = QString::fromStdString(lookupabilityname(abilityindex));
         ui->cbPKMAbility->addItem(itemname);
     }
+    for(int locationindex = 0; locationindex <= (int)Locations::abyssalruins; locationindex++)
+    {
+        itemname = QString::fromStdString(lookuplocname(locationindex));
+        ui->cbMetLocation->addItem(itemname);
+        ui->cbEggLocation->addItem(itemname);
+    }
+    for(int hometownindex = 0; hometownindex <= (int)Hometowns::black2; hometownindex++)
+    {
+        itemname = QString::fromStdString(""); // lookuplocname(hometownindex));
+        ui->cbHometown->addItem(itemname);
+    }
+    for(int countryindex = 0; countryindex <= (int)Countries::southkorean; countryindex++)
+    {
+        itemname = QString::fromStdString(""); // lookuplocname(countryindex));
+        ui->cbCountry->addItem(itemname);
+    }
+    //Todo: cbForm
     this->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
     this->setMinimumSize(this->size());
     this->setMaximumSize(this->size());
@@ -234,6 +251,20 @@ void pkmviewer::displayPKM()
         base = 16;
     }
     ui->txtPID->setText(QString::number(temppkm->pid,base).toUpper());
+    ui->chkNsPKM->setChecked(temppkm->dwability.n_pkm);
+    ui->chkFateful->setChecked(temppkm->forms.fencounter);
+    ui->sbMetLevel->setValue((int)temppkm->metlevel_otgender.metlevel);
+    ui->chkMetAsEgg->setChecked(pkmmetasegg(temppkm));
+    /*
+    TODO: set these values
+    cbHometown
+    cbCountry
+    cbMetLocation
+    dtMetDate
+    cbEggLocation
+    dtEggDate
+    cbForm
+    */
     redisplayok = true;
     updategenderpic();
     updateabilityflavor();
