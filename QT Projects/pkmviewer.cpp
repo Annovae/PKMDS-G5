@@ -255,15 +255,15 @@ void pkmviewer::displayPKM()
     ui->chkFateful->setChecked(temppkm->forms.fencounter);
     ui->sbMetLevel->setValue((int)temppkm->metlevel_otgender.metlevel);
     ui->chkMetAsEgg->setChecked(pkmmetasegg(temppkm));
+    ui->cbHometown->setCurrentIndex((int)temppkm->hometown);
+    ui->cbCountry->setCurrentIndex((int)temppkm->country);
+    ui->cbMetLocation->setCurrentIndex((int)temppkm->met);
+    ui->cbEggLocation->setCurrentIndex((int)temppkm->eggmet);
+    ui->cbForm->setCurrentIndex((int)temppkm->forms.form);
     /*
     TODO: set these values
-    cbHometown
-    cbCountry
-    cbMetLocation
     dtMetDate
-    cbEggLocation
     dtEggDate
-    cbForm
     */
     redisplayok = true;
     updategenderpic();
