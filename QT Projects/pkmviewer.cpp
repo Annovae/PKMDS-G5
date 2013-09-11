@@ -53,10 +53,16 @@ pkmviewer::pkmviewer(QWidget *parent) :
     //std::map<int,int> movemap;
     //std::map<int,int> naturemap;
 
+    int count = 0;
     for(int itemindex = 0; itemindex <= (int)Items::revealglass; itemindex++)
     {
         itemname = QString::fromStdString(lookupitemname(itemindex));
+        if(itemname != "")
+        {
+        itemmap[count] = itemindex;
         ui->cbPKMItem->addItem(itemname);
+        }
+        count++;
     }
     for(int speciesindex = 1; speciesindex < 650; speciesindex++)
     {
