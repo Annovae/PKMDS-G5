@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>489</width>
+    <width>505</width>
     <height>325</height>
    </rect>
   </property>
@@ -30,7 +30,7 @@
     <rect>
      <x>330</x>
      <y>0</y>
-     <width>150</width>
+     <width>171</width>
      <height>321</height>
     </rect>
    </property>
@@ -59,6 +59,11 @@
       <height>50</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Export
 PKM File</string>
@@ -69,7 +74,7 @@ PKM File</string>
      <rect>
       <x>30</x>
       <y>240</y>
-      <width>100</width>
+      <width>111</width>
       <height>22</height>
      </rect>
     </property>
@@ -104,7 +109,7 @@ PKM File</string>
      <rect>
       <x>80</x>
       <y>190</y>
-      <width>42</width>
+      <width>60</width>
       <height>22</height>
      </rect>
     </property>
@@ -123,6 +128,11 @@ PKM File</string>
       <width>60</width>
       <height>50</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Save
@@ -163,7 +173,7 @@ Changes</string>
      <rect>
       <x>110</x>
       <y>100</y>
-      <width>40</width>
+      <width>58</width>
       <height>22</height>
      </rect>
     </property>
@@ -171,6 +181,9 @@ Changes</string>
      <number>1</number>
     </property>
     <property name="maximum">
+     <number>649</number>
+    </property>
+    <property name="value">
      <number>649</number>
     </property>
    </widget>
@@ -429,7 +442,7 @@ Changes</string>
      <rect>
       <x>100</x>
       <y>20</y>
-      <width>50</width>
+      <width>68</width>
       <height>30</height>
      </rect>
     </property>
@@ -462,6 +475,11 @@ Changes</string>
      <width>310</width>
      <height>320</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>9</pointsize>
+    </font>
    </property>
    <property name="tabPosition">
     <enum>QTabWidget::North</enum>
@@ -500,7 +518,7 @@ Changes</string>
       <rect>
        <x>10</x>
        <y>180</y>
-       <width>80</width>
+       <width>100</width>
        <height>20</height>
       </rect>
      </property>
@@ -511,7 +529,7 @@ Changes</string>
     <widget class="QLabel" name="lblTNL">
      <property name="geometry">
       <rect>
-       <x>100</x>
+       <x>120</x>
        <y>180</y>
        <width>50</width>
        <height>20</height>
@@ -529,7 +547,7 @@ Changes</string>
       <rect>
        <x>10</x>
        <y>120</y>
-       <width>30</width>
+       <width>40</width>
        <height>20</height>
       </rect>
      </property>
@@ -540,7 +558,7 @@ Changes</string>
     <widget class="QGraphicsView" name="pbType1">
      <property name="geometry">
       <rect>
-       <x>60</x>
+       <x>50</x>
        <y>120</y>
        <width>40</width>
        <height>20</height>
@@ -565,7 +583,7 @@ Changes</string>
     <widget class="QGraphicsView" name="pbType2">
      <property name="geometry">
       <rect>
-       <x>100</x>
+       <x>90</x>
        <y>120</y>
        <width>40</width>
        <height>20</height>
@@ -619,7 +637,7 @@ Changes</string>
     <widget class="QLineEdit" name="txtNickname">
      <property name="geometry">
       <rect>
-       <x>70</x>
+       <x>80</x>
        <y>10</y>
        <width>120</width>
        <height>20</height>
@@ -632,9 +650,9 @@ Changes</string>
     <widget class="QLabel" name="lblNickname">
      <property name="geometry">
       <rect>
-       <x>20</x>
+       <x>10</x>
        <y>10</y>
-       <width>45</width>
+       <width>70</width>
        <height>20</height>
       </rect>
      </property>
@@ -647,7 +665,7 @@ Changes</string>
       <rect>
        <x>200</x>
        <y>10</y>
-       <width>80</width>
+       <width>100</width>
        <height>18</height>
       </rect>
      </property>
@@ -670,7 +688,7 @@ Changes</string>
      <widget class="QLineEdit" name="txtOTName">
       <property name="geometry">
        <rect>
-        <x>60</x>
+        <x>70</x>
         <y>20</y>
         <width>120</width>
         <height>20</height>
@@ -683,9 +701,9 @@ Changes</string>
      <widget class="QLabel" name="lblOTName">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>0</x>
         <y>20</y>
-        <width>44</width>
+        <width>70</width>
         <height>20</height>
        </rect>
       </property>
@@ -698,7 +716,7 @@ Changes</string>
        <rect>
         <x>200</x>
         <y>10</y>
-        <width>60</width>
+        <width>80</width>
         <height>18</height>
        </rect>
       </property>
@@ -711,7 +729,7 @@ Changes</string>
        <rect>
         <x>200</x>
         <y>30</y>
-        <width>60</width>
+        <width>80</width>
         <height>18</height>
        </rect>
       </property>
@@ -751,37 +769,37 @@ Changes</string>
      <widget class="QLabel" name="lblSID">
       <property name="geometry">
        <rect>
-        <x>140</x>
+        <x>160</x>
         <y>50</y>
-        <width>60</width>
+        <width>30</width>
         <height>20</height>
        </rect>
       </property>
       <property name="text">
-       <string>Trainer SID</string>
+       <string>SID</string>
       </property>
      </widget>
      <widget class="QLabel" name="lblTID">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>30</x>
         <y>50</y>
-        <width>60</width>
+        <width>30</width>
         <height>20</height>
        </rect>
       </property>
       <property name="text">
-       <string>Trainer ID</string>
+       <string>TID</string>
       </property>
      </widget>
     </widget>
     <widget class="QLabel" name="label_9">
      <property name="geometry">
       <rect>
-       <x>150</x>
+       <x>140</x>
        <y>120</y>
-       <width>40</width>
-       <height>13</height>
+       <width>50</width>
+       <height>20</height>
       </rect>
      </property>
      <property name="frameShape">
@@ -824,7 +842,7 @@ Changes</string>
     <widget class="QComboBox" name="cbPKMAbility">
      <property name="geometry">
       <rect>
-       <x>190</x>
+       <x>200</x>
        <y>120</y>
        <width>100</width>
        <height>22</height>
@@ -877,190 +895,190 @@ Changes</string>
     <widget class="QGroupBox" name="gbIVs">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>101</width>
-       <height>191</height>
+       <x>0</x>
+       <y>0</y>
+       <width>141</width>
+       <height>151</height>
       </rect>
      </property>
      <property name="title">
       <string>IVs</string>
      </property>
-     <widget class="QWidget" name="formLayoutWidget">
+     <widget class="QLabel" name="lblSpeedIV">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>120</y>
+        <width>42</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Speed</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblSpDefIV">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>100</y>
+        <width>46</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Sp Def</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblAtkIV">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>25</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Atk</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblSpAtkIV">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>45</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Sp Atk</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblHPIV">
       <property name="geometry">
        <rect>
         <x>10</x>
         <y>20</y>
-        <width>82</width>
-        <height>164</height>
+        <width>21</width>
+        <height>17</height>
        </rect>
       </property>
-      <layout class="QFormLayout" name="flIVs">
-       <property name="fieldGrowthPolicy">
-        <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
-       </property>
-       <item row="0" column="0">
-        <widget class="QLabel" name="lblHPIV">
-         <property name="text">
-          <string>HP</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QSpinBox" name="sbHPIV">
-         <property name="maximum">
-          <number>31</number>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="lblAtkIV">
-         <property name="text">
-          <string>Atk</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QSpinBox" name="sbAtkIV">
-         <property name="maximum">
-          <number>31</number>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="lblDefIV">
-         <property name="text">
-          <string>Def</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QSpinBox" name="sbDefIV">
-         <property name="maximum">
-          <number>31</number>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="lblSpAtkIV">
-         <property name="text">
-          <string>Sp Atk</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="lblSpDefIV">
-         <property name="text">
-          <string>Sp Def</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="lblSpeedIV">
-         <property name="text">
-          <string>Speed</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QSpinBox" name="sbSpAtkIV">
-         <property name="maximum">
-          <number>31</number>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1">
-        <widget class="QSpinBox" name="sbSpDefIV">
-         <property name="maximum">
-          <number>31</number>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <widget class="QSpinBox" name="sbSpeedIV">
-         <property name="maximum">
-          <number>31</number>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      <property name="text">
+       <string>HP</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblDefIV">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>26</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Def</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="sbSpeedIV">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>120</y>
+        <width>66</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>31</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="sbAtkIV">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>40</y>
+        <width>66</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>31</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="sbSpAtkIV">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>80</y>
+        <width>66</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>31</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="sbDefIV">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>60</y>
+        <width>66</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>31</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="sbSpDefIV">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>100</y>
+        <width>66</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>31</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="sbHPIV">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>20</y>
+        <width>66</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>31</number>
+      </property>
      </widget>
     </widget>
     <widget class="QGroupBox" name="gbEVs">
      <property name="geometry">
       <rect>
-       <x>120</x>
-       <y>10</y>
+       <x>140</x>
+       <y>0</y>
        <width>71</width>
-       <height>230</height>
+       <height>201</height>
       </rect>
      </property>
      <property name="title">
       <string>EVs</string>
      </property>
-     <widget class="QWidget" name="formLayoutWidget_2">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>20</y>
-        <width>51</width>
-        <height>164</height>
-       </rect>
-      </property>
-      <layout class="QFormLayout" name="flEVs">
-       <property name="fieldGrowthPolicy">
-        <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
-       </property>
-       <item row="0" column="1">
-        <widget class="QSpinBox" name="sbHPEV">
-         <property name="maximum">
-          <number>255</number>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QSpinBox" name="sbAtkEV">
-         <property name="maximum">
-          <number>255</number>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QSpinBox" name="sbDefEV">
-         <property name="maximum">
-          <number>255</number>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QSpinBox" name="sbSpAtkEV">
-         <property name="maximum">
-          <number>255</number>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1">
-        <widget class="QSpinBox" name="sbSpDefEV">
-         <property name="maximum">
-          <number>255</number>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <widget class="QSpinBox" name="sbSpeedEV">
-         <property name="maximum">
-          <number>255</number>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>180</y>
-        <width>51</width>
+        <x>0</x>
+        <y>150</y>
+        <width>70</width>
         <height>20</height>
        </rect>
       </property>
@@ -1071,9 +1089,9 @@ Changes</string>
      <widget class="QSpinBox" name="sbTotalEVs">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>200</y>
-        <width>50</width>
+        <x>0</x>
+        <y>170</y>
+        <width>60</width>
         <height>22</height>
        </rect>
       </property>
@@ -1093,118 +1111,217 @@ Changes</string>
        <number>1530</number>
       </property>
      </widget>
+     <widget class="QSpinBox" name="sbSpeedEV">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>120</y>
+        <width>60</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>255</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="sbHPEV">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>20</y>
+        <width>60</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>255</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="sbDefEV">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>60</y>
+        <width>60</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>255</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="sbAtkEV">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>40</y>
+        <width>60</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>255</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="sbSpAtkEV">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>80</y>
+        <width>60</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>255</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="sbSpDefEV">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>100</y>
+        <width>60</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>255</number>
+      </property>
+     </widget>
     </widget>
     <widget class="QGroupBox" name="gbCalcStats">
      <property name="geometry">
       <rect>
-       <x>200</x>
-       <y>10</y>
+       <x>210</x>
+       <y>0</y>
        <width>91</width>
-       <height>190</height>
+       <height>151</height>
       </rect>
      </property>
      <property name="title">
-      <string>Calculated Stats</string>
+      <string>Calc. Stats</string>
      </property>
-     <widget class="QWidget" name="formLayoutWidget_3">
+     <widget class="QSpinBox" name="sbSpeed">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>120</y>
+        <width>60</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <number>999</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="sbSpDef">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>100</y>
+        <width>60</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <number>999</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="sbSpAtk">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>60</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <number>999</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="sbDef">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>60</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <number>999</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="sbAtk">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>60</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <number>999</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="sbHP">
       <property name="geometry">
        <rect>
         <x>10</x>
         <y>20</y>
-        <width>71</width>
-        <height>164</height>
+        <width>60</width>
+        <height>22</height>
        </rect>
       </property>
-      <layout class="QFormLayout" name="flCalcStats">
-       <property name="fieldGrowthPolicy">
-        <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
-       </property>
-       <item row="0" column="1">
-        <widget class="QSpinBox" name="sbHP">
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-         <property name="buttonSymbols">
-          <enum>QAbstractSpinBox::NoButtons</enum>
-         </property>
-         <property name="maximum">
-          <number>999</number>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QSpinBox" name="sbAtk">
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-         <property name="buttonSymbols">
-          <enum>QAbstractSpinBox::NoButtons</enum>
-         </property>
-         <property name="maximum">
-          <number>999</number>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QSpinBox" name="sbDef">
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-         <property name="buttonSymbols">
-          <enum>QAbstractSpinBox::NoButtons</enum>
-         </property>
-         <property name="maximum">
-          <number>999</number>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QSpinBox" name="sbSpAtk">
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-         <property name="buttonSymbols">
-          <enum>QAbstractSpinBox::NoButtons</enum>
-         </property>
-         <property name="maximum">
-          <number>999</number>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1">
-        <widget class="QSpinBox" name="sbSpDef">
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-         <property name="buttonSymbols">
-          <enum>QAbstractSpinBox::NoButtons</enum>
-         </property>
-         <property name="maximum">
-          <number>999</number>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <widget class="QSpinBox" name="sbSpeed">
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-         <property name="buttonSymbols">
-          <enum>QAbstractSpinBox::NoButtons</enum>
-         </property>
-         <property name="maximum">
-          <number>999</number>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <number>999</number>
+      </property>
      </widget>
     </widget>
     <widget class="QComboBox" name="cbNatures">
      <property name="geometry">
       <rect>
-       <x>120</x>
-       <y>250</y>
+       <x>180</x>
+       <y>220</y>
        <width>110</width>
        <height>22</height>
       </rect>
@@ -1213,9 +1330,9 @@ Changes</string>
     <widget class="QLabel" name="lblNature">
      <property name="geometry">
       <rect>
-       <x>70</x>
-       <y>250</y>
-       <width>40</width>
+       <x>120</x>
+       <y>220</y>
+       <width>50</width>
        <height>13</height>
       </rect>
      </property>
@@ -1229,7 +1346,7 @@ Changes</string>
        <x>10</x>
        <y>210</y>
        <width>100</width>
-       <height>30</height>
+       <height>60</height>
       </rect>
      </property>
      <property name="frameShape">
@@ -1359,6 +1476,11 @@ Changes</string>
        <height>22</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
     </widget>
     <widget class="QComboBox" name="cbMove2">
      <property name="geometry">
@@ -1368,6 +1490,11 @@ Changes</string>
        <width>110</width>
        <height>22</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
      </property>
     </widget>
     <widget class="QComboBox" name="cbMove3">
@@ -1379,6 +1506,11 @@ Changes</string>
        <height>22</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
     </widget>
     <widget class="QComboBox" name="cbMove4">
      <property name="geometry">
@@ -1389,6 +1521,11 @@ Changes</string>
        <height>22</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
     </widget>
     <widget class="QSpinBox" name="sbMove1PPUps">
      <property name="geometry">
@@ -1398,6 +1535,11 @@ Changes</string>
        <width>40</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
      </property>
      <property name="minimum">
       <number>0</number>
@@ -1414,9 +1556,14 @@ Changes</string>
       <rect>
        <x>280</x>
        <y>40</y>
-       <width>20</width>
+       <width>24</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
      </property>
      <property name="readOnly">
       <bool>true</bool>
@@ -1443,6 +1590,11 @@ Changes</string>
        <height>20</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
      <property name="minimum">
       <number>0</number>
      </property>
@@ -1461,6 +1613,11 @@ Changes</string>
        <width>40</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
      </property>
      <property name="minimum">
       <number>0</number>
@@ -1481,6 +1638,11 @@ Changes</string>
        <height>20</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
      <property name="minimum">
       <number>0</number>
      </property>
@@ -1496,9 +1658,14 @@ Changes</string>
       <rect>
        <x>280</x>
        <y>100</y>
-       <width>20</width>
+       <width>24</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
      </property>
      <property name="readOnly">
       <bool>true</bool>
@@ -1525,6 +1692,11 @@ Changes</string>
        <height>20</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
      <property name="minimum">
       <number>0</number>
      </property>
@@ -1544,6 +1716,11 @@ Changes</string>
        <height>20</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
      <property name="minimum">
       <number>0</number>
      </property>
@@ -1559,9 +1736,14 @@ Changes</string>
       <rect>
        <x>280</x>
        <y>160</y>
-       <width>20</width>
+       <width>24</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
      </property>
      <property name="readOnly">
       <bool>true</bool>
@@ -1588,6 +1770,11 @@ Changes</string>
        <height>20</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
      <property name="minimum">
       <number>0</number>
      </property>
@@ -1607,6 +1794,11 @@ Changes</string>
        <height>20</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
      <property name="minimum">
       <number>0</number>
      </property>
@@ -1622,9 +1814,14 @@ Changes</string>
       <rect>
        <x>280</x>
        <y>220</y>
-       <width>20</width>
+       <width>24</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
      </property>
      <property name="readOnly">
       <bool>true</bool>
@@ -1751,6 +1948,11 @@ Changes</string>
        <height>30</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
      <property name="text">
       <string>PP Ups</string>
      </property>
@@ -1770,6 +1972,11 @@ Changes</string>
        <height>30</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
      <property name="text">
       <string>PP</string>
      </property>
@@ -1788,6 +1995,11 @@ Changes</string>
        <width>30</width>
        <height>30</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
      </property>
      <property name="text">
       <string>Total PP</string>
@@ -1928,6 +2140,11 @@ Changes</string>
        <height>13</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
      <property name="text">
       <string/>
      </property>
@@ -1943,6 +2160,11 @@ Changes</string>
        <width>20</width>
        <height>13</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
      </property>
      <property name="text">
       <string/>
@@ -1967,11 +2189,16 @@ Changes</string>
     <widget class="QLabel" name="label_10">
      <property name="geometry">
       <rect>
-       <x>153</x>
+       <x>150</x>
        <y>20</y>
-       <width>20</width>
+       <width>23</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
      </property>
      <property name="text">
       <string>Pwr</string>
@@ -1992,6 +2219,11 @@ Changes</string>
        <height>20</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
      <property name="text">
       <string>Acc</string>
      </property>
@@ -2011,6 +2243,11 @@ Changes</string>
        <height>13</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
      <property name="text">
       <string/>
      </property>
@@ -2026,6 +2263,11 @@ Changes</string>
        <width>20</width>
        <height>13</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
      </property>
      <property name="text">
       <string/>
@@ -2056,6 +2298,11 @@ Changes</string>
        <height>13</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
      <property name="text">
       <string/>
      </property>
@@ -2071,6 +2318,11 @@ Changes</string>
        <width>20</width>
        <height>13</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
      </property>
      <property name="text">
       <string/>
@@ -2101,6 +2353,11 @@ Changes</string>
        <height>13</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
      <property name="text">
       <string/>
      </property>
@@ -2116,6 +2373,11 @@ Changes</string>
        <width>20</width>
        <height>13</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
      </property>
      <property name="text">
       <string/>
@@ -2145,31 +2407,46 @@ Changes</string>
     <widget class="QComboBox" name="cbHometown">
      <property name="geometry">
       <rect>
-       <x>60</x>
+       <x>50</x>
        <y>130</y>
-       <width>120</width>
+       <width>130</width>
        <height>22</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
      </property>
     </widget>
     <widget class="QComboBox" name="cbCountry">
      <property name="geometry">
       <rect>
-       <x>60</x>
+       <x>50</x>
        <y>160</y>
-       <width>120</width>
+       <width>130</width>
        <height>22</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
      </property>
     </widget>
     <widget class="QLabel" name="lblHometown">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>0</x>
        <y>130</y>
-       <width>41</width>
+       <width>50</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
      </property>
      <property name="text">
       <string>Game</string>
@@ -2178,11 +2455,16 @@ Changes</string>
     <widget class="QLabel" name="lblCountry">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>0</x>
        <y>160</y>
-       <width>41</width>
+       <width>50</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
      </property>
      <property name="text">
       <string>Country</string>
@@ -2191,11 +2473,16 @@ Changes</string>
     <widget class="QCheckBox" name="chkFateful">
      <property name="geometry">
       <rect>
-       <x>190</x>
+       <x>181</x>
        <y>130</y>
-       <width>111</width>
+       <width>123</width>
        <height>17</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
      </property>
      <property name="text">
       <string>Fateful Encounter</string>
@@ -2204,11 +2491,16 @@ Changes</string>
     <widget class="QCheckBox" name="chkNsPKM">
      <property name="geometry">
       <rect>
-       <x>190</x>
+       <x>181</x>
        <y>150</y>
-       <width>111</width>
+       <width>123</width>
        <height>17</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
      </property>
      <property name="text">
       <string>N's Pokémon</string>
@@ -2229,7 +2521,7 @@ Changes</string>
      <widget class="QDateEdit" name="dtMetDate">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>0</x>
         <y>50</y>
         <width>120</width>
         <height>22</height>
@@ -2252,11 +2544,16 @@ Changes</string>
      <widget class="QComboBox" name="cbMetLocation">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>0</x>
         <y>20</y>
-        <width>120</width>
+        <width>140</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>9</pointsize>
+       </font>
       </property>
      </widget>
     </widget>
@@ -2278,7 +2575,7 @@ Changes</string>
       </property>
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>0</x>
         <y>50</y>
         <width>120</width>
         <height>22</height>
@@ -2304,11 +2601,16 @@ Changes</string>
       </property>
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>0</x>
         <y>20</y>
-        <width>120</width>
+        <width>140</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>9</pointsize>
+       </font>
       </property>
      </widget>
      <widget class="QCheckBox" name="chkMetAsEgg">
@@ -2320,6 +2622,11 @@ Changes</string>
         <height>17</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
       <property name="text">
        <string>Met as egg</string>
       </property>
@@ -2328,9 +2635,9 @@ Changes</string>
     <widget class="QLabel" name="lblMetLevel">
      <property name="geometry">
       <rect>
-       <x>30</x>
+       <x>10</x>
        <y>100</y>
-       <width>50</width>
+       <width>70</width>
        <height>20</height>
       </rect>
      </property>
@@ -2341,9 +2648,9 @@ Changes</string>
     <widget class="QSpinBox" name="sbMetLevel">
      <property name="geometry">
       <rect>
-       <x>90</x>
+       <x>82</x>
        <y>100</y>
-       <width>42</width>
+       <width>52</width>
        <height>22</height>
       </rect>
      </property>
@@ -2352,6 +2659,9 @@ Changes</string>
      </property>
      <property name="maximum">
       <number>100</number>
+     </property>
+     <property name="value">
+      <number>1</number>
      </property>
     </widget>
    </widget>
@@ -2369,38 +2679,38 @@ Changes</string>
       <rect>
        <x>0</x>
        <y>10</y>
-       <width>200</width>
+       <width>190</width>
        <height>50</height>
       </rect>
      </property>
      <property name="title">
       <string>Personality Value (PID)</string>
      </property>
-     <widget class="QWidget" name="formLayoutWidget_4">
+     <widget class="QLineEdit" name="txtPID">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>0</x>
         <y>20</y>
-        <width>181</width>
+        <width>129</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="chkHex">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>20</y>
+        <width>60</width>
         <height>22</height>
        </rect>
       </property>
-      <layout class="QFormLayout" name="formLayout">
-       <item row="0" column="0">
-        <widget class="QLineEdit" name="txtPID">
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QCheckBox" name="chkHex">
-         <property name="text">
-          <string>Hex</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      <property name="text">
+       <string>Hex</string>
+      </property>
      </widget>
     </widget>
    </widget>
@@ -2438,24 +2748,6 @@ Changes</string>
   <tabstop>cbPKMItem</tabstop>
   <tabstop>btnSaveChanges</tabstop>
   <tabstop>btnExportPKMFile</tabstop>
-  <tabstop>sbHPIV</tabstop>
-  <tabstop>sbAtkIV</tabstop>
-  <tabstop>sbDefIV</tabstop>
-  <tabstop>sbSpAtkIV</tabstop>
-  <tabstop>sbSpDefIV</tabstop>
-  <tabstop>sbSpeedIV</tabstop>
-  <tabstop>sbHPEV</tabstop>
-  <tabstop>sbAtkEV</tabstop>
-  <tabstop>sbDefEV</tabstop>
-  <tabstop>sbSpAtkEV</tabstop>
-  <tabstop>sbSpDefEV</tabstop>
-  <tabstop>sbSpeedEV</tabstop>
-  <tabstop>sbHP</tabstop>
-  <tabstop>sbAtk</tabstop>
-  <tabstop>sbDef</tabstop>
-  <tabstop>sbSpAtk</tabstop>
-  <tabstop>sbSpDef</tabstop>
-  <tabstop>sbSpeed</tabstop>
   <tabstop>sbTotalEVs</tabstop>
   <tabstop>cbNatures</tabstop>
   <tabstop>pbMove1Type</tabstop>
@@ -2492,8 +2784,6 @@ Changes</string>
   <tabstop>cbCountry</tabstop>
   <tabstop>chkFateful</tabstop>
   <tabstop>chkNsPKM</tabstop>
-  <tabstop>txtPID</tabstop>
-  <tabstop>chkHex</tabstop>
  </tabstops>
  <resources/>
  <connections/>

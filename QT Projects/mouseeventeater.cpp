@@ -108,7 +108,7 @@ bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
                 }
                 if((apkm->species != 0) && todisplay)
                 {
-                    pview->setWindowTitle(QString::fromStdWString(getpkmnickname(apkm)));
+//                    pview->setWindowTitle(QString::fromStdWString(getpkmnickname(apkm)));
                     pview->setPKM(apkm,frmCurBoxNum, ispartypkm_);
                     pview->displayPKM();
                     pview->show();
@@ -130,7 +130,6 @@ bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
         if(event->type() == QEvent::MouseButtonPress)
         {
             int slot = obj->property("Index").toInt();
-            //            frmBoxes.changebox(slot);
             boxViewer->changebox(slot);
         }
         return false;

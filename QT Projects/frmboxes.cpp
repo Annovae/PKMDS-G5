@@ -127,7 +127,7 @@ void frmBoxes::on_actionLoad_SAV_triggered()
         read(SaveFileName.toStdString().c_str(),sav);
         cursavblock = &(sav->cur);
         baksavblock = &(sav->bak);
-        this->setWindowTitle(wTitle + QString::fromStdString(" - ") + QString::fromStdWString(getwstring(cursavblock->trainername)));
+        this->setWindowTitle(wTitle + QString::fromStdString(" - ") + QString::fromStdWString(getsavtrainername(cursavblock))); // QString::fromStdWString(getwstring(cursavblock->trainername)));
         QGraphicsScene * partyscene = new QGraphicsScene();
         for(int i = 0; i < 6; i++)
         {

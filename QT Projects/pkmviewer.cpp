@@ -53,16 +53,16 @@ pkmviewer::pkmviewer(QWidget *parent) :
     //std::map<int,int> movemap;
     //std::map<int,int> naturemap;
 
-    int count = 0;
+    //    int count = 0;
     for(int itemindex = 0; itemindex <= (int)Items::revealglass; itemindex++)
     {
         itemname = QString::fromStdString(lookupitemname(itemindex));
-        if(itemname != "")
-        {
-        itemmap[count] = itemindex;
+        //        if(itemname != "")
+        //        {
+        //            itemmap[count] = itemindex;
         ui->cbPKMItem->addItem(itemname);
-        }
-        count++;
+        //        }
+        //        count++;
     }
     for(int speciesindex = 1; speciesindex < 650; speciesindex++)
     {
@@ -95,7 +95,7 @@ pkmviewer::pkmviewer(QWidget *parent) :
         itemname = QString::fromStdString(lookupabilityname(abilityindex));
         ui->cbPKMAbility->addItem(itemname);
     }
-    for(int locationindex = 0; locationindex <= (int)Locations::abyssalruins; locationindex++)
+    for(int locationindex = 0; locationindex <= (int)Locations::pledgegrove; locationindex++)
     {
         itemname = QString::fromStdString(lookuplocname(locationindex));
         ui->cbMetLocation->addItem(itemname);
@@ -103,11 +103,13 @@ pkmviewer::pkmviewer(QWidget *parent) :
     }
     for(int hometownindex = 0; hometownindex <= (int)Hometowns::black2; hometownindex++)
     {
+        // TODO: hometown strings
         itemname = QString::fromStdString(""); // lookuplocname(hometownindex));
         ui->cbHometown->addItem(itemname);
     }
     for(int countryindex = 0; countryindex <= (int)Countries::southkorean; countryindex++)
     {
+        // TODO: country strings
         itemname = QString::fromStdString(""); // lookuplocname(countryindex));
         ui->cbCountry->addItem(itemname);
     }
@@ -155,6 +157,7 @@ void pkmviewer::setPKM(party_pkm * ppkm_, int box, bool isPartyPKM)
 void pkmviewer::displayPKM()
 {
     redisplayok = false;
+    this->setWindowTitle(QString::fromStdWString(getpkmnickname(temppkm)));
     switch(temppkm->metlevel_otgender.otgender)
     {
     case Genders::male:
@@ -276,11 +279,8 @@ void pkmviewer::displayPKM()
     ui->cbMetLocation->setCurrentIndex((int)temppkm->met);
     ui->cbEggLocation->setCurrentIndex((int)temppkm->eggmet);
     ui->cbForm->setCurrentIndex((int)temppkm->forms.form);
-    /*
-    TODO: set these values
-    dtMetDate
-    dtEggDate
-    */
+    ui->dtEggDate->setDate(QDate(((int)temppkm->eggdate.year)+2000,(int)temppkm->eggdate.month,(int)temppkm->eggdate.day));
+    ui->dtMetDate->setDate(QDate(((int)temppkm->metdate.year)+2000,(int)temppkm->metdate.month,(int)temppkm->metdate.day));
     redisplayok = true;
     updategenderpic();
     updateabilityflavor();
@@ -1035,7 +1035,7 @@ void pkmviewer::on_dtMetDate_dateChanged(const QDate &date)
 {
     if(redisplayok)
     {
-        temppkm->metdate.year = byte(date.year());
+        temppkm->metdate.year = byte(date.year()-2000);
         temppkm->metdate.month = byte(date.month());
         temppkm->metdate.day = byte(date.day());
     }
@@ -1056,7 +1056,7 @@ void pkmviewer::on_dtEggDate_dateChanged(const QDate &date)
     {
         if(ui->chkMetAsEgg->isChecked())
         {
-            temppkm->eggdate.year = byte(date.year());
+            temppkm->eggdate.year = byte(date.year()-2000);
             temppkm->eggdate.month = byte(date.month());
             temppkm->eggdate.day = byte(date.day());
         }
