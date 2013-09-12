@@ -152,6 +152,7 @@ string DllExport lookupabilityname(const pokemon_obj &pkm, const int langid = LA
 string DllExport lookupabilityname(const pokemon_obj *pkm, const int langid = LANG_ID);
 string DllExport getpkmformname(const pokemon_obj &pkm, const int langid = LANG_ID);
 string DllExport getpkmformname(const pokemon_obj *pkm, const int langid = LANG_ID);
+string DllExport getpkmformname(const int speciesid, const int formid, const int generation = GENERATION, const int langid = LANG_ID);
 string DllExport lookuplocname(const int locid, const int gen = GENERATION, const int langid = LANG_ID);
 string DllExport getpkmmetlocname(const pokemon_obj &pkm, const int gen = GENERATION, const int langid = LANG_ID);
 string DllExport getpkmmetlocname(const pokemon_obj *pkm, const int gen = GENERATION, const int langid = LANG_ID);

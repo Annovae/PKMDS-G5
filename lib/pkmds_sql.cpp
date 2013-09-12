@@ -838,23 +838,19 @@ string getpkmformnamesql(const pokemon_obj *pkm, const int langid)
       << "       AND ( pokemon_forms.form_order = " << (int)(pkm->forms.form) << " + 1 ) ";
     return o.str();
 }
-string getpkmformnamesql(const pokemon_obj *pkm, const int formid, const int langid)
+string getpkmformnamesql(const int speciesid, const int formid, const int generation, const int langid)
 {
     ostringstream o;
     o << ""
-      << "SELECT pokemon_form_names.form_name "
-      << "FROM   pokemon_forms "
-      << "       INNER JOIN pokemon_form_names "
-      << "               ON pokemon_forms.id = pokemon_form_names.pokemon_form_id "
-      << "       INNER JOIN pokemon "
-      << "               ON pokemon_forms.pokemon_id = pokemon.id "
-      << "       INNER JOIN pokemon_species "
-      << "               ON pokemon.species_id = pokemon_species.id "
-      << "       INNER JOIN pokemon_species_names "
-      << "               ON pokemon_species.id = pokemon_species_names.pokemon_species_id "
-      << "WHERE  ( pokemon_form_names.local_language_id = " << langid << " ) "
-      << "       AND ( pokemon_species_names.local_language_id = " << langid << " ) "
-      << "       AND ( pokemon.species_id = " << (uint16)(pkm->species) << " ) "
-      << "       AND ( pokemon_forms.form_order = " << formid << " + 1 ) ";
+      << "select pokemon_form_names.form_name "
+      << "from pokemon "
+      << "inner join pokemon_forms on pokemon.id = pokemon_forms.pokemon_id "
+      << "inner join pokemon_form_names on pokemon_forms.id = pokemon_form_names.pokemon_form_id "
+      << "inner join pokemon_form_generations on pokemon_forms.id = pokemon_form_generations.pokemon_form_id "
+      << "where local_language_id = " << langid << " "
+      << "and generation_id = " << generation << " "
+      << "and species_id = " << speciesid << " "
+      << "and game_index = " << formid << " "
+      << "order by pokemon_form_generations.game_index";
     return o.str();
 }

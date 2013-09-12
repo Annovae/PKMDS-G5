@@ -457,6 +457,9 @@ Changes</string>
     </property>
    </widget>
    <widget class="QComboBox" name="cbForm">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -483,6 +486,9 @@ Changes</string>
    </property>
    <property name="tabPosition">
     <enum>QTabWidget::North</enum>
+   </property>
+   <property name="tabShape">
+    <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
     <number>0</number>
@@ -1076,9 +1082,9 @@ Changes</string>
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>10</x>
         <y>150</y>
-        <width>70</width>
+        <width>60</width>
         <height>20</height>
        </rect>
       </property>
@@ -1089,9 +1095,9 @@ Changes</string>
      <widget class="QSpinBox" name="sbTotalEVs">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>10</x>
         <y>170</y>
-        <width>60</width>
+        <width>50</width>
         <height>22</height>
        </rect>
       </property>
@@ -1114,9 +1120,9 @@ Changes</string>
      <widget class="QSpinBox" name="sbSpeedEV">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>10</x>
         <y>120</y>
-        <width>60</width>
+        <width>50</width>
         <height>22</height>
        </rect>
       </property>
@@ -1127,9 +1133,9 @@ Changes</string>
      <widget class="QSpinBox" name="sbHPEV">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>10</x>
         <y>20</y>
-        <width>60</width>
+        <width>50</width>
         <height>21</height>
        </rect>
       </property>
@@ -1140,9 +1146,9 @@ Changes</string>
      <widget class="QSpinBox" name="sbDefEV">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>10</x>
         <y>60</y>
-        <width>60</width>
+        <width>50</width>
         <height>22</height>
        </rect>
       </property>
@@ -1153,9 +1159,9 @@ Changes</string>
      <widget class="QSpinBox" name="sbAtkEV">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>10</x>
         <y>40</y>
-        <width>60</width>
+        <width>50</width>
         <height>21</height>
        </rect>
       </property>
@@ -1166,9 +1172,9 @@ Changes</string>
      <widget class="QSpinBox" name="sbSpAtkEV">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>10</x>
         <y>80</y>
-        <width>60</width>
+        <width>50</width>
         <height>21</height>
        </rect>
       </property>
@@ -1179,9 +1185,9 @@ Changes</string>
      <widget class="QSpinBox" name="sbSpDefEV">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>10</x>
         <y>100</y>
-        <width>60</width>
+        <width>50</width>
         <height>21</height>
        </rect>
       </property>
@@ -1320,8 +1326,8 @@ Changes</string>
     <widget class="QComboBox" name="cbNatures">
      <property name="geometry">
       <rect>
-       <x>180</x>
-       <y>220</y>
+       <x>130</x>
+       <y>230</y>
        <width>110</width>
        <height>22</height>
       </rect>
@@ -1330,8 +1336,8 @@ Changes</string>
     <widget class="QLabel" name="lblNature">
      <property name="geometry">
       <rect>
-       <x>120</x>
-       <y>220</y>
+       <x>70</x>
+       <y>230</y>
        <width>50</width>
        <height>13</height>
       </rect>
@@ -1344,7 +1350,7 @@ Changes</string>
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>210</y>
+       <y>160</y>
        <width>100</width>
        <height>60</height>
       </rect>
@@ -2407,7 +2413,7 @@ Changes</string>
     <widget class="QComboBox" name="cbHometown">
      <property name="geometry">
       <rect>
-       <x>50</x>
+       <x>60</x>
        <y>130</y>
        <width>130</width>
        <height>22</height>
@@ -2422,7 +2428,7 @@ Changes</string>
     <widget class="QComboBox" name="cbCountry">
      <property name="geometry">
       <rect>
-       <x>50</x>
+       <x>60</x>
        <y>160</y>
        <width>130</width>
        <height>22</height>
@@ -2437,7 +2443,7 @@ Changes</string>
     <widget class="QLabel" name="lblHometown">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>10</x>
        <y>130</y>
        <width>50</width>
        <height>20</height>
@@ -2455,7 +2461,7 @@ Changes</string>
     <widget class="QLabel" name="lblCountry">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>10</x>
        <y>160</y>
        <width>50</width>
        <height>20</height>
@@ -2473,8 +2479,8 @@ Changes</string>
     <widget class="QCheckBox" name="chkFateful">
      <property name="geometry">
       <rect>
-       <x>181</x>
-       <y>130</y>
+       <x>10</x>
+       <y>190</y>
        <width>123</width>
        <height>17</height>
       </rect>
@@ -2491,8 +2497,8 @@ Changes</string>
     <widget class="QCheckBox" name="chkNsPKM">
      <property name="geometry">
       <rect>
-       <x>181</x>
-       <y>150</y>
+       <x>10</x>
+       <y>210</y>
        <width>123</width>
        <height>17</height>
       </rect>

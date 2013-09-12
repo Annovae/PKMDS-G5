@@ -43,26 +43,13 @@ pkmviewer::pkmviewer(QWidget *parent) :
     }
     QComboBox * moveboxes[4] = {ui->cbMove1,ui->cbMove2,ui->cbMove3,ui->cbMove4};
     QString itemname = "";
-    
-    std::map<int,int> itemmap;
-    std::map<int,int> locmap;
-    std::map<int,int> hometownmap;
-    std::map<int,int> countrymap;
-    //std::map<int,int> speciesmap;
-    //std::map<int,int> abilitymap;
-    //std::map<int,int> movemap;
-    //std::map<int,int> naturemap;
-
-    //    int count = 0;
     for(int itemindex = 0; itemindex <= (int)Items::revealglass; itemindex++)
     {
         itemname = QString::fromStdString(lookupitemname(itemindex));
-        //        if(itemname != "")
-        //        {
-        //            itemmap[count] = itemindex;
-        ui->cbPKMItem->addItem(itemname);
-        //        }
-        //        count++;
+        if((itemname != "") | (itemindex == 0))
+        {
+            ui->cbPKMItem->addItem(itemname,itemindex);
+        }
     }
     for(int speciesindex = 1; speciesindex < 650; speciesindex++)
     {
@@ -79,7 +66,8 @@ pkmviewer::pkmviewer(QWidget *parent) :
         for(int moveindex = 0; moveindex < 4; moveindex++)
         {
             itemname = QString::fromStdString(lookupmovename(moveid));
-            moveboxes[moveindex]->addItem(itemname);
+            if(!((moveindex == 0) & (itemname == "")))
+                moveboxes[moveindex]->addItem(itemname);
         }
     }
     for(int ballnum = 0; ballnum <= (int)Balls::dreamball; ballnum++)
@@ -90,7 +78,7 @@ pkmviewer::pkmviewer(QWidget *parent) :
             ui->cbBall->setItemIcon(ballnum,getballpic((Balls::balls)ballnum));
         }
     }
-    for(int abilityindex = 0; abilityindex <= (int)Abilities::teravolt; abilityindex++)
+    for(int abilityindex = 1; abilityindex <= (int)Abilities::teravolt; abilityindex++)
     {
         itemname = QString::fromStdString(lookupabilityname(abilityindex));
         ui->cbPKMAbility->addItem(itemname);
@@ -98,21 +86,40 @@ pkmviewer::pkmviewer(QWidget *parent) :
     for(int locationindex = 0; locationindex <= (int)Locations::pledgegrove; locationindex++)
     {
         itemname = QString::fromStdString(lookuplocname(locationindex));
-        ui->cbMetLocation->addItem(itemname);
-        ui->cbEggLocation->addItem(itemname);
+        if(itemname != "")
+        {
+            ui->cbMetLocation->addItem(itemname,locationindex);
+            ui->cbEggLocation->addItem(itemname,locationindex);
+        }
     }
-    for(int hometownindex = 0; hometownindex <= (int)Hometowns::black2; hometownindex++)
-    {
-        // TODO: hometown strings
-        itemname = QString::fromStdString(""); // lookuplocname(hometownindex));
-        ui->cbHometown->addItem(itemname);
-    }
-    for(int countryindex = 0; countryindex <= (int)Countries::southkorean; countryindex++)
-    {
-        // TODO: country strings
-        itemname = QString::fromStdString(""); // lookuplocname(countryindex));
-        ui->cbCountry->addItem(itemname);
-    }
+    ui->cbMetLocation->addItem("Poké Transfer",30001);
+    ui->cbEggLocation->addItem("Poké Transfer",30001);
+    ui->cbMetLocation->addItem("Lovely Place",40001);
+    ui->cbEggLocation->addItem("Lovely Place",40001);
+    ui->cbMetLocation->addItem("Day-Care Couple",60002);
+    ui->cbEggLocation->addItem("Day-Care Couple",60002);
+    ui->cbHometown->addItem("Sapphire",1);
+    ui->cbHometown->addItem("Ruby",2);
+    ui->cbHometown->addItem("Emerald",3);
+    ui->cbHometown->addItem("FireRed",4);
+    ui->cbHometown->addItem("LeafGreen",5);
+    ui->cbHometown->addItem("HeartGold",7);
+    ui->cbHometown->addItem("SoulSilver",8);
+    ui->cbHometown->addItem("Diamond",10);
+    ui->cbHometown->addItem("Pearl",11);
+    ui->cbHometown->addItem("Platinum",12);
+    ui->cbHometown->addItem("Colosseum / XD",15);
+    ui->cbHometown->addItem("White",20);
+    ui->cbHometown->addItem("Black",21);
+    ui->cbHometown->addItem("White 2",22);
+    ui->cbHometown->addItem("Black 2",23);
+    ui->cbCountry->addItem("JA", 1);
+    ui->cbCountry->addItem("ENG/UK/AUS", 2);
+    ui->cbCountry->addItem("FR", 3);
+    ui->cbCountry->addItem("ITA", 4);
+    ui->cbCountry->addItem("DE", 5);
+    ui->cbCountry->addItem("SPA", 7);
+    ui->cbCountry->addItem("SOK", 8);
     //Todo: cbForm
     this->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
     this->setMinimumSize(this->size());
@@ -157,6 +164,7 @@ void pkmviewer::setPKM(party_pkm * ppkm_, int box, bool isPartyPKM)
 void pkmviewer::displayPKM()
 {
     redisplayok = false;
+    int index = 0;
     this->setWindowTitle(QString::fromStdWString(getpkmnickname(temppkm)));
     switch(temppkm->metlevel_otgender.otgender)
     {
@@ -174,7 +182,11 @@ void pkmviewer::displayPKM()
     ui->sbSID->setValue(temppkm->sid);
     ui->cbPKMSpecies->setCurrentIndex((int)(temppkm->species)-1);
     ui->sbSpecies->setValue(temppkm->species);
-    ui->cbPKMItem->setCurrentIndex((int)temppkm->item);
+    //    ui->cbPKMItem->setCurrentIndex((int)temppkm->item);
+    index = ui->cbPKMItem->findData((int)temppkm->item);
+    if ( index != -1 ) { // -1 for not found
+        ui->cbPKMItem->setCurrentIndex(index);
+    }
     ui->sbLevel->setValue(getpkmlevel(temppkm));
     ui->sbEXP->setMaximum(getpkmexpatlevel(temppkm->species,100));
     ui->sbEXP->setValue(temppkm->exp);
@@ -252,17 +264,17 @@ void pkmviewer::displayPKM()
     ui->sbSpDefEV->setValue(temppkm->evs.spdef);
     ui->sbSpeedEV->setValue(temppkm->evs.speed);
     ui->cbNatures->setCurrentIndex(temppkm->nature);
-    ui->cbMove1->setCurrentIndex((int)temppkm->moves[0]);
+    ui->cbMove1->setCurrentIndex(((int)temppkm->moves[0])-1);
     ui->cbMove2->setCurrentIndex((int)temppkm->moves[1]);
     ui->cbMove3->setCurrentIndex((int)temppkm->moves[2]);
     ui->cbMove4->setCurrentIndex((int)temppkm->moves[3]);
-    ui->cbPKMAbility->setCurrentIndex(temppkm->ability);
+    ui->cbPKMAbility->setCurrentIndex(((int)temppkm->ability)-1);
     QSpinBox * movePPboxes[4] = {ui->sbMove1PP,ui->sbMove2PP,ui->sbMove3PP,ui->sbMove4PP};
     QSpinBox * movePPUpboxes[4] = {ui->sbMove1PPUps,ui->sbMove2PPUps,ui->sbMove3PPUps,ui->sbMove4PPUps};
     for(int movenum = 0; movenum < 4; movenum++)
     {
-        movePPboxes[movenum]->setValue(pkm->pp[movenum]);
-        movePPUpboxes[movenum]->setValue(pkm->ppup[movenum]);
+        movePPboxes[movenum]->setValue(temppkm->pp[movenum]);
+        movePPUpboxes[movenum]->setValue(temppkm->ppup[movenum]);
     }
     int base = 10;
     if(ui->chkHex->isChecked())
@@ -274,13 +286,52 @@ void pkmviewer::displayPKM()
     ui->chkFateful->setChecked(temppkm->forms.fencounter);
     ui->sbMetLevel->setValue((int)temppkm->metlevel_otgender.metlevel);
     ui->chkMetAsEgg->setChecked(pkmmetasegg(temppkm));
-    ui->cbHometown->setCurrentIndex((int)temppkm->hometown);
-    ui->cbCountry->setCurrentIndex((int)temppkm->country);
-    ui->cbMetLocation->setCurrentIndex((int)temppkm->met);
-    ui->cbEggLocation->setCurrentIndex((int)temppkm->eggmet);
-    ui->cbForm->setCurrentIndex((int)temppkm->forms.form);
+    ui->cbEggLocation->setEnabled(ui->chkMetAsEgg->isChecked());
+    ui->dtEggDate->setEnabled(ui->chkMetAsEgg->isChecked());
+    index = ui->cbHometown->findData((int)temppkm->hometown);
+    if ( index != -1 ) { // -1 for not found
+        ui->cbHometown->setCurrentIndex(index);
+    }
+    index = ui->cbCountry->findData((int)temppkm->country);
+    if ( index != -1 ) { // -1 for not found
+        ui->cbCountry->setCurrentIndex(index);
+    }
+    index = ui->cbMetLocation->findData((int)temppkm->met);
+    if ( index != -1 ) { // -1 for not found
+        ui->cbMetLocation->setCurrentIndex(index);
+    }
+    index = ui->cbEggLocation->findData((int)temppkm->eggmet);
+    if ( index != -1 ) { // -1 for not found
+        ui->cbEggLocation->setCurrentIndex(index);
+    }
     ui->dtEggDate->setDate(QDate(((int)temppkm->eggdate.year)+2000,(int)temppkm->eggdate.month,(int)temppkm->eggdate.day));
     ui->dtMetDate->setDate(QDate(((int)temppkm->metdate.year)+2000,(int)temppkm->metdate.month,(int)temppkm->metdate.day));
+    ui->cbForm->clear();
+    switch(temppkm->species)
+    {
+    case Species::castform:
+        ui->cbForm->addItem("");
+        break;
+    case Species::rotom:
+        ui->cbForm->addItem("");
+        break;
+    case Species::kyurem:
+        ui->cbForm->addItem("");
+        break;
+    case Species::genesect:
+        ui->cbForm->addItem("");
+        break;
+    }
+    for(int formid = 0; formid < 28; formid++)
+    {
+        std::string formname = getpkmformname((int)temppkm->species,formid);
+        if(formname != "")
+        {
+            ui->cbForm->addItem(QString::fromStdString(formname));
+        }
+    }
+    ui->cbForm->setEnabled(ui->cbForm->count() > 0);
+    ui->cbForm->setCurrentIndex((int)temppkm->forms.form);
     redisplayok = true;
     updategenderpic();
     updateabilityflavor();
@@ -527,7 +578,8 @@ void pkmviewer::on_cbPKMItem_currentIndexChanged(int index)
 {
     if((temppkm->species > 0) && ((temppkm->pid > 0) || (temppkm->checksum > 0)))
     {
-        temppkm->item = (Items::items)index;
+        //        temppkm->item = (Items::items)index;
+        temppkm->item = (Items::items)(ui->cbPKMItem->itemData(index).toInt());
         if(redisplayok)
         {
             pkmviewer::displayPKM();
@@ -848,7 +900,7 @@ void pkmviewer::on_cbMove1_currentIndexChanged(int index)
 {
     if(redisplayok)
     {
-        temppkm->moves[0] = (Moves::moves)index;
+        temppkm->moves[0] = (Moves::moves)(index + 1);
         updatemoveflavor();
         updatemovepp();
         updatemoveimages();
@@ -952,7 +1004,7 @@ void pkmviewer::on_cbPKMAbility_currentIndexChanged(int index)
 {
     if(redisplayok)
     {
-        temppkm->ability = (Abilities::abilities)index;
+        temppkm->ability = (Abilities::abilities)(index+1);
         updateabilityflavor();
     }
 }
@@ -993,6 +1045,7 @@ void pkmviewer::on_cbForm_currentIndexChanged(int index)
     if(redisplayok)
     {
         temppkm->forms.form = (byte)index;
+        displayPKM();
     }
 }
 void pkmviewer::on_chkMetAsEgg_toggled(bool checked)
@@ -1028,7 +1081,8 @@ void pkmviewer::on_cbMetLocation_currentIndexChanged(int index)
 {
     if(redisplayok)
     {
-        temppkm->met = Locations::locations(index);
+        //temppkm->met = Locations::locations(index);
+        temppkm->met = (Locations::locations)(ui->cbMetLocation->itemData(index).toInt());
     }
 }
 void pkmviewer::on_dtMetDate_dateChanged(const QDate &date)
@@ -1046,7 +1100,8 @@ void pkmviewer::on_cbEggLocation_currentIndexChanged(int index)
     {
         if(ui->chkMetAsEgg->isChecked())
         {
-            temppkm->eggmet = Locations::locations(index);
+            //temppkm->eggmet = Locations::locations(index);
+            temppkm->eggmet = (Locations::locations)(ui->cbEggLocation->itemData(index).toInt());
         }
     }
 }
@@ -1066,13 +1121,13 @@ void pkmviewer::on_cbHometown_currentIndexChanged(int index)
 {
     if(redisplayok)
     {
-        temppkm->hometown = Hometowns::hometowns(index);
+        temppkm->hometown = (Hometowns::hometowns)(ui->cbHometown->itemData(index).toInt());
     }
 }
 void pkmviewer::on_cbCountry_currentIndexChanged(int index)
 {
     if(redisplayok)
     {
-        temppkm->country = Countries::countries(index);
+        temppkm->country = (Countries::countries)(ui->cbCountry->itemData(index).toInt());
     }
 }
