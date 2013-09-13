@@ -36,103 +36,107 @@ bool ispartypkm_ = false;
 bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
 {
     QString theObjName = obj->objectName();
-    if(theObjName != "")
-    {
-        QMouseEvent *mouseEvent;
-        int slot = 0;
-        slot = (atoi(theObjName.right(2).toStdString().c_str()))-1;
-        frmCurSlotNum = slot;
-        bool todisplay = false;
-        switch(event->type())
+    if((theObjName != "" )&(event->type() != QEvent::None)&(event->type() != 39)&(event->type() != 69)&(event->type() != 74)&(event->type() != 75)&(event->type() != 170))
         {
-        case QEvent::MouseButtonPress:
-            mouseEvent = static_cast<QMouseEvent *>(event);
-            switch(mouseEvent->button())
+        int test = event->type();
+    QMouseEvent *mouseEvent;
+    int slot = 0;
+    slot = (atoi(theObjName.right(2).toStdString().c_str()))-1;
+    frmCurSlotNum = slot;
+    bool todisplay = false;
+    switch(event->type())
+    {
+    //        case QEvent::MouseButtonPress:
+    case QEvent::MouseButtonDblClick:
+        mouseEvent = static_cast<QMouseEvent *>(event);
+        switch(mouseEvent->button())
+        {
+        case Qt::LeftButton:
+            theSlot = obj;
+            switch(theObjName.toStdString()[2])
             {
-            case Qt::LeftButton:
-                theSlot = obj;
-                switch(theObjName.toStdString()[2])
+            case 'B':
+                if(theObjName.mid(2,5) == "BoxSl")
                 {
-                case 'B':
-                    if(theObjName.mid(2,5) == "BoxSl")
-                    {
-                        apkm = &(frmCurBox->pokemon[slot]);
-                        ispartypkm_ = false;
-                        todisplay = true;
-                    }
-                    break;
-                case 'P':
-                    apkm = &(frmParty->pokemon[slot].pkm_data);
-                    ispartypkm_ = true;
+                    apkm = &(frmCurBox->pokemon[slot]);
+                    ispartypkm_ = false;
                     todisplay = true;
-                    break;
-                default:
-                    QPixmap extmarkingspix;
-                    int selection = 0;
-                    if(theObjName.right(theObjName.length() - 2).toStdString() == "Circle"){
-                        temppkm->markings.circle = !(temppkm->markings.circle);
-                        selection = (int)Markings::circle;
-                        extmarkingspix = getmarkingimage(Markings::circle, temppkm->markings.circle);
-                    }
-                    if(theObjName.right(theObjName.length() - 2).toStdString() == "Triangle"){
-                        temppkm->markings.triangle = !(temppkm->markings.triangle);
-                        selection = (int)Markings::triangle;
-                        extmarkingspix = getmarkingimage(Markings::triangle, temppkm->markings.triangle);
-                    }
-                    if(theObjName.right(theObjName.length() - 2).toStdString() == "Square"){
-                        temppkm->markings.square = !(temppkm->markings.square);
-                        selection = (int)Markings::square;
-                        extmarkingspix = getmarkingimage(Markings::square, temppkm->markings.square);
-                    }
-                    if(theObjName.right(theObjName.length() - 2).toStdString() == "Star"){
-                        temppkm->markings.star = !(temppkm->markings.star);
-                        selection = (int)Markings::star;
-                        extmarkingspix = getmarkingimage(Markings::star, temppkm->markings.star);
-                    }
-                    if(theObjName.right(theObjName.length() - 2).toStdString() == "Diamond"){
-                        temppkm->markings.diamond = !(temppkm->markings.diamond);
-                        selection = (int)Markings::diamond;
-                        extmarkingspix = getmarkingimage(Markings::diamond, temppkm->markings.diamond);
-                    }
-                    if(theObjName.right(theObjName.length() - 2).toStdString() == "Heart"){
-                        temppkm->markings.heart = !(temppkm->markings.heart);
-                        selection = (int)Markings::heart;
-                        extmarkingspix = getmarkingimage(Markings::heart, temppkm->markings.heart);
-                    }
-                    QGraphicsScene * themarkingsscene = (QGraphicsScene*)extmarkingsscene;
-                    themarkingsscene = new QGraphicsScene();
-                    themarkingsscene->addPixmap(extmarkingspix);
-                    QGraphicsView * themarkingsgraphics = (QGraphicsView*)obj;
-                    themarkingsgraphics->setScene(themarkingsscene);
-                    break;
                 }
-                if((apkm->species != 0) && todisplay)
-                {
-//                    pview->setWindowTitle(QString::fromStdWString(getpkmnickname(apkm)));
-                    pview->setPKM(apkm,frmCurBoxNum, ispartypkm_);
-                    pview->displayPKM();
-                    pview->show();
-                }
+                break;
+            case 'P':
+                apkm = &(frmParty->pokemon[slot].pkm_data);
+                ispartypkm_ = true;
+                todisplay = true;
                 break;
             default:
+                QPixmap extmarkingspix;
+                int selection = 0;
+                if(theObjName.right(theObjName.length() - 2).toStdString() == "Circle"){
+                    temppkm->markings.circle = !(temppkm->markings.circle);
+                    selection = (int)Markings::circle;
+                    extmarkingspix = getmarkingimage(Markings::circle, temppkm->markings.circle);
+                }
+                if(theObjName.right(theObjName.length() - 2).toStdString() == "Triangle"){
+                    temppkm->markings.triangle = !(temppkm->markings.triangle);
+                    selection = (int)Markings::triangle;
+                    extmarkingspix = getmarkingimage(Markings::triangle, temppkm->markings.triangle);
+                }
+                if(theObjName.right(theObjName.length() - 2).toStdString() == "Square"){
+                    temppkm->markings.square = !(temppkm->markings.square);
+                    selection = (int)Markings::square;
+                    extmarkingspix = getmarkingimage(Markings::square, temppkm->markings.square);
+                }
+                if(theObjName.right(theObjName.length() - 2).toStdString() == "Star"){
+                    temppkm->markings.star = !(temppkm->markings.star);
+                    selection = (int)Markings::star;
+                    extmarkingspix = getmarkingimage(Markings::star, temppkm->markings.star);
+                }
+                if(theObjName.right(theObjName.length() - 2).toStdString() == "Diamond"){
+                    temppkm->markings.diamond = !(temppkm->markings.diamond);
+                    selection = (int)Markings::diamond;
+                    extmarkingspix = getmarkingimage(Markings::diamond, temppkm->markings.diamond);
+                }
+                if(theObjName.right(theObjName.length() - 2).toStdString() == "Heart"){
+                    temppkm->markings.heart = !(temppkm->markings.heart);
+                    selection = (int)Markings::heart;
+                    extmarkingspix = getmarkingimage(Markings::heart, temppkm->markings.heart);
+                }
+                QGraphicsScene * themarkingsscene = (QGraphicsScene*)extmarkingsscene;
+                themarkingsscene = new QGraphicsScene();
+                themarkingsscene->addPixmap(extmarkingspix);
+                QGraphicsView * themarkingsgraphics = (QGraphicsView*)obj;
+                themarkingsgraphics->setScene(themarkingsscene);
                 break;
             }
-            break;
-        case QEvent::MouseButtonDblClick:
+            if((apkm->species != 0) && todisplay)
+            {
+                //                    pview->setWindowTitle(QString::fromStdWString(getpkmnickname(apkm)));
+                pview->setPKM(apkm,frmCurBoxNum, ispartypkm_);
+                pview->displayPKM();
+                pview->show();
+            }
             break;
         default:
-            return QObject::eventFilter(obj, event);
             break;
         }
+        break;
+        //        case QEvent::MouseButtonDblClick:
+        //            test.setText("Test");
+        //            test.show();
+        //            break;
+    default:
+        return QObject::eventFilter(obj, event);
+        break;
     }
-    else
-    {
-        if(event->type() == QEvent::MouseButtonPress)
-        {
-            int slot = obj->property("Index").toInt();
-            boxViewer->changebox(slot);
         }
-        return false;
-    }
+    //    else
+    //    {
+    //    if(event->type() == QEvent::MouseButtonPress)
+    //    {
+    //        int slot = obj->property("Index").toInt();
+    //        boxViewer->changebox(slot);
+    //    }
     return false;
+    //    }
+    //    return false;
 }
