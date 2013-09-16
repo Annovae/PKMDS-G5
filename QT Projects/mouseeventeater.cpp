@@ -46,8 +46,8 @@ bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
     bool todisplay = false;
     switch(event->type())
     {
-    //        case QEvent::MouseButtonPress:
-    case QEvent::MouseButtonDblClick:
+            case QEvent::MouseButtonPress:
+//    case QEvent::MouseButtonDblClick:
         mouseEvent = static_cast<QMouseEvent *>(event);
         switch(mouseEvent->button())
         {

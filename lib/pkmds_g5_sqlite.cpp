@@ -846,6 +846,103 @@ string lookupabilityflavortext(const pokemon_obj &pkm, const int version_group, 
 {
     return getastring(lookupabilityflavortext(pkm.ability,version_group,langid));
 }
+/*
+# PokeTools
+# Some useful calculatios for RNGing in Pokemon Gen V
+# by Kai Seward, April 2011
+# Gen V RNG Breeding Guide: http://www.smogon.com/forums/showthread.php?t=3446600
+def pidtodec(pid):
+    """ return the decimal form of the personality value """
+    return int(pid,16)
+def characteristic(pid):
+    """ in the case of a tie, the stat that rules the characteristic """
+    characteristic = pidtodec(pid) % 6
+    if characteristic == 0:
+        return 'HP'
+    elif characteristic == 1:
+        return 'Attack'
+    elif characteristic == 2:
+        return 'Defense'
+    elif characteristic == 3:
+        return 'Speed'
+    elif characteristic == 4:
+        return 'Special Attack'
+    elif characteristic == 5:
+        return 'Special Defense'
+def characteristicint(pid):
+    """ in the case of a tie, the stat that rules the characteristic """
+    characteristic = pidtodec(pid) % 6
+    if characteristic == 0:
+        return 0
+        print ('HP')
+    elif characteristic == 1:
+        return 1
+        print ('Attack')
+    elif characteristic == 2:
+        return 2
+        print ('Defense')
+    elif characteristic == 3:
+        return 3
+        print ('Speed')
+    elif characteristic == 4:
+        return 4
+        print ('Special Attack')
+    elif characteristic == 5:
+        return 5
+        print ('Special Defense')
+def ivmax(IVs):
+    """ (HP, Attack Defense, Speeed, Special Attack, Special Defense) """
+    for x in range(len(IVs)):
+        if IVs[x] == 'X':
+            IVs[x] = 0
+    maxiv = max(IVs)
+    return maxiv
+def list_ivtie(IVs):
+    maxiv = ivmax(IVs)
+    for x in range(len(IVs)):
+        if IVs[x] == 'X':
+            IVs[x] = 0
+    indices = [i for i in range(len(IVs)) if IVs[i] == maxiv]
+    return indices
+def iv_pid_char_index(IVs,pid):
+    """ determine the characteristic stat of given a set of IVs and a pid.
+    (HP, Attack, Defense,Speed,Special Attack, Special Defense)
+    You may enter X in the place of an IV as long as there are
+    known greater values """
+    index = characteristicint(pid)
+    maxivs = list_ivtie(IVs)
+    while 1:
+        if index in maxivs:
+            return index
+        else:
+            index = (index + 1) % 6
+def characteristic_determine(IVs,pid):
+    """ Given a set of IVs and a PID, determines what the characteristic should be.
+    IVs must be formatted as a list in this order HP, Attack, Defense, Speed, Special Attack, Special Defense.
+    If you don't know a particular IV, you can enter 'X'.
+    Example If I know HP, Defense, Special Attack, Special Defense, and Speed are all 31 and attack is not 31,
+    You can enter [31,'X',31,31,31,31] in the IV field.  PID must be entered as a string e.g. 'AAAAAA' """
+    govstat = iv_pid_char_index(IVs,pid)
+    ref = ivmax(IVs) % 5
+    HP = ['Loves to eat','Often dozes off','Often scatters things','Scatters things often','Likes to relax']
+    Attack = ['Proud of its power','Likes to thrash about','A little quick tempered','Likes to fight','Quick tempered']
+    Defense = ['Sturdy body','Capable of taking hits','Highly persistent','Good endurance','Good perseverance']
+    SpecialAttack = ['Highly curious','Mischievous','Thoroughly cunning','Often lost in thought','Very finicky']
+    SpecialDefense = ['Strong willed','Somewhat vain','Strongly defiant','Hates to lose','Somewht stubborn']
+    Speed = ['Likes to run','Alert to sounds','Impetuous and silly','Somewhat of a clown','Quick to flee']
+    if govstat == 0:
+        return HP[ref]
+    elif govstat == 1:
+        return Attack[ref]
+    elif govstat == 2:
+        return Defense[ref]
+    elif govstat == 3:
+        return Speed[ref]
+    elif govstat == 4:
+        return SpecialAttack[ref]
+    elif govstat == 5:
+        return SpecialDefense[ref]
+*/
 string lookupcharacteristic(const int statid, const int iv, const int langid)
 {
     return getastring(lookupcharacteristicsql(statid,iv,langid));
@@ -950,7 +1047,7 @@ string lookupcharacteristic(const pokemon_obj *pkm, const int langid)
     {
         if(ivs[i].val == highval)
         {
-            statid = i+1;
+            statid = (int)(ivs[i].id); //i+1;
             highcount++;
         }
     }
@@ -974,6 +1071,7 @@ string lookupcharacteristic(const pokemon_obj *pkm, const int langid)
     }
     return lookupcharacteristic(statid,highval,langid);
 }
+
 string lookuppkmname(const int speciesid, const int langid)
 {
     return getastring(getspeciesnamesql(speciesid,langid));

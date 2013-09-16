@@ -28,13 +28,13 @@ int main(int argc, char* argv[])
 	string saveout = "OUT.sav";
 	bw2sav_obj* sav = new bw2sav_obj;
 	read(argv[1],sav);
+	bool bw2 = savisbw2(sav);
 	std::vector<pokemon_obj> *vpkm = new std::vector<pokemon_obj>;
 	vpkm = getpcvector(&(sav->cur));
 	std::vector<pokemon_obj>::const_iterator pkmit;
 	pkmit = vpkm->begin();
 	sortbyspeciesasc(*vpkm);
 	pokemon_obj * blankpkm = new pokemon_obj;
-	memset(blankpkm,0x0,sizeof(pokemon_obj));
 	pkmit = vpkm->begin();
 	pokemon_obj * pkm = new pokemon_obj;
 	for(int box = 0; box < 24; box++)
@@ -52,9 +52,9 @@ int main(int argc, char* argv[])
 				sav->cur.boxes[box].pokemon[slot] = *blankpkm;
 			}
 		}
-		calcboxchecksum(&(sav->cur),box,savisbw2(sav));
+		calcboxchecksum(&(sav->cur),box,bw2);
 	}
-	fixsavchecksum(sav);
+	fixsavchecksum(sav,bw2);
 	write(saveout.c_str(),sav);
 	delete pkm;
 	pkm = 0;

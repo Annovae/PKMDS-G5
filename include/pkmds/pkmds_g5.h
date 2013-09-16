@@ -1306,7 +1306,7 @@ enum items : uint16 {
 namespace Hometowns
 {
 enum hometowns : byte {
-    NOTHING = 0,
+    colosseum_bonus,
     sapphire,
     ruby,
     emerald,
@@ -2309,6 +2309,7 @@ enum locations : uint16 {
     ironroom,
     pledgegrove,
     poketransfer=30001,
+    pokemondreamradar=30015,
     lovelyplace=40001,
     daycarecouple=60002
 };
@@ -2353,7 +2354,7 @@ enum balls : byte {
     loveball,
     friendball,
     moonball,
-    compball,
+    sportball,
     dreamball
 };
 }
@@ -3409,12 +3410,12 @@ enum bw2_offsets : long
     boxesstart = 0x400,
     inventory = 0x18400,
     partypkm = 0x18e00,
-    trainerdata = 0x18e00,
+    trainerdata = 0x19400,
     adventuredata = 0x1d900,
     battlebox = 0x20900,
     daycare = 0x20d00,
     badgesmoneysayings = 0x21100,
-    pokedex = 0x21400,
+    pokedex = 0x21400
 };
 }
 namespace BW_OFFSETS
@@ -3424,7 +3425,12 @@ enum bw_offsets : long
     chkloc = 0x23F9A,
     chkcalcloc = 0x23F00,
     chkcalclen = 0x8C,
-    block1checksum = 0x03E2
+    block1checksum = 0x03E2,
+    boxnames = 0x0,
+    boxesstart = 0x400,
+    inventory = 0x18400,
+    partypkm = 0x18e00,
+    trainerdata = 0x19400
 };
 }
 /*
@@ -3567,7 +3573,7 @@ static const std::string ballnames[26] = {
     "Love Ball",
     "Friend Ball",
     "Moon Ball",
-    "Comp Ball",
+    "Sport Ball",
     "Dream Ball"
 };
 static const int hiddenpowertypes[16] = {
@@ -3626,12 +3632,12 @@ static const int SeedTable[] =
 static const long boxsize = 0xff0;
 uint16 DllExport getchecksum(bw2savblock_obj &block, const int start, const int length);
 void DllExport calcboxchecksum(bw2savblock_obj &block, int boxindex, bool bw2);
-void DllExport calcpartychecksum(bw2savblock_obj &block); // ,bool bw2);
+void DllExport calcpartychecksum(bw2savblock_obj &block, bool bw2); // ,bool bw2);
 void DllExport calcchecksum(bw2savblock_obj &block, int start, int length, int loc);
 uint16 DllExport getchkfromsav(bw2savblock_obj &block, bool bw2);
 uint16 DllExport getchecksum(bw2savblock_obj *block, const int start, const int length);
 void DllExport calcboxchecksum(bw2savblock_obj *block, int boxindex, bool bw2);
-void DllExport calcpartychecksum(bw2savblock_obj *block); // ,bool bw2);
+void DllExport calcpartychecksum(bw2savblock_obj *block, bool bw2); // ,bool bw2);
 void DllExport calcchecksum(bw2savblock_obj *block, int start, int length, int loc);
 uint16 getchkfromsav(bw2savblock_obj *block, bool bw2);
 const byte natureconvert[25][2] =
@@ -3670,8 +3676,8 @@ void DllExport calcchecksum(pokemon_obj& pkm); // Calculates and assigns the che
 void DllExport calcchecksum(pokemon_obj* pkm);
 bool DllExport savisbw2(bw2sav_obj &sav);
 bool DllExport savisbw2(bw2sav_obj *sav);
-void DllExport fixsavchecksum(bw2sav_obj &sav);
-void DllExport fixsavchecksum(bw2sav_obj *sav);
+void DllExport fixsavchecksum(bw2sav_obj &sav, bool isbw2);
+void DllExport fixsavchecksum(bw2sav_obj *sav, bool isbw2);
 void DllExport write(const char* file_name, pokemon_obj& data); // Writes the given Pokemon data to the given file name.
 void DllExport write(const char* file_name, pokemon_obj* data); // Writes the given Pokemon data to the given file name.
 void DllExport write(const char* file_name, bw2sav_obj& data); //, int start, int length, int loc) //

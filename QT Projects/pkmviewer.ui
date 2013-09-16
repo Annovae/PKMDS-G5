@@ -2515,9 +2515,9 @@ Changes</string>
     <widget class="QGroupBox" name="gbMet">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>0</x>
        <y>10</y>
-       <width>140</width>
+       <width>150</width>
        <height>81</height>
       </rect>
      </property>
@@ -2552,7 +2552,7 @@ Changes</string>
        <rect>
         <x>0</x>
         <y>20</y>
-        <width>140</width>
+        <width>150</width>
         <height>22</height>
        </rect>
       </property>
@@ -2566,9 +2566,9 @@ Changes</string>
     <widget class="QGroupBox" name="gbEgg">
      <property name="geometry">
       <rect>
-       <x>160</x>
+       <x>150</x>
        <y>10</y>
-       <width>140</width>
+       <width>150</width>
        <height>101</height>
       </rect>
      </property>
@@ -2609,7 +2609,7 @@ Changes</string>
        <rect>
         <x>0</x>
         <y>20</y>
-        <width>140</width>
+        <width>150</width>
         <height>22</height>
        </rect>
       </property>

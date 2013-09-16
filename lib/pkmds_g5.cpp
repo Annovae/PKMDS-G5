@@ -36,9 +36,6 @@ int balltoitem(int ball)
     case Balls::cherishball:
         item = (int)Items::cherishball;
         break;
-    case Balls::compball:
-        item = (int)Items::sportball;
-        break;
     case Balls::diveball:
         item = (int)Items::diveball;
         break;
@@ -99,6 +96,9 @@ int balltoitem(int ball)
     case Balls::safariball:
         item = (int)Items::safariball;
         break;
+    case Balls::sportball:
+        item = (int)Items::sportball;
+        break;
     case Balls::timerball:
         item = (int)Items::timerball;
         break;
@@ -119,17 +119,21 @@ const byte t_shuffle[24][4] = {
     {2,3,0,1}, {2,3,1,0}, {3,0,1,2}, {3,0,2,1},
     {3,1,0,2}, {3,1,2,0}, {3,2,0,1}, {3,2,1,0}
 };
-void shuffle(pokemon_obj * pkm, bool un) {
+void shuffle(pokemon_obj * pkm, bool un)
+{
     byte * raw = reinterpret_cast<byte*>(pkm);
     byte temp[128];
     byte mode = (((((uint32*) raw)[0] >> 0xD) & 0x1F) % 24);
 
-    if (un) {
+    if (un)
+    {
         memcpy(&(temp[t_shuffle[mode][0] * 32]), &raw[8 + 0 * 32], 32);
         memcpy(&(temp[t_shuffle[mode][1] * 32]), &raw[8 + 1 * 32], 32);
         memcpy(&(temp[t_shuffle[mode][2] * 32]), &raw[8 + 2 * 32], 32);
         memcpy(&(temp[t_shuffle[mode][3] * 32]), &raw[8 + 3 * 32], 32);
-    } else {
+    }
+    else
+    {
         memcpy(&(temp[0 * 32]), &raw[8 + t_shuffle[mode][0] * 32], 32);
         memcpy(&(temp[1 * 32]), &raw[8 + t_shuffle[mode][1] * 32], 32);
         memcpy(&(temp[2 * 32]), &raw[8 + t_shuffle[mode][2] * 32], 32);
@@ -137,17 +141,21 @@ void shuffle(pokemon_obj * pkm, bool un) {
     }
     memcpy(&raw[8], &temp, 128);
 }
-void shuffle(pokemon_obj & pkm, bool un) {
+void shuffle(pokemon_obj & pkm, bool un)
+{
     byte * raw = reinterpret_cast<byte*>(&pkm);
     byte temp[128];
     byte mode = (((((uint32*) raw)[0] >> 0xD) & 0x1F) % 24);
 
-    if (un) {
+    if (un)
+    {
         memcpy(&(temp[t_shuffle[mode][0] * 32]), &raw[8 + 0 * 32], 32);
         memcpy(&(temp[t_shuffle[mode][1] * 32]), &raw[8 + 1 * 32], 32);
         memcpy(&(temp[t_shuffle[mode][2] * 32]), &raw[8 + 2 * 32], 32);
         memcpy(&(temp[t_shuffle[mode][3] * 32]), &raw[8 + 3 * 32], 32);
-    } else {
+    }
+    else
+    {
         memcpy(&(temp[0 * 32]), &raw[8 + t_shuffle[mode][0] * 32], 32);
         memcpy(&(temp[1 * 32]), &raw[8 + t_shuffle[mode][1] * 32], 32);
         memcpy(&(temp[2 * 32]), &raw[8 + t_shuffle[mode][2] * 32], 32);
@@ -171,89 +179,101 @@ void shufflepkm(pokemon_obj &pkm)
 {
     shuffle(pkm,false);
 }
-void pkmcrypt(pokemon_obj& pkm){
+void pkmcrypt(pokemon_obj& pkm)
+{
     pkmprng prng;
     prng.mseed = pkm.checksum;
     uint16 * words = reinterpret_cast<uint16*>(&pkm);
     for(int i = 4; i < 68; i++)
     {
         words[i] = (words[i]) ^ (prng.nextnum() >> 0x10);
-    };
+    }
 }
-void pkmcrypt(party_field& pkm, uint32 pid){
+void pkmcrypt(party_field& pkm, uint32 pid)
+{
     pkmprng prng;
     prng.mseed = pid;
     uint16 * words = reinterpret_cast<uint16*>(&pkm);
     for(int i = 0x0; i < 0x2a; i++)
     {
         words[i] = (words[i]) ^ (prng.nextnum() >> 0x10);
-    };
+    }
 }
-void pkmcrypt(party_field* pkm, uint32 pid){
+void pkmcrypt(party_field* pkm, uint32 pid)
+{
     pkmprng prng;
     prng.mseed = pid;
     uint16 * words = reinterpret_cast<uint16*>(pkm);
     for(int i = 0x0; i < 0x2a; i++)
     {
         words[i] = (words[i]) ^ (prng.nextnum() >> 0x10);
-    };
+    }
 }
-void encryptpkm(pokemon_obj& pkm){
+void encryptpkm(pokemon_obj& pkm)
+{
     shufflepkm(pkm);
     pkmcrypt(pkm);
     pkm.ispartydatadecrypted = 0;
     pkm.isboxdatadecrypted = 0;
 }
-void decryptpkm(pokemon_obj& pkm){
+void decryptpkm(pokemon_obj& pkm)
+{
     pkmcrypt(pkm);
     unshufflepkm(pkm);
     pkm.ispartydatadecrypted = 1;
     pkm.isboxdatadecrypted = 1;
 }
-void encryptpkm(party_pkm& pkm){
+void encryptpkm(party_pkm& pkm)
+{
     shufflepkm(pkm.pkm_data);
     pkmcrypt(pkm.pkm_data);
     pkmcrypt(pkm.party_data,pkm.pkm_data.pid);
     pkm.pkm_data.ispartydatadecrypted = 0;
     pkm.pkm_data.isboxdatadecrypted = 0;
 }
-void decryptpkm(party_pkm& pkm){
+void decryptpkm(party_pkm& pkm)
+{
     pkmcrypt(pkm.pkm_data);
     pkmcrypt(pkm.party_data,pkm.pkm_data.pid);
     unshufflepkm(pkm.pkm_data);
     pkm.pkm_data.ispartydatadecrypted = 1;
     pkm.pkm_data.isboxdatadecrypted = 1;
 }
-void encryptpkm(party_pkm* pkm){
+void encryptpkm(party_pkm* pkm)
+{
     shufflepkm(pkm->pkm_data);
     pkmcrypt(&(pkm->pkm_data));
     pkmcrypt(&(pkm->party_data),pkm->pkm_data.pid);
     pkm->pkm_data.ispartydatadecrypted = 0;
     pkm->pkm_data.isboxdatadecrypted = 0;
 }
-void decryptpkm(party_pkm* pkm){
+void decryptpkm(party_pkm* pkm)
+{
     pkmcrypt(&(pkm->pkm_data));
     pkmcrypt(&(pkm->party_data),pkm->pkm_data.pid);
     unshufflepkm(pkm->pkm_data);
     pkm->pkm_data.ispartydatadecrypted = 1;
     pkm->pkm_data.isboxdatadecrypted = 1;
 }
-void pkmcrypt(pokemon_obj* pkm){
+void pkmcrypt(pokemon_obj* pkm)
+{
     pkmprng prng;
     prng.mseed = pkm->checksum;
     uint16 * words = reinterpret_cast<uint16*>(pkm);
     for(int i = 4; i < 68; i++)
     {
         words[i] = (words[i]) ^ (prng.nextnum() >> 0x10);
-    };
+    }
 }
-void encryptpkm(pokemon_obj* pkm){
+void encryptpkm(pokemon_obj* pkm)
+{
     shufflepkm(pkm);
     pkmcrypt(pkm);
     pkm->ispartydatadecrypted = 0;
     pkm->isboxdatadecrypted = 0;
 }
-void decryptpkm(pokemon_obj* pkm){
+void decryptpkm(pokemon_obj* pkm)
+{
     pkmcrypt(pkm);
     unshufflepkm(pkm);
     pkm->ispartydatadecrypted = 1;
@@ -262,41 +282,64 @@ void decryptpkm(pokemon_obj* pkm){
 uint16 getchecksum(bw2savblock_obj &block, const int start, const int length){
     byte* data = reinterpret_cast<byte*>(&block);
     int sum = 0xFFFF;
-    for ( int i = start; i < start + length; i++ ){
-        sum = (sum << 8) ^ SeedTable[ (byte)(data[i] ^ (byte)(sum>>8)) ];};
+    for ( int i = start; i < start + length; i++ )
+    {
+        sum = (sum << 8) ^ SeedTable[ (byte)(data[i] ^ (byte)(sum>>8)) ];
+    }
     return (uint16)sum;
 }
-void calcpartychecksum(bw2savblock_obj &block)
+void calcpartychecksum(bw2savblock_obj &block, bool bw2)
 {
     uint16 chk = getchecksum(block,0x18E00,0x534);
     byte* data = reinterpret_cast<byte*>(&block);
     memcpy(&*(data+0x19336),&chk,2);
+    if (bw2)
+    {
+        memcpy(data + (long)BW2_OFFSETS::chkcalcloc + 28, &chk, 2);
+    }
+    else
+    {
+        memcpy(data + (long)BW_OFFSETS::chkcalcloc + 28, &chk, 2);
+    }
 }
-void calcboxchecksum(bw2savblock_obj &block, int boxindex, bool bw2){
+void calcboxchecksum(bw2savblock_obj &block, int boxindex, bool bw2)
+{
     int start = (0x400 + (boxindex * 0x1000));
     uint16 chk = getchecksum(block,start,boxsize);
     block.boxes[boxindex].checksum = chk;
     byte* data = reinterpret_cast<byte*>(&block);
     if (bw2)
+    {
         memcpy(data + (long)BW2_OFFSETS::chkcalcloc + 2 + (boxindex * 2), &chk, 2);
+    }
     else
+    {
         memcpy(data + (long)BW_OFFSETS::chkcalcloc + 2 + (boxindex * 2), &chk, 2);
+    }
 }
-void calcchecksum(bw2savblock_obj &block, int start, int length, int loc){
+void calcchecksum(bw2savblock_obj &block, int start, int length, int loc)
+{
     byte* data = reinterpret_cast<byte*>(&block);
     int sum = 0xFFFF;
     for ( int i = start; i < start + length; i++ )
+    {
         sum = (sum << 8) ^ SeedTable[ (byte)(data[i] ^ (byte)(sum>>8)) ];
+    }
     uint16 chk = (uint16)sum;
     memcpy(&*(data+loc),&chk,2);
 }
-uint16 getchkfromsav(bw2savblock_obj &block, bool bw2){
+uint16 getchkfromsav(bw2savblock_obj &block, bool bw2)
+{
     byte* data = reinterpret_cast<byte*>(&block);
     uint16 chk;
     if (bw2)
+    {
         chk = (data[(long)BW2_OFFSETS::chkloc]) + (data[(long)BW2_OFFSETS::chkloc+1] * 256);
+    }
     else
+    {
         chk = (data[(long)BW_OFFSETS::chkloc]) + (data[(long)BW_OFFSETS::chkloc+1] * 256);
+    }
     return chk;
 }
 void calcchecksum(pokemon_obj& pkm) // Calculates and assigns the checksum for the given Pokemon object.
@@ -306,48 +349,72 @@ void calcchecksum(pokemon_obj& pkm) // Calculates and assigns the checksum for t
     for (uint16* i = p + 0x04; i < p + 0x43; i++)
     {
         chk += *i;
-    };
+    }
     chk = chk & 0xffff;
     pkm.checksum = chk;
 }
-uint16 getchecksum(bw2savblock_obj *block, const int start, const int length){
+uint16 getchecksum(bw2savblock_obj *block, const int start, const int length)
+{
     byte* data = reinterpret_cast<byte*>(block);
     int sum = 0xFFFF;
-    for ( int i = start; i < start + length; i++ ){
-        sum = (sum << 8) ^ SeedTable[ (byte)(data[i] ^ (byte)(sum>>8)) ];};
+    for ( int i = start; i < start + length; i++ )
+    {
+        sum = (sum << 8) ^ SeedTable[ (byte)(data[i] ^ (byte)(sum>>8)) ];
+    }
     return (uint16)sum;
 }
-void calcpartychecksum(bw2savblock_obj *block)
+void calcpartychecksum(bw2savblock_obj *block, bool bw2)
 {
     uint16 chk = getchecksum(block,0x18E00,0x534);
     byte* data = reinterpret_cast<byte*>(block);
     memcpy(&*(data+0x19336),&chk,2);
+    if (bw2)
+    {
+        memcpy(data + (long)BW2_OFFSETS::chkcalcloc + 28, &chk, 2);
+    }
+    else
+    {
+        memcpy(data + (long)BW_OFFSETS::chkcalcloc + 28, &chk, 2);
+    }
 }
-void calcboxchecksum(bw2savblock_obj *block, int boxindex, bool bw2){
+void calcboxchecksum(bw2savblock_obj *block, int boxindex, bool bw2)
+{
     int start = (0x400 + (boxindex * 0x1000));
     uint16 chk = getchecksum(block,start,boxsize);
     block->boxes[boxindex].checksum = chk;
     byte* data = reinterpret_cast<byte*>(block);
     if (bw2)
+    {
         memcpy(data + (long)BW2_OFFSETS::chkcalcloc + 2 + (boxindex * 2), &chk, 2);
+    }
     else
+    {
         memcpy(data + (long)BW_OFFSETS::chkcalcloc + 2 + (boxindex * 2), &chk, 2);
+    }
 }
-void calcchecksum(bw2savblock_obj *block, int start, int length, int loc){
+void calcchecksum(bw2savblock_obj *block, int start, int length, int loc)
+{
     byte* data = reinterpret_cast<byte*>(block);
     int sum = 0xFFFF;
     for ( int i = start; i < start + length; i++ )
+    {
         sum = (sum << 8) ^ SeedTable[ (byte)(data[i] ^ (byte)(sum>>8)) ];
+    }
     uint16 chk = (uint16)sum;
     memcpy(&*(data+loc),&chk,2);
 }
-uint16 getchkfromsav(bw2savblock_obj *block, bool bw2){
+uint16 getchkfromsav(bw2savblock_obj *block, bool bw2)
+{
     byte* data = reinterpret_cast<byte*>(block);
     uint16 chk;
     if (bw2)
+    {
         chk = (data[(long)BW2_OFFSETS::chkloc]) + (data[(long)BW2_OFFSETS::chkloc+1] * 256);
+    }
     else
+    {
         chk = (data[(long)BW_OFFSETS::chkloc]) + (data[(long)BW_OFFSETS::chkloc+1] * 256);
+    }
     return chk;
 }
 void calcchecksum(pokemon_obj* pkm) // Calculates and assigns the checksum for the given Pokemon object.
@@ -357,7 +424,7 @@ void calcchecksum(pokemon_obj* pkm) // Calculates and assigns the checksum for t
     for (uint16* i = p + 0x04; i < p + 0x43; i++)
     {
         chk += *i;
-    };
+    }
     chk = chk & 0xffff;
     pkm->checksum = chk;
 }
@@ -369,9 +436,9 @@ bool savisbw2(bw2sav_obj *sav)
 {
     return (getchecksum(sav->cur,(long)BW2_OFFSETS::chkcalcloc,(long)BW2_OFFSETS::chkcalclen)) == (getchkfromsav(sav->cur,true));
 }
-void fixsavchecksum(bw2sav_obj &sav)
+void fixsavchecksum(bw2sav_obj &sav, bool isbw2)
 {
-    if(savisbw2(sav))
+    if(isbw2)
     {
         calcchecksum(sav.cur, (long)BW2_OFFSETS::chkcalcloc, (long)BW2_OFFSETS::chkcalclen, (long)BW2_OFFSETS::chkloc);
     }
@@ -380,9 +447,9 @@ void fixsavchecksum(bw2sav_obj &sav)
         calcchecksum(sav.cur, (long)BW_OFFSETS::chkcalcloc, (long)BW_OFFSETS::chkcalclen, (long)BW_OFFSETS::chkloc);
     }
 }
-void fixsavchecksum(bw2sav_obj *sav)
+void fixsavchecksum(bw2sav_obj *sav, bool isbw2)
 {
-    if(savisbw2(sav))
+    if(isbw2)
     {
         calcchecksum(sav->cur, (long)BW2_OFFSETS::chkcalcloc, (long)BW2_OFFSETS::chkcalclen, (long)BW2_OFFSETS::chkloc);
     }

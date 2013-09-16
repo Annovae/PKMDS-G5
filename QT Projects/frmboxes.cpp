@@ -119,7 +119,7 @@ frmBoxes::~frmBoxes()
 }
 void frmBoxes::on_actionLoad_SAV_triggered()
 {
-    SaveFileName = QFileDialog::getOpenFileName(this,tr("Load a SAV file"),tr(""),tr("SAV Files (*.sav)"));
+    SaveFileName = QFileDialog::getOpenFileName(this,tr("Load a save file"),tr(""),tr("Save Files (*.sav *.dsv)"));
     if(SaveFileName != "")
     {
         boxViewer = this;
@@ -145,10 +145,10 @@ void frmBoxes::on_actionLoad_SAV_triggered()
             partygraphics[pslot]->setScene(partyscene);
             partygraphics[pslot]->installEventFilter(mouseEventEater);
         }
-//        for(uint32 pslot = 0; pslot < baksavblock->party.size; pslot++)
-//        {
-//            decryptpkm(&(baksavblock->party.pokemon[pslot]));
-//        }
+        //        for(uint32 pslot = 0; pslot < baksavblock->party.size; pslot++)
+        //        {
+        //            decryptpkm(&(baksavblock->party.pokemon[pslot]));
+        //        }
         if(ui->cbBoxes->count() == 0)
         {
             for(int i = 0; i < 24; i++)
@@ -162,7 +162,7 @@ void frmBoxes::on_actionLoad_SAV_triggered()
             for(int boxslot = 0; boxslot < 30; boxslot++)
             {
                 decryptpkm(&(cursavblock->boxes[boxnum].pokemon[boxslot]));
-//                decryptpkm(&(baksavblock->boxes[boxnum].pokemon[boxslot]));
+                //                decryptpkm(&(baksavblock->boxes[boxnum].pokemon[boxslot]));
             }
         }
         SavDecrypted = true;
@@ -252,7 +252,7 @@ void frmBoxes::on_actionSave_changes_triggered()
             {
                 encryptpkm(&(savout->cur.party.pokemon[pslot]));
             }
-            calcpartychecksum(&(savout->cur));
+            calcpartychecksum(&(savout->cur),isbw2);
             for(int boxnum = 0; boxnum < 24; boxnum++)
             {
                 for(int boxslot = 0; boxslot < 30; boxslot++)
@@ -262,7 +262,7 @@ void frmBoxes::on_actionSave_changes_triggered()
                 calcboxchecksum(&(savout->cur),boxnum,isbw2);
             }
             savout->cur.block1checksum = getchecksum(&(savout->cur),0x0,0x3e0);
-            fixsavchecksum(savout);
+            fixsavchecksum(savout, isbw2);
             write(SaveFileName.toStdString().c_str(),savout);
             msgBox.setText("The file has been saved.");
             msgBox.setInformativeText("");

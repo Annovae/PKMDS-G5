@@ -70,12 +70,12 @@ pkmviewer::pkmviewer(QWidget *parent) :
                 moveboxes[moveindex]->addItem(itemname);
         }
     }
-    for(int ballnum = 0; ballnum <= (int)Balls::dreamball; ballnum++)
+    for(int ballnum = 1; ballnum <= (int)Balls::dreamball; ballnum++)
     {
         ui->cbBall->addItem("");
         if((Balls::balls)ballnum != Balls::pokeball_)
         {
-            ui->cbBall->setItemIcon(ballnum,getballpic((Balls::balls)ballnum));
+            ui->cbBall->setItemIcon((ballnum-1),getballpic((Balls::balls)ballnum));
         }
     }
     for(int abilityindex = 1; abilityindex <= (int)Abilities::teravolt; abilityindex++)
@@ -94,10 +94,13 @@ pkmviewer::pkmviewer(QWidget *parent) :
     }
     ui->cbMetLocation->addItem("Poké Transfer",30001);
     ui->cbEggLocation->addItem("Poké Transfer",30001);
+    ui->cbMetLocation->addItem("Pokémon Dream Radar",30015);
+    ui->cbEggLocation->addItem("Pokémon Dream Radar",30015);
     ui->cbMetLocation->addItem("Lovely Place",40001);
     ui->cbEggLocation->addItem("Lovely Place",40001);
     ui->cbMetLocation->addItem("Day-Care Couple",60002);
     ui->cbEggLocation->addItem("Day-Care Couple",60002);
+    ui->cbHometown->addItem("Colosseum Bonus",0);
     ui->cbHometown->addItem("Sapphire",1);
     ui->cbHometown->addItem("Ruby",2);
     ui->cbHometown->addItem("Emerald",3);
@@ -120,7 +123,6 @@ pkmviewer::pkmviewer(QWidget *parent) :
     ui->cbCountry->addItem("DE", 5);
     ui->cbCountry->addItem("SPA", 7);
     ui->cbCountry->addItem("SOK", 8);
-    //Todo: cbForm
     this->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
     this->setMinimumSize(this->size());
     this->setMaximumSize(this->size());
@@ -250,7 +252,7 @@ void pkmviewer::displayPKM()
     *spritepixmap = getpkmsprite(temppkm);
     spritescene->addPixmap(*spritepixmap);
     ui->pbSprite->setScene(spritescene);
-    ui->cbBall->setCurrentIndex((int)temppkm->ball);
+    ui->cbBall->setCurrentIndex(((int)temppkm->ball)-1);
     ui->sbHPIV->setValue(temppkm->ivs.hp);
     ui->sbAtkIV->setValue(temppkm->ivs.attack);
     ui->sbDefIV->setValue(temppkm->ivs.defense);
@@ -364,8 +366,6 @@ void pkmviewer::updatestats()
         ui->sbSpeed->setValue(getpkmstat(temppkm,Stat_IDs::speed));
 
         std::string thechar = lookupcharacteristic(temppkm);
-
-        QString test = QString::fromStdString(lookupcharacteristic(temppkm));
 
         ui->lblCharacteristic->setText(QString::fromStdString(lookupcharacteristic(temppkm)));
     }
@@ -1012,7 +1012,7 @@ void pkmviewer::on_cbBall_currentIndexChanged(int index)
 {
     if(redisplayok)
     {
-        temppkm->ball = (Balls::balls)index;
+        temppkm->ball = (Balls::balls)(index+1);
     }
 }
 void pkmviewer::on_sbCurrentSlot_valueChanged(int value)
@@ -1054,6 +1054,13 @@ void pkmviewer::on_chkMetAsEgg_toggled(bool checked)
     {
         ui->cbEggLocation->setEnabled(checked);
         ui->dtEggDate->setEnabled(checked);
+        if(checked)
+        {
+            temppkm->eggdate.year = byte(ui->dtEggDate->date().year()-2000);
+            temppkm->eggdate.month = byte(ui->dtEggDate->date().month());
+            temppkm->eggdate.day = byte(ui->dtEggDate->date().day());
+            temppkm->eggmet = (Locations::locations)(ui->cbEggLocation->itemData(ui->cbEggLocation->currentIndex()).toInt());
+        }
     }
 }
 void pkmviewer::on_chkNsPKM_toggled(bool checked)
