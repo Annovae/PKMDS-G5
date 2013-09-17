@@ -496,6 +496,9 @@ Changes</string>
    <property name="usesScrollButtons">
     <bool>false</bool>
    </property>
+   <property name="documentMode">
+    <bool>false</bool>
+   </property>
    <property name="movable">
     <bool>true</bool>
    </property>
@@ -896,7 +899,7 @@ Changes</string>
    </widget>
    <widget class="QWidget" name="tpStats">
     <attribute name="title">
-     <string>Stats</string>
+     <string>Stat</string>
     </attribute>
     <widget class="QGroupBox" name="gbIVs">
      <property name="geometry">
@@ -1371,7 +1374,7 @@ Changes</string>
    </widget>
    <widget class="QWidget" name="tpMoves">
     <attribute name="title">
-     <string>Moves</string>
+     <string>Move</string>
     </attribute>
     <widget class="QGraphicsView" name="pbMove1Type">
      <property name="geometry">
@@ -2408,7 +2411,7 @@ Changes</string>
    </widget>
    <widget class="QWidget" name="tpOrigins">
     <attribute name="title">
-     <string>Origins</string>
+     <string>Origin</string>
     </attribute>
     <widget class="QComboBox" name="cbHometown">
      <property name="geometry">
@@ -2673,7 +2676,7 @@ Changes</string>
    </widget>
    <widget class="QWidget" name="tpRibbons">
     <attribute name="title">
-     <string>Ribbons</string>
+     <string>Ribbon</string>
     </attribute>
    </widget>
    <widget class="QWidget" name="tpMisc">
