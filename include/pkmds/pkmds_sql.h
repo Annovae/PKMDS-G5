@@ -80,3 +80,4 @@ string DllExport  lookupabilityflavortextsql(const int abilityid, const int vers
 string DllExport  lookupcharacteristicsql(const int statid, const int iv, const int langid = LANG_ID);
 string DllExport  lookuptypenamesql(const int type, const int langid = LANG_ID);
 void DllExport getmovecatsql(ostringstream& o, const Moves::moves moveid);
+string DllExport getmachinetypesql(const Items::items itemid, const int generation = GENERATION, const int version_group = VERSION_GROUP);

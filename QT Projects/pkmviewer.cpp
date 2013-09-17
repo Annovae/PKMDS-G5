@@ -92,6 +92,8 @@ pkmviewer::pkmviewer(QWidget *parent) :
             ui->cbEggLocation->addItem(itemname,locationindex);
         }
     }
+    ui->cbMetLocation->addItem("Day-Care Couple (IV)",2000);
+    ui->cbEggLocation->addItem("Day-Care Couple (IV)",2000);
     ui->cbMetLocation->addItem("Poké Transfer",30001);
     ui->cbEggLocation->addItem("Poké Transfer",30001);
     ui->cbMetLocation->addItem("Pokémon Dream Radar",30015);
@@ -271,6 +273,8 @@ void pkmviewer::displayPKM()
     ui->cbMove3->setCurrentIndex((int)temppkm->moves[2]);
     ui->cbMove4->setCurrentIndex((int)temppkm->moves[3]);
     ui->cbPKMAbility->setCurrentIndex(((int)temppkm->ability)-1);
+    ui->sbPKRSDays->setValue(temppkm->pkrs.days);
+    ui->sbPKRSStrain->setValue(temppkm->pkrs.strain);
     QSpinBox * movePPboxes[4] = {ui->sbMove1PP,ui->sbMove2PP,ui->sbMove3PP,ui->sbMove4PP};
     QSpinBox * movePPUpboxes[4] = {ui->sbMove1PPUps,ui->sbMove2PPUps,ui->sbMove3PPUps,ui->sbMove4PPUps};
     for(int movenum = 0; movenum < 4; movenum++)
@@ -335,6 +339,7 @@ void pkmviewer::displayPKM()
     ui->cbForm->setEnabled(ui->cbForm->count() > 0);
     ui->cbForm->setCurrentIndex((int)temppkm->forms.form);
     redisplayok = true;
+    updatepkrs();
     updategenderpic();
     updateabilityflavor();
     updatemarks();
@@ -569,6 +574,14 @@ void pkmviewer::updategenderpic()
     genderscene->addPixmap(*genderpix);
     ui->pbGender->setScene(genderscene);
 
+}
+void pkmviewer::updatepkrs()
+{
+    QPixmap * pkrspix = new QPixmap();
+    QGraphicsScene * pkrsscene = new QGraphicsScene();
+    *pkrspix = getpkrsimage(temppkm->pkrs);
+    pkrsscene->addPixmap(*pkrspix);
+    ui->pbPkrs->setScene(pkrsscene);
 }
 pkmviewer::~pkmviewer()
 {
@@ -1136,5 +1149,21 @@ void pkmviewer::on_cbCountry_currentIndexChanged(int index)
     if(redisplayok)
     {
         temppkm->country = (Countries::countries)(ui->cbCountry->itemData(index).toInt());
+    }
+}
+void pkmviewer::on_sbPKRSStrain_valueChanged(int arg1)
+{
+    if(redisplayok)
+    {
+        temppkm->pkrs.strain = arg1;
+        updatepkrs();
+    }
+}
+void pkmviewer::on_sbPKRSDays_valueChanged(int arg1)
+{
+    if(redisplayok)
+    {
+        temppkm->pkrs.days = arg1;
+        updatepkrs();
     }
 }

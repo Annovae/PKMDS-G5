@@ -247,7 +247,7 @@ void frmBoxes::on_actionSave_changes_triggered()
             bw2sav_obj * savout = new bw2sav_obj;
             *savout = *sav;
             bool isbw2 = savisbw2(savout);
-            savout->cur.curbox = ui->cbBoxes->currentIndex();
+            savout->cur.curbox = frmCurBoxNum; // ui->cbBoxes->currentIndex();
             for(uint32 pslot = 0; pslot < savout->cur.party.size; pslot++)
             {
                 encryptpkm(&(savout->cur.party.pokemon[pslot]));

@@ -45,6 +45,7 @@ public:
     void updategenderpic();
     void updatemoveimages();
     void updatemoveinfo();
+    void updatepkrs();
 #else
     void pkmviewer::setPKM(pokemon_obj * pkm_, int box, bool isPartyPKM);
     void pkmviewer::setPKM(party_pkm * ppkm_, int box, bool isPartyPKM = true);
@@ -58,6 +59,7 @@ public:
     void pkmviewer::updategenderpic();
     void pkmviewer::updatemoveimages();
     void pkmviewer::updatemoveinfo();
+    void pkmviewer::updatepkrs();
 #endif
     explicit pkmviewer(QWidget *parent = 0);
     ~pkmviewer();
@@ -169,6 +171,10 @@ private slots:
     void on_cbHometown_currentIndexChanged(int index);
 
     void on_cbCountry_currentIndexChanged(int index);
+
+    void on_sbPKRSStrain_valueChanged(int arg1);
+
+    void on_sbPKRSDays_valueChanged(int arg1);
 
 private:
     Ui::pkmviewer *ui;

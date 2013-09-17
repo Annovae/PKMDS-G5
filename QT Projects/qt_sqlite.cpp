@@ -286,12 +286,27 @@ QPixmap getwallpaperimage(const Wallpapers::wallpapers wallpaper)
 QPixmap getitemimage(const int itemid)
 {
     QPixmap pixmap;
-    std::ostringstream o;
-    getitemsql(o,itemid);
     const void * blob;
     size_t thesize = 0;
     char cmd[BUFF_SIZE];
-    strcpy__(cmd,o.str().c_str());
+    if(((itemid >= (int)Items::tm01) & (itemid <= (int)Items::tm92)) | ((itemid >= (int)Items::tm93) & (itemid <= (int)Items::tm95)) | ((itemid >= (int)Items::hm01) & (itemid <= (int)Items::hm06)))
+    {
+        std::string mprefix = "tm-";
+        if((itemid >= (int)Items::hm01) & (itemid <= (int)Items::hm06)){mprefix = "hm-";}
+        std::string sql = "select image from items where (identifier = \"" + mprefix + getmachinetypename(Items::items(itemid)) + "\")"; // ,generation,version_group);
+        strcpy__(cmd,sql.c_str());
+    }
+    else if((itemid >= (int)Items::datacard01) & (itemid <= (int)Items::datacard27))
+    {
+        std::string sql = "select image from items where (identifier = \"data-card\")";
+        strcpy__(cmd,sql.c_str());
+    }
+    else
+    {
+        std::ostringstream o;
+        getitemsql(o,itemid);
+        strcpy__(cmd,o.str().c_str());
+    }
     if(sqlite3_prepare_v2(imgdatabase,cmd,-1,&imgstatement,0) == SQLITE_OK)
     {
         int cols = sqlite3_column_count(imgstatement);
@@ -396,6 +411,45 @@ QPixmap getmovecatimage(const Moves::moves themove)
             }
         }
         sqlite3_finalize(imgstatement);
+    }
+    return pixmap;
+}
+QPixmap getpkrsimage(const pokerus & pkrs)
+{
+    QPixmap pixmap;
+    if(pkrs.strain != 0)
+    {
+        const void * blob;
+        size_t thesize = 0;
+        char cmd[BUFF_SIZE];
+        std::string sql = "";
+        if(pkrs.days > 0)
+        {
+            sql = "select image from misc where identifier = \"pokerus_infected\"";
+        }
+        else
+        {
+            sql = "select image from misc where identifier = \"pokerus_cured\"";
+        }
+        strcpy__(cmd,sql.c_str());
+        if(sqlite3_prepare_v2(imgdatabase,cmd,-1,&imgstatement,0) == SQLITE_OK)
+        {
+            int cols = sqlite3_column_count(imgstatement);
+            int result = 0;
+            result = sqlite3_step(imgstatement);
+            if((result == SQLITE_ROW) | (result == SQLITE_DONE))
+            {
+                for(int col = 0; col < cols; col++)
+                {
+                    blob = sqlite3_column_blob(imgstatement,col);
+                    thesize = sqlite3_column_bytes(imgstatement,col);
+                    QByteArray array;
+                    array = QByteArray::fromRawData((const char*)blob,thesize);
+                    pixmap.loadFromData(array);
+                }
+            }
+            sqlite3_finalize(imgstatement);
+        }
     }
     return pixmap;
 }

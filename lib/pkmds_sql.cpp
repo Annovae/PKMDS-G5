@@ -854,3 +854,20 @@ string getpkmformnamesql(const int speciesid, const int formid, const int genera
       << "order by pokemon_form_generations.game_index";
     return o.str();
 }
+string getmachinetypesql(const Items::items itemid, const int generation, const int version_group)
+{
+    ostringstream o;
+    o << ""
+         << "SELECT types.identifier "
+         << "FROM   machines "
+         << "       INNER JOIN moves "
+         << "               ON machines.move_id = moves.id "
+         << "       INNER JOIN item_game_indices "
+         << "               ON machines.item_id = item_game_indices.item_id "
+         << "       INNER JOIN types "
+         << "               ON moves.type_id = types.id "
+         << "WHERE  ( item_game_indices.generation_id = " << generation << " ) "
+         << "       AND ( machines.version_group_id = " << version_group << " ) "
+         << "       AND ( item_game_indices.game_index = " << (int)itemid << " ) ";
+    return o.str();
+}

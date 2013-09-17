@@ -2308,6 +2308,7 @@ enum locations : uint16 {
     glacierroom,
     ironroom,
     pledgegrove,
+    daycarecouple_g4=2000,
     poketransfer=30001,
     pokemondreamradar=30015,
     lovelyplace=40001,
@@ -2442,9 +2443,9 @@ enum movecategories : byte
 int DllExport balltoitem(int ball);
 Types::types DllExport getarceustype(int form);
 struct pokerus {
-    byte : 4;
-    byte strain : 2;
-    byte days : 2;
+//    byte : 4;
+    byte days : 4;
+    byte strain : 4;
     pokerus()
     {
         memset(this,0,sizeof(pokerus));

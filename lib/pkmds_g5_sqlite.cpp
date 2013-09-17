@@ -1189,3 +1189,7 @@ string getpkmformname(const int speciesid, const int formid, const int generatio
 {
     return getastring(getpkmformnamesql(speciesid,formid,generation,langid));
 }
+string getmachinetypename(const Items::items itemid, const int generation, const int version_group)
+{
+    return getastring(getmachinetypesql(itemid,generation,version_group));
+}
