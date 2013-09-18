@@ -78,6 +78,11 @@ PKM File</string>
       <height>22</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
    </widget>
    <widget class="QGraphicsView" name="pbSprite">
     <property name="geometry">
@@ -142,9 +147,9 @@ Changes</string>
    <widget class="QLabel" name="lblLevel">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>30</x>
       <y>190</y>
-      <width>31</width>
+      <width>40</width>
       <height>20</height>
      </rect>
     </property>
@@ -856,6 +861,11 @@ Changes</string>
        <width>100</width>
        <height>22</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
      </property>
     </widget>
     <widget class="QScrollBar" name="sbCurrentSlot">
@@ -2561,7 +2571,7 @@ Changes</string>
       </property>
       <property name="font">
        <font>
-        <pointsize>9</pointsize>
+        <pointsize>8</pointsize>
        </font>
       </property>
      </widget>
@@ -2618,7 +2628,7 @@ Changes</string>
       </property>
       <property name="font">
        <font>
-        <pointsize>9</pointsize>
+        <pointsize>8</pointsize>
        </font>
       </property>
      </widget>
