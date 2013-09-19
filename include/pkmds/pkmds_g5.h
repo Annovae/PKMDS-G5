@@ -2439,11 +2439,28 @@ enum movecategories : byte
     physical,
     special
 };
+namespace PokemonColors
+{
+enum pokemoncolors : byte
+{
+    // TODO: Get the actual hashcodes (hexcodes?) of the in-game colors.
+    black=1,
+    blue,
+    brown,
+    gray,
+    green,
+    pink,
+    purple,
+    red,
+    white,
+    yellow
+};
+}
 }
 int DllExport balltoitem(int ball);
 Types::types DllExport getarceustype(int form);
 struct pokerus {
-//    byte : 4;
+    //    byte : 4;
     byte days : 4;
     byte strain : 4;
     pokerus()

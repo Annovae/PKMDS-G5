@@ -1193,3 +1193,7 @@ string getmachinetypename(const Items::items itemid, const int generation, const
 {
     return getastring(getmachinetypesql(itemid,generation,version_group));
 }
+string getpokemoncolor(const Species::pkmspecies speciesid)
+{
+    return getastring(getpokemoncolorsql(speciesid));
+}

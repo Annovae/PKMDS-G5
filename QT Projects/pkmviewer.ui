@@ -189,7 +189,7 @@ Changes</string>
      <number>649</number>
     </property>
     <property name="value">
-     <number>649</number>
+     <number>1</number>
     </property>
    </widget>
    <widget class="QGraphicsView" name="pbShiny">
@@ -760,6 +760,11 @@ Changes</string>
         <height>22</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
       <property name="maximum">
        <number>65535</number>
       </property>
@@ -775,6 +780,11 @@ Changes</string>
         <width>60</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+       </font>
       </property>
       <property name="maximum">
        <number>65535</number>
@@ -2546,9 +2556,23 @@ Changes</string>
         <height>22</height>
        </rect>
       </property>
+      <property name="date">
+       <date>
+        <year>2000</year>
+        <month>1</month>
+        <day>1</day>
+       </date>
+      </property>
+      <property name="maximumDate">
+       <date>
+        <year>2099</year>
+        <month>12</month>
+        <day>31</day>
+       </date>
+      </property>
       <property name="minimumDate">
        <date>
-        <year>2006</year>
+        <year>2000</year>
         <month>1</month>
         <day>1</day>
        </date>
@@ -2600,9 +2624,23 @@ Changes</string>
         <height>22</height>
        </rect>
       </property>
+      <property name="date">
+       <date>
+        <year>2000</year>
+        <month>1</month>
+        <day>1</day>
+       </date>
+      </property>
+      <property name="maximumDate">
+       <date>
+        <year>2099</year>
+        <month>12</month>
+        <day>31</day>
+       </date>
+      </property>
       <property name="minimumDate">
        <date>
-        <year>2006</year>
+        <year>2000</year>
         <month>1</month>
         <day>1</day>
        </date>

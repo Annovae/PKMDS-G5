@@ -173,3 +173,4 @@ string DllExport lookupcharacteristic(const pokemon_obj *pkm, const int langid =
 string DllExport lookuptypename(const Types::types type, const int langid = LANG_ID);
 string DllExport lookuptypename(const int type, const int langid = LANG_ID);
 string getmachinetypename(const Items::items itemid, const int generation = GENERATION, const int version_group = VERSION_GROUP);
+string getpokemoncolor(const Species::pkmspecies speciesid);

@@ -871,3 +871,15 @@ string getmachinetypesql(const Items::items itemid, const int generation, const 
          << "       AND ( item_game_indices.game_index = " << (int)itemid << " ) ";
     return o.str();
 }
+
+string getpokemoncolorsql(const Species::pkmspecies speciesid)
+{
+    ostringstream o;
+    o << ""
+         << "SELECT pokemon_colors.identifier "
+         << "FROM   pokemon_colors "
+         << "       INNER JOIN pokemon_species "
+         << "               ON pokemon_colors.id = pokemon_species.color_id "
+         << "WHERE  pokemon_species.id = " << speciesid;
+         return o.str();
+}
