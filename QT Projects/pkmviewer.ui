@@ -53,7 +53,7 @@
    <widget class="QPushButton" name="btnExportPKMFile">
     <property name="geometry">
      <rect>
-      <x>80</x>
+      <x>110</x>
       <y>270</y>
       <width>60</width>
       <height>50</height>
@@ -74,7 +74,7 @@ PKM File</string>
      <rect>
       <x>30</x>
       <y>240</y>
-      <width>111</width>
+      <width>141</width>
       <height>22</height>
      </rect>
     </property>
@@ -128,7 +128,7 @@ PKM File</string>
    <widget class="QPushButton" name="btnSaveChanges">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>0</x>
       <y>270</y>
       <width>60</width>
       <height>50</height>
@@ -162,7 +162,7 @@ Changes</string>
      <rect>
       <x>-1</x>
       <y>220</y>
-      <width>150</width>
+      <width>171</width>
       <height>20</height>
      </rect>
     </property>
@@ -2556,13 +2556,6 @@ Changes</string>
         <height>22</height>
        </rect>
       </property>
-      <property name="date">
-       <date>
-        <year>2000</year>
-        <month>1</month>
-        <day>1</day>
-       </date>
-      </property>
       <property name="maximumDate">
        <date>
         <year>2099</year>
@@ -2582,6 +2575,13 @@ Changes</string>
       </property>
       <property name="calendarPopup">
        <bool>true</bool>
+      </property>
+      <property name="date">
+       <date>
+        <year>2000</year>
+        <month>1</month>
+        <day>1</day>
+       </date>
       </property>
      </widget>
      <widget class="QComboBox" name="cbMetLocation">
@@ -2624,13 +2624,6 @@ Changes</string>
         <height>22</height>
        </rect>
       </property>
-      <property name="date">
-       <date>
-        <year>2000</year>
-        <month>1</month>
-        <day>1</day>
-       </date>
-      </property>
       <property name="maximumDate">
        <date>
         <year>2099</year>
@@ -2650,6 +2643,13 @@ Changes</string>
       </property>
       <property name="calendarPopup">
        <bool>true</bool>
+      </property>
+      <property name="date">
+       <date>
+        <year>2000</year>
+        <month>1</month>
+        <day>1</day>
+       </date>
       </property>
      </widget>
      <widget class="QComboBox" name="cbEggLocation">

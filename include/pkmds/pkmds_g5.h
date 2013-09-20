@@ -3657,7 +3657,7 @@ uint16 DllExport getchecksum(bw2savblock_obj *block, const int start, const int 
 void DllExport calcboxchecksum(bw2savblock_obj *block, int boxindex, bool bw2);
 void DllExport calcpartychecksum(bw2savblock_obj *block, bool bw2); // ,bool bw2);
 void DllExport calcchecksum(bw2savblock_obj *block, int start, int length, int loc);
-uint16 getchkfromsav(bw2savblock_obj *block, bool bw2);
+uint16 DllExport getchkfromsav(bw2savblock_obj *block, bool bw2);
 const byte natureconvert[25][2] =
 {{0,1},
  {1,6},

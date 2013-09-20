@@ -81,4 +81,6 @@ string DllExport  lookupcharacteristicsql(const int statid, const int iv, const 
 string DllExport  lookuptypenamesql(const int type, const int langid = LANG_ID);
 void DllExport getmovecatsql(ostringstream& o, const Moves::moves moveid);
 string DllExport getmachinetypesql(const Items::items itemid, const int generation = GENERATION, const int version_group = VERSION_GROUP);
+string DllExport getmachinemovenamesql(const Items::items itemid, const int generation = GENERATION, const int version_group = VERSION_GROUP, const int langid = LANG_ID);
+string DllExport getpokemoncolorstringsql(const Species::pkmspecies speciesid);
 string DllExport getpokemoncolorsql(const Species::pkmspecies speciesid);

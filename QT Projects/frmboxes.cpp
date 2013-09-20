@@ -180,6 +180,7 @@ void frmBoxes::on_actionLoad_SAV_triggered()
             boxpreviewgraphics[ic]->viewport()->setProperty("Index",ic);
             boxpreviewgraphics[ic]->viewport()->installEventFilter(mouseEventEater);
         }
+        refreshboxgrids();
         changebox(cursavblock->curbox);
     }
 }
@@ -278,4 +279,35 @@ void frmBoxes::on_actionSave_changes_triggered()
         msgBox.setDefaultButton(QMessageBox::Ok);
     }
     ret = msgBox.exec();
+}
+void frmBoxes::refreshboxgrid(int box)
+{
+    QImage grid = QImage(60,50,QImage::Format_RGB32);
+    QPixmap gridpix;
+    QGraphicsScene * gridscene = new QGraphicsScene();
+    grid = QImage(60,50,QImage::Format_RGB32);
+    for(int sloty = 0; sloty < 5; sloty++)
+    {
+        for(int slotx = 0; slotx < 6; slotx++)
+        {
+            for(int x = 0; x < 10; x++)
+            {
+                for(int y = 0; y < 10; y++)
+                {
+                    grid.setPixel((slotx * 10) + x,(sloty * 10) + y,getpkmcolor(sav->cur.boxes[box].pokemon[(sloty*6)+slotx].species)); // 0x8c8c8c);
+                }
+            }
+        }
+        gridpix = QPixmap::fromImage(grid);
+        gridscene = new QGraphicsScene();
+        gridscene->addPixmap(gridpix);
+        boxpreviewgraphics[box]->setScene(gridscene);
+    }
+}
+void frmBoxes::refreshboxgrids()
+{
+    for(int box = 0; box < 24; box++)
+    {
+        refreshboxgrid(box);
+    }
 }

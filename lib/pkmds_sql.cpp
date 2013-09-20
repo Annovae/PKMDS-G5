@@ -871,8 +871,25 @@ string getmachinetypesql(const Items::items itemid, const int generation, const 
          << "       AND ( item_game_indices.game_index = " << (int)itemid << " ) ";
     return o.str();
 }
-
-string getpokemoncolorsql(const Species::pkmspecies speciesid)
+string getmachinemovenamesql(const Items::items itemid, const int generation, const int version_group, const int langid)
+{
+    ostringstream o;
+    o << ""
+         << "SELECT move_names.name "
+         << "FROM machines "
+         << "INNER JOIN moves "
+         << "ON machines.move_id = moves.id "
+         << "INNER JOIN item_game_indices "
+         << "ON machines.item_id = item_game_indices.item_id "
+         << "INNER JOIN move_names "
+         << "ON moves.id = move_names.move_id "
+         << "WHERE (item_game_indices.generation_id = " << generation << ") "
+         << "AND (machines.version_group_id = " << version_group << ") "
+         << "AND (item_game_indices.game_index = " << (int)itemid << ") "
+         << "AND (move_names.local_language_id = " << langid << ")";
+    return o.str();
+}
+string getpokemoncolorstringsql(const Species::pkmspecies speciesid)
 {
     ostringstream o;
     o << ""
@@ -880,6 +897,17 @@ string getpokemoncolorsql(const Species::pkmspecies speciesid)
          << "FROM   pokemon_colors "
          << "       INNER JOIN pokemon_species "
          << "               ON pokemon_colors.id = pokemon_species.color_id "
-         << "WHERE  pokemon_species.id = " << speciesid;
+         << "WHERE  pokemon_species.id = " << (int)speciesid;
+         return o.str();
+}
+string getpokemoncolorsql(const Species::pkmspecies speciesid)
+{
+    ostringstream o;
+    o << ""
+         << "SELECT pokemon_colors.id "
+         << "FROM   pokemon_colors "
+         << "       INNER JOIN pokemon_species "
+         << "               ON pokemon_colors.id = pokemon_species.color_id "
+         << "WHERE  pokemon_species.id = " << (int)speciesid;
          return o.str();
 }

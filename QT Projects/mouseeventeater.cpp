@@ -38,7 +38,7 @@ bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
     QString theObjName = obj->objectName();
     if((theObjName != "" )&(event->type() != QEvent::None)&(event->type() != 39)&(event->type() != 69)&(event->type() != 74)&(event->type() != 75)&(event->type() != 170))
         {
-        int test = event->type();
+//        int test = event->type();
     QMouseEvent *mouseEvent;
     int slot = 0;
     slot = (atoi(theObjName.right(2).toStdString().c_str()))-1;

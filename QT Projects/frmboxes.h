@@ -35,6 +35,8 @@ public:
     QGraphicsView* boxgraphics[30];
     QGraphicsView* boxpreviewgraphics[24];
     void changebox(int index);
+    void refreshboxgrid(int box);
+    void refreshboxgrids();
     ~frmBoxes();
 private slots:
     void on_actionLoad_SAV_triggered();

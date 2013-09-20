@@ -46,6 +46,12 @@ pkmviewer::pkmviewer(QWidget *parent) :
     for(int itemindex = 0; itemindex <= (int)Items::revealglass; itemindex++)
     {
         itemname = QString::fromStdString(lookupitemname(itemindex));
+        if(((itemindex >= (int)Items::tm01) & (itemindex <= (int)Items::tm92)) |
+                ((itemindex >= (int)Items::tm93) & (itemindex <= (int)Items::tm95)) |
+                ((itemindex >= (int)Items::hm01) & (itemindex <= (int)Items::hm06)))
+        {
+            itemname += QString::fromStdString(" (" + getmachinemovename(Items::items(itemindex)) + ")");
+        }
         if((itemname != "") | (itemindex == 0))
         {
             ui->cbPKMItem->addItem(itemname,itemindex);
