@@ -95,9 +95,11 @@ frmBoxes::frmBoxes(QWidget *parent) :
     boxpreviewgraphics[22] = ui->pbBox23;
     boxpreviewgraphics[23] = ui->pbBox24;
     this->setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
+
     std::ostringstream o;
-    o << sizeof(bw2sav_obj);
+    o << std::hex << sizeof(bw2sav_obj);
     this->setWindowTitle(QString::fromStdString(o.str()));
+
 }
 frmBoxes * boxViewer;
 bw2sav_obj * sav = new bw2sav_obj;
