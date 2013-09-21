@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 // Enums
 namespace Species
 {
-enum pkmspecies : uint16 {
+enum pkmspecies /*: uint16*/ {
     NOTHING,
     bulbasaur,
     ivysaur,
@@ -680,7 +680,7 @@ enum pkmspecies : uint16 {
 }
 namespace Items
 {
-enum items : uint16 {
+enum items /*: uint16*/ {
     NOTHING =  0x0000,
     masterball =  0x0001,
     ultraball =  0x0002,
@@ -1305,7 +1305,7 @@ enum items : uint16 {
 }
 namespace Hometowns
 {
-enum hometowns : byte {
+enum hometowns /*: byte*/ {
     colosseum_bonus,
     sapphire,
     ruby,
@@ -1326,7 +1326,7 @@ enum hometowns : byte {
 }
 namespace Stat_IDs
 {
-enum stat_ids : byte {
+enum stat_ids /*: byte*/ {
     hp = 1,
     attack,
     defense,
@@ -1337,7 +1337,7 @@ enum stat_ids : byte {
 }
 namespace Stats
 {
-enum stats : byte {
+enum stats /*: byte*/ {
     hp,
     attack,
     defense,
@@ -1348,7 +1348,7 @@ enum stats : byte {
 }
 namespace ContestStat_IDs
 {
-enum conteststat_ids : byte {
+enum conteststat_ids /*: byte*/ {
     cool = 1,
     beauty,
     cute,
@@ -1359,7 +1359,7 @@ enum conteststat_ids : byte {
 }
 namespace ContestStats
 {
-enum conteststats : byte {
+enum conteststats /*: byte*/ {
     cool,
     beauty,
     cute,
@@ -1370,7 +1370,7 @@ enum conteststats : byte {
 }
 namespace Moves
 {
-enum moves : uint16 {
+enum moves /*: uint16*/ {
     NOTHING,
     pound,
     karatechop,
@@ -1935,7 +1935,7 @@ enum moves : uint16 {
 }
 namespace Genders
 {
-enum genders : byte {
+enum genders /*: byte*/ {
     male,
     female,
     genderless
@@ -1943,7 +1943,7 @@ enum genders : byte {
 }
 namespace Natures
 {
-enum natures : byte {
+enum natures /*: byte*/ {
     hardy,
     lonely,
     brave,
@@ -1973,7 +1973,7 @@ enum natures : byte {
 }
 namespace Abilities
 {
-enum abilities : byte {
+enum abilities /*: byte*/ {
     NOTHING,
     stench,
     drizzle,
@@ -2143,7 +2143,7 @@ enum abilities : byte {
 }
 namespace Countries
 {
-enum countries : byte {
+enum countries /*: byte*/ {
     japanese = 1,
     english,
     french,
@@ -2155,7 +2155,7 @@ enum countries : byte {
 }
 namespace Locations
 {
-enum locations : uint16 {
+enum locations /*: uint16*/ {
     NOTHING,
     unovamysteryzone,
     unovafarawayplace,
@@ -2317,7 +2317,7 @@ enum locations : uint16 {
 }
 namespace Encounters
 {
-enum encounters : byte {
+enum encounters /*: byte*/ {
     palpark_egg_hatched_specialevent,
     tallgrass=0x2,
     dialga_palkia_ingameevent=0x4,
@@ -2330,7 +2330,7 @@ enum encounters : byte {
 }
 namespace Balls
 {
-enum balls : byte {
+enum balls /*: byte*/ {
     pokeball_,
     masterball,
     ultraball,
@@ -2361,7 +2361,7 @@ enum balls : byte {
 }
 namespace Types
 {
-enum types : byte {
+enum types /*: byte*/ {
     normal,
     fighting,
     flying,
@@ -2383,7 +2383,7 @@ enum types : byte {
 }
 namespace Wallpapers
 {
-enum wallpapers : byte
+enum wallpapers /*: byte*/
 {
     forest,
     city,
@@ -2421,7 +2421,7 @@ enum wallpapers : byte
 }
 namespace Markings
 {
-enum markings : byte
+enum markings /*: byte*/
 {
     circle,
     triangle,
@@ -2433,7 +2433,7 @@ enum markings : byte
 }
 namespace MoveCategories
 {
-enum movecategories : byte
+enum movecategories /*: byte*/
 {
     other=1,
     physical,
@@ -2441,7 +2441,7 @@ enum movecategories : byte
 };
 namespace PokemonColors
 {
-enum pokemoncolors : byte
+enum pokemoncolors /*: byte*/
 {
     // TODO: Get the actual hashcodes (hexcodes?) of the in-game colors.
     black=1,
@@ -2805,7 +2805,7 @@ public:
 struct metlevelfield { // Bitfield for the Pokemon's met level and original trainer gender.
 public:
     byte metlevel : 7; // The level at which this Pokemon was first encountered.
-#ifdef __linux__
+#if (defined __linux__) || (defined __APPLE__)
     byte otgender: 1; //To stop GCC from throwing a warning
 #else
     Genders::genders otgender : 1; // Flag to determine if the original trainer was female.
@@ -3407,7 +3407,7 @@ Gen V, at a later time.
 */
 namespace SAV_TYPES
 {
-enum sav_types : byte
+enum sav_types /*: byte*/
 {
     DP,
     Pt,
@@ -3418,7 +3418,7 @@ enum sav_types : byte
 }
 namespace BW2_OFFSETS
 {
-enum bw2_offsets : long
+enum bw2_offsets /*: long*/
 {
     chkloc = 0x25FA2,
     chkcalcloc = 0x25F00,
@@ -3438,7 +3438,7 @@ enum bw2_offsets : long
 }
 namespace BW_OFFSETS
 {
-enum bw_offsets : long
+enum bw_offsets /*: long*/
 {
     chkloc = 0x23F9A,
     chkcalcloc = 0x23F00,

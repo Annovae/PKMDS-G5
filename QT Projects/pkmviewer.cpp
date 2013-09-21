@@ -333,6 +333,8 @@ void pkmviewer::displayPKM()
     case Species::genesect:
         ui->cbForm->addItem("");
         break;
+    default:
+        break;
     }
     for(int formid = 0; formid < 28; formid++)
     {
@@ -686,7 +688,7 @@ void pkmviewer::on_txtNickname_textChanged(const QString &arg1)
 #if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
             for(int i = 0; i < arg1.length(); i++)
             {
-                temppkm->nickname[i] = arg1[i].toAscii();
+                temppkm->nickname[i] = arg1[i].toLatin1();
             }
 #else
             arg1.toWCharArray(temppkm->nickname);
@@ -758,7 +760,7 @@ void pkmviewer::on_txtOTName_textChanged(const QString &arg1)
 #if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
     for(int i = 0; i < arg1.length(); i++)
     {
-        temppkm->otname[i] = arg1[i].toAscii();
+        temppkm->otname[i] = arg1[i].toLatin1();
     }
 #else
     arg1.toWCharArray(temppkm->otname);

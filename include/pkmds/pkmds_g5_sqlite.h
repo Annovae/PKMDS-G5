@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 //static const int BUFF_SIZE = 955;
 
 // Set theDB to be the full path of the SQLITE database (provided by Veekun)
-#ifdef __linux__
+#if (defined __linux__) || (defined __APPLE__)
 #ifdef QT_DEBUG
 static const char theDB[] = "../../SQLite Databases/veekun-pokedex.sqlite";
 static const char theimgDB[] = "../../SQLite Databases/images.sqlite";

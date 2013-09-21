@@ -34,7 +34,7 @@ signals:
 public slots:
 
 protected:
-#ifdef __linux__
+#if (defined __linux__) || (defined __APPLE__)
 bool eventFilter(QObject *obj, QEvent *event);
 #else
 bool MouseEventEater::eventFilter(QObject *obj, QEvent *event);

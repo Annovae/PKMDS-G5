@@ -32,7 +32,7 @@ public:
     QPixmap markingspix[6];
     QGraphicsScene* markingsscene[6];
 
-#ifdef __linux__
+#if (defined __linux__) || (defined __APPLE__)
     void setPKM(pokemon_obj * pkm_, int box, bool isPartyPKM);
     void setPKM(party_pkm * ppkm_, int box, bool isPartyPKM = true);
     void displayPKM();

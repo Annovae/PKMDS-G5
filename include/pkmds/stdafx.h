@@ -60,7 +60,7 @@ Some documentation available at: http://www.projectpokemon.org/wiki/
 typedef unsigned char byte; // 8 bits
 typedef unsigned short int uint16; // 16 bits
 typedef unsigned int uint32; // 32 bits
-#ifdef __linux__
+#if (defined __linux__) || (defined __APPLE__)
 #define strcpy__ strcpy
 #else
 #define strcpy__ strcpy_s

@@ -542,7 +542,7 @@ void read(const char* file_name, sav_object *data) // Reads the given file and a
 }
 std::wstring getpkmnickname(const pokemon_obj &pkm)
 {
-#ifdef __linux__
+#if (defined __linux__) || (defined __APPLE__)
     return getwstring((char*)pkm.nickname, 22);
 #else
     return getwstring(pkm.nickname);
@@ -550,7 +550,7 @@ std::wstring getpkmnickname(const pokemon_obj &pkm)
 }
 std::wstring getpkmotname(const pokemon_obj &pkm)
 {
-#ifdef __linux__
+#if (defined __linux__) || (defined __APPLE__)
     return getwstring((char*)pkm.otname, 16);
 #else
     return getwstring(pkm.otname);
@@ -571,7 +571,7 @@ void setpkmotname(pokemon_obj &pkm, wchar_t input[], int length){
 }
 std::wstring getpkmnickname(const pokemon_obj *pkm)
 {
-#ifdef __linux__
+#if (defined __linux__) || (defined __APPLE__)
     return getwstring((char*)pkm->nickname, 22);
 #else
     return getwstring(pkm->nickname);
@@ -579,7 +579,7 @@ std::wstring getpkmnickname(const pokemon_obj *pkm)
 }
 std::wstring getpkmotname(const pokemon_obj *pkm)
 {
-#ifdef __linux__
+#if (defined __linux__) || (defined __APPLE__)
     return getwstring((char*)pkm->otname, 16);
 #else
     return getwstring(pkm->otname);
@@ -919,7 +919,7 @@ std::string advstrttimestring(const bw2savblock_obj &block)
     time_t * adstarttime = new time_t;
     adstarttime = advstrttime(&block);
     tm * ptm = new tm;
-#ifdef __linux__
+#if (defined __linux__) || (defined __APPLE__)
     ptm = gmtime(adstarttime);
 #else
     gmtime_s(ptm, adstarttime);
@@ -936,7 +936,7 @@ std::string advstrttimestring(const bw2savblock_obj *block)
     time_t * adstarttime = new time_t;
     adstarttime = advstrttime(block);
     tm * ptm = new tm;
-#ifdef __linux__
+#if (defined __linux__) || (defined __APPLE__)
     ptm = gmtime(adstarttime);
 #else
     gmtime_s(ptm, adstarttime);
@@ -950,7 +950,7 @@ std::string advstrttimestring(const bw2savblock_obj *block)
 }
 std::wstring getsavtrainername(const bw2savblock_obj & block)
 {
-#ifdef __linux__
+#if (defined __linux__) || (defined __APPLE__)
     return getwstring((char*)block.trainername, 0x10);
 #else
     return getwstring(block.trainername);
@@ -958,7 +958,7 @@ std::wstring getsavtrainername(const bw2savblock_obj & block)
 }
 std::wstring getsavtrainername(const bw2savblock_obj * block)
 {
-#ifdef __linux__
+#if (defined __linux__) || (defined __APPLE__)
     return getwstring((char*)block->trainername, 0x10);
 #else
     return getwstring(block->trainername);
