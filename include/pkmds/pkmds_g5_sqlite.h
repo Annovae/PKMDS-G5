@@ -16,11 +16,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 #pragma once
-//static const int LANG_ID = 9;
-//static const int VERSION_GROUP = 11;
-//static const int GENERATION = 5;
-//static const int BUFF_SIZE = 955;
-
 // Set theDB to be the full path of the SQLITE database (provided by Veekun)
 #if (defined __linux__) || (defined __APPLE__)
 #ifdef QT_DEBUG
@@ -40,22 +35,14 @@ static const char theimgDB[] = "images.sqlite";
 #endif
 #endif
 #ifdef PKMDS_CMAKE_USED
-//#include <Visual_Studio/vs_sqlite.h>
-//#include <pkmds/pkmds_sql.h>
 #include <pkmds/pkmds_g5.h>
 #include <Visual_Studio/vs_sqlite.h>
 #include <sqlite3.h>
 #else
-//#include "../../Visual_Studio/vs_sqlite.h"
-//#include "../pkmds/pkmds_sql.h"
 #include "pkmds_g5.h"
 #include "../../Visual_Studio/vs_sqlite.h"
 #include "../../include/sqlite3.h"
 #endif
-//#include "pkmds_g5.h"
-//#include "pkmds_sql.h"
-//#include "../../Visual_Studio/vs_sqlite.h"
-//using namespace std;
 #ifndef __cplusplus_cli
 extern DllExport sqlite3 *imgdatabase;
 extern DllExport sqlite3_stmt *imgstatement;

@@ -215,11 +215,10 @@ void frmBoxes::changebox(int index)
     ui->pbPCBox->fitInView(0,0,153,111);
     for(int box = 0; box < 24; box++)
     {
-        boxpreviewgraphics[index]->setFrameStyle(0);
+        boxpreviewgraphics[box]->setFrameStyle(0);
     }
     ui->saBoxes->verticalScrollBar()->setValue(index * 76);
     boxpreviewgraphics[index]->setFrameStyle(1);
-    boxpreviewgraphics[index]->setFocus();
 }
 void frmBoxes::on_cbBoxes_currentIndexChanged(int index)
 {
@@ -285,27 +284,30 @@ void frmBoxes::on_actionSave_changes_triggered()
 }
 void frmBoxes::refreshboxgrid(int box)
 {
-    QImage grid = QImage(60,50,QImage::Format_RGB32);
-    QPixmap gridpix;
-    QGraphicsScene * gridscene = new QGraphicsScene();
-    grid = QImage(60,50,QImage::Format_RGB32);
-    for(int sloty = 0; sloty < 5; sloty++)
-    {
-        for(int slotx = 0; slotx < 6; slotx++)
+        QImage grid = QImage(60,50,QImage::Format_RGB32);
+        QPixmap gridpix;
+        QGraphicsScene * gridscene = new QGraphicsScene();
+        pokemon_obj * pkm_c = new pokemon_obj;
+        uint32 color_val = 0;
+        for(int sloty = 0; sloty < 5; sloty++)
         {
-            for(int x = 0; x < 10; x++)
+            for(int slotx = 0; slotx < 6; slotx++)
             {
-                for(int y = 0; y < 10; y++)
+                pkm_c = &(sav->cur.boxes[box].pokemon[(sloty*6)+slotx]);
+                color_val = getpkmcolor(pkm_c->species);
+                for(int x = 0; x < 10; x++)
                 {
-                    grid.setPixel((slotx * 10) + x,(sloty * 10) + y,getpkmcolor(sav->cur.boxes[box].pokemon[(sloty*6)+slotx].species)); // 0x8c8c8c);
+                    for(int y = 0; y < 10; y++)
+                    {
+                        grid.setPixel((slotx * 10) + x,(sloty * 10) + y,color_val);
+                    }
                 }
             }
+            gridpix = QPixmap::fromImage(grid);
+            gridscene = new QGraphicsScene();
+            gridscene->addPixmap(gridpix);
+            boxpreviewgraphics[box]->setScene(gridscene);
         }
-        gridpix = QPixmap::fromImage(grid);
-        gridscene = new QGraphicsScene();
-        gridscene->addPixmap(gridpix);
-        boxpreviewgraphics[box]->setScene(gridscene);
-    }
 }
 void frmBoxes::refreshboxgrids()
 {

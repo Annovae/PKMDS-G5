@@ -129,14 +129,14 @@ bool MouseEventEater::eventFilter(QObject *obj, QEvent *event)
         break;
     }
         }
-    //    else
-    //    {
-    //    if(event->type() == QEvent::MouseButtonPress)
-    //    {
-    //        int slot = obj->property("Index").toInt();
-    //        boxViewer->changebox(slot);
-    //    }
+        else
+        {
+        if(event->type() == QEvent::MouseButtonPress)
+        {
+            int slot = obj->property("Index").toInt();
+            boxViewer->changebox(slot);
+        }
     return false;
-    //    }
-    //    return false;
+        }
+        return false;
 }
