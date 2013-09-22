@@ -53,9 +53,9 @@
    <widget class="QPushButton" name="btnExportPKMFile">
     <property name="geometry">
      <rect>
-      <x>110</x>
+      <x>100</x>
       <y>270</y>
-      <width>60</width>
+      <width>70</width>
       <height>50</height>
      </rect>
     </property>
@@ -130,7 +130,7 @@ PKM File</string>
      <rect>
       <x>0</x>
       <y>270</y>
-      <width>60</width>
+      <width>70</width>
       <height>50</height>
      </rect>
     </property>
@@ -693,7 +693,7 @@ Changes</string>
        <x>10</x>
        <y>30</y>
        <width>291</width>
-       <height>80</height>
+       <height>90</height>
       </rect>
      </property>
      <property name="title">
@@ -703,7 +703,7 @@ Changes</string>
       <property name="geometry">
        <rect>
         <x>70</x>
-        <y>20</y>
+        <y>30</y>
         <width>120</width>
         <height>20</height>
        </rect>
@@ -716,7 +716,7 @@ Changes</string>
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>20</y>
+        <y>30</y>
         <width>70</width>
         <height>20</height>
        </rect>
@@ -729,7 +729,7 @@ Changes</string>
       <property name="geometry">
        <rect>
         <x>200</x>
-        <y>10</y>
+        <y>20</y>
         <width>80</width>
         <height>18</height>
        </rect>
@@ -742,7 +742,7 @@ Changes</string>
       <property name="geometry">
        <rect>
         <x>200</x>
-        <y>30</y>
+        <y>40</y>
         <width>80</width>
         <height>18</height>
        </rect>
@@ -755,7 +755,7 @@ Changes</string>
       <property name="geometry">
        <rect>
         <x>200</x>
-        <y>50</y>
+        <y>60</y>
         <width>60</width>
         <height>22</height>
        </rect>
@@ -776,7 +776,7 @@ Changes</string>
       <property name="geometry">
        <rect>
         <x>70</x>
-        <y>50</y>
+        <y>60</y>
         <width>60</width>
         <height>22</height>
        </rect>
@@ -794,7 +794,7 @@ Changes</string>
       <property name="geometry">
        <rect>
         <x>160</x>
-        <y>50</y>
+        <y>60</y>
         <width>30</width>
         <height>20</height>
        </rect>
@@ -807,7 +807,7 @@ Changes</string>
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>50</y>
+        <y>60</y>
         <width>30</width>
         <height>20</height>
        </rect>

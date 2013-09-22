@@ -869,13 +869,13 @@ std::wstring getboxname(const bw2savblock_obj *block,int boxnum)
 #if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
     std::string str_name = block->boxnames[boxnum];
     wchar_t boxname_buffer[11];
-    memset(boxname_buffer,0,11);
+    memset(boxname_buffer,'\0',11);
     mbstowcs(boxname_buffer, str_name.c_str(), 11);
+    name = boxname_buffer;
 #else
     name = block->boxnames[boxnum];
 #endif
 #endif
-
     if(name.find((wchar_t)0xffff))
     {
         name = name.substr(0,name.find((wchar_t)0xffff));
@@ -990,8 +990,14 @@ std::wstring getwstring(char* in, int len)
     memcpy(arr,&in,len);
     for(int i = 0; i < len; i++)
     {
-        if(arr[i] == 0xFF) break;
-        else arr[i] = in[2*i];
+        if(arr[i] == 0xFF)
+        {
+            break;
+        }
+        else
+        {
+            arr[i] = in[2*i];
+        }
     }
     std::string out = (char*)arr;
     std::wstring retval(out.begin(), out.end());

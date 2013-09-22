@@ -145,10 +145,6 @@ void frmBoxes::on_actionLoad_SAV_triggered()
             partygraphics[pslot]->setScene(partyscene);
             partygraphics[pslot]->installEventFilter(mouseEventEater);
         }
-        //        for(uint32 pslot = 0; pslot < baksavblock->party.size; pslot++)
-        //        {
-        //            decryptpkm(&(baksavblock->party.pokemon[pslot]));
-        //        }
         if(ui->cbBoxes->count() == 0)
         {
             for(int i = 0; i < 24; i++)
@@ -217,6 +213,13 @@ void frmBoxes::changebox(int index)
     ui->pbPCBox->setScene(wallpaperscene);
     ui->pbPCBox->setSceneRect(0,0,192,160);
     ui->pbPCBox->fitInView(0,0,153,111);
+    for(int box = 0; box < 24; box++)
+    {
+        boxpreviewgraphics[index]->setFrameStyle(0);
+    }
+    ui->saBoxes->verticalScrollBar()->setValue(index * 76);
+    boxpreviewgraphics[index]->setFrameStyle(1);
+    boxpreviewgraphics[index]->setFocus();
 }
 void frmBoxes::on_cbBoxes_currentIndexChanged(int index)
 {
