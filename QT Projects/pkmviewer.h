@@ -46,6 +46,7 @@ public:
     void updatemoveimages();
     void updatemoveinfo();
     void updatepkrs();
+    void updatehidpwr();
 #else
     void pkmviewer::setPKM(pokemon_obj * pkm_, int box, bool isPartyPKM);
     void pkmviewer::setPKM(party_pkm * ppkm_, int box, bool isPartyPKM = true);
@@ -60,6 +61,7 @@ public:
     void pkmviewer::updatemoveimages();
     void pkmviewer::updatemoveinfo();
     void pkmviewer::updatepkrs();
+    void pkmviewer::updatehidpwr();
 #endif
     explicit pkmviewer(QWidget *parent = 0);
     ~pkmviewer();

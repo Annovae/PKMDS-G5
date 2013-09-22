@@ -8,19 +8,12 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-#QMAKE_CXXFLAGS += -std=c++11 -stdlib=libc++ -mmacosx-version-min=10.7
-#LIBS += -stdlib=libc++ -mmacosx-version-min=10.7
-
-#QMAKE_CXXFLAGS += -std=c++0x
-
 QMAKE_CXXFLAGS = -mmacosx-version-min=10.7 -std=gnu0x -stdlib=libc+
 
 CONFIG +=c++11
 
-
 TARGET = PKMDS_QT
 TEMPLATE = app
-
 
 SOURCES += \
     ../main.cpp \

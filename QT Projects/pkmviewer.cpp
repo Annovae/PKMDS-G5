@@ -357,6 +357,7 @@ void pkmviewer::displayPKM()
     updatemovepp();
     updatemoveimages();
     updatemoveinfo();
+    updatehidpwr();
 }
 void pkmviewer::updatestats()
 {
@@ -590,6 +591,15 @@ void pkmviewer::updatepkrs()
     *pkrspix = getpkrsimage(temppkm->pkrs);
     pkrsscene->addPixmap(*pkrspix);
     ui->pbPkrs->setScene(pkrsscene);
+}
+void pkmviewer::updatehidpwr()
+{
+    QPixmap * hptypepix = new QPixmap();
+    QGraphicsScene * hptypescene = new QGraphicsScene();
+    *hptypepix = gettypepic(gethiddenpowertype(temppkm));
+    hptypescene->addPixmap(*hptypepix);
+    ui->pbHPType->setScene(hptypescene);
+    ui->sbHPPower->setValue(gethiddenpowerpower(temppkm));
 }
 pkmviewer::~pkmviewer()
 {
