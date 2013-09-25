@@ -1233,7 +1233,7 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>-1564</y>
+       <y>0</y>
        <width>81</width>
        <height>1812</height>
       </rect>
@@ -2291,7 +2291,14 @@
     <addaction name="actionLoad_SAV"/>
     <addaction name="actionSave_changes"/>
    </widget>
+   <widget class="QMenu" name="menuSearch">
+    <property name="title">
+     <string>Search</string>
+    </property>
+    <addaction name="actionSearch"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuSearch"/>
   </widget>
   <action name="actionLoad_SAV">
    <property name="text">
@@ -2301,6 +2308,11 @@
   <action name="actionSave_changes">
    <property name="text">
     <string>Save changes</string>
+   </property>
+  </action>
+  <action name="actionSearch">
+   <property name="text">
+    <string>Search...</string>
    </property>
   </action>
  </widget>

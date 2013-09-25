@@ -18,6 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "frmboxes.h"
 #include "ui_frmboxes.h"
 #include "pkmviewer.h"
+#include "frmreport.h"
 #include <QFileDialog>
 #include <QMessageBox>
 frmBoxes::frmBoxes(QWidget *parent) :
@@ -97,6 +98,7 @@ frmBoxes::frmBoxes(QWidget *parent) :
     this->setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
 }
 frmBoxes * boxViewer;
+frmReport * report;
 bw2sav_obj * sav = new bw2sav_obj;
 bw2savblock_obj * cursavblock = new bw2savblock_obj;
 bw2savblock_obj * baksavblock = new bw2savblock_obj;
@@ -315,4 +317,9 @@ void frmBoxes::refreshboxgrids()
     {
         refreshboxgrid(box);
     }
+}
+void frmBoxes::on_actionSearch_triggered()
+{
+    report = new frmReport();
+    report->show();
 }

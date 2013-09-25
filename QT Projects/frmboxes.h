@@ -44,6 +44,8 @@ private slots:
     void on_sbBoxIncrem_valueChanged(int value);
     void on_actionSave_changes_triggered();
 
+    void on_actionSearch_triggered();
+
 private:
     Ui::frmBoxes *ui;
 };

@@ -15,9 +15,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
+#include <QFileDialog>
 #include "pkmviewer.h"
 #include "ui_pkmviewer.h"
-#include <QFileDialog>
 pkmviewer::pkmviewer(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::pkmviewer)
