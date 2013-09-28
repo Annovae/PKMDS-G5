@@ -16,8 +16,8 @@
   <widget class="QTableWidget" name="tblPKM">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>0</y>
+     <x>10</x>
+     <y>10</y>
      <width>256</width>
      <height>192</height>
     </rect>
@@ -26,8 +26,8 @@
   <widget class="QListWidget" name="lstPKM">
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>0</y>
+     <x>430</x>
+     <y>10</y>
      <width>256</width>
      <height>192</height>
     </rect>

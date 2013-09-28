@@ -147,17 +147,24 @@ void frmReport::getlist()
     QVector<QString> vect;
     for(int i = 0; i < ColumnNames.size(); i++)
     {
-        vect.push_back(QString::fromStdString(ColumnNames[i]));
+        std::ostringstream o;
+        o << ColumnNames[i];
+        vect.push_back(QString::fromStdString(o.str()));
     }
+    /*
     //    QVector<std::string> vect = QVector<std::string>::fromStdVector(ColumnNames);
     //    ui->tblPKM->setVerticalHeaderLabels();
     //    ui->tblPKM->setVerticalHeaderLabels(QStringList::fromVector(QVector<std::string>::fromStdVector(ColumnNames)));
-    ui->tblPKM->setVerticalHeaderLabels(QStringList::fromVector(vect));
+    */
+//    ui->tblPKM->setVerticalHeaderLabels(QStringList::fromVector(vect));
+//    ui->tblPKM->setVerticalHeaderLabels({"Test","Test2"});
+    ui->tblPKM->setHorizontalHeaderLabels(QStringList::fromVector(vect));
     for(vector<vector<string> >::iterator it = results.begin(); it < results.end(); ++it)
     {
         vector<string> row = *it;
         ui->lstPKM->addItem(QString::fromStdString(row.at(1)));
     }
+    /*
     //    for(int box = 0; box < 24; box++)
     //    {
     //        for(int slot = 0; slot < 30; slot++)
@@ -174,6 +181,7 @@ void frmReport::getlist()
     //            }
     //        }
     //    }
+*/
 }
 frmReport::~frmReport()
 {
