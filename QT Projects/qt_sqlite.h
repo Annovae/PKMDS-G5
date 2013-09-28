@@ -16,8 +16,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 #pragma once
-//#include "frmboxes.h"
-//#include "ui_frmboxes.h"
 #include <QMainWindow>
 #include <QGraphicsView>
 #include <../../include/pkmds/pkmds_sql.h>

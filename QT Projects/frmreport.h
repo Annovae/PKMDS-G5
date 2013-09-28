@@ -16,6 +16,8 @@ class frmReport : public QDialog
 public:
     party_pkm * ppkm;
     pokemon_obj * pkm;
+    sqlite3 *db;
+    sqlite3_stmt *stmt;
     explicit frmReport(QWidget *parent = 0);
     ~frmReport();
 #if (defined __linux__) || (defined __APPLE__)
