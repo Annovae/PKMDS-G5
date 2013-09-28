@@ -143,10 +143,20 @@ void frmReport::getlist()
         }
         sqlite3_finalize(stmt);
     }
+    ui->tblPKM->setColumnCount(8);
+    QVector<QString> vect;
+    for(int i = 0; i < ColumnNames.size(); i++)
+    {
+        vect.push_back(QString::fromStdString(ColumnNames[i]));
+    }
+    //    QVector<std::string> vect = QVector<std::string>::fromStdVector(ColumnNames);
+    //    ui->tblPKM->setVerticalHeaderLabels();
+    //    ui->tblPKM->setVerticalHeaderLabels(QStringList::fromVector(QVector<std::string>::fromStdVector(ColumnNames)));
+    ui->tblPKM->setVerticalHeaderLabels(QStringList::fromVector(vect));
     for(vector<vector<string> >::iterator it = results.begin(); it < results.end(); ++it)
     {
         vector<string> row = *it;
-        ui->lstPKM->addItem(QString::fromStdString(row.at(0)));
+        ui->lstPKM->addItem(QString::fromStdString(row.at(1)));
     }
     //    for(int box = 0; box < 24; box++)
     //    {
