@@ -22,7 +22,7 @@ public:
     ~frmReport();
 #if (defined __linux__) || (defined __APPLE__)
     void createtable();
-    void dosearch();
+    void dosearch(vector<string> columns, string where = "", string order = "", int limit = 0);
 #else
     void frmReport::createtable();
     void frmReport::dosearch(vector<string> columns, string where = "", string order = "", int limit = 0);
