@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>695</width>
-    <height>305</height>
+    <width>1180</width>
+    <height>690</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1122</width>
+    <height>670</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
@@ -17,20 +23,45 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>10</y>
-     <width>256</width>
-     <height>192</height>
+     <y>120</y>
+     <width>1161</width>
+     <height>561</height>
     </rect>
    </property>
+   <property name="editTriggers">
+    <set>QAbstractItemView::NoEditTriggers</set>
+   </property>
+   <property name="alternatingRowColors">
+    <bool>true</bool>
+   </property>
   </widget>
-  <widget class="QListWidget" name="lstPKM">
+  <widget class="QListWidget" name="lstColumns">
    <property name="geometry">
     <rect>
-     <x>430</x>
+     <x>480</x>
      <y>10</y>
-     <width>256</width>
-     <height>192</height>
+     <width>221</width>
+     <height>101</height>
     </rect>
+   </property>
+   <property name="editTriggers">
+    <set>QAbstractItemView::NoEditTriggers</set>
+   </property>
+   <property name="selectionMode">
+    <enum>QAbstractItemView::MultiSelection</enum>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnSearch">
+   <property name="geometry">
+    <rect>
+     <x>780</x>
+     <y>40</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Search</string>
    </property>
   </widget>
  </widget>

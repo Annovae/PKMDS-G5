@@ -1,5 +1,6 @@
 #include "frmreport.h"
 #include "ui_frmreport.h"
+#include <string>
 frmReport::frmReport(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::frmReport)
@@ -8,24 +9,25 @@ frmReport::frmReport(QWidget *parent) :
     ppkm = new party_pkm();
     pkm = new pokemon_obj();
     sqlite3_open(":memory:", &db);
-    getlist();
+    createtable();
 }
 extern void * theSlot;
 extern int frmCurBoxNum;
 extern bw2savblock_obj * cursavblock;
 extern int frmCurSlotNum;
-void frmReport::getlist()
+std::string TableName;
+void frmReport::createtable()
 {
     vector<std::string> ColumnNames;
     // Add column names here
-    ColumnNames.push_back("\"ID\"");
-    ColumnNames.push_back("\"Species\"");
-    ColumnNames.push_back("\"HP\"");
-    ColumnNames.push_back("\"Attack\"");
-    ColumnNames.push_back("\"Defense\"");
-    ColumnNames.push_back("\"Sp. Attack\"");
-    ColumnNames.push_back("\"Sp. Defense\"");
-    ColumnNames.push_back("\"Speed\"");
+    ColumnNames.push_back("ID");
+    ColumnNames.push_back("Species");
+    ColumnNames.push_back("HP");
+    ColumnNames.push_back("Attack");
+    ColumnNames.push_back("Defense");
+    ColumnNames.push_back("Sp. Attack");
+    ColumnNames.push_back("Sp. Defense");
+    ColumnNames.push_back("Speed");
     vector<std::string> ColumnTypes;
     // Add column data types here
     ColumnTypes.push_back("Integer");
@@ -69,14 +71,14 @@ void frmReport::getlist()
             }
         }
     }
-    std::string TableName = "PKM_DATA";
+    TableName = "PKM_DATA";
     stringstream ss1;
     ss1 << "create table " << TableName << "(";
     for(int i = 0; i < ColumnNames.size()-1; i++)
     {
-        ss1 << ColumnNames[i] << " " << ColumnTypes[i] << ", ";
+        ss1 << "\"" << ColumnNames[i] << "\"" << " " << ColumnTypes[i] << ", ";
     }
-    ss1 << ColumnNames[ColumnNames.size()-1] << " " << ColumnTypes[ColumnNames.size()-1];
+    ss1 << "\"" << ColumnNames[ColumnNames.size()-1] << "\"" << " " << ColumnTypes[ColumnNames.size()-1];
     ss1 << ")";
     sqlite3_prepare_v2(db,ss1.str().c_str(),-1,&stmt,0);
     sqlite3_step(stmt);
@@ -84,7 +86,7 @@ void frmReport::getlist()
     ss2 << "insert into " << TableName << "(";
     for(int i = 0; i < ColumnNames.size()-1; i++)
     {
-        ss2 << ColumnNames[i] + ", ";
+        ss2 << "\"" << ColumnNames[i] << "\"" << ", ";
     }
     ss2 << ColumnNames[ColumnNames.size()-1];
     ss2 << ") values ";
@@ -116,8 +118,38 @@ void frmReport::getlist()
     ss2 << ");";
     sqlite3_prepare_v2(db,ss2.str().c_str(),-1,&stmt,0);
     sqlite3_step(stmt);
+    for(int i = 0; i < ColumnNames.size(); i++)
+    {
+        ui->lstColumns->addItem(QString::fromStdString(ColumnNames[i]));
+    }
+}
+frmReport::~frmReport()
+{
+    sqlite3_close(db);
+    delete ui;
+}
+void frmReport::dosearch(vector<std::string> columns, string where, string order, int limit)
+{
     std::ostringstream query;
-    query << "SELECT * FROM " << TableName;
+    query << "SELECT ";
+    for(int i = 0; i < columns.size() - 1; i++)
+    {
+        query << "\"" << columns[i] << "\", ";
+    }
+    query << "\"" << columns[columns.size()-1];
+    query << "\" FROM " << TableName;
+    if(where != "")
+    {
+        query << " WHERE " << where;
+    }
+    if(order != "")
+    {
+        query << " ORDER BY " << order;
+    }
+    if(limit != 0)
+    {
+        query << " LIMIT " << limit;
+    }
     vector<vector<string> > results;
     if(sqlite3_prepare_v2(db, query.str().c_str(), -1, &stmt, 0) == SQLITE_OK)
     {
@@ -126,7 +158,6 @@ void frmReport::getlist()
         while(true)
         {
             result = sqlite3_step(stmt);
-
             if(result == SQLITE_ROW)
             {
                 vector<string> values;
@@ -143,48 +174,45 @@ void frmReport::getlist()
         }
         sqlite3_finalize(stmt);
     }
-    ui->tblPKM->setColumnCount(8);
     QVector<QString> vect;
-    for(int i = 0; i < ColumnNames.size(); i++)
+    for(int i = 0; i < columns.size(); i++)
     {
         std::ostringstream o;
-        o << ColumnNames[i];
+        o << columns[i];
         vect.push_back(QString::fromStdString(o.str()));
     }
-    /*
-    //    QVector<std::string> vect = QVector<std::string>::fromStdVector(ColumnNames);
-    //    ui->tblPKM->setVerticalHeaderLabels();
-    //    ui->tblPKM->setVerticalHeaderLabels(QStringList::fromVector(QVector<std::string>::fromStdVector(ColumnNames)));
-    */
-//    ui->tblPKM->setVerticalHeaderLabels(QStringList::fromVector(vect));
-//    ui->tblPKM->setVerticalHeaderLabels({"Test","Test2"});
     ui->tblPKM->setHorizontalHeaderLabels(QStringList::fromVector(vect));
     for(vector<vector<string> >::iterator it = results.begin(); it < results.end(); ++it)
     {
         vector<string> row = *it;
-        ui->lstPKM->addItem(QString::fromStdString(row.at(1)));
+        ui->tblPKM->insertRow(ui->tblPKM->rowCount());
+        for(int i = 0; i < columns.size(); i++)
+        {
+            ui->tblPKM->setItem(ui->tblPKM->rowCount()-1,i,new QTableWidgetItem(tr(QString::fromStdString(row.at(i)).toLatin1())));
+        }
     }
-    /*
-    //    for(int box = 0; box < 24; box++)
-    //    {
-    //        for(int slot = 0; slot < 30; slot++)
-    //        {
-    //            pkm = &(cursavblock->boxes[box].pokemon[slot]);
-    //            if(pkm->species != 0)
-    //            {
-    //                Types::types srchtype = Types::fire;
-    //                if((lookuppkmtype(pkm,1) == (int)srchtype) | (lookuppkmtype(pkm,2) == (int)srchtype))
-    //                {
-    //                    QString speciesname = QString::fromStdString(lookuppkmname(pkm));
-    //                    ui->lstPKM->addItem(speciesname);
-    //                }
-    //            }
-    //        }
-    //    }
-*/
 }
-frmReport::~frmReport()
+void frmReport::on_btnSearch_clicked()
 {
-    sqlite3_close(db);
-    delete ui;
+    ui->tblPKM->setRowCount(0);
+    ui->tblPKM->setColumnCount(0);
+    if(ui->lstColumns->selectedItems().count() > 0)
+    {
+        std::vector<string> columns;
+        QList<QListWidgetItem*> list = ui->lstColumns->selectedItems();
+        for(int i= 0; i < list.count(); i++)
+        {
+            QListWidgetItem * item =  list.at(i);
+            columns.push_back(item->text().toStdString());
+        }
+        ui->tblPKM->setColumnCount(columns.size());
+        dosearch(
+                    columns
+                    //                ,"ID <= 150"
+                    //                ,""
+                    //                ,"Attack ASC"
+                    //                ,""
+                    //                ,100
+                    );
+    }
 }
