@@ -23,33 +23,33 @@ void frmReport::createtable()
 {
     /*
     TODO: Add columns to the data table:
-	Shiny
-	Pokerus
-	Moves
-	Ability
-	Item
-	Gender
-	Tameness
-	Types
+    Shiny
+    Pokérus
+    Moves
+    Ability
+    Item
+    Gender
+    Tameness
+    Types
     IVs
     EVs
     Form
     Original game
     OT name (set color for gender)
-	OT ID / SID
+    OT ID / SID
     Nature
-	Nickname
-	Level
-	Markings
-	Fateful
-	N's
-	Country
-	Pok�star shine
-	# of ribbons
+    Nickname
+    Level
+    Markings
+    Fateful
+    N's
+    Country
+    Pokéstar shine
+    # of ribbons
     */
     vector<std::string> ColumnNames;
     // Add column names here
-    ColumnNames.push_back("ID");
+    ColumnNames.push_back("No.");
     ColumnNames.push_back("Species");
     ColumnNames.push_back("HP");
     ColumnNames.push_back("Attack");
@@ -57,8 +57,50 @@ void frmReport::createtable()
     ColumnNames.push_back("Sp. Attack");
     ColumnNames.push_back("Sp. Defense");
     ColumnNames.push_back("Speed");
-	
-	// Leave Position for last
+    ColumnNames.push_back("Shiny");
+    ColumnNames.push_back("Pokérus");
+    ColumnNames.push_back("Move 1");
+    ColumnNames.push_back("Move 2");
+    ColumnNames.push_back("Move 3");
+    ColumnNames.push_back("Move 4");
+    ColumnNames.push_back("Ability");
+    ColumnNames.push_back("Item");
+    ColumnNames.push_back("Gender");
+    ColumnNames.push_back("Tameness");
+    ColumnNames.push_back("Type 1");
+    ColumnNames.push_back("Type 2");
+    ColumnNames.push_back("HP IV");
+    ColumnNames.push_back("Atk IV");
+    ColumnNames.push_back("Def IV");
+    ColumnNames.push_back("SpAtk IV");
+    ColumnNames.push_back("SpDef IV");
+    ColumnNames.push_back("Speed IV");
+    ColumnNames.push_back("HP EV");
+    ColumnNames.push_back("Atk EV");
+    ColumnNames.push_back("Def EV");
+    ColumnNames.push_back("SpAtk EV");
+    ColumnNames.push_back("SpDef EV");
+    ColumnNames.push_back("Speed EV");
+    ColumnNames.push_back("Form");
+    ColumnNames.push_back("Game");
+    ColumnNames.push_back("OT");
+    ColumnNames.push_back("TID");
+    ColumnNames.push_back("SID");
+    ColumnNames.push_back("Nature");
+    ColumnNames.push_back("Nickname");
+    ColumnNames.push_back("Level");
+    ColumnNames.push_back("Fateful");
+    ColumnNames.push_back("N's PKM");
+    ColumnNames.push_back("Country");
+    ColumnNames.push_back("Pokéstar");
+    ColumnNames.push_back("Ribbons");
+    ColumnNames.push_back("Circle");
+    ColumnNames.push_back("Square");
+    ColumnNames.push_back("Heart");
+    ColumnNames.push_back("Triangle");
+    ColumnNames.push_back("Star");
+    ColumnNames.push_back("Diamond");
+    // Leave Position for last
     ColumnNames.push_back("Position");
     vector<std::string> ColumnTypes;
     // Add column data types here
@@ -70,8 +112,50 @@ void frmReport::createtable()
     ColumnTypes.push_back("Integer");
     ColumnTypes.push_back("Integer");
     ColumnTypes.push_back("Integer");
-	
-	// Leave Position for last
+    ColumnTypes.push_back("String");
+    ColumnTypes.push_back("String");
+    ColumnTypes.push_back("String");
+    ColumnTypes.push_back("String");
+    ColumnTypes.push_back("String");
+    ColumnTypes.push_back("String");
+    ColumnTypes.push_back("String");
+    ColumnTypes.push_back("String");
+    ColumnTypes.push_back("String");
+    ColumnTypes.push_back("String");
+    ColumnTypes.push_back("String");
+    ColumnTypes.push_back("String");
+    ColumnTypes.push_back("Integer");
+    ColumnTypes.push_back("Integer");
+    ColumnTypes.push_back("Integer");
+    ColumnTypes.push_back("Integer");
+    ColumnTypes.push_back("Integer");
+    ColumnTypes.push_back("Integer");
+    ColumnTypes.push_back("Integer");
+    ColumnTypes.push_back("Integer");
+    ColumnTypes.push_back("Integer");
+    ColumnTypes.push_back("Integer");
+    ColumnTypes.push_back("Integer");
+    ColumnTypes.push_back("Integer");
+    ColumnTypes.push_back("String");
+    ColumnTypes.push_back("String");
+    ColumnTypes.push_back("String");
+    ColumnTypes.push_back("String");
+    ColumnTypes.push_back("String");
+    ColumnTypes.push_back("String");
+    ColumnTypes.push_back("String");
+    ColumnTypes.push_back("Integer");
+    ColumnTypes.push_back("String");
+    ColumnTypes.push_back("String");
+    ColumnTypes.push_back("String");
+    ColumnTypes.push_back("String");
+    ColumnTypes.push_back("Integer");
+    ColumnTypes.push_back("String");
+    ColumnTypes.push_back("String");
+    ColumnTypes.push_back("String");
+    ColumnTypes.push_back("String");
+    ColumnTypes.push_back("String");
+    ColumnTypes.push_back("String");
+    // Leave Position for last
     ColumnTypes.push_back("String");
     // Add vectors for column data here
     vector<int> IDValues;
@@ -82,7 +166,49 @@ void frmReport::createtable()
     vector<int> SpAtkValues;
     vector<int> SpDefValues;
     vector<int> SpeedValues;
-	
+    vector<std::string> ShinyValues;
+    vector<std::string> PKRSValues;
+    vector<std::string> Move1Values;
+    vector<std::string> Move2Values;
+    vector<std::string> Move3Values;
+    vector<std::string> Move4Values;
+    vector<std::string> AbilityValues;
+    vector<std::string> ItemValues;
+    vector<std::string> GenderValues;
+    vector<std::string> TamenessValues;
+    vector<std::string> Type1Values;
+    vector<std::string> Type2Values;
+    vector<int> HPIVValues;
+    vector<int> AtkIVValues;
+    vector<int> DefIVValues;
+    vector<int> SpAtkIVValues;
+    vector<int> SpDefIVValues;
+    vector<int> SpeedIVValues;
+    vector<int> HPIVValues;
+    vector<int> AtkIVValues;
+    vector<int> DefIVValues;
+    vector<int> SpAtkIVValues;
+    vector<int> SpDefIVValues;
+    vector<int> SpeedEVValues;
+    vector<std::string> FormValues;
+    vector<std::string> GameValues;
+    vector<std::string> OTValues;
+    vector<std::string> TIDValues;
+    vector<std::string> SIDValues;
+    vector<std::string> NatureValues;
+    vector<std::string> NicknameValues;
+    vector<int> LevelValues;
+    vector<std::string> FatefulValues;
+    vector<std::string> NValues;
+    vector<std::string> CountryValues;
+    vector<std::string> PokestarValues;
+    vector<int> RibbonValues;
+    vector<std::string> CircleValues;
+    vector<std::string> SquareValues;
+    vector<std::string> HeartValues;
+    vector<std::string> TriangleValues;
+    vector<std::string> StarValues;
+    vector<std::string> DiamondValues;
     POSValues.clear();
     //    int box = 0;
     for(int box = 0; box < 24; box++)
@@ -105,7 +231,49 @@ void frmReport::createtable()
                 SpAtkValues.push_back(getpkmstat(pkm,Stat_IDs::spatk));
                 SpDefValues.push_back(getpkmstat(pkm,Stat_IDs::spdef));
                 SpeedValues.push_back(getpkmstat(pkm,Stat_IDs::speed));
-				
+                ShinyValues.push_back();
+                PKRSValues.push_back();
+                Move1Values.push_back();
+                Move2Values.push_back();
+                Move3Values.push_back();
+                Move4Values.push_back();
+                AbilityValues.push_back();
+                ItemValues.push_back();
+                GenderValues.push_back();
+                TamenessValues.push_back();
+                Type1Values.push_back();
+                Type2Values.push_back();
+                HPIVValues.push_back();
+                AtkIVValues.push_back();
+                DefIVValues.push_back();
+                SpAtkIVValues.push_back();
+                SpDefIVValues.push_back();
+                SpeedIVValues.push_back();
+                HPIVValues.push_back();
+                AtkIVValues.push_back();
+                DefIVValues.push_back();
+                SpAtkIVValues.push_back();
+                SpDefIVValues.push_back();
+                SpeedEVValues.push_back();
+                FormValues.push_back();
+                GameValues.push_back();
+                OTValues.push_back();
+                TIDValues.push_back();
+                SIDValues.push_back();
+                NatureValues.push_back();
+                NicknameValues.push_back();
+                LevelValues.push_back();
+                FatefulValues.push_back();
+                NValues.push_back();
+                CountryValues.push_back();
+                PokestarValues.push_back();
+                RibbonValues.push_back();
+                CircleValues.push_back();
+                SquareValues.push_back();
+                HeartValues.push_back();
+                TriangleValues.push_back();
+                StarValues.push_back();
+                DiamondValues.push_back();
                 std::ostringstream position;
                 position << box << "," << slot;
                 POSValues.push_back(position.str());
@@ -143,7 +311,7 @@ void frmReport::createtable()
         ss2 << SpAtkValues[p] << ", ";
         ss2 << SpDefValues[p] << ", ";
         ss2 << SpeedValues[p] << ", ";
-		
+        
         ss2 << "\"" << POSValues[p] << "\"";
         ss2 << "),\n";
     }
@@ -158,7 +326,7 @@ void frmReport::createtable()
     ss2 << SpAtkValues[p] << ", ";
     ss2 << SpDefValues[p] << ", ";
     ss2 << SpeedValues[p] << ", ";
-	
+    
     ss2 << "\"" << POSValues[p] << "\"";
     ss2 << ");";
     sqlite3_prepare_v2(db,ss2.str().c_str(),-1,&stmt,0);
