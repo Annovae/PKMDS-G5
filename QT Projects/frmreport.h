@@ -4,7 +4,7 @@
 #include <QDialog>
 #include <../../QT Projects/qt_sqlite.h>
 #include <../../QT Projects/mouseeventeater.h>
-
+#include "pkmviewer.h"
 namespace Ui {
 class frmReport;
 }
@@ -16,6 +16,7 @@ class frmReport : public QDialog
 public:
     party_pkm * ppkm;
     pokemon_obj * pkm;
+    pkmviewer * pview_;
     sqlite3 *db;
     sqlite3_stmt *stmt;
     explicit frmReport(QWidget *parent = 0);
@@ -29,6 +30,8 @@ public:
 #endif
 private slots:
     void on_btnSearch_clicked();
+
+    void on_tblPKM_cellDoubleClicked(int row, int column);
 
 private:
     Ui::frmReport *ui;

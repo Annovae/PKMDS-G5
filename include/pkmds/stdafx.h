@@ -57,6 +57,7 @@ Some documentation available at: http://www.projectpokemon.org/wiki/
 #include <math.h>
 #include <algorithm>
 #include <ctime>
+//#include <sstring>
 typedef unsigned char byte; // 8 bits
 typedef unsigned short int uint16; // 16 bits
 typedef unsigned int uint32; // 32 bits
@@ -69,3 +70,5 @@ static const int LANG_ID = 9;
 static const int VERSION_GROUP = 11;
 static const int GENERATION = 5;
 static const int BUFF_SIZE = 955;
+std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems);
+std::vector<std::string> split(const std::string &s, char delim);

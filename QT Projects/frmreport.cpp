@@ -8,6 +8,7 @@ frmReport::frmReport(QWidget *parent) :
     ui->setupUi(this);
     ppkm = new party_pkm();
     pkm = new pokemon_obj();
+    pview_ = new pkmviewer();
     sqlite3_open(":memory:", &db);
     createtable();
 }
@@ -16,6 +17,8 @@ extern int frmCurBoxNum;
 extern bw2savblock_obj * cursavblock;
 extern int frmCurSlotNum;
 std::string TableName;
+vector<std::string> POSValues;
+vector<std::string> positions;
 void frmReport::createtable()
 {
     vector<std::string> ColumnNames;
@@ -28,6 +31,7 @@ void frmReport::createtable()
     ColumnNames.push_back("Sp. Attack");
     ColumnNames.push_back("Sp. Defense");
     ColumnNames.push_back("Speed");
+    ColumnNames.push_back("Position");
     vector<std::string> ColumnTypes;
     // Add column data types here
     ColumnTypes.push_back("Integer");
@@ -38,6 +42,7 @@ void frmReport::createtable()
     ColumnTypes.push_back("Integer");
     ColumnTypes.push_back("Integer");
     ColumnTypes.push_back("Integer");
+    ColumnTypes.push_back("String");
     // Add vectors for column data here
     vector<int> IDValues;
     vector<std::string> SpeciesNames;
@@ -47,6 +52,7 @@ void frmReport::createtable()
     vector<int> SpAtkValues;
     vector<int> SpDefValues;
     vector<int> SpeedValues;
+    POSValues.clear();
     //    int box = 0;
     for(int box = 0; box < 24; box++)
     {
@@ -68,6 +74,9 @@ void frmReport::createtable()
                 SpAtkValues.push_back(getpkmstat(pkm,Stat_IDs::spatk));
                 SpDefValues.push_back(getpkmstat(pkm,Stat_IDs::spdef));
                 SpeedValues.push_back(getpkmstat(pkm,Stat_IDs::speed));
+                std::ostringstream position;
+                position << box << "," << slot;
+                POSValues.push_back(position.str());
             }
         }
     }
@@ -101,7 +110,8 @@ void frmReport::createtable()
         ss2 << DefValues[p] << ", ";
         ss2 << SpAtkValues[p] << ", ";
         ss2 << SpDefValues[p] << ", ";
-        ss2 << SpeedValues[p];
+        ss2 << SpeedValues[p] << ", ";
+        ss2 << "\"" << POSValues[p] << "\"";
         ss2 << "),\n";
     }
     int p = (int)(SpeciesNames.size())-1;
@@ -114,13 +124,17 @@ void frmReport::createtable()
     ss2 << DefValues[p] << ", ";
     ss2 << SpAtkValues[p] << ", ";
     ss2 << SpDefValues[p] << ", ";
-    ss2 << SpeedValues[p];
+    ss2 << SpeedValues[p] << ", ";
+    ss2 << "\"" << POSValues[p] << "\"";
     ss2 << ");";
     sqlite3_prepare_v2(db,ss2.str().c_str(),-1,&stmt,0);
     sqlite3_step(stmt);
     for(int i = 0; i < ColumnNames.size(); i++)
     {
-        ui->lstColumns->addItem(QString::fromStdString(ColumnNames[i]));
+        if(ColumnNames[i] != "Position")
+        {
+            ui->lstColumns->addItem(QString::fromStdString(ColumnNames[i]));
+        }
     }
 }
 frmReport::~frmReport()
@@ -136,7 +150,7 @@ void frmReport::dosearch(vector<std::string> columns, string where, string order
     {
         query << "\"" << columns[i] << "\", ";
     }
-    query << "\"" << columns[columns.size()-1];
+    query << "\"" << columns[columns.size()-1] << "\", \"Position";
     query << "\" FROM " << TableName;
     if(where != "")
     {
@@ -182,14 +196,17 @@ void frmReport::dosearch(vector<std::string> columns, string where, string order
         vect.push_back(QString::fromStdString(o.str()));
     }
     ui->tblPKM->setHorizontalHeaderLabels(QStringList::fromVector(vect));
+    int c = 0;
     for(vector<vector<string> >::iterator it = results.begin(); it < results.end(); ++it)
     {
         vector<string> row = *it;
         ui->tblPKM->insertRow(ui->tblPKM->rowCount());
+        positions.push_back(POSValues[c]);
         for(int i = 0; i < columns.size(); i++)
         {
             ui->tblPKM->setItem(ui->tblPKM->rowCount()-1,i,new QTableWidgetItem(tr(QString::fromStdString(row.at(i)).toLatin1())));
         }
+        c++;
     }
 }
 void frmReport::on_btnSearch_clicked()
@@ -198,12 +215,11 @@ void frmReport::on_btnSearch_clicked()
     ui->tblPKM->setColumnCount(0);
     if(ui->lstColumns->selectedItems().count() > 0)
     {
-        std::vector<string> columns;
+        vector<string> columns;
         QList<QListWidgetItem*> list = ui->lstColumns->selectedItems();
         for(int i= 0; i < list.count(); i++)
         {
-            QListWidgetItem * item =  list.at(i);
-            columns.push_back(item->text().toStdString());
+            columns.push_back(list.at(i)->text().toStdString());
         }
         ui->tblPKM->setColumnCount(columns.size());
         dosearch(
@@ -215,4 +231,12 @@ void frmReport::on_btnSearch_clicked()
                     //                ,100
                     );
     }
+}
+void frmReport::on_tblPKM_cellDoubleClicked(int row, int column)
+{
+    std::vector<std::string> pos = split(positions[row],',');
+    pkm = &(cursavblock->boxes[QString::fromStdString(pos[0]).toInt()].pokemon[QString::fromStdString(pos[1]).toInt()]);
+    pview_->setPKM(pkm,frmCurBoxNum, false);
+    pview_->displayPKM();
+    pview_->show();
 }
