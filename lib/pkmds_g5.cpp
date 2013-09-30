@@ -1027,3 +1027,16 @@ Types::types getarceustype(int form)
     };
     return arceustypes[form];
 }
+std::string DllExport getpkrsstatus(pokemon_obj * pkm)
+{
+    std::string status = "";
+    if((pkm->pkrs.days > 0) & (pkm->pkrs.strain > 0))
+    {
+        status = "Infected";
+    }
+    if((pkm->pkrs.days == 0) & (pkm->pkrs.strain > 0))
+    {
+        status = "Cured";
+    }
+    return status;
+}

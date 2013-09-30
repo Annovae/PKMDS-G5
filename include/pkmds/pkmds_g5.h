@@ -3761,6 +3761,7 @@ std::wstring DllExport getsavtrainername(const bw2savblock_obj * block);
 std::wstring DllExport getwstring(std::wstring in);
 std::wstring DllExport getwstring(std::string in);
 std::wstring DllExport getwstring(char* in, int len); //Linux needs this
+std::string DllExport getpkrsstatus(pokemon_obj * pkm);
 /*
 Main Save File & Backup
 
