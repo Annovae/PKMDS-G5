@@ -21,6 +21,32 @@ vector<std::string> POSValues;
 vector<std::string> positions;
 void frmReport::createtable()
 {
+    /*
+    TODO: Add columns to the data table:
+	Shiny
+	Pokerus
+	Moves
+	Ability
+	Item
+	Gender
+	Tameness
+	Types
+    IVs
+    EVs
+    Form
+    Original game
+    OT name (set color for gender)
+	OT ID / SID
+    Nature
+	Nickname
+	Level
+	Markings
+	Fateful
+	N's
+	Country
+	Pokéstar shine
+	# of ribbons
+    */
     vector<std::string> ColumnNames;
     // Add column names here
     ColumnNames.push_back("ID");
@@ -31,6 +57,8 @@ void frmReport::createtable()
     ColumnNames.push_back("Sp. Attack");
     ColumnNames.push_back("Sp. Defense");
     ColumnNames.push_back("Speed");
+	
+	// Leave Position for last
     ColumnNames.push_back("Position");
     vector<std::string> ColumnTypes;
     // Add column data types here
@@ -42,6 +70,8 @@ void frmReport::createtable()
     ColumnTypes.push_back("Integer");
     ColumnTypes.push_back("Integer");
     ColumnTypes.push_back("Integer");
+	
+	// Leave Position for last
     ColumnTypes.push_back("String");
     // Add vectors for column data here
     vector<int> IDValues;
@@ -52,6 +82,7 @@ void frmReport::createtable()
     vector<int> SpAtkValues;
     vector<int> SpDefValues;
     vector<int> SpeedValues;
+	
     POSValues.clear();
     //    int box = 0;
     for(int box = 0; box < 24; box++)
@@ -74,6 +105,7 @@ void frmReport::createtable()
                 SpAtkValues.push_back(getpkmstat(pkm,Stat_IDs::spatk));
                 SpDefValues.push_back(getpkmstat(pkm,Stat_IDs::spdef));
                 SpeedValues.push_back(getpkmstat(pkm,Stat_IDs::speed));
+				
                 std::ostringstream position;
                 position << box << "," << slot;
                 POSValues.push_back(position.str());
@@ -111,6 +143,7 @@ void frmReport::createtable()
         ss2 << SpAtkValues[p] << ", ";
         ss2 << SpDefValues[p] << ", ";
         ss2 << SpeedValues[p] << ", ";
+		
         ss2 << "\"" << POSValues[p] << "\"";
         ss2 << "),\n";
     }
@@ -125,6 +158,7 @@ void frmReport::createtable()
     ss2 << SpAtkValues[p] << ", ";
     ss2 << SpDefValues[p] << ", ";
     ss2 << SpeedValues[p] << ", ";
+	
     ss2 << "\"" << POSValues[p] << "\"";
     ss2 << ");";
     sqlite3_prepare_v2(db,ss2.str().c_str(),-1,&stmt,0);
