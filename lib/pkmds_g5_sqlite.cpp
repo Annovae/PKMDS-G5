@@ -161,7 +161,6 @@ void dostatement(const string &cmd)
     sqlite3_step(statement);
 }
 #else
-//#include "../../PKMDS-G5/Visual_Studio/vs_sqlite.h"
 string getastring(const ostringstream &o)
 {
     VS_SQLite ^ vsqlite = gcnew VS_SQLite();
@@ -1172,7 +1171,14 @@ string getpkmegglocname(const pokemon_obj *pkm, const int gen, const int langid)
 }
 string lookuplocname(const int locid, const int gen, const int langid)
 {
-    return getastring(lookuplocnamesql(locid,gen,langid));
+    if(locid == (int)Locations::unovavictoryroad2)
+    {
+        return "Victory Road (2)";
+    }
+    else
+    {
+        return getastring(lookuplocnamesql(locid,gen,langid));
+    }
 }
 string getpkmformname(const pokemon_obj &pkm, const int langid)
 {

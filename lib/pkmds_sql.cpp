@@ -19,7 +19,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <pkmds/pkmds_sql.h>
 #else
 #include "../../PKMDS-G5/include/pkmds/pkmds_sql.h"
-//#include "../../PKMDS-G5/include/pkmds/pkmds_g5_sqlite.h"
 #endif
 string getspeciesnamesql(const int speciesid, const int langid)
 {
@@ -204,9 +203,12 @@ string getpkmstatsql(const pokemon_obj &pkm, const Stat_IDs::stat_ids stat_id)
       << "                      pokemon.species_id "
       << "WHERE  ( pokemon_species_names.local_language_id = 9 ) "
       << "       AND ( stat_names.local_language_id = 9 ) "
-      << "       AND ( pokemon_species_names.pokemon_species_id = " << (uint16)pkm.species << " ) "
-      << "       AND ( pokemon_forms.form_order = " << (int)(pkm.forms.form) << " + 1 ) "
-      << "       AND ( stat_names.stat_id = " << (int)stat_id << " ) ";
+      << "       AND ( pokemon_species_names.pokemon_species_id = " << (uint16)pkm.species << " ) ";
+    if(getpkmformname(pkm) != "")
+    {
+        o << "       AND ( pokemon_forms.form_order = " << (int)(pkm.forms.form) << " + 1 ) ";
+    }
+    o << "       AND ( stat_names.stat_id = " << (int)stat_id << " ) ";
     return o.str();
 }
 string getpkmstatsql(const pokemon_obj *pkm, const Stat_IDs::stat_ids stat_id)
@@ -231,9 +233,12 @@ string getpkmstatsql(const pokemon_obj *pkm, const Stat_IDs::stat_ids stat_id)
       << "                      pokemon.species_id "
       << "WHERE  ( pokemon_species_names.local_language_id = 9 ) "
       << "       AND ( stat_names.local_language_id = 9 ) "
-      << "       AND ( pokemon_species_names.pokemon_species_id = " << (uint16)pkm->species << " ) "
-      << "       AND ( pokemon_forms.form_order = " << (int)(pkm->forms.form) << " + 1 ) "
-      << "       AND ( stat_names.stat_id = " << (int)stat_id << " ) ";
+      << "       AND ( pokemon_species_names.pokemon_species_id = " << (uint16)pkm->species << " ) ";
+    if(getpkmformname(pkm) != "")
+    {
+        o << "       AND ( pokemon_forms.form_order = " << (int)(pkm->forms.form) << " + 1 ) ";
+    }
+    o << "       AND ( stat_names.stat_id = " << (int)stat_id << " ) ";
     return o.str();
 }
 string pkmhasgenddiffsql(const int species)
@@ -858,56 +863,56 @@ string getmachinetypesql(const Items::items itemid, const int generation, const 
 {
     ostringstream o;
     o << ""
-         << "SELECT types.identifier "
-         << "FROM   machines "
-         << "       INNER JOIN moves "
-         << "               ON machines.move_id = moves.id "
-         << "       INNER JOIN item_game_indices "
-         << "               ON machines.item_id = item_game_indices.item_id "
-         << "       INNER JOIN types "
-         << "               ON moves.type_id = types.id "
-         << "WHERE  ( item_game_indices.generation_id = " << generation << " ) "
-         << "       AND ( machines.version_group_id = " << version_group << " ) "
-         << "       AND ( item_game_indices.game_index = " << (int)itemid << " ) ";
+      << "SELECT types.identifier "
+      << "FROM   machines "
+      << "       INNER JOIN moves "
+      << "               ON machines.move_id = moves.id "
+      << "       INNER JOIN item_game_indices "
+      << "               ON machines.item_id = item_game_indices.item_id "
+      << "       INNER JOIN types "
+      << "               ON moves.type_id = types.id "
+      << "WHERE  ( item_game_indices.generation_id = " << generation << " ) "
+      << "       AND ( machines.version_group_id = " << version_group << " ) "
+      << "       AND ( item_game_indices.game_index = " << (int)itemid << " ) ";
     return o.str();
 }
 string getmachinemovenamesql(const Items::items itemid, const int generation, const int version_group, const int langid)
 {
     ostringstream o;
     o << ""
-         << "SELECT move_names.name "
-         << "FROM machines "
-         << "INNER JOIN moves "
-         << "ON machines.move_id = moves.id "
-         << "INNER JOIN item_game_indices "
-         << "ON machines.item_id = item_game_indices.item_id "
-         << "INNER JOIN move_names "
-         << "ON moves.id = move_names.move_id "
-         << "WHERE (item_game_indices.generation_id = " << generation << ") "
-         << "AND (machines.version_group_id = " << version_group << ") "
-         << "AND (item_game_indices.game_index = " << (int)itemid << ") "
-         << "AND (move_names.local_language_id = " << langid << ")";
+      << "SELECT move_names.name "
+      << "FROM machines "
+      << "INNER JOIN moves "
+      << "ON machines.move_id = moves.id "
+      << "INNER JOIN item_game_indices "
+      << "ON machines.item_id = item_game_indices.item_id "
+      << "INNER JOIN move_names "
+      << "ON moves.id = move_names.move_id "
+      << "WHERE (item_game_indices.generation_id = " << generation << ") "
+      << "AND (machines.version_group_id = " << version_group << ") "
+      << "AND (item_game_indices.game_index = " << (int)itemid << ") "
+      << "AND (move_names.local_language_id = " << langid << ")";
     return o.str();
 }
 string getpokemoncolorstringsql(const Species::pkmspecies speciesid)
 {
     ostringstream o;
     o << ""
-         << "SELECT pokemon_colors.identifier "
-         << "FROM   pokemon_colors "
-         << "       INNER JOIN pokemon_species "
-         << "               ON pokemon_colors.id = pokemon_species.color_id "
-         << "WHERE  pokemon_species.id = " << (int)speciesid;
-         return o.str();
+      << "SELECT pokemon_colors.identifier "
+      << "FROM   pokemon_colors "
+      << "       INNER JOIN pokemon_species "
+      << "               ON pokemon_colors.id = pokemon_species.color_id "
+      << "WHERE  pokemon_species.id = " << (int)speciesid;
+    return o.str();
 }
 string getpokemoncolorsql(const Species::pkmspecies speciesid)
 {
     ostringstream o;
     o << ""
-         << "SELECT pokemon_colors.id "
-         << "FROM   pokemon_colors "
-         << "       INNER JOIN pokemon_species "
-         << "               ON pokemon_colors.id = pokemon_species.color_id "
-         << "WHERE  pokemon_species.id = " << (int)speciesid;
-         return o.str();
+      << "SELECT pokemon_colors.id "
+      << "FROM   pokemon_colors "
+      << "       INNER JOIN pokemon_species "
+      << "               ON pokemon_colors.id = pokemon_species.color_id "
+      << "WHERE  pokemon_species.id = " << (int)speciesid;
+    return o.str();
 }

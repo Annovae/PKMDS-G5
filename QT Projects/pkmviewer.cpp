@@ -631,6 +631,10 @@ void pkmviewer::on_btnSaveChanges_clicked()
 {
     calcchecksum(temppkm);
     *pkm = *temppkm;
+    if(getpkmformname(pkm) == "")
+    {
+        pkm->forms.form = 0;
+    }
     this->setWindowTitle(QString::fromStdWString(getpkmnickname(temppkm)));
     if((frmCurBoxNum == startbox) || ispartypkm)
     {
@@ -649,12 +653,18 @@ void pkmviewer::on_btnSaveChanges_clicked()
 }
 void pkmviewer::on_btnExportPKMFile_clicked()
 {
+    pokemon_obj * pkmout = new pokemon_obj;
+    *pkmout = *temppkm;
+    if(getpkmformname(pkmout) == "")
+    {
+        pkmout->forms.form = 0;
+    }
     std::string PKMFileName = "";
     PKMFileName = (QFileDialog::getSaveFileName(this,tr("Save a PKM file"),tr(""),tr("PKM Files (*.pkm)"))).toStdString();
     if(PKMFileName != "")
     {
-        calcchecksum(temppkm);
-        write(PKMFileName.c_str(),temppkm);
+        calcchecksum(pkmout);
+        write(PKMFileName.c_str(),pkmout);
     }
 }
 void pkmviewer::on_cbPKMSpecies_currentIndexChanged(int index)

@@ -21,32 +21,6 @@ vector<std::string> POSValues;
 vector<std::string> positions;
 void frmReport::createtable()
 {
-    /*
-    TODO: Add columns to the data table:
-    Shiny
-    Pokérus
-    Moves
-    Ability
-    Item
-    Gender
-    Tameness
-    Types
-    IVs
-    EVs
-    Form
-    Original game
-    OT name (set color for gender)
-    OT ID / SID
-    Nature
-    Nickname
-    Level
-    Markings
-    Fateful
-    N's
-    Country
-    Pokéstar shine
-    # of ribbons
-    */
     vector<std::string> ColumnNames;
     // Add column names here
     ColumnNames.push_back("No.");
