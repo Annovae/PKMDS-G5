@@ -44,6 +44,8 @@ private slots:
 
     void on_actionSearch_triggered();
 
+    void on_pbBoxSlot01_customContextMenuRequested(const QPoint &pos);
+//void on_actionDeletePKM(QGraphicsView * gView);
 private:
     Ui::frmBoxes *ui;
 };

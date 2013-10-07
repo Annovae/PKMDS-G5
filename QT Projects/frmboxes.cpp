@@ -96,7 +96,52 @@ frmBoxes::frmBoxes(QWidget *parent) :
     boxpreviewgraphics[22] = ui->pbBox23;
     boxpreviewgraphics[23] = ui->pbBox24;
     this->setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
+
+//    connect(mouseEventEater, SIGNAL(send_rightButtonClicked(const QPoint&)),
+//                this, SLOT(rightButtonClicked(const QPoint&)));
+
+//    /*
+////    QMenu* pContextMenu = new QMenu(this);
+////    //    QTreeWidget* pTreeWidget = new QTreeWidget();
+////    QAction* qaDeletePKM = new QAction(tr("Delete Pokemon"), pContextMenu);
+////    ui->pbBoxSlot01->setContextMenuPolicy(Qt::ActionsContextMenu);
+////    //    pTreeWidget->setContextMenuPolicy(Qt::ActionsContextMenu);
+////    //    pTreeWidget->addAction(pOpenFile);
+////    //connect(openAct, SIGNAL(triggered()), this, SLOT(open()));
+////    //    connect(qaDeletePKM,
+////    //            SIGNAL(triggered()),
+////    //            this,
+////    //            SLOT(frmBoxes::on_actionDeletePKM(QGraphicsView * gView)));
+////    //    QString ss("QMenu{background-color: #ABABAB;border: 1px solid black;}");
+////    this->connect(
+////                qaDeletePKM,
+////                SIGNAL(triggered()),
+////                this,
+////                SLOT(open())
+////                );
+////    ui->pbBoxSlot01->addAction(qaDeletePKM);
+////    //    qApp->setStyleSheet(ss);
+////    boxgraphics[0]->setContextMenuPolicy(Qt::CustomContextMenu);
+//*/
+//    boxgraphics[0]->setContextMenuPolicy(Qt::ActionsContextMenu);
+//    QMenu* pContextMenu = new QMenu(this);
+//    QAction* qaDeletePKM = new QAction(tr("Delete Pokemon"), pContextMenu);
+//    /*this->*//*QObject::*/connect(
+//                qaDeletePKM,
+//                SIGNAL(triggered()),
+//                /*this*/boxgraphics[0],
+//                SLOT(on_actionDeletePKM(boxgraphics[0]))
+//                );
+//    boxgraphics[0]->addAction(qaDeletePKM);
 }
+//void frmBoxes::on_actionDeletePKM(QGraphicsView * gView)
+//{
+//    this->setWindowTitle("THIS IS A TEST");
+//    gView->setVisible(false);
+//    QMessageBox msg;
+//    msg.setText("TEST");
+//    msg.show();
+//}
 frmBoxes * boxViewer;
 frmReport * report;
 bw2sav_obj * sav = new bw2sav_obj;
@@ -286,30 +331,30 @@ void frmBoxes::on_actionSave_changes_triggered()
 }
 void frmBoxes::refreshboxgrid(int box)
 {
-        QImage grid = QImage(60,50,QImage::Format_RGB32);
-        QPixmap gridpix;
-        QGraphicsScene * gridscene = new QGraphicsScene();
-        pokemon_obj * pkm_c = new pokemon_obj;
-        uint32 color_val = 0;
-        for(int sloty = 0; sloty < 5; sloty++)
+    QImage grid = QImage(60,50,QImage::Format_RGB32);
+    QPixmap gridpix;
+    QGraphicsScene * gridscene = new QGraphicsScene();
+    pokemon_obj * pkm_c = new pokemon_obj;
+    uint32 color_val = 0;
+    for(int sloty = 0; sloty < 5; sloty++)
+    {
+        for(int slotx = 0; slotx < 6; slotx++)
         {
-            for(int slotx = 0; slotx < 6; slotx++)
+            pkm_c = &(sav->cur.boxes[box].pokemon[(sloty*6)+slotx]);
+            color_val = getpkmcolor(pkm_c->species);
+            for(int x = 0; x < 10; x++)
             {
-                pkm_c = &(sav->cur.boxes[box].pokemon[(sloty*6)+slotx]);
-                color_val = getpkmcolor(pkm_c->species);
-                for(int x = 0; x < 10; x++)
+                for(int y = 0; y < 10; y++)
                 {
-                    for(int y = 0; y < 10; y++)
-                    {
-                        grid.setPixel((slotx * 10) + x,(sloty * 10) + y,color_val);
-                    }
+                    grid.setPixel((slotx * 10) + x,(sloty * 10) + y,color_val);
                 }
             }
-            gridpix = QPixmap::fromImage(grid);
-            gridscene = new QGraphicsScene();
-            gridscene->addPixmap(gridpix);
-            boxpreviewgraphics[box]->setScene(gridscene);
         }
+        gridpix = QPixmap::fromImage(grid);
+        gridscene = new QGraphicsScene();
+        gridscene->addPixmap(gridpix);
+        boxpreviewgraphics[box]->setScene(gridscene);
+    }
 }
 void frmBoxes::refreshboxgrids()
 {
@@ -322,4 +367,9 @@ void frmBoxes::on_actionSearch_triggered()
 {
     report = new frmReport();
     report->show();
+}
+
+void frmBoxes::on_pbBoxSlot01_customContextMenuRequested(const QPoint &pos)
+{
+    //        pContextMenu->show();
 }
