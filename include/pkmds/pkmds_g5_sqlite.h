@@ -36,9 +36,6 @@ static const char theimgDB[] = "images.sqlite";
 #endif
 #ifdef PKMDS_CMAKE_USED
 #include <pkmds/pkmds_g5.h>
-#ifdef _MSC_VER
-#include <Visual_Studio/vs_sqlite.h>
-#endif
 #include <sqlite3.h>
 #else
 #include "pkmds_g5.h"
