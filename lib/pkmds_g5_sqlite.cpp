@@ -46,7 +46,7 @@ string getastring(const ostringstream &o)
 {
     string s = "";
     char cmd[BUFF_SIZE];
-#if defined (__linux__) || defined (__APPLE__)
+#if defined (__linux__) || defined (__APPLE__) || defined(__CYGWIN__)
     strcpy(cmd,o.str().c_str());
 #else
     strcpy_s(cmd,o.str().c_str());
@@ -76,7 +76,7 @@ int getanint(const ostringstream &o)
 {
     int i = 0;
     char cmd[BUFF_SIZE];
-#if defined (__linux__) || defined (__APPLE__)
+#if defined (__linux__) || defined (__APPLE__) || defined(__CYGWIN__)
     strcpy(cmd,o.str().c_str());
 #else
     strcpy_s(cmd,o.str().c_str());
@@ -104,7 +104,7 @@ string getastring(const string &str)
 
     string s = "";
     char cmd[BUFF_SIZE];
-#if defined (__linux__) || defined (__APPLE__)
+#if defined (__linux__) || defined (__APPLE__) || defined (__CYGWIN__)
     strcpy(cmd,str.c_str());
 #else
     strcpy_s(cmd,str.c_str());
@@ -134,7 +134,7 @@ int getanint(const string &str)
 {
     int i = 0;
     char cmd[BUFF_SIZE];
-#if defined (__linux__) || defined (__APPLE__)
+#if defined (__linux__) || defined (__APPLE__) || defined (__CYGWIN__)
     strcpy(cmd,str.c_str());
 #else
     strcpy_s(cmd,str.c_str());

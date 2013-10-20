@@ -2805,7 +2805,7 @@ public:
 struct metlevelfield { // Bitfield for the Pokemon's met level and original trainer gender.
 public:
     byte metlevel : 7; // The level at which this Pokemon was first encountered.
-#if (defined __linux__) || (defined __APPLE__)
+#if (defined __linux__) || (defined __APPLE__) || (defined __CYGWIN__)
     byte otgender: 1; //To stop GCC from throwing a warning
 #else
     Genders::genders otgender : 1; // Flag to determine if the original trainer was female.
