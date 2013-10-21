@@ -1,3 +1,4 @@
+INCLUDE_DIRECTORIES(${PKMDS_SOURCE_DIR})
 INCLUDE_DIRECTORIES(${PKMDS_SOURCE_DIR}/include)
 
 #Clang won't apply -std=c++11 to C files, to make sqlite3 it's own library

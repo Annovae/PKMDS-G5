@@ -17,7 +17,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 #pragma once
 #ifdef PKMDS_CMAKE_USED
-#include <pkmds_g5_sqlite.h>
+#include <pkmds/pkmds_g5_sqlite.h>
 #else
 #include "pkmds_g5_sqlite.h"
 #endif

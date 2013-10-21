@@ -1,3 +1,3 @@
 ADD_SUBDIRECTORY(pc-sorter)
 ADD_SUBDIRECTORY(pc-transfer)
-ADD_SUBDIRECTORY(sample)
+#ADD_SUBDIRECTORY(sample)

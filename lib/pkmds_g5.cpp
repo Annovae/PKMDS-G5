@@ -917,7 +917,7 @@ std::string advstrttimestring(const bw2savblock_obj &block)
     time_t * adstarttime = new time_t;
     adstarttime = advstrttime(&block);
     tm * ptm = new tm;
-#if (defined __linux__) || (defined __APPLE__)
+#if (defined __linux__) || (defined __APPLE__) || (defined __CYGWIN__)
     ptm = gmtime(adstarttime);
 #else
     gmtime_s(ptm, adstarttime);
@@ -934,7 +934,7 @@ std::string advstrttimestring(const bw2savblock_obj *block)
     time_t * adstarttime = new time_t;
     adstarttime = advstrttime(block);
     tm * ptm = new tm;
-#if (defined __linux__) || (defined __APPLE__)
+#if (defined __linux__) || (defined __APPLE__) || (defined __CYGWIN__)
     ptm = gmtime(adstarttime);
 #else
     gmtime_s(ptm, adstarttime);
@@ -948,7 +948,7 @@ std::string advstrttimestring(const bw2savblock_obj *block)
 }
 std::wstring getsavtrainername(const bw2savblock_obj & block)
 {
-#if (defined __linux__) || (defined __APPLE__)
+#if (defined __linux__) || (defined __APPLE__) || (defined __CYGWIN__)
     return getwstring((char*)block.trainername, 0x10);
 #else
     return getwstring(block.trainername);
@@ -956,7 +956,7 @@ std::wstring getsavtrainername(const bw2savblock_obj & block)
 }
 std::wstring getsavtrainername(const bw2savblock_obj * block)
 {
-#if (defined __linux__) || (defined __APPLE__)
+#if (defined __linux__) || (defined __APPLE__) || (defined __CYGWIN__)
     return getwstring((char*)block->trainername, 0x10);
 #else
     return getwstring(block->trainername);
