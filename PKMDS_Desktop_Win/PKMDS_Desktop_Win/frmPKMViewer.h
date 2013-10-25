@@ -3576,7 +3576,7 @@ namespace PKMDS_Desktop_Win {
 				 {
 					 if(cbMetLoc->SelectedValue == DBNull::Value)
 					 {
-						 temppkm->met = Locations::mysteryzone_;
+						 temppkm->met = Locations::NOTHING;
 					 }
 					 else
 					 {
@@ -3590,7 +3590,7 @@ namespace PKMDS_Desktop_Win {
 				 {
 					 if(cbEggLoc->SelectedValue == DBNull::Value)
 					 {
-						 temppkm->eggmet = Locations::mysteryzone_;
+						 temppkm->eggmet = Locations::NOTHING;
 					 }
 					 else
 					 {
@@ -3613,7 +3613,7 @@ namespace PKMDS_Desktop_Win {
 					 }
 					 else
 					 {
-						 temppkm->eggmet = Locations::mysteryzone_;
+						 temppkm->eggmet = Locations::NOTHING;
 						 temppkm->eggdate.year = 0;
 						 temppkm->eggdate.month = 0;
 						 temppkm->eggdate.day = 0;
@@ -3644,7 +3644,7 @@ namespace PKMDS_Desktop_Win {
 				 {
 					 if(cbGame->SelectedValue == DBNull::Value)
 					 {
-						 temppkm->hometown = Hometowns::NOTHING;
+						 temppkm->hometown = Hometowns::colosseum_bonus;
 					 }
 					 else
 					 {

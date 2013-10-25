@@ -1,7 +1,8 @@
 #ifdef PKMDS_CMAKE_USED
 #include <pkmds/stdafx.h>
 #else
-#include "../../include/pkmds/stdafx.h"
+#include "../include/pkmds/stdafx.h"
+//#include "../../include/pkmds/stdafx.h"
 #endif
 std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems)
 {

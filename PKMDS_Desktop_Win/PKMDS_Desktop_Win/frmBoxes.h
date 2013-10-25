@@ -3395,7 +3395,7 @@ namespace PKMDS_Desktop_Win {
 							 encryptpkm(&(savout->cur.party.pokemon[pslot].pkm_data));
 						 }
 					 }
-					 calcpartychecksum(&(savout->cur));
+					 calcpartychecksum(&(savout->cur),isbw2);
 					 for(int boxnum = 0; boxnum < 24; boxnum++)
 					 {
 						 for(int boxslot = 0; boxslot < 30; boxslot++)
@@ -3407,7 +3407,7 @@ namespace PKMDS_Desktop_Win {
 						 }
 						 calcboxchecksum(&(savout->cur),boxnum,isbw2);
 					 }
-					 fixsavchecksum(savout);
+					 fixsavchecksum(savout,isbw2);
 					 write(marshal_as<std::string>(fileSave->FileName).c_str(),savout);
 				 }
 			 }
