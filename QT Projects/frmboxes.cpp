@@ -232,7 +232,7 @@ void frmBoxes::changebox(int index)
     int box = index;
     frmCurBoxNum = index;
     frmCurBox = &(cursavblock->boxes[box]);
-    QGraphicsScene * boxscene = new QGraphicsScene();
+
     for(int bslot = 0; bslot < 30; bslot++)
     {
         pix = QPixmap();
@@ -240,10 +240,16 @@ void frmBoxes::changebox(int index)
         {
             pix = getpkmicon(cursavblock->boxes[box].pokemon[bslot]);
         }
-        boxscene = new QGraphicsScene();
+
+        QGraphicsScene * boxscene = boxgraphics[bslot]->scene();
+        if (boxscene == NULL)
+        {
+            boxscene = new QGraphicsScene();
+            boxgraphics[bslot]->setScene(boxscene);
+            boxgraphics[bslot]->installEventFilter(mouseEventEater);
+        }
+        boxscene->clear();
         boxscene->addPixmap(pix);
-        boxgraphics[bslot]->setScene(boxscene);
-        boxgraphics[bslot]->installEventFilter(mouseEventEater);
     }
     if(ui->cbBoxes->currentIndex() != index)
     {
@@ -253,13 +259,18 @@ void frmBoxes::changebox(int index)
     {
         ui->sbBoxIncrem->setValue(index);
     }
-    QPixmap * wallpaperpixmap = new QPixmap;
-    *wallpaperpixmap = getwallpaperimage(cursavblock->boxwallpapers[box]);
-    QGraphicsScene * wallpaperscene = new QGraphicsScene;
-    wallpaperscene->addPixmap(*wallpaperpixmap);
-    ui->pbPCBox->setScene(wallpaperscene);
-    ui->pbPCBox->setSceneRect(0,0,192,160);
-    ui->pbPCBox->fitInView(0,0,153,111);
+    QPixmap wallpaperpixmap = getwallpaperimage(cursavblock->boxwallpapers[box]);
+    QGraphicsScene * wallpaperscene = ui->pbPCBox->scene();
+    if (wallpaperscene == NULL)
+    {
+        wallpaperscene = new QGraphicsScene;
+        ui->pbPCBox->setScene(wallpaperscene);
+        ui->pbPCBox->setSceneRect(0,0,192,160);
+        ui->pbPCBox->fitInView(0,0,153,111);
+    }
+
+    wallpaperscene->clear();
+    wallpaperscene->addPixmap(wallpaperpixmap);
     for(int box = 0; box < 24; box++)
     {
         boxpreviewgraphics[box]->setFrameStyle(0);
@@ -290,7 +301,8 @@ void frmBoxes::on_actionSave_changes_triggered()
     msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Save);
     int ret = msgBox.exec();
-    if(ret == 0x800) // 2048 (or 0x800) = Save, 4194304 (or 0x400000) = Cancel
+    // You can simply use QMessageBox::<ButtonType> as the result code
+    if(ret == QMessageBox::Save) // 2048 (or 0x800) = Save, 4194304 (or 0x400000) = Cancel
     {
         if((sav > 0) && (cursavblock->adventurestarted != 0))
         {
@@ -329,15 +341,22 @@ void frmBoxes::on_actionSave_changes_triggered()
     }
     ret = msgBox.exec();
 }
+
 void frmBoxes::refreshboxgrid(int box)
 {
     QImage grid = QImage(60,50,QImage::Format_RGB32);
     QPixmap gridpix;
-    QGraphicsScene * gridscene = new QGraphicsScene();
-    pokemon_obj * pkm_c = new pokemon_obj;
+    pokemon_obj * pkm_c;
     uint32 color_val = 0;
     for(int sloty = 0; sloty < 5; sloty++)
     {
+        QGraphicsScene * gridscene = boxpreviewgraphics[box]->scene();
+        if (gridscene == NULL)
+        {
+            gridscene = new QGraphicsScene;
+            boxpreviewgraphics[box]->setScene(gridscene);
+        }
+
         for(int slotx = 0; slotx < 6; slotx++)
         {
             pkm_c = &(sav->cur.boxes[box].pokemon[(sloty*6)+slotx]);
@@ -350,12 +369,12 @@ void frmBoxes::refreshboxgrid(int box)
                 }
             }
         }
+        gridscene->clear();
         gridpix = QPixmap::fromImage(grid);
-        gridscene = new QGraphicsScene();
         gridscene->addPixmap(gridpix);
-        boxpreviewgraphics[box]->setScene(gridscene);
     }
 }
+
 void frmBoxes::refreshboxgrids()
 {
     for(int box = 0; box < 24; box++)

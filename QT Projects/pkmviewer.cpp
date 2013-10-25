@@ -47,8 +47,8 @@ pkmviewer::pkmviewer(QWidget *parent) :
     {
         itemname = QString::fromStdString(lookupitemname(itemindex));
         if(((itemindex >= (int)Items::tm01) & (itemindex <= (int)Items::tm92)) |
-                ((itemindex >= (int)Items::tm93) & (itemindex <= (int)Items::tm95)) |
-                ((itemindex >= (int)Items::hm01) & (itemindex <= (int)Items::hm06)))
+           ((itemindex >= (int)Items::tm93) & (itemindex <= (int)Items::tm95)) |
+           ((itemindex >= (int)Items::hm01) & (itemindex <= (int)Items::hm06)))
         {
             itemname += QString::fromStdString(" (" + getmachinemovename(Items::items(itemindex)) + ")");
         }
@@ -136,6 +136,8 @@ pkmviewer::pkmviewer(QWidget *parent) :
     this->setMaximumSize(this->size());
     this->setSizeGripEnabled(false);
 }
+
+// Need to clean this up and figure out what goes where
 bool levelchangeok = true;
 bool redisplayok = false;
 pokemon_obj * temppkm = new pokemon_obj;
@@ -147,6 +149,7 @@ extern int frmCurBoxNum;
 extern bw2savblock_obj * cursavblock;
 extern int frmCurSlotNum;
 int startbox = 0;
+
 void pkmviewer::setPKM(pokemon_obj * pkm_, int box, bool isPartyPKM)
 {
     startbox = box;
@@ -178,14 +181,14 @@ void pkmviewer::displayPKM()
     this->setWindowTitle(QString::fromStdWString(getpkmnickname(temppkm)));
     switch(temppkm->metlevel_otgender.otgender)
     {
-    case Genders::male:
-        ui->rbOTMale->setChecked(true);
+        case Genders::male:
+            ui->rbOTMale->setChecked(true);
         break;
-    case Genders::female:
-        ui->rbOTFemale->setChecked(true);
+        case Genders::female:
+            ui->rbOTFemale->setChecked(true);
         break;
-    default:
-        ui->rbOTMale->setChecked(true);
+        default:
+            ui->rbOTMale->setChecked(true);
         break;
     }
     ui->sbTID->setValue(temppkm->tid);
@@ -321,19 +324,19 @@ void pkmviewer::displayPKM()
     ui->cbForm->clear();
     switch(temppkm->species)
     {
-    case Species::castform:
-        ui->cbForm->addItem("");
+        case Species::castform:
+            ui->cbForm->addItem("");
         break;
-    case Species::rotom:
-        ui->cbForm->addItem("");
+        case Species::rotom:
+            ui->cbForm->addItem("");
         break;
-    case Species::kyurem:
-        ui->cbForm->addItem("");
+        case Species::kyurem:
+            ui->cbForm->addItem("");
         break;
-    case Species::genesect:
-        ui->cbForm->addItem("");
+        case Species::genesect:
+            ui->cbForm->addItem("");
         break;
-    default:
+        default:
         break;
     }
     for(int formid = 0; formid < 28; formid++)
@@ -443,26 +446,26 @@ void pkmviewer::updatemarks()
             bool marked = false;
             switch(Markings::markings(i))
             {
-            case Markings::circle:
-                marked = temppkm->markings.circle;
+                case Markings::circle:
+                    marked = temppkm->markings.circle;
                 break;
-            case Markings::diamond:
-                marked = temppkm->markings.diamond;
+                case Markings::diamond:
+                    marked = temppkm->markings.diamond;
                 break;
-            case Markings::heart:
-                marked = temppkm->markings.heart;
+                case Markings::heart:
+                    marked = temppkm->markings.heart;
                 break;
-            case Markings::square:
-                marked = temppkm->markings.square;
+                case Markings::square:
+                    marked = temppkm->markings.square;
                 break;
-            case Markings::star:
-                marked = temppkm->markings.star;
+                case Markings::star:
+                    marked = temppkm->markings.star;
                 break;
-            case Markings::triangle:
-                marked = temppkm->markings.triangle;
+                case Markings::triangle:
+                    marked = temppkm->markings.triangle;
                 break;
-            default:
-                marked = false;
+                default:
+                    marked = false;
                 break;
             }
             markingspix[i] = getmarkingimage(Markings::markings(i), marked);
@@ -797,19 +800,28 @@ void pkmviewer::on_sbTID_valueChanged(int arg1)
     if((temppkm->species > 0) && ((temppkm->pid > 0) || (temppkm->checksum > 0)))
     {
         temppkm->tid = arg1;
-        QPixmap * shinypix = new QPixmap();
-        QGraphicsScene * shinyscene = new QGraphicsScene();
+        QPixmap shinypix;
         if(getpkmshiny(temppkm))
         {
-            *shinypix = getshinystar();
+            shinypix = getshinystar();
         }
-        shinyscene->addPixmap(*shinypix);
-        ui->pbShiny->setScene(shinyscene);
-        QPixmap * spritepixmap = new QPixmap();
-        QGraphicsScene * spritescene = new QGraphicsScene();
-        *spritepixmap = getpkmsprite(temppkm);
-        spritescene->addPixmap(*spritepixmap);
-        ui->pbSprite->setScene(spritescene);
+
+        QGraphicsScene * shinyscene = ui->pbShiny->scene();
+        if (shinyscene == NULL)
+        {
+            shinyscene = new QGraphicsScene;
+            ui->pbShiny->setScene(shinyscene);
+        }
+        shinyscene->addPixmap(shinypix);
+        //QPixmap * spritepixmap;
+        QGraphicsScene * spritescene = ui->pbSprite->scene();
+
+        if (spritescene == NULL)
+        {
+            spritescene = new QGraphicsScene;
+            ui->pbSprite->setScene(spritescene);
+        }
+        spritescene->addPixmap(getpkmsprite(temppkm));
     }
 }
 void pkmviewer::on_sbSID_valueChanged(int arg1)
@@ -817,19 +829,30 @@ void pkmviewer::on_sbSID_valueChanged(int arg1)
     if((temppkm->species > 0) && ((temppkm->pid > 0) || (temppkm->checksum > 0)))
     {
         temppkm->sid = arg1;
-        QPixmap * shinypix = new QPixmap();
-        QGraphicsScene * shinyscene = new QGraphicsScene();
+        QPixmap shinypix;// new QPixmap();
+
         if(getpkmshiny(temppkm))
         {
-            *shinypix = getshinystar();
+            shinypix = getshinystar();
         }
-        shinyscene->addPixmap(*shinypix);
-        ui->pbShiny->setScene(shinyscene);
-        QPixmap * spritepixmap = new QPixmap();
-        QGraphicsScene * spritescene = new QGraphicsScene();
-        *spritepixmap = getpkmsprite(temppkm);
-        spritescene->addPixmap(*spritepixmap);
-        ui->pbSprite->setScene(spritescene);
+
+        QGraphicsScene * shinyscene = ui->pbShiny->scene();
+        if (shinyscene == NULL)
+        {
+            shinyscene = new QGraphicsScene;
+            ui->pbShiny->setScene(shinyscene);
+        }
+        shinyscene->clear();
+        shinyscene->addPixmap(shinypix);
+        QPixmap spritepixmap;
+        QGraphicsScene * spritescene =ui->pbSprite->scene();
+        if (spritescene == NULL)
+        {
+            spritescene = new QGraphicsScene;
+            ui->pbSprite->setScene(spritescene);
+        }
+        spritescene->clear();
+        spritescene->addPixmap(getpkmsprite(temppkm));
     }
 }
 void pkmviewer::on_sbHPIV_valueChanged(int arg1)
