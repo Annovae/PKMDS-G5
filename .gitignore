@@ -71,3 +71,6 @@ PKMDS_Desktop_Win_2010.lib
 #General
 
 *.ini
+SQLite Databases
+*images.sqlite
+*veekun-pokedex.sqlite
