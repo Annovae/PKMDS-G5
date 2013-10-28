@@ -1,9 +1,7 @@
 #include "main.h"
-#include <string>
 using namespace std;
 int main(int argc, char* argv[])
 {
-	string s;
 	for(int i = 0; i < argc; i++){
 		const char * filename = argv[i];
 		cout << "Opening " << filename << "\n";
@@ -11,13 +9,15 @@ int main(int argc, char* argv[])
 		pokemonx_obj * pkx = new pokemonx_obj;
 		read(filename,pkx);
 		string ext = getFileExtension(strfile);
-		if(ext == ".bin")
+		if(ext == "bin")
 		{
+			cout << "Decrypting " << strfile << "\n";
 			decryptpkm(pkx);
 			strReplace(strfile,".bin",".pkx");
 		}
-		if(ext == ".pkx")
+		if(ext == "pkx")
 		{
+			cout << "Encrypting " << strfile << "\n";
 			encryptpkm(pkx);
 			strReplace(strfile,".pkx",".bin");
 		}
@@ -26,7 +26,6 @@ int main(int argc, char* argv[])
 		cout << "Writing " << strfile << "\n";
 		write(strfile.c_str(),pkx);
 	}
-	getline(cin,s);
 	return 0;
 }
 void strReplace(std::string& str, const std::string& oldStr, const std::string& newStr)

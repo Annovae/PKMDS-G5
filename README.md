@@ -42,7 +42,7 @@ Thanks to those of Project Pokemon (http://projectpokemon.org/) who have helped 
 
 Thanks to Nicholas Corgan (https://github.com/ncorgan) for contributing directly to this project's code, making it more portable.
 
-Thanks to Antidote () for plugging memory leaks.
+Thanks to Antidote (https://github.com/Antidote) for plugging memory leaks.
 
 Thanks to the folks at Smogon for the stat formula and other things.
 
