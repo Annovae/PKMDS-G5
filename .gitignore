@@ -65,8 +65,9 @@ Makefile
 *.xml
 *.metagen
 *.bi
-PKMDS_Desktop_Win.lib
-PKMDS_Desktop_Win_2010.lib
+*PKMDS_Desktop_Win.lib
+*PKMDS_Desktop_Win_2010.lib
+*PKX Crypt.lib
 
 #General
 

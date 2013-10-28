@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{32CCC0A8-A4FE-4704-8D0B-52E29C227DC3}</ProjectGuid>
+    <ProjectGuid>{AC3CD8D7-1EBD-4A90-9EA8-1CEB09DBBE38}</ProjectGuid>
     <RootNamespace>PKXCrypt</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -60,6 +60,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\apps\gen-5-test\main.cpp" />
+    <ClCompile Include="..\..\apps\gen-5-test\pkmds_g6.cpp" />
+    <ClCompile Include="..\..\lib\pkmds_g5.cpp" />
+    <ClCompile Include="..\..\lib\pkmds_g5_sqlite.cpp" />
+    <ClCompile Include="..\..\lib\pkmds_gba.cpp" />
+    <ClCompile Include="..\..\lib\pkmds_sql.cpp" />
+    <ClCompile Include="..\..\lib\pkmds_vector.cpp" />
+    <ClCompile Include="..\..\lib\sqlite3.c" />
+    <ClCompile Include="..\..\lib\stdafx.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\apps\gen-5-test\main.h" />
+    <ClInclude Include="..\..\apps\gen-5-test\pkmds_g6.h" />
     <ClInclude Include="..\..\include\pkmds\pkmds_g5.h" />
     <ClInclude Include="..\..\include\pkmds\pkmds_g5_sqlite.h" />
     <ClInclude Include="..\..\include\pkmds\pkmds_gba.h" />
@@ -70,19 +83,6 @@
     <ClInclude Include="..\..\include\pkmds\wondercard.h" />
     <ClInclude Include="..\..\include\sqlite3.h" />
     <ClInclude Include="..\..\Visual_Studio\vs_sqlite.h" />
-    <ClInclude Include="main.h" />
-    <ClInclude Include="pkmds_g6.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\lib\pkmds_g5.cpp" />
-    <ClCompile Include="..\..\lib\pkmds_g5_sqlite.cpp" />
-    <ClCompile Include="..\..\lib\pkmds_gba.cpp" />
-    <ClCompile Include="..\..\lib\pkmds_sql.cpp" />
-    <ClCompile Include="..\..\lib\pkmds_vector.cpp" />
-    <ClCompile Include="..\..\lib\sqlite3.c" />
-    <ClCompile Include="..\..\lib\stdafx.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="pkmds_g6.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
