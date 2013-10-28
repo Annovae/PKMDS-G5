@@ -1,21 +1,54 @@
-#include "pkmds_g6.h"
+#include "main.h"
+#include <string>
 using namespace std;
-int main()
+int main(int argc, char* argv[])
 {
-	int test;
-	const char * filename = "C:\\Users\\michaelbond\\Downloads\\Gen VI Stuff\\Scyther.bin";
-	pokemonx_obj * pkx = new pokemonx_obj;
-	read(filename,pkx);
-	decryptpkm(pkx);
-	//cout << "size of unenc: " << sizeof(pkxunencryptblock) << "\n";
-	//cout << "size of blocka: " << sizeof(pkxblocka) << "\n";
-	//cout << "size of blockb: " << sizeof(pkxblockb) << "\n";
-	//cout << "size of blockc: " << sizeof(pkxblockc) << "\n";
-	//cout << "size of blockd: " << sizeof(pkxblockd) << "\n";
-	//cout << "size of pkx: " << sizeof(pokemonx_obj) << "\n";
-	//cout << "size of party field: " << sizeof(partyx_field) << "\n";
-	//cout << "size of party_pkx: " << sizeof(party_pkx) << "\n";
-	cout << "species id is: " << (int)(pkx->species) << "\n";
-	cin >> test;
+	string s;
+	for(int i = 0; i < argc; i++){
+		const char * filename = argv[i];
+		cout << "Opening " << filename << "\n";
+		string strfile = string(filename);
+		pokemonx_obj * pkx = new pokemonx_obj;
+		read(filename,pkx);
+		string ext = getFileExtension(strfile);
+		if(ext == ".bin")
+		{
+			decryptpkm(pkx);
+			strReplace(strfile,".bin",".pkx");
+		}
+		if(ext == ".pkx")
+		{
+			encryptpkm(pkx);
+			strReplace(strfile,".pkx",".bin");
+		}
+		pkx->isboxdatadecrypted = 0;
+		pkx->ispartydatadecrypted = 0;
+		cout << "Writing " << strfile << "\n";
+		write(strfile.c_str(),pkx);
+	}
+	getline(cin,s);
 	return 0;
+}
+void strReplace(std::string& str, const std::string& oldStr, const std::string& newStr)
+{
+	size_t pos = 0;
+	while((pos = str.find(oldStr, pos)) != std::string::npos)
+	{
+		str.replace(pos, oldStr.length(), newStr);
+		pos += newStr.length();
+	}
+}
+std::string getFileExtension(std::string filename)
+{
+	std::string::size_type idx;
+	idx = filename.rfind('.');
+	if(idx != std::string::npos)
+	{
+		return filename.substr(idx+1);
+	}
+	else
+	{
+		// No extension found
+		return "";
+	}
 }
