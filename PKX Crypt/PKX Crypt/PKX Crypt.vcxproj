@@ -61,9 +61,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\apps\gen-6-test\main.cpp" />
-    <ClCompile Include="..\..\apps\gen-6-test\pkmds_g6.cpp" />
     <ClCompile Include="..\..\lib\pkmds_g5.cpp" />
     <ClCompile Include="..\..\lib\pkmds_g5_sqlite.cpp" />
+    <ClCompile Include="..\..\lib\pkmds_g6.cpp" />
     <ClCompile Include="..\..\lib\pkmds_gba.cpp" />
     <ClCompile Include="..\..\lib\pkmds_sql.cpp" />
     <ClCompile Include="..\..\lib\pkmds_vector.cpp" />
@@ -72,9 +72,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\apps\gen-6-test\main.h" />
-    <ClInclude Include="..\..\apps\gen-6-test\pkmds_g6.h" />
     <ClInclude Include="..\..\include\pkmds\pkmds_g5.h" />
     <ClInclude Include="..\..\include\pkmds\pkmds_g5_sqlite.h" />
+    <ClInclude Include="..\..\include\pkmds\pkmds_g6.h" />
     <ClInclude Include="..\..\include\pkmds\pkmds_gba.h" />
     <ClInclude Include="..\..\include\pkmds\pkmds_sql.h" />
     <ClInclude Include="..\..\include\pkmds\pkmds_vector.h" />

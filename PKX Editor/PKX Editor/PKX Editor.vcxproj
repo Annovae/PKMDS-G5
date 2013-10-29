@@ -88,24 +88,20 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\apps\gen-6-test\pkmds_g6.cpp" />
     <ClCompile Include="..\..\lib\pkmds_g5.cpp" />
     <ClCompile Include="..\..\lib\pkmds_g5_sqlite.cpp" />
+    <ClCompile Include="..\..\lib\pkmds_g6.cpp" />
     <ClCompile Include="..\..\lib\pkmds_gba.cpp" />
     <ClCompile Include="..\..\lib\pkmds_sql.cpp" />
     <ClCompile Include="..\..\lib\pkmds_vector.cpp" />
     <ClCompile Include="..\..\lib\stdafx.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="PKX Editor.cpp" />
-    <ClCompile Include="stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\apps\gen-6-test\pkmds_g6.h" />
     <ClInclude Include="..\..\include\pkmds\pkmds_g5.h" />
     <ClInclude Include="..\..\include\pkmds\pkmds_g5_sqlite.h" />
+    <ClInclude Include="..\..\include\pkmds\pkmds_g6.h" />
     <ClInclude Include="..\..\include\pkmds\pkmds_gba.h" />
     <ClInclude Include="..\..\include\pkmds\pkmds_sql.h" />
     <ClInclude Include="..\..\include\pkmds\pkmds_vector.h" />
@@ -117,7 +113,6 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="resource.h" />
-    <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc" />

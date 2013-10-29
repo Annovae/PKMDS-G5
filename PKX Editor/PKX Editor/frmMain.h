@@ -1,6 +1,6 @@
 #pragma region BoringStuff
 #pragma once
-#include "../../apps/gen-6-test/pkmds_g6.h"
+#include "../../include/pkmds/pkmds_g6.h"
 #include <string>
 #include <iostream>
 #include <atlconv.h>
