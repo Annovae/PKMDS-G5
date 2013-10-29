@@ -50,6 +50,44 @@ namespace PKXEditor {
 	private: System::Windows::Forms::RadioButton^  rbOTMale;
 	private: System::Windows::Forms::NumericUpDown^  numAbility;
 	private: System::Windows::Forms::CheckBox^  chkFateful;
+	private: System::Windows::Forms::GroupBox^  gbOT;
+	private: System::Windows::Forms::TableLayoutPanel^  tlOT;
+	private: System::Windows::Forms::TableLayoutPanel^  tlOTGender;
+	private: System::Windows::Forms::TableLayoutPanel^  tlIDs;
+	private: System::Windows::Forms::Label^  lblSID;
+	private: System::Windows::Forms::Label^  lblTID;
+	private: System::Windows::Forms::TableLayoutPanel^  tlOTName;
+	private: System::Windows::Forms::Label^  lblOTName;
+
+	private: System::Windows::Forms::TableLayoutPanel^  tlStats;
+	private: System::Windows::Forms::Label^  lblEVs;
+	private: System::Windows::Forms::Label^  lblIVs;
+	private: System::Windows::Forms::Label^  lblSpe;
+	private: System::Windows::Forms::Label^  lblSpDef;
+	private: System::Windows::Forms::Label^  lblSpAtk;
+	private: System::Windows::Forms::Label^  lblDef;
+	private: System::Windows::Forms::Label^  lblAtk;
+	private: System::Windows::Forms::Label^  lblHP;
+	private: System::Windows::Forms::GroupBox^  gbStats;
+	private: System::Windows::Forms::GroupBox^  gbMoves;
+	private: System::Windows::Forms::TableLayoutPanel^  tlMoves;
+	private: System::Windows::Forms::GroupBox^  gbOtherInfo;
+
+	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel1;
+	private: System::Windows::Forms::Label^  lblItem;
+
+	private: System::Windows::Forms::Label^  lblEXP;
+
+	private: System::Windows::Forms::Label^  lblAbility;
+
+	private: System::Windows::Forms::Label^  lblNature;
+	private: System::Windows::Forms::Label^  lblMetLevel;
+	private: System::Windows::Forms::Label^  lblNickname;
+	private: System::Windows::Forms::Label^  lblSpecies;
+
+
+
+
 	public: 
 	private: System::Windows::Forms::Button^  btnSave;
 	public: 
@@ -124,6 +162,35 @@ namespace PKXEditor {
 			this->rbOTMale = (gcnew System::Windows::Forms::RadioButton());
 			this->numAbility = (gcnew System::Windows::Forms::NumericUpDown());
 			this->chkFateful = (gcnew System::Windows::Forms::CheckBox());
+			this->gbOT = (gcnew System::Windows::Forms::GroupBox());
+			this->tlOT = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->tlIDs = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->lblTID = (gcnew System::Windows::Forms::Label());
+			this->lblSID = (gcnew System::Windows::Forms::Label());
+			this->tlOTGender = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->tlOTName = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->lblOTName = (gcnew System::Windows::Forms::Label());
+			this->tlStats = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->lblSpAtk = (gcnew System::Windows::Forms::Label());
+			this->lblDef = (gcnew System::Windows::Forms::Label());
+			this->lblSpe = (gcnew System::Windows::Forms::Label());
+			this->lblSpDef = (gcnew System::Windows::Forms::Label());
+			this->lblAtk = (gcnew System::Windows::Forms::Label());
+			this->lblIVs = (gcnew System::Windows::Forms::Label());
+			this->lblHP = (gcnew System::Windows::Forms::Label());
+			this->lblEVs = (gcnew System::Windows::Forms::Label());
+			this->gbStats = (gcnew System::Windows::Forms::GroupBox());
+			this->gbMoves = (gcnew System::Windows::Forms::GroupBox());
+			this->tlMoves = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->gbOtherInfo = (gcnew System::Windows::Forms::GroupBox());
+			this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->lblNature = (gcnew System::Windows::Forms::Label());
+			this->lblAbility = (gcnew System::Windows::Forms::Label());
+			this->lblEXP = (gcnew System::Windows::Forms::Label());
+			this->lblItem = (gcnew System::Windows::Forms::Label());
+			this->lblMetLevel = (gcnew System::Windows::Forms::Label());
+			this->lblNickname = (gcnew System::Windows::Forms::Label());
+			this->lblSpecies = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numSpecies))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numItem))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMove1))->BeginInit();
@@ -148,11 +215,22 @@ namespace PKXEditor {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMetLevel))->BeginInit();
 			this->gbOTGender->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numAbility))->BeginInit();
+			this->gbOT->SuspendLayout();
+			this->tlOT->SuspendLayout();
+			this->tlIDs->SuspendLayout();
+			this->tlOTGender->SuspendLayout();
+			this->tlOTName->SuspendLayout();
+			this->tlStats->SuspendLayout();
+			this->gbStats->SuspendLayout();
+			this->gbMoves->SuspendLayout();
+			this->tlMoves->SuspendLayout();
+			this->gbOtherInfo->SuspendLayout();
+			this->tableLayoutPanel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// btnLoad
 			// 
-			this->btnLoad->Location = System::Drawing::Point(12, 521);
+			this->btnLoad->Location = System::Drawing::Point(12, 12);
 			this->btnLoad->Name = L"btnLoad";
 			this->btnLoad->Size = System::Drawing::Size(75, 23);
 			this->btnLoad->TabIndex = 0;
@@ -170,7 +248,7 @@ namespace PKXEditor {
 			// 
 			// btnSave
 			// 
-			this->btnSave->Location = System::Drawing::Point(197, 521);
+			this->btnSave->Location = System::Drawing::Point(12, 41);
 			this->btnSave->Name = L"btnSave";
 			this->btnSave->Size = System::Drawing::Size(75, 23);
 			this->btnSave->TabIndex = 1;
@@ -180,16 +258,17 @@ namespace PKXEditor {
 			// 
 			// txtOTName
 			// 
-			this->txtOTName->Location = System::Drawing::Point(172, 64);
+			this->txtOTName->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
+			this->txtOTName->Location = System::Drawing::Point(103, 7);
 			this->txtOTName->MaxLength = 7;
 			this->txtOTName->Name = L"txtOTName";
-			this->txtOTName->Size = System::Drawing::Size(100, 20);
-			this->txtOTName->TabIndex = 2;
+			this->txtOTName->Size = System::Drawing::Size(142, 20);
+			this->txtOTName->TabIndex = 1;
 			this->txtOTName->TextChanged += gcnew System::EventHandler(this, &frmMain::txtOTName_TextChanged);
 			// 
 			// numSpecies
 			// 
-			this->numSpecies->Location = System::Drawing::Point(172, 12);
+			this->numSpecies->Location = System::Drawing::Point(204, 7);
 			this->numSpecies->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {1000, 0, 0, 0});
 			this->numSpecies->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) {1, 0, 0, 0});
 			this->numSpecies->Name = L"numSpecies";
@@ -200,230 +279,239 @@ namespace PKXEditor {
 			// 
 			// txtNickname
 			// 
-			this->txtNickname->Location = System::Drawing::Point(172, 38);
+			this->txtNickname->Location = System::Drawing::Point(204, 33);
 			this->txtNickname->MaxLength = 11;
 			this->txtNickname->Name = L"txtNickname";
 			this->txtNickname->Size = System::Drawing::Size(100, 20);
-			this->txtNickname->TabIndex = 4;
+			this->txtNickname->TabIndex = 5;
 			this->txtNickname->TextChanged += gcnew System::EventHandler(this, &frmMain::txtNickname_TextChanged);
 			// 
 			// numItem
 			// 
-			this->numItem->Location = System::Drawing::Point(172, 90);
+			this->numItem->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
+			this->numItem->Location = System::Drawing::Point(53, 124);
 			this->numItem->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {1000, 0, 0, 0});
 			this->numItem->Name = L"numItem";
-			this->numItem->Size = System::Drawing::Size(100, 20);
-			this->numItem->TabIndex = 5;
+			this->numItem->Size = System::Drawing::Size(106, 20);
+			this->numItem->TabIndex = 7;
 			this->numItem->ValueChanged += gcnew System::EventHandler(this, &frmMain::numItem_ValueChanged);
 			// 
 			// numMove1
 			// 
-			this->numMove1->Location = System::Drawing::Point(50, 116);
+			this->numMove1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
+			this->numMove1->Location = System::Drawing::Point(3, 7);
 			this->numMove1->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {1000, 0, 0, 0});
 			this->numMove1->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) {1, 0, 0, 0});
 			this->numMove1->Name = L"numMove1";
-			this->numMove1->Size = System::Drawing::Size(51, 20);
-			this->numMove1->TabIndex = 6;
+			this->numMove1->Size = System::Drawing::Size(82, 20);
+			this->numMove1->TabIndex = 0;
 			this->numMove1->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) {1, 0, 0, 0});
 			this->numMove1->ValueChanged += gcnew System::EventHandler(this, &frmMain::numMove1_ValueChanged);
 			// 
 			// numMove2
 			// 
-			this->numMove2->Location = System::Drawing::Point(107, 116);
+			this->numMove2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
+			this->numMove2->Location = System::Drawing::Point(3, 42);
 			this->numMove2->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {1000, 0, 0, 0});
 			this->numMove2->Name = L"numMove2";
-			this->numMove2->Size = System::Drawing::Size(51, 20);
-			this->numMove2->TabIndex = 7;
+			this->numMove2->Size = System::Drawing::Size(82, 20);
+			this->numMove2->TabIndex = 1;
 			this->numMove2->ValueChanged += gcnew System::EventHandler(this, &frmMain::numMove2_ValueChanged);
 			// 
 			// numMove3
 			// 
-			this->numMove3->Location = System::Drawing::Point(164, 116);
+			this->numMove3->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
+			this->numMove3->Location = System::Drawing::Point(3, 77);
 			this->numMove3->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {1000, 0, 0, 0});
 			this->numMove3->Name = L"numMove3";
-			this->numMove3->Size = System::Drawing::Size(51, 20);
-			this->numMove3->TabIndex = 8;
+			this->numMove3->Size = System::Drawing::Size(82, 20);
+			this->numMove3->TabIndex = 2;
 			this->numMove3->ValueChanged += gcnew System::EventHandler(this, &frmMain::numMove3_ValueChanged);
 			// 
 			// numMove4
 			// 
-			this->numMove4->Location = System::Drawing::Point(221, 116);
+			this->numMove4->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
+			this->numMove4->Location = System::Drawing::Point(3, 112);
 			this->numMove4->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {1000, 0, 0, 0});
 			this->numMove4->Name = L"numMove4";
-			this->numMove4->Size = System::Drawing::Size(51, 20);
-			this->numMove4->TabIndex = 9;
+			this->numMove4->Size = System::Drawing::Size(82, 20);
+			this->numMove4->TabIndex = 3;
 			this->numMove4->ValueChanged += gcnew System::EventHandler(this, &frmMain::numMove4_ValueChanged);
 			// 
 			// numAtkIV
 			// 
-			this->numAtkIV->Location = System::Drawing::Point(12, 215);
+			this->numAtkIV->Location = System::Drawing::Point(63, 55);
 			this->numAtkIV->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {31, 0, 0, 0});
 			this->numAtkIV->Name = L"numAtkIV";
 			this->numAtkIV->Size = System::Drawing::Size(51, 20);
-			this->numAtkIV->TabIndex = 10;
+			this->numAtkIV->TabIndex = 6;
 			this->numAtkIV->ValueChanged += gcnew System::EventHandler(this, &frmMain::numAtkIV_ValueChanged);
 			// 
 			// numAtkEV
 			// 
-			this->numAtkEV->Location = System::Drawing::Point(69, 215);
+			this->numAtkEV->Location = System::Drawing::Point(126, 55);
 			this->numAtkEV->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {252, 0, 0, 0});
 			this->numAtkEV->Name = L"numAtkEV";
 			this->numAtkEV->Size = System::Drawing::Size(51, 20);
-			this->numAtkEV->TabIndex = 11;
+			this->numAtkEV->TabIndex = 7;
 			this->numAtkEV->ValueChanged += gcnew System::EventHandler(this, &frmMain::numAtkEV_ValueChanged);
 			// 
 			// numDefEV
 			// 
-			this->numDefEV->Location = System::Drawing::Point(69, 241);
+			this->numDefEV->Location = System::Drawing::Point(126, 81);
 			this->numDefEV->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {252, 0, 0, 0});
 			this->numDefEV->Name = L"numDefEV";
 			this->numDefEV->Size = System::Drawing::Size(51, 20);
-			this->numDefEV->TabIndex = 13;
+			this->numDefEV->TabIndex = 10;
 			this->numDefEV->ValueChanged += gcnew System::EventHandler(this, &frmMain::numDefEV_ValueChanged);
 			// 
 			// numDefIV
 			// 
-			this->numDefIV->Location = System::Drawing::Point(12, 241);
+			this->numDefIV->Location = System::Drawing::Point(63, 81);
 			this->numDefIV->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {31, 0, 0, 0});
 			this->numDefIV->Name = L"numDefIV";
 			this->numDefIV->Size = System::Drawing::Size(51, 20);
-			this->numDefIV->TabIndex = 12;
+			this->numDefIV->TabIndex = 9;
 			this->numDefIV->ValueChanged += gcnew System::EventHandler(this, &frmMain::numDefIV_ValueChanged);
 			// 
 			// numHPEV
 			// 
-			this->numHPEV->Location = System::Drawing::Point(69, 189);
+			this->numHPEV->Location = System::Drawing::Point(126, 29);
 			this->numHPEV->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {252, 0, 0, 0});
 			this->numHPEV->Name = L"numHPEV";
 			this->numHPEV->Size = System::Drawing::Size(51, 20);
-			this->numHPEV->TabIndex = 15;
+			this->numHPEV->TabIndex = 4;
 			this->numHPEV->ValueChanged += gcnew System::EventHandler(this, &frmMain::numHPEV_ValueChanged);
 			// 
 			// numHPIV
 			// 
-			this->numHPIV->Location = System::Drawing::Point(12, 189);
+			this->numHPIV->Location = System::Drawing::Point(63, 29);
 			this->numHPIV->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {31, 0, 0, 0});
 			this->numHPIV->Name = L"numHPIV";
 			this->numHPIV->Size = System::Drawing::Size(51, 20);
-			this->numHPIV->TabIndex = 14;
+			this->numHPIV->TabIndex = 3;
 			this->numHPIV->ValueChanged += gcnew System::EventHandler(this, &frmMain::numHPIV_ValueChanged);
 			// 
 			// numSpAtkEV
 			// 
-			this->numSpAtkEV->Location = System::Drawing::Point(69, 267);
+			this->numSpAtkEV->Location = System::Drawing::Point(126, 107);
 			this->numSpAtkEV->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {252, 0, 0, 0});
 			this->numSpAtkEV->Name = L"numSpAtkEV";
 			this->numSpAtkEV->Size = System::Drawing::Size(51, 20);
-			this->numSpAtkEV->TabIndex = 17;
+			this->numSpAtkEV->TabIndex = 13;
 			this->numSpAtkEV->ValueChanged += gcnew System::EventHandler(this, &frmMain::numSpAtkEV_ValueChanged);
 			// 
 			// numSpAtkIV
 			// 
-			this->numSpAtkIV->Location = System::Drawing::Point(12, 267);
+			this->numSpAtkIV->Location = System::Drawing::Point(63, 107);
 			this->numSpAtkIV->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {31, 0, 0, 0});
 			this->numSpAtkIV->Name = L"numSpAtkIV";
 			this->numSpAtkIV->Size = System::Drawing::Size(51, 20);
-			this->numSpAtkIV->TabIndex = 16;
+			this->numSpAtkIV->TabIndex = 12;
 			this->numSpAtkIV->ValueChanged += gcnew System::EventHandler(this, &frmMain::numSpAtkIV_ValueChanged);
 			// 
 			// numSpDefEV
 			// 
-			this->numSpDefEV->Location = System::Drawing::Point(69, 293);
+			this->numSpDefEV->Location = System::Drawing::Point(126, 133);
 			this->numSpDefEV->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {252, 0, 0, 0});
 			this->numSpDefEV->Name = L"numSpDefEV";
 			this->numSpDefEV->Size = System::Drawing::Size(51, 20);
-			this->numSpDefEV->TabIndex = 19;
+			this->numSpDefEV->TabIndex = 16;
 			this->numSpDefEV->ValueChanged += gcnew System::EventHandler(this, &frmMain::numSpDefEV_ValueChanged);
 			// 
 			// numSpDefIV
 			// 
-			this->numSpDefIV->Location = System::Drawing::Point(12, 293);
+			this->numSpDefIV->Location = System::Drawing::Point(63, 133);
 			this->numSpDefIV->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {31, 0, 0, 0});
 			this->numSpDefIV->Name = L"numSpDefIV";
 			this->numSpDefIV->Size = System::Drawing::Size(51, 20);
-			this->numSpDefIV->TabIndex = 18;
+			this->numSpDefIV->TabIndex = 15;
 			this->numSpDefIV->ValueChanged += gcnew System::EventHandler(this, &frmMain::numSpDefIV_ValueChanged);
 			// 
 			// numSpeEV
 			// 
-			this->numSpeEV->Location = System::Drawing::Point(69, 319);
+			this->numSpeEV->Location = System::Drawing::Point(126, 159);
 			this->numSpeEV->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {252, 0, 0, 0});
 			this->numSpeEV->Name = L"numSpeEV";
 			this->numSpeEV->Size = System::Drawing::Size(51, 20);
-			this->numSpeEV->TabIndex = 21;
+			this->numSpeEV->TabIndex = 19;
 			this->numSpeEV->ValueChanged += gcnew System::EventHandler(this, &frmMain::numSpeEV_ValueChanged);
 			// 
 			// numSpeIV
 			// 
-			this->numSpeIV->Location = System::Drawing::Point(12, 319);
+			this->numSpeIV->Location = System::Drawing::Point(63, 159);
 			this->numSpeIV->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {31, 0, 0, 0});
 			this->numSpeIV->Name = L"numSpeIV";
 			this->numSpeIV->Size = System::Drawing::Size(51, 20);
-			this->numSpeIV->TabIndex = 20;
+			this->numSpeIV->TabIndex = 18;
 			this->numSpeIV->ValueChanged += gcnew System::EventHandler(this, &frmMain::numSpeIV_ValueChanged);
 			// 
 			// numEXP
 			// 
-			this->numEXP->Location = System::Drawing::Point(12, 363);
+			this->numEXP->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
+			this->numEXP->Location = System::Drawing::Point(53, 85);
 			this->numEXP->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {1800000, 0, 0, 0});
 			this->numEXP->Name = L"numEXP";
-			this->numEXP->Size = System::Drawing::Size(108, 20);
-			this->numEXP->TabIndex = 22;
+			this->numEXP->Size = System::Drawing::Size(106, 20);
+			this->numEXP->TabIndex = 5;
 			this->numEXP->ValueChanged += gcnew System::EventHandler(this, &frmMain::numEXP_ValueChanged);
 			// 
 			// numTID
 			// 
-			this->numTID->Location = System::Drawing::Point(12, 12);
+			this->numTID->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
+			this->numTID->Location = System::Drawing::Point(103, 6);
 			this->numTID->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {65535, 0, 0, 0});
 			this->numTID->Name = L"numTID";
-			this->numTID->Size = System::Drawing::Size(108, 20);
-			this->numTID->TabIndex = 23;
+			this->numTID->Size = System::Drawing::Size(142, 20);
+			this->numTID->TabIndex = 1;
 			this->numTID->ValueChanged += gcnew System::EventHandler(this, &frmMain::numTID_ValueChanged);
 			// 
 			// numSID
 			// 
-			this->numSID->Location = System::Drawing::Point(12, 39);
+			this->numSID->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
+			this->numSID->Location = System::Drawing::Point(103, 40);
 			this->numSID->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {65535, 0, 0, 0});
 			this->numSID->Name = L"numSID";
-			this->numSID->Size = System::Drawing::Size(108, 20);
-			this->numSID->TabIndex = 24;
+			this->numSID->Size = System::Drawing::Size(142, 20);
+			this->numSID->TabIndex = 3;
 			this->numSID->ValueChanged += gcnew System::EventHandler(this, &frmMain::numSID_ValueChanged);
 			// 
 			// cbNature
 			// 
+			this->cbNature->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
 			this->cbNature->FormattingEnabled = true;
 			this->cbNature->Items->AddRange(gcnew cli::array< System::Object^  >(25) {L"hardy", L"lonely", L"brave", L"adamant", L"naughty", 
 				L"bold", L"docile", L"relaxed", L"impish", L"lax", L"timid", L"hasty", L"serious", L"jolly", L"naive", L"modest", L"mild", L"quiet", 
 				L"bashful", L"rash", L"calm", L"gentle", L"sassy", L"careful", L"quirky"});
-			this->cbNature->Location = System::Drawing::Point(142, 179);
+			this->cbNature->Location = System::Drawing::Point(53, 8);
 			this->cbNature->Name = L"cbNature";
-			this->cbNature->Size = System::Drawing::Size(121, 21);
-			this->cbNature->TabIndex = 25;
+			this->cbNature->Size = System::Drawing::Size(106, 21);
+			this->cbNature->TabIndex = 1;
 			this->cbNature->SelectedIndexChanged += gcnew System::EventHandler(this, &frmMain::cbNature_SelectedIndexChanged);
 			// 
 			// numMetLevel
 			// 
-			this->numMetLevel->Location = System::Drawing::Point(212, 206);
+			this->numMetLevel->Location = System::Drawing::Point(189, 59);
 			this->numMetLevel->Name = L"numMetLevel";
 			this->numMetLevel->Size = System::Drawing::Size(51, 20);
-			this->numMetLevel->TabIndex = 26;
+			this->numMetLevel->TabIndex = 7;
 			this->numMetLevel->ValueChanged += gcnew System::EventHandler(this, &frmMain::numMetLevel_ValueChanged);
 			// 
 			// gbOTGender
 			// 
-			this->gbOTGender->Controls->Add(this->rbOTFemale);
-			this->gbOTGender->Controls->Add(this->rbOTMale);
-			this->gbOTGender->Location = System::Drawing::Point(142, 241);
+			this->gbOTGender->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom));
+			this->gbOTGender->Controls->Add(this->tlOTGender);
+			this->gbOTGender->Location = System::Drawing::Point(69, 116);
 			this->gbOTGender->Name = L"gbOTGender";
-			this->gbOTGender->Size = System::Drawing::Size(130, 72);
-			this->gbOTGender->TabIndex = 27;
+			this->gbOTGender->Size = System::Drawing::Size(115, 67);
+			this->gbOTGender->TabIndex = 0;
 			this->gbOTGender->TabStop = false;
 			this->gbOTGender->Text = L"OT Gender";
 			// 
 			// rbOTFemale
 			// 
 			this->rbOTFemale->AutoSize = true;
-			this->rbOTFemale->Location = System::Drawing::Point(22, 42);
+			this->rbOTFemale->Location = System::Drawing::Point(3, 27);
 			this->rbOTFemale->Name = L"rbOTFemale";
 			this->rbOTFemale->Size = System::Drawing::Size(59, 17);
 			this->rbOTFemale->TabIndex = 1;
@@ -435,7 +523,7 @@ namespace PKXEditor {
 			// rbOTMale
 			// 
 			this->rbOTMale->AutoSize = true;
-			this->rbOTMale->Location = System::Drawing::Point(22, 19);
+			this->rbOTMale->Location = System::Drawing::Point(3, 3);
 			this->rbOTMale->Name = L"rbOTMale";
 			this->rbOTMale->Size = System::Drawing::Size(48, 17);
 			this->rbOTMale->TabIndex = 0;
@@ -446,59 +534,410 @@ namespace PKXEditor {
 			// 
 			// numAbility
 			// 
-			this->numAbility->Location = System::Drawing::Point(142, 319);
+			this->numAbility->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
+			this->numAbility->Location = System::Drawing::Point(53, 47);
 			this->numAbility->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {250, 0, 0, 0});
 			this->numAbility->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) {1, 0, 0, 0});
 			this->numAbility->Name = L"numAbility";
-			this->numAbility->Size = System::Drawing::Size(51, 20);
-			this->numAbility->TabIndex = 28;
+			this->numAbility->Size = System::Drawing::Size(106, 20);
+			this->numAbility->TabIndex = 3;
 			this->numAbility->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) {1, 0, 0, 0});
 			this->numAbility->ValueChanged += gcnew System::EventHandler(this, &frmMain::numAbility_ValueChanged);
 			// 
 			// chkFateful
 			// 
 			this->chkFateful->AutoSize = true;
-			this->chkFateful->Location = System::Drawing::Point(135, 345);
+			this->chkFateful->Location = System::Drawing::Point(246, 59);
 			this->chkFateful->Name = L"chkFateful";
 			this->chkFateful->Size = System::Drawing::Size(58, 17);
-			this->chkFateful->TabIndex = 29;
+			this->chkFateful->TabIndex = 8;
 			this->chkFateful->Text = L"Fateful";
 			this->chkFateful->UseVisualStyleBackColor = true;
 			this->chkFateful->CheckedChanged += gcnew System::EventHandler(this, &frmMain::chkFateful_CheckedChanged);
+			// 
+			// gbOT
+			// 
+			this->gbOT->Controls->Add(this->tlOT);
+			this->gbOT->Location = System::Drawing::Point(384, 12);
+			this->gbOT->Name = L"gbOT";
+			this->gbOT->Size = System::Drawing::Size(260, 205);
+			this->gbOT->TabIndex = 11;
+			this->gbOT->TabStop = false;
+			this->gbOT->Text = L"OT Info";
+			// 
+			// tlOT
+			// 
+			this->tlOT->ColumnCount = 1;
+			this->tlOT->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tlOT->Controls->Add(this->tlIDs, 0, 1);
+			this->tlOT->Controls->Add(this->gbOTGender, 0, 2);
+			this->tlOT->Controls->Add(this->tlOTName, 0, 0);
+			this->tlOT->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->tlOT->Location = System::Drawing::Point(3, 16);
+			this->tlOT->Name = L"tlOT";
+			this->tlOT->RowCount = 3;
+			this->tlOT->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 40)));
+			this->tlOT->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
+			this->tlOT->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
+			this->tlOT->Size = System::Drawing::Size(254, 186);
+			this->tlOT->TabIndex = 0;
+			// 
+			// tlIDs
+			// 
+			this->tlIDs->ColumnCount = 2;
+			this->tlIDs->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute, 100)));
+			this->tlIDs->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tlIDs->Controls->Add(this->lblSID, 0, 1);
+			this->tlIDs->Controls->Add(this->numTID, 1, 0);
+			this->tlIDs->Controls->Add(this->numSID, 1, 1);
+			this->tlIDs->Controls->Add(this->lblTID, 0, 0);
+			this->tlIDs->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->tlIDs->Location = System::Drawing::Point(3, 43);
+			this->tlIDs->Name = L"tlIDs";
+			this->tlIDs->RowCount = 2;
+			this->tlIDs->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
+			this->tlIDs->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
+			this->tlIDs->Size = System::Drawing::Size(248, 67);
+			this->tlIDs->TabIndex = 2;
+			// 
+			// lblTID
+			// 
+			this->lblTID->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->lblTID->Location = System::Drawing::Point(3, 0);
+			this->lblTID->Name = L"lblTID";
+			this->lblTID->Size = System::Drawing::Size(94, 33);
+			this->lblTID->TabIndex = 0;
+			this->lblTID->Text = L"OT ID";
+			this->lblTID->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+			// 
+			// lblSID
+			// 
+			this->lblSID->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->lblSID->Location = System::Drawing::Point(3, 33);
+			this->lblSID->Name = L"lblSID";
+			this->lblSID->Size = System::Drawing::Size(94, 34);
+			this->lblSID->TabIndex = 2;
+			this->lblSID->Text = L"OT SID";
+			this->lblSID->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+			// 
+			// tlOTGender
+			// 
+			this->tlOTGender->ColumnCount = 1;
+			this->tlOTGender->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 50)));
+			this->tlOTGender->Controls->Add(this->rbOTFemale, 0, 1);
+			this->tlOTGender->Controls->Add(this->rbOTMale, 0, 0);
+			this->tlOTGender->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->tlOTGender->Location = System::Drawing::Point(3, 16);
+			this->tlOTGender->Name = L"tlOTGender";
+			this->tlOTGender->RowCount = 2;
+			this->tlOTGender->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
+			this->tlOTGender->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
+			this->tlOTGender->Size = System::Drawing::Size(109, 48);
+			this->tlOTGender->TabIndex = 0;
+			// 
+			// tlOTName
+			// 
+			this->tlOTName->ColumnCount = 2;
+			this->tlOTName->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute, 100)));
+			this->tlOTName->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tlOTName->Controls->Add(this->lblOTName, 0, 0);
+			this->tlOTName->Controls->Add(this->txtOTName, 1, 0);
+			this->tlOTName->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->tlOTName->Location = System::Drawing::Point(3, 3);
+			this->tlOTName->Name = L"tlOTName";
+			this->tlOTName->RowCount = 1;
+			this->tlOTName->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tlOTName->Size = System::Drawing::Size(248, 34);
+			this->tlOTName->TabIndex = 28;
+			// 
+			// lblOTName
+			// 
+			this->lblOTName->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->lblOTName->Location = System::Drawing::Point(3, 0);
+			this->lblOTName->Name = L"lblOTName";
+			this->lblOTName->Size = System::Drawing::Size(94, 34);
+			this->lblOTName->TabIndex = 0;
+			this->lblOTName->Text = L"OT Name";
+			this->lblOTName->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+			// 
+			// tlStats
+			// 
+			this->tlStats->ColumnCount = 3;
+			this->tlStats->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute, 60)));
+			this->tlStats->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 50)));
+			this->tlStats->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 50)));
+			this->tlStats->Controls->Add(this->lblEVs, 2, 0);
+			this->tlStats->Controls->Add(this->lblIVs, 1, 0);
+			this->tlStats->Controls->Add(this->lblSpe, 0, 6);
+			this->tlStats->Controls->Add(this->lblSpDef, 0, 5);
+			this->tlStats->Controls->Add(this->lblSpAtk, 0, 4);
+			this->tlStats->Controls->Add(this->lblDef, 0, 3);
+			this->tlStats->Controls->Add(this->lblAtk, 0, 2);
+			this->tlStats->Controls->Add(this->numSpeEV, 2, 6);
+			this->tlStats->Controls->Add(this->lblHP, 0, 1);
+			this->tlStats->Controls->Add(this->numSpDefEV, 2, 5);
+			this->tlStats->Controls->Add(this->numSpeIV, 1, 6);
+			this->tlStats->Controls->Add(this->numSpAtkEV, 2, 4);
+			this->tlStats->Controls->Add(this->numHPIV, 1, 1);
+			this->tlStats->Controls->Add(this->numDefEV, 2, 3);
+			this->tlStats->Controls->Add(this->numHPEV, 2, 1);
+			this->tlStats->Controls->Add(this->numAtkEV, 2, 2);
+			this->tlStats->Controls->Add(this->numSpDefIV, 1, 5);
+			this->tlStats->Controls->Add(this->numAtkIV, 1, 2);
+			this->tlStats->Controls->Add(this->numDefIV, 1, 3);
+			this->tlStats->Controls->Add(this->numSpAtkIV, 1, 4);
+			this->tlStats->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->tlStats->Location = System::Drawing::Point(3, 16);
+			this->tlStats->Name = L"tlStats";
+			this->tlStats->RowCount = 7;
+			this->tlStats->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 14.28571F)));
+			this->tlStats->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 14.28571F)));
+			this->tlStats->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 14.28571F)));
+			this->tlStats->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 14.28571F)));
+			this->tlStats->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 14.28571F)));
+			this->tlStats->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 14.28571F)));
+			this->tlStats->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 14.28571F)));
+			this->tlStats->Size = System::Drawing::Size(186, 183);
+			this->tlStats->TabIndex = 0;
+			// 
+			// lblSpAtk
+			// 
+			this->lblSpAtk->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->lblSpAtk->Location = System::Drawing::Point(3, 104);
+			this->lblSpAtk->Name = L"lblSpAtk";
+			this->lblSpAtk->Size = System::Drawing::Size(54, 26);
+			this->lblSpAtk->TabIndex = 11;
+			this->lblSpAtk->Text = L"SpAtk";
+			this->lblSpAtk->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+			// 
+			// lblDef
+			// 
+			this->lblDef->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->lblDef->Location = System::Drawing::Point(3, 78);
+			this->lblDef->Name = L"lblDef";
+			this->lblDef->Size = System::Drawing::Size(54, 26);
+			this->lblDef->TabIndex = 8;
+			this->lblDef->Text = L"Def";
+			this->lblDef->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+			// 
+			// lblSpe
+			// 
+			this->lblSpe->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->lblSpe->Location = System::Drawing::Point(3, 156);
+			this->lblSpe->Name = L"lblSpe";
+			this->lblSpe->Size = System::Drawing::Size(54, 27);
+			this->lblSpe->TabIndex = 17;
+			this->lblSpe->Text = L"Spe";
+			this->lblSpe->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+			// 
+			// lblSpDef
+			// 
+			this->lblSpDef->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->lblSpDef->Location = System::Drawing::Point(3, 130);
+			this->lblSpDef->Name = L"lblSpDef";
+			this->lblSpDef->Size = System::Drawing::Size(54, 26);
+			this->lblSpDef->TabIndex = 14;
+			this->lblSpDef->Text = L"SpDef";
+			this->lblSpDef->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+			// 
+			// lblAtk
+			// 
+			this->lblAtk->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->lblAtk->Location = System::Drawing::Point(3, 52);
+			this->lblAtk->Name = L"lblAtk";
+			this->lblAtk->Size = System::Drawing::Size(54, 26);
+			this->lblAtk->TabIndex = 5;
+			this->lblAtk->Text = L"Atk";
+			this->lblAtk->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+			// 
+			// lblIVs
+			// 
+			this->lblIVs->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->lblIVs->Location = System::Drawing::Point(63, 0);
+			this->lblIVs->Name = L"lblIVs";
+			this->lblIVs->Size = System::Drawing::Size(57, 26);
+			this->lblIVs->TabIndex = 0;
+			this->lblIVs->Text = L"IVs";
+			this->lblIVs->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// lblHP
+			// 
+			this->lblHP->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->lblHP->Location = System::Drawing::Point(3, 26);
+			this->lblHP->Name = L"lblHP";
+			this->lblHP->Size = System::Drawing::Size(54, 26);
+			this->lblHP->TabIndex = 2;
+			this->lblHP->Text = L"HP";
+			this->lblHP->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+			// 
+			// lblEVs
+			// 
+			this->lblEVs->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->lblEVs->Location = System::Drawing::Point(126, 0);
+			this->lblEVs->Name = L"lblEVs";
+			this->lblEVs->Size = System::Drawing::Size(57, 26);
+			this->lblEVs->TabIndex = 1;
+			this->lblEVs->Text = L"EVs";
+			this->lblEVs->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// gbStats
+			// 
+			this->gbStats->Controls->Add(this->tlStats);
+			this->gbStats->Location = System::Drawing::Point(186, 85);
+			this->gbStats->Name = L"gbStats";
+			this->gbStats->Size = System::Drawing::Size(192, 202);
+			this->gbStats->TabIndex = 10;
+			this->gbStats->TabStop = false;
+			this->gbStats->Text = L"Stats";
+			// 
+			// gbMoves
+			// 
+			this->gbMoves->Controls->Add(this->tlMoves);
+			this->gbMoves->Location = System::Drawing::Point(384, 217);
+			this->gbMoves->Name = L"gbMoves";
+			this->gbMoves->Size = System::Drawing::Size(94, 159);
+			this->gbMoves->TabIndex = 12;
+			this->gbMoves->TabStop = false;
+			this->gbMoves->Text = L"Moves";
+			// 
+			// tlMoves
+			// 
+			this->tlMoves->ColumnCount = 1;
+			this->tlMoves->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 50)));
+			this->tlMoves->Controls->Add(this->numMove1, 0, 0);
+			this->tlMoves->Controls->Add(this->numMove2, 0, 1);
+			this->tlMoves->Controls->Add(this->numMove3, 0, 2);
+			this->tlMoves->Controls->Add(this->numMove4, 0, 3);
+			this->tlMoves->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->tlMoves->Location = System::Drawing::Point(3, 16);
+			this->tlMoves->Name = L"tlMoves";
+			this->tlMoves->RowCount = 4;
+			this->tlMoves->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 25)));
+			this->tlMoves->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 25)));
+			this->tlMoves->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 25)));
+			this->tlMoves->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 25)));
+			this->tlMoves->Size = System::Drawing::Size(88, 140);
+			this->tlMoves->TabIndex = 0;
+			// 
+			// gbOtherInfo
+			// 
+			this->gbOtherInfo->Controls->Add(this->tableLayoutPanel1);
+			this->gbOtherInfo->Location = System::Drawing::Point(12, 85);
+			this->gbOtherInfo->Name = L"gbOtherInfo";
+			this->gbOtherInfo->Size = System::Drawing::Size(168, 174);
+			this->gbOtherInfo->TabIndex = 9;
+			this->gbOtherInfo->TabStop = false;
+			this->gbOtherInfo->Text = L"Other Info";
+			// 
+			// tableLayoutPanel1
+			// 
+			this->tableLayoutPanel1->ColumnCount = 2;
+			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute, 
+				50)));
+			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 
+				100)));
+			this->tableLayoutPanel1->Controls->Add(this->lblItem, 0, 3);
+			this->tableLayoutPanel1->Controls->Add(this->lblEXP, 0, 2);
+			this->tableLayoutPanel1->Controls->Add(this->lblAbility, 0, 1);
+			this->tableLayoutPanel1->Controls->Add(this->lblNature, 0, 0);
+			this->tableLayoutPanel1->Controls->Add(this->cbNature, 1, 0);
+			this->tableLayoutPanel1->Controls->Add(this->numAbility, 1, 1);
+			this->tableLayoutPanel1->Controls->Add(this->numEXP, 1, 2);
+			this->tableLayoutPanel1->Controls->Add(this->numItem, 1, 3);
+			this->tableLayoutPanel1->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->tableLayoutPanel1->Location = System::Drawing::Point(3, 16);
+			this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
+			this->tableLayoutPanel1->RowCount = 4;
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 25)));
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 25)));
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 25)));
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 25)));
+			this->tableLayoutPanel1->Size = System::Drawing::Size(162, 155);
+			this->tableLayoutPanel1->TabIndex = 0;
+			// 
+			// lblNature
+			// 
+			this->lblNature->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->lblNature->Location = System::Drawing::Point(3, 0);
+			this->lblNature->Name = L"lblNature";
+			this->lblNature->Size = System::Drawing::Size(44, 38);
+			this->lblNature->TabIndex = 0;
+			this->lblNature->Text = L"Nature";
+			this->lblNature->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+			// 
+			// lblAbility
+			// 
+			this->lblAbility->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->lblAbility->Location = System::Drawing::Point(3, 38);
+			this->lblAbility->Name = L"lblAbility";
+			this->lblAbility->Size = System::Drawing::Size(44, 38);
+			this->lblAbility->TabIndex = 2;
+			this->lblAbility->Text = L"Ability";
+			this->lblAbility->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+			// 
+			// lblEXP
+			// 
+			this->lblEXP->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->lblEXP->Location = System::Drawing::Point(3, 76);
+			this->lblEXP->Name = L"lblEXP";
+			this->lblEXP->Size = System::Drawing::Size(44, 38);
+			this->lblEXP->TabIndex = 4;
+			this->lblEXP->Text = L"EXP";
+			this->lblEXP->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+			// 
+			// lblItem
+			// 
+			this->lblItem->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->lblItem->Location = System::Drawing::Point(3, 114);
+			this->lblItem->Name = L"lblItem";
+			this->lblItem->Size = System::Drawing::Size(44, 41);
+			this->lblItem->TabIndex = 6;
+			this->lblItem->Text = L"Item";
+			this->lblItem->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+			// 
+			// lblMetLevel
+			// 
+			this->lblMetLevel->AutoSize = true;
+			this->lblMetLevel->Location = System::Drawing::Point(129, 61);
+			this->lblMetLevel->Name = L"lblMetLevel";
+			this->lblMetLevel->Size = System::Drawing::Size(54, 13);
+			this->lblMetLevel->TabIndex = 6;
+			this->lblMetLevel->Text = L"Met Level";
+			// 
+			// lblNickname
+			// 
+			this->lblNickname->AutoSize = true;
+			this->lblNickname->Location = System::Drawing::Point(143, 36);
+			this->lblNickname->Name = L"lblNickname";
+			this->lblNickname->Size = System::Drawing::Size(55, 13);
+			this->lblNickname->TabIndex = 4;
+			this->lblNickname->Text = L"Nickname";
+			// 
+			// lblSpecies
+			// 
+			this->lblSpecies->AutoSize = true;
+			this->lblSpecies->Location = System::Drawing::Point(93, 9);
+			this->lblSpecies->Name = L"lblSpecies";
+			this->lblSpecies->Size = System::Drawing::Size(105, 13);
+			this->lblSpecies->TabIndex = 2;
+			this->lblSpecies->Text = L"National Pokedex ID";
 			// 
 			// frmMain
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(284, 556);
+			this->ClientSize = System::Drawing::Size(652, 396);
+			this->Controls->Add(this->lblSpecies);
+			this->Controls->Add(this->lblNickname);
+			this->Controls->Add(this->lblMetLevel);
+			this->Controls->Add(this->gbOtherInfo);
+			this->Controls->Add(this->gbMoves);
+			this->Controls->Add(this->gbStats);
+			this->Controls->Add(this->gbOT);
 			this->Controls->Add(this->chkFateful);
-			this->Controls->Add(this->numAbility);
-			this->Controls->Add(this->gbOTGender);
 			this->Controls->Add(this->numMetLevel);
-			this->Controls->Add(this->cbNature);
-			this->Controls->Add(this->numSID);
-			this->Controls->Add(this->numTID);
-			this->Controls->Add(this->numEXP);
-			this->Controls->Add(this->numSpeEV);
-			this->Controls->Add(this->numSpeIV);
-			this->Controls->Add(this->numSpDefEV);
-			this->Controls->Add(this->numSpDefIV);
-			this->Controls->Add(this->numSpAtkEV);
-			this->Controls->Add(this->numSpAtkIV);
-			this->Controls->Add(this->numHPEV);
-			this->Controls->Add(this->numHPIV);
-			this->Controls->Add(this->numDefEV);
-			this->Controls->Add(this->numDefIV);
-			this->Controls->Add(this->numAtkEV);
-			this->Controls->Add(this->numAtkIV);
-			this->Controls->Add(this->numMove4);
-			this->Controls->Add(this->numMove3);
-			this->Controls->Add(this->numMove2);
-			this->Controls->Add(this->numMove1);
-			this->Controls->Add(this->numItem);
 			this->Controls->Add(this->txtNickname);
 			this->Controls->Add(this->numSpecies);
-			this->Controls->Add(this->txtOTName);
 			this->Controls->Add(this->btnSave);
 			this->Controls->Add(this->btnLoad);
 			this->Name = L"frmMain";
@@ -526,8 +965,20 @@ namespace PKXEditor {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numSID))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMetLevel))->EndInit();
 			this->gbOTGender->ResumeLayout(false);
-			this->gbOTGender->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numAbility))->EndInit();
+			this->gbOT->ResumeLayout(false);
+			this->tlOT->ResumeLayout(false);
+			this->tlIDs->ResumeLayout(false);
+			this->tlOTGender->ResumeLayout(false);
+			this->tlOTGender->PerformLayout();
+			this->tlOTName->ResumeLayout(false);
+			this->tlOTName->PerformLayout();
+			this->tlStats->ResumeLayout(false);
+			this->gbStats->ResumeLayout(false);
+			this->gbMoves->ResumeLayout(false);
+			this->tlMoves->ResumeLayout(false);
+			this->gbOtherInfo->ResumeLayout(false);
+			this->tableLayoutPanel1->ResumeLayout(false);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
