@@ -36,21 +36,15 @@
     <ClCompile Include="..\..\lib\stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\apps\gen-5-test\main.cpp">
+    <ClCompile Include="..\..\apps\gen-6-test\pkmds_g6.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\apps\gen-5-test\pkmds_g6.cpp">
+    <ClCompile Include="..\..\apps\gen-6-test\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Visual_Studio\vs_sqlite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\apps\gen-5-test\main.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\apps\gen-5-test\pkmds_g6.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\sqlite3.h">
@@ -78,6 +72,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\pkmds\wondercard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\apps\gen-6-test\pkmds_g6.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\apps\gen-6-test\main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -68,6 +68,7 @@ Makefile
 *PKMDS_Desktop_Win.lib
 *PKMDS_Desktop_Win_2010.lib
 *PKX Crypt.lib
+*PKX Editor.lib
 
 #General
 
