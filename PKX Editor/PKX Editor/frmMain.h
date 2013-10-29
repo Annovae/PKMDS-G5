@@ -44,6 +44,12 @@ namespace PKXEditor {
 	private: System::Windows::Forms::NumericUpDown^  numTID;
 	private: System::Windows::Forms::NumericUpDown^  numSID;
 	private: System::Windows::Forms::ComboBox^  cbNature;
+	private: System::Windows::Forms::NumericUpDown^  numMetLevel;
+	private: System::Windows::Forms::GroupBox^  gbOTGender;
+	private: System::Windows::Forms::RadioButton^  rbOTFemale;
+	private: System::Windows::Forms::RadioButton^  rbOTMale;
+	private: System::Windows::Forms::NumericUpDown^  numAbility;
+	private: System::Windows::Forms::CheckBox^  chkFateful;
 	public: 
 	private: System::Windows::Forms::Button^  btnSave;
 	public: 
@@ -112,6 +118,12 @@ namespace PKXEditor {
 			this->numTID = (gcnew System::Windows::Forms::NumericUpDown());
 			this->numSID = (gcnew System::Windows::Forms::NumericUpDown());
 			this->cbNature = (gcnew System::Windows::Forms::ComboBox());
+			this->numMetLevel = (gcnew System::Windows::Forms::NumericUpDown());
+			this->gbOTGender = (gcnew System::Windows::Forms::GroupBox());
+			this->rbOTFemale = (gcnew System::Windows::Forms::RadioButton());
+			this->rbOTMale = (gcnew System::Windows::Forms::RadioButton());
+			this->numAbility = (gcnew System::Windows::Forms::NumericUpDown());
+			this->chkFateful = (gcnew System::Windows::Forms::CheckBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numSpecies))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numItem))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMove1))->BeginInit();
@@ -133,6 +145,9 @@ namespace PKXEditor {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numEXP))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numTID))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numSID))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMetLevel))->BeginInit();
+			this->gbOTGender->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numAbility))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// btnLoad
@@ -386,11 +401,80 @@ namespace PKXEditor {
 			this->cbNature->TabIndex = 25;
 			this->cbNature->SelectedIndexChanged += gcnew System::EventHandler(this, &frmMain::cbNature_SelectedIndexChanged);
 			// 
+			// numMetLevel
+			// 
+			this->numMetLevel->Location = System::Drawing::Point(212, 206);
+			this->numMetLevel->Name = L"numMetLevel";
+			this->numMetLevel->Size = System::Drawing::Size(51, 20);
+			this->numMetLevel->TabIndex = 26;
+			this->numMetLevel->ValueChanged += gcnew System::EventHandler(this, &frmMain::numMetLevel_ValueChanged);
+			// 
+			// gbOTGender
+			// 
+			this->gbOTGender->Controls->Add(this->rbOTFemale);
+			this->gbOTGender->Controls->Add(this->rbOTMale);
+			this->gbOTGender->Location = System::Drawing::Point(142, 241);
+			this->gbOTGender->Name = L"gbOTGender";
+			this->gbOTGender->Size = System::Drawing::Size(130, 72);
+			this->gbOTGender->TabIndex = 27;
+			this->gbOTGender->TabStop = false;
+			this->gbOTGender->Text = L"OT Gender";
+			// 
+			// rbOTFemale
+			// 
+			this->rbOTFemale->AutoSize = true;
+			this->rbOTFemale->Location = System::Drawing::Point(22, 42);
+			this->rbOTFemale->Name = L"rbOTFemale";
+			this->rbOTFemale->Size = System::Drawing::Size(59, 17);
+			this->rbOTFemale->TabIndex = 1;
+			this->rbOTFemale->TabStop = true;
+			this->rbOTFemale->Text = L"Female";
+			this->rbOTFemale->UseVisualStyleBackColor = true;
+			this->rbOTFemale->CheckedChanged += gcnew System::EventHandler(this, &frmMain::rbOTFemale_CheckedChanged);
+			// 
+			// rbOTMale
+			// 
+			this->rbOTMale->AutoSize = true;
+			this->rbOTMale->Location = System::Drawing::Point(22, 19);
+			this->rbOTMale->Name = L"rbOTMale";
+			this->rbOTMale->Size = System::Drawing::Size(48, 17);
+			this->rbOTMale->TabIndex = 0;
+			this->rbOTMale->TabStop = true;
+			this->rbOTMale->Text = L"Male";
+			this->rbOTMale->UseVisualStyleBackColor = true;
+			this->rbOTMale->CheckedChanged += gcnew System::EventHandler(this, &frmMain::rbOTMale_CheckedChanged);
+			// 
+			// numAbility
+			// 
+			this->numAbility->Location = System::Drawing::Point(142, 319);
+			this->numAbility->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {250, 0, 0, 0});
+			this->numAbility->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) {1, 0, 0, 0});
+			this->numAbility->Name = L"numAbility";
+			this->numAbility->Size = System::Drawing::Size(51, 20);
+			this->numAbility->TabIndex = 28;
+			this->numAbility->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) {1, 0, 0, 0});
+			this->numAbility->ValueChanged += gcnew System::EventHandler(this, &frmMain::numAbility_ValueChanged);
+			// 
+			// chkFateful
+			// 
+			this->chkFateful->AutoSize = true;
+			this->chkFateful->Location = System::Drawing::Point(135, 345);
+			this->chkFateful->Name = L"chkFateful";
+			this->chkFateful->Size = System::Drawing::Size(58, 17);
+			this->chkFateful->TabIndex = 29;
+			this->chkFateful->Text = L"Fateful";
+			this->chkFateful->UseVisualStyleBackColor = true;
+			this->chkFateful->CheckedChanged += gcnew System::EventHandler(this, &frmMain::chkFateful_CheckedChanged);
+			// 
 			// frmMain
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(284, 556);
+			this->Controls->Add(this->chkFateful);
+			this->Controls->Add(this->numAbility);
+			this->Controls->Add(this->gbOTGender);
+			this->Controls->Add(this->numMetLevel);
 			this->Controls->Add(this->cbNature);
 			this->Controls->Add(this->numSID);
 			this->Controls->Add(this->numTID);
@@ -440,6 +524,10 @@ namespace PKXEditor {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numEXP))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numTID))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numSID))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMetLevel))->EndInit();
+			this->gbOTGender->ResumeLayout(false);
+			this->gbOTGender->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numAbility))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -492,6 +580,11 @@ namespace PKXEditor {
 					 numTID->Value = (System::Decimal)((int)(pkx->tid));
 					 numSID->Value = (System::Decimal)((int)(pkx->sid));
 					 cbNature->SelectedIndex = (int)(pkx->nature);
+					 numMetLevel->Value = (System::Decimal)((int)(pkx->metlevel_otgender.metlevel));
+					 rbOTMale->Checked = (pkx->metlevel_otgender.otgender == Genders::male);
+					 rbOTFemale->Checked = (pkx->metlevel_otgender.otgender == Genders::female);
+					 numAbility->Value = (System::Decimal)((int)(pkx->ability));
+					 chkFateful->Checked = pkx->forms.fencounter;
 					 redisplayok = true;
 				 }
 			 }
@@ -695,5 +788,40 @@ namespace PKXEditor {
 					 pkx->nature = ((Natures::natures)(cbNature->SelectedIndex));
 				 }
 			 }
-};
+	private: System::Void numMetLevel_ValueChanged(System::Object^  sender, System::EventArgs^  e) 
+			 {
+				 if(redisplayok)
+				 {
+					 pkx->metlevel_otgender.metlevel = ((int)(numMetLevel->Value));
+				 }
+			 }
+	private: System::Void rbOTMale_CheckedChanged(System::Object^  sender, System::EventArgs^  e) 
+			 {
+				 if(redisplayok)
+				 {
+					 if(rbOTMale->Checked){pkx->metlevel_otgender.otgender = Genders::male;}
+				 }
+			 }
+	private: System::Void rbOTFemale_CheckedChanged(System::Object^  sender, System::EventArgs^  e) 
+			 {
+				 if(redisplayok)
+				 {
+					 if(rbOTFemale->Checked){pkx->metlevel_otgender.otgender = Genders::female;}
+				 }
+			 }
+	private: System::Void numAbility_ValueChanged(System::Object^  sender, System::EventArgs^  e) 
+			 {
+				 if(redisplayok)
+				 {
+					 pkx->ability = (Abilities::abilities)((int)(numAbility->Value));
+				 }
+			 }
+	private: System::Void chkFateful_CheckedChanged(System::Object^  sender, System::EventArgs^  e) 
+			 {
+				 if(redisplayok)
+				 {
+					 pkx->forms.fencounter = chkFateful->Checked;
+				 }
+			 }
+	};
 }
