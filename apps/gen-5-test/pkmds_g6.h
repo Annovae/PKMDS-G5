@@ -60,7 +60,7 @@ struct pkxblocka { //
 uint16 : 16;
 uint32 : 32;
 	Natures::natures nature;
-	formsfield form;
+    formsfield forms;
 	evsfield evs;
 uint32 : 32;
 	pokerus pkrs;
