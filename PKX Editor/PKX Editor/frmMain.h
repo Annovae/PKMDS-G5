@@ -72,8 +72,9 @@ namespace PKXEditor {
 	private: System::Windows::Forms::GroupBox^  gbMoves;
 	private: System::Windows::Forms::TableLayoutPanel^  tlMoves;
 	private: System::Windows::Forms::GroupBox^  gbOtherInfo;
+	private: System::Windows::Forms::TableLayoutPanel^  tlOtherInfo;
 
-	private: System::Windows::Forms::TableLayoutPanel^  tableLayoutPanel1;
+
 	private: System::Windows::Forms::Label^  lblItem;
 
 	private: System::Windows::Forms::Label^  lblEXP;
@@ -84,6 +85,11 @@ namespace PKXEditor {
 	private: System::Windows::Forms::Label^  lblMetLevel;
 	private: System::Windows::Forms::Label^  lblNickname;
 	private: System::Windows::Forms::Label^  lblSpecies;
+	private: System::Windows::Forms::TableLayoutPanel^  tlMetLoc;
+	private: System::Windows::Forms::Label^  lblEggMetLoc;
+	private: System::Windows::Forms::NumericUpDown^  numMetLoc;
+	private: System::Windows::Forms::NumericUpDown^  numEggMetLoc;
+	private: System::Windows::Forms::Label^  lblMetLoc;
 
 
 
@@ -158,6 +164,7 @@ namespace PKXEditor {
 			this->cbNature = (gcnew System::Windows::Forms::ComboBox());
 			this->numMetLevel = (gcnew System::Windows::Forms::NumericUpDown());
 			this->gbOTGender = (gcnew System::Windows::Forms::GroupBox());
+			this->tlOTGender = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->rbOTFemale = (gcnew System::Windows::Forms::RadioButton());
 			this->rbOTMale = (gcnew System::Windows::Forms::RadioButton());
 			this->numAbility = (gcnew System::Windows::Forms::NumericUpDown());
@@ -165,32 +172,36 @@ namespace PKXEditor {
 			this->gbOT = (gcnew System::Windows::Forms::GroupBox());
 			this->tlOT = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->tlIDs = (gcnew System::Windows::Forms::TableLayoutPanel());
-			this->lblTID = (gcnew System::Windows::Forms::Label());
 			this->lblSID = (gcnew System::Windows::Forms::Label());
-			this->tlOTGender = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->lblTID = (gcnew System::Windows::Forms::Label());
 			this->tlOTName = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->lblOTName = (gcnew System::Windows::Forms::Label());
 			this->tlStats = (gcnew System::Windows::Forms::TableLayoutPanel());
-			this->lblSpAtk = (gcnew System::Windows::Forms::Label());
-			this->lblDef = (gcnew System::Windows::Forms::Label());
+			this->lblEVs = (gcnew System::Windows::Forms::Label());
+			this->lblIVs = (gcnew System::Windows::Forms::Label());
 			this->lblSpe = (gcnew System::Windows::Forms::Label());
 			this->lblSpDef = (gcnew System::Windows::Forms::Label());
+			this->lblSpAtk = (gcnew System::Windows::Forms::Label());
+			this->lblDef = (gcnew System::Windows::Forms::Label());
 			this->lblAtk = (gcnew System::Windows::Forms::Label());
-			this->lblIVs = (gcnew System::Windows::Forms::Label());
 			this->lblHP = (gcnew System::Windows::Forms::Label());
-			this->lblEVs = (gcnew System::Windows::Forms::Label());
 			this->gbStats = (gcnew System::Windows::Forms::GroupBox());
 			this->gbMoves = (gcnew System::Windows::Forms::GroupBox());
 			this->tlMoves = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->gbOtherInfo = (gcnew System::Windows::Forms::GroupBox());
-			this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
-			this->lblNature = (gcnew System::Windows::Forms::Label());
-			this->lblAbility = (gcnew System::Windows::Forms::Label());
-			this->lblEXP = (gcnew System::Windows::Forms::Label());
+			this->tlOtherInfo = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->lblItem = (gcnew System::Windows::Forms::Label());
+			this->lblEXP = (gcnew System::Windows::Forms::Label());
+			this->lblAbility = (gcnew System::Windows::Forms::Label());
+			this->lblNature = (gcnew System::Windows::Forms::Label());
 			this->lblMetLevel = (gcnew System::Windows::Forms::Label());
 			this->lblNickname = (gcnew System::Windows::Forms::Label());
 			this->lblSpecies = (gcnew System::Windows::Forms::Label());
+			this->tlMetLoc = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->lblEggMetLoc = (gcnew System::Windows::Forms::Label());
+			this->numMetLoc = (gcnew System::Windows::Forms::NumericUpDown());
+			this->numEggMetLoc = (gcnew System::Windows::Forms::NumericUpDown());
+			this->lblMetLoc = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numSpecies))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numItem))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMove1))->BeginInit();
@@ -214,18 +225,21 @@ namespace PKXEditor {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numSID))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMetLevel))->BeginInit();
 			this->gbOTGender->SuspendLayout();
+			this->tlOTGender->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numAbility))->BeginInit();
 			this->gbOT->SuspendLayout();
 			this->tlOT->SuspendLayout();
 			this->tlIDs->SuspendLayout();
-			this->tlOTGender->SuspendLayout();
 			this->tlOTName->SuspendLayout();
 			this->tlStats->SuspendLayout();
 			this->gbStats->SuspendLayout();
 			this->gbMoves->SuspendLayout();
 			this->tlMoves->SuspendLayout();
 			this->gbOtherInfo->SuspendLayout();
-			this->tableLayoutPanel1->SuspendLayout();
+			this->tlOtherInfo->SuspendLayout();
+			this->tlMetLoc->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMetLoc))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numEggMetLoc))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// btnLoad
@@ -508,6 +522,21 @@ namespace PKXEditor {
 			this->gbOTGender->TabStop = false;
 			this->gbOTGender->Text = L"OT Gender";
 			// 
+			// tlOTGender
+			// 
+			this->tlOTGender->ColumnCount = 1;
+			this->tlOTGender->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 50)));
+			this->tlOTGender->Controls->Add(this->rbOTFemale, 0, 1);
+			this->tlOTGender->Controls->Add(this->rbOTMale, 0, 0);
+			this->tlOTGender->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->tlOTGender->Location = System::Drawing::Point(3, 16);
+			this->tlOTGender->Name = L"tlOTGender";
+			this->tlOTGender->RowCount = 2;
+			this->tlOTGender->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
+			this->tlOTGender->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
+			this->tlOTGender->Size = System::Drawing::Size(109, 48);
+			this->tlOTGender->TabIndex = 0;
+			// 
 			// rbOTFemale
 			// 
 			this->rbOTFemale->AutoSize = true;
@@ -600,16 +629,6 @@ namespace PKXEditor {
 			this->tlIDs->Size = System::Drawing::Size(248, 67);
 			this->tlIDs->TabIndex = 2;
 			// 
-			// lblTID
-			// 
-			this->lblTID->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->lblTID->Location = System::Drawing::Point(3, 0);
-			this->lblTID->Name = L"lblTID";
-			this->lblTID->Size = System::Drawing::Size(94, 33);
-			this->lblTID->TabIndex = 0;
-			this->lblTID->Text = L"OT ID";
-			this->lblTID->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
-			// 
 			// lblSID
 			// 
 			this->lblSID->Dock = System::Windows::Forms::DockStyle::Fill;
@@ -620,20 +639,15 @@ namespace PKXEditor {
 			this->lblSID->Text = L"OT SID";
 			this->lblSID->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			// 
-			// tlOTGender
+			// lblTID
 			// 
-			this->tlOTGender->ColumnCount = 1;
-			this->tlOTGender->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 50)));
-			this->tlOTGender->Controls->Add(this->rbOTFemale, 0, 1);
-			this->tlOTGender->Controls->Add(this->rbOTMale, 0, 0);
-			this->tlOTGender->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->tlOTGender->Location = System::Drawing::Point(3, 16);
-			this->tlOTGender->Name = L"tlOTGender";
-			this->tlOTGender->RowCount = 2;
-			this->tlOTGender->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
-			this->tlOTGender->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
-			this->tlOTGender->Size = System::Drawing::Size(109, 48);
-			this->tlOTGender->TabIndex = 0;
+			this->lblTID->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->lblTID->Location = System::Drawing::Point(3, 0);
+			this->lblTID->Name = L"lblTID";
+			this->lblTID->Size = System::Drawing::Size(94, 33);
+			this->lblTID->TabIndex = 0;
+			this->lblTID->Text = L"OT ID";
+			this->lblTID->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			// 
 			// tlOTName
 			// 
@@ -700,25 +714,25 @@ namespace PKXEditor {
 			this->tlStats->Size = System::Drawing::Size(186, 183);
 			this->tlStats->TabIndex = 0;
 			// 
-			// lblSpAtk
+			// lblEVs
 			// 
-			this->lblSpAtk->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->lblSpAtk->Location = System::Drawing::Point(3, 104);
-			this->lblSpAtk->Name = L"lblSpAtk";
-			this->lblSpAtk->Size = System::Drawing::Size(54, 26);
-			this->lblSpAtk->TabIndex = 11;
-			this->lblSpAtk->Text = L"SpAtk";
-			this->lblSpAtk->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+			this->lblEVs->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->lblEVs->Location = System::Drawing::Point(126, 0);
+			this->lblEVs->Name = L"lblEVs";
+			this->lblEVs->Size = System::Drawing::Size(57, 26);
+			this->lblEVs->TabIndex = 1;
+			this->lblEVs->Text = L"EVs";
+			this->lblEVs->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
-			// lblDef
+			// lblIVs
 			// 
-			this->lblDef->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->lblDef->Location = System::Drawing::Point(3, 78);
-			this->lblDef->Name = L"lblDef";
-			this->lblDef->Size = System::Drawing::Size(54, 26);
-			this->lblDef->TabIndex = 8;
-			this->lblDef->Text = L"Def";
-			this->lblDef->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+			this->lblIVs->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->lblIVs->Location = System::Drawing::Point(63, 0);
+			this->lblIVs->Name = L"lblIVs";
+			this->lblIVs->Size = System::Drawing::Size(57, 26);
+			this->lblIVs->TabIndex = 0;
+			this->lblIVs->Text = L"IVs";
+			this->lblIVs->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// lblSpe
 			// 
@@ -740,6 +754,26 @@ namespace PKXEditor {
 			this->lblSpDef->Text = L"SpDef";
 			this->lblSpDef->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			// 
+			// lblSpAtk
+			// 
+			this->lblSpAtk->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->lblSpAtk->Location = System::Drawing::Point(3, 104);
+			this->lblSpAtk->Name = L"lblSpAtk";
+			this->lblSpAtk->Size = System::Drawing::Size(54, 26);
+			this->lblSpAtk->TabIndex = 11;
+			this->lblSpAtk->Text = L"SpAtk";
+			this->lblSpAtk->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+			// 
+			// lblDef
+			// 
+			this->lblDef->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->lblDef->Location = System::Drawing::Point(3, 78);
+			this->lblDef->Name = L"lblDef";
+			this->lblDef->Size = System::Drawing::Size(54, 26);
+			this->lblDef->TabIndex = 8;
+			this->lblDef->Text = L"Def";
+			this->lblDef->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+			// 
 			// lblAtk
 			// 
 			this->lblAtk->Dock = System::Windows::Forms::DockStyle::Fill;
@@ -750,16 +784,6 @@ namespace PKXEditor {
 			this->lblAtk->Text = L"Atk";
 			this->lblAtk->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			// 
-			// lblIVs
-			// 
-			this->lblIVs->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->lblIVs->Location = System::Drawing::Point(63, 0);
-			this->lblIVs->Name = L"lblIVs";
-			this->lblIVs->Size = System::Drawing::Size(57, 26);
-			this->lblIVs->TabIndex = 0;
-			this->lblIVs->Text = L"IVs";
-			this->lblIVs->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
-			// 
 			// lblHP
 			// 
 			this->lblHP->Dock = System::Windows::Forms::DockStyle::Fill;
@@ -769,16 +793,6 @@ namespace PKXEditor {
 			this->lblHP->TabIndex = 2;
 			this->lblHP->Text = L"HP";
 			this->lblHP->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
-			// 
-			// lblEVs
-			// 
-			this->lblEVs->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->lblEVs->Location = System::Drawing::Point(126, 0);
-			this->lblEVs->Name = L"lblEVs";
-			this->lblEVs->Size = System::Drawing::Size(57, 26);
-			this->lblEVs->TabIndex = 1;
-			this->lblEVs->Text = L"EVs";
-			this->lblEVs->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// gbStats
 			// 
@@ -821,7 +835,7 @@ namespace PKXEditor {
 			// 
 			// gbOtherInfo
 			// 
-			this->gbOtherInfo->Controls->Add(this->tableLayoutPanel1);
+			this->gbOtherInfo->Controls->Add(this->tlOtherInfo);
 			this->gbOtherInfo->Location = System::Drawing::Point(12, 85);
 			this->gbOtherInfo->Name = L"gbOtherInfo";
 			this->gbOtherInfo->Size = System::Drawing::Size(168, 174);
@@ -829,51 +843,39 @@ namespace PKXEditor {
 			this->gbOtherInfo->TabStop = false;
 			this->gbOtherInfo->Text = L"Other Info";
 			// 
-			// tableLayoutPanel1
+			// tlOtherInfo
 			// 
-			this->tableLayoutPanel1->ColumnCount = 2;
-			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute, 
-				50)));
-			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 
-				100)));
-			this->tableLayoutPanel1->Controls->Add(this->lblItem, 0, 3);
-			this->tableLayoutPanel1->Controls->Add(this->lblEXP, 0, 2);
-			this->tableLayoutPanel1->Controls->Add(this->lblAbility, 0, 1);
-			this->tableLayoutPanel1->Controls->Add(this->lblNature, 0, 0);
-			this->tableLayoutPanel1->Controls->Add(this->cbNature, 1, 0);
-			this->tableLayoutPanel1->Controls->Add(this->numAbility, 1, 1);
-			this->tableLayoutPanel1->Controls->Add(this->numEXP, 1, 2);
-			this->tableLayoutPanel1->Controls->Add(this->numItem, 1, 3);
-			this->tableLayoutPanel1->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->tableLayoutPanel1->Location = System::Drawing::Point(3, 16);
-			this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
-			this->tableLayoutPanel1->RowCount = 4;
-			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 25)));
-			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 25)));
-			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 25)));
-			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 25)));
-			this->tableLayoutPanel1->Size = System::Drawing::Size(162, 155);
-			this->tableLayoutPanel1->TabIndex = 0;
+			this->tlOtherInfo->ColumnCount = 2;
+			this->tlOtherInfo->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute, 50)));
+			this->tlOtherInfo->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tlOtherInfo->Controls->Add(this->lblItem, 0, 3);
+			this->tlOtherInfo->Controls->Add(this->lblEXP, 0, 2);
+			this->tlOtherInfo->Controls->Add(this->lblAbility, 0, 1);
+			this->tlOtherInfo->Controls->Add(this->lblNature, 0, 0);
+			this->tlOtherInfo->Controls->Add(this->cbNature, 1, 0);
+			this->tlOtherInfo->Controls->Add(this->numAbility, 1, 1);
+			this->tlOtherInfo->Controls->Add(this->numEXP, 1, 2);
+			this->tlOtherInfo->Controls->Add(this->numItem, 1, 3);
+			this->tlOtherInfo->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->tlOtherInfo->Location = System::Drawing::Point(3, 16);
+			this->tlOtherInfo->Name = L"tlOtherInfo";
+			this->tlOtherInfo->RowCount = 4;
+			this->tlOtherInfo->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 25)));
+			this->tlOtherInfo->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 25)));
+			this->tlOtherInfo->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 25)));
+			this->tlOtherInfo->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 25)));
+			this->tlOtherInfo->Size = System::Drawing::Size(162, 155);
+			this->tlOtherInfo->TabIndex = 0;
 			// 
-			// lblNature
+			// lblItem
 			// 
-			this->lblNature->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->lblNature->Location = System::Drawing::Point(3, 0);
-			this->lblNature->Name = L"lblNature";
-			this->lblNature->Size = System::Drawing::Size(44, 38);
-			this->lblNature->TabIndex = 0;
-			this->lblNature->Text = L"Nature";
-			this->lblNature->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
-			// 
-			// lblAbility
-			// 
-			this->lblAbility->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->lblAbility->Location = System::Drawing::Point(3, 38);
-			this->lblAbility->Name = L"lblAbility";
-			this->lblAbility->Size = System::Drawing::Size(44, 38);
-			this->lblAbility->TabIndex = 2;
-			this->lblAbility->Text = L"Ability";
-			this->lblAbility->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+			this->lblItem->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->lblItem->Location = System::Drawing::Point(3, 114);
+			this->lblItem->Name = L"lblItem";
+			this->lblItem->Size = System::Drawing::Size(44, 41);
+			this->lblItem->TabIndex = 6;
+			this->lblItem->Text = L"Item";
+			this->lblItem->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			// 
 			// lblEXP
 			// 
@@ -885,15 +887,25 @@ namespace PKXEditor {
 			this->lblEXP->Text = L"EXP";
 			this->lblEXP->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			// 
-			// lblItem
+			// lblAbility
 			// 
-			this->lblItem->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->lblItem->Location = System::Drawing::Point(3, 114);
-			this->lblItem->Name = L"lblItem";
-			this->lblItem->Size = System::Drawing::Size(44, 41);
-			this->lblItem->TabIndex = 6;
-			this->lblItem->Text = L"Item";
-			this->lblItem->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+			this->lblAbility->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->lblAbility->Location = System::Drawing::Point(3, 38);
+			this->lblAbility->Name = L"lblAbility";
+			this->lblAbility->Size = System::Drawing::Size(44, 38);
+			this->lblAbility->TabIndex = 2;
+			this->lblAbility->Text = L"Ability";
+			this->lblAbility->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+			// 
+			// lblNature
+			// 
+			this->lblNature->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->lblNature->Location = System::Drawing::Point(3, 0);
+			this->lblNature->Name = L"lblNature";
+			this->lblNature->Size = System::Drawing::Size(44, 38);
+			this->lblNature->TabIndex = 0;
+			this->lblNature->Text = L"Nature";
+			this->lblNature->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			// 
 			// lblMetLevel
 			// 
@@ -922,11 +934,69 @@ namespace PKXEditor {
 			this->lblSpecies->TabIndex = 2;
 			this->lblSpecies->Text = L"National Pokedex ID";
 			// 
+			// tlMetLoc
+			// 
+			this->tlMetLoc->ColumnCount = 2;
+			this->tlMetLoc->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute, 100)));
+			this->tlMetLoc->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 100)));
+			this->tlMetLoc->Controls->Add(this->lblEggMetLoc, 0, 1);
+			this->tlMetLoc->Controls->Add(this->numMetLoc, 1, 0);
+			this->tlMetLoc->Controls->Add(this->numEggMetLoc, 1, 1);
+			this->tlMetLoc->Controls->Add(this->lblMetLoc, 0, 0);
+			this->tlMetLoc->Location = System::Drawing::Point(12, 293);
+			this->tlMetLoc->Name = L"tlMetLoc";
+			this->tlMetLoc->RowCount = 2;
+			this->tlMetLoc->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
+			this->tlMetLoc->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
+			this->tlMetLoc->Size = System::Drawing::Size(248, 67);
+			this->tlMetLoc->TabIndex = 13;
+			// 
+			// lblEggMetLoc
+			// 
+			this->lblEggMetLoc->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->lblEggMetLoc->Location = System::Drawing::Point(3, 33);
+			this->lblEggMetLoc->Name = L"lblEggMetLoc";
+			this->lblEggMetLoc->Size = System::Drawing::Size(94, 34);
+			this->lblEggMetLoc->TabIndex = 2;
+			this->lblEggMetLoc->Text = L"Egg Met Location";
+			this->lblEggMetLoc->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+			// 
+			// numMetLoc
+			// 
+			this->numMetLoc->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
+			this->numMetLoc->Location = System::Drawing::Point(103, 6);
+			this->numMetLoc->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {65535, 0, 0, 0});
+			this->numMetLoc->Name = L"numMetLoc";
+			this->numMetLoc->Size = System::Drawing::Size(142, 20);
+			this->numMetLoc->TabIndex = 1;
+			this->numMetLoc->ValueChanged += gcnew System::EventHandler(this, &frmMain::numMetLoc_ValueChanged);
+			// 
+			// numEggMetLoc
+			// 
+			this->numEggMetLoc->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
+			this->numEggMetLoc->Location = System::Drawing::Point(103, 40);
+			this->numEggMetLoc->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {65535, 0, 0, 0});
+			this->numEggMetLoc->Name = L"numEggMetLoc";
+			this->numEggMetLoc->Size = System::Drawing::Size(142, 20);
+			this->numEggMetLoc->TabIndex = 3;
+			this->numEggMetLoc->ValueChanged += gcnew System::EventHandler(this, &frmMain::numEggMetLoc_ValueChanged);
+			// 
+			// lblMetLoc
+			// 
+			this->lblMetLoc->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->lblMetLoc->Location = System::Drawing::Point(3, 0);
+			this->lblMetLoc->Name = L"lblMetLoc";
+			this->lblMetLoc->Size = System::Drawing::Size(94, 33);
+			this->lblMetLoc->TabIndex = 0;
+			this->lblMetLoc->Text = L"Met Location";
+			this->lblMetLoc->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+			// 
 			// frmMain
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(652, 396);
+			this->Controls->Add(this->tlMetLoc);
 			this->Controls->Add(this->lblSpecies);
 			this->Controls->Add(this->lblNickname);
 			this->Controls->Add(this->lblMetLevel);
@@ -965,12 +1035,12 @@ namespace PKXEditor {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numSID))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMetLevel))->EndInit();
 			this->gbOTGender->ResumeLayout(false);
+			this->tlOTGender->ResumeLayout(false);
+			this->tlOTGender->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numAbility))->EndInit();
 			this->gbOT->ResumeLayout(false);
 			this->tlOT->ResumeLayout(false);
 			this->tlIDs->ResumeLayout(false);
-			this->tlOTGender->ResumeLayout(false);
-			this->tlOTGender->PerformLayout();
 			this->tlOTName->ResumeLayout(false);
 			this->tlOTName->PerformLayout();
 			this->tlStats->ResumeLayout(false);
@@ -978,7 +1048,10 @@ namespace PKXEditor {
 			this->gbMoves->ResumeLayout(false);
 			this->tlMoves->ResumeLayout(false);
 			this->gbOtherInfo->ResumeLayout(false);
-			this->tableLayoutPanel1->ResumeLayout(false);
+			this->tlOtherInfo->ResumeLayout(false);
+			this->tlMetLoc->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMetLoc))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numEggMetLoc))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -1036,6 +1109,8 @@ namespace PKXEditor {
 					 rbOTFemale->Checked = (pkx->metlevel_otgender.otgender == Genders::female);
 					 numAbility->Value = (System::Decimal)((int)(pkx->ability));
 					 chkFateful->Checked = pkx->forms.fencounter;
+					 numMetLoc->Value = (System::Decimal)((int)(pkx->met));
+					 numEggMetLoc->Value = (System::Decimal)((int)(pkx->eggmet));
 					 redisplayok = true;
 				 }
 			 }
@@ -1272,6 +1347,20 @@ namespace PKXEditor {
 				 if(redisplayok)
 				 {
 					 pkx->forms.fencounter = chkFateful->Checked;
+				 }
+			 }
+	private: System::Void numMetLoc_ValueChanged(System::Object^  sender, System::EventArgs^  e) 
+			 {
+				 if(redisplayok)
+				 {
+					 pkx->met = (Locations::locations)((int)(numMetLoc->Value));
+				 }
+			 }
+	private: System::Void numEggMetLoc_ValueChanged(System::Object^  sender, System::EventArgs^  e) 
+			 {
+				 if(redisplayok)
+				 {
+					 pkx->eggmet = (Locations::locations)((int)(numEggMetLoc->Value));
 				 }
 			 }
 	};
