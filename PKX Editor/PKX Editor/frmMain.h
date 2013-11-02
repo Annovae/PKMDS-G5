@@ -1054,8 +1054,8 @@ namespace PKXEditor {
 						 ext = nativeWstr.substr(idx+1).c_str();
 					 }
 					 bool encrypted = (ext == L"bin");
-					 if(encrypted){encryptpkm(pkx);}
 					 calcchecksum(pkx);
+					 if(encrypted){encryptpkm(pkx);}
 					 pkx->isboxdatadecrypted = 0;
 					 pkx->ispartydatadecrypted = 0;
 					 write(nativeWstr.c_str(),pkx);

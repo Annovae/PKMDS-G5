@@ -1,6 +1,6 @@
 // PKX Editor.cpp : main project file.
 
-#include "stdafx.h"
+#include "../../include/pkmds/stdafx.h"
 #include "frmMain.h"
 
 using namespace PKXEditor;

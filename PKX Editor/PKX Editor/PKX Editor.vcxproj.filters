@@ -42,10 +42,10 @@
     <ClCompile Include="..\..\lib\pkmds_vector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\lib\stdafx.cpp">
+    <ClCompile Include="..\..\lib\pkmds_g6.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\lib\pkmds_g6.cpp">
+    <ClCompile Include="..\..\lib\stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -74,9 +74,6 @@
     <ClInclude Include="..\..\include\pkmds\pokeprng.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\pkmds\stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\pkmds\wondercard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -84,6 +81,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\pkmds\pkmds_g6.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\pkmds\stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
