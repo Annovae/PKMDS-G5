@@ -1,13 +1,13 @@
 #include "../../include/pkmds/pkmds_g5.h"
 // http://projectpokemon.org/wiki/Pokemon_X/Y_3DS_Structure
 struct datefieldx {
-    byte day;
-    byte year;
-    byte month;
-    datefieldx()
-    {
-        memset(this,0,sizeof(datefield));
-    }
+	byte day;
+	byte year;
+	byte month;
+	datefieldx()
+	{
+		memset(this,0,sizeof(datefield));
+	}
 };
 //Unencrypted Data
 struct pkxunencryptblock { // The unencrypted block of the Pokemon data, featuring such important things as the PID and checksum.
@@ -60,11 +60,14 @@ struct pkxblocka { //
 uint16 : 16;
 uint32 : 32;
 	Natures::natures nature;
-    formsfield forms;
-	evsfield evs;
+	formsfield forms;
+	evsfield evs; // 6 bytes
 uint32 : 32;
+	byte unknown[3];
 	pokerus pkrs;
-	byte unknown[20];
+uint32 : 32;
+	uint32 kalosribbons;
+	byte unknown2[12];
 	pkxblocka()
 	{
 		memset(this,0,sizeof(pkmblocka));
@@ -111,6 +114,7 @@ uint16 : 16;
 	byte pp[4]; // Current PP array
 	byte ppup[4]; // PP Ups used array
 	Moves::moves eggmoves[4];
+uint16 : 16;
 	ivsfield ivs; // Individual Values
 	pkxblockb()
 	{
@@ -159,14 +163,15 @@ Bit 7 - Female OT Gender
 struct pkxblockd { // size is currently 40 bytes?
 #if ! defined(MARKUP_SIZEOFWCHAR)
 #if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
-	char otname[16];
+	char otname[24];
 #else
-	wchar_t otname[8];
+	wchar_t otname[12];
 #endif
 #endif
-	byte unknown[16];
-	datefieldx eggdate; // Egg met date; year, month, day
-	datefieldx metdate; // Met date; year, month, day
+	byte unknown[10];
+	datefield eggdate; // Egg met date; year, month, day
+	datefield metdate; // Met date; year, month, day
+	//byte : 8;
 	Locations::locations eggmet; // Egg met location
 	Locations::locations met; // Met location
 	Balls::balls ball; // Ball captured with and kept in
@@ -259,3 +264,4 @@ void DllExport read(const char* file_name, pokemonx_obj *data);
 void DllExport read(const wchar_t * file_name, pokemonx_obj *data);
 void DllExport write(const char* file_name, pokemonx_obj* data);
 void DllExport write(const wchar_t * file_name, pokemonx_obj* data);
+bool DllExport getpkmshiny(const pokemonx_obj *pkx);

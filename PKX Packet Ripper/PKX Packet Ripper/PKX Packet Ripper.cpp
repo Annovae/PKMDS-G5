@@ -731,20 +731,28 @@ std::string species_names[] =
 int main(array<System::String ^> ^args)
 {
 #ifdef _DEBUG
-	array<System::String ^> ^test = gcnew array<System::String ^> {L"C:\\Users\\Michael Bond\\Documents\\GitHub\\PKMDS-G5\\PKX Packet Ripper\\Debug\\DumpSample"};
+	std::cout << "size of block a: " << sizeof(pkxblocka) << "\n";
+	std::cout << "size of block b: " << sizeof(pkxblockb) << "\n";
+	std::cout << "size of block c: " << sizeof(pkxblockc) << "\n";
+	std::cout << "size of block d: " << sizeof(pkxblockd) << "\n";
+	std::cout << "size of pkx: " << sizeof(pokemonx_obj) << "\n";
+	std::cout << "size of trade_packet: " << sizeof(trade_packet) << "\n";
+	std::string testy;
+	std::cin >> testy;
+	array<System::String ^> ^test = gcnew array<System::String ^> {L"C:\\Users\\Michael Bond\\Dropbox\\TEST DUMPER"};
 	args = test;
 #else
 #endif
 	if (args->Length > 0)
 	{
-	int test = sizeof(trade_packet);
+		int test = sizeof(trade_packet);
 		trade_packet *  tp = new trade_packet;
 		pokemonx_obj * pkx = new pokemonx_obj;
 		String^ folder = args[0];
 		array<String^>^ file = Directory::GetFiles( folder );
 		for (int i=0; i<file->Length; i++)
 		{
-			std::ostringstream o;//* o = new std::ostringstream;
+			std::ostringstream o;
 			pin_ptr<const wchar_t> wch = PtrToStringChars(file[i]);
 			std::wstring nativeWstr(wch);
 			read(nativeWstr.c_str(),tp);

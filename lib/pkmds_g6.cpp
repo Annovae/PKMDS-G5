@@ -145,3 +145,12 @@ void write(const char* file_name, pokemonx_obj* data) // Writes the given Pokemo
 	data->ispartydatadecrypted = encryptstatus[0];
 	data->isboxdatadecrypted = encryptstatus[1];
 }
+bool getpkmshiny(const pokemonx_obj *pkx){
+    uint32 p1, p2, E, F;
+
+    p1 = (pkx->pid & 0xFFFF0000) >> 16;
+    p2 = pkx->pid & 0xFFFF;
+    E = pkx->tid ^ pkx->sid;
+    F = p1 ^ p2;
+    return (E ^ F) < 8;
+}

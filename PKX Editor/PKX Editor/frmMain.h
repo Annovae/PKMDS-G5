@@ -90,6 +90,7 @@ namespace PKXEditor {
 	private: System::Windows::Forms::NumericUpDown^  numMetLoc;
 	private: System::Windows::Forms::NumericUpDown^  numEggMetLoc;
 	private: System::Windows::Forms::Label^  lblMetLoc;
+	private: System::Windows::Forms::CheckBox^  chkShiny;
 
 
 
@@ -202,6 +203,7 @@ namespace PKXEditor {
 			this->numMetLoc = (gcnew System::Windows::Forms::NumericUpDown());
 			this->numEggMetLoc = (gcnew System::Windows::Forms::NumericUpDown());
 			this->lblMetLoc = (gcnew System::Windows::Forms::Label());
+			this->chkShiny = (gcnew System::Windows::Forms::CheckBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numSpecies))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numItem))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numMove1))->BeginInit();
@@ -991,11 +993,23 @@ namespace PKXEditor {
 			this->lblMetLoc->Text = L"Met Location";
 			this->lblMetLoc->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			// 
+			// chkShiny
+			// 
+			this->chkShiny->AutoSize = true;
+			this->chkShiny->Enabled = false;
+			this->chkShiny->Location = System::Drawing::Point(484, 223);
+			this->chkShiny->Name = L"chkShiny";
+			this->chkShiny->Size = System::Drawing::Size(52, 17);
+			this->chkShiny->TabIndex = 14;
+			this->chkShiny->Text = L"Shiny";
+			this->chkShiny->UseVisualStyleBackColor = true;
+			// 
 			// frmMain
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(652, 396);
+			this->Controls->Add(this->chkShiny);
 			this->Controls->Add(this->tlMetLoc);
 			this->Controls->Add(this->lblSpecies);
 			this->Controls->Add(this->lblNickname);
@@ -1111,6 +1125,7 @@ namespace PKXEditor {
 					 chkFateful->Checked = pkx->forms.fencounter;
 					 numMetLoc->Value = (System::Decimal)((int)(pkx->met));
 					 numEggMetLoc->Value = (System::Decimal)((int)(pkx->eggmet));
+					 chkShiny->Checked = getpkmshiny(pkx);
 					 redisplayok = true;
 				 }
 			 }
