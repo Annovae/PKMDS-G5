@@ -9,5 +9,6 @@ struct trade_packet
 	pokemonx_obj pkx_data;
 	byte footer[28];
 };
+#pragma pack (pop, 1)
 void DllExport read(const char* file_name, trade_packet *data);
 void DllExport read(const wchar_t * file_name, trade_packet *data);

@@ -106,8 +106,6 @@ void read(const char* file_name, pokemonx_obj *data) // Reads the given file and
 	delete in;
 	in = 0;
 }
-
-
 void read(const wchar_t * file_name, pokemonx_obj *data) // Reads the given file and assigns the data to the given save file object.
 {
 	std::ifstream *in = new std::ifstream(file_name,std::ios::binary);
@@ -116,7 +114,6 @@ void read(const wchar_t * file_name, pokemonx_obj *data) // Reads the given file
 	delete in;
 	in = 0;
 }
-
 void write(const wchar_t * file_name, pokemonx_obj* data) // Writes the given Pokemon data to the given file name.
 {
 	int encryptstatus[2] = {data->ispartydatadecrypted,data->isboxdatadecrypted};
@@ -130,8 +127,6 @@ void write(const wchar_t * file_name, pokemonx_obj* data) // Writes the given Po
 	data->ispartydatadecrypted = encryptstatus[0];
 	data->isboxdatadecrypted = encryptstatus[1];
 }
-
-
 void write(const char* file_name, pokemonx_obj* data) // Writes the given Pokemon data to the given file name.
 {
 	int encryptstatus[2] = {data->ispartydatadecrypted,data->isboxdatadecrypted};

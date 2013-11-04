@@ -10,65 +10,65 @@ uint16 : 13;
 	uint16 checksum; // The checksum for the Pokemon data; used to validate data.
 	pkxunencryptblock()
 	{
-		memset(this,0,sizeof(pkmunencryptblock));
+		memset(this,0,sizeof(pkxunencryptblock));
 	}
 };
 struct pkxblocka { //
-	Species::pkmspecies species; // National Pokedex ID
-	Items::items item; // Held item index
-	uint16 tid; // Trainer ID
-	uint16 sid; // Secret ID
-	uint32 exp; // Accumulated experience points
-	Abilities::abilities ability;
-	byte abilitynumber;
-uint16 : 16;
-uint32 : 32;
-	Natures::natures nature;
-	formsfield forms;
-	evsfield evs; // 6 bytes
-uint32 : 32;
-	byte unknown[3];
-	pokerus pkrs;
-uint32 : 32;
-	uint32 kalosribbons;
-	byte unknown2[12];
+		Species::pkmspecies species; // National Pokedex ID
+		Items::items item; // Held item index
+		uint16 tid; // Trainer ID
+		uint16 sid; // Secret ID
+		uint32 exp; // Accumulated experience points
+		Abilities::abilities ability;
+		byte abilitynumber;
+	uint16 : 16;
+	uint32 : 32;
+		Natures::natures nature;
+		formsfield forms;
+		evsfield evs; // 6 bytes
+	uint32 : 32;
+		byte unknown[3];
+		pokerus pkrs;
+	uint32 : 32;
+		uint32 kalosribbons;
+		byte unknown2[12];
 	pkxblocka()
 	{
-		memset(this,0,sizeof(pkmblocka));
+		memset(this,0,sizeof(pkxblocka));
 	}
 };
 struct pkxblockb { //
-#if ! defined(MARKUP_SIZEOFWCHAR)
-#if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
-	char nickname[24];
-#else
-	wchar_t nickname[12];
-#endif
-#endif
-uint16 : 16;
-	Moves::moves moves[4]; // Move index array
-	byte pp[4]; // Current PP array
-	byte ppup[4]; // PP Ups used array
-	Moves::moves eggmoves[4];
-uint16 : 16;
-	ivsfield ivs; // Individual Values
+	#if ! defined(MARKUP_SIZEOFWCHAR)
+	#if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
+		char nickname[24];
+	#else
+		wchar_t nickname[12];
+	#endif
+	#endif
+	uint16 : 16;
+		Moves::moves moves[4]; // Move index array
+		byte pp[4]; // Current PP array
+		byte ppup[4]; // PP Ups used array
+		Moves::moves eggmoves[4];
+	uint16 : 16;
+		ivsfield ivs; // Individual Values
 	pkxblockb()
 	{
-		memset(this,0,sizeof(pkmblockb));
+		memset(this,0,sizeof(pkxblockb));
 	}
 };
 struct pkxblockc { //
-#if ! defined(MARKUP_SIZEOFWCHAR)
-#if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
-	char ot_to_name[24];
-#else
-	wchar_t ot_to_name[12];
-#endif
-#endif
-	byte unknown[32];
+	#if ! defined(MARKUP_SIZEOFWCHAR)
+	#if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
+		char ot_to_name[24];
+	#else
+		wchar_t ot_to_name[12];
+	#endif
+	#endif
+		byte unknown[32];
 	pkxblockc()
 	{
-		memset(this,0,sizeof(pkmblockc));
+		memset(this,0,sizeof(pkxblockc));
 	}
 };
 struct pkxblockd { // 
@@ -79,12 +79,12 @@ struct pkxblockd { //
 	wchar_t otname[12];
 #endif
 #endif
-	byte unknown[10];
+	byte unknown[9];
 	datefield eggdate; // Egg met date; year, month, day
 	datefield metdate; // Met date; year, month, day
-	//byte : 8;
 	Locations::locations eggmet; // Egg met location
 	Locations::locations met; // Met location
+byte : 8;
 	Balls::balls ball; // Ball captured with and kept in
 	metlevelfield metlevel_otgender; // Met level, original trainer gender flag
 byte : 8;
@@ -96,13 +96,13 @@ byte : 8;
 uint32 : 32; //
 	pkxblockd()
 	{
-		memset(this,0,sizeof(pkmblockd));
+		memset(this,0,sizeof(pkxblockd));
 	}
 };
 struct pokemonx_obj : pkxunencryptblock,pkxblocka,pkxblockb,pkxblockc,pkxblockd { // The Pokemon object, containing 232 bytes of data (as stored in the PC storage system)
 	pokemonx_obj()
 	{
-		memset(this,0,sizeof(pokemon_obj));
+		memset(this,0,sizeof(pokemonx_obj));
 	}
 };
 struct partyx_field { // Size: 
@@ -121,10 +121,9 @@ byte : 8;
 	uint16 spdef;
 uint16 : 16;
 uint32 : 32;
-	//byte unknown[0x40];
 	partyx_field()
 	{
-		memset(this,0,sizeof(party_field));
+		memset(this,0,sizeof(partyx_field));
 	}
 };
 struct party_pkx { // Size: 
@@ -132,7 +131,7 @@ struct party_pkx { // Size:
 	partyx_field partyx_data;
 	party_pkx()
 	{
-		memset(this,0,sizeof(party_pkm));
+		memset(this,0,sizeof(party_pkx));
 	}
 };
 void DllExport pkmcrypt(partyx_field* pkx, uint32 pid);
