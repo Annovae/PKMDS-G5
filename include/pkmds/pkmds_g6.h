@@ -1,14 +1,5 @@
 #include "../../include/pkmds/pkmds_g5.h"
 // http://projectpokemon.org/wiki/Pokemon_X/Y_3DS_Structure
-struct datefieldx {
-	byte day;
-	byte year;
-	byte month;
-	datefieldx()
-	{
-		memset(this,0,sizeof(datefield));
-	}
-};
 //Unencrypted Data
 struct pkxunencryptblock { // The unencrypted block of the Pokemon data, featuring such important things as the PID and checksum.
 	uint32 pid; // The Pokemon's personality value (PID).
@@ -160,7 +151,7 @@ Bit 7 - Female OT Gender
 0xE3	 OT language
 0xE4-0xE7	 Unknown / Unused
 */
-struct pkxblockd { // size is currently 40 bytes?
+struct pkxblockd { // 
 #if ! defined(MARKUP_SIZEOFWCHAR)
 #if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
 	char otname[24];
@@ -188,7 +179,7 @@ uint32 : 32; //
 		memset(this,0,sizeof(pkmblockd));
 	}
 };
-struct pokemonx_obj : pkxunencryptblock,pkxblocka,pkxblockb,pkxblockc,pkxblockd { // The Pokemon object, containing 136 bytes of data (as stored in the PC storage system)
+struct pokemonx_obj : pkxunencryptblock,pkxblocka,pkxblockb,pkxblockc,pkxblockd { // The Pokemon object, containing 232 bytes of data (as stored in the PC storage system)
 	pokemonx_obj()
 	{
 		memset(this,0,sizeof(pokemon_obj));
@@ -220,7 +211,7 @@ Bit 7 - Toxic
 0xFE-0xFF	 Unknown / Unused
 0x100-0x103	 Unknown / Unused
 */
-struct partyx_field { // Size: 0x54
+struct partyx_field { // Size: 
 	status_field status;
 byte : 8;
 uint16 : 16;
@@ -242,7 +233,7 @@ uint32 : 32;
 		memset(this,0,sizeof(party_field));
 	}
 };
-struct party_pkx { // Size: 0xDC
+struct party_pkx { // Size: 
 	pokemonx_obj pkx_data;
 	partyx_field partyx_data;
 	party_pkx()
