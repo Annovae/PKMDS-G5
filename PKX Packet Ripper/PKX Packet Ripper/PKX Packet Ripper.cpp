@@ -726,7 +726,10 @@ std::string species_names[] =
 	"Noivern",
 	"Xerneas",
 	"Yveltal",
-	"Zygarde"
+	"Zygarde",
+	"719",
+	"720",
+	"721"
 };
 int main(array<System::String ^> ^args)
 {
