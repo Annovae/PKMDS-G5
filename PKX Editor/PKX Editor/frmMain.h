@@ -1090,6 +1090,10 @@ namespace PKXEditor {
 					 }
 					 bool encrypted = (ext == L"bin");
 					 if(encrypted){decryptpkm(pkx);}
+
+					 byte raw_data[232];
+					 memcpy(raw_data,pkx,232);
+
 					 std::wstring stdwstr = pkx->otname;
 					 String^ SysStr = gcnew String(stdwstr.c_str());
 					 txtOTName->Text = SysStr;

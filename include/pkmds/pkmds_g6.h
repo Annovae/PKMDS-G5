@@ -14,58 +14,59 @@ uint16 : 13;
 	}
 };
 struct pkxblocka { //
-		Species::pkmspecies species; // National Pokedex ID
-		Items::items item; // Held item index
-		uint16 tid; // Trainer ID
-		uint16 sid; // Secret ID
-		uint32 exp; // Accumulated experience points
-		Abilities::abilities ability;
-		byte abilitynumber;
-	uint16 : 16;
-	uint32 : 32;
-		Natures::natures nature;
-		formsfield forms;
-		evsfield evs; // 6 bytes
-	uint32 : 32;
-		byte unknown[3];
-		pokerus pkrs;
-	uint32 : 32;
-		uint32 kalosribbons;
-		byte unknown2[12];
+	Species::pkmspecies species;
+	Items::items item;
+	uint16 tid;
+	uint16 sid;
+	uint32 exp;
+	Abilities::abilities ability;
+	byte abilitynum;
+uint16 : 16;
+uint32 : 32;
+	Natures::natures nature;
+	formsfield forms;
+	evsfield evs;
+uint32 : 32;
+	//uint32 : 24;
+	byte unknown[3];
+	pokerus pkrs;
+uint32 : 32;
+	uint32 kalosribbons;
+	byte unknown2[12];
 	pkxblocka()
 	{
 		memset(this,0,sizeof(pkxblocka));
 	}
 };
 struct pkxblockb { //
-	#if ! defined(MARKUP_SIZEOFWCHAR)
-	#if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
-		char nickname[24];
-	#else
-		wchar_t nickname[12];
-	#endif
-	#endif
-	uint16 : 16;
-		Moves::moves moves[4]; // Move index array
-		byte pp[4]; // Current PP array
-		byte ppup[4]; // PP Ups used array
-		Moves::moves eggmoves[4];
-	uint16 : 16;
-		ivsfield ivs; // Individual Values
+#if ! defined(MARKUP_SIZEOFWCHAR)
+#if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
+	char nickname[24];
+#else
+	wchar_t nickname[12];
+#endif
+#endif
+uint16 : 16;
+	Moves::moves moves[4];
+	byte pp[4];
+	byte ppups[4];
+	Moves::moves eggmoves[4];
+uint16 : 16;
+	ivsfield ivs;
 	pkxblockb()
 	{
 		memset(this,0,sizeof(pkxblockb));
 	}
 };
 struct pkxblockc { //
-	#if ! defined(MARKUP_SIZEOFWCHAR)
-	#if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
-		char ot_to_name[24];
-	#else
-		wchar_t ot_to_name[12];
-	#endif
-	#endif
-		byte unknown[32];
+#if ! defined(MARKUP_SIZEOFWCHAR)
+#if __SIZEOF_WCHAR_T__ == 4 || __WCHAR_MAX__ > 0x10000
+	char otname_to[24];
+#else
+	wchar_t otname_to[12];
+#endif
+#endif
+	byte unknown[32];
 	pkxblockc()
 	{
 		memset(this,0,sizeof(pkxblockc));
@@ -79,21 +80,21 @@ struct pkxblockd { //
 	wchar_t otname[12];
 #endif
 #endif
-	byte unknown[9];
-	datefield eggdate; // Egg met date; year, month, day
-	datefield metdate; // Met date; year, month, day
-	Locations::locations eggmet; // Egg met location
-	Locations::locations met; // Met location
-byte : 8;
-	Balls::balls ball; // Ball captured with and kept in
-	metlevelfield metlevel_otgender; // Met level, original trainer gender flag
-byte : 8;
+	byte unknown[9]; // Unknown / unused
+	datefield eggdate;
+	datefield metdate;
+byte : 8; // Unknown / unused
+	Locations::locations eggmet;
+	Locations::locations met;
+	Balls::balls ball;
+	metlevelfield metlevel_otgender;
+byte : 8; // Unknown / unused
 	Hometowns::hometowns hometown;
 	Countries::countries country;
 	byte regionid;
 	byte regionid3ds;
 	byte otlang;
-uint32 : 32; //
+uint32 : 32; // Unknown / unused
 	pkxblockd()
 	{
 		memset(this,0,sizeof(pkxblockd));

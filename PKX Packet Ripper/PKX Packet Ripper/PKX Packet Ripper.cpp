@@ -729,7 +729,8 @@ std::string species_names[] =
 	"Zygarde",
 	"719",
 	"720",
-	"721"
+	"721",
+	"Bad Egg"
 };
 int main(array<System::String ^> ^args)
 {
@@ -740,8 +741,8 @@ int main(array<System::String ^> ^args)
 	std::cout << "size of block d: " << sizeof(pkxblockd) << "\n";
 	std::cout << "size of pkx: " << sizeof(pokemonx_obj) << "\n";
 	std::cout << "size of trade_packet: " << sizeof(trade_packet) << "\n";
-	//std::string testy;
-	//std::cin >> testy;
+	std::string testy;
+	std::cin >> testy;
 #define path "C:\\Users\\michaelbond\\Downloads\\RAW\\"
 	array<System::String ^> ^test = gcnew array<System::String ^> {path};
 	args = test;
@@ -753,30 +754,30 @@ int main(array<System::String ^> ^args)
 		trade_packet *  tp = new trade_packet;
 		pokemonx_obj * pkx = new pokemonx_obj;
 		String^ folder = args[0];
-		//array<String^>^ file = Directory::GetFiles( folder );
-		//for (int i=0; i<file->Length; i++)
-		//{
-		std::ostringstream o;
-		//pin_ptr<const wchar_t> wch = PtrToStringChars(file[i]);
-		//std::wstring nativeWstr(wch);
-		//read(nativeWstr.c_str(),tp);
-		//pkx = &(tp->pkx_data);
-		read("C:\\Users\\michaelbond\\Downloads\\asd.pkx",pkx);
-		//byte raw_data[232];
-		//memcpy(raw_data,pkx,232);
+		array<String^>^ file = Directory::GetFiles( folder );
+		for (int i=0; i<file->Length; i++)
+		{
+			std::ostringstream o;
+			pin_ptr<const wchar_t> wch = PtrToStringChars(file[i]);
+			std::wstring nativeWstr(wch);
+			read(nativeWstr.c_str(),tp);
+			pkx = &(tp->pkx_data);
+			//read("C:\\Users\\Michael Bond\\Downloads\\pkx\\chespin",pkx);
+			byte raw_data[232];
+			memcpy(raw_data,pkx,232);
 
-		std::cout << int(pkx->regionid) << "\n";
-		std::cout << int(pkx->regionid3ds) << "\n";
-		std::cout << int(pkx->otlang) << "\n";
+			//std::cout << int(pkx->regionid) << "\n";
+			//std::cout << int(pkx->regionid3ds) << "\n";
+			//std::cout << int(pkx->otlang) << "\n";
 
-		//decryptpkm(pkx);
+			decryptpkm(pkx);
 #ifdef _DEBUG
-		o << path;
+			o << path;
 #endif
-		o << species_names[0/*int(pkx->species)*/] << "_" << std::hex << uint32(pkx->pid) << ".pkx";
-		std::string fileout = o.str();
-		write(fileout.c_str(),pkx);
-		//}
+			o << species_names[int(pkx->species)] << "_" << std::hex << uint32(pkx->pid) << ".pkx";
+			std::string fileout = o.str();
+			write(fileout.c_str(),pkx);
+		}
 	}
 	return 0;
 }
