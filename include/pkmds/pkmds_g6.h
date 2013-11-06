@@ -22,12 +22,11 @@ struct pkxblocka { //
 	Abilities::abilities ability;
 	byte abilitynum;
 uint16 : 16;
-uint32 pid;
+	uint32 pid;
 	Natures::natures nature;
 	formsfield forms;
 	evsfield evs;
 uint32 : 32;
-	//uint32 : 24;
 	byte unknown[3];
 	pokerus pkrs;
 uint32 : 32;

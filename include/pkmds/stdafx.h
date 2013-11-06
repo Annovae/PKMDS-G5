@@ -71,3 +71,6 @@ static const int GENERATION = 5;
 static const int BUFF_SIZE = 955;
 std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems);
 std::vector<std::string> split(const std::string &s, char delim);
+byte getbit(byte & input, byte n);
+byte getbit(uint16 & input, byte n);
+byte getbit(uint32 & input, byte n);

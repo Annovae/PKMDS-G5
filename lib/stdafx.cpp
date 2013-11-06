@@ -20,3 +20,15 @@ std::vector<std::string> split(const std::string &s, char delim)
     split(s, delim, elems);
     return elems;
 }
+byte getbit(byte & input, byte n)
+{
+	return ((input) >> n) & 1;
+}
+byte getbit(uint16 & input, byte n)
+{
+	return ((input) >> n) & 1;
+}
+byte getbit(uint32 & input, byte n)
+{
+	return ((input) >> n) & 1;
+}
