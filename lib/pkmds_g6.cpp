@@ -37,10 +37,10 @@ void shufflepkm(pokemonx_obj *pkx)
 {
 	shuffle(pkx,false);
 }
-void pkmcrypt(partyx_field* pkx, uint32 pid)
+void pkmcrypt(partyx_field* pkx, uint32 key)
 {
 	pkmprng prng;
-	prng.mseed = pid;
+	prng.mseed = key;
 	uint16 * words = reinterpret_cast<uint16*>(pkx);
 	for(int i = 0x0; i < 0x2a; i++)
 	{
@@ -51,14 +51,14 @@ void encryptpkm(party_pkx* pkx)
 {
 	shufflepkm(&(pkx->pkx_data));
 	pkmcrypt(&(pkx->pkx_data));
-	pkmcrypt(&(pkx->partyx_data),pkx->pkx_data.pid);
+	pkmcrypt(&(pkx->partyx_data),pkx->pkx_data.key);
 	pkx->pkx_data.ispartydatadecrypted = 0;
 	pkx->pkx_data.isboxdatadecrypted = 0;
 }
 void decryptpkm(party_pkx* pkx)
 {
 	pkmcrypt(&(pkx->pkx_data));
-	pkmcrypt(&(pkx->partyx_data),pkx->pkx_data.pid);
+	pkmcrypt(&(pkx->partyx_data),pkx->pkx_data.key);
 	unshufflepkm(&(pkx->pkx_data));
 	pkx->pkx_data.ispartydatadecrypted = 1;
 	pkx->pkx_data.isboxdatadecrypted = 1;
@@ -66,7 +66,7 @@ void decryptpkm(party_pkx* pkx)
 void pkmcrypt(pokemonx_obj* pkx)
 {
 	pkmprng prng;
-	prng.mseed = pkx->pid; // pkx->checksum;
+	prng.mseed = pkx->key; // pkx->checksum;
 	uint16 * words = reinterpret_cast<uint16*>(pkx);
 	for(int i = 4; i < 112; i++)
 	{
@@ -147,5 +147,5 @@ bool getpkmshiny(const pokemonx_obj *pkx){
     p2 = pkx->pid & 0xFFFF;
     E = pkx->tid ^ pkx->sid;
     F = p1 ^ p2;
-    return (E ^ F) < 8;
+    return (E ^ F) < 16; // 8;
 }

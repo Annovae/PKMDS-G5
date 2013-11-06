@@ -2,7 +2,7 @@
 // http://projectpokemon.org/wiki/Pokemon_X/Y_3DS_Structure
 //Unencrypted Data
 struct pkxunencryptblock { // The unencrypted block of the Pokemon data, featuring such important things as the PID and checksum.
-	uint32 pid; // The Pokemon's personality value (PID); used for encryption / decryption.
+	uint32 key; // Used for encryption / decryption.
 	uint16 ispartydatadecrypted : 1;
 	uint16 isboxdatadecrypted : 1;
 	uint16 isspeciesegg : 1;
@@ -22,7 +22,7 @@ struct pkxblocka { //
 	Abilities::abilities ability;
 	byte abilitynum;
 uint16 : 16;
-uint32 : 32;
+uint32 pid;
 	Natures::natures nature;
 	formsfield forms;
 	evsfield evs;
