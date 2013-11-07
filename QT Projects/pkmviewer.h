@@ -31,7 +31,7 @@ public:
     QGraphicsView * markingsgraphics[6];
     QPixmap markingspix[6];
     QGraphicsScene* markingsscene[6];
-
+    QGraphicsView * ribbonpix[80];
 #if (defined __linux__) || (defined __APPLE__)
     void setPKM(pokemon_obj * pkm_, int box, bool isPartyPKM);
     void setPKM(party_pkm * ppkm_, int box, bool isPartyPKM = true);

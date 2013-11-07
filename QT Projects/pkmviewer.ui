@@ -2726,6 +2726,806 @@ Changes</string>
     <attribute name="title">
      <string>Ribbon</string>
     </attribute>
+    <widget class="QGraphicsView" name="pbRibbon_01">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_02">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>10</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_03">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>10</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_04">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>10</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_05">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>10</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_06">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>10</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_07">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>10</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_08">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>10</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_09">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>10</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_10">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>10</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_11">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_12">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>40</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_13">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>40</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_14">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>40</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_15">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>40</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_16">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>40</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_17">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>40</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_18">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>40</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_19">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>40</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_20">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>40</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_21">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>70</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_22">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>70</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_23">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>70</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_24">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>70</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_25">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>70</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_26">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>70</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_27">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>70</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_28">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>70</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_29">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>70</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_30">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>70</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_31">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>100</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_32">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>100</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_33">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>100</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_34">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>100</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_35">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>100</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_36">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>100</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_37">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>100</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_38">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>100</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_39">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>100</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_40">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>100</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_41">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>130</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_42">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>130</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_43">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>130</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_44">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>130</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_45">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>130</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_46">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>130</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_47">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>130</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_48">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>130</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_49">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>130</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_50">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>130</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_51">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>160</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_52">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>160</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_53">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>160</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_54">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>160</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_55">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>160</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_56">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>160</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_57">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>160</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_58">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>160</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_59">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>160</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_60">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>160</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_61">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>190</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_62">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>190</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_63">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>190</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_64">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>190</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_65">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>190</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_66">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>190</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_67">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>190</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_68">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>190</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_69">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>190</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_70">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>190</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_71">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>220</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_72">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>220</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_73">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>220</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_74">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>220</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_75">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>220</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_76">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>220</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_77">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>220</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_78">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>220</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_79">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>220</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGraphicsView" name="pbRibbon_80">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>220</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tpMisc">
     <attribute name="title">

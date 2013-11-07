@@ -32,6 +32,86 @@ pkmviewer::pkmviewer(QWidget *parent) :
     markingsgraphics[(int)Markings::square] = ui->pbSquare;
     markingsgraphics[(int)Markings::star] = ui->pbStar;
     markingsgraphics[(int)Markings::triangle] = ui->pbTriangle;
+    ribbonpix[0] = ui->pbRibbon_01;
+    ribbonpix[1] = ui->pbRibbon_02;
+    ribbonpix[2] = ui->pbRibbon_03;
+    ribbonpix[3] = ui->pbRibbon_04;
+    ribbonpix[4] = ui->pbRibbon_05;
+    ribbonpix[5] = ui->pbRibbon_06;
+    ribbonpix[6] = ui->pbRibbon_07;
+    ribbonpix[7] = ui->pbRibbon_08;
+    ribbonpix[8] = ui->pbRibbon_09;
+    ribbonpix[9] = ui->pbRibbon_10;
+    ribbonpix[10] = ui->pbRibbon_11;
+    ribbonpix[11] = ui->pbRibbon_12;
+    ribbonpix[12] = ui->pbRibbon_13;
+    ribbonpix[13] = ui->pbRibbon_14;
+    ribbonpix[14] = ui->pbRibbon_15;
+    ribbonpix[15] = ui->pbRibbon_16;
+    ribbonpix[16] = ui->pbRibbon_17;
+    ribbonpix[17] = ui->pbRibbon_18;
+    ribbonpix[18] = ui->pbRibbon_19;
+    ribbonpix[19] = ui->pbRibbon_20;
+    ribbonpix[20] = ui->pbRibbon_21;
+    ribbonpix[21] = ui->pbRibbon_22;
+    ribbonpix[22] = ui->pbRibbon_23;
+    ribbonpix[23] = ui->pbRibbon_24;
+    ribbonpix[24] = ui->pbRibbon_25;
+    ribbonpix[25] = ui->pbRibbon_26;
+    ribbonpix[26] = ui->pbRibbon_27;
+    ribbonpix[27] = ui->pbRibbon_28;
+    ribbonpix[28] = ui->pbRibbon_29;
+    ribbonpix[29] = ui->pbRibbon_30;
+    ribbonpix[30] = ui->pbRibbon_31;
+    ribbonpix[31] = ui->pbRibbon_32;
+    ribbonpix[32] = ui->pbRibbon_33;
+    ribbonpix[33] = ui->pbRibbon_34;
+    ribbonpix[34] = ui->pbRibbon_35;
+    ribbonpix[35] = ui->pbRibbon_36;
+    ribbonpix[36] = ui->pbRibbon_37;
+    ribbonpix[37] = ui->pbRibbon_38;
+    ribbonpix[38] = ui->pbRibbon_39;
+    ribbonpix[39] = ui->pbRibbon_40;
+    ribbonpix[40] = ui->pbRibbon_41;
+    ribbonpix[41] = ui->pbRibbon_42;
+    ribbonpix[42] = ui->pbRibbon_43;
+    ribbonpix[43] = ui->pbRibbon_44;
+    ribbonpix[44] = ui->pbRibbon_45;
+    ribbonpix[45] = ui->pbRibbon_46;
+    ribbonpix[46] = ui->pbRibbon_47;
+    ribbonpix[47] = ui->pbRibbon_48;
+    ribbonpix[48] = ui->pbRibbon_49;
+    ribbonpix[49] = ui->pbRibbon_50;
+    ribbonpix[50] = ui->pbRibbon_51;
+    ribbonpix[51] = ui->pbRibbon_52;
+    ribbonpix[52] = ui->pbRibbon_53;
+    ribbonpix[53] = ui->pbRibbon_54;
+    ribbonpix[54] = ui->pbRibbon_55;
+    ribbonpix[55] = ui->pbRibbon_56;
+    ribbonpix[56] = ui->pbRibbon_57;
+    ribbonpix[57] = ui->pbRibbon_58;
+    ribbonpix[58] = ui->pbRibbon_59;
+    ribbonpix[59] = ui->pbRibbon_60;
+    ribbonpix[60] = ui->pbRibbon_61;
+    ribbonpix[61] = ui->pbRibbon_62;
+    ribbonpix[62] = ui->pbRibbon_63;
+    ribbonpix[63] = ui->pbRibbon_64;
+    ribbonpix[64] = ui->pbRibbon_65;
+    ribbonpix[65] = ui->pbRibbon_66;
+    ribbonpix[66] = ui->pbRibbon_67;
+    ribbonpix[67] = ui->pbRibbon_68;
+    ribbonpix[68] = ui->pbRibbon_69;
+    ribbonpix[69] = ui->pbRibbon_70;
+    ribbonpix[70] = ui->pbRibbon_71;
+    ribbonpix[71] = ui->pbRibbon_72;
+    ribbonpix[72] = ui->pbRibbon_73;
+    ribbonpix[73] = ui->pbRibbon_74;
+    ribbonpix[74] = ui->pbRibbon_75;
+    ribbonpix[75] = ui->pbRibbon_76;
+    ribbonpix[76] = ui->pbRibbon_77;
+    ribbonpix[77] = ui->pbRibbon_78;
+    ribbonpix[78] = ui->pbRibbon_79;
+    ribbonpix[79] = ui->pbRibbon_80;
     for(int i = 0; i < 6; i++)
     {
         markingspix[i] = getmarkingimage(Markings::markings(i), false);
@@ -136,7 +216,6 @@ pkmviewer::pkmviewer(QWidget *parent) :
     this->setMaximumSize(this->size());
     this->setSizeGripEnabled(false);
 }
-
 // Need to clean this up and figure out what goes where
 bool levelchangeok = true;
 bool redisplayok = false;
@@ -149,7 +228,6 @@ extern int frmCurBoxNum;
 extern bw2savblock_obj * cursavblock;
 extern int frmCurSlotNum;
 int startbox = 0;
-
 void pkmviewer::setPKM(pokemon_obj * pkm_, int box, bool isPartyPKM)
 {
     startbox = box;
