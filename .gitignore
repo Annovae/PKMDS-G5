@@ -65,6 +65,7 @@ Makefile
 *.xml
 *.metagen
 *.bi
+*.lib
 *PKMDS_Desktop_Win.lib
 *PKMDS_Desktop_Win_2010.lib
 *PKX Crypt.lib
@@ -80,3 +81,4 @@ SQLite Databases
 *build-PKX-Editor-Desktop*
 *PKX Packet Ripper/Debug*
 *PKX Packet Ripper/Release*
+*build-PKMDS_QT-Desktop_Qt_5_1_1_MSVC2012_64bit-Release*
