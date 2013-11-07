@@ -2991,7 +2991,8 @@ public:
 //Block B
 struct pkmblockb { //
 public:
-	Moves::moves moves[4]; // Move index array
+	//Moves::moves moves[4]; // Move index array
+	std::array<Moves::moves,4> moves;
 	byte pp[4]; // Current PP array
 	byte ppup[4]; // PP Ups used array
 	ivsfield ivs; // Individual Values
@@ -3178,7 +3179,7 @@ struct party_obj { // size: 0x534
 uint32 : 32;
 public:
 	uint32 size;
-	party_pkm pokemon[6];
+	std::array<party_pkm,6> pokemon;
 	uint16 checksum;
 uint16 : 16;
 	party_obj()
@@ -3598,6 +3599,56 @@ static const std::string ballnames[26] = {
 	"Dream Ball"
 };
 static const int RIBBONS_MAX_NUM = 80;
+static const std::string ribbon_identifiers[RIBBONS_MAX_NUM] = {
+	"sinnoh-champ-ribbon",
+	"ability-ribbon",
+	"great-ability-ribbon",
+	"double-ability-ribbon",
+	"multi-ability-ribbon",
+	"pair-ability-ribbon",
+	"world-ability-ribbon",
+	"alert-ribbon",
+	"shock-ribbon",
+	"downcast-ribbon",
+	"careless-ribbon",
+	"relax-ribbon",
+	"snooze-ribbon",
+	"smile-ribbon",
+	"gorgeous-ribbon",
+	"royal-ribbon",
+	"gorgeous-royal-ribbon",
+	"footprint-ribbon",
+	"record-ribbon",
+	"history-ribbon",
+	"legend-ribbon",
+	"red-ribbon",
+	"green-ribbon",
+	"blue-ribbon",
+	"festival-ribbon",
+	"carnival-ribbon",
+	"classic-ribbon",
+	"premier-ribbon",
+	"cool-ribbon",
+	"cool-ribbon-great",
+	"cool-ribbon-ultra",
+	"cool-ribbon-master",
+	"beauty-ribbon",
+	"beauty-ribbon-great",
+	"beauty-ribbon-ultra",
+	"beauty-ribbon-master",
+	"cute-ribbon",
+	"cute-ribbon-great",
+	"cute-ribbon-ultra",
+	"cute-ribbon-master",
+	"smart-ribbon",
+	"smart-ribbon-great",
+	"smart-ribbon-ultra",
+	"smart-ribbon-master",
+	"tough-ribbon",
+	"tough-ribbon-great",
+	"tough-ribbon-ultra",
+	"tough-ribbon-master"
+};
 static const std::string ribbon_names[RIBBONS_MAX_NUM] = {
 	"Sinnoh Champ Ribbon",
 	"Ability Ribbon",
@@ -3848,7 +3899,10 @@ std::wstring DllExport getwstring(std::wstring in);
 std::wstring DllExport getwstring(std::string in);
 std::wstring DllExport getwstring(char* in, int len); //Linux needs this
 std::string DllExport getpkrsstatus(const pokemon_obj * pkm);
+std::vector<bool> DllExport getribbonswitches(const pokemon_obj * pkm);
 std::vector<std::string> DllExport getobtainedribbons(const pokemon_obj * pkm);
+void deletemove(std::array<Moves::moves,4> & moves, byte move);
+void remove_pkm(bw2savblock_obj * block, const int slot);
 /*
 Main Save File & Backup
 

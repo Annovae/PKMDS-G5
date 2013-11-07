@@ -754,9 +754,20 @@ void remove_pkm(box_obj *box, const int slot)
 	encryptpkm(blank);
 	box->pokemon[slot] = blank;
 }
+void remove_pkm(bw2savblock_obj * block, const int slot)
+{
+	std::vector<party_pkm> party(6);
+	std::copy(block->party.pokemon.begin(),block->party.pokemon.end(),party.begin());
+	party.erase(party.begin() + slot);
+	party_pkm * blankpp = new party_pkm;
+	std::fill(block->party.pokemon.begin(),block->party.pokemon.end(),(*blankpp));
+	std::copy(party.begin(),party.end(),block->party.pokemon.begin());
+}
 void depositpkm(bw2savblock_obj * block, const int party_slot, box_obj * box, const int box_slot)
 {
-	// TODO: Deposit pokemon
+	party_pkm ppkm = block->party.pokemon[party_slot];
+	remove_pkm(block,party_slot);
+	put_pkm(box,box_slot,&(ppkm.pkm_data),!(ppkm.pkm_data.isboxdatadecrypted));
 }
 double getpkmhappiness(const pokemon_obj &pkm)
 {
@@ -1025,7 +1036,7 @@ Types::types getarceustype(int form)
 	};
 	return arceustypes[form];
 }
-std::string DllExport getpkrsstatus(const pokemon_obj * pkm)
+std::string getpkrsstatus(const pokemon_obj * pkm)
 {
 	std::string status = "";
 	if((pkm->pkrs.days > 0) & (pkm->pkrs.strain > 0))
@@ -1038,7 +1049,48 @@ std::string DllExport getpkrsstatus(const pokemon_obj * pkm)
 	}
 	return status;
 }
-std::vector<std::string> DllExport getobtainedribbons(const pokemon_obj * pkm)
+std::vector<bool> getribbonswitches(const pokemon_obj * pkm)
+{
+	std::vector<bool> switches;
+	for(int bit = 0; bit < 16; bit++)
+	{
+		uint16 rib;
+		memcpy(&rib,&(pkm->sribbon1),2);
+		switches.push_back(getbit(rib,bit) == 1);
+	}
+	for(int bit = 0; bit < 12; bit++)
+	{
+		uint16 rib;
+		memcpy(&rib,&(pkm->sribbon2),2);
+		switches.push_back(getbit(rib,bit) == 1);
+	}
+	for(int bit = 0; bit < 16; bit++)
+	{
+		uint16 rib;
+		memcpy(&rib,&(pkm->sribbon3),2);
+		switches.push_back(getbit(rib,bit) == 1);
+	}
+	for(int bit = 0; bit < 4; bit++)
+	{
+		byte rib;
+		memcpy(&rib,&(pkm->sribbon4),1);
+		switches.push_back(getbit(rib,bit) == 1);
+	}
+	for(int bit = 0; bit < 16; bit++)
+	{
+		uint16 rib;
+		memcpy(&rib,&(pkm->hribbon1),2);
+		switches.push_back(getbit(rib,bit) == 1);
+	}
+	for(int bit = 0; bit < 16; bit++)
+	{
+		uint16 rib;
+		memcpy(&rib,&(pkm->hribbon2),2);
+		switches.push_back(getbit(rib,bit) == 1);
+	}
+	return switches;
+}
+std::vector<std::string> getobtainedribbons(const pokemon_obj * pkm)
 {
 	std::vector<std::string> ribbonnames;
 	for(int bit = 0; bit < 16; bit++)
@@ -1062,28 +1114,10 @@ std::vector<std::string> DllExport getobtainedribbons(const pokemon_obj * pkm)
 	for(int bit = 0; bit < 16; bit++)
 	{
 		uint16 rib;
-		memcpy(&rib,&(pkm->hribbon1),2);
-		if(getbit(rib,bit) == 1)
-		{
-			ribbonnames.push_back(ribbon_names[bit + 12]);
-		}
-	}
-	for(int bit = 0; bit < 16; bit++)
-	{
-		uint16 rib;
-		memcpy(&rib,&(pkm->hribbon2),2);
-		if(getbit(rib,bit) == 1)
-		{
-			ribbonnames.push_back(ribbon_names[bit + 16]);
-		}
-	}
-	for(int bit = 0; bit < 16; bit++)
-	{
-		uint16 rib;
 		memcpy(&rib,&(pkm->sribbon3),2);
 		if(getbit(rib,bit) == 1)
 		{
-			ribbonnames.push_back(ribbon_names[bit + 16]);
+			ribbonnames.push_back(ribbon_names[bit + 12]);
 		}
 	}
 	for(int bit = 0; bit < 4; bit++)
@@ -1095,5 +1129,31 @@ std::vector<std::string> DllExport getobtainedribbons(const pokemon_obj * pkm)
 			ribbonnames.push_back(ribbon_names[bit + 16]);
 		}
 	}
+	for(int bit = 0; bit < 16; bit++)
+	{
+		uint16 rib;
+		memcpy(&rib,&(pkm->hribbon1),2);
+		if(getbit(rib,bit) == 1)
+		{
+			ribbonnames.push_back(ribbon_names[bit + 4]);
+		}
+	}
+	for(int bit = 0; bit < 16; bit++)
+	{
+		uint16 rib;
+		memcpy(&rib,&(pkm->hribbon2),2);
+		if(getbit(rib,bit) == 1)
+		{
+			ribbonnames.push_back(ribbon_names[bit + 16]);
+		}
+	}
 	return ribbonnames;
+}
+void deletemove(std::array<Moves::moves,4> & moves, byte move)
+{
+		std::vector<Moves::moves> temp(4);
+		std::copy(moves.begin(),moves.end(),temp.begin());
+		temp.erase(temp.begin()+move);
+		std::fill(moves.begin(),moves.end(),Moves::NOTHING);
+		std::copy(temp.begin(),temp.end(),moves.begin());
 }

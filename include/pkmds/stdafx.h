@@ -54,6 +54,7 @@ Some documentation available at: http://www.projectpokemon.org/wiki/
 #include <sstream>
 #include <string.h>
 #include <vector>
+#include <array>
 #include <math.h>
 #include <algorithm>
 #include <ctime>
