@@ -2993,8 +2993,8 @@ struct pkmblockb { //
 public:
 	//Moves::moves moves[4]; // Move index array
 	std::array<Moves::moves,4> moves;
-	byte pp[4]; // Current PP array
-	byte ppup[4]; // PP Ups used array
+	std::array<byte,4> pp; // Current PP array
+	std::array<byte,4> ppup; // PP Ups used array
 	ivsfield ivs; // Individual Values
 	hoennrib1 hribbon1; // Hoenn Ribbons 1
 	hoennrib2 hribbon2; // Hoenn Ribbons 2
@@ -3126,7 +3126,7 @@ void DllExport encryptpkm(pokemon_obj* pkm);
 void DllExport decryptpkm(pokemon_obj* pkm);
 struct box_obj { // size: 0x1000
 public:
-	pokemon_obj pokemon[30]; //
+	std::array<pokemon_obj,30> pokemon; //
 uint16 : 16;
 	uint16 checksum;
 	byte buf[0x0c];
@@ -3163,11 +3163,11 @@ byte : 8;
 };
 struct bag_obj { // size: 0x9c0
 public:
-	item_obj items_pocket[ITEMS_POCKET_SIZE];
-	item_obj keyitems_pocket[KEYITEMS_POCKET_SIZE];
-	item_obj tms_pocket[TMS_POCKET_SIZE];
-	item_obj medicine_pocket[MEDICINE_POCKET_SIZE];
-	item_obj berries_pocket[BERRIES_POCKET_SIZE];
+	std::array<item_obj,ITEMS_POCKET_SIZE> items_pocket;
+	std::array<item_obj,KEYITEMS_POCKET_SIZE> keyitems_pocket;
+	std::array<item_obj,TMS_POCKET_SIZE> tms_pocket;
+	std::array<item_obj,MEDICINE_POCKET_SIZE> medicine_pocket;
+	std::array<item_obj,BERRIES_POCKET_SIZE> berries_pocket;
 	byte data[0x66];
 	uint16 checksum;
 	bag_obj()
@@ -3531,11 +3531,11 @@ public:
 	wchar_t boxnames[24][20]; // size: 0x3C0
 #endif
 #endif
-	Wallpapers::wallpapers boxwallpapers[0x18];
+	std::array<Wallpapers::wallpapers,0x18> boxwallpapers;
 	byte unknown1[6];
 	uint16 block1checksum;
 	byte unknown2[0x1c]; //
-	box_obj boxes[24]; // size: 0x18000
+	std::array<box_obj,24> boxes; // size: 0x18000
 	bag_obj bag; // size: 0xA00
 	party_obj party; // size: 0x534
 	byte unknown3[0xD0]; //
@@ -3549,7 +3549,7 @@ public:
 	uint16 tid;
 	uint16 sid;
 	byte unknown4[0x32EC];
-	badge_obj badges[8]; // size: 0x20
+	std::array<badge_obj,8> badges; // size: 0x20
 	byte unknown5[0x1210];
 	uint32 adventurestarted;
 	//    byte unknown6[0x226C8];
